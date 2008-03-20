@@ -5,7 +5,7 @@
 == DESCRIPTION:
 
 Test::Unit (Classic) - Nathaniel Talbott's originial test-unit,
-externalized from the ruby project as a gem.
+externalized from the ruby project as a gem (for tool developers).
 
 == FEATURES/PROBLEMS:
 
