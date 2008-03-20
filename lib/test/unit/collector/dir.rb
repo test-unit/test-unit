@@ -18,6 +18,7 @@ module Test
           @req = req
           @pattern = [/\btest_.*\.rb\Z/m]
           @exclude = []
+          @base = nil
         end
 
         def collect(*from)
