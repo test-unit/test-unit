@@ -1,5 +1,5 @@
-=== 1.0.0 / 2008-02-25
+=== 1.2.3 / 2008-02-25
 
 * 1 major enhancement
-  * Birthday!
+  * Birthday (as a gem)!
 

@@ -1,48 +1,27 @@
-= Test::Unit
+= Test::Unit (Classic)
 
-* FIX (url)
+* http://rubyforge.org/projects/test-unit/
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Test::Unit (Classic) - Nathaniel Talbott's originial test-unit,
+externalized from the ruby project as a gem.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
-
-== SYNOPSIS:
-
-  FIX (code sample of usage)
-
-== REQUIREMENTS:
-
-* FIX (list of requirements)
+* This is the original Test::Unit, taken straight from the ruby
+  distribution. It is being distributed as a gem to allow tool
+  builders to use it as a stand-alone package. (The test framework in
+  ruby is going to radically change very soon).
+* DO NOT INSTALL THIS GEM unless you're active state or some other
+  development tool provider! You don't need it.
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install test-unit
 
 == LICENSE:
 
-(The MIT License)
+(The Ruby License)
 
-Copyright (c) 2008 FIX
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This software is distributed under the same terms as ruby.
