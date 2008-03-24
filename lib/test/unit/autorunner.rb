@@ -25,10 +25,6 @@ module Test
           require 'test/unit/ui/console/testrunner'
           Test::Unit::UI::Console::TestRunner
         end,
-        :gtk => proc do |r|
-          require 'test/unit/ui/gtk/testrunner'
-          Test::Unit::UI::GTK::TestRunner
-        end,
         :gtk2 => proc do |r|
           require 'test/unit/ui/gtk2/testrunner'
           Test::Unit::UI::GTK2::TestRunner
@@ -187,11 +183,6 @@ module Test
           o.on_tail('--console', 'Console runner (use --runner).') do
             warn("Deprecated option (--console).")
             @runner = RUNNERS[:console]
-          end
-
-          o.on_tail('--gtk', 'GTK runner (use --runner).') do
-            warn("Deprecated option (--gtk).")
-            @runner = RUNNERS[:gtk]
           end
 
           o.on_tail('--fox', 'Fox runner (use --runner).') do
