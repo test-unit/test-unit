@@ -6,10 +6,15 @@ module Test
   module Unit
     class AutoRunner
       RUNNERS = {}
+      COLLECTORS = {}
 
       class << self
         def register_runner(id, runner_builder=Proc.new)
           RUNNERS[id] = runner_builder
+        end
+
+        def register_collector(id, collector_builder=Proc.new)
+          COLLECTORS[id] = collector_builder
         end
       end
 
@@ -55,24 +60,23 @@ module Test
         [:verbose, UI::VERBOSE],
       ]
 
-      COLLECTORS = {
-        :objectspace => proc do |r|
-          require 'test/unit/collector/objectspace'
-          c = Collector::ObjectSpace.new
-          c.filter = r.filters
-          c.collect($0.sub(/\.rb\Z/, ''))
-        end,
-        :dir => proc do |r|
-          require 'test/unit/collector/dir'
-          c = Collector::Dir.new
-          c.filter = r.filters
-          c.pattern.concat(r.pattern) if(r.pattern)
-          c.exclude.concat(r.exclude) if(r.exclude)
-          c.base = r.base
-          $:.push(r.base) if r.base
-          c.collect(*(r.to_run.empty? ? ['.'] : r.to_run))
-        end,
-      }
+      register_collector(:object_space) do |auto_runner|
+        require 'test/unit/collector/objectspace'
+        c = Collector::ObjectSpace.new
+        c.filter = auto_runner.filters
+        c.collect($0.sub(/\.rb\Z/, ''))
+      end
+
+      register_collector(:dir) do |auto_runner|
+        require 'test/unit/collector/dir'
+        c = Collector::Dir.new
+        c.filter = auto_runner.filters
+        c.pattern.concat(auto_runner.pattern) if auto_runner.pattern
+        c.exclude.concat(auto_runner.exclude) if auto_runner.exclude
+        c.base = auto_runner.base
+        $:.push(auto_runner.base) if auto_runner.base
+        c.collect(*(auto_runner.to_run.empty? ? ['.'] : auto_runner.to_run))
+      end
 
       attr_reader :suite
       attr_accessor :output_level, :filters, :to_run, :pattern, :exclude, :base, :workdir
@@ -82,7 +86,7 @@ module Test
         Unit.run = true
         @standalone = standalone
         @runner = RUNNERS[:console]
-        @collector = COLLECTORS[(standalone ? :dir : :objectspace)]
+        @collector = COLLECTORS[(standalone ? :dir : :object_space)]
         @filters = []
         @to_run = []
         @output_level = UI::NORMAL
