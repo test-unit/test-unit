@@ -5,6 +5,14 @@ require 'optparse'
 module Test
   module Unit
     class AutoRunner
+      RUNNERS = {}
+
+      class << self
+        def register_runner(id, runner_builder=Proc.new)
+          RUNNERS[id] = runner_builder
+        end
+      end
+
       def self.run(force_standalone=false, default_dir=nil, argv=ARGV, &block)
         r = new(force_standalone || standalone?, &block)
         r.base = default_dir
@@ -20,24 +28,25 @@ module Test
         true
       end
 
-      RUNNERS = {
-        :console => proc do |r|
-          require 'test/unit/ui/console/testrunner'
-          Test::Unit::UI::Console::TestRunner
-        end,
-        :gtk2 => proc do |r|
-          require 'test/unit/ui/gtk2/testrunner'
-          Test::Unit::UI::GTK2::TestRunner
-        end,
-        :fox => proc do |r|
-          require 'test/unit/ui/fox/testrunner'
-          Test::Unit::UI::Fox::TestRunner
-        end,
-        :tk => proc do |r|
-          require 'test/unit/ui/tk/testrunner'
-          Test::Unit::UI::Tk::TestRunner
-        end,
-      }
+      register_runner(:console) do |auto_runner|
+        require 'test/unit/ui/console/testrunner'
+        Test::Unit::UI::Console::TestRunner
+      end
+
+      register_runner(:gtk2) do |auto_runner|
+        require 'test/unit/ui/gtk2/testrunner'
+        Test::Unit::UI::GTK2::TestRunner
+      end
+
+      register_runner(:fox) do |auto_runner|
+        require 'test/unit/ui/fox/testrunner'
+        Test::Unit::UI::Fox::TestRunner
+      end
+
+      register_runner(:tk) do |auto_runner|
+        require 'test/unit/ui/tk/testrunner'
+        Test::Unit::UI::Tk::TestRunner
+      end
 
       OUTPUT_LEVELS = [
         [:silent, UI::SILENT],
