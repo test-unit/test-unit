@@ -38,21 +38,6 @@ module Test
         Test::Unit::UI::Console::TestRunner
       end
 
-      register_runner(:gtk2) do |auto_runner|
-        require 'test/unit/ui/gtk2/testrunner'
-        Test::Unit::UI::GTK2::TestRunner
-      end
-
-      register_runner(:fox) do |auto_runner|
-        require 'test/unit/ui/fox/testrunner'
-        Test::Unit::UI::Fox::TestRunner
-      end
-
-      register_runner(:tk) do |auto_runner|
-        require 'test/unit/ui/tk/testrunner'
-        Test::Unit::UI::Tk::TestRunner
-      end
-
       OUTPUT_LEVELS = [
         [:silent, UI::SILENT],
         [:progress, UI::PROGRESS_ONLY],
@@ -198,9 +183,11 @@ module Test
             @runner = RUNNERS[:console]
           end
 
-          o.on_tail('--fox', 'Fox runner (use --runner).') do
-            warn("Deprecated option (--fox).")
-            @runner = RUNNERS[:fox]
+          if RUNNERS[:fox]
+            o.on_tail('--fox', 'Fox runner (use --runner).') do
+              warn("Deprecated option (--fox).")
+              @runner = RUNNERS[:fox]
+            end
           end
 
           o.on_tail
