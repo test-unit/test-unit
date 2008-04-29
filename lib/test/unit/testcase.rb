@@ -4,6 +4,7 @@
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
+require 'test/unit/attribute'
 require 'test/unit/assertions'
 require 'test/unit/failure'
 require 'test/unit/error'
@@ -20,6 +21,7 @@ module Test
     # nitty-gritty of actually running an individual test and
     # collecting its results into a Test::Unit::TestResult object.
     class TestCase
+      include Attribute
       include Assertions
       include Util::BacktraceFilter
       
