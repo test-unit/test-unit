@@ -3,16 +3,13 @@ module Test
     module Attribute
       class << self
         def included(base)
-          class << base
-            alias_method :method_added_without_attributes, :method_added
-          end
           base.extend(ClassMethods)
         end
       end
 
       module ClassMethods
         def method_added(name)
-          method_added_without_attributes(name)
+          super
           if defined?(@current_attributes)
             attributes = {}
             kept_attributes = {}
