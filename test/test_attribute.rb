@@ -65,15 +65,17 @@ class TestAttribute < Test::Unit::TestCase
   end
 
   def test_callback
-    test_case = Class.new(TestStack)
     callbacked_data = []
     callback = Proc.new do |key, old_value, value, method_name|
       callbacked_data << [key, old_value, value, method_name]
     end
-    test_case.register_attribute_changed_callback(:bug, &callback)
-    test_case.attribute("bug", 9876, "test_bug_1234")
-    test_case.attribute(:description, "Test for peek", "test_peek")
-    test_case.attribute(:bug, 29, "test_peek")
+
+    Class.new(TestStack) do
+      register_attribute_changed_callback(:bug, &callback)
+      attribute("bug", 9876, "test_bug_1234")
+      attribute(:description, "Test for peek", "test_peek")
+      attribute(:bug, 29, "test_peek")
+    end
 
     assert_equal([
                   ["bug", 1234, 9876, "test_bug_1234"],
