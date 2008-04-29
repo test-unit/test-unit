@@ -10,16 +10,16 @@ module Test
       module ClassMethods
         def method_added(name)
           super
-          if defined?(@current_attributes)
-            attributes = {}
-            kept_attributes = {}
-            @current_attributes.each do |attribute_name, attribute|
-              attributes[attribute_name] = attribute[:value]
-              kept_attributes[attribute_name] = attribute if attribute[:keep]
-            end
-            set_attributes(name, attributes)
-            @current_attributes = kept_attributes
+          return unless defined?(@current_attributes)
+
+          attributes = {}
+          kept_attributes = {}
+          @current_attributes.each do |attribute_name, attribute|
+            attributes[attribute_name] = attribute[:value]
+            kept_attributes[attribute_name] = attribute if attribute[:keep]
           end
+          set_attributes(name, attributes)
+          @current_attributes = kept_attributes
         end
 
         def attribute(name, value, options={}, *method_names)
@@ -31,27 +31,68 @@ module Test
           if method_names.empty?
             @current_attributes[name] = options.merge(:value => value)
           else
-            method_names.each do |method_names|
-              set_attribute(method_name, {name => value})
+            method_names.each do |method_name|
+              set_attributes(method_name, {name => value})
             end
           end
         end
 
-        def set_attributes(method_name, attributes)
-          return if attributes.empty?
+        def set_attributes(method_name, new_attributes)
+          return if new_attributes.empty?
           method_name = normalize_method_name(method_name)
           @attributes ||= {}
           @attributes[method_name] ||= {}
-          @attributes[method_name] = @attributes[method_name].merge(attributes)
+          current_attributes = @attributes[method_name]
+          new_attributes.each do |key, value|
+            key = normalize_attribute_name(key)
+            callbacks = attribute_changed_callbacks(key) || []
+            callbacks.each do |callback|
+              callback.call(key,
+                            (attributes(method_name) || {})[key],
+                            value,
+                            method_name)
+            end
+            current_attributes[key] = value
+          end
         end
 
         def attributes(method_name)
           method_name = normalize_method_name(method_name)
           @attributes ||= {}
-          @attributes[method_name]
+          attributes = @attributes[method_name]
+          ancestors[1..-1].each do |ancestor|
+            if ancestor.is_a?(Class) and ancestor < Test::Unit::Attribute
+              parent_attributes = ancestor.attributes(method_name)
+              if attributes
+                attributes = (parent_attributes || {}).merge(attributes)
+              else
+                attributes = parent_attributes
+              end
+              break
+            end
+          end
+          attributes
+        end
+
+        def register_attribute_changed_callback(attribute_name,
+                                                callback=Proc.new)
+          attribute_name = normalize_attribute_name(attribute_name)
+          @attribute_changed_callbacks ||= {}
+          @attribute_changed_callbacks[attribute_name] ||= []
+          @attribute_changed_callbacks[attribute_name] << callback
+        end
+
+        def attribute_changed_callbacks(attribute_name)
+          attribute_name = normalize_attribute_name(attribute_name)
+          @attribute_changed_callbacks ||= {}
+          @attribute_changed_callbacks[attribute_name]
         end
 
         private
+        def normalize_attribute_name(name)
+          name.to_s
+        end
+
         def normalize_method_name(name)
           name.to_s
         end
