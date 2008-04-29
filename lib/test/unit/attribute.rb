@@ -45,9 +45,9 @@ module Test
           current_attributes = @attributes[method_name]
           new_attributes.each do |key, value|
             key = normalize_attribute_name(key)
-            callbacks = attribute_changed_callbacks(key) || []
-            callbacks.each do |callback|
-              callback.call(key,
+            observers = attribute_observers(key) || []
+            observers.each do |observer|
+              observer.call(key,
                             (attributes(method_name) || {})[key],
                             value,
                             method_name)
@@ -74,18 +74,17 @@ module Test
           attributes
         end
 
-        def register_attribute_changed_callback(attribute_name,
-                                                callback=Proc.new)
+        def register_attribute_observer(attribute_name, observer=Proc.new)
           attribute_name = normalize_attribute_name(attribute_name)
-          @attribute_changed_callbacks ||= {}
-          @attribute_changed_callbacks[attribute_name] ||= []
-          @attribute_changed_callbacks[attribute_name] << callback
+          @attribute_observers ||= {}
+          @attribute_observers[attribute_name] ||= []
+          @attribute_observers[attribute_name] << observer
         end
 
-        def attribute_changed_callbacks(attribute_name)
+        def attribute_observers(attribute_name)
           attribute_name = normalize_attribute_name(attribute_name)
-          @attribute_changed_callbacks ||= {}
-          @attribute_changed_callbacks[attribute_name]
+          @attribute_observers ||= {}
+          @attribute_observers[attribute_name]
         end
 
         private

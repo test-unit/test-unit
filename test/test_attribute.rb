@@ -65,13 +65,13 @@ class TestAttribute < Test::Unit::TestCase
   end
 
   def test_callback
-    callbacked_data = []
-    callback = Proc.new do |key, old_value, value, method_name|
-      callbacked_data << [key, old_value, value, method_name]
+    changed_attributes = []
+    observer = Proc.new do |key, old_value, value, method_name|
+      changed_attributes << [key, old_value, value, method_name]
     end
 
     Class.new(TestStack) do
-      register_attribute_changed_callback(:bug, &callback)
+      register_attribute_observer(:bug, &observer)
       attribute("bug", 9876, "test_bug_1234")
       attribute(:description, "Test for peek", "test_peek")
       attribute(:bug, 29, "test_peek")
@@ -81,6 +81,6 @@ class TestAttribute < Test::Unit::TestCase
                   ["bug", 1234, 9876, "test_bug_1234"],
                   ["bug", nil, 29, "test_peek"],
                  ],
-                 callbacked_data)
+                 changed_attributes)
   end
 end
