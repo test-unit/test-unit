@@ -4,6 +4,7 @@
 
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/diff'
 
 module Test
   module Unit
