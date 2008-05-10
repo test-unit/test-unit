@@ -28,6 +28,14 @@ module Test
             result << failure.message
             result
           end
+
+          def format_fault_error(error)
+            result = "#{error.label}:\n"
+            result << "#{error.test_name}:\n"
+            result << "#{error.message}\n"
+            result << error.backtrace.join("\n")
+            result
+          end
         end
       end
     end

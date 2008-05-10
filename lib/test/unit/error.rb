@@ -18,6 +18,7 @@ module Test
       attr_reader(:test_name, :exception)
 
       SINGLE_CHARACTER = 'E'
+      LABEL = "Error"
 
       # Creates a new Error with the given test_name and
       # exception.
@@ -29,6 +30,10 @@ module Test
       # Returns a single character representation of an error.
       def single_character_display
         SINGLE_CHARACTER
+      end
+
+      def label
+        LABEL
       end
 
       # Returns the message associated with the error.
@@ -43,8 +48,12 @@ module Test
 
       # Returns a verbose version of the error description.
       def long_display
-        backtrace = filter_backtrace(@exception.backtrace).join("\n    ")
-        "Error:\n#@test_name:\n#{message}\n    #{backtrace}"
+        backtrace_display = backtrace.join("\n    ")
+        "#{label}:\n#@test_name:\n#{message}\n    #{backtrace_display}"
+      end
+
+      def backtrace
+        filter_backtrace(@exception.backtrace)
       end
 
       # Overridden to return long_display.

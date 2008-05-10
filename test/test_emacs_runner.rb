@@ -33,6 +33,24 @@ Failure:
 EOM
   end
 
+  def test_format_error
+    runner = create_runner
+    test_name = "test_error"
+    message = "Error Message!!!"
+    backtrace = ["/home/user/test_xxx.rb:3: in `xxx'",
+                 "/home/user/yyy/test_yyy.rb:999: in `yyy'",
+                 "/home/user/xyz/zzz.rb:29: in `zzz'"]
+    exception = RuntimeError.new(message)
+    exception.set_backtrace(backtrace)
+    error = Test::Unit::Error.new(test_name, exception)
+    assert_equal(<<-EOM.chomp, runner.send(:format_fault, error))
+Error:
+#{test_name}:
+#{exception.class.name}: #{message}
+#{backtrace.join("\n")}
+EOM
+  end
+
   private
   def create_runner(suite=nil)
     suite ||= Test::Unit::TestSuite.new
