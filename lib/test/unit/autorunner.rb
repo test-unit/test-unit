@@ -38,6 +38,11 @@ module Test
         Test::Unit::UI::Console::TestRunner
       end
 
+      register_runner(:emacs) do |auto_runner|
+        require 'test/unit/ui/emacs/testrunner'
+        Test::Unit::UI::Emacs::TestRunner
+      end
+
       OUTPUT_LEVELS = [
         [:silent, UI::SILENT],
         [:progress, UI::PROGRESS_ONLY],
@@ -70,7 +75,7 @@ module Test
       def initialize(standalone)
         Unit.run = true
         @standalone = standalone
-        @runner = RUNNERS[:console]
+        @runner = default_runner
         @collector = COLLECTORS[(standalone ? :dir : :object_space)]
         @filters = []
         @to_run = []
@@ -205,6 +210,15 @@ module Test
         result = @runner[self] or return false
         Dir.chdir(@workdir) if @workdir
         result.run(@suite, @output_level).passed?
+      end
+
+      private
+      def default_runner
+        if ENV["EMACS"] == "t"
+          RUNNERS[:emacs]
+        else
+          RUNNERS[:console]
+        end
       end
     end
   end

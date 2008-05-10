@@ -13,6 +13,7 @@ module Test
       attr_reader :test_name, :location, :message
       
       SINGLE_CHARACTER = 'F'
+      LABEL = "Failure"
 
       # Creates a new Failure with the given location and
       # message.
@@ -27,6 +28,10 @@ module Test
         SINGLE_CHARACTER
       end
 
+      def label
+        LABEL
+      end
+
       # Returns a brief version of the error description.
       def short_display
         "#@test_name: #{@message.split("\n")[0]}"
@@ -39,7 +44,7 @@ module Test
         else
           "\n    [#{location.join("\n     ")}]"
         end
-        "Failure:\n#@test_name#{location_display}:\n#@message"
+        "#{label}:\n#@test_name#{location_display}:\n#@message"
       end
 
       # Overridden to return long_display.

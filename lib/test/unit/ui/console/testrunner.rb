@@ -83,10 +83,14 @@ module Test
             output("Finished in #{elapsed_time} seconds.")
             @faults.each_with_index do |fault, index|
               nl
-              output("%3d) %s" % [index + 1, fault.long_display])
+              output("%3d) %s" % [index + 1, format_fault(fault)])
             end
             nl
             output(@result)
+          end
+
+          def format_fault(fault)
+            fault.long_display
           end
           
           def test_started(name)
