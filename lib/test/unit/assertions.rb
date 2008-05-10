@@ -580,7 +580,7 @@ Message: <#{convert(object.message)}>
 ---------------
 EOM
           else
-            if(self.class.use_pp)
+            if self.class.use_pp
               begin
                 require 'pp'
               rescue LoadError
