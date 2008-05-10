@@ -93,13 +93,45 @@ module Test
         check_nothing_fails {
           assert_equal("string1", "string1", "successful assert_equal")
         }
-        check_fails(%Q{<"string1"> expected but was\n<"string2">.}) {
+
+        message = <<-EOM.chomp
+<"string1"> expected but was
+<"string2">.
+
+diff:
+- string1
+?       ^
++ string2
+?       ^
+EOM
+        check_fails(message) {
           assert_equal("string1", "string2")
         }
-        check_fails(%Q{failed assert_equal.\n<"string1"> expected but was\n<"string2">.}) {
+
+        message = <<-EOM.chomp
+failed assert_equal.
+<"string1"> expected but was
+<"string2">.
+
+diff:
+- string1
+?       ^
++ string2
+?       ^
+EOM
+        check_fails(message) {
           assert_equal("string1", "string2", "failed assert_equal")
         }
-        check_fails(%Q{<"1"> expected but was\n<1>.}) do
+
+        message = <<-EOM.chomp
+<"1"> expected but was
+<1>.
+
+diff:
+- "1"
++ 1
+EOM
+        check_fails(message) do
           assert_equal("1", 1)
         end
       end
@@ -211,10 +243,10 @@ Message: <"Error">
         check_nothing_fails {
           assert_nil(nil, "successful assert_nil")
         }
-        check_fails(%Q{<nil> expected but was\n<"string">.}) {
+        check_fails(%Q{<"string"> expected to be nil.}) {
           assert_nil("string")
         }
-        check_fails(%Q{failed assert_nil.\n<nil> expected but was\n<"string">.}) {
+        check_fails(%Q{failed assert_nil.\n<"string"> expected to be nil.}) {
           assert_nil("string", "failed assert_nil")
         }
       end

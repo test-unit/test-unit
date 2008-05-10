@@ -77,9 +77,20 @@ module Test
 
       public
       def assert_equal(expected, actual, message=nil)
-        full_message = build_message(message, <<EOT, expected, actual)
+        diff = AssertionMessage.delayed_literal do
+          if !expected.is_a?(String) or !actual.is_a?(String)
+            expected = AssertionMessage.convert(expected)
+            actual = AssertionMessage.convert(actual)
+          end
+          diff = Diff.readable(expected, actual)
+          unless diff.empty?
+            diff = "\n\ndiff:\n#{diff}"
+          end
+          diff
+        end
+        full_message = build_message(message, <<EOT, expected, actual, diff)
 <?> expected but was
-<?>.
+<?>.?
 EOT
         assert_block(full_message) { expected == actual }
       end
@@ -170,7 +181,10 @@ EOT
 
       public
       def assert_nil(object, message="")
-        assert_equal(nil, object, message)
+        full_message = build_message(message, <<EOT, object)
+<?> expected to be nil.
+EOT
+        assert_block(full_message) { object.nil? }
       end
 
       ##
@@ -525,6 +539,37 @@ EOT
         @use_pp = true
         class << self
           attr_accessor :use_pp
+
+          def literal(value)
+            Literal.new(value)
+          end
+
+          def delayed_literal(&block)
+            DelayedLiteral.new(block)
+          end
+
+          def convert(object)
+            case object
+            when Exception
+              <<EOM.chop
+Class: <#{convert(object.class)}>
+Message: <#{convert(object.message)}>
+---Backtrace---
+#{Util::BacktraceFilter.filter_backtrace(object.backtrace).join("\n")}
+---------------
+EOM
+            else
+              if use_pp
+                begin
+                  require 'pp' unless defined?(PP)
+                  return PP.pp(object, '').chomp
+                rescue LoadError
+                  self.use_pp = false
+                end
+              end
+              object.inspect
+            end
+          end
         end
 
         class Literal
@@ -534,6 +579,16 @@ EOT
           
           def inspect
             @value.to_s
+          end
+        end
+
+        class DelayedLiteral
+          def initialize(value)
+            @value = value
+          end
+          
+          def inspect
+            @value.call.to_s
           end
         end
 
@@ -557,10 +612,6 @@ EOT
           end
         end
 
-        def self.literal(value)
-          Literal.new(value)
-        end
-
         include Util::BacktraceFilter
 
         def initialize(head, template_string, parameters)
@@ -570,26 +621,7 @@ EOT
         end
 
         def convert(object)
-          case object
-          when Exception
-            <<EOM.chop
-Class: <#{convert(object.class)}>
-Message: <#{convert(object.message)}>
----Backtrace---
-#{filter_backtrace(object.backtrace).join("\n")}
----------------
-EOM
-          else
-            if self.class.use_pp
-              begin
-                require 'pp' unless defined?(PP)
-                return PP.pp(object, '').chomp
-              rescue LoadError
-                self.class.use_pp = false
-              end
-            end
-            object.inspect
-          end
+          self.class.convert(object)
         end
 
         def template
