@@ -60,7 +60,7 @@ module Test
               next if(e == '.' || e == '..')
               e_name = dir_name ? @file.join(dir_name, e) : e
               if @file.directory?(realdir(e_name))
-                next if /\ACVS\z/ =~ e
+                next if /\A(?:CVS|\.svn)\z/ =~ e
                 sub_suite = recursive_collect(e_name, already_gathered)
                 sub_suites << sub_suite unless(sub_suite.empty?)
               else
