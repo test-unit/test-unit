@@ -66,11 +66,11 @@ class TestAttribute < Test::Unit::TestCase
 
   def test_callback
     changed_attributes = []
-    observer = Proc.new do |key, old_value, value, method_name|
-      changed_attributes << [key, old_value, value, method_name]
+    observer = Proc.new do |test_case, key, old_value, value, method_name|
+      changed_attributes << [test_case, key, old_value, value, method_name]
     end
 
-    Class.new(TestStack) do
+    test_case = Class.new(TestStack) do
       register_attribute_observer(:bug, &observer)
       attribute("bug", 9876, "test_bug_1234")
       attribute(:description, "Test for peek", "test_peek")
@@ -78,8 +78,8 @@ class TestAttribute < Test::Unit::TestCase
     end
 
     assert_equal([
-                  ["bug", 1234, 9876, "test_bug_1234"],
-                  ["bug", nil, 29, "test_peek"],
+                  [test_case, "bug", 1234, 9876, "test_bug_1234"],
+                  [test_case, "bug", nil, 29, "test_peek"],
                  ],
                  changed_attributes)
   end

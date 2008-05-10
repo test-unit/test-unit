@@ -3,7 +3,17 @@ module Test
     module Attribute
       class << self
         def included(base)
+          base.extend(BaseClassMethods)
           base.extend(ClassMethods)
+          base.class_eval do
+            @attributes_table = {}
+          end
+        end
+      end
+
+      module BaseClassMethods
+        def attributes_table
+          {}
         end
       end
 
@@ -37,17 +47,23 @@ module Test
           end
         end
 
+        def attributes_table
+          @attributes_table ||= {}
+          @attributes_table.merge(super)
+        end
+
         def set_attributes(method_name, new_attributes)
           return if new_attributes.empty?
           method_name = normalize_method_name(method_name)
-          @attributes ||= {}
-          @attributes[method_name] ||= {}
-          current_attributes = @attributes[method_name]
+          @attributes_table ||= {}
+          @attributes_table[method_name] ||= {}
+          current_attributes = @attributes_table[method_name]
           new_attributes.each do |key, value|
             key = normalize_attribute_name(key)
             observers = attribute_observers(key) || []
             observers.each do |observer|
-              observer.call(key,
+              observer.call(self,
+                            key,
                             (attributes(method_name) || {})[key],
                             value,
                             method_name)
@@ -58,8 +74,7 @@ module Test
 
         def attributes(method_name)
           method_name = normalize_method_name(method_name)
-          @attributes ||= {}
-          attributes = @attributes[method_name]
+          attributes = attributes_table[method_name]
           ancestors[1..-1].each do |ancestor|
             if ancestor.is_a?(Class) and ancestor < Test::Unit::Attribute
               parent_attributes = ancestor.attributes(method_name)
@@ -74,17 +89,16 @@ module Test
           attributes
         end
 
+        @@attribute_observers = {}
         def register_attribute_observer(attribute_name, observer=Proc.new)
           attribute_name = normalize_attribute_name(attribute_name)
-          @attribute_observers ||= {}
-          @attribute_observers[attribute_name] ||= []
-          @attribute_observers[attribute_name] << observer
+          @@attribute_observers[attribute_name] ||= []
+          @@attribute_observers[attribute_name] << observer
         end
 
         def attribute_observers(attribute_name)
           attribute_name = normalize_attribute_name(attribute_name)
-          @attribute_observers ||= {}
-          @attribute_observers[attribute_name]
+          @@attribute_observers[attribute_name]
         end
 
         private

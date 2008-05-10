@@ -5,6 +5,7 @@
 # License:: Ruby license.
 
 require 'test/unit/attribute'
+require 'test/unit/fixture'
 require 'test/unit/assertions'
 require 'test/unit/failure'
 require 'test/unit/error'
@@ -22,6 +23,7 @@ module Test
     # collecting its results into a Test::Unit::TestResult object.
     class TestCase
       include Attribute
+      include Fixture
       include Assertions
       include Util::BacktraceFilter
       
@@ -72,7 +74,7 @@ module Test
         yield(STARTED, name)
         @_result = result
         begin
-          setup
+          run_setup
           __send__(@method_name)
         rescue AssertionFailedError => e
           add_failure(e.message, e.backtrace)
@@ -81,7 +83,7 @@ module Test
           add_error($!)
         ensure
           begin
-            teardown
+            run_teardown
           rescue AssertionFailedError => e
             add_failure(e.message, e.backtrace)
           rescue Exception
