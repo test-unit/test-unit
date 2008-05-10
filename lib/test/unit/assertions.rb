@@ -582,15 +582,13 @@ EOM
           else
             if self.class.use_pp
               begin
-                require 'pp'
+                require 'pp' unless defined?(PP)
+                return PP.pp(object, '').chomp
               rescue LoadError
                 self.class.use_pp = false
-                return object.inspect
-              end unless(defined?(PP))
-              PP.pp(object, '').chomp
-            else
-              object.inspect
+              end
             end
+            object.inspect
           end
         end
 
