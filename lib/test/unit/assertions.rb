@@ -571,26 +571,26 @@ EOT
 
         def convert(object)
           case object
-            when Exception
-              <<EOM.chop
+          when Exception
+            <<EOM.chop
 Class: <#{convert(object.class)}>
 Message: <#{convert(object.message)}>
 ---Backtrace---
 #{filter_backtrace(object.backtrace).join("\n")}
 ---------------
 EOM
+          else
+            if(self.class.use_pp)
+              begin
+                require 'pp'
+              rescue LoadError
+                self.class.use_pp = false
+                return object.inspect
+              end unless(defined?(PP))
+              PP.pp(object, '').chomp
             else
-              if(self.class.use_pp)
-                begin
-                  require 'pp'
-                rescue LoadError
-                  self.class.use_pp = false
-                  return object.inspect
-                end unless(defined?(PP))
-                PP.pp(object, '').chomp
-              else
-                object.inspect
-              end
+              object.inspect
+            end
           end
         end
 
