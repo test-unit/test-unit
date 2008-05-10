@@ -5,9 +5,6 @@ module Test
         def included(base)
           base.extend(BaseClassMethods)
           base.extend(ClassMethods)
-          base.class_eval do
-            @attributes_table = {}
-          end
         end
       end
 
@@ -48,7 +45,8 @@ module Test
         end
 
         def attributes_table
-          super.merge(@attributes_table || {})
+          @attributes_table ||= {}
+          super.merge(@attributes_table)
         end
 
         def set_attributes(method_name, new_attributes)
