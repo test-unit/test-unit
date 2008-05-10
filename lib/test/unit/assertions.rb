@@ -83,8 +83,12 @@ module Test
             actual = AssertionMessage.convert(actual)
           end
           diff = Diff.readable(expected, actual)
-          unless diff.empty?
+          if /^[-+]/ !~ diff
+            diff = ""
+          elsif /^[ ?]/ =~ diff
             diff = "\n\ndiff:\n#{diff}"
+          else
+            diff = ""
           end
           diff
         end

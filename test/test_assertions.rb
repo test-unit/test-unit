@@ -124,18 +124,41 @@ EOM
         }
 
         message = <<-EOM.chomp
-<"1"> expected but was
-<1>.
+<"111111"> expected but was
+<111111>.
 
 diff:
-- "1"
-+ 1
+- "111111"
+? -      -
++ 111111
 EOM
         check_fails(message) do
-          assert_equal("1", 1)
+          assert_equal("111111", 111111)
         end
       end
-      
+
+      def test_assert_equal_for_too_small_difference
+        message = <<-EOM.chomp
+<1> expected but was
+<2>.
+EOM
+        check_fails(message) do
+          assert_equal(1, 2)
+        end
+      end
+
+      def test_assert_equal_for_same_inspected_objects
+        now = Time.now
+        now_without_usec = Time.at(now.to_i)
+        message = <<-EOM.chomp
+<#{now.inspect}> expected but was
+<#{now.inspect}>.
+EOM
+        check_fails(message) do
+          assert_equal(now, now_without_usec)
+        end
+      end
+
       def test_assert_raise
         return_value = nil
         check_nothing_fails(true) {
