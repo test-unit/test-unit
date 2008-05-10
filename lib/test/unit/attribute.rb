@@ -48,8 +48,7 @@ module Test
         end
 
         def attributes_table
-          @attributes_table ||= {}
-          @attributes_table.merge(super)
+          super.merge(@attributes_table || {})
         end
 
         def set_attributes(method_name, new_attributes)
