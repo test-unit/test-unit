@@ -30,6 +30,60 @@ class TestFixture < Test::Unit::TestCase
     test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
     assert_equal([:setup, :custom_setup_method, :custom_setup_method2],
                  called)
+
+
+    called = []
+    inherited_test_case = Class.new(test_case) do
+      @@called = called
+      def setup
+        @@called << :setup
+      end
+
+      def custom_setup_method
+        @@called << :custom_setup_method
+      end
+
+      def custom_setup_method2
+        @@called << :custom_setup_method2
+      end
+
+      def custom_setup_method3
+        @@called << :custom_setup_method3
+      end
+
+      def test_nothing
+      end
+    end
+
+    inherited_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:setup, :custom_setup_method, :custom_setup_method2],
+                 called)
+
+
+    called = []
+    another_test_case = Class.new(Test::Unit::TestCase) do
+      @@called = called
+      def setup
+        @@called << :setup
+      end
+
+      def custom_setup_method
+        @@called << :custom_setup_method
+      end
+
+      def custom_setup_method2
+        @@called << :custom_setup_method2
+      end
+
+      def custom_setup_method3
+        @@called << :custom_setup_method3
+      end
+
+      def test_nothing
+      end
+    end
+    another_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:setup], called)
   end
 
   def test_teardown
@@ -63,5 +117,60 @@ class TestFixture < Test::Unit::TestCase
     test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
     assert_equal([:teardown, :custom_teardown_method, :custom_teardown_method2],
                  called)
+
+
+    called = []
+    inherited_test_case = Class.new(test_case) do
+      @@called = called
+      def teardown
+        @@called << :teardown
+      end
+
+      def custom_teardown_method
+        @@called << :custom_teardown_method
+      end
+
+      def custom_teardown_method2
+        @@called << :custom_teardown_method2
+      end
+
+      def custom_teardown_method3
+        @@called << :custom_teardown_method3
+      end
+
+      def test_nothing
+      end
+    end
+
+    inherited_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:teardown, :custom_teardown_method, :custom_teardown_method2],
+                 called)
+
+
+    called = []
+    another_test_case = Class.new(Test::Unit::TestCase) do
+      @@called = called
+      def teardown
+        @@called << :teardown
+      end
+
+      def custom_teardown_method
+        @@called << :custom_teardown_method
+      end
+
+      def custom_teardown_method2
+        @@called << :custom_teardown_method2
+      end
+
+      def custom_teardown_method3
+        @@called << :custom_teardown_method3
+      end
+
+      def test_nothing
+      end
+    end
+
+    another_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:teardown], called)
   end
 end
