@@ -159,6 +159,21 @@ EOM
         end
       end
 
+      def test_assert_equal_with_multi_lines_result
+        message = <<-EOM.chomp
+<#{"a\nb".inspect}> expected but was
+<#{"x".inspect}>.
+
+diff:
++ x
+- a
+- b
+EOM
+        check_fails(message) do
+          assert_equal("a\nb", "x")
+        end
+      end
+
       def test_assert_raise
         return_value = nil
         check_nothing_fails(true) {

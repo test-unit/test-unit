@@ -85,7 +85,7 @@ module Test
           diff = Diff.readable(expected, actual)
           if /^[-+]/ !~ diff
             diff = ""
-          elsif /^[ ?]/ =~ diff
+          elsif /^[ ?]/ =~ diff or /(?:.*\n){2,}/ =~ diff
             diff = "\n\ndiff:\n#{diff}"
           else
             diff = ""
