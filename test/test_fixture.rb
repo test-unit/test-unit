@@ -1,4 +1,4 @@
-class TestFixture < Test::Unit::TestCase
+class TestUnitFixture < Test::Unit::TestCase
   def test_setup
     called = []
     test_case = Class.new(Test::Unit::TestCase) do

@@ -1,4 +1,4 @@
-class TestDiff < Test::Unit::TestCase
+class TestUnitDiff < Test::Unit::TestCase
   def test_to_indexes
     assert_to_indexes({"abc def" => [0, 2], "abc" => [1]},
                       ["abc def", "abc", "abc def"])

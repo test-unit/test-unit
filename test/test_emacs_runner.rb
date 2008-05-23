@@ -1,6 +1,6 @@
 require 'test/unit'
 
-class TestEmacsRunner < Test::Unit::TestCase
+class TestUnitEmacsRunner < Test::Unit::TestCase
   def test_format_failure_with_a_location
     runner = create_runner
     test_name = "test_failure"

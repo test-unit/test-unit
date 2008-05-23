@@ -1,4 +1,4 @@
-class TestAttribute < Test::Unit::TestCase
+class TestUnitAttribute < Test::Unit::TestCase
   class TestStack < Test::Unit::TestCase
     class << self
       def suite
