@@ -18,6 +18,17 @@ module Test
         class TestRunner < UI::TestRunner
           include OutputLevel
 
+          COLOR_SCHEMES = {
+            :default => {
+              "success" => Color.new("green", :bold => true),
+              "failure" => Color.new("red", :bold => true),
+              "pending" => Color.new("magenta", :bold => true),
+              "omission" => Color.new("blue", :bold => true),
+              "notification" => Color.new("cyan", :bold => true),
+              "error" => Color.new("yellow", :bold => true),
+            },
+          }
+
           # Creates a new TestRunner for running the passed
           # suite. If quiet_mode is true, the output while
           # running is limited to progress dots, errors and
@@ -28,6 +39,10 @@ module Test
             super
             @output_level = @options[:output_level] || NORMAL
             @output = @options[:output] || STDOUT
+            @use_color = @options[:use_color]
+            @use_color = guess_color_availability if @use_color.nil?
+            @color_scheme = COLOR_SCHEMES[:default]
+            @reset_color = Color.new("reset")
             @already_outputted = false
             @faults = []
           end
@@ -67,7 +82,9 @@ module Test
           
           def add_fault(fault)
             @faults << fault
-            output_single(fault.single_character_display, PROGRESS_ONLY)
+            output_single(fault.single_character_display,
+                          fault_color(fault),
+                          PROGRESS_ONLY)
             @already_outputted = true
           end
           
@@ -81,10 +98,11 @@ module Test
             output("Finished in #{elapsed_time} seconds.")
             @faults.each_with_index do |fault, index|
               nl
-              output("%3d) %s" % [index + 1, format_fault(fault)])
+              output_single("%3d) " % (index + 1))
+              output(format_fault(fault), fault_color(fault))
             end
             nl
-            output(@result)
+            output(@result, result_color)
           end
 
           def format_fault(fault)
@@ -92,31 +110,68 @@ module Test
           end
           
           def test_started(name)
-            output_single(name + ": ", VERBOSE)
+            output_single(name + ": ", nil, VERBOSE)
           end
           
           def test_finished(name)
-            output_single(".", PROGRESS_ONLY) unless (@already_outputted)
+            unless @already_outputted
+              output_single(".", @color_scheme["success"], PROGRESS_ONLY)
+            end
             nl(VERBOSE)
             @already_outputted = false
           end
           
           def nl(level=NORMAL)
-            output("", level)
+            output("", nil, level)
           end
           
-          def output(something, level=NORMAL)
-            @output.puts(something) if (output?(level))
-            @output.flush
+          def output(something, color=nil, level=NORMAL)
+            return unless output?(level)
+            output_single(something, color, level)
+            @output.puts
           end
           
-          def output_single(something, level=NORMAL)
-            @output.write(something) if (output?(level))
+          def output_single(something, color=nil, level=NORMAL)
+            return unless output?(level)
+            if @use_color and color
+              something = "%s%s%s" % [color.escape_sequence,
+                                      something,
+                                      @reset_color.escape_sequence]
+            end
+            @output.write(something)
             @output.flush
           end
           
           def output?(level)
             level <= @output_level
+          end
+
+          def fault_color(fault)
+            @color_scheme[fault.class.name.split(/::/).last.downcase]
+          end
+
+          def result_color
+            if @result.passed?
+#               if @result.pending_count > 0
+#                 @color_scheme["pending"]
+#               elsif @result.notification_count > 0
+#                 @color_scheme["notification"]
+#               else
+                @color_scheme["success"]
+#               end
+            elsif @result.error_count > 0
+              @color_scheme["error"]
+            elsif @result.failure_count > 0
+              @color_scheme["failure"]
+            end
+          end
+
+          def guess_color_availability
+            return false unless @output.tty?
+            term = ENV["TERM"]
+            return true if term and (/term\z/ =~ term or term == "screen")
+            return true if ENV["EMACS"] == "t"
+            false
           end
         end
       end
