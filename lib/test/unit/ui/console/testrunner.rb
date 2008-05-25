@@ -5,8 +5,8 @@
 # License:: Ruby license.
 
 require 'test/unit/color'
+require 'test/unit/ui/testrunner'
 require 'test/unit/ui/testrunnermediator'
-require 'test/unit/ui/testrunnerutilities'
 require 'test/unit/ui/console/outputlevel'
 
 module Test
@@ -15,8 +15,7 @@ module Test
       module Console
 
         # Runs a Test::Unit::TestSuite on the console.
-        class TestRunner
-          extend TestRunnerUtilities
+        class TestRunner < UI::TestRunner
           include OutputLevel
 
           # Creates a new TestRunner for running the passed
@@ -26,13 +25,9 @@ module Test
           # where runner output should go to; defaults to
           # STDOUT.
           def initialize(suite, options={})
-            if (suite.respond_to?(:suite))
-              @suite = suite.suite
-            else
-              @suite = suite
-            end
-            @output_level = options[:output_level] || NORMAL
-            @output = options[:output] || STDOUT
+            super
+            @output_level = @options[:output_level] || NORMAL
+            @output = @options[:output] || STDOUT
             @already_outputted = false
             @faults = []
           end
