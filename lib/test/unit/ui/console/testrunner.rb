@@ -7,6 +7,7 @@
 require 'test/unit/color'
 require 'test/unit/ui/testrunnermediator'
 require 'test/unit/ui/testrunnerutilities'
+require 'test/unit/ui/console/outputlevel'
 
 module Test
   module Unit
@@ -16,6 +17,7 @@ module Test
         # Runs a Test::Unit::TestSuite on the console.
         class TestRunner
           extend TestRunnerUtilities
+          include OutputLevel
 
           # Creates a new TestRunner for running the passed
           # suite. If quiet_mode is true, the output while
@@ -23,14 +25,14 @@ module Test
           # failures, and the final result. io specifies
           # where runner output should go to; defaults to
           # STDOUT.
-          def initialize(suite, output_level=NORMAL, io=STDOUT)
+          def initialize(suite, options={})
             if (suite.respond_to?(:suite))
               @suite = suite.suite
             else
               @suite = suite
             end
-            @output_level = output_level
-            @io = io
+            @output_level = options[:output_level] || NORMAL
+            @output = options[:output] || STDOUT
             @already_outputted = false
             @faults = []
           end
@@ -109,13 +111,13 @@ module Test
           end
           
           def output(something, level=NORMAL)
-            @io.puts(something) if (output?(level))
-            @io.flush
+            @output.puts(something) if (output?(level))
+            @output.flush
           end
           
           def output_single(something, level=NORMAL)
-            @io.write(something) if (output?(level))
-            @io.flush
+            @output.write(something) if (output?(level))
+            @output.flush
           end
           
           def output?(level)

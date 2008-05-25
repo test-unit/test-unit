@@ -8,11 +8,6 @@ module Test
   module Unit
     module UI
 
-      SILENT = 0
-      PROGRESS_ONLY = 1
-      NORMAL = 2
-      VERBOSE = 3
-
       # Provides some utilities common to most, if not all,
       # TestRunners.
       #
@@ -25,8 +20,8 @@ module Test
       module TestRunnerUtilities
 
         # Creates a new TestRunner and runs the suite.
-        def run(suite, output_level=NORMAL)
-          return new(suite, output_level).start
+        def run(suite, options={})
+          return new(suite, options).start
         end
 
         # Takes care of the ARGV parsing and suite

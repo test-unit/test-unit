@@ -1,4 +1,5 @@
 require 'test/unit'
+require 'test/unit/ui/emacs/testrunner'
 
 class TestUnitEmacsRunner < Test::Unit::TestCase
   def test_format_failure_with_a_location

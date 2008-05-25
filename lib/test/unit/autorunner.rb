@@ -1,5 +1,4 @@
 require 'test/unit'
-require 'test/unit/ui/testrunnerutilities'
 require 'optparse'
 
 module Test
@@ -7,6 +6,7 @@ module Test
     class AutoRunner
       RUNNERS = {}
       COLLECTORS = {}
+      ADDITIONAL_OPTIONS = []
 
       class << self
         def register_runner(id, runner_builder=Proc.new)
@@ -15,6 +15,10 @@ module Test
 
         def register_collector(id, collector_builder=Proc.new)
           COLLECTORS[id] = collector_builder
+        end
+
+        def setup_option(option_builder=Proc.new)
+          ADDITIONAL_OPTIONS << option_builder
         end
       end
 
@@ -32,23 +36,6 @@ module Test
         end
         true
       end
-
-      register_runner(:console) do |auto_runner|
-        require 'test/unit/ui/console/testrunner'
-        Test::Unit::UI::Console::TestRunner
-      end
-
-      register_runner(:emacs) do |auto_runner|
-        require 'test/unit/ui/emacs/testrunner'
-        Test::Unit::UI::Emacs::TestRunner
-      end
-
-      OUTPUT_LEVELS = [
-        [:silent, UI::SILENT],
-        [:progress, UI::PROGRESS_ONLY],
-        [:normal, UI::NORMAL],
-        [:verbose, UI::VERBOSE],
-      ]
 
       register_collector(:object_space) do |auto_runner|
         require 'test/unit/collector/objectspace'
@@ -68,8 +55,8 @@ module Test
         c.collect(*(auto_runner.to_run.empty? ? ['.'] : auto_runner.to_run))
       end
 
-      attr_reader :suite
-      attr_accessor :output_level, :filters, :to_run, :pattern, :exclude, :base, :workdir
+      attr_reader :suite, :runner_options
+      attr_accessor :filters, :to_run, :pattern, :exclude, :base, :workdir
       attr_writer :runner, :collector
 
       def initialize(standalone)
@@ -79,7 +66,7 @@ module Test
         @collector = COLLECTORS[(standalone ? :dir : :object_space)]
         @filters = []
         @to_run = []
-        @output_level = UI::NORMAL
+        @runner_options = {}
         @workdir = nil
         yield(self) if(block_given?)
       end
@@ -167,10 +154,8 @@ module Test
             $LOAD_PATH.concat(dirs.split(File::PATH_SEPARATOR))
           end
 
-          o.on('-v', '--verbose=[LEVEL]', OUTPUT_LEVELS,
-               "Set the output level (default is verbose).",
-               "(" + keyword_display(OUTPUT_LEVELS) + ")") do |l|
-            @output_level = l || UI::VERBOSE
+          ADDITIONAL_OPTIONS.each do |option_builder|
+            option_builder.call(self, o)
           end
 
           o.on('--',
@@ -209,7 +194,7 @@ module Test
         @suite = @collector[self]
         result = @runner[self] or return false
         Dir.chdir(@workdir) if @workdir
-        result.run(@suite, @output_level).passed?
+        result.run(@suite, @runner_options).passed?
       end
 
       private
@@ -223,3 +208,6 @@ module Test
     end
   end
 end
+
+require 'test/unit/runner/console'
+require 'test/unit/runner/emacs'
