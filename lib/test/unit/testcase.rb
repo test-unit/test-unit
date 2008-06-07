@@ -32,6 +32,33 @@ module Test
       STARTED = name + "::STARTED"
       FINISHED = name + "::FINISHED"
 
+      DESCENDANTS = []
+      class << self
+        def inherited(sub_class)
+          DESCENDANTS << sub_class
+        end
+
+        # Rolls up all of the test* methods in the fixture into
+        # one suite, creating a new instance of the fixture for
+        # each method.
+        def suite
+          method_names = public_instance_methods(true).collect {|name| name.to_s}
+          tests = method_names.delete_if {|method_name| method_name !~ /^test./}
+          suite = TestSuite.new(name)
+          tests.sort.each do |test|
+            catch(:invalid_test) do
+              suite << new(test)
+            end
+          end
+          if (suite.empty?)
+            catch(:invalid_test) do
+              suite << new("default_test")
+            end
+          end
+          suite
+        end
+      end
+
       ##
       # These exceptions are not caught by #run.
 
@@ -45,26 +72,6 @@ module Test
         throw :invalid_test if method(test_method_name).arity > 0
         @method_name = test_method_name
         @test_passed = true
-      end
-
-      # Rolls up all of the test* methods in the fixture into
-      # one suite, creating a new instance of the fixture for
-      # each method.
-      def self.suite
-        method_names = public_instance_methods(true).collect {|name| name.to_s}
-        tests = method_names.delete_if {|method_name| method_name !~ /^test./}
-        suite = TestSuite.new(name)
-        tests.sort.each do |test|
-          catch(:invalid_test) do
-            suite << new(test)
-          end
-        end
-        if (suite.empty?)
-          catch(:invalid_test) do
-            suite << new("default_test")
-          end
-        end
-        return suite
       end
 
       # Runs the individual test method represented by this

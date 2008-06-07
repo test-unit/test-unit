@@ -37,6 +37,13 @@ module Test
         true
       end
 
+      register_collector(:descendant) do |auto_runner|
+        require 'test/unit/collector/descendant'
+        collector = Collector::Descendant.new
+        collector.filter = auto_runner.filters
+        collector.collect($0.sub(/\.rb\Z/, ''))
+      end
+
       register_collector(:object_space) do |auto_runner|
         require 'test/unit/collector/objectspace'
         c = Collector::ObjectSpace.new
@@ -63,7 +70,7 @@ module Test
         Unit.run = true
         @standalone = standalone
         @runner = default_runner
-        @collector = COLLECTORS[(standalone ? :dir : :object_space)]
+        @collector = COLLECTORS[(standalone ? :dir : :descendant)]
         @filters = []
         @to_run = []
         @runner_options = {}
