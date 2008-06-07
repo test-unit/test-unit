@@ -53,6 +53,7 @@ module Test
         collector.collect(*auto_runner.to_run)
       end
 
+      # deprecated
       register_collector(:object_space) do |auto_runner|
         require 'test/unit/collector/objectspace'
         c = Collector::ObjectSpace.new
@@ -60,6 +61,7 @@ module Test
         c.collect($0.sub(/\.rb\Z/, ''))
       end
 
+      # deprecated
       register_collector(:dir) do |auto_runner|
         require 'test/unit/collector/dir'
         c = Collector::Dir.new
@@ -79,12 +81,12 @@ module Test
         Unit.run = true
         @standalone = standalone
         @runner = default_runner
-        @collector = COLLECTORS[(standalone ? :load : :descendant)]
+        @collector = default_collector
         @filters = []
         @to_run = []
         @runner_options = {}
         @workdir = nil
-        yield(self) if(block_given?)
+        yield(self) if block_given?
       end
 
       def process_args(args = ARGV)
@@ -220,6 +222,10 @@ module Test
         else
           RUNNERS[:console]
         end
+      end
+
+      def default_collector
+        COLLECTORS[@standalone ? :load : :descendant]
       end
     end
   end
