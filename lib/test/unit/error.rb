@@ -61,5 +61,27 @@ module Test
         long_display
       end
     end
+
+    module ErrorHandler
+      class << self
+        def included(base)
+          base.exception_handler(:handle_all_exception)
+        end
+      end
+
+      PASS_THROUGH_EXCEPTIONS = [NoMemoryError, SignalException, Interrupt,
+                                 SystemExit]
+      private
+      def handle_all_exception(exception)
+        case exception
+        when *PASS_THROUGH_EXCEPTIONS
+          false
+        else
+          problem_occurred
+          current_result.add_error(Error.new(name, exception))
+          true
+        end
+      end
+    end
   end
 end

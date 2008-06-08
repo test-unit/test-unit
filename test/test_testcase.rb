@@ -263,12 +263,27 @@ module Test
         check("Should not be equal", test1 != Object.new)
         check("Should not be equal", Object.new != test1)
       end
-      
-      def check(message, passed)
-        @_result.add_assertion
-        if ! passed
-          raise AssertionFailedError.new(message)
+
+      def test_re_raise_exception
+        test_case = Class.new(TestCase) do
+          def test_raise_interrupt
+            raise Interrupt
+          end
         end
+
+        test = test_case.new("test_raise_interrupt")
+        begin
+          test.run(TestResult.new) {}
+          check("never reached", false)
+        rescue Exception
+          check("Interrupt exception should be re-raised", $!.class == Interrupt)
+        end
+      end
+
+      private
+      def check(message, passed)
+        add_assertion
+        raise AssertionFailedError.new(message) unless passed
       end
     end
   end

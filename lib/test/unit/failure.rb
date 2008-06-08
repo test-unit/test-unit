@@ -52,5 +52,24 @@ module Test
         long_display
       end
     end
+
+    module FailureHandler
+      class << self
+        def included(base)
+          base.exception_handler(:handle_assertion_failed_error)
+        end
+      end
+
+      private
+      def handle_assertion_failed_error(exception)
+        return false unless exception.is_a?(AssertionFailedError)
+        problem_occurred
+        failure = Failure.new(name,
+                              filter_backtrace(exception.backtrace),
+                              exception.message)
+        current_result.add_failure(failure)
+        true
+      end
+    end
   end
 end

@@ -6,6 +6,7 @@
 
 require 'test/unit/attribute'
 require 'test/unit/fixture'
+require 'test/unit/exceptionhandler'
 require 'test/unit/assertions'
 require 'test/unit/failure'
 require 'test/unit/error'
@@ -24,6 +25,9 @@ module Test
     class TestCase
       include Attribute
       include Fixture
+      include ExceptionHandler
+      include ErrorHandler
+      include FailureHandler
       include Assertions
       include Util::BacktraceFilter
       
@@ -78,28 +82,26 @@ module Test
       # instance of the fixture, collecting statistics, failures
       # and errors in result.
       def run(result)
-        yield(STARTED, name)
-        @_result = result
         begin
-          run_setup
-          __send__(@method_name)
-        rescue AssertionFailedError => e
-          add_failure(e.message, e.backtrace)
-        rescue Exception
-          raise if PASSTHROUGH_EXCEPTIONS.include? $!.class
-          add_error($!)
-        ensure
+          @_result = result
+          yield(STARTED, name)
           begin
-            run_teardown
-          rescue AssertionFailedError => e
-            add_failure(e.message, e.backtrace)
+            run_setup
+            __send__(@method_name)
           rescue Exception
-            raise if PASSTHROUGH_EXCEPTIONS.include? $!.class
-            add_error($!)
+            raise unless handle_exception($!)
+          ensure
+            begin
+              run_teardown
+            rescue Exception
+              raise unless handle_exception($!)
+            end
           end
+          result.add_run
+          yield(FINISHED, name)
+        ensure
+          @_result = nil
         end
-        result.add_run
-        yield(FINISHED, name)
       end
 
       # Called before every test method runs. Can be used
@@ -116,34 +118,9 @@ module Test
         flunk("No tests were specified")
       end
 
-      # Returns whether this individual test passed or
-      # not. Primarily for use in teardown so that artifacts
-      # can be left behind if the test fails.
-      def passed?
-        return @test_passed
-      end
-      private :passed?
-
       def size
         1
       end
-
-      def add_assertion
-        @_result.add_assertion
-      end
-      private :add_assertion
-
-      def add_failure(message, all_locations=caller())
-        @test_passed = false
-        @_result.add_failure(Failure.new(name, filter_backtrace(all_locations), message))
-      end
-      private :add_failure
-
-      def add_error(exception)
-        @test_passed = false
-        @_result.add_error(Error.new(name, exception))
-      end
-      private :add_error
 
       # Returns a human-readable name for the specific test that
       # this instance of TestCase represents.
@@ -155,12 +132,39 @@ module Test
       def to_s
         name
       end
-      
+
       # It's handy to be able to compare TestCase instances.
       def ==(other)
         return false unless(other.kind_of?(self.class))
         return false unless(@method_name == other.method_name)
         self.class == other.class
+      end
+
+      private
+      def current_result
+        @_result
+      end
+
+      def handle_exception(exception)
+        @@exception_handlers.each do |handler|
+          return true if send(handler, exception)
+        end
+        false
+      end
+
+      # Returns whether this individual test passed or
+      # not. Primarily for use in teardown so that artifacts
+      # can be left behind if the test fails.
+      def passed?
+        @test_passed
+      end
+
+      def problem_occurred
+        @test_passed = false
+      end
+
+      def add_assertion
+        current_result.add_assertion
       end
     end
   end
