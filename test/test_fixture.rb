@@ -1,5 +1,5 @@
 class TestUnitFixture < Test::Unit::TestCase
-  def test_setup
+  def test_setup_without_option
     called = []
     test_case = Class.new(Test::Unit::TestCase) do
       @@called = called
@@ -77,6 +77,112 @@ class TestUnitFixture < Test::Unit::TestCase
 
       def custom_setup_method3
         @@called << :custom_setup_method3
+      end
+
+      def test_nothing
+      end
+    end
+    another_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:setup], called)
+  end
+
+  def test_setup_with_before_option
+    called = []
+    test_case = Class.new(Test::Unit::TestCase) do
+      @@called = called
+      def setup
+        @@called << :setup
+      end
+
+      setup :before => :append
+      def custom_setup_method
+        @@called << :custom_setup_method
+      end
+
+      def custom_setup_method2
+        @@called << :custom_setup_method2
+      end
+      setup :custom_setup_method2, :before => :append
+
+      setup :before => :prepend
+      def custom_setup_method3
+        @@called << :custom_setup_method3
+      end
+      unregister_setup(:custom_setup_method3)
+
+      setup :before => :prepend
+      def custom_setup_method4
+        @@called << :custom_setup_method4
+      end
+
+      def test_nothing
+      end
+    end
+
+    test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:custom_setup_method4,
+                  :custom_setup_method,
+                  :custom_setup_method2,
+                  :setup],
+                 called)
+
+
+    called = []
+    inherited_test_case = Class.new(test_case) do
+      @@called = called
+      def setup
+        @@called << :setup
+      end
+
+      def custom_setup_method
+        @@called << :custom_setup_method
+      end
+
+      def custom_setup_method2
+        @@called << :custom_setup_method2
+      end
+
+      def custom_setup_method3
+        @@called << :custom_setup_method3
+      end
+
+      def custom_setup_method4
+        @@called << :custom_setup_method4
+      end
+
+      def test_nothing
+      end
+    end
+
+    inherited_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
+    assert_equal([:custom_setup_method4,
+                  :custom_setup_method,
+                  :custom_setup_method2,
+                  :setup],
+                 called)
+
+
+    called = []
+    another_test_case = Class.new(Test::Unit::TestCase) do
+      @@called = called
+      def setup
+        @@called << :setup
+      end
+
+      def custom_setup_method
+        @@called << :custom_setup_method
+      end
+
+      def custom_setup_method2
+        @@called << :custom_setup_method2
+      end
+
+      def custom_setup_method3
+        @@called << :custom_setup_method3
+      end
+
+      def custom_setup_method4
+        @@called << :custom_setup_method4
       end
 
       def test_nothing

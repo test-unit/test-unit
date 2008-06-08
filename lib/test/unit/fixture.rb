@@ -7,10 +7,11 @@ module Test
 
           [:setup, :teardown].each do |fixture|
             observer = Proc.new do |test_case, _, _, value, method_name|
-              if value
-                test_case.send("register_#{fixture}_method", method_name)
-              else
+              if value.nil?
                 test_case.send("unregister_#{fixture}_method", method_name)
+              else
+                test_case.send("register_#{fixture}_method", method_name,
+                               value)
               end
             end
             base.register_attribute_observer(fixture, &observer)
@@ -22,50 +23,77 @@ module Test
         [:setup, :teardown].each do |fixture|
           class_eval do
             define_method(fixture) do |*method_names|
-              attribute(fixture, true, *method_names)
+              options = {}
+              options = method_names.pop if method_names.last.is_a?(Hash)
+              attribute(fixture, options, *method_names)
             end
 
             define_method("unregister_#{fixture}") do |*method_names|
-              attribute(fixture, false, *method_names)
+              attribute(fixture, nil, *method_names)
             end
           end
 
-          append_method_name = Proc.new do |variable_name|
-            Proc.new do |method_name|
-              unless instance_variable_defined?(variable_name)
-                instance_variable_set(variable_name, [])
-              end
-              methods = instance_variable_get(variable_name) | [method_name]
-              instance_variable_set(variable_name, methods)
+          add_method_name = Proc.new do |klass, type, variable_name, method_name|
+            unless klass.instance_variable_defined?(variable_name)
+              klass.instance_variable_set(variable_name, [])
             end
+            methods = klass.instance_variable_get(variable_name)
+
+            if type == :prepend
+              methods = [method_name] | methods
+            else
+              methods = methods | [method_name]
+            end
+            klass.instance_variable_set(variable_name, methods)
           end
 
-          methods_name = "@#{fixture}_methods"
-          define_method("register_#{fixture}_method",
-                        &append_method_name.call(methods_name))
+          base_methods_variable_suffix = "#{fixture}_methods"
+          define_method("register_#{fixture}_method") do |method_name, options|
+            if options.size > 1 or
+                !([:prepend, :append, nil].include?(options[:before])) or
+                !([:prepend, :append, nil].include?(options[:after]))
+              message = "must be {:before => :prepend}, " +
+                "{:before => :append}, {:after => :prepend} or " +
+                "{:after => :append}: #{options.inspect}"
+              raise ArgumentError, message
+            end
 
-          unregistered_methods_name = "@unregistered_#{fixture}_methods"
-          define_method("unregister_#{fixture}_method",
-                        &append_method_name.call(unregistered_methods_name))
+            order = options.keys.first || :after
+            type = options.values.first || :append
+            variable_name = "@#{order}_#{base_methods_variable_suffix}"
+            add_method_name.call(self, type, variable_name, method_name)
+          end
 
-          define_method("#{fixture}_methods") do
-            interested_ancestors = ancestors[0, ancestors.index(Fixture)].reverse
-            interested_ancestors.inject([]) do |result, ancestor|
-              if ancestor.is_a?(Class)
-                ancestor.class_eval do
-                  methods = []
-                  unregistered_methods = []
-                  if instance_variable_defined?(methods_name)
-                    methods = instance_variable_get(methods_name)
+          unregistered_methods_variable =
+            "@unregistered_#{base_methods_variable_suffix}"
+          define_method("unregister_#{fixture}_method") do |method_name|
+            add_method_name.call(self, :append, unregistered_methods_variable,
+                                 method_name)
+          end
+
+          [:before, :after].each do |order|
+            define_method("#{order}_#{fixture}_methods") do
+              base_index = ancestors.index(Fixture)
+              interested_ancestors = ancestors[0, base_index].reverse
+              interested_ancestors.inject([]) do |result, ancestor|
+                if ancestor.is_a?(Class)
+                  ancestor.class_eval do
+                    methods = []
+                    unregistered_methods = []
+                    methods_variable =
+                      "@#{order}_#{base_methods_variable_suffix}"
+                    if instance_variable_defined?(methods_variable)
+                      methods = instance_variable_get(methods_variable)
+                    end
+                    if instance_variable_defined?(unregistered_methods_variable)
+                      unregistered_methods =
+                        instance_variable_get(unregistered_methods_variable)
+                    end
+                    result + methods - unregistered_methods
                   end
-                  if instance_variable_defined?(unregistered_methods_name)
-                    unregistered_methods =
-                      instance_variable_get(unregistered_methods_name)
-                  end
-                  result + methods - unregistered_methods
+                else
+                  []
                 end
-              else
-                []
               end
             end
           end
@@ -75,7 +103,11 @@ module Test
       [:setup, :teardown].each do |fixture|
         fixture_runner = "run_#{fixture}"
         define_method(fixture_runner) do
-          [fixture, *self.class.send("#{fixture}_methods")].each do |method_name|
+          [
+           self.class.send("before_#{fixture}_methods"),
+           fixture,
+           self.class.send("after_#{fixture}_methods")
+          ].flatten.each do |method_name|
             send(method_name) if respond_to?(method_name, true)
           end
         end
