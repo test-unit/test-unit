@@ -83,5 +83,36 @@ module Test
         end
       end
     end
+
+    module TestResultErrorHandler
+      # Records a Test::Unit::Error.
+      def add_error(error)
+        @errors << error
+        notify_fault(error)
+        notify_changed
+      end
+
+      # Returns the number of errors this TestResult has
+      # recorded.
+      def error_count
+        @errors.size
+      end
+
+      def error_occurred?
+        not @errors.empty?
+      end
+
+      private
+      def initialize_containers
+        super
+        @errors = []
+        @summary_generators << :error_summary
+        @problem_checkers << :error_occurred?
+      end
+
+      def error_summary
+        "#{error_count} errors"
+      end
+    end
   end
 end

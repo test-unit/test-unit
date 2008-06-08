@@ -71,5 +71,36 @@ module Test
         true
       end
     end
+
+    module TestResultFailureHandler
+      # Records a Test::Unit::Failure.
+      def add_failure(failure)
+        @failures << failure
+        notify_fault(failure)
+        notify_changed
+      end
+
+      # Returns the number of failures this TestResult has
+      # recorded.
+      def failure_count
+        @failures.size
+      end
+
+      def failure_occurred?
+        not @failures.empty?
+      end
+
+      private
+      def initialize_containers
+        super
+        @failures = []
+        @summary_generators << :failure_summary
+        @problem_checkers << :failure_occurred?
+      end
+
+      def failure_summary
+        "#{failure_count} failures"
+      end
+    end
   end
 end

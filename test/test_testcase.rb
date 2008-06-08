@@ -274,7 +274,7 @@ module Test
         test = test_case.new("test_raise_interrupt")
         begin
           test.run(TestResult.new) {}
-          check("never reached", false)
+          check("Should not be reached", false)
         rescue Exception
           check("Interrupt exception should be re-raised", $!.class == Interrupt)
         end

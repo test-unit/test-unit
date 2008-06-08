@@ -4,9 +4,16 @@
 # License:: Ruby license.
 
 require 'test/unit/util/observable'
+require 'test/unit/failure'
+require 'test/unit/error'
 
 module Test
   module Unit
+    module NullResultContainerInitializer
+      private
+      def initialize_containers
+      end
+    end
 
     # Collects Test::Unit::Failure and Test::Unit::Error so that
     # they can be displayed to the user. To this end, observers
@@ -14,6 +21,9 @@ module Test
     # UI.
     class TestResult
       include Util::Observable
+      include NullResultContainerInitializer
+      include TestResultFailureHandler
+      include TestResultErrorHandler
 
       CHANGED = "CHANGED"
       FAULT = "FAULT"
@@ -23,57 +33,48 @@ module Test
       # Constructs a new, empty TestResult.
       def initialize
         @run_count, @assertion_count = 0, 0
-        @failures, @errors = Array.new, Array.new
+        @summary_generators = []
+        @problem_checkers = []
+        initialize_containers
       end
 
       # Records a test run.
       def add_run
         @run_count += 1
-        notify_listeners(CHANGED, self)
-      end
-
-      # Records a Test::Unit::Failure.
-      def add_failure(failure)
-        @failures << failure
-        notify_listeners(FAULT, failure)
-        notify_listeners(CHANGED, self)
-      end
-
-      # Records a Test::Unit::Error.
-      def add_error(error)
-        @errors << error
-        notify_listeners(FAULT, error)
-        notify_listeners(CHANGED, self)
+        notify_changed
       end
 
       # Records an individual assertion.
       def add_assertion
         @assertion_count += 1
-        notify_listeners(CHANGED, self)
+        notify_changed
       end
 
       # Returns a string contain the recorded runs, assertions,
       # failures and errors in this TestResult.
+      def summary
+        ["#{run_count} tests",
+         "#{assertion_count} assertions",
+         *@summary_generators.collect {|generator| send(generator)}].join(", ")
+      end
+
       def to_s
-        "#{run_count} tests, #{assertion_count} assertions, #{failure_count} failures, #{error_count} errors"
+        summary
       end
 
       # Returns whether or not this TestResult represents
       # successful completion.
       def passed?
-        return @failures.empty? && @errors.empty?
+        @problem_checkers.all? {|checker| not send(checker)}
       end
 
-      # Returns the number of failures this TestResult has
-      # recorded.
-      def failure_count
-        return @failures.size
+      private
+      def notify_changed
+        notify_listeners(CHANGED, self)
       end
 
-      # Returns the number of errors this TestResult has
-      # recorded.
-      def error_count
-        return @errors.size
+      def notify_fault(fault)
+        notify_listeners(FAULT, fault)
       end
     end
   end
