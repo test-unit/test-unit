@@ -101,7 +101,7 @@ module Test
         when *ErrorHandler::PASS_THROUGH_EXCEPTIONS
           false
         else
-          result.add_error(Error.new(name, exception))
+          result.add_error(Error.new(@test_case.name, exception))
           true
         end
       end
