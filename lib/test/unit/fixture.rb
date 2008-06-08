@@ -20,6 +20,15 @@ module Test
       end
 
       module ClassMethods
+        def valid_register_fixture_options?(options)
+          return true if options.empty?
+          return false if options.size > 1
+
+          key = options.keys.first
+          [:before, :after].include?(key) and
+            [:prepend, :append].include?(options[key])
+        end
+
         [:setup, :teardown].each do |fixture|
           class_eval do
             define_method(fixture) do |*method_names|
@@ -49,17 +58,22 @@ module Test
 
           base_methods_variable_suffix = "#{fixture}_methods"
           define_method("register_#{fixture}_method") do |method_name, options|
-            if options.size > 1 or
-                !([:prepend, :append, nil].include?(options[:before])) or
-                !([:prepend, :append, nil].include?(options[:after]))
+            unless valid_register_fixture_options?(options)
               message = "must be {:before => :prepend}, " +
                 "{:before => :append}, {:after => :prepend} or " +
                 "{:after => :append}: #{options.inspect}"
               raise ArgumentError, message
             end
 
-            order = options.keys.first || :after
-            type = options.values.first || :append
+            if options.empty?
+              if fixture == :setup
+                order, type = :after, :append
+              else
+                order, type = :before, :prepend
+              end
+            else
+              order, type = options.to_a.first
+            end
             variable_name = "@#{order}_#{base_methods_variable_suffix}"
             add_method_name.call(self, type, variable_name, method_name)
           end
