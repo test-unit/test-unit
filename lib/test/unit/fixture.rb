@@ -20,6 +20,66 @@ module Test
       end
 
       module ClassMethods
+        def setup(*method_names)
+          register_fixture(:setup, *method_names)
+        end
+
+        def unregister_setup(*method_names)
+          unregister_fixture(:setup, *method_names)
+        end
+
+        def teardown(*method_names)
+          register_fixture(:teardown, *method_names)
+        end
+
+        def unregister_teardown(*method_names)
+          unregister_fixture(:teardown, *method_names)
+        end
+
+        def register_setup_method(method_name, options)
+          register_fixture_method(:setup, method_name, options, :after, :append)
+        end
+
+        def unregister_setup_method(method_name)
+          unregister_fixture_method(:setup, method_name)
+        end
+
+        def register_teardown_method(method_name, options)
+          register_fixture_method(:teardown, method_name, options,
+                                  :before, :prepend)
+        end
+
+        def unregister_teardown_method(method_name)
+          unregister_fixture_method(:teardown, method_name)
+        end
+
+        def before_setup_methods
+          collect_fixture_methods(:setup, :before)
+        end
+
+        def after_setup_methods
+          collect_fixture_methods(:setup, :after)
+        end
+
+        def before_teardown_methods
+          collect_fixture_methods(:teardown, :before)
+        end
+
+        def after_teardown_methods
+          collect_fixture_methods(:teardown, :after)
+        end
+
+        private
+        def register_fixture(fixture, *method_names)
+          options = {}
+          options = method_names.pop if method_names.last.is_a?(Hash)
+          attribute(fixture, options, *method_names)
+        end
+
+        def unregister_fixture(fixture, *method_names)
+          attribute(fixture, nil, *method_names)
+        end
+
         def valid_register_fixture_options?(options)
           return true if options.empty?
           return false if options.size > 1
@@ -29,103 +89,96 @@ module Test
             [:prepend, :append].include?(options[key])
         end
 
-        [:setup, :teardown].each do |fixture|
-          class_eval do
-            define_method(fixture) do |*method_names|
-              options = {}
-              options = method_names.pop if method_names.last.is_a?(Hash)
-              attribute(fixture, options, *method_names)
-            end
+        def add_fixture_method_name(how, variable_name, method_name)
+          unless self.instance_variable_defined?(variable_name)
+            self.instance_variable_set(variable_name, [])
+          end
+          methods = self.instance_variable_get(variable_name)
 
-            define_method("unregister_#{fixture}") do |*method_names|
-              attribute(fixture, nil, *method_names)
-            end
+          if how == :prepend
+            methods = [method_name] | methods
+          else
+            methods = methods | [method_name]
+          end
+          self.instance_variable_set(variable_name, methods)
+        end
+
+        def registered_methods_variable_name(fixture, order)
+          "@#{order}_#{fixture}_methods"
+        end
+
+        def unregistered_methods_variable_name(fixture)
+          "@unregistered_#{fixture}_methods"
+        end
+
+        def register_fixture_method(fixture, method_name, options,
+                                    default_order, default_how)
+          unless valid_register_fixture_options?(options)
+            message = "must be {:before => :prepend}, " +
+              "{:before => :append}, {:after => :prepend} or " +
+              "{:after => :append}: #{options.inspect}"
+            raise ArgumentError, message
           end
 
-          add_method_name = Proc.new do |klass, type, variable_name, method_name|
-            unless klass.instance_variable_defined?(variable_name)
-              klass.instance_variable_set(variable_name, [])
-            end
-            methods = klass.instance_variable_get(variable_name)
-
-            if type == :prepend
-              methods = [method_name] | methods
-            else
-              methods = methods | [method_name]
-            end
-            klass.instance_variable_set(variable_name, methods)
+          if options.empty?
+            order, how = default_order, default_how
+          else
+            order, how = options.to_a.first
           end
+          variable_name = registered_methods_variable_name(fixture, order)
+          add_fixture_method_name(how, variable_name, method_name)
+        end
 
-          base_methods_variable_suffix = "#{fixture}_methods"
-          define_method("register_#{fixture}_method") do |method_name, options|
-            unless valid_register_fixture_options?(options)
-              message = "must be {:before => :prepend}, " +
-                "{:before => :append}, {:after => :prepend} or " +
-                "{:after => :append}: #{options.inspect}"
-              raise ArgumentError, message
-            end
+        def unregister_fixture_method(fixture, method_name)
+          variable_name = unregistered_methods_variable_name(fixture)
+          add_fixture_method_name(:append, variable_name, method_name)
+        end
 
-            if options.empty?
-              if fixture == :setup
-                order, type = :after, :append
-              else
-                order, type = :before, :prepend
-              end
-            else
-              order, type = options.to_a.first
-            end
-            variable_name = "@#{order}_#{base_methods_variable_suffix}"
-            add_method_name.call(self, type, variable_name, method_name)
-          end
-
+        def collect_fixture_methods(fixture, order)
+          methods_variable = registered_methods_variable_name(fixture, order)
           unregistered_methods_variable =
-            "@unregistered_#{base_methods_variable_suffix}"
-          define_method("unregister_#{fixture}_method") do |method_name|
-            add_method_name.call(self, :append, unregistered_methods_variable,
-                                 method_name)
-          end
+            unregistered_methods_variable_name(fixture)
 
-          [:before, :after].each do |order|
-            define_method("#{order}_#{fixture}_methods") do
-              base_index = ancestors.index(Fixture)
-              interested_ancestors = ancestors[0, base_index].reverse
-              interested_ancestors.inject([]) do |result, ancestor|
-                if ancestor.is_a?(Class)
-                  ancestor.class_eval do
-                    methods = []
-                    unregistered_methods = []
-                    methods_variable =
-                      "@#{order}_#{base_methods_variable_suffix}"
-                    if instance_variable_defined?(methods_variable)
-                      methods = instance_variable_get(methods_variable)
-                    end
-                    if instance_variable_defined?(unregistered_methods_variable)
-                      unregistered_methods =
-                        instance_variable_get(unregistered_methods_variable)
-                    end
-                    result + methods - unregistered_methods
-                  end
-                else
-                  []
+          base_index = ancestors.index(Fixture)
+          interested_ancestors = ancestors[0, base_index].reverse
+          interested_ancestors.inject([]) do |result, ancestor|
+            if ancestor.is_a?(Class)
+              ancestor.class_eval do
+                methods = []
+                unregistered_methods = []
+                if instance_variable_defined?(methods_variable)
+                  methods = instance_variable_get(methods_variable)
                 end
+                if instance_variable_defined?(unregistered_methods_variable)
+                  unregistered_methods =
+                    instance_variable_get(unregistered_methods_variable)
+                end
+                result + methods - unregistered_methods
               end
+            else
+              []
             end
           end
         end
       end
 
-      [:setup, :teardown].each do |fixture|
-        fixture_runner = "run_#{fixture}"
-        define_method(fixture_runner) do
-          [
-           self.class.send("before_#{fixture}_methods"),
-           fixture,
-           self.class.send("after_#{fixture}_methods")
-          ].flatten.each do |method_name|
-            send(method_name) if respond_to?(method_name, true)
-          end
+      private
+      def run_fixture(fixture)
+        [
+         self.class.send("before_#{fixture}_methods"),
+         fixture,
+         self.class.send("after_#{fixture}_methods")
+        ].flatten.each do |method_name|
+          send(method_name) if respond_to?(method_name, true)
         end
-        send(:private, fixture_runner)
+      end
+
+      def run_setup
+        run_fixture(:setup)
+      end
+
+      def run_teardown
+        run_fixture(:teardown)
       end
     end
   end
