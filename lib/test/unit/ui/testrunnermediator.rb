@@ -31,28 +31,31 @@ module Test
         # with.
         def run_suite
           Unit.run = true
-          begin_time = Time.now
-          notify_listeners(RESET, @suite.size)
+
           result = create_result
-          notify_listeners(STARTED, result)
-          result_listener = result.add_listener(TestResult::CHANGED) do |updated_result|
-            notify_listeners(TestResult::CHANGED, updated_result)
+          result_listener = result.add_listener(TestResult::CHANGED) do |*args|
+            notify_listeners(TestResult::CHANGED, *args)
           end
-          
-          fault_listener = result.add_listener(TestResult::FAULT) do |fault|
-            notify_listeners(TestResult::FAULT, fault)
+          fault_listener = result.add_listener(TestResult::FAULT) do |*args|
+            notify_listeners(TestResult::FAULT, *args)
           end
-          
-          @suite.run(result) do |channel, value|
-            notify_listeners(channel, value)
+
+          start_time = Time.now
+          begin
+            notify_listeners(RESET, @suite.size)
+            notify_listeners(STARTED, result)
+
+            @suite.run(result) do |channel, value|
+              notify_listeners(channel, value)
+            end
+          ensure
+            elapsed_time = Time.now - start_time
+            result.remove_listener(TestResult::FAULT, fault_listener)
+            result.remove_listener(TestResult::CHANGED, result_listener)
+            notify_listeners(FINISHED, elapsed_time)
           end
-          
-          result.remove_listener(TestResult::FAULT, fault_listener)
-          result.remove_listener(TestResult::CHANGED, result_listener)
-          end_time = Time.now
-          elapsed_time = end_time - begin_time
-          notify_listeners(FINISHED, elapsed_time) #"Finished in #{elapsed_time} seconds.")
-          return result
+
+          result
         end
 
         private
@@ -60,7 +63,13 @@ module Test
         # should run with. Can be overridden by subclasses if
         # one wants to use a different result.
         def create_result
-          return TestResult.new
+          TestResult.new
+        end
+
+        def measure_time
+          begin_time = Time.now
+          yield
+          Time.now - begin_time
         end
       end
     end
