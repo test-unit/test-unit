@@ -4,6 +4,8 @@
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
+require 'test/unit/error'
+
 module Test
   module Unit
 
@@ -21,18 +23,21 @@ module Test
       FINISHED = name + "::FINISHED"
 
       # Creates a new TestSuite with the given name.
-      def initialize(name="Unnamed TestSuite")
+      def initialize(name="Unnamed TestSuite", test_case=nil)
         @name = name
         @tests = []
+        @test_case = test_case
       end
 
       # Runs the tests and/or suites contained in this
       # TestSuite.
       def run(result, &progress_block)
         yield(STARTED, name)
+        run_startup(result)
         @tests.each do |test|
           test.run(result, &progress_block)
         end
+        run_shutdown(result)
         yield(FINISHED, name)
       end
 
@@ -70,6 +75,35 @@ module Test
         return false unless(other.kind_of?(self.class))
         return false unless(@name == other.name)
         @tests == other.tests
+      end
+
+      private
+      def run_startup(result)
+        return if @test_case.nil? or !@test_case.respond_to?(:startup)
+        begin
+          @test_case.startup
+        rescue Exception
+          raise unless handle_exception($!, result)
+        end
+      end
+
+      def run_shutdown(result)
+        return if @test_case.nil? or !@test_case.respond_to?(:shutdown)
+        begin
+          @test_case.shutdown
+        rescue Exception
+          raise unless handle_exception($!, result)
+        end
+      end
+
+      def handle_exception(exception, result)
+        case exception
+        when *ErrorHandler::PASS_THROUGH_EXCEPTIONS
+          false
+        else
+          result.add_error(Error.new(name, exception))
+          true
+        end
       end
     end
   end

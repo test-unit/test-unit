@@ -48,7 +48,7 @@ module Test
         def suite
           method_names = public_instance_methods(true).collect {|name| name.to_s}
           tests = method_names.delete_if {|method_name| method_name !~ /^test./}
-          suite = TestSuite.new(name)
+          suite = TestSuite.new(name, self)
           tests.sort.each do |test|
             catch(:invalid_test) do
               suite << new(test)

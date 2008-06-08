@@ -280,6 +280,127 @@ module Test
         end
       end
 
+      def test_startup_shutdown
+        called = []
+        test_case = Class.new(TestCase) do
+          @@called = called
+          class << self
+            def startup
+              @@called << :startup
+            end
+
+            def shutdown
+              @@called << :shutdown
+            end
+          end
+
+          def setup
+            @@called << :setup
+          end
+
+          def teardown
+            @@called << :teardown
+          end
+
+          def test1
+          end
+
+          def test2
+          end
+        end
+
+        test_suite = test_case.suite
+        test_suite.run(TestResult.new) {}
+        check("startup/shutdown should be called once per test case" +
+              ": #{called.inspect}",
+              called == [:startup,
+                         :setup, :teardown,
+                         :setup, :teardown,
+                         :shutdown])
+      end
+
+      def test_error_on_startup
+        test_case = Class.new(TestCase) do
+          class << self
+            def startup
+              raise "from startup"
+            end
+          end
+
+          def test_nothing
+          end
+        end
+
+        test_suite = test_case.suite
+        result = TestResult.new
+        test_suite.run(result) {}
+        check("Should record an error on startup: #{result}",
+              result.error_count == 1)
+      end
+
+      def test_pass_through_error_on_startup
+        test_case = Class.new(TestCase) do
+          class << self
+            def startup
+              raise Interrupt
+            end
+          end
+
+          def test_nothing
+          end
+        end
+
+        test_suite = test_case.suite
+        begin
+          test_suite.run(TestResult.new) {}
+          check("Should not be reached", false)
+        rescue Exception
+          check("Interrupt should be passed through: #{$!}",
+                Interrupt === $!)
+        end
+      end
+
+      def test_error_on_shutdown
+        test_case = Class.new(TestCase) do
+          class << self
+            def shutdown
+              raise "from shutdown"
+            end
+          end
+
+          def test_nothing
+          end
+        end
+
+        test_suite = test_case.suite
+        result = TestResult.new
+        test_suite.run(result) {}
+        check("Should record an error on shutdown: #{result}",
+              result.error_count == 1)
+      end
+
+      def test_pass_through_error_on_shutdown
+        test_case = Class.new(TestCase) do
+          class << self
+            def shutdown
+              raise Interrupt
+            end
+          end
+
+          def test_nothing
+          end
+        end
+
+        test_suite = test_case.suite
+        begin
+          test_suite.run(TestResult.new) {}
+          check("Should not be reached", false)
+        rescue Exception
+          check("Interrupt should be passed through: #{$!}",
+                Interrupt === $!)
+        end
+      end
+
       private
       def check(message, passed)
         add_assertion
