@@ -72,7 +72,9 @@ module Test
       end
     end
 
-    module TestResultFailureHandler
+    module TestResultFailureSupport
+      attr_reader :failures
+
       # Records a Test::Unit::Failure.
       def add_failure(failure)
         @failures << failure

@@ -23,8 +23,8 @@ module Test
     class TestResult
       include Util::Observable
       include NullResultContainerInitializer
-      include TestResultFailureHandler
-      include TestResultErrorHandler
+      include TestResultFailureSupport
+      include TestResultErrorSupport
       include TestResultOmissionSupport
 
       CHANGED = "CHANGED"

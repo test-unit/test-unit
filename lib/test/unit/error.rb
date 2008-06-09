@@ -84,7 +84,9 @@ module Test
       end
     end
 
-    module TestResultErrorHandler
+    module TestResultErrorSupport
+      attr_reader :errors
+
       # Records a Test::Unit::Error.
       def add_error(error)
         @errors << error
