@@ -114,16 +114,11 @@ module Test
         @omissions.size
       end
 
-      def omission_occurred?
-        not @omissions.empty?
-      end
-
       private
       def initialize_containers
         super
         @omissions = []
         @summary_generators << :omission_summary
-        @problem_checkers << :omission_occurred?
       end
 
       def omission_summary

@@ -159,13 +159,15 @@ module Test
 
           def result_color
             if @result.passed?
+              if @result.omission_count > 0
+                @color_scheme["omission"]
 #               if @result.pending_count > 0
 #                 @color_scheme["pending"]
 #               elsif @result.notification_count > 0
 #                 @color_scheme["notification"]
-#               else
+              else
                 @color_scheme["success"]
-#               end
+              end
             elsif @result.error_count > 0
               @color_scheme["error"]
             elsif @result.failure_count > 0
