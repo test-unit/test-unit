@@ -5,6 +5,7 @@
 
 require 'test/unit/util/observable'
 require 'test/unit/failure'
+require 'test/unit/omission'
 require 'test/unit/error'
 
 module Test
@@ -24,6 +25,7 @@ module Test
       include NullResultContainerInitializer
       include TestResultFailureHandler
       include TestResultErrorHandler
+      include TestResultOmissionSupport
 
       CHANGED = "CHANGED"
       FAULT = "FAULT"

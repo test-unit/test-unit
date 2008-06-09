@@ -9,6 +9,7 @@ require 'test/unit/fixture'
 require 'test/unit/exceptionhandler'
 require 'test/unit/assertions'
 require 'test/unit/failure'
+require 'test/unit/omission'
 require 'test/unit/error'
 require 'test/unit/testsuite'
 require 'test/unit/assertionfailederror'
@@ -28,6 +29,7 @@ module Test
       include ExceptionHandler
       include ErrorHandler
       include FailureHandler
+      include TestCaseOmissionSupport
       include Assertions
       include Util::BacktraceFilter
       
