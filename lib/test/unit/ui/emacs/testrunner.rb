@@ -6,6 +6,12 @@ module Test
       module Emacs
         class TestRunner < Console::TestRunner
           private
+          def output_setup_end
+          end
+
+          def output_started
+          end
+
           def format_fault(fault)
             return super unless fault.respond_to?(:label)
             format_method_name = "format_fault_#{fault.label.downcase}"

@@ -57,13 +57,15 @@ module Test
           private
           def setup_mediator
             @mediator = create_mediator(@suite)
+            output_setup_end
+          end
+
+          def output_setup_end
             suite_name = @suite.to_s
-            if ( @suite.kind_of?(Module) )
-              suite_name = @suite.name
-            end
+            suite_name = @suite.name if @suite.kind_of?(Module)
             output("Loaded suite #{suite_name}")
           end
-          
+
           def create_mediator(suite)
             return TestRunnerMediator.new(suite)
           end
@@ -90,10 +92,15 @@ module Test
           
           def started(result)
             @result = result
+            output_started
+          end
+
+          def output_started
             output("Started")
           end
-          
+
           def finished(elapsed_time)
+            nl if output?(NORMAL) and !output?(VERBOSE)
             nl
             output("Finished in #{elapsed_time} seconds.")
             @faults.each_with_index do |fault, index|
