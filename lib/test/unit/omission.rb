@@ -56,23 +56,22 @@ module Test
         end
       end
 
-      def omit(message="Omitted", &block)
+      def omit(message=nil, &block)
+        message ||= "omitted."
         if block_given?
-          omission = Omission.new(name,
-                                  filter_backtrace(caller),
-                                  message)
+          omission = Omission.new(name, filter_backtrace(caller), message)
           add_omission(omission)
         else
           raise OmittedError.new(message)
         end
       end
 
-      def omit_if(condition, message="Omitted", &block)
-        omit(message, &block) if condition
+      def omit_if(condition, *args, &block)
+        omit(*args, &block) if condition
       end
 
-      def omit_unless(condition, message="Omitted", &block)
-        omit(message, &block) unless condition
+      def omit_unless(condition, *args, &block)
+        omit(*args, &block) unless condition
       end
 
       private
@@ -94,7 +93,7 @@ module Test
         omission = Omission.new(name,
                                 filter_backtrace(exception.backtrace),
                                 exception.message)
-        add_omission(exception)
+        add_omission(omission)
         true
       end
     end
