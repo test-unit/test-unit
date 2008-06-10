@@ -60,7 +60,7 @@ module Test
               suite << new(test)
             end
           end
-          if (suite.empty?)
+          if suite.empty?
             catch(:invalid_test) do
               suite << new("default_test")
             end
@@ -68,12 +68,6 @@ module Test
           suite
         end
       end
-
-      ##
-      # These exceptions are not caught by #run.
-
-      PASSTHROUGH_EXCEPTIONS = [NoMemoryError, SignalException, Interrupt,
-                                SystemExit]
 
       # Creates a new instance of the fixture for running the
       # test represented by test_method_name.
