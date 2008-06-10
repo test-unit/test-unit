@@ -106,7 +106,9 @@ module Test
             @faults.each_with_index do |fault, index|
               nl
               output_single("%3d) " % (index + 1))
-              output(format_fault(fault), fault_color(fault))
+              label, detail = format_fault(fault).split(/\r?\n/, 2)
+              output(label, fault_color(fault))
+              output(detail)
             end
             nl
             output(@result, result_color)
@@ -159,10 +161,10 @@ module Test
 
           def result_color
             if @result.passed?
-              if @result.omission_count > 0
+              if @result.pending_count > 0
+                @color_scheme["pending"]
+              elsif @result.omission_count > 0
                 @color_scheme["omission"]
-#               if @result.pending_count > 0
-#                 @color_scheme["pending"]
 #               elsif @result.notification_count > 0
 #                 @color_scheme["notification"]
               else

@@ -2,14 +2,14 @@ require 'test/unit/util/backtracefilter'
 
 module Test
   module Unit
-    class Omission
+    class Pending
       include Util::BacktraceFilter
       attr_reader :test_name, :location, :message
 
-      SINGLE_CHARACTER = 'O'
-      LABEL = "Omission"
+      SINGLE_CHARACTER = 'P'
+      LABEL = "Pending"
 
-      # Creates a new Omission with the given location and
+      # Creates a new Pending with the given location and
       # message.
       def initialize(test_name, location, message)
         @test_name = test_name
@@ -17,7 +17,7 @@ module Test
         @message = message
       end
 
-      # Returns a single character representation of a omission.
+      # Returns a single character representation of a pending.
       def single_character_display
         SINGLE_CHARACTER
       end
@@ -43,86 +43,87 @@ module Test
       end
     end
 
-    class OmittedError < StandardError
+    class PendedError < StandardError
     end
 
 
-    module TestCaseOmissionSupport
+    module TestCasePendingSupport
       class << self
         def included(base)
           base.class_eval do
-            include OmissionHandler
+            include PendingHandler
           end
         end
       end
 
-      def omit(message=nil, &block)
-        message ||= "omitted."
+      def pend(message=nil, &block)
+        message ||= "pended."
         if block_given?
-          omission = Omission.new(name, filter_backtrace(caller), message)
-          add_omission(omission)
+          pending = nil
+          begin
+            yield
+          rescue Exception
+            pending = Pending.new(name, filter_backtrace(caller), message)
+            add_pending(pending)
+          end
+          unless pending
+            flunk("Pending block should not be passed: #{message}")
+          end
         else
-          raise OmittedError.new(message)
+          raise PendedError.new(message)
         end
       end
 
-      def omit_if(condition, *args, &block)
-        omit(*args, &block) if condition
-      end
-
-      def omit_unless(condition, *args, &block)
-        omit(*args, &block) unless condition
-      end
-
       private
-      def add_omission(omission)
-        current_result.add_omission(omission)
+      def add_pending(pending)
+        problem_occurred
+        current_result.add_pending(pending)
       end
     end
 
-    module OmissionHandler
+    module PendingHandler
       class << self
         def included(base)
-          base.exception_handler(:handle_omitted_error)
+          base.exception_handler(:handle_pended_error)
         end
       end
 
       private
-      def handle_omitted_error(exception)
-        return false unless exception.is_a?(OmittedError)
-        omission = Omission.new(name,
+      def handle_pended_error(exception)
+        return false unless exception.is_a?(PendedError)
+        pending = Pending.new(name,
                                 filter_backtrace(exception.backtrace),
                                 exception.message)
-        add_omission(omission)
+        add_pending(pending)
         true
       end
     end
 
-    module TestResultOmissionSupport
-      attr_reader :omissions
+    module TestResultPendingSupport
+      attr_reader :pendings
 
-      # Records a Test::Unit::Omission.
-      def add_omission(omission)
-        @omissions << omission
-        notify_fault(omission)
+      # Records a Test::Unit::Pending.
+      def add_pending(pending)
+        @pendings << pending
+        notify_fault(pending)
         notify_changed
       end
 
-      # Returns the number of omissions this TestResult has
+      # Returns the number of pendings this TestResult has
       # recorded.
-      def omission_count
-        @omissions.size
+      def pending_count
+        @pendings.size
       end
 
       private
       def initialize_containers
         super
-        @omissions = []
-        @summary_generators << :omission_summary
+        @pendings = []
+        @summary_generators << :pending_summary
       end
 
-      def omission_summary
-        "#{omission_count} omissions"
+      def pending_summary
+        "#{pending_count} pendings"
       end
     end
   end

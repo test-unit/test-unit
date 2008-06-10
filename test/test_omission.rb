@@ -1,6 +1,9 @@
 require 'test/unit'
+require 'testunit_test_util'
 
 class TestUnitOmission < Test::Unit::TestCase
+  include TestUnitTestUtil
+
   class TestCase < Test::Unit::TestCase
     class << self
       def suite
@@ -11,6 +14,7 @@ class TestUnitOmission < Test::Unit::TestCase
     def test_omit
       omit("1st omit")
       omit("2nd omit. Should not be reached here.")
+      assert(true, "Should not be reached here too.")
     end
 
     def test_omit_with_condition
@@ -40,34 +44,34 @@ class TestUnitOmission < Test::Unit::TestCase
 
   def test_omit
     result = run_test("test_omit")
-    assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 1 omissions",
+    assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "1 omissions",
                  result.to_s)
-    assert_equal(["1st omit"],
-                 result.omissions.collect {|omission| omission.message})
+    assert_fault_messages(["1st omit"], result.omissions)
   end
 
   def test_omit_with_condition
     result = run_test("test_omit_with_condition")
-    assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 1 omissions",
+    assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "1 omissions",
                  result.to_s)
-    assert_equal(["Should omit."],
-                 result.omissions.collect {|omission| omission.message})
+    assert_fault_messages(["Should omit."], result.omissions)
   end
 
   def test_omit_with_block
     result = run_test("test_omit_with_block")
-    assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 1 omissions",
+    assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "1 omissions",
                  result.to_s)
-    assert_equal(["Omit block"],
-                 result.omissions.collect {|omission| omission.message})
+    assert_fault_messages(["Omit block"], result.omissions)
   end
 
   def test_omit_with_condition_and_block
     result = run_test("test_omit_with_block_and_condition")
-    assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 1 omissions",
+    assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "1 omissions",
                  result.to_s)
-    assert_equal(["Should omit."],
-                 result.omissions.collect {|omission| omission.message})
+    assert_fault_messages(["Should omit."], result.omissions)
   end
 
   private
