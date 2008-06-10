@@ -35,7 +35,7 @@ class TestUnitPending < Test::Unit::TestCase
   def test_pend
     result = run_test("test_pend")
     assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 1 pendings, " \
-                 "0 omissions",
+                 "0 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["1st pend"], result.pendings)
   end
@@ -43,7 +43,7 @@ class TestUnitPending < Test::Unit::TestCase
   def test_pend_with_failure_in_block
     result = run_test("test_pend_with_failure_in_block")
     assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 1 pendings, " \
-                 "0 omissions",
+                 "0 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Wait a minute"], result.pendings)
   end
@@ -51,7 +51,7 @@ class TestUnitPending < Test::Unit::TestCase
   def test_pend_with_no_failure_in_block
     result = run_test("test_pend_with_no_failure_in_block")
     assert_equal("1 tests, 1 assertions, 1 failures, 0 errors, 0 pendings, " \
-                 "0 omissions",
+                 "0 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Pending block should not be passed: Wait a minute."],
                           result.failures)

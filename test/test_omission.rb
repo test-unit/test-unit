@@ -45,7 +45,7 @@ class TestUnitOmission < Test::Unit::TestCase
   def test_omit
     result = run_test("test_omit")
     assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
-                 "1 omissions",
+                 "1 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["1st omit"], result.omissions)
   end
@@ -53,7 +53,7 @@ class TestUnitOmission < Test::Unit::TestCase
   def test_omit_with_condition
     result = run_test("test_omit_with_condition")
     assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
-                 "1 omissions",
+                 "1 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Should omit."], result.omissions)
   end
@@ -61,7 +61,7 @@ class TestUnitOmission < Test::Unit::TestCase
   def test_omit_with_block
     result = run_test("test_omit_with_block")
     assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
-                 "1 omissions",
+                 "1 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Omit block"], result.omissions)
   end
@@ -69,15 +69,13 @@ class TestUnitOmission < Test::Unit::TestCase
   def test_omit_with_condition_and_block
     result = run_test("test_omit_with_block_and_condition")
     assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
-                 "1 omissions",
+                 "1 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Should omit."], result.omissions)
   end
 
   private
   def run_test(name)
-    result = Test::Unit::TestResult.new
-    TestCase.new(name).run(result) {}
-    result
+    super(TestCase, name)
   end
 end

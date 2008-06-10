@@ -5,9 +5,10 @@
 
 require 'test/unit/util/observable'
 require 'test/unit/failure'
+require 'test/unit/error'
 require 'test/unit/omission'
 require 'test/unit/pending'
-require 'test/unit/error'
+require 'test/unit/notification'
 
 module Test
   module Unit
@@ -28,6 +29,7 @@ module Test
       include TestResultErrorSupport
       include TestResultPendingSupport
       include TestResultOmissionSupport
+      include TestResultNotificationSupport
 
       CHANGED = "CHANGED"
       FAULT = "FAULT"

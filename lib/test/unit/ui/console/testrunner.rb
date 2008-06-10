@@ -165,8 +165,8 @@ module Test
                 @color_scheme["pending"]
               elsif @result.omission_count > 0
                 @color_scheme["omission"]
-#               elsif @result.notification_count > 0
-#                 @color_scheme["notification"]
+              elsif @result.notification_count > 0
+                @color_scheme["notification"]
               else
                 @color_scheme["success"]
               end

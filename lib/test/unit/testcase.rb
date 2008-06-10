@@ -9,9 +9,10 @@ require 'test/unit/fixture'
 require 'test/unit/exceptionhandler'
 require 'test/unit/assertions'
 require 'test/unit/failure'
+require 'test/unit/error'
 require 'test/unit/pending'
 require 'test/unit/omission'
-require 'test/unit/error'
+require 'test/unit/notification'
 require 'test/unit/testsuite'
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
@@ -32,6 +33,7 @@ module Test
       include FailureHandler
       include TestCasePendingSupport
       include TestCaseOmissionSupport
+      include TestCaseNotificationSupport
       include Assertions
       include Util::BacktraceFilter
       
