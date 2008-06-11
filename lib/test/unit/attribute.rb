@@ -86,6 +86,11 @@ module Test
           attributes
         end
 
+        def get_attribute(method_name, attribute_name)
+          attribute_name = normalize_attribute_name(attribute_name)
+          (attributes(method_name) || {})[attribute_name]
+        end
+
         @@attribute_observers = {}
         def register_attribute_observer(attribute_name, observer=Proc.new)
           attribute_name = normalize_attribute_name(attribute_name)
@@ -110,6 +115,10 @@ module Test
 
       def attributes
         self.class.attributes(@method_name) || {}
+      end
+
+      def [](name)
+        self.class.get_attribute(@method_name, name)
       end
     end
   end

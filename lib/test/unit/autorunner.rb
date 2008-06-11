@@ -50,6 +50,7 @@ module Test
         collector.patterns.concat(auto_runner.pattern) if auto_runner.pattern
         collector.excludes.concat(auto_runner.exclude) if auto_runner.exclude
         collector.base = auto_runner.base
+        collector.filter = auto_runner.filters
         collector.collect(*auto_runner.to_run)
       end
 
@@ -167,6 +168,18 @@ module Test
             end
           end
 
+          priority_filter = Proc.new do |test|
+            Priority::Checker.new(test).need_to_run?
+          end
+          o.on("--[no-]priority-mode",
+               "Runs some tests based on their priority.") do |priority_mode|
+            if priority_mode
+              @filters |= [priority_filter]
+            else
+              @filters -= [priority_filter]
+            end
+          end
+
           o.on('-I', "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
                "Appends directory list to $LOAD_PATH.") do |dirs|
             $LOAD_PATH.concat(dirs.split(File::PATH_SEPARATOR))
@@ -210,9 +223,9 @@ module Test
 
       def run
         @suite = @collector[self]
-        result = @runner[self] or return false
+        runner = @runner[self] or return false
         Dir.chdir(@workdir) if @workdir
-        result.run(@suite, @runner_options).passed?
+        runner.run(@suite, @runner_options).passed?
       end
 
       private
