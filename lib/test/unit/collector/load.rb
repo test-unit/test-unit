@@ -66,12 +66,12 @@ module Test
             end
 
             files.each do |child|
-              next if excluded_file?(child.basename)
+              next if excluded_file?(child.basename.to_s)
               collect_file(child, sub_test_suites, already_gathered)
             end
 
             directories.each do |child|
-              next if excluded_directory?(child.basename)
+              next if excluded_directory?(child.basename.to_s)
               sub_test_suite = collect_recursive(child, already_gathered)
               sub_test_suites << sub_test_suite unless sub_test_suite.empty?
             end
