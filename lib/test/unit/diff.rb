@@ -155,7 +155,7 @@ module Test
               end
             end
           end
-          matches.sort_by do |(from_index, to_index, size)|
+          matches.sort_by do |(from_index, to_index, match_size)|
             from_index
           end
         end
