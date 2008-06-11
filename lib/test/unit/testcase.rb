@@ -38,13 +38,12 @@ module Test
       include Priority
       include Assertions
       include Util::BacktraceFilter
-      
-      attr_reader :method_name
-      
+
       STARTED = name + "::STARTED"
       FINISHED = name + "::FINISHED"
 
       DESCENDANTS = []
+
       class << self
         def inherited(sub_class)
           DESCENDANTS << sub_class
@@ -70,6 +69,8 @@ module Test
           suite
         end
       end
+
+      attr_reader :method_name
 
       # Creates a new instance of the fixture for running the
       # test represented by test_method_name.
@@ -148,7 +149,7 @@ module Test
       end
 
       def handle_exception(exception)
-        @@exception_handlers.each do |handler|
+        self.class.exception_handlers.each do |handler|
           return true if send(handler, exception)
         end
         false

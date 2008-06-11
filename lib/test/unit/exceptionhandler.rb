@@ -1,11 +1,15 @@
 module Test
   module Unit
     module ExceptionHandler
+      @@exception_handlers = []
       class << self
+        def exception_handlers
+          @@exception_handlers
+	end
+
         def included(base)
           base.extend(ClassMethods)
 
-          @@exception_handlers = []
           observer = Proc.new do |test_case, _, _, value, method_name|
             if value
               @@exception_handlers.unshift(method_name)
@@ -19,7 +23,7 @@ module Test
 
       module ClassMethods
         def exception_handlers
-          @@exception_handlers
+          ExceptionHandler.exception_handlers
         end
 
         def exception_handler(*method_names)
