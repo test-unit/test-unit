@@ -222,10 +222,12 @@ module Test
       end
 
       def run
-        @suite = @collector[self]
-        runner = @runner[self] or return false
+        suite = @collector[self]
+        return false if suite.nil?
+        runner = @runner[self]
+        return false if runner.nil?
         Dir.chdir(@workdir) if @workdir
-        runner.run(@suite, @runner_options).passed?
+        runner.run(suite, @runner_options).passed?
       end
 
       private
