@@ -388,8 +388,11 @@ EOT
         end
       end
 
-      UncaughtThrow = {NameError => /^uncaught throw \`(.+)\'$/,
-                       ThreadError => /^uncaught throw \`(.+)\' in thread /} #`
+      UncaughtThrow = {
+        NameError => /^uncaught throw \`(.+)\'$/,
+        ArgumentError => /^uncaught throw (.+)$/,
+        ThreadError => /^uncaught throw \`(.+)\' in thread /
+      } #`
 
       ##
       # Passes if the block throws +expected_symbol+
@@ -412,10 +415,8 @@ EOT
             end
             full_message = build_message(message, "<?> should have been thrown.", expected_symbol)
             assert_block(full_message){caught}
-          rescue NameError, ThreadError => error
-            if UncaughtThrow[error.class] !~ error.message
-              raise error
-            end
+          rescue NameError, ArgumentError, ThreadError => error
+            raise unless UncaughtThrow[error.class] =~ error.message
             full_message = build_message(message, "<?> expected to be thrown but\n<?> was thrown.", expected_symbol, $1.intern)
             flunk(full_message)
           end
@@ -436,11 +437,13 @@ EOT
           assert(block_given?, "Should have passed a block to assert_nothing_thrown")
           begin
             proc.call
-          rescue NameError, ThreadError => error
-            if UncaughtThrow[error.class] !~ error.message
-              raise error
-            end
-            full_message = build_message(message, "<?> was thrown when nothing was expected", $1.intern)
+          rescue NameError, ArgumentError, ThreadError => error
+            raise unless UncaughtThrow[error.class] =~ error.message
+            tag = $1
+            tag = tag[1..-1].intern if tag[0, 1] == ":"
+            full_message = build_message(message,
+                                         "<?> was thrown when nothing was expected",
+                                         tag)
             flunk(full_message)
           end
           assert(true, "Expected nothing to be thrown")

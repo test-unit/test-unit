@@ -491,11 +491,22 @@ Message: <"Error">
             1 + 1
           }
         }
-        check_fails("message.\n<:thing> was thrown when nothing was expected.") {
-          assert_nothing_thrown("message") {
-            throw :thing
-          }
-        }
+
+        tag = :thing
+        inspected = nil
+        begin
+          throw tag
+        rescue NameError
+          inspected = tag.to_s.inspect
+        rescue ArgumentError
+          inspected = tag.inspect
+        end
+        check_fails("message.\n" +
+                    "<#{inspected}> was thrown when nothing was expected.") do
+          assert_nothing_thrown("message") do
+            throw tag
+          end
+        end
       end
       
       def test_assert_operator
