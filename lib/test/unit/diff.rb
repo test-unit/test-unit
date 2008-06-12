@@ -68,7 +68,11 @@ module Test
         def update_to_indexes
           @to_indexes = {}
           @junks = {}
-          each = @to.is_a?(String) ? :each_byte : :each
+          if @to.is_a?(String)
+            each = " "[0].is_a?(Integer) ? :each_byte : :each_char
+          else
+            each = :each
+          end
           i = 0
           @to.send(each) do |item|
             @to_indexes[item] ||= []
