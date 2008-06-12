@@ -88,7 +88,9 @@ module Test
         end
 
         def result_dir
-          components = [".test-result", @test.class.name, @test.method_name.to_s]
+          components = [".test-result",
+                        @test.class.name || "AnonymousTestCase",
+                        @test.method_name.to_s]
           parent_directories = [File.dirname($0), Dir.pwd]
           if Process.respond_to?(:uid)
             parent_directories << File.join(Dir.tmpdir, Process.uid.to_s)
