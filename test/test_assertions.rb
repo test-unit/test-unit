@@ -55,7 +55,17 @@ module Test
       def check_fails(expected_message="", &proc)
         check_assertions(true, expected_message, &proc)
       end
-      
+
+      def inspect_tag(tag)
+        begin
+          throw tag
+        rescue NameError
+          tag.to_s.inspect
+        rescue ArgumentError
+          tag.inspect
+        end
+      end
+
       def test_assert_block
         check_nothing_fails {
           assert_block {true}
@@ -468,39 +478,37 @@ Message: <"Error">
       end
       
       def test_assert_throws
-        check_nothing_fails {
-          assert_throws(:thing, "message") {
+        check_nothing_fails do
+          assert_throws(:thing, "message") do
             throw :thing
-          }
-        }
-        check_fails("message.\n<:thing> expected to be thrown but\n<:thing2> was thrown.") {
-          assert_throws(:thing, "message") {
+          end
+        end
+
+        tag = :thing2
+        check_fails("message.\n" +
+                    "<:thing> expected to be thrown but\n" +
+                    "<#{inspect_tag(tag)}> was thrown.") do
+          assert_throws(:thing, "message") do
             throw :thing2
-          }
-        }
-        check_fails("message.\n<:thing> should have been thrown.") {
-          assert_throws(:thing, "message") {
+          end
+        end
+        check_fails("message.\n" +
+                    "<:thing> should have been thrown.") do
+          assert_throws(:thing, "message") do
             1 + 1
-          }
-        }
+          end
+        end
       end
       
       def test_assert_nothing_thrown
-        check_nothing_fails {
-          assert_nothing_thrown("message") {
+        check_nothing_fails do
+          assert_nothing_thrown("message") do
             1 + 1
-          }
-        }
+          end
+        end
 
         tag = :thing
-        inspected = nil
-        begin
-          throw tag
-        rescue NameError
-          inspected = tag.to_s.inspect
-        rescue ArgumentError
-          inspected = tag.inspect
-        end
+        inspected = inspect_tag(tag)
         check_fails("message.\n" +
                     "<#{inspected}> was thrown when nothing was expected.") do
           assert_nothing_thrown("message") do

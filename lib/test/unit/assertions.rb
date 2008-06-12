@@ -395,7 +395,7 @@ EOT
       } #`
 
       ##
-      # Passes if the block throws +expected_symbol+
+      # Passes if the block throws +expected_object+
       #
       # Example:
       #   assert_throws :done do
@@ -403,21 +403,35 @@ EOT
       #   end
 
       public
-      def assert_throws(expected_symbol, message="", &proc)
+      def assert_throws(expected_object, message="", &proc)
         _wrap_assertion do
-          assert_instance_of(Symbol, expected_symbol, "assert_throws expects the symbol that should be thrown for its first argument")
-          assert_block("Should have passed a block to assert_throws."){block_given?}
+          begin
+            catch([]) {}
+          rescue TypeError
+            assert_instance_of(Symbol, expected_object,
+                               "assert_throws expects the symbol that should be thrown for its first argument")
+          end
+          assert_block("Should have passed a block to assert_throws.") do
+            block_given?
+          end
           caught = true
           begin
-            catch(expected_symbol) do
+            catch(expected_object) do
               proc.call
               caught = false
             end
-            full_message = build_message(message, "<?> should have been thrown.", expected_symbol)
-            assert_block(full_message){caught}
+            full_message = build_message(message,
+                                         "<?> should have been thrown.",
+                                         expected_object)
+            assert_block(full_message) {caught}
           rescue NameError, ArgumentError, ThreadError => error
             raise unless UncaughtThrow[error.class] =~ error.message
-            full_message = build_message(message, "<?> expected to be thrown but\n<?> was thrown.", expected_symbol, $1.intern)
+            tag = $1
+            tag = tag[1..-1].intern if tag[0, 1] == ":"
+            full_message = build_message(message,
+                                         "<?> expected to be thrown but\n" +
+                                         "<?> was thrown.",
+                                         expected_object, tag)
             flunk(full_message)
           end
         end
