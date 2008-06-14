@@ -9,12 +9,11 @@ module Test
     class TC_Assertions < TestCase
       def check(value, message="")
         add_assertion
-        if (!value)
-          raise AssertionFailedError.new(message)
-        end
+        raise AssertionFailedError.new(message) unless value
       end
 
-      def check_assertions(expect_fail, expected_message="", return_value_expected=false)
+      def check_assertions(expect_fail, expected_message="",
+                           return_value_expected=false)
         @actual_assertion_count = 0
         failed = true
         actual_message = nil
@@ -27,31 +26,51 @@ module Test
           actual_message = error.message
         end
         @catch_assertions = false
-        check(expect_fail == failed, (expect_fail ? "Should have failed, but didn't" : "Should not have failed, but did with message\n<#{actual_message}>"))
-        check(1 == @actual_assertion_count, "Should have made one assertion but made <#{@actual_assertion_count}>")
-        if (expect_fail)
+
+        if expect_fail
+          message = "Should have failed, but didn't"
+        else
+          message = "Should not have failed, but did with message\n" +
+            "<#{actual_message}>"
+        end
+        check(expect_fail == failed, message)
+
+        message = "Should have made one assertion but made\n" +
+          "<#{@actual_assertion_count}>"
+        check(1 == @actual_assertion_count, message)
+
+        if expect_fail
           case expected_message
-            when String
-              check(actual_message == expected_message, "Should have the correct message.\n<#{expected_message.inspect}> expected but was\n<#{actual_message.inspect}>")
-            when Regexp
-              check(actual_message =~ expected_message, "The message should match correctly.\n</#{expected_message.source}/> expected to match\n<#{actual_message.inspect}>")
-            else
-              check(false, "Incorrect expected message type in assert_nothing_failed")
+          when String
+            check(actual_message == expected_message,
+                  "Should have the correct message.\n" +
+                  "<#{expected_message.inspect}> expected but was\n" +
+                  "<#{actual_message.inspect}>")
+          when Regexp
+            check(actual_message =~ expected_message,
+                  "The message should match correctly.\n" +
+                  "</#{expected_message.source}/> expected to match\n" +
+                  "<#{actual_message.inspect}>")
+          else
+            check(false,
+                  "Incorrect expected message type in assert_nothing_failed")
           end
         else
-          if (!return_value_expected)
-            check(return_value.nil?, "Should not return a value but returned <#{return_value}>")
-          else
+          if return_value_expected
             check(!return_value.nil?, "Should return a value")
+          else
+            check(return_value.nil?,
+                  "Should not return a value but returned <#{return_value}>")
           end
         end
-        return return_value
+
+        return_value
       end
-      
+
       def check_nothing_fails(return_value_expected=false, &proc)
         check_assertions(false, "", return_value_expected, &proc)
       end
-      
+
       def check_fails(expected_message="", &proc)
         check_assertions(true, expected_message, &proc)
       end
@@ -594,22 +613,43 @@ Message: <"Error">
           @changed ||= false
           return (!@changed)
         end
-        check_nothing_fails {
+        check_nothing_fails do
           assert_equal(object, object, "message")
-        }
+        end
       end
-  
+
+      def test_assert_boolean
+        check_nothing_fails do
+          assert_boolean(true)
+        end
+        check_nothing_fails do
+          assert_boolean(false)
+        end
+
+        check_fails("<true> or <false> expected but was\n<1>") do
+          assert_boolean(1)
+        end
+
+        check_fails("<true> or <false> expected but was\n<nil>") do
+          assert_boolean(nil)
+        end
+
+        check_fails("message.\n<true> or <false> expected but was\n<\"XXX\">") do
+          assert_boolean("XXX", "message")
+        end
+      end
+
       def add_failure(message, location=caller)
-        if (!@catch_assertions)
+        unless @catch_assertions
           super
         end
       end
-      
+
       def add_assertion
-        if (!@catch_assertions)
-          super
-        else
+        if @catch_assertions
           @actual_assertion_count += 1
+        else
+          super
         end
       end
     end

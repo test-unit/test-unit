@@ -512,6 +512,22 @@ EOT
       end
 
       ##
+      # Passes if +actual_boolean+ is a boolean value.
+      #
+      # Example:
+      #   assert_boolean(true) # -> pass
+      #   assert_boolean(nil)  # -> fail
+      def assert_boolean(actual, message=nil)
+        _wrap_assertion do
+          assert_block(build_message(message,
+                                     "<true> or <false> expected but was\n<?>",
+                                     actual)) do
+            [true, false].include?(actual)
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 
