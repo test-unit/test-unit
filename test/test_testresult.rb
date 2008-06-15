@@ -20,98 +20,85 @@ module Test
       def test_result_changed_notification
         called1 = false
         @my_result.add_listener(TestResult::CHANGED) do |result|
-          assert_equal(@my_result, result, "The result should be correct")
+          assert_equal(@my_result, result)
           called1 = true
         end
         @my_result.add_assertion
-        assert(called1, "Should have been notified when the assertion happened")
+        assert_true(called1)
 
         called1, called2 = false, false
         @my_result.add_listener(TestResult::CHANGED) do |result|
-          assert_equal(@my_result, result, "The result should be correct")
+          assert_equal(@my_result, result)
           called2 = true
         end
         @my_result.add_assertion
-        assert(called1 && called2,
-               "Both listeners should have been notified for a success")
+        assert_equal([true, true], [called1, called2])
 
         called1, called2 = false, false
         @my_result.add_failure("")
-        assert(called1 && called2,
-               "Both listeners should have been notified for a failure")
+        assert_equal([true, true], [called1, called2])
 
         called1, called2 = false, false
         @my_result.add_error("")
-        assert(called1 && called2,
-               "Both listeners should have been notified for an error")
+        assert_equal([true, true], [called1, called2])
 
         called1, called2 = false, false
         @my_result.add_run
-        assert(called1 && called2,
-               "Both listeners should have been notified for a run")
+        assert_equal([true, true], [called1, called2])
       end
 
       def test_fault_notification
         called1 = false
         fault = "fault"
         @my_result.add_listener(TestResult::FAULT) do |passed_fault|
-          assert_equal(fault, passed_fault, "The fault should be correct")
+          assert_equal(fault, passed_fault)
           called1 = true
         end
 
         @my_result.add_assertion
-        assert(!called1,
-               "Should not have been notified when the assertion happened")
+        assert_false(called1)
 
         @my_result.add_failure(fault)
-        assert(called1, "Should have been notified when the failure happened")
+        assert_true(called1)
 
         called1, called2 = false, false
         @my_result.add_listener(TestResult::FAULT) do |passed_fault|
-          assert_equal(fault, passed_fault, "The fault should be correct")
+          assert_equal(fault, passed_fault)
           called2 = true
         end
 
         @my_result.add_assertion
-        assert(!(called1 || called2),
-               "Neither listener should have been notified for a success")
+        assert_equal([false, false], [called1, called2])
 
         called1, called2 = false, false
         @my_result.add_failure(fault)
-        assert(called1 && called2,
-               "Both listeners should have been notified for a failure")
+        assert_equal([true, true], [called1, called2])
 
         called1, called2 = false, false
         @my_result.add_error(fault)
-        assert(called1 && called2,
-               "Both listeners should have been notified for an error")
+        assert_equal([true, true], [called1, called2])
 
         called1, called2 = false, false
         @my_result.add_run
-        assert(!(called1 || called2),
-               "Neither listener should have been notified for a run")
+        assert_equal([false, false], [called1, called2])
       end
 
       def test_passed?
         result = TestResult.new
-        assert(result.passed?, "An empty result should have passed")
+        assert_true(result.passed?)
 
         result.add_assertion
-        assert(result.passed?,
-               "Adding an assertion should not cause the result to not pass")
+        assert_true(result.passed?)
 
         result.add_run
-        assert(result.passed?,
-               "Adding a run should not cause the result to not pass")
+        assert_true(result.passed?)
 
         result.add_failure("")
-        assert(!result.passed?,
-               "Adding a failed assertion should cause the result to not pass")
+        assert_false(result.passed?)
 
         result = TestResult.new
         result.add_error("")
-        assert(!result.passed?,
-               "Adding an error should cause the result to not pass")
+        assert_false(result.passed?)
       end
 
       def test_faults
