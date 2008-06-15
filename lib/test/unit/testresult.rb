@@ -34,13 +34,14 @@ module Test
       CHANGED = "CHANGED"
       FAULT = "FAULT"
 
-      attr_reader(:run_count, :assertion_count)
+      attr_reader :run_count, :assertion_count, :faults
 
       # Constructs a new, empty TestResult.
       def initialize
         @run_count, @assertion_count = 0, 0
         @summary_generators = []
         @problem_checkers = []
+        @faults = []
         initialize_containers
       end
 
@@ -80,6 +81,7 @@ module Test
       end
 
       def notify_fault(fault)
+        @faults << fault
         notify_listeners(FAULT, fault)
       end
     end
