@@ -639,6 +639,42 @@ Message: <"Error">
         end
       end
 
+      def test_assert_true
+        check_nothing_fails do
+          assert_true(true)
+        end
+
+        check_fails("<true> expected but was\n<false>") do
+          assert_true(false)
+        end
+
+        check_fails("<true> expected but was\n<1>") do
+          assert_true(1)
+        end
+
+        check_fails("message.\n<true> expected but was\n<nil>") do
+          assert_true(nil, "message")
+        end
+      end
+
+      def test_assert_false
+        check_nothing_fails do
+          assert_false(false)
+        end
+
+        check_fails("<false> expected but was\n<true>") do
+          assert_false(true)
+        end
+
+        check_fails("<false> expected but was\n<nil>") do
+          assert_false(nil)
+        end
+
+        check_fails("message.\n<false> expected but was\n<:false>") do
+          assert_false(:false, "message")
+        end
+      end
+
       def add_failure(message, location=caller)
         unless @catch_assertions
           super

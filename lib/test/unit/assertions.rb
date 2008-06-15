@@ -512,7 +512,7 @@ EOT
       end
 
       ##
-      # Passes if +actual_boolean+ is a boolean value.
+      # Passes if +actual+ is a boolean value.
       #
       # Example:
       #   assert_boolean(true) # -> pass
@@ -523,6 +523,38 @@ EOT
                                      "<true> or <false> expected but was\n<?>",
                                      actual)) do
             [true, false].include?(actual)
+          end
+        end
+      end
+
+      ##
+      # Passes if +actual+ is true.
+      #
+      # Example:
+      #   assert_true(true)  # -> pass
+      #   assert_true(:true) # -> fail
+      def assert_true(actual, message=nil)
+        _wrap_assertion do
+          assert_block(build_message(message,
+                                     "<true> expected but was\n<?>",
+                                     actual)) do
+            actual == true
+          end
+        end
+      end
+
+      ##
+      # Passes if +actual+ is false.
+      #
+      # Example:
+      #   assert_false(false)  # -> pass
+      #   assert_false(nil)    # -> fail
+      def assert_false(actual, message=nil)
+        _wrap_assertion do
+          assert_block(build_message(message,
+                                     "<false> expected but was\n<?>",
+                                     actual)) do
+            actual == false
           end
         end
       end
