@@ -9,7 +9,7 @@ externalized from the ruby project as a gem (for tool developers).
 
 == FEATURES/PROBLEMS:
 
-* This (Test::Unit 1.2.3) is the original Test::Unit, taken
+* Test::Unit 1.2.3 is the original Test::Unit, taken
   straight from the ruby distribution. It is being
   distributed as a gem to allow tool builders to use it as a
   stand-alone package. (The test framework in ruby is going
