@@ -18,7 +18,7 @@ externalized from the ruby project as a gem (for tool developers).
 * DO NOT INSTALL THIS GEM unless you're active state or some other
   development tool provider! You don't need it.
 
-* Test::Unit 2.0.0 or later is extended versions of the
+* Test::Unit 2.0.0 or later are extended versions of the
   original Test::Unit (== Tset::Unit 1.2.3).
 
 == INSTALL:
