@@ -1,3 +1,29 @@
+=== 1.2.4 / 2008-06-15
+
+* 15 major enhancements
+
+  * support startup/shutdown. (test case level setup/teardown)
+  * support multiple setup/teardown.
+  * support pending.
+  * support omission.
+  * support notification.
+  * support colorize.
+  * support diff.
+  * support test attribute.
+  * add assert_boolean.
+  * add assert_true.
+  * add assert_false.
+  * add --priority-mode option.
+  * don't use ObjectSpace to collect test cases.
+  * make more customizable. (additional options, exception handling and so on)
+  * improve Emacs integration.
+
+* 3 major changes
+
+  * remove GTK+1 support.
+  * split GTK+ runner as another gem.
+  * split FOX runner as another gem.
+
 === 1.2.3 / 2008-02-25
 
 * 1 major enhancement
