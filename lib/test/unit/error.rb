@@ -78,9 +78,13 @@ module Test
           false
         else
           problem_occurred
-          current_result.add_error(Error.new(name, exception))
+          add_error(exception)
           true
         end
+      end
+
+      def add_error(exception)
+        current_result.add_error(Error.new(name, exception))
       end
     end
 

@@ -64,11 +64,13 @@ module Test
       def handle_assertion_failed_error(exception)
         return false unless exception.is_a?(AssertionFailedError)
         problem_occurred
-        failure = Failure.new(name,
-                              filter_backtrace(exception.backtrace),
-                              exception.message)
-        current_result.add_failure(failure)
+        add_failure(exception.message, exception.backtrace)
         true
+      end
+
+      def add_failure(message, backtrace)
+        failure = Failure.new(name, filter_backtrace(backtrace), message)
+        current_result.add_failure(failure)
       end
     end
 
