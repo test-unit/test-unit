@@ -18,11 +18,12 @@
   * make more customizable. (additional options, exception handling and so on)
   * improve Emacs integration.
 
-* 3 major changes
+* 4 major changes
 
   * remove GTK+1 support.
   * split GTK+ runner as another gem.
   * split FOX runner as another gem.
+  * split Tk runner as another gem.
 
 === 1.2.3 / 2008-02-25
 
