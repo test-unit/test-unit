@@ -111,11 +111,67 @@ module Test
 
       # Called before every test method runs. Can be used
       # to set up fixture information.
+      #
+      # You can add additional setup tasks by the following
+      # code:
+      #   class TestMyClass < Test::Unit::TestCase
+      #     def setup
+      #       ...
+      #     end
+      #
+      #     setup
+      #     def my_setup1
+      #       ...
+      #     end
+      #
+      #     setup
+      #     def my_setup2
+      #       ...
+      #     end
+      #
+      #     def test_my_class
+      #       ...
+      #     end
+      #   end
+      #
+      # Here is a call order:
+      #   * setup
+      #   * my_setup1
+      #   * my_setup2
+      #   * test_my_class
       def setup
       end
 
       # Called after every test method runs. Can be used to tear
       # down fixture information.
+      #
+      # You can add additional teardown tasks by the following
+      # code:
+      #   class TestMyClass < Test::Unit::TestCase
+      #     def teardown
+      #       ...
+      #     end
+      #
+      #     teardown
+      #     def my_teardown1
+      #       ...
+      #     end
+      #
+      #     teardown
+      #     def my_teardown2
+      #       ...
+      #     end
+      #
+      #     def test_my_class
+      #       ...
+      #     end
+      #   end
+      #
+      # Here is a call order:
+      #   * test_my_class
+      #   * my_teardown2
+      #   * my_teardown1
+      #   * teardown
       def teardown
       end
       
