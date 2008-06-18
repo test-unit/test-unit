@@ -5,6 +5,7 @@ require 'hoe'
 require './lib/test/unit/version.rb'
 
 version = Test::Unit::VERSION
+ENV["VERSION"] = version
 Hoe.new('test-unit', version) do |p|
   p.developer('Kouhei Sutou', 'kou@cozmixng.org')
   p.developer('Ryan Davis', 'ryand-ruby@zenspider.com')
