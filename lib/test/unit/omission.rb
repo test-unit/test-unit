@@ -56,6 +56,20 @@ module Test
         end
       end
 
+      # Omit the test of part of the test.
+      #
+      # Example:
+      #   def test_omission
+      #     omit
+      #     # Not reached here
+      #   end
+      #
+      #   def test_omission_with_here
+      #     omit do
+      #       # Not ran here
+      #     end
+      #     # Reached here
+      #   end
       def omit(message=nil, &block)
         message ||= "omitted."
         if block_given?

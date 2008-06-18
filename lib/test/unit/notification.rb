@@ -56,6 +56,15 @@ module Test
         end
       end
 
+      # Notify some information.
+      #
+      # Example:
+      #   def test_notification
+      #     notify("I'm here!")
+      #     # Reached here
+      #     notify("Special!") if special_case?
+      #     # Reached here too
+      #   end
       def notify(message, &block)
         notification = Notification.new(name, filter_backtrace(caller), message)
         add_notification(notification)
