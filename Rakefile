@@ -4,7 +4,8 @@ require 'rubygems'
 require 'hoe'
 require './lib/test/unit/version.rb'
 
-Hoe.new('test-unit', Test::Unit::VERSION) do |p|
+version = Test::Unit::VERSION
+Hoe.new('test-unit', version) do |p|
   p.developer('Kouhei Sutou', 'kou@cozmixng.org')
   p.developer('Ryan Davis', 'ryand-ruby@zenspider.com')
 
@@ -17,6 +18,12 @@ task :check_manifest => :clean_test_result
 task :clean_test_result do
   test_results = Dir.glob("**/.test-result")
   sh("rm", "-rf", *test_results) unless test_results.empty?
+end
+
+task :tag do
+  message = "Released Test::Unit #{version}!"
+  base = "svn+ssh://#{ENV['USER']}@rubyforge.org/var/svn/test-unit/"
+  sh 'svn', 'copy', '-m', message, "#{base}trunk", "#{base}tags/#{version}"
 end
 
 # vim: syntax=Ruby
