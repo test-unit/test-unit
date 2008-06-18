@@ -79,6 +79,7 @@ module Test
         throw :invalid_test if method(test_method_name).arity > 0
         @method_name = test_method_name
         @test_passed = true
+        @interrupted = false
       end
 
       # Runs the individual test method represented by this
@@ -92,6 +93,7 @@ module Test
             run_setup
             __send__(@method_name)
           rescue Exception
+            @interrupted = true
             raise unless handle_exception($!)
           ensure
             begin
@@ -141,6 +143,10 @@ module Test
         return false unless(other.kind_of?(self.class))
         return false unless(@method_name == other.method_name)
         self.class == other.class
+      end
+
+      def interrupted?
+        @interrupted
       end
 
       private

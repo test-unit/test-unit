@@ -401,6 +401,25 @@ module Test
         end
       end
 
+      def test_interrupted
+        test_case = Class.new(TestCase) do
+          def test_fail
+            flunk
+          end
+
+          def test_nothing
+          end
+        end
+
+        failed_test = test_case.new(:test_fail)
+        failed_test.run(TestResult.new) {}
+        check("Should be interrupted", failed_test.interrupted?)
+
+        success_test = test_case.new(:test_nothing)
+        success_test.run(TestResult.new) {}
+        check("Should not be interrupted", !success_test.interrupted?)
+      end
+
       private
       def check(message, passed)
         add_assertion

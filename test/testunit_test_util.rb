@@ -6,7 +6,9 @@ module TestUnitTestUtil
 
   def run_test(test_case, name)
     result = Test::Unit::TestResult.new
-    test_case.new(name).run(result) {}
+    test = test_case.new(name)
+    yield(test) if block_given?
+    test.run(result) {}
     result
   end
 end
