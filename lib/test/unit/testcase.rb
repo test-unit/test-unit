@@ -26,6 +26,47 @@ module Test
     # wrapping those tests into a suite. It also does the
     # nitty-gritty of actually running an individual test and
     # collecting its results into a Test::Unit::TestResult object.
+    #
+    # You can run two hooks before/after a TestCase run.
+    #
+    # Example:
+    #   class TestMyClass < Test::Unit::TestCase
+    #     class << self
+    #       def startup
+    #         ...
+    #       end
+    #
+    #       def shutdown
+    #         ...
+    #       end
+    #     end
+    #
+    #     def setup
+    #       ...
+    #     end
+    #
+    #     def teardown
+    #       ...
+    #     end
+    #
+    #     def test_my_method1
+    #       ...
+    #     end
+    #
+    #     def test_my_method2
+    #       ...
+    #     end
+    #   end
+    #
+    # Here is a call order:
+    #  * startup
+    #  * setup
+    #  * test_my_method1
+    #  * teardown
+    #  * setup
+    #  * test_my_method2
+    #  * teardown
+    #  * shutdown
     class TestCase
       include Attribute
       include Fixture
