@@ -18,7 +18,7 @@ class TestNotification < Test::Unit::TestCase
   end
 
   def test_notify
-    result = run_test("test_notify")
+    result = _run_test("test_notify")
     assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 2 notifications",
                  result.to_s)
@@ -27,7 +27,7 @@ class TestNotification < Test::Unit::TestCase
   end
 
   private
-  def run_test(name)
+  def _run_test(name)
     super(TestCase, name)
   end
 end

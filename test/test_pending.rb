@@ -34,7 +34,7 @@ class TestUnitPending < Test::Unit::TestCase
 
   def test_pend
     test = nil
-    result = run_test("test_pend") {|t| test = t}
+    result = _run_test("test_pend") {|t| test = t}
     assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 1 pendings, " \
                  "0 omissions, 0 notifications",
                  result.to_s)
@@ -44,7 +44,7 @@ class TestUnitPending < Test::Unit::TestCase
 
   def test_pend_with_failure_in_block
     test = nil
-    result = run_test("test_pend_with_failure_in_block") {|t| test = t}
+    result = _run_test("test_pend_with_failure_in_block") {|t| test = t}
     assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 1 pendings, " \
                  "0 omissions, 0 notifications",
                  result.to_s)
@@ -54,7 +54,7 @@ class TestUnitPending < Test::Unit::TestCase
 
   def test_pend_with_no_failure_in_block
     test = nil
-    result = run_test("test_pend_with_no_failure_in_block") {|t| test = t}
+    result = _run_test("test_pend_with_no_failure_in_block") {|t| test = t}
     assert_equal("1 tests, 1 assertions, 1 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications",
                  result.to_s)
@@ -64,7 +64,7 @@ class TestUnitPending < Test::Unit::TestCase
   end
 
   private
-  def run_test(name, &block)
+  def _run_test(name, &block)
     super(TestCase, name, &block)
   end
 end

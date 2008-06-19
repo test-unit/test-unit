@@ -4,7 +4,7 @@ module TestUnitTestUtil
     assert_equal(expected, faults.collect {|fault| fault.message})
   end
 
-  def run_test(test_case, name)
+  def _run_test(test_case, name)
     result = Test::Unit::TestResult.new
     test = test_case.new(name)
     yield(test) if block_given?

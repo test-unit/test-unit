@@ -132,7 +132,7 @@ module Test
           yield(STARTED, name)
           begin
             run_setup
-            __send__(@method_name)
+            run_test
           rescue Exception
             @interrupted = true
             raise unless handle_exception($!)
@@ -249,6 +249,10 @@ module Test
       private
       def current_result
         @_result
+      end
+
+      def run_test
+        __send__(@method_name)
       end
 
       def handle_exception(exception)
