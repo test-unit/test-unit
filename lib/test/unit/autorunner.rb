@@ -169,7 +169,11 @@ module Test
           end
 
           priority_filter = Proc.new do |test|
-            Priority::Checker.new(test).need_to_run? or nil
+            if @filters.size > 2
+              nil
+            else
+              Priority::Checker.new(test).need_to_run? or nil
+            end
           end
           o.on("--[no-]priority-mode",
                "Runs some tests based on their priority.") do |priority_mode|
