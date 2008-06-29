@@ -153,10 +153,10 @@ module Test
                   unregistered_methods =
                     instance_variable_get(unregistered_methods_variable)
                 end
-                result + methods - unregistered_methods
+                (result | methods) - unregistered_methods
               end
             else
-              []
+              result
             end
           end
         end

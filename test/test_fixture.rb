@@ -1,4 +1,7 @@
 class TestUnitFixture < Test::Unit::TestCase
+  module EmptyModule
+  end
+
   def test_setup_without_option
     test_case = assert_setup([:setup,
                               :custom_setup_method0,
@@ -108,15 +111,17 @@ class TestUnitFixture < Test::Unit::TestCase
   end
 
   private
-  def assert_setup(expected, setup_options)
+  def assert_setup_customizable(expected, parent, options)
     called = []
-    test_case = Class.new(Test::Unit::TestCase) do
+    test_case = Class.new(parent || Test::Unit::TestCase) do
+      yield(self, :before) if block_given?
+
       @@called = called
       def setup
         @@called << :setup
       end
 
-      setup(*(setup_options[0] || []))
+      setup(*(options[0] || [])) if options
       def custom_setup_method0
         @@called << :custom_setup_method0
       end
@@ -124,69 +129,57 @@ class TestUnitFixture < Test::Unit::TestCase
       def custom_setup_method1
         @@called << :custom_setup_method1
       end
-      setup(*[:custom_setup_method1, *(setup_options[1] || [])])
+      setup(*[:custom_setup_method1, *(options[1] || [])]) if options
 
-      setup(*(setup_options[2] || []))
+      setup(*(options[2] || [])) if options
       def custom_setup_method2
         @@called << :custom_setup_method2
       end
-      unregister_setup(:custom_setup_method2)
+      unregister_setup(:custom_setup_method2) if options
 
-      setup(*(setup_options[3] || []))
+      setup(*(options[3] || [])) if options
       def custom_setup_method3
         @@called << :custom_setup_method3
       end
 
       def test_nothing
       end
+
+      yield(self, :after) if block_given?
     end
 
     test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
     assert_equal(expected, called)
     test_case
+  end
+
+  def assert_setup(expected, options)
+    _test_case = assert_setup_customizable(expected, nil, options)
+    assert_setup_customizable(expected, nil, options) do |test_case, tag|
+      test_case.send(:include, EmptyModule) if tag == :before
+    end
+    _test_case
   end
 
   def assert_inherited_setup(expected, parent)
-    called = []
-    inherited_test_case = Class.new(parent || Test::Unit::TestCase) do
-      @@called = called
-      def setup
-        @@called << :setup
-      end
-
-      def custom_setup_method0
-        @@called << :custom_setup_method0
-      end
-
-      def custom_setup_method1
-        @@called << :custom_setup_method1
-      end
-
-      def custom_setup_method2
-        @@called << :custom_setup_method2
-      end
-
-      def custom_setup_method3
-        @@called << :custom_setup_method3
-      end
-
-      def test_nothing
-      end
+    _test_case = assert_setup_customizable(expected, parent, nil)
+    assert_setup_customizable(expected, parent, nil) do |test_case, tag|
+      test_case.send(:include, EmptyModule) if tag == :before
     end
-
-    inherited_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
-    assert_equal(expected, called)
+    _test_case
   end
 
-  def assert_teardown(expected, teardown_options)
+  def assert_teardown_customizable(expected, parent, options)
     called = []
-    test_case = Class.new(Test::Unit::TestCase) do
+    test_case = Class.new(parent || Test::Unit::TestCase) do
+      yield(self, :before) if block_given?
+
       @@called = called
       def teardown
         @@called << :teardown
       end
 
-      teardown(*(teardown_options[0] || []))
+      teardown(*(options[0] || [])) if options
       def custom_teardown_method0
         @@called << :custom_teardown_method0
       end
@@ -194,21 +187,23 @@ class TestUnitFixture < Test::Unit::TestCase
       def custom_teardown_method1
         @@called << :custom_teardown_method1
       end
-      teardown(*[:custom_teardown_method1, *(teardown_options[1] || [])])
+      teardown(*[:custom_teardown_method1, *(options[1] || [])]) if options
 
-      teardown(*(teardown_options[2] || []))
+      teardown(*(options[2] || [])) if options
       def custom_teardown_method2
         @@called << :custom_teardown_method2
       end
-      unregister_teardown(:custom_teardown_method2)
+      unregister_teardown(:custom_teardown_method2) if options
 
-      teardown(*(teardown_options[3] || []))
+      teardown(*(options[3] || [])) if options
       def custom_teardown_method3
         @@called << :custom_teardown_method3
       end
 
       def test_nothing
       end
+
+      yield(self, :after) if block_given?
     end
 
     test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
@@ -216,36 +211,18 @@ class TestUnitFixture < Test::Unit::TestCase
     test_case
   end
 
-  def assert_inherited_teardown(expected, parent)
-    called = []
-    inherited_test_case = Class.new(parent || Test::Unit::TestCase) do
-      @@called = called
-      def teardown
-        @@called << :teardown
-      end
-
-      def custom_teardown_method0
-        @@called << :custom_teardown_method0
-      end
-
-      def custom_teardown_method1
-        @@called << :custom_teardown_method1
-      end
-
-      def custom_teardown_method2
-        @@called << :custom_teardown_method2
-      end
-
-      def custom_teardown_method3
-        @@called << :custom_teardown_method3
-      end
-
-      def test_nothing
-      end
+  def assert_teardown(expected, options)
+    assert_teardown_customizable(expected, nil, options)
+    assert_teardown_customizable(expected, nil, options) do |test_case, tag|
+      test_case.send(:include, EmptyModule) if tag == :before
     end
+  end
 
-    inherited_test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
-    assert_equal(expected, called)
+  def assert_inherited_teardown(expected, parent)
+    assert_teardown_customizable(expected, parent, nil)
+    assert_teardown_customizable(expected, parent, nil) do |test_case, tag|
+      test_case.send(:include, EmptyModule) if tag == :before
+    end
   end
 
   def assert_invalid_option(fixture_type, option)
