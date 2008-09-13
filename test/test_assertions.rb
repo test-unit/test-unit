@@ -675,6 +675,61 @@ Message: <"Error">
         end
       end
 
+      def test_assert_compare
+        check_nothing_fails do
+          assert_compare(1.4, "<", 10.0)
+        end
+
+        check_nothing_fails do
+          assert_compare(2, "<=", 2)
+        end
+
+        check_nothing_fails do
+          assert_compare(14, ">=", 10.0)
+        end
+
+        check_nothing_fails do
+          assert_compare(14, ">", 13.9)
+        end
+
+        expected_message = <<-EOM
+<15> < <10> should be true
+<15> expected less than
+<10>.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_compare(15, "<", 10)
+        end
+
+        expected_message = <<-EOM
+<15> <= <10> should be true
+<15> expected less than or equal to
+<10>.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_compare(15, "<=", 10)
+        end
+
+        expected_message = <<-EOM
+<10> > <15> should be true
+<10> expected greater than
+<15>.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_compare(10, ">", 15)
+        end
+
+        expected_message = <<-EOM
+<10> >= <15> should be true
+<10> expected greater than or equal to
+<15>.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_compare(10, ">=", 15)
+        end
+      end
+
+      private
       def add_failure(message, location=caller)
         unless @catch_assertions
           super

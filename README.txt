@@ -34,3 +34,4 @@ This software is distributed under the same terms as ruby.
 == Thanks
 
   * Daniel Berger: A suggestion.
+  * Designing Patterns: Suggestions.

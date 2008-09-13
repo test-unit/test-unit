@@ -560,6 +560,40 @@ EOT
       end
 
       ##
+      # Passes if expression "+expected+ +operator+
+      # +actual+" is true.
+      #
+      # Example:
+      #   assert_compare(1, "<", 10)  # -> pass
+      #   assert_compare(1, ">=", 10) # -> fail
+      def assert_compare(expected, operator, actual, message=nil)
+        _wrap_assertion do
+          assert_send([["<", "<=", ">", ">="], :include?, operator.to_s])
+          case operator.to_s
+          when "<"
+            operator_description = "less than"
+          when "<="
+            operator_description = "less than or equal to"
+          when ">"
+            operator_description = "greater than"
+          when ">="
+            operator_description = "greater than or equal to"
+          end
+          template = <<-EOT
+<?> #{operator} <?> should be true
+<?> expected #{operator_description}
+<?>.
+EOT
+          full_message = build_message(message, template,
+                                       expected, actual,
+                                       expected, actual)
+          assert_block(full_message) do
+            expected.send(operator, actual)
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 
