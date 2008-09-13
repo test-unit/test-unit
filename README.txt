@@ -30,3 +30,7 @@ externalized from the ruby project as a gem (for tool developers).
 (The Ruby License)
 
 This software is distributed under the same terms as ruby.
+
+== Thanks
+
+  * Daniel Berger: A suggestion.

@@ -109,6 +109,79 @@ module Test
           end
           suite
         end
+
+        # Called before every test case runs. Can be used
+        # to set up fixture information used in test case
+        # scope.
+        #
+        # Here is an example test case:
+        #   class TestMyClass < Test::Unit::TestCase
+        #     class << self
+        #       def startup
+        #         ...
+        #       end
+        #     end
+        #
+        #     def setup
+        #       ...
+        #     end
+        #
+        #     def test_my_class1
+        #       ...
+        #     end
+        #
+        #     def test_my_class2
+        #       ...
+        #     end
+        #   end
+        #
+        # Here is a call order:
+        #   * startup
+        #   * setup
+        #   * test_my_class1 (or test_my_class2)
+        #   * setup
+        #   * test_my_class2 (or test_my_class1)
+        #
+        # Note that you should not assume test order. Tests
+        # should be worked in any order.
+        def startup
+        end
+
+        # Called after every test case runs. Can be used to tear
+        # down fixture information used in test case scope.
+        #
+        # Here is an example test case:
+        #   class TestMyClass < Test::Unit::TestCase
+        #     class << self
+        #       def shutdown
+        #         ...
+        #       end
+        #     end
+        #
+        #     def teardown
+        #       ...
+        #     end
+        #
+        #     def test_my_class1
+        #       ...
+        #     end
+        #
+        #     def test_my_class2
+        #       ...
+        #     end
+        #   end
+        #
+        # Here is a call order:
+        #   * test_my_class1 (or test_my_class2)
+        #   * teardown
+        #   * test_my_class2 (or test_my_class1)
+        #   * teardown
+        #   * shutdown
+        #
+        # Note that you should not assume test order. Tests
+        # should be worked in any order.
+        def shutdown
+        end
       end
 
       attr_reader :method_name
