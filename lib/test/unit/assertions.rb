@@ -594,6 +594,27 @@ EOT
       end
 
       ##
+      # Passes if assertion is failed in block.
+      #
+      # Example:
+      #   assert_fail_assertion {assert_equal("A", "B")}  # -> pass
+      #   assert_fail_assertion {assert_equal("A", "A")}  # -> fail
+      def assert_fail_assertion(message=nil)
+        _wrap_assertion do
+          full_message = build_message(message,
+                                       "Failed assertion was expected.")
+          assert_block(full_message) do
+            begin
+              yield
+              false
+            rescue AssertionFailedError
+              true
+            end
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 

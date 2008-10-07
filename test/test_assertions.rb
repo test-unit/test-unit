@@ -729,6 +729,19 @@ EOM
         end
       end
 
+      def test_assert_fail_assertion
+        check_nothing_fails do
+          assert_fail_assertion do
+            flunk
+          end
+        end
+
+        check_fails("Failed assertion was expected.") do
+          assert_fail_assertion do
+          end
+        end
+      end
+
       private
       def add_failure(message, location=caller)
         unless @catch_assertions
