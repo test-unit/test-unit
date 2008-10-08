@@ -117,9 +117,6 @@ module Test
           assert_equal("string1", "string1")
         }
         check_nothing_fails {
-          assert_equal( "string1", "string1", "successful assert_equal")
-        }
-        check_nothing_fails {
           assert_equal("string1", "string1", "successful assert_equal")
         }
 
@@ -163,6 +160,47 @@ diff:
 EOM
         check_fails(message) do
           assert_equal("111111", 111111)
+        end
+      end
+
+      def test_assert_equal_with_long_line
+        expected = ["0123456789",
+                    "1123456789",
+                    "2123456789",
+                    "3123456789",
+                    "4123456789",
+                    "5123456789",
+                    "6123456789",
+                    "7123456789",
+                    "8123456789"].join
+        actual =   ["0000000000",
+                    "1123456789",
+                    "2123456789",
+                    "3123456789",
+                    "4123456789",
+                    "5123456789",
+                    "6123456789",
+                    "7123456789",
+                    "8123456789"].join
+        message = <<-EOM.chomp
+<"#{expected}"> expected but was
+<"#{actual}">.
+
+diff:
+- #{expected}
+?  ^^^^^^^^^
++ #{actual}
+?  ^^^^^^^^^
+
+folded diff:
+- 012345678911234567892123456789312345678941234567895123456789612345678971234567
+?  ^^^^^^^^^
++ 000000000011234567892123456789312345678941234567895123456789612345678971234567
+?  ^^^^^^^^^
+  898123456789
+EOM
+        check_fails(message) do
+          assert_equal(expected, actual)
         end
       end
 

@@ -77,21 +77,7 @@ module Test
 
       public
       def assert_equal(expected, actual, message=nil)
-        diff = AssertionMessage.delayed_literal do
-          if !expected.is_a?(String) or !actual.is_a?(String)
-            expected = AssertionMessage.convert(expected)
-            actual = AssertionMessage.convert(actual)
-          end
-          diff = Diff.readable(expected, actual)
-          if /^[-+]/ !~ diff
-            diff = ""
-          elsif /^[ ?]/ =~ diff or /(?:.*\n){2,}/ =~ diff
-            diff = "\n\ndiff:\n#{diff}"
-          else
-            diff = ""
-          end
-          diff
-        end
+        diff = AssertionMessage.delayed_diff(expected, actual)
         full_message = build_message(message, <<EOT, expected, actual, diff)
 <?> expected but was
 <?>.?
@@ -710,6 +696,31 @@ EOT
 
           def delayed_literal(&block)
             DelayedLiteral.new(block)
+          end
+
+          def delayed_diff(from, to)
+            delayed_literal do
+              if !from.is_a?(String) or !to.is_a?(String)
+                from = convert(from)
+                to = convert(to)
+              end
+
+              diff = Diff.readable(from, to)
+              if /^[-+]/ !~ diff
+                diff = ""
+              elsif /^[ ?]/ =~ diff or /(?:.*\n){2,}/ =~ diff
+                diff = "\n\ndiff:\n#{diff}"
+              else
+                diff = ""
+              end
+
+              if Diff.need_fold?(diff)
+                folded_diff = Diff.folded_readable(from, to)
+                diff << "\n\nfolded diff:\n#{folded_diff}"
+              end
+
+              diff
+            end
           end
 
           def convert(object)

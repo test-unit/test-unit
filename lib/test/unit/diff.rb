@@ -507,6 +507,20 @@ module Test
       end
 
       module_function
+      def need_fold?(diff)
+        /^[-+].{79}/ =~ diff
+      end
+
+      def fold(string)
+        string.split(/\r?\n/).collect do |line|
+          line.gsub(/(.{78})/, "\\1\n")
+        end.join("\n")
+      end
+
+      def folded_readable(from, to, options={})
+        readable(fold(from), fold(to), options)
+      end
+
       def readable(from, to, options={})
         diff(ReadableDiffer, from, to, options)
       end
