@@ -1,0 +1,4 @@
+* assert_raise supports an exception instance.
+  assert_raise(RuntimeError.new("XXX")) {raise "XXX"} # -> pass
+  assert_raise(MyError.new("XXX")) {raise "XXX"}      # -> fail
+  assert_raise(RuntimeError.new("ZZZ")) {raise "XXX"} # -> fail
