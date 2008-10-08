@@ -626,10 +626,11 @@ EOT
           end
 
           actual = exception.message
+          diff = AssertionMessage.delayed_diff(excepted, actual)
           full_message =
             build_message(message,
                           "<?> exception message expected but was\n" +
-                          "<?>.", expected, actual)
+                          "<?>.?", expected, actual, diff)
           assert_block(full_message) do
             if expected.is_a?(Regexp)
               expected =~ actual
