@@ -615,6 +615,46 @@ EOT
       end
 
       ##
+      # Passes if an exception is raised in block and its
+      # message is +expected+.
+      #
+      # Example:
+      #   assert_raise_message("exception") {raise "exception"}  # -> pass
+      #   assert_raise_message(/exc/i) {raise "exception"}       # -> pass
+      #   assert_raise_message("exception") {raise "EXCEPTION"}  # -> fail
+      #   assert_raise_message("exception") {}                   # -> fail
+      def assert_raise_message(expected, message=nil)
+        _wrap_assertion do
+          full_message = build_message(message,
+                                       "<?> exception message expected " +
+                                       "but none was thrown.",
+                                       expected)
+          exception = nil
+          assert_block(full_message) do
+            begin
+              yield
+              false
+            rescue Exception => exception
+              true
+            end
+          end
+
+          actual = exception.message
+          full_message =
+            build_message(message,
+                          "<?> exception message expected but was\n" +
+                          "<?>.", expected, actual)
+          assert_block(full_message) do
+            if expected.is_a?(Regexp)
+              expected =~ actual
+            else
+              expected == actual
+            end
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 

@@ -742,6 +742,44 @@ EOM
         end
       end
 
+      def test_assert_raise_message
+        check_nothing_fails do
+          assert_raise_message("Raise!") do
+            raise "Raise!"
+          end
+        end
+
+        check_nothing_fails do
+          assert_raise_message("Raise!") do
+            raise Exception, "Raise!"
+          end
+        end
+
+        check_nothing_fails do
+          assert_raise_message(/raise/i) do
+            raise "Raise!"
+          end
+        end
+
+        expected_message = <<-EOM
+<"Expected message"> exception message expected but was
+<"Actual message">.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_raise_message("Expected message") do
+            raise "Actual message"
+          end
+        end
+
+        expected_message = <<-EOM
+<"Expected message"> exception message expected but none was thrown.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_raise_message("Expected message") do
+          end
+        end
+      end
+
       private
       def add_failure(message, location=caller)
         unless @catch_assertions
