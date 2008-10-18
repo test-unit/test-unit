@@ -190,7 +190,14 @@ module Test
       # test represented by test_method_name.
       def initialize(test_method_name)
         throw :invalid_test unless respond_to?(test_method_name)
-        throw :invalid_test if method(test_method_name).arity > 0
+        test_method = method(test_method_name)
+        throw :invalid_test if test_method.arity > 0
+        if test_method.respond_to?(:owner)
+          if test_method.owner.class != Module and
+              self.class != test_method.owner
+            throw :invalid_test
+          end
+        end
         @method_name = test_method_name
         @test_passed = true
         @interrupted = false

@@ -420,6 +420,54 @@ module Test
         check("Should not be interrupted", !success_test.interrupted?)
       end
 
+      def test_inherited_test_should_be_ignored
+        test_case = Class.new(TestCase) do
+          def test_nothing
+          end
+        end
+
+        sub_test_case = Class.new(test_case) do
+          def test_fail
+            flunk
+          end
+        end
+
+        assert_nothing_thrown do
+          test_case.new("test_nothing")
+        end
+
+        assert_nothing_thrown do
+          sub_test_case.new("test_fail")
+        end
+
+        assert_throw(:invalid_test) do
+          sub_test_case.new("test_nothing")
+        end
+      end
+
+      def test_mixin_test_should_not_be_ignored
+        test_module = Module.new do
+          def test_nothing
+          end
+        end
+
+        test_case = Class.new(Test::Unit::TestCase) do
+          include test_module
+
+          def test_fail
+            flunk
+          end
+        end
+
+        assert_nothing_thrown do
+          test_case.new("test_nothing")
+        end
+
+        assert_nothing_thrown do
+          test_case.new("test_fail")
+        end
+      end
+
       private
       def check(message, passed)
         add_assertion
