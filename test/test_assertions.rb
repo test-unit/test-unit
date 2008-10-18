@@ -818,6 +818,26 @@ EOM
         end
       end
 
+      def test_assert_raise_kind_of
+        check_nothing_fails(true) do
+          assert_raise_kind_of(SystemCallError) do
+            raise Errno::EACCES
+          end
+        end
+
+        expected_message = <<-EOM
+<SystemCallError> family exception expected but was
+Class: <RuntimeError>
+Message: <"XXX">
+---Backtrace---
+EOM
+        check_fails(/\A#{Regexp.escape(expected_message)}(?m).+\z/) do
+          assert_raise_kind_of(SystemCallError) do
+            raise RuntimeError, "XXX"
+          end
+        end
+      end
+
       private
       def add_failure(message, location=caller)
         unless @catch_assertions

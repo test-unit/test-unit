@@ -94,12 +94,6 @@ EOT
         end
       end
 
-      private
-      def _expected_exception?(actual_exception, exceptions, modules) # :nodoc:
-        exceptions.include?(actual_exception.class) or
-          modules.any? {|mod| actual_exception.is_a?(mod)}
-      end
-
       ##
       # Passes if the block raises one of the given exceptions.
       #
@@ -109,29 +103,17 @@ EOT
       #   end
 
       public
-      def assert_raise(*args)
-        _wrap_assertion do
-          if Module === args.last
-            message = ""
-          else
-            message = args.pop
-          end
-          exceptions, modules = _check_exception_class(args)
-          expected = args.size == 1 ? args.first : args
-          actual_exception = nil
-          full_message = build_message(message, "<?> exception expected but none was thrown.", expected)
+      def assert_raise(*args, &block)
+        assert_expected_exception = Proc.new do |*_args|
+          message, expected, actual_exception, exceptions, modules = _args
+          full_message = build_message(message,
+                                       "<?> exception expected but was\n?",
+                                       expected, actual_exception)
           assert_block(full_message) do
-            begin
-              yield
-            rescue Exception => actual_exception
-              break
-            end
-            false
+            _expected_exception?(actual_exception, exceptions, modules)
           end
-          full_message = build_message(message, "<?> exception expected but was\n?", expected, actual_exception)
-          assert_block(full_message) {_expected_exception?(actual_exception, exceptions, modules)}
-          actual_exception
         end
+        _assert_raise(assert_expected_exception, *args, &block)
       end
 
       ##
@@ -143,6 +125,30 @@ EOT
       def assert_raises(*args, &block)
         assert_raise(*args, &block)
       end
+
+      ##
+      # Passes if the block raises one of the given
+      # exceptions or sub exceptions of the given exceptions.
+      #
+      # Example:
+      #   assert_raise_kind_of(SystemCallError) do
+      #     raise Errno::EACCES
+      #   end
+      def assert_raise_kind_of(*args, &block)
+        assert_expected_exception = Proc.new do |*_args|
+          message, expected, actual_exception, exceptions, modules = _args
+          full_message = build_message(message,
+                                       "<?> family exception expected " +
+                                       "but was\n?",
+                                       expected, actual_exception)
+          assert_block(full_message) do
+            _expected_exception?(actual_exception, exceptions, modules,
+                                 :kind_of?)
+          end
+        end
+        _assert_raise(assert_expected_exception, *args, &block)
+      end
+
 
       ##
       # Passes if +object+ .instance_of? +klass+
@@ -685,6 +691,41 @@ EOT
       end
       
       # :stopdoc:
+
+      private
+      def _expected_exception?(actual_exception, exceptions, modules,
+                               equality=:instance_of?)
+        exceptions.any? {|exception| actual_exception.send(equality, exception)} or
+          modules.any? {|mod| actual_exception.is_a?(mod)}
+      end
+
+      def _assert_raise(assert_expected_exception, *args, &block)
+        _wrap_assertion do
+          if Module === args.last
+            message = ""
+          else
+            message = args.pop
+          end
+          exceptions, modules = _check_exception_class(args)
+          expected = args.size == 1 ? args.first : args
+          actual_exception = nil
+          full_message = build_message(message,
+                                       "<?> exception expected " +
+                                       "but none was thrown.",
+                                       expected)
+          assert_block(full_message) do
+            begin
+              yield
+              false
+            rescue Exception => actual_exception
+              true
+            end
+          end
+          assert_expected_exception.call(message, expected, actual_exception,
+                                         exceptions, modules)
+          actual_exception
+        end
+      end
 
       class AssertionMessage
         @use_pp = true
