@@ -390,12 +390,12 @@ EOT
       # Passes if the block throws +expected_object+
       #
       # Example:
-      #   assert_throws :done do
-      #     throw :done
+      #   assert_throw(:done) do
+      #     throw(:done)
       #   end
 
       public
-      def assert_throws(expected_object, message="", &proc)
+      def assert_throw(expected_object, message="", &proc)
         _wrap_assertion do
           begin
             catch([]) {}
@@ -403,7 +403,7 @@ EOT
             assert_instance_of(Symbol, expected_object,
                                "assert_throws expects the symbol that should be thrown for its first argument")
           end
-          assert_block("Should have passed a block to assert_throws.") do
+          assert_block("Should have passed a block to assert_throw.") do
             block_given?
           end
           caught = true
@@ -427,6 +427,14 @@ EOT
             flunk(full_message)
           end
         end
+      end
+
+      ##
+      # Alias of assert_throw.
+      #
+      # Will be deprecated in 1.9, and removed in 2.0.
+      def assert_throws(*args, &block)
+        assert_throw(*args, &block)
       end
 
       ##

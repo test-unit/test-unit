@@ -534,9 +534,9 @@ Message: <"Error">
         end
       end
       
-      def test_assert_throws
+      def test_assert_throw
         check_nothing_fails do
-          assert_throws(:thing, "message") do
+          assert_throw(:thing, "message") do
             throw :thing
           end
         end
@@ -545,13 +545,13 @@ Message: <"Error">
         check_fails("message.\n" +
                     "<:thing> expected to be thrown but\n" +
                     "<#{inspect_tag(tag)}> was thrown.") do
-          assert_throws(:thing, "message") do
+          assert_throw(:thing, "message") do
             throw :thing2
           end
         end
         check_fails("message.\n" +
                     "<:thing> should have been thrown.") do
-          assert_throws(:thing, "message") do
+          assert_throw(:thing, "message") do
             1 + 1
           end
         end
