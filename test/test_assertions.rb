@@ -838,6 +838,20 @@ EOM
         end
       end
 
+      def test_assert_const_defined
+        check_nothing_fails do
+          assert_const_defined(Test, :Unit)
+        end
+
+        check_nothing_fails do
+          assert_const_defined(Test, "Unit")
+        end
+
+        check_fails("<Test>.const_defined?(<:Nonexistence>) expected.") do
+          assert_const_defined(Test, :Nonexistence)
+        end
+      end
+
       private
       def add_failure(message, location=caller)
         unless @catch_assertions

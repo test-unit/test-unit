@@ -656,6 +656,23 @@ EOT
       end
 
       ##
+      # Passes if +object+.const_defined?(+constant_name+)
+      #
+      # Example:
+      #   assert_const_defined(Test, :Unit)          # -> pass
+      #   assert_const_defined(Object, :Nonexistent) # -> fail
+      def assert_const_defined(object, constant_name, message=nil)
+        _wrap_assertion do
+          full_message = build_message(message,
+                                       "<?>.const_defined\\?(<?>) expected.",
+                                       object, constant_name)
+          assert_block(full_message) do
+            object.const_defined?(constant_name)
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 
