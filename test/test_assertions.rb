@@ -852,6 +852,20 @@ EOM
         end
       end
 
+      def test_assert_not_const_defined
+        check_nothing_fails do
+          assert_const_not_defined(Test, :Nonexistence)
+        end
+
+        check_fails("!<Test>.const_defined?(<:Unit>) expected.") do
+          assert_const_not_defined(Test, :Unit)
+        end
+
+        check_fails("!<Test>.const_defined?(<\"Unit\">) expected.") do
+          assert_const_not_defined(Test, "Unit")
+        end
+      end
+
       private
       def add_failure(message, location=caller)
         unless @catch_assertions
