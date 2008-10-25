@@ -676,9 +676,9 @@ EOT
       # Passes if !+object+.const_defined?(+constant_name+)
       #
       # Example:
-      #   assert_const_not_defined(Object, :Nonexistent) # -> pass
-      #   assert_const_not_defined(Test, :Unit)          # -> fail
-      def assert_const_not_defined(object, constant_name, message=nil)
+      #   assert_not_const_defined(Object, :Nonexistent) # -> pass
+      #   assert_not_const_defined(Test, :Unit)          # -> fail
+      def assert_not_const_defined(object, constant_name, message=nil)
         _wrap_assertion do
           full_message = build_message(message,
                                        "!<?>.const_defined\\?(<?>) expected.",

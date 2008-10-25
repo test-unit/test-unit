@@ -854,15 +854,15 @@ EOM
 
       def test_assert_not_const_defined
         check_nothing_fails do
-          assert_const_not_defined(Test, :Nonexistence)
+          assert_not_const_defined(Test, :Nonexistence)
         end
 
         check_fails("!<Test>.const_defined?(<:Unit>) expected.") do
-          assert_const_not_defined(Test, :Unit)
+          assert_not_const_defined(Test, :Unit)
         end
 
         check_fails("!<Test>.const_defined?(<\"Unit\">) expected.") do
-          assert_const_not_defined(Test, "Unit")
+          assert_not_const_defined(Test, "Unit")
         end
       end
 
@@ -883,3 +883,4 @@ EOM
     end
   end
 end
+p
