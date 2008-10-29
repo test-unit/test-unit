@@ -7,6 +7,10 @@ require 'test/unit'
 module Test
   module Unit
     class TC_Assertions < TestCase
+      backtrace_pre  = "---Backtrace---"
+      backtrace_post = "---------------"
+      BACKTRACE_RE = /#{backtrace_pre}\n.+\n#{backtrace_post}/m
+
       def check(value, message="")
         add_assertion
         raise AssertionFailedError.new(message) unless value
@@ -287,9 +291,7 @@ failed assert_raise.
 Class: <RuntimeError>
 Message: <"Error">
 EOM
-        backtrace_pre  = "---Backtrace---"
-        backtrace_post = "---------------"
-        check_fails(/\A#{message}#{backtrace_pre}\n.+\n#{backtrace_post}\Z/m) do
+        check_fails(/\A#{message}#{BACKTRACE_RE}\Z/m) do
           assert_raise(ArgumentError, "failed assert_raise") do
             raise "Error"
           end
@@ -353,11 +355,70 @@ Class: <RuntimeError>
 Message: <"Error">
 EOM
         message = Regexp.escape(message)
-        backtrace_pre  = "---Backtrace---"
-        backtrace_post = "---------------"
-
-        check_fails(/\A#{message}#{backtrace_pre}\n.+#{backtrace_post}\z/m) do
+        check_fails(/\A#{message}#{BACKTRACE_RE}\z/m) do
           assert_raise(ArgumentError, TypeError, "failed assert_raise") do
+            raise "Error"
+          end
+        end
+      end
+
+      def test_assert_raise_instance
+        return_value = nil
+        check_nothing_fails(true) do
+          return_value = assert_raise(RuntimeError.new("Error")) do
+            raise "Error"
+          end
+        end
+        check(return_value.kind_of?(Exception),
+              "Should have returned the exception " +
+              "from a successful assert_raise")
+        check(return_value.message == "Error",
+              "Should have returned the correct exception " +
+              "from a successful assert_raise")
+
+        message = <<-EOM
+<RuntimeError("XXX")> exception expected but was
+Class: <RuntimeError>
+Message: <"Error">
+EOM
+        message = Regexp.escape(message)
+        check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
+          return_value = assert_raise(RuntimeError.new("XXX")) do
+            raise "Error"
+          end
+        end
+
+        different_error_class = Class.new(StandardError)
+        message = <<-EOM
+<\#<Class:0x[a-f\\d]+>\\("Error"\\)> exception expected but was
+Class: <RuntimeError>
+Message: <"Error">
+EOM
+        check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
+          assert_raise(different_error_class.new("Error")) do
+            raise "Error"
+          end
+        end
+
+        different_error = different_error_class.new("Error")
+        def different_error.inspect
+          "DifferentError: \"Error\""
+        end
+        message = <<-EOM
+<\DifferentError: \\"Error\\"> exception expected but was
+Class: <RuntimeError>
+Message: <"Error">
+EOM
+        check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
+          assert_raise(different_error) do
+            raise "Error"
+          end
+        end
+
+        check_nothing_fails(true) do
+          assert_raise(different_error_class.new("Error"),
+                       RuntimeError.new("Error"),
+                       RuntimeError.new("XXX")) do
             raise "Error"
           end
         end

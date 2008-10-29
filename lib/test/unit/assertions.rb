@@ -85,15 +85,6 @@ EOT
         assert_block(full_message) { expected == actual }
       end
 
-      private
-      def _check_exception_class(args) # :nodoc:
-        args.partition do |klass|
-          next if klass.instance_of?(Module)
-          assert(Exception >= klass, "Should expect a class of exception, #{klass}")
-          true
-        end
-      end
-
       ##
       # Passes if the block raises one of the given exceptions.
       #
@@ -101,16 +92,20 @@ EOT
       #   assert_raise RuntimeError, LoadError do
       #     raise 'Boom!!!'
       #   end
-
+      #
+      #   assert_raise(RuntimeError.new("XXX")) {raise "XXX"} # -> pass
+      #   assert_raise(MyError.new("XXX"))      {raise "XXX"} # -> fail
+      #   assert_raise(RuntimeError.new("ZZZ")) {raise "XXX"} # -> fail
       public
       def assert_raise(*args, &block)
         assert_expected_exception = Proc.new do |*_args|
-          message, expected, actual_exception, exceptions, modules = _args
+          message, assert_exception_helper, actual_exception = _args
+          expected = assert_exception_helper.expected_exceptions
           full_message = build_message(message,
                                        "<?> exception expected but was\n?",
                                        expected, actual_exception)
           assert_block(full_message) do
-            _expected_exception?(actual_exception, exceptions, modules)
+            assert_exception_helper.expected?(actual_exception)
           end
         end
         _assert_raise(assert_expected_exception, *args, &block)
@@ -136,14 +131,14 @@ EOT
       #   end
       def assert_raise_kind_of(*args, &block)
         assert_expected_exception = Proc.new do |*_args|
-          message, expected, actual_exception, exceptions, modules = _args
+          message, assert_exception_helper, actual_exception = _args
+          expected = assert_exception_helper.expected_exceptions
           full_message = build_message(message,
                                        "<?> family exception expected " +
                                        "but was\n?",
                                        expected, actual_exception)
           assert_block(full_message) do
-            _expected_exception?(actual_exception, exceptions, modules,
-                                 :kind_of?)
+            assert_exception_helper.expected?(actual_exception, :kind_of?)
           end
         end
         _assert_raise(assert_expected_exception, *args, &block)
@@ -293,18 +288,20 @@ EOT
       public
       def assert_nothing_raised(*args)
         _wrap_assertion do
-          if Module === args.last
-            message = ""
-          else
+          if args.last.is_a?(String)
             message = args.pop
+          else
+            message = ""
           end
-          exceptions, modules = _check_exception_class(args)
+
+          assert_exception_helper = AssertExceptionHelper.new(self, args)
           begin
             yield
           rescue Exception => e
             if ((args.empty? && !e.instance_of?(AssertionFailedError)) ||
-                _expected_exception?(e, exceptions, modules))
-              assert_block(build_message(message, "Exception raised:\n?", e)){false}
+                assert_exception_helper.expected?(e))
+              failure_message = build_message(message, "Exception raised:\n?", e)
+              assert_block(failure_message) {false}
             else
               raise
             end
@@ -731,25 +728,19 @@ EOT
       def self.use_pp=(value)
         AssertionMessage.use_pp = value
       end
-      
+
       # :stopdoc:
-
       private
-      def _expected_exception?(actual_exception, exceptions, modules,
-                               equality=:instance_of?)
-        exceptions.any? {|exception| actual_exception.send(equality, exception)} or
-          modules.any? {|mod| actual_exception.is_a?(mod)}
-      end
-
       def _assert_raise(assert_expected_exception, *args, &block)
         _wrap_assertion do
-          if Module === args.last
-            message = ""
-          else
+          if args.last.is_a?(String)
             message = args.pop
+          else
+            message = ""
           end
-          exceptions, modules = _check_exception_class(args)
-          expected = args.size == 1 ? args.first : args
+
+          assert_exception_helper = AssertExceptionHelper.new(self, args)
+          expected = assert_exception_helper.expected_exceptions
           actual_exception = nil
           full_message = build_message(message,
                                        "<?> exception expected " +
@@ -763,8 +754,8 @@ EOT
               true
             end
           end
-          assert_expected_exception.call(message, expected, actual_exception,
-                                         exceptions, modules)
+          assert_expected_exception.call(message, assert_exception_helper,
+                                         actual_exception)
           actual_exception
         end
       end
@@ -905,8 +896,104 @@ EOM
         end
       end
 
-      # :startdoc:
+      class AssertExceptionHelper
+        class WrappedException
+          def initialize(exception)
+            @exception = exception
+          end
 
+          def inspect
+            inspect_method = @exception.method(:inspect)
+            if inspect_method.respond_to?(:owner) and
+                inspect_method.owner == Exception
+              "#{@exception.class.inspect}(#{@exception.message.inspect})"
+            else
+              @exception.inspect
+            end
+          end
+
+          def method_missing(name, *args, &block)
+            @exception.send(name, *args, &block)
+          end
+        end
+
+        def initialize(test_case, expected_exceptions)
+          @test_case = test_case
+          @expected_exceptions = expected_exceptions
+          @expected_classes, @expected_modules, @expected_objects =
+            split_expected_exceptions(expected_exceptions)
+        end
+
+        def expected_exceptions
+          exceptions = @expected_exceptions.collect do |exception|
+            if exception.is_a?(Exception)
+              WrappedException.new(exception)
+            else
+              exception
+            end
+          end
+          if exceptions.size == 1
+            exceptions[0]
+          else
+            exceptions
+          end
+        end
+
+        def expected?(actual_exception, equality=nil)
+          equality ||= :instance_of?
+          expected_class?(actual_exception, equality) or
+            expected_module?(actual_exception) or
+            expected_object?(actual_exception)
+        end
+
+        private
+        def split_expected_exceptions(expected_exceptions)
+          exception_modules = []
+          exception_objects = []
+          exception_classes = []
+          expected_exceptions.each do |exception_type|
+            if exception_type.instance_of?(Module)
+              exception_modules << exception_type
+            elsif exception_type.is_a?(Exception)
+              exception_objects << exception_type
+            else
+              @test_case.send(:assert,
+                              Exception >= exception_type,
+                              "Should expect a class of exception, " +
+                              "#{exception_type}")
+              exception_classes << exception_type
+            end
+          end
+          [exception_classes, exception_modules, exception_objects]
+        end
+
+        def expected_class?(actual_exception, equality)
+          @expected_classes.any? do |expected_class|
+            actual_exception.send(equality, expected_class)
+          end
+        end
+
+        def expected_module?(actual_exception)
+          @expected_modules.any? do |expected_module|
+            actual_exception.is_a?(expected_module)
+          end
+        end
+
+        def expected_object?(actual_exception)
+          @expected_objects.any? do |expected_object|
+            equal_method = expected_object.method(:==)
+            if equal_method.respond_to?(:owner) and
+                equal_method.owner == Kernel
+              expected_object.class == actual_exception.class and
+                expected_object.message == actual_exception.message
+            else
+              expected_object == actual_exception
+            end
+          end
+        end
+      end
+
+      # :startdoc:
     end
   end
 end
