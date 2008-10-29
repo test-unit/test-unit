@@ -241,85 +241,128 @@ EOM
         end
       end
 
-      def test_assert_raise
+      def test_assert_raise_success
         return_value = nil
-        check_nothing_fails(true) {
-          return_value = assert_raise(RuntimeError) {
+        check_nothing_fails(true) do
+          return_value = assert_raise(RuntimeError) do
             raise "Error"
-          }
-        }
-        check(return_value.kind_of?(Exception), "Should have returned the exception from a successful assert_raise")
-        check(return_value.message == "Error", "Should have returned the correct exception from a successful assert_raise")
-        check_nothing_fails(true) {
-          assert_raise(ArgumentError, "successful assert_raise") {
-            raise ArgumentError.new("Error")
-          }
-        }
-        check_nothing_fails(true) {
-          assert_raise(RuntimeError) {
-            raise "Error"
-          }
-        }
-        check_nothing_fails(true) {
-          assert_raise(RuntimeError, "successful assert_raise") {
-            raise "Error"
-          }
-        }
-        check_fails("<RuntimeError> exception expected but none was thrown.") {
-          assert_raise(RuntimeError) {
-            1 + 1
-          }
-        }
-        check_fails(%r{\Afailed assert_raise.\n<ArgumentError> exception expected but was\nClass: <RuntimeError>\nMessage: <"Error">\n---Backtrace---\n.+\n---------------\Z}m) {
-          assert_raise(ArgumentError, "failed assert_raise") {
-            raise "Error"
-          }
-        }
-        check_fails("Should expect a class of exception, Object.\n<false> is not true.") {
-          assert_nothing_raised(Object) {
-            1 + 1
-          }
-        }
+          end
+        end
+        check(return_value.kind_of?(Exception),
+              "Should have returned the exception " +
+              "from a successful assert_raise")
+        check(return_value.message == "Error",
+              "Should have returned the correct exception " +
+              "from a successful assert_raise")
 
+        check_nothing_fails(true) do
+          assert_raise(ArgumentError, "successful assert_raise") do
+            raise ArgumentError.new("Error")
+          end
+        end
+
+        check_nothing_fails(true) do
+          assert_raise(RuntimeError) do
+            raise "Error"
+          end
+        end
+
+        check_nothing_fails(true) do
+          assert_raise(RuntimeError, "successful assert_raise") do
+            raise "Error"
+          end
+        end
+      end
+
+      def test_assert_raise_fail
+        check_fails("<RuntimeError> exception expected but none was thrown.") do
+          assert_raise(RuntimeError) do
+            1 + 1
+          end
+        end
+
+        message = <<-EOM
+failed assert_raise.
+<ArgumentError> exception expected but was
+Class: <RuntimeError>
+Message: <"Error">
+EOM
+        backtrace_pre  = "---Backtrace---"
+        backtrace_post = "---------------"
+        check_fails(/\A#{message}#{backtrace_pre}\n.+\n#{backtrace_post}\Z/m) do
+          assert_raise(ArgumentError, "failed assert_raise") do
+            raise "Error"
+          end
+        end
+
+        message = <<-EOM
+Should expect a class of exception, Object.
+<false> is not true.
+EOM
+        check_fails(message.chomp) do
+          assert_nothing_raised(Object) do
+            1 + 1
+          end
+        end
+      end
+
+      def test_assert_raise_module
         exceptions = [ArgumentError, TypeError]
         modules = [Math, Comparable]
         rescues = exceptions + modules
+
         exceptions.each do |exc|
-          check_nothing_fails(true) {
-            return_value = assert_raise(*rescues) {
+          return_value = nil
+          check_nothing_fails(true) do
+            return_value = assert_raise(*rescues) do
               raise exc, "Error"
-            }
-          }
-          check(return_value.instance_of?(exc), "Should have returned #{exc} but was #{return_value.class}")
-          check(return_value.message == "Error", "Should have returned the correct exception from a successful assert_raise")
+            end
+          end
+          check(return_value.instance_of?(exc),
+                "Should have returned #{exc} but was #{return_value.class}")
+          check(return_value.message == "Error",
+                "Should have returned the correct exception " +
+                "from a successful assert_raise")
         end
+
         modules.each do |mod|
-          check_nothing_fails(true) {
-            return_value = assert_raise(*rescues) {
+          return_value = nil
+          check_nothing_fails(true) do
+            return_value = assert_raise(*rescues) do
               raise Exception.new("Error").extend(mod)
-            }
-          }
-          check(mod === return_value, "Should have returned #{mod}")
-          check(return_value.message == "Error", "Should have returned the correct exception from a successful assert_raise")
+            end
+          end
+          check(mod === return_value,
+                "Should have returned #{mod}")
+          check(return_value.message == "Error",
+                "Should have returned the correct exception " +
+                "from a successful assert_raise")
         end
-        check_fails("<[ArgumentError, TypeError, Math, Comparable]> exception expected but none was thrown.") {
-          assert_raise(*rescues) {
+
+        check_fails("<[ArgumentError, TypeError, Math, Comparable]> exception " +
+                    "expected but none was thrown.") do
+          assert_raise(*rescues) do
             1 + 1
-          }
-        }
-        check_fails(%r{\Afailed assert_raise.
-<\[ArgumentError, TypeError\]> exception expected but was
+          end
+        end
+
+        message = <<-EOM
+failed assert_raise.
+<[ArgumentError, TypeError]> exception expected but was
 Class: <RuntimeError>
 Message: <"Error">
----Backtrace---
-.+
----------------\Z}m) {
-          assert_raise(ArgumentError, TypeError, "failed assert_raise") {
+EOM
+        message = Regexp.escape(message)
+        backtrace_pre  = "---Backtrace---"
+        backtrace_post = "---------------"
+
+        check_fails(/\A#{message}#{backtrace_pre}\n.+#{backtrace_post}\z/m) do
+          assert_raise(ArgumentError, TypeError, "failed assert_raise") do
             raise "Error"
-          }
-        }
+          end
+        end
       end
-      
+
       def test_assert_instance_of
         check_nothing_fails {
           assert_instance_of(String, "string")
