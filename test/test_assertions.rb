@@ -276,6 +276,12 @@ EOM
             raise "Error"
           end
         end
+
+        check_nothing_fails(true) do
+          assert_raise do
+            raise Exception, "Any exception"
+          end
+        end
       end
 
       def test_assert_raise_fail

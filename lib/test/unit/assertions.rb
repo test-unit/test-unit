@@ -89,9 +89,13 @@ EOT
       # Passes if the block raises one of the given exceptions.
       #
       # Example:
-      #   assert_raise RuntimeError, LoadError do
+      #   assert_raise(RuntimeError, LoadError) do
       #     raise 'Boom!!!'
-      #   end
+      #   end # -> pass
+      #
+      #   assert_raise do
+      #     raise Exception, 'Any exception should be raised!!!'
+      #   end # -> pass
       #
       #   assert_raise(RuntimeError.new("XXX")) {raise "XXX"} # -> pass
       #   assert_raise(MyError.new("XXX"))      {raise "XXX"} # -> fail
@@ -105,7 +109,7 @@ EOT
                                        "<?> exception expected but was\n?",
                                        expected, actual_exception)
           assert_block(full_message) do
-            assert_exception_helper.expected?(actual_exception)
+            expected == [] or assert_exception_helper.expected?(actual_exception)
           end
         end
         _assert_raise(assert_expected_exception, *args, &block)
