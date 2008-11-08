@@ -43,6 +43,9 @@ module Test
             @use_color = guess_color_availability if @use_color.nil?
             @color_scheme = COLOR_SCHEMES[:default]
             @reset_color = Color.new("reset")
+            @progress_row = 0
+            @progress_row_max = @options[:progress_row_max]
+            @progress_row_max ||= guess_progress_row_max
             @already_outputted = false
             @faults = []
           end
@@ -84,9 +87,7 @@ module Test
           
           def add_fault(fault)
             @faults << fault
-            output_single(fault.single_character_display,
-                          fault_color(fault),
-                          PROGRESS_ONLY)
+            output_progress(fault.single_character_display, fault_color(fault))
             @already_outputted = true
           end
           
@@ -124,7 +125,7 @@ module Test
           
           def test_finished(name)
             unless @already_outputted
-              output_single(".", @color_scheme["success"], PROGRESS_ONLY)
+              output_progress(".", @color_scheme["success"])
             end
             nl(VERBOSE)
             @already_outputted = false
@@ -141,7 +142,7 @@ module Test
           end
           
           def output_single(something, color=nil, level=NORMAL)
-            return unless output?(level)
+            return false unless output?(level)
             if @use_color and color
               something = "%s%s%s" % [color.escape_sequence,
                                       something,
@@ -149,8 +150,20 @@ module Test
             end
             @output.write(something)
             @output.flush
+            true
           end
-          
+
+          def output_progress(mark, color=nil)
+            if output_single(mark, color, PROGRESS_ONLY)
+              return unless @progress_row_max > 0
+              @progress_row += mark.size
+              if @progress_row >= @progress_row_max
+                nl unless @output_level == VERBOSE
+                @progress_row = 0
+              end
+            end
+          end
+
           def output?(level)
             level <= @output_level
           end
@@ -183,6 +196,25 @@ module Test
             return true if term and (/term\z/ =~ term or term == "screen")
             return true if ENV["EMACS"] == "t"
             false
+          end
+
+          def guess_progress_row_max
+            term_width = guess_term_width
+            if term_width.zero?
+              if ENV["EMACS"] == "t"
+                -1
+              else
+                79
+              end
+            else
+              term_width
+            end
+          end
+
+          def guess_term_width
+            Integer(ENV["TERM_WIDTH"] || 0)
+          rescue ArgumentError
+            0
           end
         end
       end
