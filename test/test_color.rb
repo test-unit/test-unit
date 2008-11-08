@@ -20,6 +20,16 @@ class TestUnitColor < Test::Unit::TestCase
                            color("none", :underline => true))
   end
 
+  def test_equal
+    red = color("red")
+    red_bold = color("red", :bold => true)
+
+    assert_operator(red, :==, red)
+    assert_not_equal(red, nil)
+    assert_equal(red, color("red"))
+    assert_not_equal(red, red_bold)
+  end
+
   private
   def color(name, options={})
     Test::Unit::Color.new(name, options)

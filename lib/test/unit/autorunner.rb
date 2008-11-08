@@ -1,4 +1,5 @@
 require 'test/unit'
+require 'test/unit/color-scheme'
 require 'optparse'
 
 module Test
@@ -11,10 +12,24 @@ module Test
       class << self
         def register_runner(id, runner_builder=Proc.new)
           RUNNERS[id] = runner_builder
+          RUNNERS[id.to_s] = runner_builder
+        end
+
+        def runner(id)
+          RUNNERS[id.to_s]
         end
 
         def register_collector(id, collector_builder=Proc.new)
           COLLECTORS[id] = collector_builder
+          COLLECTORS[id.to_s] = collector_builder
+        end
+
+        def collector(id)
+          COLLECTORS[id.to_s]
+        end
+
+        def register_color_scheme(id, scheme)
+          ColorScheme[id] = scheme
         end
 
         def setup_option(option_builder=Proc.new)
@@ -76,6 +91,7 @@ module Test
 
       attr_reader :suite, :runner_options
       attr_accessor :filters, :to_run, :pattern, :exclude, :base, :workdir
+      attr_accessor :color_scheme
       attr_writer :runner, :collector
 
       def initialize(standalone)
@@ -85,8 +101,11 @@ module Test
         @collector = default_collector
         @filters = []
         @to_run = []
+        @color_scheme = ColorScheme.default
         @runner_options = {}
         @workdir = nil
+        default_config_file = "test-unit.yml"
+        load_config(default_config_file) if File.exist?(default_config_file)
         yield(self) if block_given?
       end
 
@@ -116,7 +135,7 @@ module Test
             @runner = r
           end
 
-          if(@standalone)
+          if (@standalone)
             o.on('-b', '--basedir=DIR', "Base directory of test suites.") do |b|
               @base = b
             end
@@ -189,6 +208,18 @@ module Test
             $LOAD_PATH.concat(dirs.split(File::PATH_SEPARATOR))
           end
 
+          color_schemes = ColorScheme.all
+          o.on("--color-scheme=SCHEME", color_schemes,
+               "Use SCHEME as color scheme.",
+               "(#{keyword_display(color_schemes)})") do |scheme|
+            @color_scheme = scheme
+          end
+
+          o.on("--config=FILE",
+               "Use YAML fomat FILE content as configuration file.") do |file|
+            load_config(file)
+          end
+
           ADDITIONAL_OPTIONS.each do |option_builder|
             option_builder.call(self, o)
           end
@@ -205,13 +236,13 @@ module Test
 
           o.on_tail('--console', 'Console runner (use --runner).') do
             warn("Deprecated option (--console).")
-            @runner = RUNNERS[:console]
+            @runner = self.class.runner(:console)
           end
 
           if RUNNERS[:fox]
             o.on_tail('--fox', 'Fox runner (use --runner).') do
               warn("Deprecated option (--fox).")
-              @runner = RUNNERS[:fox]
+              @runner = self.class.runner(:fox)
             end
           end
 
@@ -219,10 +250,12 @@ module Test
         end
       end
 
-      def keyword_display(array)
-        list = array.collect {|e, *| e.to_s}
-        Array === array or list.sort!
-        list.collect {|e| e.sub(/^(.)([A-Za-z]+)(?=\w*$)/, '\\1[\\2]')}.join(", ")
+      def keyword_display(keywords)
+        keywords.collect do |keyword, _|
+          keyword.to_s
+        end.uniq.sort.collect do |keyword|
+          keyword.sub(/^(.)([A-Za-z]+)(?=\w*$)/, '\\1[\\2]')
+        end.join(", ")
       end
 
       def run
@@ -230,21 +263,40 @@ module Test
         return false if suite.nil?
         runner = @runner[self]
         return false if runner.nil?
+        @runner_options[:color_scheme] ||= @color_scheme
         Dir.chdir(@workdir) if @workdir
         runner.run(suite, @runner_options).passed?
+      end
+
+      def load_config(file)
+        require 'yaml'
+        config = YAML.load(File.read(file))
+        runner_name = config["runner"]
+        @runner = self.class.runner(runner_name) || @runner
+        @collector = self.class.collector(config["collector"]) || @collector
+        (config["color_schemes"] || {}).each do |name, options|
+          ColorScheme[name] = options
+        end
+        runner_options = {}
+        (config["#{runner_name}_options"] || {}).each do |key, value|
+          key = key.to_sym
+          value = ColorScheme[value] if key == :color_scheme
+          runner_options[key.to_sym] = value
+        end
+        @runner_options = @runner_options.merge(runner_options)
       end
 
       private
       def default_runner
         if ENV["EMACS"] == "t"
-          RUNNERS[:emacs]
+          self.class.runner(:emacs)
         else
-          RUNNERS[:console]
+          self.class.runner(:console)
         end
       end
 
       def default_collector
-        COLLECTORS[@standalone ? :load : :descendant]
+        self.class.collector(@standalone ? :load : :descendant)
       end
     end
   end

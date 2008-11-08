@@ -4,7 +4,7 @@
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/color'
+require 'test/unit/color-scheme'
 require 'test/unit/ui/testrunner'
 require 'test/unit/ui/testrunnermediator'
 require 'test/unit/ui/console/outputlevel'
@@ -18,17 +18,6 @@ module Test
         class TestRunner < UI::TestRunner
           include OutputLevel
 
-          COLOR_SCHEMES = {
-            :default => {
-              "success" => Color.new("green", :bold => true),
-              "failure" => Color.new("red", :bold => true),
-              "pending" => Color.new("magenta", :bold => true),
-              "omission" => Color.new("blue", :bold => true),
-              "notification" => Color.new("cyan", :bold => true),
-              "error" => Color.new("yellow", :bold => true),
-            },
-          }
-
           # Creates a new TestRunner for running the passed
           # suite. If quiet_mode is true, the output while
           # running is limited to progress dots, errors and
@@ -41,7 +30,7 @@ module Test
             @output = @options[:output] || STDOUT
             @use_color = @options[:use_color]
             @use_color = guess_color_availability if @use_color.nil?
-            @color_scheme = COLOR_SCHEMES[:default]
+            @color_scheme = @options[:color_scheme] || ColorScheme.default
             @reset_color = Color.new("reset")
             @progress_row = 0
             @progress_row_max = @options[:progress_row_max]
@@ -125,7 +114,7 @@ module Test
           
           def test_finished(name)
             unless @already_outputted
-              output_progress(".", @color_scheme["success"])
+              output_progress(".", color("success"))
             end
             nl(VERBOSE)
             @already_outputted = false
@@ -168,25 +157,29 @@ module Test
             level <= @output_level
           end
 
+          def color(name)
+            @color_scheme[name] || ColorScheme.default[name]
+          end
+
           def fault_color(fault)
-            @color_scheme[fault.class.name.split(/::/).last.downcase]
+            color(fault.class.name.split(/::/).last.downcase)
           end
 
           def result_color
             if @result.passed?
               if @result.pending_count > 0
-                @color_scheme["pending"]
+                color("pending")
               elsif @result.omission_count > 0
-                @color_scheme["omission"]
+                color("omission")
               elsif @result.notification_count > 0
-                @color_scheme["notification"]
+                color("notification")
               else
-                @color_scheme["success"]
+                color("success")
               end
             elsif @result.error_count > 0
-              @color_scheme["error"]
+              color("error")
             elsif @result.failure_count > 0
-              @color_scheme["failure"]
+              color("failure")
             end
           end
 
