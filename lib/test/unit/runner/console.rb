@@ -31,8 +31,8 @@ module Test
         ["true", true],
       ]
       opts.on("--[no-]use-color=[auto]", use_color_options,
-              "Use color output",
-              "(default is auto") do |use_color|
+              "Uses color output",
+              "(default is auto)") do |use_color|
         case use_color
         when nil
           use_color = true
@@ -40,6 +40,12 @@ module Test
           use_color = nil
         end
         auto_runner.runner_options[:use_color] = use_color
+      end
+
+      opts.on("--progress-row-max=MAX", Integer,
+              "Uses MAX as max terminal width for progress mark",
+              "(default is auto)") do |max|
+        auto_runner.runner_options[:progress_row_max] = max
       end
     end
   end
