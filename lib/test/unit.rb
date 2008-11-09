@@ -253,6 +253,68 @@ module Test # :nodoc:
   # the dynamic suite using the console TestRunner.
   #
   #
+  # == Configuration file
+  #
+  # Test::Unit reads 'test-unit.yml' in the current working
+  # directory as Test::Unit's configuration file. It can
+  # contain the following configurations:
+  #
+  # * color scheme definitions
+  # * test runner to be used
+  # * test runner options
+  # * test collector to be used
+  #
+  # Except color scheme definitions, all of them are
+  # specified by command line option.
+  #
+  # Here are sample color scheme definitions:
+  #
+  #   color_schemes:
+  #     inverted:
+  #       success:
+  #         name: red
+  #         bold: true
+  #       failure:
+  #         name: green
+  #         bold: true
+  #     other_scheme:
+  #       ...
+  #
+  # Here are the syntax of color scheme definitions:
+  #
+  #  color_schemes:
+  #    SCHEME_NAME:
+  #      EVENT_NAME:
+  #        name: COLOR_NAME
+  #        intensity: BOOLEAN
+  #        bold: BOOLEAN
+  #        italic: BOOLEAN
+  #        underline: BOOLEAN
+  #      ...
+  #    ...
+  #
+  # SCHEME_NAME:: the name of the color scheme
+  # EVENT_NAME:: one of [success, failure, pending,
+  #              omission, notification, error]
+  # COLOR_NAME:: one of [black, red, green, yellow, blue,
+  #              magenta, cyan, white]
+  # BOOLEAN:: true or false
+  #
+  # You can use the above 'inverted' color scheme with the
+  # following configuration:
+  #
+  #   runner: console
+  #   console_options:
+  #     color_scheme: inverted
+  #   color_schemes:
+  #     inverted:
+  #       success:
+  #         name: red
+  #         bold: true
+  #       failure:
+  #         name: green
+  #         bold: true
+  #
   # == Questions?
   #
   # I'd really like to get feedback from all levels of Ruby
