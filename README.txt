@@ -1,31 +1,44 @@
-= Test::Unit (Classic)
+# -*- RD -*-
 
-* http://rubyforge.org/projects/test-unit/
+= Test::Unit 2.x
 
-== DESCRIPTION:
+  * http://rubyforge.org/projects/test-unit/
 
-Test::Unit (Classic) - Nathaniel Talbott's originial test-unit,
-externalized from the ruby project as a gem (for tool developers).
+== DESCRIPTION
 
-== FEATURES/PROBLEMS:
+Test::Unit 2.x - Improved version of Test::Unit bundled in
+Ruby 1.8.x.
 
-* Test::Unit 1.2.3 is the original Test::Unit, taken
-  straight from the ruby distribution. It is being
-  distributed as a gem to allow tool builders to use it as a
-  stand-alone package. (The test framework in ruby is going
-  to radically change very soon).
+Ruby 1.9.x bundles miniunit not Test::Unit. Test::Unit
+bundled in Ruby 1.8.x had not been improved but unbundled
+Test::Unit (Test::Unit 2.x) will be improved actively.
 
-* DO NOT INSTALL THIS GEM unless you're active state or some other
-  development tool provider! You don't need it.
+== FEATURES
 
-* Test::Unit 2.0.0 or later are extended versions of the
-  original Test::Unit (== Tset::Unit 1.2.3).
+  * Test::Unit 1.2.3 is the original Test::Unit, taken
+    straight from the ruby distribution. It is being
+    distributed as a gem to allow tool builders to use it as a
+    stand-alone package. (The test framework in ruby is going
+    to radically change very soon).
 
-== INSTALL:
+  * Test::Unit 2.x will be improved actively and may break
+    compatiblity with Test::Unit 1.2.3. (We will not hope it
+    if it isn't needed.)
 
-* sudo gem install test-unit
+  * Some features exist as separated gems like GUI test
+    runner. (Tk, GTK+ and Fox) test-unit-full gem package
+    provides for installing all Test::Unit related gems
+    easily.
 
-== LICENSE:
+== INSTALL
+
+  * sudo gem install test-unit
+
+If you want to use full Test::Unit features:
+
+  * sudo gem install test-unit-full
+
+== LICENSE
 
 (The Ruby License)
 

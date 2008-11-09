@@ -1,3 +1,35 @@
+# -*- RD -*-
+
+=== 2.0.1 / 2008-11-09
+
+* 19 major enhancements
+
+  * support ruby 1.9.1.
+  * add run_test method to be extensible.
+  * improve priority-mode auto off.
+  * improve startup/shutdown RDoc. [Daniel Berger]
+  * add assert_compare. [#20851] [Designing Patterns]
+  * add assert_fail_assertion. [#20851] [Designing Patterns]
+  * add assert_raise_message. [#20851] [Designing Patterns]
+  * support folded diff.
+  * add assert_raise_kind_of. [Daniel Berger]
+  * ingore inherited test for nested test case.
+  * add assert_const_defined.
+  * add assert_not_const_defined.
+  * support assert_raise with an exception object.
+  * support assert_raise with no arguments that asserts any
+    exception is raised. [#22602] [Daniel Berger]
+  * support folded dot progress.
+  * add --progress-row-max option.
+  * support color scheme customize.
+  * support configuration file. (YAML)
+  * recognize test-XXX.rb files as test files not only test_XXX.rb
+
+* Thanks
+
+  * Daniel Berger
+  * Designing Patterns
+
 === 2.0.0 / 2008-06-18
 
 * 15 major enhancements
