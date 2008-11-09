@@ -15,7 +15,7 @@ module Test
           super
           @system_excludes = [/~\z/, /\A\.\#/]
           @system_directory_excludes = [/\A(?:CVS|\.svn)\z/]
-          @patterns = [/\Atest_.+\.rb\z/m]
+          @patterns = [/\Atest[_\-].+\.rb\z/m]
           @excludes = []
           @base = nil
         end
