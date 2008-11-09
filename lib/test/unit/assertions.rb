@@ -86,7 +86,9 @@ EOT
       end
 
       ##
-      # Passes if the block raises one of the given exceptions.
+      # Passes if the block raises one of the expected
+      # exceptions. When an expected exception is an Exception
+      # object, passes if expected_exception == actual_exception.
       #
       # Example:
       #   assert_raise(RuntimeError, LoadError) do
@@ -987,7 +989,8 @@ EOM
           @expected_objects.any? do |expected_object|
             equal_method = expected_object.method(:==)
             if equal_method.respond_to?(:owner) and
-                equal_method.owner == Kernel
+                (equal_method.owner == Kernel or
+                 equal_method.owner == Exception)
               expected_object.class == actual_exception.class and
                 expected_object.message == actual_exception.message
             else
