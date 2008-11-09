@@ -36,7 +36,7 @@ module Test
       end
 
       def sort(suites)
-        suites.sort_by{|s| s.name}
+        suites.sort_by {|suite| suite.name || suite.to_s}
       end
     end
   end
