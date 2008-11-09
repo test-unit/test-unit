@@ -131,40 +131,46 @@ class TestUnitFixture < Test::Unit::TestCase
 
   private
   def assert_called_fixtures(expected, test_case)
-    called = []
-    test_case.module_eval {@@called = called}
-    test_case.new("test_nothing").run(Test::Unit::TestResult.new) {}
-    assert_equal(expected, called)
+    test = test_case.new("test_nothing")
+    test.run(Test::Unit::TestResult.new) {}
+    assert_equal(expected, test.called_ids)
   end
 
   def assert_setup_customizable(expected, parent, options)
     test_case = Class.new(parent || Test::Unit::TestCase) do
       yield(self, :before) if block_given?
 
-      @@called = []
+      def called_ids
+        @called_ids ||= []
+      end
+
+      def called(id)
+        called_ids << id
+      end
+
       def setup
-        @@called << :setup
+        called(:setup)
       end
 
       setup(*(options[0] || [])) if options
       def custom_setup_method0
-        @@called << :custom_setup_method0
+        called(:custom_setup_method0)
       end
 
       def custom_setup_method1
-        @@called << :custom_setup_method1
+        called(:custom_setup_method1)
       end
       setup(*[:custom_setup_method1, *(options[1] || [])]) if options
 
       setup(*(options[2] || [])) if options
       def custom_setup_method2
-        @@called << :custom_setup_method2
+        called(:custom_setup_method2)
       end
       unregister_setup(:custom_setup_method2) if options
 
       setup(*(options[3] || [])) if options
       def custom_setup_method3
-        @@called << :custom_setup_method3
+        called(:custom_setup_method3)
       end
 
       def test_nothing
@@ -197,30 +203,37 @@ class TestUnitFixture < Test::Unit::TestCase
     test_case = Class.new(parent || Test::Unit::TestCase) do
       yield(self, :before) if block_given?
 
-      @@called = []
+      def called_ids
+        @called_ids ||= []
+      end
+
+      def called(id)
+        called_ids << id
+      end
+
       def teardown
-        @@called << :teardown
+        called(:teardown)
       end
 
       teardown(*(options[0] || [])) if options
       def custom_teardown_method0
-        @@called << :custom_teardown_method0
+        called(:custom_teardown_method0)
       end
 
       def custom_teardown_method1
-        @@called << :custom_teardown_method1
+        called(:custom_teardown_method1)
       end
       teardown(*[:custom_teardown_method1, *(options[1] || [])]) if options
 
       teardown(*(options[2] || [])) if options
       def custom_teardown_method2
-        @@called << :custom_teardown_method2
+        called(:custom_teardown_method2)
       end
       unregister_teardown(:custom_teardown_method2) if options
 
       teardown(*(options[3] || [])) if options
       def custom_teardown_method3
-        @@called << :custom_teardown_method3
+        called(:custom_teardown_method3)
       end
 
       def test_nothing
