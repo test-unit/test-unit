@@ -268,7 +268,7 @@ EOT
                      [:test, {:name => "test1_1"}],
                      [:test, {:name => "test1_2"}]]]) do |collector|
       collector.filter = Proc.new do |test|
-        not /\Atest1/.match(test.method_name).nil?
+        !/\Atest1/.match(test.method_name).nil?
       end
     end
   end
