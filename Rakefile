@@ -15,10 +15,15 @@ Hoe.new('test-unit', version) do |p|
 end
 
 task :check_manifest => :clean_test_result
+task :check_manifest => :clean_coverage
 
 task :clean_test_result do
   test_results = Dir.glob("**/.test-result")
   sh("rm", "-rf", *test_results) unless test_results.empty?
+end
+
+task :clean_coverage do
+  sh("rm", "-rf", "coverage")
 end
 
 task :tag do
