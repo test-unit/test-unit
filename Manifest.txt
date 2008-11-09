@@ -4,6 +4,10 @@ README.txt
 Rakefile
 TODO
 bin/testrb
+html/classic.html
+html/index.html
+html/index.html.ja
+html/test-unit-classic.png
 lib/test/unit.rb
 lib/test/unit/assertionfailederror.rb
 lib/test/unit/assertions.rb
