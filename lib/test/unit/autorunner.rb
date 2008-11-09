@@ -115,8 +115,7 @@ module Test
         rescue OptionParser::ParseError => e
           puts e
           puts options
-          $! = nil
-          abort
+          exit(false)
         else
           @filters << proc{false} unless(@filters.empty?)
         end
