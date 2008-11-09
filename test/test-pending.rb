@@ -1,7 +1,7 @@
 require 'test/unit'
-require 'testunit_test_util'
+require 'testunit-test-util'
 
-class TestUnitPending < Test::Unit::TestCase
+class TestUntiPending < Test::Unit::TestCase
   include TestUnitTestUtil
 
   class TestCase < Test::Unit::TestCase

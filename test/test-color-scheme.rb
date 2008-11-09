@@ -1,4 +1,4 @@
-class TestColorScheme < Test::Unit::TestCase
+class TestUnitColorScheme < Test::Unit::TestCase
   def test_default
     assert_equal({
                    "success" => color("green", :bold => true),

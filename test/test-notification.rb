@@ -1,7 +1,7 @@
 require 'test/unit'
-require 'testunit_test_util'
+require 'testunit-test-util'
 
-class TestNotification < Test::Unit::TestCase
+class TestUnitNotification < Test::Unit::TestCase
   include TestUnitTestUtil
 
   class TestCase < Test::Unit::TestCase

@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'testunit_test_util'
+require 'testunit-test-util'
 
 class TestUnitOmission < Test::Unit::TestCase
   include TestUnitTestUtil
