@@ -86,4 +86,34 @@ class TestUnitPriority < Test::Unit::TestCase
     end
     assert_in_delta(expected, n_need_to_run.to_f / n, delta)
   end
+
+  class SpecialNameTestCase < Test::Unit::TestCase
+    class << self
+      def suite
+        Test::Unit::TestSuite.new(name)
+      end
+    end
+
+    def test_question?
+    end
+
+    def test_exclamation!
+    end
+
+    def test_equal=
+    end
+  end
+
+  def test_escaped?
+    assert_escaped_name("test_question.predicate", "test_question?")
+    assert_escaped_name("test_exclamation.destructive", "test_exclamation!")
+    assert_escaped_name("test_equal.equal", "test_equal=")
+  end
+
+  def assert_escaped_name(expected, test_method_name)
+    checker = Checker.new(SpecialNameTestCase.new(test_method_name))
+    passed_file = checker.send(:passed_file)
+    method_name_component = File.basename(File.dirname(passed_file))
+    assert_equal(expected, method_name_component)
+  end
 end

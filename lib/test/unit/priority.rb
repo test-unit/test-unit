@@ -90,7 +90,7 @@ module Test
         def result_dir
           components = [".test-result",
                         @test.class.name || "AnonymousTestCase",
-                        @test.method_name.to_s]
+                        escaped_method_name]
           parent_directories = [File.dirname($0), Dir.pwd]
           if Process.respond_to?(:uid)
             parent_directories << File.join(Dir.tmpdir, Process.uid.to_s)
@@ -112,7 +112,7 @@ module Test
         end
 
         def escaped_method_name
-          @method_name.to_s.gsub(/[!?=]$/) do |matched|
+          @test.method_name.to_s.gsub(/[!?=]$/) do |matched|
             case matched
             when "!"
               ".destructive"
