@@ -47,3 +47,4 @@ This software is distributed under the same terms as ruby.
 * Daniel Berger: Suggestions and bug reports.
 * Designing Patterns: Suggestions.
 * Erik Hollensbe: Suggestions.
+* Bill Lear: A suggestion.

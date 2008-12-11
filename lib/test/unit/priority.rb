@@ -13,6 +13,19 @@ module Test
             teardown :priority_teardown, :after => :append
           end
         end
+
+        @@enabled = false
+        def enabled?
+          @@enabled
+        end
+
+        def enable
+          @@enabled = true
+        end
+
+        def disable
+          @@enabled = false
+        end
       end
 
       class Checker
@@ -135,10 +148,12 @@ module Test
       end
 
       def priority_setup
+        return unless Priority.enabled?
         Checker.new(self).setup
       end
 
       def priority_teardown
+        return unless Priority.enabled?
         Checker.new(self).teardown
       end
     end

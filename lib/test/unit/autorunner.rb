@@ -196,8 +196,10 @@ module Test
           o.on("--[no-]priority-mode",
                "Runs some tests based on their priority.") do |priority_mode|
             if priority_mode
+              Priority.enable
               @filters |= [priority_filter]
             else
+              Priority.disable
               @filters -= [priority_filter]
             end
           end
