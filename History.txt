@@ -1,3 +1,14 @@
+=== 2.0.2 / 200X-XX-XX
+
+* XX major enhancements
+
+  * r173: [#22988]
+  * ...
+
+* Thanks
+
+  * ...
+
 === 2.0.1 / 2008-11-09
 
 * 19 major enhancements
