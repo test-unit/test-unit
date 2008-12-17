@@ -17,6 +17,7 @@ require 'test/unit/priority'
 require 'test/unit/testsuite'
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/util/method-owner-finder'
 
 module Test
   module Unit
@@ -192,11 +193,9 @@ module Test
         throw :invalid_test unless respond_to?(test_method_name)
         test_method = method(test_method_name)
         throw :invalid_test if test_method.arity > 0
-        if test_method.respond_to?(:owner)
-          if test_method.owner.class != Module and
-              self.class != test_method.owner
-            throw :invalid_test
-          end
+        owner = Util::MethodOwnerFinder.find(self, test_method_name)
+        if owner.class != Module and self.class != owner
+          throw :invalid_test
         end
         @method_name = test_method_name
         @test_passed = true

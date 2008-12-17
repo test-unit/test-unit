@@ -4,6 +4,7 @@
 
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
 
 module Test
@@ -1003,10 +1004,8 @@ EOM
         end
 
         def fallback_exception_object_equal(expected_object, actual_exception)
-          equal_method = expected_object.method(:==)
-          if !equal_method.respond_to?(:owner) or
-              (equal_method.owner == Kernel or
-               equal_method.owner == Exception)
+          owner = Util::MethodOwnerFinder.find(expected_object, :==)
+          if owner == Kernel or owner == Exception
             expected_object.class == actual_exception.class and
               expected_object.message == actual_exception.message
           else
