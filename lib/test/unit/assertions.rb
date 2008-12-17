@@ -925,10 +925,10 @@ EOM
             inspect_method = @exception.method(:inspect)
             if inspect_method.respond_to?(:owner) and
                 inspect_method.owner == Exception
-              return true
+              true
             else
-              default_inspect = Object.instance_method(:inspect).bind(@exception)
-              default_inspect.call == @exception.inspect
+              default_inspect_method = Exception.instance_method(:inspect)
+              default_inspect_method.bind(@exception).call == @exception.inspect
             end
           end
         end
