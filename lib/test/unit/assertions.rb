@@ -909,9 +909,7 @@ EOM
           end
 
           def inspect
-            inspect_method = @exception.method(:inspect)
-            if inspect_method.respond_to?(:owner) and
-                inspect_method.owner == Exception
+            if default_inspect?
               "#{@exception.class.inspect}(#{@exception.message.inspect})"
             else
               @exception.inspect
@@ -920,6 +918,18 @@ EOM
 
           def method_missing(name, *args, &block)
             @exception.send(name, *args, &block)
+          end
+
+          private
+          def default_inspect?
+            inspect_method = @exception.method(:inspect)
+            if inspect_method.respond_to?(:owner) and
+                inspect_method.owner == Exception
+              return true
+            else
+              default_inspect = Object.instance_method(:inspect).bind(@exception)
+              default_inspect.call == @exception.inspect
+            end
           end
         end
 
