@@ -90,17 +90,14 @@ module Test
         end
 
         def add_fixture_method_name(how, variable_name, method_name)
-          unless self.instance_variable_defined?(variable_name)
-            self.instance_variable_set(variable_name, [])
-          end
-          methods = self.instance_variable_get(variable_name)
+          methods = instance_eval("#{variable_name} ||= []")
 
           if how == :prepend
             methods = [method_name] | methods
           else
             methods = methods | [method_name]
           end
-          self.instance_variable_set(variable_name, methods)
+          instance_variable_set(variable_name, methods)
         end
 
         def registered_methods_variable_name(fixture, order)
@@ -144,15 +141,9 @@ module Test
           interested_ancestors.inject([]) do |result, ancestor|
             if ancestor.is_a?(Class)
               ancestor.class_eval do
-                methods = []
-                unregistered_methods = []
-                if instance_variable_defined?(methods_variable)
-                  methods = instance_variable_get(methods_variable)
-                end
-                if instance_variable_defined?(unregistered_methods_variable)
-                  unregistered_methods =
-                    instance_variable_get(unregistered_methods_variable)
-                end
+                methods = instance_eval("#{methods_variable} ||= []")
+                unregistered_methods =
+                  instance_eval("#{unregistered_methods_variable} ||= []")
                 (result | methods) - unregistered_methods
               end
             else
