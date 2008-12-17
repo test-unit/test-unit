@@ -987,15 +987,20 @@ EOM
 
         def expected_object?(actual_exception)
           @expected_objects.any? do |expected_object|
-            equal_method = expected_object.method(:==)
-            if equal_method.respond_to?(:owner) and
-                (equal_method.owner == Kernel or
-                 equal_method.owner == Exception)
-              expected_object.class == actual_exception.class and
-                expected_object.message == actual_exception.message
-            else
-              expected_object == actual_exception
-            end
+            expected_object == actual_exception or
+              fallback_exception_object_equal(expected_object, actual_exception)
+          end
+        end
+
+        def fallback_exception_object_equal(expected_object, actual_exception)
+          equal_method = expected_object.method(:==)
+          if !equal_method.respond_to?(:owner) or
+              (equal_method.owner == Kernel or
+               equal_method.owner == Exception)
+            expected_object.class == actual_exception.class and
+              expected_object.message == actual_exception.message
+          else
+            false
           end
         end
       end
