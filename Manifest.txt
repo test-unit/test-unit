@@ -41,6 +41,7 @@ lib/test/unit/ui/testrunner.rb
 lib/test/unit/ui/testrunnermediator.rb
 lib/test/unit/ui/testrunnerutilities.rb
 lib/test/unit/util/backtracefilter.rb
+lib/test/unit/util/method-owner-finder.rb
 lib/test/unit/util/observable.rb
 lib/test/unit/util/procwrapper.rb
 lib/test/unit/version.rb
@@ -73,6 +74,7 @@ test/test_testresult.rb
 test/test_testsuite.rb
 test/testunit-test-util.rb
 test/ui/test_testrunmediator.rb
+test/util/test-method-owner-finder.rb
 test/util/test_backtracefilter.rb
 test/util/test_observable.rb
 test/util/test_procwrapper.rb
