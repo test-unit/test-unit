@@ -1,13 +1,21 @@
-=== 2.0.2 / 200X-XX-XX
+=== 2.0.2 / 2008-12-21
 
-* XX major enhancements
+* 2 major enhancements
 
-  * r173: [#22988]
-  * ...
+  * re-support ruby 1.8.5.
+  * improve exception object comparison.
+
+* 3 bug fixes
+
+  * [#22723]: collector fails on anonymous classes
+  * [#22986]: Test names with '?' blow up on Windows
+  * [#22988]: don't create .test-result on non-priority mode.
 
 * Thanks
 
-  * ...
+  * Erik Hollensbe
+  * Daniel Berger
+  * Bill Lear
 
 === 2.0.1 / 2008-11-09
 
