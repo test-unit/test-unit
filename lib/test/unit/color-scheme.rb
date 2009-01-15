@@ -13,7 +13,8 @@ module Test
                             "pending" => Color.new("magenta", :bold => true),
                             "omission" => Color.new("blue", :bold => true),
                             "notification" => Color.new("cyan", :bold => true),
-                            "error" => Color.new("yellow", :bold => true))
+                            "error" => Color.new("yellow", :bold => true) +
+                                       Color.new("black", :foreground => false))
         end
 
         @@schemes = {}
@@ -64,7 +65,7 @@ module Test
 
       private
       def make_color(color_spec)
-        if color_spec.is_a?(Color)
+        if color_spec.is_a?(Color) or color_spec.is_a?(MixColor)
           color_spec
         else
           color_name = nil

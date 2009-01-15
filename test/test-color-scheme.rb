@@ -6,7 +6,8 @@ class TestUnitColorScheme < Test::Unit::TestCase
                    "pending" => color("magenta", :bold => true),
                    "omission" => color("blue", :bold => true),
                    "notification" => color("cyan", :bold => true),
-                   "error" => color("yellow", :bold => true),
+                   "error" => color("yellow", :bold => true) +
+                              color("black", :foreground => false),
                  },
                  Test::Unit::ColorScheme.default.to_hash)
   end
