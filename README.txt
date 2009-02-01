@@ -48,3 +48,4 @@ This software is distributed under the same terms as ruby.
 * Designing Patterns: Suggestions.
 * Erik Hollensbe: Suggestions.
 * Bill Lear: A suggestion.
+* Diego Pettenò: A bug report.
