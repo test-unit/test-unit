@@ -267,7 +267,7 @@ module Test
       def test_re_raise_exception
         test_case = Class.new(TestCase) do
           def test_raise_interrupt
-            raise Interrupt
+            raise Interrupt, "from test"
           end
         end
 
@@ -342,7 +342,7 @@ module Test
         test_case = Class.new(TestCase) do
           class << self
             def startup
-              raise Interrupt
+              raise Interrupt, "from startup"
             end
           end
 
@@ -383,7 +383,7 @@ module Test
         test_case = Class.new(TestCase) do
           class << self
             def shutdown
-              raise Interrupt
+              raise Interrupt, "from shutdown"
             end
           end
 
