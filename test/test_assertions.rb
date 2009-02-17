@@ -1,5 +1,6 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
+#             Copyright (c) 2009 Kouhei Sutou.
 # License:: Ruby license.
 
 require 'test/unit'
@@ -703,10 +704,13 @@ EOM
         check_nothing_fails {
           assert_respond_to("thing", "to_s", "message")
         }
-        check_fails("<0.15>\ngiven as the method name argument to #assert_respond_to must be a Symbol or #respond_to?(:to_str).") {
+        check_fails("<0.15>.kind_of?(Symbol) or\n" +
+                    "<0.15>.respond_to?(:to_str) expected") {
           assert_respond_to("thing", 0.15)
         }
-        check_fails("message.\n<:symbol>\nof type <Symbol>\nexpected to respond_to?<:non_existent>.") {
+        check_fails("message.\n" +
+                    "<:symbol>.respond_to?(:non_existent) expected\n" +
+                    "(Class: <Symbol>)") {
           assert_respond_to(:symbol, :non_existent, "message")
         }
       end
@@ -728,10 +732,15 @@ EOM
         check_fails("message.\n<0.5> and\n<0.4> expected to be within\n<0.05> of each other.") {
           assert_in_delta(0.5, 0.4, 0.05, "message")
         }
-        check_fails(%r{The arguments must respond to to_f; the first float did not\.\n<.+>\nof type <Object>\nexpected to respond_to\?<:to_f>.}) {
-          assert_in_delta(Object.new, 0.4, 0.1)
+        object = Object.new
+        check_fails("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{object.inspect}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") {
+          assert_in_delta(object, 0.4, 0.1)
         }
-        check_fails("The delta should not be negative.\n<-0.1> expected to be\n>=\n<0.0>.") {
+        check_fails("The delta should not be negative.\n" +
+                    "<-0.1> expected to be\n>=\n<0.0>.") {
           assert_in_delta(0.5, 0.4, -0.1, "message")
         }
       end
@@ -973,6 +982,36 @@ EOM
 
         check_fails("!<Test>.const_defined?(<\"Unit\">) expected.") do
           assert_not_const_defined(Test, "Unit")
+        end
+      end
+
+      def test_assert_predicate
+        check_nothing_fails do
+          assert_predicate([], :empty?)
+        end
+
+        check_fails("<[1]>.empty? is true value expected but was\n<false>") do
+          assert_predicate([1], :empty?)
+        end
+
+        check_fails("<[1]>.respond_to?(:nonexistent?) expected\n" +
+                    "(Class: <Array>)") do
+          assert_predicate([1], :nonexistent?)
+        end
+      end
+
+      def test_assert_not_predicate
+        check_nothing_fails do
+          assert_not_predicate([1], :empty?)
+        end
+
+        check_fails("<[]>.empty? is false value expected but was\n<true>") do
+          assert_not_predicate([], :empty?)
+        end
+
+        check_fails("<[]>.respond_to?(:nonexistent?) expected\n" +
+                    "(Class: <Array>)") do
+          assert_not_predicate([], :nonexistent?)
         end
       end
 

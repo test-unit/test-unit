@@ -1,5 +1,6 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
+#             Copyright (c) 2009 Kouhei Sutou.
 # License:: Ruby license.
 
 require 'test/unit/assertionfailederror'
@@ -209,17 +210,18 @@ EOT
       public
       def assert_respond_to(object, method, message="")
         _wrap_assertion do
-          full_message = build_message(nil, "<?>\ngiven as the method name argument to #assert_respond_to must be a Symbol or #respond_to\\?(:to_str).", method)
-
+          full_message = build_message(message,
+                                       "<?>.kind_of\\?(Symbol) or\n" +
+                                       "<?>.respond_to\\?(:to_str) expected",
+                                       method, method)
           assert_block(full_message) do
-            method.kind_of?(Symbol) || method.respond_to?(:to_str)
+            method.kind_of?(Symbol) or method.respond_to?(:to_str)
           end
-          full_message = build_message(message, <<EOT, object, object.class, method)
-<?>
-of type <?>
-expected to respond_to\\?<?>.
-EOT
-          assert_block(full_message) { object.respond_to?(method) }
+          full_message = build_message(message,
+                                       "<?>.respond_to\\?(?) expected\n" +
+                                       "(Class: <?>)",
+                                       object, method, object.class)
+          assert_block(full_message) {object.respond_to?(method)}
         end
       end
 
@@ -689,6 +691,50 @@ EOT
                                        object, constant_name)
           assert_block(full_message) do
             !object.const_defined?(constant_name)
+          end
+        end
+      end
+
+      ##
+      # Passes if +object+.+predicate+
+      #
+      # Example:
+      #   assert_predicate([], :empty?)  # -> pass
+      #   assert_predicate([1], :empty?) # -> fail
+      def assert_predicate(object, predicate, message=nil)
+        _wrap_assertion do
+          assert_respond_to(object, predicate, message)
+          actual = object.send(predicate)
+          full_message = build_message(message,
+                                       "<?>.? is true value expected but was\n" +
+                                       "<?>",
+                                       object,
+                                       AssertionMessage.literal(predicate),
+                                       actual)
+          assert_block(full_message) do
+            actual
+          end
+        end
+      end
+
+      ##
+      # Passes if +object+.+predicate+
+      #
+      # Example:
+      #   assert_not_predicate([1], :empty?) # -> pass
+      #   assert_not_predicate([], :empty?)  # -> fail
+      def assert_not_predicate(object, predicate, message=nil)
+        _wrap_assertion do
+          assert_respond_to(object, predicate, message)
+          actual = object.send(predicate)
+          full_message = build_message(message,
+                                       "<?>.? is false value expected but was\n" +
+                                       "<?>",
+                                       object,
+                                       AssertionMessage.literal(predicate),
+                                       actual)
+          assert_block(full_message) do
+            not actual
           end
         end
       end
