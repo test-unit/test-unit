@@ -447,8 +447,17 @@ EOM
         check_fails(%Q{failed assert_instance_of.\n<"string"> expected to be an instance of\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string", "failed assert_instance_of")
         }
+
+        check_nothing_fails do
+          assert_instance_of([Fixnum, NilClass], 100)
+        end
+        check_fails(%Q{<"string"> expected to be an instance of\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+          assert_instance_of([Fixnum, NilClass], "string")
+        end
+          assert_instance_of([Numeric, NilClass], 100)
+        end
       end
-      
+
       def test_assert_nil
         check_nothing_fails {
           assert_nil(nil)
@@ -487,17 +496,17 @@ EOM
         check_nothing_fails {
           assert_kind_of(Comparable, 1)
         }
-        check_fails(%Q{<"string">\nexpected to be kind_of?\n<Class> but was\n<String>.}) {
+        check_fails(%Q{<"string"> expected to be kind_of?\n<Class> but was\n<String>.}) {
           assert_kind_of(Class, "string")
         }
-        check_fails(%Q{failed assert_kind_of.\n<"string">\nexpected to be kind_of?\n<Class> but was\n<String>.}) {
+        check_fails(%Q{failed assert_kind_of.\n<"string"> expected to be kind_of?\n<Class> but was\n<String>.}) {
           assert_kind_of(Class, "string", "failed assert_kind_of")
         }
 
         check_nothing_fails do
           assert_kind_of([Fixnum, NilClass], 100)
         end
-        check_fails(%Q{<"string">\nexpected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+        check_fails(%Q{<"string"> expected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_kind_of([Fixnum, NilClass], "string")
         end
       end

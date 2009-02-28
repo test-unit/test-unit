@@ -154,21 +154,43 @@ EOT
 
 
       ##
-      # Passes if +object+ .instance_of? +klass+
+      # Passes if +object+.instance_of?(+klass+). When +klass+ is
+      # an array of classes, it passes if any class
+      # satisfies +object.instance_of?(class).
       #
       # Example:
-      #   assert_instance_of String, 'foo'
+      #   assert_instance_of(String, 'foo')            # -> pass
+      #   assert_instance_of([Fixnum, NilClass], 100)  # -> pass
+      #   assert_instance_of([Numeric, NilClass], 100) # -> fail
 
       public
       def assert_instance_of(klass, object, message="")
         _wrap_assertion do
-          assert_equal(Class, klass.class, "assert_instance_of takes a Class as its first argument")
-          full_message = build_message(message, <<EOT, object, klass, object.class)
+          klasses = nil
+          klasses = klass if klass.is_a?(Array)
+          assert_block("The first parameter to assert_instance_of should be " +
+                       "a Class or an Array of Class.") do
+            if klasses
+              klasses.all? {|k| k.is_a?(Class)}
+            else
+              klass.is_a?(Class)
+            end
+          end
+          klass_message = AssertionMessage.maybe_container(klass) do |value|
+            "<#{value}>"
+          end
+          full_message = build_message(message, <<EOT, object, klass_message, object.class)
 <?> expected to be an instance of
-<?> but was
+? but was
 <?>.
 EOT
-          assert_block(full_message){object.instance_of?(klass)}
+          assert_block(full_message) do
+            if klasses
+              klasses.any? {|k| object.instance_of?(k)}
+            else
+              object.instance_of?(klass)
+            end
+          end
         end
       end
 
@@ -189,7 +211,7 @@ EOT
       ##
       # Passes if +object+.kind_of?(+klass+). When +klass+ is
       # an array of classes or modules, it passes if any
-      # class or module satisfy +object.kind_of?(class_or_module).
+      # class or module satisfies +object.kind_of?(class_or_module).
       #
       # Example:
       #   assert_kind_of(Object, 'foo')                # -> pass
@@ -200,31 +222,20 @@ EOT
       def assert_kind_of(klass, object, message="")
         _wrap_assertion do
           klasses = nil
-          klasses = klass if klass.respond_to?(:any?)
-          if klasses
-            assert_block("The first parameter to assert_kind_of should not " +
-                         "have any object that isn't a kind_of Module.") do
+          klasses = klass if klass.is_a?(Array)
+          assert_block("The first parameter to assert_kind_of should be " +
+                       "a kind_of Module or an Array of a kind_of Module.") do
+            if klasses
               klasses.all? {|k| k.kind_of?(Module)}
-            end
-          else
-            assert_block("The first parameter to assert_kind_of should be " +
-                         "a kind_of Module.") do
+            else
               klass.kind_of?(Module)
             end
           end
-          klass_message = AssertionMessage.delayed_literal do
-            if klasses
-              inspected_klasses = klasses.collect do |k|
-                "<#{AssertionMessage.convert(k)}>"
-              end
-              "[#{inspected_klasses.join(', ')}]"
-            else
-              "<#{AssertionMessage.convert(klass)}>"
-            end
+          klass_message = AssertionMessage.maybe_container(klass) do |value|
+            "<#{value}>"
           end
           full_message = build_message(message,
-                                       "<?>\n" +
-                                       "expected to be kind_of\\?\n" +
+                                       "<?> expected to be kind_of\\?\n" +
                                        "? but was\n" +
                                        "<?>.",
                                        object,
@@ -865,6 +876,10 @@ EOT
             DelayedLiteral.new(block)
           end
 
+          def maybe_container(value, &formatter)
+            MaybeContainer.new(value, &formatter)
+          end
+
           def delayed_diff(from, to)
             delayed_literal do
               if !from.is_a?(String) or !to.is_a?(String)
@@ -918,7 +933,7 @@ EOM
           def initialize(value)
             @value = value
           end
-          
+
           def inspect
             @value.to_s
           end
@@ -928,9 +943,27 @@ EOM
           def initialize(value)
             @value = value
           end
-          
+
           def inspect
             @value.call.to_s
+          end
+        end
+
+        class MaybeContainer
+          def initialize(value, &formatter)
+            @value = value
+            @formatter = formatter
+          end
+
+          def inspect
+            if @value.is_a?(Array)
+              values = @value.collect do |value|
+                @formatter.call(AssertionMessage.convert(value))
+              end
+              "[#{values.join(', ')}]"
+            else
+              @formatter.call(AssertionMessage.convert(@value))
+            end
           end
         end
 
