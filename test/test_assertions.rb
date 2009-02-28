@@ -493,8 +493,15 @@ EOM
         check_fails(%Q{failed assert_kind_of.\n<"string">\nexpected to be kind_of?\n<Class> but was\n<String>.}) {
           assert_kind_of(Class, "string", "failed assert_kind_of")
         }
+
+        check_nothing_fails do
+          assert_kind_of([Fixnum, NilClass], 100)
+        end
+        check_fails(%Q{<"string">\nexpected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+          assert_kind_of([Fixnum, NilClass], "string")
+        end
       end
-      
+
       def test_assert_match
         check_nothing_fails {
           assert_match(/strin./, "string")

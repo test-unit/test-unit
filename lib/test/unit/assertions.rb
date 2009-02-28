@@ -187,17 +187,56 @@ EOT
       end
 
       ##
-      # Passes if +object+ .kind_of? +klass+
+      # Passes if +object+.kind_of?(+klass+). When +klass+ is
+      # an array of classes or modules, it passes if any
+      # class or module satisfy +object.kind_of?(class_or_module).
       #
       # Example:
-      #   assert_kind_of Object, 'foo'
+      #   assert_kind_of(Object, 'foo')                # -> pass
+      #   assert_kind_of([Fixnum, NilClass], 100)      # -> pass
+      #   assert_kind_of([Fixnum, NilClass], "string") # -> fail
 
       public
       def assert_kind_of(klass, object, message="")
         _wrap_assertion do
-          assert(klass.kind_of?(Module), "The first parameter to assert_kind_of should be a kind_of Module.")
-          full_message = build_message(message, "<?>\nexpected to be kind_of\\?\n<?> but was\n<?>.", object, klass, object.class)
-          assert_block(full_message){object.kind_of?(klass)}
+          klasses = nil
+          klasses = klass if klass.respond_to?(:any?)
+          if klasses
+            assert_block("The first parameter to assert_kind_of should not " +
+                         "have any object that isn't a kind_of Module.") do
+              klasses.all? {|k| k.kind_of?(Module)}
+            end
+          else
+            assert_block("The first parameter to assert_kind_of should be " +
+                         "a kind_of Module.") do
+              klass.kind_of?(Module)
+            end
+          end
+          klass_message = AssertionMessage.delayed_literal do
+            if klasses
+              inspected_klasses = klasses.collect do |k|
+                "<#{AssertionMessage.convert(k)}>"
+              end
+              "[#{inspected_klasses.join(', ')}]"
+            else
+              "<#{AssertionMessage.convert(klass)}>"
+            end
+          end
+          full_message = build_message(message,
+                                       "<?>\n" +
+                                       "expected to be kind_of\\?\n" +
+                                       "? but was\n" +
+                                       "<?>.",
+                                       object,
+                                       klass_message,
+                                       object.class)
+          assert_block(full_message) do
+            if klasses
+              klasses.any? {|k| object.kind_of?(k)}
+            else
+              object.kind_of?(klass)
+            end
+          end
         end
       end
 
