@@ -880,6 +880,15 @@ EOT
             MaybeContainer.new(value, &formatter)
           end
 
+          MAX_DIFF_TARGET_STRING_SIZE = 300
+          def diff_target_string?(string)
+            if string.respond_to?(:bytesize)
+              string.bytesize < MAX_DIFF_TARGET_STRING_SIZE
+            else
+              string.size < MAX_DIFF_TARGET_STRING_SIZE
+            end
+          end
+
           def delayed_diff(from, to)
             delayed_literal do
               if !from.is_a?(String) or !to.is_a?(String)
@@ -887,7 +896,9 @@ EOT
                 to = convert(to)
               end
 
-              diff = Diff.readable(from, to)
+              diff = nil
+              diff = "" if !diff_target_string?(from) or !diff_target_string?(to)
+              diff ||= Diff.readable(from, to)
               if /^[-+]/ !~ diff
                 diff = ""
               elsif /^[ ?]/ =~ diff or /(?:.*\n){2,}/ =~ diff
