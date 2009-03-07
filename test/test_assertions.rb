@@ -454,6 +454,7 @@ EOM
         check_fails(%Q{<"string"> expected to be an instance of\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_instance_of([Fixnum, NilClass], "string")
         end
+        check_fails(%Q{<100> expected to be an instance of\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
           assert_instance_of([Numeric, NilClass], 100)
         end
       end
