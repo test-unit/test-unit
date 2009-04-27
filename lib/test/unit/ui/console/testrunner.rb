@@ -185,10 +185,13 @@ module Test
 
           def guess_color_availability
             return false unless @output.tty?
-            term = ENV["TERM"]
-            return true if term and (/term\z/ =~ term or term == "screen")
-            return true if ENV["EMACS"] == "t"
-            false
+            case ENV["TERM"]
+            when /term(?:-color)?\z/, "screen"
+              true
+            else
+              return true if ENV["EMACS"] == "t"
+              false
+            end
           end
 
           def guess_progress_row_max
