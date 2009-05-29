@@ -203,6 +203,13 @@ module Test
             end
           end
 
+          o.on("--default-priority=PRIORITY",
+               Priority.available_values,
+               "Uses PRIORITY as default priority",
+               "(#{keyword_display(Priority.available_values)})") do |priority|
+            Priority.default = priority
+          end
+
           o.on('-I', "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
                "Appends directory list to $LOAD_PATH.") do |dirs|
             $LOAD_PATH.concat(dirs.split(File::PATH_SEPARATOR))
@@ -251,10 +258,20 @@ module Test
       end
 
       def keyword_display(keywords)
-        keywords.collect do |keyword, _|
+        keywords = keywords.collect do |keyword, _|
           keyword.to_s
-        end.uniq.sort.collect do |keyword|
-          keyword.sub(/^(.)([A-Za-z]+)(?=\w*$)/, '\\1[\\2]')
+        end.uniq.sort
+
+        i = 0
+        keywords.collect do |keyword|
+          if (i > 0 and keyword[0] == keywords[i - 1][0]) or
+              ((i < keywords.size - 1) and (keyword[0] == keywords[i + 1][0]))
+            n = 2
+          else
+            n = 1
+          end
+          i += 1
+          keyword.sub(/^(.{#{n}})([A-Za-z]+)(?=\w*$)/, '\\1[\\2]')
         end.join(", ")
       end
 

@@ -26,6 +26,19 @@ module Test
         def disable
           @@enabled = false
         end
+
+        @@default = :normal
+        def default
+          @@default || :normal
+        end
+
+        def default=(default)
+          @@default = default
+        end
+
+        def available_values
+          Checker.available_priorities
+        end
       end
 
       class Checker
@@ -36,12 +49,19 @@ module Test
           end
 
           def need_to_run?(test)
-            priority = test[:priority] || :normal
+            priority = test[:priority] || Priority.default
             if have_priority?(priority)
               send(priority_check_method_name(priority), test)
             else
               true
             end
+          end
+
+          def available_priorities
+            methods(false).collect do |name|
+              /\Arun_priority_(.+)\?\z/ =~ name.to_s
+              $1
+            end.compact
           end
 
           def run_priority_must?(test)
