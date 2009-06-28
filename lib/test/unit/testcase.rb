@@ -225,7 +225,7 @@ module Test
           result.add_run
           yield(FINISHED, name)
         ensure
-          @_result = nil
+          # @_result = nil # For test-spec's after_all :<
         end
       end
 
