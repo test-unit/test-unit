@@ -1,6 +1,6 @@
 === 2.0.3 / 2009-07-17
 
-* 5 major enhancements
+* 6 major enhancements
   * add assert_predicate.
   * add assert_not_predicate.
   * [#24210] assert_kind_of supports an array of classes or modules.
