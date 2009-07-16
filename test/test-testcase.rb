@@ -6,7 +6,7 @@ require 'test/unit'
 
 module Test
   module Unit
-    class TC_TestCase < TestCase
+    class TestTestCase < TestCase
       def test_creation
         tc = Class.new(TestCase) do
           def test_with_arguments(arg1, arg2)
@@ -468,10 +468,39 @@ module Test
         end
       end
 
+      def test_defined_order
+        keep_test_order do
+          test_case = Class.new(Test::Unit::TestCase) do
+            def test_z
+            end
+
+            def test_1
+            end
+
+            def test_a
+            end
+          end
+
+          assert_equal(["test_1", "test_a", "test_z"],
+                       test_case.suite.tests.collect {|test| test.method_name})
+
+          test_case.test_order = :defined
+          assert_equal(["test_z", "test_1", "test_a"],
+                       test_case.suite.tests.collect {|test| test.method_name})
+        end
+      end
+
       private
       def check(message, passed)
         add_assertion
         raise AssertionFailedError.new(message) unless passed
+      end
+
+      def keep_test_order
+        order = TestCase.test_order
+        yield
+      ensure
+        TestCase.test_order = order
       end
     end
   end
