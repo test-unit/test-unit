@@ -7,6 +7,7 @@
     [Daniel Berger]
   * assert_instance_of supports an array of classes or modules.
   * add --default-priority option.
+  * [#26627] add --order option. [Daniel Berger]
 
 * 4 minor enhancements
   * use yellow foreground + black background for error.
