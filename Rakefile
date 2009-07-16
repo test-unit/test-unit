@@ -1,12 +1,17 @@
 # -*- ruby -*-
 
 require 'rubygems'
+gem 'rdoc'
 require 'hoe'
 require './lib/test/unit/version.rb'
 
+ENV["NODOT"] = "yes"
+
 version = Test::Unit::VERSION
 ENV["VERSION"] = version
-Hoe.new('test-unit', version) do |p|
+Hoe.spec('test-unit') do |p|
+  Hoe::Test::SUPPORTED_TEST_FRAMEWORKS[:testunit2] = "test/run-test.rb"
+  p.version = version
   p.developer('Kouhei Sutou', 'kou@cozmixng.org')
   p.developer('Ryan Davis', 'ryand-ruby@zenspider.com')
 
