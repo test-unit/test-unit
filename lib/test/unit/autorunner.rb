@@ -227,6 +227,12 @@ module Test
             load_config(file)
           end
 
+          o.on("--order=ORDER", TestCase::AVAILABLE_ORDERS,
+               "Run tests in a test case in ORDER order.",
+               "(#{keyword_display(TestCase::AVAILABLE_ORDERS)})") do |order|
+            TestCase.test_order = order
+          end
+
           ADDITIONAL_OPTIONS.each do |option_builder|
             option_builder.call(self, o)
           end

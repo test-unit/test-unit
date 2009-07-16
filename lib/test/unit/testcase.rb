@@ -1,7 +1,9 @@
 #--
 #
 # Author:: Nathaniel Talbott.
-# Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
+# Copyright::
+#   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
+#   * Copyright (c) 2008-2009 Kouhei Sutou <tt><kou@clear-code.com></tt>
 # License:: Ruby license.
 
 require 'test/unit/attribute'
@@ -60,14 +62,14 @@ module Test
     #   end
     #
     # Here is a call order:
-    #  * startup
-    #  * setup
-    #  * test_my_method1
-    #  * teardown
-    #  * setup
-    #  * test_my_method2
-    #  * teardown
-    #  * shutdown
+    # * startup
+    # * setup
+    # * test_my_method1
+    # * teardown
+    # * setup
+    # * test_my_method2
+    # * teardown
+    # * shutdown
     class TestCase
       include Attribute
       include Fixture
@@ -81,24 +83,29 @@ module Test
       include Assertions
       include Util::BacktraceFilter
 
-      STARTED = name + "::STARTED"
-      FINISHED = name + "::FINISHED"
+      STARTED = name + "::STARTED" # :nodoc:
+      FINISHED = name + "::FINISHED" # :nodoc:
 
-      DESCENDANTS = []
+      DESCENDANTS = [] # :nodoc:
+      AVAILABLE_ORDERS = [:alphabetic, :random, :defined] # :nodoc:
 
       class << self
-        def inherited(sub_class)
+        def inherited(sub_class) # :nodoc:
           DESCENDANTS << sub_class
+        end
+
+        @@added_methods = []
+        def method_added(name) # :nodoc:
+          super
+          @@added_methods << name.to_s
         end
 
         # Rolls up all of the test* methods in the fixture into
         # one suite, creating a new instance of the fixture for
         # each method.
         def suite
-          method_names = public_instance_methods(true).collect {|name| name.to_s}
-          tests = method_names.delete_if {|method_name| method_name !~ /^test./}
           suite = TestSuite.new(name, self)
-          tests.sort.each do |test|
+          collect_test_names.each do |test|
             catch(:invalid_test) do
               suite << new(test)
             end
@@ -137,11 +144,11 @@ module Test
         #   end
         #
         # Here is a call order:
-        #   * startup
-        #   * setup
-        #   * test_my_class1 (or test_my_class2)
-        #   * setup
-        #   * test_my_class2 (or test_my_class1)
+        # * startup
+        # * setup
+        # * test_my_class1 (or test_my_class2)
+        # * setup
+        # * test_my_class2 (or test_my_class1)
         #
         # Note that you should not assume test order. Tests
         # should be worked in any order.
@@ -173,16 +180,74 @@ module Test
         #   end
         #
         # Here is a call order:
-        #   * test_my_class1 (or test_my_class2)
-        #   * teardown
-        #   * test_my_class2 (or test_my_class1)
-        #   * teardown
-        #   * shutdown
+        # * test_my_class1 (or test_my_class2)
+        # * teardown
+        # * test_my_class2 (or test_my_class1)
+        # * teardown
+        # * shutdown
         #
         # Note that you should not assume test order. Tests
         # should be worked in any order.
         def shutdown
         end
+
+        @@test_order = AVAILABLE_ORDERS.first
+
+        # Returns the current test order. This returns
+        # +:alphabetic+ by default.
+        def test_order
+          @@test_order
+        end
+
+        # Sets the current test order.
+        #
+        # Here are the available _order_:
+        # [:alphabetic]
+        #   Default. Tests are sorted in alphabetic order.
+        # [:random]
+        #   Tests are sorted in random order.
+        # [:defined]
+        #   Tests are sorted in defined order.
+        def test_order=(order)
+          @@test_order = order
+        end
+
+        # :stopdoc:
+        private
+        def collect_test_names
+          method_names = public_instance_methods(true).collect do |name|
+            name.to_s
+          end
+          test_names = method_names.find_all do |method_name|
+            method_name =~ /^test./
+          end
+          send("sort_test_names_in_#{test_order}_order", test_names)
+        end
+
+        def sort_test_names_in_alphabetic_order(test_names)
+          test_names.sort
+        end
+
+        def sort_test_names_in_random_order(test_names)
+          test_names.sort_by {rand(test_names.size)}
+        end
+
+        def sort_test_names_in_defined_order(test_names)
+          test_names.sort do |test1, test2|
+            test1_defined_order = @@added_methods.index(test1)
+            test2_defined_order = @@added_methods.index(test2)
+            if test1_defined_order and test2_defined_order
+              test1_defined_order <=> test2_defined_order
+            elsif test1_defined_order
+              1
+            elsif test2_defined_order
+              -1
+            else
+              test1 <=> test2
+            end
+          end
+        end
+        # :startdoc:
       end
 
       attr_reader :method_name
@@ -255,10 +320,10 @@ module Test
       #   end
       #
       # Here is a call order:
-      #   * setup
-      #   * my_setup1
-      #   * my_setup2
-      #   * test_my_class
+      # * setup
+      # * my_setup1
+      # * my_setup2
+      # * test_my_class
       def setup
       end
 
@@ -288,13 +353,13 @@ module Test
       #   end
       #
       # Here is a call order:
-      #   * test_my_class
-      #   * my_teardown2
-      #   * my_teardown1
-      #   * teardown
+      # * test_my_class
+      # * my_teardown2
+      # * my_teardown1
+      # * teardown
       def teardown
       end
-      
+
       def default_test
         flunk("No tests were specified")
       end
