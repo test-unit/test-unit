@@ -428,7 +428,7 @@ EOM
 
         different_error_class = Class.new(StandardError)
         message = <<-EOM
-<\#<Class:0x[a-f\\d]+>\\("Error"\\)> exception expected but was
+<\#<Class:[xa-f\\d]+>\\("Error"\\)> exception expected but was
 Class: <RuntimeError>
 Message: <"Error">
 EOM
