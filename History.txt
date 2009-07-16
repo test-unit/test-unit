@@ -1,3 +1,28 @@
+=== 2.0.3 / 2009-07-17
+
+* 5 major enhancements
+  * add assert_predicate.
+  * add assert_not_predicate.
+  * [#24210] assert_kind_of supports an array of classes or modules.
+    [Daniel Berger]
+  * assert_instance_of supports an array of classes or modules.
+  * add --default-priority option.
+
+* 4 minor enhancements
+  * use yellow foreground + black background for error.
+  * don't show diff for long string.
+  * accept "*term-color" TERM environment as colorizable terminal.
+    (e.g. Apple's Terminal)
+  * [#26268] add a workaround for test-spec's after_all. [Angelo Lakra]
+
+* 1 bug fix
+  * [#23586] re-support ruby 1.9.1. [Diego Pettenò]
+
+* Thanks
+  * Diego Pettenò
+  * Daniel Berger
+  * Angelo Lakra
+
 === 2.0.2 / 2008-12-21
 
 * 2 major enhancements
