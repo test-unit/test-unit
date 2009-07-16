@@ -66,10 +66,10 @@ test/test-notification.rb
 test/test-omission.rb
 test/test-pending.rb
 test/test-priority.rb
+test/test-testcase.rb
 test/test_assertions.rb
 test/test_error.rb
 test/test_failure.rb
-test/test_testcase.rb
 test/test_testresult.rb
 test/test_testsuite.rb
 test/testunit-test-util.rb
