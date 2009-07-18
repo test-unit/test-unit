@@ -1,4 +1,4 @@
-=== 2.0.3 / 2009-07-17
+=== 2.0.3 / 2009-07-19
 
 * 6 major enhancements
   * add assert_predicate.
