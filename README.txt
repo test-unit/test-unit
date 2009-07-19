@@ -7,7 +7,7 @@
 Test::Unit 2.x - Improved version of Test::Unit bundled in
 Ruby 1.8.x.
 
-Ruby 1.9.x bundles miniunit not Test::Unit. Test::Unit
+Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
 bundled in Ruby 1.8.x had not been improved but unbundled
 Test::Unit (Test::Unit 2.x) will be improved actively.
 
