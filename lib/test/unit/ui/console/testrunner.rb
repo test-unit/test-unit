@@ -1,7 +1,9 @@
 #--
 #
 # Author:: Nathaniel Talbott.
-# Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
+# Copyright::
+#   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
+#   * Copyright (c) 2008-2009 Kouhei Sutou <kou@clear-code.com>
 # License:: Ruby license.
 
 require 'test/unit/color-scheme'
@@ -36,6 +38,9 @@ module Test
             @progress_row_max = @options[:progress_row_max]
             @progress_row_max ||= guess_progress_row_max
             @already_outputted = false
+            @n_successes = 0
+            @indent = 0
+            @top_level = true
             @faults = []
           end
 
@@ -68,6 +73,8 @@ module Test
             @mediator.add_listener(TestRunnerMediator::FINISHED, &method(:finished))
             @mediator.add_listener(TestCase::STARTED, &method(:test_started))
             @mediator.add_listener(TestCase::FINISHED, &method(:test_finished))
+            @mediator.add_listener(TestSuite::STARTED, &method(:test_suite_started))
+            @mediator.add_listener(TestSuite::FINISHED, &method(:test_suite_finished))
           end
           
           def start_mediator
@@ -91,8 +98,6 @@ module Test
 
           def finished(elapsed_time)
             nl if output?(NORMAL) and !output?(VERBOSE)
-            nl
-            output("Finished in #{elapsed_time} seconds.")
             @faults.each_with_index do |fault, index|
               nl
               output_single("%3d) " % (index + 1))
@@ -101,25 +106,65 @@ module Test
               output(detail)
             end
             nl
+            output("Finished in #{elapsed_time} seconds.")
+            nl
             output(@result, result_color)
+            n_tests = @result.run_count
+            if n_tests.zero?
+              pass_percentage = 0
+            else
+              pass_percentage = 100.0 * (@n_successes / n_tests.to_f)
+            end
+            output("%g%% passed" % pass_percentage, result_color)
           end
 
           def format_fault(fault)
             fault.long_display
           end
-          
+
           def test_started(name)
-            output_single(name + ": ", nil, VERBOSE)
+            name = name.sub(/\(.+?\)\z/, '')
+            output_single("#{indent}#{name}: ", nil, VERBOSE)
           end
-          
+
           def test_finished(name)
             unless @already_outputted
+              @n_successes += 1
               output_progress(".", color("success"))
             end
             nl(VERBOSE)
             @already_outputted = false
           end
-          
+
+          def test_suite_started(name)
+            if @top_level
+              @top_level = false
+              return
+            end
+
+            output_single(indent, nil, VERBOSE)
+            if /\A[A-Z]/ =~ name
+              _color = color("case")
+            else
+              _color = color("suite")
+            end
+            output_single(name, _color, VERBOSE)
+            output(": ", nil, VERBOSE)
+            @indent += 2
+          end
+
+          def test_suite_finished(name)
+            @indent -= 2
+          end
+
+          def indent
+            if output?(VERBOSE)
+              " " * @indent
+            else
+              ""
+            end
+          end
+
           def nl(level=NORMAL)
             output("", nil, level)
           end

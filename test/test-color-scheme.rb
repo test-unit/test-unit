@@ -8,6 +8,10 @@ class TestUnitColorScheme < Test::Unit::TestCase
                    "notification" => color("cyan", :bold => true),
                    "error" => color("yellow", :bold => true) +
                               color("black", :foreground => false),
+                   "case" => color("white", :bold => true) +
+                             color("blue", :foreground => false),
+                   "suite" => color("white", :bold => true) +
+                              color("green", :foreground => false),
                  },
                  Test::Unit::ColorScheme.default.to_hash)
   end

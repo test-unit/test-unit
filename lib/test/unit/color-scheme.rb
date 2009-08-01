@@ -14,7 +14,11 @@ module Test
                             "omission" => Color.new("blue", :bold => true),
                             "notification" => Color.new("cyan", :bold => true),
                             "error" => Color.new("yellow", :bold => true) +
-                                       Color.new("black", :foreground => false))
+                                       Color.new("black", :foreground => false),
+                            "case" => Color.new("white", :bold => true) +
+                                       Color.new("blue", :foreground => false),
+                            "suite" => Color.new("white", :bold => true) +
+                                       Color.new("green", :foreground => false))
         end
 
         @@schemes = {}
