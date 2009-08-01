@@ -102,15 +102,23 @@ module Test
         @to_run = []
         @color_scheme = ColorScheme.default
         @runner_options = {}
+        @default_arguments = []
         @workdir = nil
-        default_config_file = "test-unit.yml"
-        load_config(default_config_file) if File.exist?(default_config_file)
+        config_file = "test-unit.yml"
+        if File.exist?(config_file)
+          load_config(config_file)
+        else
+          global_config_file = File.expand_path("~/test-unit.xml")
+          load_config(global_config_file) if File.exist?(global_config_file)
+        end
         yield(self) if block_given?
       end
 
       def process_args(args = ARGV)
+        default_arguments = @default_arguments.dup
         begin
-          options.order!(args) {|arg| @to_run << arg}
+          @default_arguments.concat(args)
+          options.order!(@default_arguments) {|arg| @to_run << arg}
         rescue OptionParser::ParseError => e
           puts e
           puts options
@@ -119,6 +127,8 @@ module Test
           @filters << proc{false} unless(@filters.empty?)
         end
         not @to_run.empty?
+      ensure
+        @default_arguments = default_arguments
       end
 
       def options
@@ -304,7 +314,11 @@ module Test
         (config["#{runner_name}_options"] || {}).each do |key, value|
           key = key.to_sym
           value = ColorScheme[value] if key == :color_scheme
-          runner_options[key.to_sym] = value
+          if key == :arguments
+            @default_arguments.concat(value.split)
+          else
+            runner_options[key.to_sym] = value
+          end
         end
         @runner_options = @runner_options.merge(runner_options)
       end
