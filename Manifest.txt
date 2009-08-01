@@ -31,12 +31,14 @@ lib/test/unit/pending.rb
 lib/test/unit/priority.rb
 lib/test/unit/runner/console.rb
 lib/test/unit/runner/emacs.rb
+lib/test/unit/runner/tap.rb
 lib/test/unit/testcase.rb
 lib/test/unit/testresult.rb
 lib/test/unit/testsuite.rb
 lib/test/unit/ui/console/outputlevel.rb
 lib/test/unit/ui/console/testrunner.rb
 lib/test/unit/ui/emacs/testrunner.rb
+lib/test/unit/ui/tap/testrunner.rb
 lib/test/unit/ui/testrunner.rb
 lib/test/unit/ui/testrunnermediator.rb
 lib/test/unit/ui/testrunnerutilities.rb
