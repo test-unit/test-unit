@@ -341,3 +341,4 @@ end
 
 require 'test/unit/runner/console'
 require 'test/unit/runner/emacs'
+require 'test/unit/runner/tap'
