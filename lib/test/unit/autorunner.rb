@@ -108,7 +108,7 @@ module Test
         if File.exist?(config_file)
           load_config(config_file)
         else
-          global_config_file = File.expand_path("~/test-unit.xml")
+          global_config_file = File.expand_path("~/.test-unit.xml")
           load_config(global_config_file) if File.exist?(global_config_file)
         end
         yield(self) if block_given?
