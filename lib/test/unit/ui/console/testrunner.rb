@@ -123,8 +123,15 @@ module Test
           end
 
           def test_started(name)
+            return unless output?(VERBOSE)
+
             name = name.sub(/\(.+?\)\z/, '')
-            output_single("#{indent}#{name}: ", nil, VERBOSE)
+            right_space = 8 * 2
+            left_space = @progress_row_max - right_space
+            left_space = left_space - indent.size - name.size
+            tab_stop = "\t" * ((left_space - 1) / 8)
+            output_single("#{indent}#{name}:#{tab_stop}", nil, VERBOSE)
+            @test_start = Time.now
           end
 
           def test_finished(name)
@@ -132,8 +139,11 @@ module Test
               @n_successes += 1
               output_progress(".", color("success"))
             end
-            nl(VERBOSE)
             @already_outputted = false
+
+            return unless output?(VERBOSE)
+
+            output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
           end
 
           def test_suite_started(name)
