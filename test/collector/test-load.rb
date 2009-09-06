@@ -240,11 +240,7 @@ EOT
                      [:test, {:name => "test1_2"}]]],
                    @test_case1.to_s)
 
-    assert_collect([:suite, {:name => @no_load_sub_test_case5.basename.to_s},
-                    [:suite, {:name => _test_case_name("NoLoadSubTestCase5")},
-                     [:test, {:name => "test5_1"}],
-                     [:test, {:name => "test5_2"}]]],
-                   @no_load_sub_test_case5.to_s)
+    assert_collect(nil, @no_load_sub_test_case5.to_s)
   end
 
   def test_nil_pattern

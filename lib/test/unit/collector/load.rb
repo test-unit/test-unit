@@ -76,7 +76,9 @@ module Test
               sub_test_suites << sub_test_suite unless sub_test_suite.empty?
             end
           else
-            collect_file(path, sub_test_suites, already_gathered)
+            unless excluded_file?(path.basename.to_s)
+              collect_file(path, sub_test_suites, already_gathered)
+            end
           end
 
           test_suite = TestSuite.new(path.basename.to_s)
