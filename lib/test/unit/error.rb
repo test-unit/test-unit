@@ -69,18 +69,20 @@ module Test
         end
       end
 
+      NOT_PASS_THROUGH_EXCEPTIONS = []
       PASS_THROUGH_EXCEPTIONS = [NoMemoryError, SignalException, Interrupt,
                                  SystemExit]
       private
       def handle_all_exception(exception)
         case exception
+        when *NOT_PASS_THROUGH_EXCEPTIONS
         when *PASS_THROUGH_EXCEPTIONS
-          false
-        else
-          problem_occurred
-          add_error(exception)
-          true
+          return false
         end
+
+        problem_occurred
+        add_error(exception)
+        true
       end
 
       def add_error(exception)
