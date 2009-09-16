@@ -880,7 +880,7 @@ EOT
             MaybeContainer.new(value, &formatter)
           end
 
-          MAX_DIFF_TARGET_STRING_SIZE = 300
+          MAX_DIFF_TARGET_STRING_SIZE = 1000
           def diff_target_string?(string)
             if string.respond_to?(:bytesize)
               string.bytesize < MAX_DIFF_TARGET_STRING_SIZE
