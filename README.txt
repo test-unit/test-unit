@@ -50,3 +50,4 @@ This software is distributed under the same terms as ruby.
 * Bill Lear: A suggestion.
 * Diego Pettenò: A bug report.
 * Angelo Lakra: A bug report.
+* Mike Pomraning: A bug report.

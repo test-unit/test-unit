@@ -930,7 +930,10 @@ EOM
               if use_pp
                 begin
                   require 'pp' unless defined?(PP)
-                  return PP.pp(object, '').chomp
+                  begin
+                    return PP.pp(object, '').chomp
+                  rescue NameError
+                  end
                 rescue LoadError
                   self.use_pp = false
                 end
