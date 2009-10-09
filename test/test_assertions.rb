@@ -1062,7 +1062,7 @@ EOM
       end
 
       private
-      def add_failure(message, location=caller)
+      def add_failure(message, location=caller, options=nil)
         unless @catch_assertions
           super
         end

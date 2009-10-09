@@ -12,6 +12,13 @@ class TestUnitColorScheme < Test::Unit::TestCase
                              color("blue", :foreground => false),
                    "suite" => color("white", :bold => true) +
                               color("green", :foreground => false),
+                   "diff-inserted-tag" => color("red", :bold => true),
+                   "diff-deleted-tag" => color("green", :bold => true),
+                   "diff-difference-tag" => color("cyan", :bold => true),
+                   "diff-inserted" => color("red", :foreground => false) +
+                                      color("white", :bold => true),
+                   "diff-deleted" => color("green", :foreground => false) +
+                                     color("white", :bold => true),
                  },
                  Test::Unit::ColorScheme.default.to_hash)
   end

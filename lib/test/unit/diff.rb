@@ -268,27 +268,33 @@ module Test
 
       class ReadableDiffer < Differ
         def diff(options={})
-          result = []
+          @result = []
           matcher = SequenceMatcher.new(@from, @to)
           matcher.operations.each do |args|
             tag, from_start, from_end, to_start, to_end = args
             case tag
             when :replace
-              result.concat(diff_lines(from_start, from_end, to_start, to_end))
+              diff_lines(from_start, from_end, to_start, to_end)
             when :delete
-              result.concat(tag_deleted(@from[from_start...from_end]))
+              tag_deleted(@from[from_start...from_end])
             when :insert
-              result.concat(tag_inserted(@to[to_start...to_end]))
+              tag_inserted(@to[to_start...to_end])
             when :equal
-              result.concat(tag_equal(@from[from_start...from_end]))
+              tag_equal(@from[from_start...from_end])
             else
               raise "unknown tag: #{tag}"
             end
           end
-          result
+          @result
         end
 
         private
+        def tag(mark, contents)
+          contents.each do |content|
+            @result << "#{mark}#{content}"
+          end
+        end
+
         def tag_deleted(contents)
           tag("- ", contents)
         end
@@ -342,22 +348,23 @@ module Test
 
           if best_ratio < cut_off
             if from_equal_index.nil?
-              tagged_from = tag_deleted(@from[from_start...from_end])
-              tagged_to = tag_inserted(@to[to_start...to_end])
               if to_end - to_start < from_end - from_start
-                return tagged_to + tagged_from
+                tag_inserted(@to[to_start...to_end])
+                tag_deleted(@from[from_start...from_end])
               else
-                return tagged_from + tagged_to
+                tag_deleted(@from[from_start...from_end])
+                tag_inserted(@to[to_start...to_end])
               end
+              return
             end
             from_best_index = from_equal_index
             to_best_index = to_equal_index
             best_ratio = 1.0
           end
 
-          _diff_lines(from_start, from_best_index, to_start, to_best_index) +
-            diff_line(@from[from_best_index], @to[to_best_index]) +
-            _diff_lines(from_best_index + 1, from_end, to_best_index + 1, to_end)
+          _diff_lines(from_start, from_best_index, to_start, to_best_index)
+          diff_line(@from[from_best_index], @to[to_best_index])
+          _diff_lines(from_best_index + 1, from_end, to_best_index + 1, to_end)
         end
 
         def _diff_lines(from_start, from_end, to_start, to_end)
@@ -409,13 +416,12 @@ module Test
 
           result = tag_deleted([from_line])
           unless from_tags.empty?
-            result.concat(tag_difference(["#{"\t" * common}#{from_tags}"]))
+            tag_difference(["#{"\t" * common}#{from_tags}"])
           end
-          result.concat(tag_inserted([to_line]))
+          tag_inserted([to_line])
           unless to_tags.empty?
-            result.concat(tag_difference(["#{"\t" * common}#{to_tags}"]))
+            tag_difference(["#{"\t" * common}#{to_tags}"])
           end
-          result
         end
 
         def n_leading_characters(string, character)

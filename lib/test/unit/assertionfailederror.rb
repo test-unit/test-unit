@@ -9,6 +9,14 @@ module Test
 
     # Thrown by Test::Unit::Assertions when an assertion fails.
     class AssertionFailedError < StandardError
+      attr_accessor :expected, :actual, :user_message
+      def initialize(message=nil, options=nil)
+        options ||= {}
+        @expected = options[:expected]
+        @actual = options[:actual]
+        @user_message = options[:user_message]
+        super(message)
+      end
     end
   end
 end

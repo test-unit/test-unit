@@ -451,21 +451,30 @@ class TestUnitDiff < Test::Unit::TestCase
                         from_start, from_end,
                         to_start, to_end)
     differ = Test::Unit::Diff::ReadableDiffer.new(from, to)
-    assert_equal(expected, differ.send(:diff_lines,
-                                       from_start, from_end,
-                                       to_start, to_end))
+    result = []
+    differ.instance_variable_set("@result", result)
+    differ.send(:diff_lines,
+                from_start, from_end,
+                to_start, to_end)
+    assert_equal(expected, result)
   end
 
   def assert_diff_line(expected, from_line, to_line)
     differ = Test::Unit::Diff::ReadableDiffer.new([""], [""])
-    assert_equal(expected, differ.send(:diff_line, from_line, to_line))
+    result = []
+    differ.instance_variable_set("@result", result)
+    differ.send(:diff_line, from_line, to_line)
+    assert_equal(expected, result)
   end
 
   def assert_format_diff_point(expected, from_line, to_line, from_tags, to_tags)
     differ = Test::Unit::Diff::ReadableDiffer.new([""], [""])
-    assert_equal(expected, differ.send(:format_diff_point,
-                                       from_line, to_line,
-                                       from_tags, to_tags))
+    result = []
+    differ.instance_variable_set("@result", result)
+    differ.send(:format_diff_point,
+                from_line, to_line,
+                from_tags, to_tags)
+    assert_equal(expected, result)
   end
 
   def assert_interesting_line(expected, from, to, from_start, to_start)

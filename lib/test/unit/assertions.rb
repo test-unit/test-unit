@@ -84,7 +84,14 @@ module Test
 <?> expected but was
 <?>.?
 EOT
-        assert_block(full_message) { expected == actual }
+        begin
+          assert_block(full_message) { expected == actual }
+        rescue AssertionFailedError => failure
+          failure = expected
+          failure = actual
+          failure = message
+          raise
+        end
       end
 
       ##
@@ -889,15 +896,24 @@ EOT
             end
           end
 
+          def prepare_for_diff(from, to)
+            if !from.is_a?(String) or !to.is_a?(String)
+              from = convert(from)
+              to = convert(to)
+            end
+
+            if diff_target_string?(from) and diff_target_string?(to)
+              [from, to]
+            else
+              [nil, nil]
+            end
+          end
+
           def delayed_diff(from, to)
             delayed_literal do
-              if !from.is_a?(String) or !to.is_a?(String)
-                from = convert(from)
-                to = convert(to)
-              end
+              from, to = prepare_for_diff(from, to)
 
-              diff = nil
-              diff = "" if !diff_target_string?(from) or !diff_target_string?(to)
+              diff = "" if from.nil? or to.nil?
               diff ||= Diff.readable(from, to)
               if /^[-+]/ !~ diff
                 diff = ""

@@ -18,7 +18,19 @@ module Test
                             "case" => Color.new("white", :bold => true) +
                                        Color.new("blue", :foreground => false),
                             "suite" => Color.new("white", :bold => true) +
-                                       Color.new("green", :foreground => false))
+                                       Color.new("green", :foreground => false),
+                            "diff-inserted-tag" =>
+                               Color.new("red", :bold => true),
+                            "diff-deleted-tag" =>
+                               Color.new("green", :bold => true),
+                            "diff-difference-tag" =>
+                               Color.new("cyan", :bold => true),
+                            "diff-inserted" =>
+                               Color.new("red", :foreground => false) +
+                               Color.new("white", :bold => true),
+                            "diff-deleted" =>
+                               Color.new("green", :foreground => false) +
+                               Color.new("white", :bold => true))
         end
 
         @@schemes = {}

@@ -14,6 +14,14 @@ module Test
           end
           @options = options
         end
+
+        def diff_target_string?(string)
+          Assertions::AssertionMessage.diff_target_string?(string)
+        end
+
+        def prepare_for_diff(from, to)
+          Assertions::AssertionMessage.prepare_for_diff(from, to)
+        end
       end
     end
   end
