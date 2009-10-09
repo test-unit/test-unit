@@ -12,7 +12,8 @@ module Test
     class Failure
       attr_reader :test_name, :location, :message
       attr_reader :expected, :actual, :user_message
-      
+      attr_reader :inspected_expected, :inspected_actual
+
       SINGLE_CHARACTER = 'F'
       LABEL = "Failure"
 
@@ -24,6 +25,8 @@ module Test
         @message = message
         @expected = options[:expected]
         @actual = options[:actual]
+        @inspected_expected = options[:inspected_expected]
+        @inspected_actual = options[:inspected_actual]
         @user_message = options[:user_message]
       end
       
@@ -57,7 +60,13 @@ module Test
       end
 
       def diff
-        @diff ||= Assertions::AssertionMessage.delayed_diff(expected, actual).inspect
+        @diff ||= compute_diff
+      end
+
+      private
+      def compute_diff
+        from, to = @inspected_expected, @inspected_actual
+        Assertions::AssertionMessage.delayed_diff(from, to).inspect
       end
     end
 
@@ -75,6 +84,8 @@ module Test
         add_failure(exception.message, exception.backtrace,
                     :expected => exception.expected,
                     :actual => exception.actual,
+                    :inspected_expected => exception.inspected_expected,
+                    :inspected_actual => exception.inspected_actual,
                     :user_message => exception.user_message)
         true
       end

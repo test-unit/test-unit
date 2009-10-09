@@ -154,13 +154,13 @@ module Test
           end
 
           def output_fault_message(fault)
-            if fault.expected and fault.actual
+            if fault.inspected_expected and fault.inspected_actual
               output(fault.user_message) if fault.user_message
               output_single("<")
-              output_single(fault.expected, color("success"))
+              output_single(fault.inspected_expected, color("success"))
               output("> expected but was")
               output_single("<")
-              output_single(fault.actual, color("failure"))
+              output_single(fault.inspected_actual, color("failure"))
               output(">")
               from, to = prepare_for_diff(fault.expected, fault.actual)
               if from and to

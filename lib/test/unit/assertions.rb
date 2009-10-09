@@ -87,9 +87,11 @@ EOT
         begin
           assert_block(full_message) { expected == actual }
         rescue AssertionFailedError => failure
-          failure = expected
-          failure = actual
-          failure = message
+          failure.expected = expected
+          failure.actual = actual
+          failure.inspected_expected = AssertionMessage.convert(expected)
+          failure.inspected_actual = AssertionMessage.convert(actual)
+          failure.user_message = message
           raise
         end
       end
