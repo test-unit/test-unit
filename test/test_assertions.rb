@@ -248,32 +248,30 @@ EOM
 
       def test_assert_equal_with_large_string
         message = <<-EOM.chomp
-<#{("a\n" + "x" * 297).inspect}> expected but was
+<#{("a\n" + "x" * 997).inspect}> expected but was
 <#{"x".inspect}>.
 
 diff:
 + x
 - a
-- #{"x" * 297}
+- #{"x" * 997}
 
 folded diff:
 + x
 - a
-- #{"x" * 78}
-- #{"x" * 78}
-- #{"x" * 78}
-- #{"x" * 63}
+#{(["- " + ("x" * 78)] * 12).join("\n")}
+- #{"x" * 61}
 EOM
         check_fails(message) do
-          assert_equal("a\n" + "x" * 297, "x")
+          assert_equal("a\n" + "x" * 997, "x")
         end
 
         message = <<-EOM.chomp
-<#{("a\n" + "x" * 298).inspect}> expected but was
+<#{("a\n" + "x" * 998).inspect}> expected but was
 <#{"x".inspect}>.
 EOM
         check_fails(message) do
-          assert_equal("a\n" + "x" * 298, "x")
+          assert_equal("a\n" + "x" * 998, "x")
         end
       end
 
