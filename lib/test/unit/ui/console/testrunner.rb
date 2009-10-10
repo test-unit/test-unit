@@ -117,7 +117,7 @@ module Test
           end
 
           def output_fault(fault)
-            if fault.is_a?(Failure) and
+            if @use_color and fault.is_a?(Failure) and
                 fault.inspected_expected and fault.inspected_actual
               output_single(fault.label, fault_color(fault))
               output(":")
