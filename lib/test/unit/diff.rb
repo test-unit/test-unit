@@ -365,7 +365,8 @@ module Test
         end
 
         def initialize(line)
-          @characters = line.unpack("U*")
+          @line = line
+          @characters = @line.unpack("U*")
         end
 
         def [](*args)
@@ -383,6 +384,10 @@ module Test
 
         def size
           @characters.size
+        end
+
+        def to_s
+          @line
         end
 
         def compute_width(start, _end)
@@ -557,7 +562,7 @@ module Test
         def diff_line(from_line, to_line)
           from_tags = ""
           to_tags = ""
-          from_line, to_line, _operations = line_operations
+          from_line, to_line, _operations = line_operations(from_line, to_line)
           _operations.each do |tag, from_start, from_end, to_start, to_end|
             from_width = compute_width(from_line, from_start, from_end)
             to_width = compute_width(to_line, to_start, to_end)
