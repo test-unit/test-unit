@@ -146,7 +146,7 @@ module Test
                   prefix = " "
                   postfix = "]:"
                 else
-                  prefix = ""
+                  prefix = " "
                   postfix = ""
                 end
                 output("    #{prefix}#{entry}#{postfix}")
