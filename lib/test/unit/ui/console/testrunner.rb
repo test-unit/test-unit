@@ -164,12 +164,14 @@ module Test
             output(">")
             from, to = prepare_for_diff(fault.expected, fault.actual)
             if from and to
-              output("")
-              output("diff:")
               differ = ColorizedReadableDiffer.new(from.split(/\r?\n/),
                                                    to.split(/\r?\n/),
                                                    self)
-              differ.diff
+              if differ.need_diff?
+                output("")
+                output("diff:")
+                differ.diff
+              end
             end
           end
 
@@ -330,6 +332,13 @@ module Test
             super(from, to)
           end
 
+          def need_diff?(options={})
+            operations.each do |tag,|
+              return true if [:replace, :equal].include?(tag)
+            end
+            false
+          end
+
           private
           def output_single(something, color=nil)
             @runner.send(:output_single, something, color)
@@ -341,6 +350,14 @@ module Test
 
           def color(name)
             @runner.send(:color, name)
+          end
+
+          def cut_off_ratio
+            0
+          end
+
+          def default_ratio
+            0
           end
 
           def tag(mark, color_name, contents)
@@ -370,12 +387,10 @@ module Test
 
           def diff_line(from_line, to_line)
             to_operations = []
-            matcher = Diff::SequenceMatcher.new(from_line, to_line,
-                                                &method(:space_character?))
-            operations = matcher.operations
+            from_line, to_line, _operations = line_operations(from_line, to_line)
 
             no_replace = true
-            operations.each do |tag,|
+            _operations.each do |tag,|
               if tag == :replace
                 no_replace = false
                 break
@@ -384,35 +399,35 @@ module Test
 
             output_single("?", color("diff-difference-tag"))
             output_single(" ")
-            operations.each do |tag, from_start, from_end, to_start, to_end|
-              from_length = from_end - from_start
-              to_length = to_end - to_start
+            _operations.each do |tag, from_start, from_end, to_start, to_end|
+              from_width = compute_width(from_line, from_start, from_end)
+              to_width = compute_width(to_line, to_start, to_end)
               case tag
               when :replace
                 output_single(from_line[from_start...from_end],
                               color("diff-deleted"))
-                if (from_length < to_length)
-                  output_single(" " * (to_length - from_length))
+                if (from_width < to_width)
+                  output_single(" " * (to_width - from_width))
                 end
                 to_operations << Proc.new do
                   output_single(to_line[to_start...to_end],
                                 color("diff-inserted"))
-                  if (to_length < from_length)
-                    output_single(" " * (from_length - to_length))
+                  if (to_width < from_width)
+                    output_single(" " * (from_width - to_width))
                   end
                 end
               when :delete
                 output_single(from_line[from_start...from_end],
                               color("diff-deleted"))
                 unless no_replace
-                  to_operations << Proc.new {output_single(" " * from_length)}
+                  to_operations << Proc.new {output_single(" " * from_width)}
                 end
               when :insert
                 if no_replace
                   output_single(to_line[to_start...to_end],
                                 color("diff-inserted"))
                 else
-                  output_single(" " * to_length)
+                  output_single(" " * to_width)
                   to_operations << Proc.new do
                     output_single(to_line[to_start...to_end],
                                   color("diff-inserted"))
@@ -421,7 +436,7 @@ module Test
               when :equal
                 output_single(from_line[from_start...from_end])
                 unless no_replace
-                  to_operations << Proc.new {output_single(" " * to_length)}
+                  to_operations << Proc.new {output_single(" " * to_width)}
                 end
               else
                 raise "unknown tag: #{tag}"

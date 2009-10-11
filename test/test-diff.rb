@@ -1,4 +1,9 @@
 class TestUnitDiff < Test::Unit::TestCase
+  def test_binary_search_ranges
+    assert_found_binary_search_ranges(5, [1..2, 4..5, 7..9])
+    assert_not_found_binary_search_ranges(3, [1..2, 4..5, 7..9])
+  end
+
   def test_to_indexes
     assert_to_indexes({"abc def" => [0, 2], "abc" => [1]},
                       ["abc def", "abc", "abc def"])
@@ -387,6 +392,18 @@ class TestUnitDiff < Test::Unit::TestCase
   end
 
   private
+  def assert_found_binary_search_ranges(numeric, ranges)
+    assert_true(Test::Unit::Diff::UTF8Line.send(:binary_search_ranges,
+                                                numeric,
+                                                ranges))
+  end
+
+  def assert_not_found_binary_search_ranges(numeric, ranges)
+    assert_false(Test::Unit::Diff::UTF8Line.send(:binary_search_ranges,
+                                                 numeric,
+                                                 ranges))
+  end
+
   def assert_to_indexes(expected, to, &junk_predicate)
     matcher = Test::Unit::Diff::SequenceMatcher.new([""], to, &junk_predicate)
     assert_equal(expected, matcher.instance_variable_get("@to_indexes"))

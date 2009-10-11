@@ -65,8 +65,7 @@ module Test
 
       private
       def compute_diff
-        from, to = @inspected_expected, @inspected_actual
-        Assertions::AssertionMessage.delayed_diff(from, to).inspect
+        Assertions::AssertionMessage.delayed_diff(@expected, @actual).inspect
       end
     end
 
