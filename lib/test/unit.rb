@@ -216,33 +216,17 @@ module Test # :nodoc:
   # in response to a suite method. The TestSuite can, in turn, contain
   # other TestSuites or individual tests (typically created by a
   # TestCase). In other words, you can easily wrap up a group of
-  # TestCases and TestSuites like this:
+  # TestCases and TestSuites.
   #
-  #  require 'test/unit/testsuite'
-  #  require 'tc_myfirsttests'
-  #  require 'tc_moretestsbyme'
-  #  require 'ts_anothersetoftests'
-  #
-  #  class TS_MyTests
-  #    def self.suite
-  #      suite = Test::Unit::TestSuite.new
-  #      suite << TC_MyFirstTests.suite
-  #      suite << TC_MoreTestsByMe.suite
-  #      suite << TS_AnotherSetOfTests.suite
-  #      return suite
-  #    end
-  #  end
-  #  Test::Unit::UI::Console::TestRunner.run(TS_MyTests)
-  #
-  # Now, this is a bit cumbersome, so Test::Unit does a little bit more
-  # for you, by wrapping these up automatically when you require
-  # 'test/unit'. What does this mean? It means you could write the above
-  # test case like this instead:
+  # Test::Unit does a little bit more for you, by wrapping
+  # these up automatically when you require
+  # 'test/unit'. What does this mean? It means you could
+  # write the above test case like this instead:
   #
   #  require 'test/unit'
-  #  require 'tc_myfirsttests'
-  #  require 'tc_moretestsbyme'
-  #  require 'ts_anothersetoftests'
+  #  require 'test_myfirsttests'
+  #  require 'test_moretestsbyme'
+  #  require 'test_anothersetoftests'
   #
   # Test::Unit is smart enough to find all the test cases existing in
   # the ObjectSpace and wrap them up into a suite for you. It then runs
