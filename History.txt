@@ -1,15 +1,17 @@
 === 2.0.4 / 2009-10-17
 
-* 3 major enhancements
+* 4 major enhancements
   * use ~/.test-unit.yml as global configuration file.
   * add TAP runner. (--runner tap)
   * support colorized diff:
     http://test-unit.rubyforge.org/svn/trunk/images/color-diff.png
+  * add Test::Unit::AutoRunner.default_runner= to specify default test runner.
 
-* 3 minor enchancements
+* 4 minor enchancements
   * improve verbose mode output format. (use indent)
   * support NOT_PASS_THROUGH_EXCEPTIONS.
   * support arguments option in #{runner}_options.
+  * TC_ -> Test in sample test case name.
 
 * 1 bug fixes
   * [#27195] test-unit-2.0.3 + ruby-1.9.1 cannot properly test
