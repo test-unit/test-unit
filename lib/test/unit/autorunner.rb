@@ -18,6 +18,15 @@ module Test
           RUNNERS[id.to_s]
         end
 
+        @@default_runner = nil
+        def default_runner
+          runner(@@default_runner)
+        end
+
+        def default_runner=(id)
+          @@default_runner = id
+        end
+
         def register_collector(id, collector_builder=Proc.new)
           COLLECTORS[id] = collector_builder
           COLLECTORS[id.to_s] = collector_builder
@@ -325,11 +334,13 @@ module Test
 
       private
       def default_runner
+        runner = self.class.default_runner
         if ENV["EMACS"] == "t"
-          self.class.runner(:emacs)
+          runner ||= self.class.runner(:emacs)
         else
-          self.class.runner(:console)
+          runner ||= self.class.runner(:console)
         end
+        runner
       end
 
       def default_collector

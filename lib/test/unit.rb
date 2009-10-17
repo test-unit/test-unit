@@ -179,7 +179,7 @@ module Test # :nodoc:
   #
   #     require 'test/unit'
   #     
-  #     class TC_MyTest < Test::Unit::TestCase
+  #     class MyTest < Test::Unit::TestCase
   #       # def setup
   #       # end
   #     
@@ -194,21 +194,17 @@ module Test # :nodoc:
   #
   # == Test Runners
   #
-  # So, now you have this great test class, but you still need a way to
-  # run it and view any failures that occur during the run. This is
-  # where Test::Unit::UI::Console::TestRunner (and others, such as
-  # Test::Unit::UI::GTK::TestRunner) comes into play. The console test
-  # runner is automatically invoked for you if you require 'test/unit'
-  # and simply run the file. To use another runner, or to manually
-  # invoke a runner, simply call its run class method and pass in an
-  # object that responds to the suite message with a
-  # Test::Unit::TestSuite. This can be as simple as passing in your
-  # TestCase class (which has a class suite method). It might look
-  # something like this:
+  # So, now you have this great test class, but you still
+  # need a way to run it and view any failures that occur
+  # during the run. There are some test runner; console test
+  # runner, GTK+ test runner and so on. The console test
+  # runner is automatically invoked for you if you require
+  # 'test/unit' and simply run the file. To use another
+  # runner simply set default test runner ID to
+  # Test::Unit::AutoRunner:
   #
-  #    require 'test/unit/ui/console/testrunner'
-  #    Test::Unit::UI::Console::TestRunner.run(TC_MyTest)
-  #
+  #    require 'test/unit'
+  #    Test::Unit::AutoRunner.default_runner = "gtk2"
   #
   # == Test Suite
   #
