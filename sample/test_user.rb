@@ -1,4 +1,5 @@
 # nested test case example.
+require 'test/unit'
 
 class UserTest < Test::Unit::TestCase
   def setup
