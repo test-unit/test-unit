@@ -35,7 +35,7 @@ module Test
 
         def grouped_operations(context_size=nil)
           context_size ||= 3
-          _operations = operations
+          _operations = operations.dup
           _operations = [[:equal, 0, 0, 0, 0]] if _operations.empty?
           expand_edge_equal_operations!(_operations, context_size)
 
