@@ -8,6 +8,7 @@ html/classic.html
 html/index.html
 html/index.html.ja
 html/test-unit-classic.png
+images/color-diff.png
 lib/test/unit.rb
 lib/test/unit/assertionfailederror.rb
 lib/test/unit/assertions.rb
@@ -49,10 +50,9 @@ lib/test/unit/util/procwrapper.rb
 lib/test/unit/version.rb
 sample/adder.rb
 sample/subtracter.rb
-sample/tc_adder.rb
-sample/tc_subtracter.rb
+sample/test_adder.rb
+sample/test_subtracter.rb
 sample/test_user.rb
-sample/ts_examples.rb
 test/collector/test-descendant.rb
 test/collector/test-load.rb
 test/collector/test_dir.rb
