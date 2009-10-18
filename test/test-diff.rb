@@ -194,6 +194,21 @@ class TestUnitDiff < Test::Unit::TestCase
     assert_ratio(0.80, "efg", "eg")
   end
 
+  def test_1_length_readable_diff
+    differ = Test::Unit::Diff::ReadableDiffer.new(["0"], ["1"])
+    def differ.cut_off_ratio
+      0
+    end
+    def differ.default_ratio
+      0
+    end
+    assert_equal("- 0\n" +
+                 "? ^\n" +
+                 "+ 1\n" +
+                 "? ^",
+                 differ.diff.join("\n"))
+  end
+
   def test_same_contents_readable_diff
     assert_readable_diff("  aaa", ["aaa"], ["aaa"])
     assert_readable_diff("  aaa\n" \
