@@ -495,6 +495,8 @@ module Test
           info = find_diff_line_info(from_start, from_end, to_start, to_end)
           best_ratio, from_equal_index, to_equal_index, *info = info
           from_best_index, to_best_index = info
+          from_best_index ||= from_start
+          to_best_index ||= to_start
 
           if best_ratio < cut_off_ratio
             if from_equal_index.nil?

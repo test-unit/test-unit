@@ -1,3 +1,11 @@
+=== 2.0.5 / 2009-10-18
+
+* 1 bug fixes
+  * [#27314] fix diff may raise an exception. [Erik Hollensbe]
+
+* Thanks
+  * Erik Hollensbe
+
 === 2.0.4 / 2009-10-17
 
 * 4 major enhancements
