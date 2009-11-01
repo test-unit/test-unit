@@ -56,7 +56,7 @@ module Test
         end
       end
 
-      # Omit the test of part of the test.
+      # Omit the test or part of the test.
       #
       # Example:
       #   def test_omission
@@ -80,12 +80,56 @@ module Test
         end
       end
 
+      # Omit the test or part of the test if _condition_ is
+      # true.
+      #
+      # Example:
+      #   def test_omission
+      #     omit_if("".empty?)
+      #     # Not reached here
+      #   end
+      #
+      #   def test_omission_with_here
+      #     omit_if(true) do
+      #       # Not ran here
+      #     end
+      #     omit_if(false) do
+      #       # Reached here
+      #     end
+      #     # Reached here too
+      #   end
       def omit_if(condition, *args, &block)
-        omit(*args, &block) if condition
+        if condition
+          omit(*args, &block)
+        else
+          block.call if block
+        end
       end
 
+      # Omit the test or part of the test if _condition_ is
+      # not true.
+      #
+      # Example:
+      #   def test_omission
+      #     omit_unless("string".empty?)
+      #     # Not reached here
+      #   end
+      #
+      #   def test_omission_with_here
+      #     omit_unless(true) do
+      #       # Reached here
+      #     end
+      #     omit_unless(false) do
+      #       # Not ran here
+      #     end
+      #     # Reached here too
+      #   end
       def omit_unless(condition, *args, &block)
-        omit(*args, &block) unless condition
+        if condition
+          block.call if block
+        else
+          omit(*args, &block)
+        end
       end
 
       private

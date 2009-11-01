@@ -1,3 +1,11 @@
+=== 2.0.6 / 20XX-XX-XX
+
+* X bug fixes
+  * [#27374] omit_if unexpected behavior [David MARCHALAND]
+
+* Thanks
+  * David MARCHALAND
+
 === 2.0.5 / 2009-10-18
 
 * 1 bug fixes

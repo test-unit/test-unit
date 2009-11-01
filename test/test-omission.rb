@@ -68,7 +68,7 @@ class TestUnitOmission < Test::Unit::TestCase
 
   def test_omit_with_condition_and_block
     result = _run_test("test_omit_with_block_and_condition")
-    assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
+    assert_equal("1 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "1 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Should omit."], result.omissions)
