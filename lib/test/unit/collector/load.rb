@@ -29,7 +29,7 @@ module Test
           add_load_path(@base) do
             froms = ["."] if froms.empty?
             test_suites = froms.collect do |from|
-              test_suite = collect_recursive(from, find_test_cases)
+              test_suite = collect_recursive(resolve_path(from), find_test_cases)
               test_suite = nil if test_suite.tests.empty?
               test_suite
             end.compact
@@ -56,10 +56,9 @@ module Test
         end
 
         private
-        def collect_recursive(name, already_gathered)
+        def collect_recursive(path, already_gathered)
           sub_test_suites = []
 
-          path = resolve_path(name)
           if path.directory?
             directories, files = path.children.partition do |child|
               child.directory?

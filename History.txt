@@ -2,9 +2,12 @@
 
 * X bug fixes
   * [#27374] omit_if unexpected behavior [David MARCHALAND]
+  * fix a bug that tests in sub directories aren't load with --basedir.
+    [Daniel Berger]
 
 * Thanks
   * David MARCHALAND
+  * Daniel Berger
 
 === 2.0.5 / 2009-10-18
 
