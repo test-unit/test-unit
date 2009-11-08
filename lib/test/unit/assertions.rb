@@ -799,6 +799,54 @@ EOT
       end
 
       ##
+      # Passes if +object+#+alias_name+ is an alias method of
+      # +object+#+original_name+.
+      #
+      # Example:
+      #   assert_alias_method([], :length, :size)  # -> pass
+      #   assert_alias_method([], :size, :length)  # -> pass
+      #   assert_alias_method([], :each, :size)    # -> fail
+      def assert_alias_method(object, alias_name, original_name, message=nil)
+        _wrap_assertion do
+          find_method_failure_message = Proc.new do |method_name|
+            build_message(message,
+                          "<?>.? doesn't exist\n" +
+                          "(Class: <?>)",
+                          object,
+                          AssertionMessage.literal(method_name),
+                          object.class)
+          end
+
+          alias_method = original_method = nil
+          assert_block(find_method_failure_message.call(alias_name)) do
+            begin
+              alias_method = object.method(alias_name)
+              true
+            rescue NameError
+              false
+            end
+          end
+          assert_block(find_method_failure_message.call(original_name)) do
+            begin
+              original_method = object.method(original_name)
+              true
+            rescue NameError
+              false
+            end
+          end
+
+          full_message = build_message(message,
+                                       "<?> is alias of\n" +
+                                       "<?> expected",
+                                       alias_method,
+                                       original_method)
+          assert_block(full_message) do
+            alias_method == original_method
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 

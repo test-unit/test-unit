@@ -1061,6 +1061,41 @@ EOM
         end
       end
 
+      def test_assert_alias_method
+        object = Object.new
+        class << object
+          def original_method
+          end
+          alias_method :alias_method, :original_method
+
+          def other
+          end
+        end
+
+        check_nothing_fails do
+          assert_alias_method(object, :alias_method, :original_method)
+        end
+
+        check_nothing_fails do
+          assert_alias_method(object, :original_method, :alias_method)
+        end
+
+        check_fails("<#{object.method(:other).inspect}> is alias of\n" +
+                    "<#{object.method(:original_method).inspect}> expected") do
+          assert_alias_method(object, :other, :original_method)
+        end
+
+        check_fails("<#{object.inspect}>.nonexistent doesn't exist\n" +
+                    "(Class: <Object>)") do
+          assert_alias_method(object, :nonexistent, :original_method)
+        end
+
+        check_fails("<#{object.inspect}>.nonexistent doesn't exist\n" +
+                    "(Class: <Object>)") do
+          assert_alias_method(object, :alias_method, :nonexistent)
+        end
+      end
+
       private
       def add_failure(message, location=caller, options=nil)
         unless @catch_assertions
