@@ -303,7 +303,7 @@ module Test # :nodoc:
   #
 
   module Unit
-    # If set to false Test::Unit will not automatically run at exit.
+    # If set to +true+ Test::Unit will not automatically run at exit.
     def self.run=(flag)
       @run = flag
     end

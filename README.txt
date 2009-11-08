@@ -52,3 +52,4 @@ This software is distributed under the same terms as ruby.
 * Angelo Lakra: A bug report.
 * Mike Pomraning: A bug report.
 * David MARCHALAND: A bug report.
+* Andrew Grimm: A bug report.
