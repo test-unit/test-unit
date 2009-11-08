@@ -308,7 +308,8 @@ module Test # :nodoc:
       @run = flag
     end
 
-    # Automatically run tests at exit?
+    # Do tests run by hand? If this returns +false+,
+    # tests are ran automatically at exit.
     def self.run?
       @run ||= false
     end
