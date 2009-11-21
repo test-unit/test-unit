@@ -1,5 +1,18 @@
 === 2.0.6 / 20XX-XX-XX
 
+* X major enhancements
+  * [#27380] Declarative syntax? [Daniel Berger]
+    support declarative syntax:
+
+      test "test description in natural language" do
+         ...
+      end
+  * support test descirition:
+      description "test description in natural language"
+      def test_my_test
+         ...
+      end
+
 * X bug fixes
   * [#27374] omit_if unexpected behavior [David MARCHALAND]
   * fix a bug that tests in sub directories aren't load with --basedir.

@@ -212,6 +212,39 @@ module Test
           @@test_order = order
         end
 
+        # Defines a test in declarative syntax.
+        #
+        # The following two test definitions are the same:
+        #
+        #   description "register user"
+        #   def test_register_user
+        #     ...
+        #   end
+        #
+        #   test "register user" do
+        #     ...
+        #   end
+        def test(test_description, &block)
+          normalized_description = test_description.gsub(/[^a-zA-Z\d_]+/, '_')
+          method_name = "test_#{normalized_description}".to_sym
+          define_method(method_name, &block)
+          description(test_description, method_name)
+        end
+
+        # Describes a test.
+        #
+        # The following example associates "register a
+        # normal user" description with "test_register"
+        # test.
+        #
+        #   description "register a normal user"
+        #   def test_register
+        #     ...
+        #   end
+        def description(value, target=nil)
+          attribute(:description, value, {}, target || [])
+        end
+
         # :stopdoc:
         private
         def collect_test_names
@@ -372,6 +405,15 @@ module Test
       # this instance of TestCase represents.
       def name
         "#{@method_name}(#{self.class.name})"
+      end
+
+      # Returns a description for the test. A description
+      # will be associated by Test::Unit::TestCase.test or
+      # Test::Unit::TestCase.description.
+      #
+      # Returns a name for the test for no description test.
+      def description
+        self[:description] || name
       end
 
       # Overridden to return #name.
