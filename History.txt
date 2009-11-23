@@ -7,7 +7,7 @@
       test "test description in natural language" do
          ...
       end
-  * support test descirition:
+  * support test description:
       description "test description in natural language"
       def test_my_test
          ...
