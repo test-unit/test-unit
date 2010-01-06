@@ -938,11 +938,23 @@ EOT
           end
 
           MAX_DIFF_TARGET_STRING_SIZE = 1000
+          def max_diff_target_string_size
+            size = ENV["TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE"]
+            if size
+              begin
+                size = Integer(size)
+              rescue ArgumentError
+                size = nil
+              end
+            end
+            size || MAX_DIFF_TARGET_STRING_SIZE
+          end
+
           def diff_target_string?(string)
             if string.respond_to?(:bytesize)
-              string.bytesize < MAX_DIFF_TARGET_STRING_SIZE
+              string.bytesize < max_diff_target_string_size
             else
-              string.size < MAX_DIFF_TARGET_STRING_SIZE
+              string.size < max_diff_target_string_size
             end
           end
 

@@ -275,6 +275,42 @@ EOM
         end
       end
 
+      def test_assert_equal_with_max_diff_target_string_size
+        key = "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE"
+        before_value = ENV[key]
+        ENV[key] = "100"
+        begin
+          message = <<-EOM.chomp
+<#{("a\n" + "x" * 97).inspect}> expected but was
+<#{"x".inspect}>.
+
+diff:
++ x
+- a
+- #{"x" * 97}
+
+folded diff:
++ x
+- a
+#{(["- " + ("x" * 78)]).join("\n")}
+- #{"x" * 19}
+EOM
+          check_fails(message) do
+            assert_equal("a\n" + "x" * 97, "x")
+          end
+
+          message = <<-EOM.chomp
+<#{("a\n" + "x" * 98).inspect}> expected but was
+<#{"x".inspect}>.
+EOM
+          check_fails(message) do
+            assert_equal("a\n" + "x" * 98, "x")
+          end
+        ensure
+          ENV[key] = before_value
+        end
+      end
+
       def test_assert_raise_success
         return_value = nil
         check_nothing_fails(true) do

@@ -12,6 +12,8 @@
       def test_my_test
          ...
       end
+  * make max diff target string size customizable by
+    TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE environment variable.
 
 * X bug fixes
   * [#27374] omit_if unexpected behavior [David MARCHALAND]
