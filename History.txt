@@ -1,6 +1,6 @@
-=== 2.0.6 / 20XX-XX-XX
+=== 2.0.6 / 2010-01-09
 
-* X major enhancements
+* 3 major enhancements
   * [#27380] Declarative syntax? [Daniel Berger]
     support declarative syntax:
 
@@ -15,7 +15,7 @@
   * make max diff target string size customizable by
     TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE environment variable.
 
-* X bug fixes
+* 2 bug fixes
   * [#27374] omit_if unexpected behavior [David MARCHALAND]
   * fix a bug that tests in sub directories aren't load with --basedir.
     [Daniel Berger]
