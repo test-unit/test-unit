@@ -94,10 +94,15 @@ module Test
           DESCENDANTS << sub_class
         end
 
-        @@added_methods = []
+        @@added_methods = {}
         def method_added(name) # :nodoc:
           super
-          @@added_methods << name.to_s
+          added_methods = (@@added_methods[self] ||= [])
+          stringified_name = name.to_s
+          if added_methods.include?(stringified_name)
+            attribute(:redefined, true, {}, stringified_name)
+          end
+          added_methods << stringified_name
         end
 
         # Rolls up all of the test* methods in the fixture into
@@ -266,9 +271,10 @@ module Test
         end
 
         def sort_test_names_in_defined_order(test_names)
+          added_methods = @@added_methods[self]
           test_names.sort do |test1, test2|
-            test1_defined_order = @@added_methods.index(test1)
-            test2_defined_order = @@added_methods.index(test2)
+            test1_defined_order = added_methods.index(test1)
+            test2_defined_order = added_methods.index(test2)
             if test1_defined_order and test2_defined_order
               test1_defined_order <=> test2_defined_order
             elsif test1_defined_order
@@ -438,6 +444,9 @@ module Test
       end
 
       def run_test
+        if self.class.get_attribute(@method_name, :redefined)
+          notify("#{self.class}\##{@method_name} was redefined")
+        end
         __send__(@method_name)
       end
 

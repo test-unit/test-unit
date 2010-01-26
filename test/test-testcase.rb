@@ -517,6 +517,26 @@ module Test
         end
       end
 
+      def test_redefine_method
+        test_case = Class.new(Test::Unit::TestCase) do
+          def test_name
+          end
+          alias_method :test_name2, :test_name
+
+          def test_name
+          end
+        end
+
+        suite = test_case.suite
+        assert_equal(["test_name", "test_name2"],
+                     suite.tests.collect {|test| test.method_name})
+        result = TestResult.new
+        suite.run(result) {}
+        assert_equal("2 tests, 0 assertions, 0 failures, " +
+                     "0 errors, 0 pendings, 0 omissions, 1 notifications",
+                     result.summary)
+      end
+
       private
       def check(message, passed)
         add_assertion
