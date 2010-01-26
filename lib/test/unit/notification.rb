@@ -87,8 +87,8 @@ module Test
       def handle_notified_error(exception)
         return false unless exception.is_a?(NotifiedError)
         notification = Notification.new(name,
-                                filter_backtrace(exception.backtrace),
-                                exception.message)
+                                        filter_backtrace(exception.backtrace),
+                                        exception.message)
         add_notification(notification)
         true
       end
