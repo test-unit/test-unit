@@ -60,6 +60,10 @@ module Test
       def to_s
         long_display
       end
+
+      def critical?
+        true
+      end
     end
 
     module ErrorHandler

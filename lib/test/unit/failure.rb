@@ -59,6 +59,10 @@ module Test
         long_display
       end
 
+      def critical?
+        true
+      end
+
       def diff
         @diff ||= compute_diff
       end

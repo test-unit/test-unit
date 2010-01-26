@@ -41,6 +41,10 @@ module Test
       def to_s
         long_display
       end
+
+      def critical?
+        false
+      end
     end
 
     class NotifiedError < StandardError

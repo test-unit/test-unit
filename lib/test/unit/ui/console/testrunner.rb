@@ -84,7 +84,7 @@ module Test
           def add_fault(fault)
             @faults << fault
             output_progress(fault.single_character_display, fault_color(fault))
-            @already_outputted = true
+            @already_outputted = true if fault.critical?
           end
           
           def started(result)
