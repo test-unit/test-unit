@@ -132,8 +132,6 @@ module Test
           puts e
           puts options
           exit(false)
-        else
-          @filters << proc{false} unless(@filters.empty?)
         end
         not @to_run.empty?
       ensure
@@ -186,9 +184,9 @@ module Test
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
             case n
             when Regexp
-              @filters << proc{|t| n =~ t.method_name ? true : nil}
+              @filters << proc{|t| n =~ t.method_name ? true : false}
             else
-              @filters << proc{|t| n == t.method_name ? true : nil}
+              @filters << proc{|t| n == t.method_name}
             end
           end
 
@@ -198,17 +196,17 @@ module Test
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
             case n
             when Regexp
-              @filters << proc{|t| n =~ t.class.name ? true : nil}
+              @filters << proc{|t| n =~ t.class.name ? true : false}
             else
-              @filters << proc{|t| n == t.class.name ? true : nil}
+              @filters << proc{|t| n == t.class.name}
             end
           end
 
           priority_filter = Proc.new do |test|
-            if @filters.size > 2
-              nil
+            if @filters == [priority_filter]
+              Priority::Checker.new(test).need_to_run?
             else
-              Priority::Checker.new(test).need_to_run? or nil
+              nil
             end
           end
           o.on("--[no-]priority-mode",

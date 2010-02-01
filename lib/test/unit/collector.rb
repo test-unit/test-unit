@@ -23,14 +23,7 @@ module Test
       def include?(test)
         return true if(@filters.empty?)
         @filters.each do |filter|
-          result = filter[test]
-          if(result.nil?)
-            next
-          elsif(!result)
-            return false
-          else
-            return true
-          end
+          return false if filter[test] == false
         end
         true
       end

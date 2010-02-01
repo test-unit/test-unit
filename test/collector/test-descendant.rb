@@ -66,7 +66,7 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
       collector.filter = [Proc.new {false}, Proc.new {true}]
     end
 
-    assert_collect(full_suite) do |collector|
+    assert_collect(empty_suite) do |collector|
       collector.filter = [Proc.new {true}, Proc.new {false}]
     end
 
@@ -90,13 +90,11 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
       end
     end
 
-    expected = empty_suite
     suite1 = Test::Unit::TestSuite.new(@test_case1.name)
     suite1 << @test_case1.new("test_1")
     suite2 = Test::Unit::TestSuite.new(@test_case2.name)
     suite2 << @test_case2.new("test_0")
-    expected << suite1 << suite2
-    assert_collect(expected) do |collector|
+    assert_collect(empty_suite) do |collector|
       filters = [Proc.new {|test| test.method_name == 'test_1' ? true : nil},
                  Proc.new {|test| test.method_name == 'test_0' ? true : nil},
                  Proc.new {false}]

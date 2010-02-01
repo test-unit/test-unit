@@ -72,7 +72,7 @@ module Test
           assert_equal(empty_suite, @c.collect)
 
           @c.filter = [proc{true}, proc{false}]
-          assert_equal(full_suite, @c.collect)
+          assert_equal(empty_suite, @c.collect)
 
           @c.filter = [proc{nil}, proc{false}]
           assert_equal(empty_suite, @c.collect)
@@ -87,10 +87,12 @@ module Test
           assert_equal(expected, @c.collect)
 
           expected = TestSuite.new(ObjectSpace::NAME)
-          expected << (TestSuite.new(@tc1.name) << @tc1.new('test_1'))
-          expected << (TestSuite.new(@tc2.name) << @tc2.new('test_0'))
-          @c.filter = [proc{|t| t.method_name == 'test_1' ? true : nil}, proc{|t| t.method_name == 'test_0' ? true : nil}, proc{false}]
-          assert_equal(expected, @c.collect)
+          TestSuite.new(@tc1.name) << @tc1.new('test_1')
+          TestSuite.new(@tc2.name) << @tc2.new('test_0')
+          @c.filter = [proc{|t| t.method_name == 'test_1' ? true : nil},
+                       proc{|t| t.method_name == 'test_0' ? true : nil},
+                       proc{false}]
+          assert_equal(empty_suite, @c.collect)
         end
       end
     end
