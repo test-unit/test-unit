@@ -124,18 +124,15 @@ module Test
       end
 
       def process_args(args = ARGV)
-        default_arguments = @default_arguments.dup
         begin
-          @default_arguments.concat(args)
-          options.order!(@default_arguments) {|arg| @to_run << arg}
+          args.unshift(*@default_arguments)
+          options.order!(args) {|arg| @to_run << arg}
         rescue OptionParser::ParseError => e
           puts e
           puts options
           exit(false)
         end
         not @to_run.empty?
-      ensure
-        @default_arguments = default_arguments
       end
 
       def options
