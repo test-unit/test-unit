@@ -14,7 +14,7 @@ module Test
         def initialize
           super
           @system_excludes = [/~\z/, /\A\.\#/]
-          @system_directory_excludes = [/\A(?:CVS|\.svn)\z/]
+          @system_directory_excludes = [/\A(?:CVS|\.svn|\.git)\z/]
           @patterns = [/\Atest[_\-].+\.rb\z/m]
           @excludes = []
           @base = nil

@@ -196,6 +196,25 @@ EOT
     end
   end
 
+  setup
+  def setup_sub_git_test_cases
+    @sub_git_test_dir = @sub_test_dir + ".git"
+    @sub_git_test_dir.mkpath
+
+    @sub_git_test_case11 = @sub_git_test_dir + "test_case11.rb"
+
+    @sub_git_test_case11.open("w") do |test_case|
+      test_case.puts(<<-EOT)
+module #{@temporary_test_cases_module_name}
+  class SubGitTestCase11 < Test::Unit::TestCase
+    def test11
+    end
+  end
+end
+EOT
+    end
+  end
+
   def teardown
     @test_dir.rmtree if @test_dir.exist?
     ::Object.send(:remove_const, @temporary_test_cases_module_name)
