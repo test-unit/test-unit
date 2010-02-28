@@ -1,6 +1,3 @@
-require "fileutils"
-require "tmpdir"
-
 module Test
   module Unit
     module Priority
@@ -20,6 +17,8 @@ module Test
         end
 
         def enable
+          require "fileutils"
+          require "tmpdir"
           @@enabled = true
         end
 
