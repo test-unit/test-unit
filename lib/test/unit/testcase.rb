@@ -196,12 +196,12 @@ module Test
         def shutdown
         end
 
-        @@test_order = AVAILABLE_ORDERS.first
+        @@test_orders = {}
 
         # Returns the current test order. This returns
         # +:alphabetic+ by default.
         def test_order
-          @@test_order
+          @@test_orders[self] || AVAILABLE_ORDERS.first
         end
 
         # Sets the current test order.
@@ -214,7 +214,7 @@ module Test
         # [:defined]
         #   Tests are sorted in defined order.
         def test_order=(order)
-          @@test_order = order
+          @@test_orders[self] = order
         end
 
         # Defines a test in declarative syntax.

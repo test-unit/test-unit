@@ -7,6 +7,7 @@ require 'test/unit'
 module Test
   module Unit
     class TestTestCase < TestCase
+      self.test_order = :random
       def test_creation
         tc = Class.new(TestCase) do
           def test_with_arguments(arg1, arg2)
@@ -469,52 +470,48 @@ module Test
       end
 
       def test_defined_order
-        keep_test_order do
-          test_case = Class.new(Test::Unit::TestCase) do
-            def test_z
-            end
-
-            def test_1
-            end
-
-            def test_a
-            end
+        test_case = Class.new(Test::Unit::TestCase) do
+          def test_z
           end
 
-          assert_equal(["test_1", "test_a", "test_z"],
-                       test_case.suite.tests.collect {|test| test.method_name})
+          def test_1
+          end
 
-          test_case.test_order = :defined
-          assert_equal(["test_z", "test_1", "test_a"],
-                       test_case.suite.tests.collect {|test| test.method_name})
+          def test_a
+          end
         end
+
+        assert_equal(["test_1", "test_a", "test_z"],
+                     test_case.suite.tests.collect {|test| test.method_name})
+
+        test_case.test_order = :defined
+        assert_equal(["test_z", "test_1", "test_a"],
+                     test_case.suite.tests.collect {|test| test.method_name})
       end
 
       def test_declarative_style
-        keep_test_order do
-          test_case = Class.new(Test::Unit::TestCase) do
-            test "declarative style test definition" do
-            end
-
-            test "include parenthesis" do
-            end
-
-            test "1 + 2 = 3" do
-            end
+        test_case = Class.new(Test::Unit::TestCase) do
+          test "declarative style test definition" do
           end
 
-          test_case.test_order = :defined
+          test "include parenthesis" do
+          end
 
-          assert_equal(["test_declarative_style_test_definition",
-                        "test_include_parenthesis",
-                        "test_1_2_3"],
-                       test_case.suite.tests.collect {|test| test.method_name})
-
-          assert_equal(["declarative style test definition",
-                        "include parenthesis",
-                        "1 + 2 = 3"],
-                       test_case.suite.tests.collect {|test| test.description})
+          test "1 + 2 = 3" do
+          end
         end
+
+        test_case.test_order = :defined
+
+        assert_equal(["test_declarative_style_test_definition",
+                      "test_include_parenthesis",
+                      "test_1_2_3"],
+                     test_case.suite.tests.collect {|test| test.method_name})
+
+        assert_equal(["declarative style test definition",
+                      "include parenthesis",
+                      "1 + 2 = 3"],
+                     test_case.suite.tests.collect {|test| test.description})
       end
 
       def test_redefine_method
@@ -541,13 +538,6 @@ module Test
       def check(message, passed)
         add_assertion
         raise AssertionFailedError.new(message) unless passed
-      end
-
-      def keep_test_order
-        order = TestCase.test_order
-        yield
-      ensure
-        TestCase.test_order = order
       end
     end
   end
