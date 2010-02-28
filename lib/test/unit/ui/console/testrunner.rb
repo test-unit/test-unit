@@ -39,6 +39,7 @@ module Test
             @progress_row_max ||= guess_progress_row_max
             @already_outputted = false
             @n_successes = 0
+            @n_omissions = 0
             @indent = 0
             @top_level = true
             @faults = []
@@ -84,6 +85,7 @@ module Test
           def add_fault(fault)
             @faults << fault
             output_progress(fault.single_character_display, fault_color(fault))
+            @n_omissions += 1 if fault.is_a?(Omission)
             @already_outputted = true if fault.critical?
           end
           
@@ -107,7 +109,7 @@ module Test
             output("Finished in #{elapsed_time} seconds.")
             nl
             output(@result, result_color)
-            n_tests = @result.run_count
+            n_tests = @result.run_count - @n_omissions
             if n_tests.zero?
               pass_percentage = 0
             else
