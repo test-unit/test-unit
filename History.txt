@@ -1,3 +1,31 @@
+=== 2.0.7 / 2010-03-09
+
+* 4 major enhancements
+  * detect redefined test methods.
+  * [INTERFACE IMCOMPATIBLE] multiple --name and --testcase
+    options narrow down targets instead of adding targets.
+  * [#27764] accept custom test_order for each test case.
+    [Suggested by David MARCHALAND]
+  * [#27790] ignore omitted tests from 'n% passed' report.
+    [Suggested by Daniel Berger]
+
+* 2 minor enchancements
+  * [#27832] ignore .git directory. [Suggested by Daniel Berger]
+  * [#27792] require 'fileutils' and 'tmpdir' lazily for non-priority
+    mode users. [Suggested by David MARCHALAND]
+
+* 2n bug fixes
+  * [#27892] modify processed arguments array destructively.
+    [Reported by Bob Saveland]
+  * work without HOME environment variable.
+    [Reported by Champak Ch]
+
+* Thanks
+  * David MARCHALAND
+  * Daniel Berger
+  * Bob Saveland
+  * Champak Ch
+
 === 2.0.6 / 2010-01-09
 
 * 3 major enhancements
