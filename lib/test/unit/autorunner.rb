@@ -117,8 +117,7 @@ module Test
         if File.exist?(config_file)
           load_config(config_file)
         else
-          global_config_file = File.expand_path("~/.test-unit.xml")
-          load_config(global_config_file) if File.exist?(global_config_file)
+          load_global_config
         end
         yield(self) if block_given?
       end
@@ -340,6 +339,17 @@ module Test
 
       def default_collector
         self.class.collector(@standalone ? :load : :descendant)
+      end
+
+      def global_config_file
+        File.expand_path("~/.test-unit.xml")
+      rescue ArgumentError
+        nil
+      end
+
+      def load_global_config
+        file = global_config_file
+        load_config(file) if file and File.exist?(file)
       end
     end
   end
