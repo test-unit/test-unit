@@ -188,7 +188,7 @@ module Test
             right_space = 8 * 2
             left_space = @progress_row_max - right_space
             left_space = left_space - indent.size - name.size
-            tab_stop = "\t" * ((left_space - 1) / 8)
+            tab_stop = "\t" * ([left_space - 1, 0].max / 8)
             output_single("#{indent}#{name}:#{tab_stop}", nil, VERBOSE)
             @test_start = Time.now
           end
