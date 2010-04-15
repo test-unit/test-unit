@@ -28,11 +28,16 @@ module Test
         def collect(*froms)
           add_load_path(@base) do
             froms = ["."] if froms.empty?
-            test_suites = froms.collect do |from|
-              test_suite = collect_recursive(resolve_path(from), find_test_cases)
-              test_suite = nil if test_suite.tests.empty?
-              test_suite
-            end.compact
+            test_suites = []
+            froms.each do |from|
+              from = resolve_path(from)
+              if from.directory?
+                test_suite = collect_recursive(from, find_test_cases)
+                test_suites << test_suite unless test_suite.tests.empty?
+              else
+                collect_file(from, test_suites, find_test_cases)
+              end
+            end
 
             if test_suites.size > 1
               test_suite = TestSuite.new("[#{froms.join(', ')}]")
