@@ -54,3 +54,4 @@ This software is distributed under the same terms as ruby.
 * David MARCHALAND: Suggestions and bug reports.
 * Andrew Grimm: A bug report.
 * Champak Ch: A bug report.
+* Florian Frank: A bug report.
