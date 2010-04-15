@@ -15,7 +15,7 @@ module Test
           super
           @system_excludes = [/~\z/, /\A\.\#/]
           @system_directory_excludes = [/\A(?:CVS|\.svn|\.git)\z/]
-          @patterns = [/\Atest[_\-].+\.rb\z/m]
+          @patterns = [/\Atest[_\-].+\.rb\z/m, /[_\-]test\.rb\z/]
           @excludes = []
           @base = nil
         end
@@ -29,13 +29,14 @@ module Test
           add_load_path(@base) do
             froms = ["."] if froms.empty?
             test_suites = []
+            already_gathered = find_test_cases
             froms.each do |from|
               from = resolve_path(from)
               if from.directory?
-                test_suite = collect_recursive(from, find_test_cases)
+                test_suite = collect_recursive(from, already_gathered)
                 test_suites << test_suite unless test_suite.tests.empty?
               else
-                collect_file(from, test_suites, find_test_cases)
+                collect_file(from, test_suites, already_gathered)
               end
             end
 
@@ -93,6 +94,8 @@ module Test
         end
 
         def collect_file(path, test_suites, already_gathered)
+          @program_file ||= File.expand_path($0)
+          return if @program_file == path.to_s
           add_load_path(path.expand_path.dirname) do
             require(path.to_s)
             find_test_cases(already_gathered).each do |test_case|

@@ -242,6 +242,27 @@ EOT
     end
   end
 
+  setup
+  def setup_sub_level_extra_test_cases
+    @sub_extra_test_dir = @extra_test_dir + "sub"
+    @sub_extra_test_dir.mkpath
+
+    @cases13_test = @sub_extra_test_dir + "13cases_test.rb"
+    @cases13_test.open("w") do |test_case|
+      test_case.puts(<<-EOT)
+module #{@temporary_test_cases_module_name}
+  class SubTestCase13 < Test::Unit::TestCase
+    def test13_1
+    end
+
+    def test13_2
+    end
+  end
+end
+EOT
+    end
+  end
+
   def teardown
     @test_dir.rmtree if @test_dir.exist?
     ::Object.send(:remove_const, @temporary_test_cases_module_name)
@@ -256,6 +277,21 @@ EOT
                     [:suite, {:name => _test_case_name("SubTestCase6")},
                      [:test, {:name => "test6"}]]],
                    @sub_test_dir.to_s)
+  end
+
+  def test_simple_collect_test_suffix
+    assert_collect([:suite, {:name => @extra_test_dir.basename.to_s},
+                    [:suite, {:name => _test_case_name("TestCase121")},
+                     [:test, {:name => "test121_1"}],
+                     [:test, {:name => "test121_2"}]],
+                    [:suite, {:name => _test_case_name("TestCase122")},
+                     [:test, {:name => "test122_1"}],
+                     [:test, {:name => "test122_2"}]],
+                    [:suite, {:name => @sub_extra_test_dir.basename.to_s},
+                     [:suite, {:name => _test_case_name("SubTestCase13")},
+                      [:test, {:name => "test13_1"}],
+                      [:test, {:name => "test13_2"}]]]],
+                   @extra_test_dir.to_s)
   end
 
   def test_multilevel_collect
@@ -350,7 +386,7 @@ EOT
                       [:test, {:name => "test4_2"}]],
                      [:suite, {:name => _test_case_name("SubTestCase6")},
                       [:test, {:name => "test6"}]]],
-                   [:suite, {:name => @sub2_test_dir.basename.to_s},
+                    [:suite, {:name => @sub2_test_dir.basename.to_s},
                      [:suite, {:name => _test_case_name("Sub2TestCase8")},
                       [:test, {:name => "test8_1"}],
                       [:test, {:name => "test8_2"}]],
