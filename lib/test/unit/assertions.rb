@@ -1,6 +1,6 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#             Copyright (c) 2009 Kouhei Sutou.
+#             Copyright (c) 2009-2010 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit/assertionfailederror'
@@ -539,18 +539,77 @@ EOT
       public
       def assert_in_delta(expected_float, actual_float, delta, message="")
         _wrap_assertion do
-          {expected_float => "first float", actual_float => "second float", delta => "delta"}.each do |float, name|
-            assert_respond_to(float, :to_f, "The arguments must respond to to_f; the #{name} did not")
+          _assert_in_delta_validate_arguments(expected_float,
+                                              actual_float,
+                                              delta)
+          full_message = _assert_in_delta_message(expected_float,
+                                                  actual_float,
+                                                  delta,
+                                                  message)
+          assert_block(full_message) do
+            (expected_float.to_f - actual_float.to_f).abs <= delta.to_f
           end
-          assert_operator(delta, :>=, 0.0, "The delta should not be negative")
-          full_message = build_message(message, <<EOT, expected_float, actual_float, delta)
-<?> and
-<?> expected to be within
-<?> of each other.
-EOT
-          assert_block(full_message) { (expected_float.to_f - actual_float.to_f).abs <= delta.to_f }
         end
       end
+
+      # :stopdoc:
+      private
+      def _assert_in_delta_validate_arguments(expected_float,
+                                              actual_float,
+                                              delta)
+        {
+          expected_float => "first float",
+          actual_float => "second float",
+          delta => "delta"
+        }.each do |float, name|
+          assert_respond_to(float, :to_f,
+                            "The arguments must respond to to_f; " +
+                            "the #{name} did not")
+        end
+        assert_operator(delta, :>=, 0.0, "The delta should not be negative")
+      end
+
+      def _assert_in_delta_message(expected_float, actual_float, delta,
+                                   message)
+        format = <<-EOT
+<?> expected but was
+<?> (tolerance <?>).
+EOT
+        arguments = [expected_float, actual_float, delta]
+        normalized_expected = expected_float.to_f
+        normalized_actual = actual_float.to_f
+        normalized_delta = delta.to_f
+        relation_format = nil
+        relation_arguments = nil
+        if normalized_actual < normalized_expected - normalized_delta
+          relation_format = "<<?> < <?>-<?>(?) <= <?>+<?>(?)>"
+          relation_arguments = [actual_float,
+                                expected_float, delta, expected_float - delta,
+                                expected_float, delta, expected_float + delta]
+        elsif normalized_expected - normalized_delta < normalized_actual
+          relation_format = "<<?>-<?>(?) <= <?>+<?>(?) < <?>>"
+          relation_arguments = [expected_float, delta, expected_float - delta,
+                                expected_float, delta, expected_float + delta,
+                                actual_float]
+        end
+
+        if relation_format
+          format << <<-EOT
+
+Relation:
+<<?>-<?>(?) <= <?> <= <?>+<?>(?)> expected but was
+#{relation_format}
+EOT
+          arguments.concat([expected_float, delta, expected_float - delta,
+                            actual_float,
+                            expected_float, delta, expected_float + delta])
+          arguments.concat(relation_arguments)
+        end
+
+        build_message(message, format, *arguments)
+      end
+      public
+      # :startdoc:
 
       ##
       # Passes if the method send returns a true value.

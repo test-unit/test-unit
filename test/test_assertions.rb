@@ -1,6 +1,6 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
-#             Copyright (c) 2009 Kouhei Sutou.
+#             Copyright (c) 2009-2010 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit'
@@ -811,7 +811,14 @@ EOM
           end
           assert_in_delta(0.1, float_thing, 0.1)
         }
-        check_fails("message.\n<0.5> and\n<0.4> expected to be within\n<0.05> of each other.") {
+        check_fails("message.\n" +
+                    "<0.5> expected but was\n" +
+                    "<0.4> (tolerance <0.05>).\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<<0.5>-<0.05>(0.45) <= <0.4> <= <0.5>+<0.05>(0.55)> " +
+                    "expected but was\n" +
+                    "<<0.4> < <0.5>-<0.05>(0.45) <= <0.5>+<0.05>(0.55)>") {
           assert_in_delta(0.5, 0.4, 0.05, "message")
         }
         object = Object.new
