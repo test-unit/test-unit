@@ -597,12 +597,8 @@ EOT
           format << <<-EOT
 
 Relation:
-<<?>-<?>(?) <= <?> <= <?>+<?>(?)> expected but was
 #{relation_format}
 EOT
-          arguments.concat([expected_float, delta, expected_float - delta,
-                            actual_float,
-                            expected_float, delta, expected_float + delta])
           arguments.concat(relation_arguments)
         end
 
