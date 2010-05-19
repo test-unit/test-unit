@@ -80,10 +80,23 @@ module Test
       public
       def assert_equal(expected, actual, message=nil)
         diff = AssertionMessage.delayed_diff(expected, actual)
-        full_message = build_message(message, <<EOT, expected, actual, diff)
+        if expected.respond_to?(:encoding) and
+            actual.respond_to?(:encoding) and
+            expected.encoding != actual.encoding
+          format = <<EOT
+<?>(?) expected but was
+<?>(?).?
+EOT
+          full_message = build_message(message, format,
+                                       expected, expected.encoding.name,
+                                       actual, actual.encoding.name,
+                                       diff)
+        else
+          full_message = build_message(message, <<EOT, expected, actual, diff)
 <?> expected but was
 <?>.?
 EOT
+        end
         begin
           assert_block(full_message) { expected == actual }
         rescue AssertionFailedError => failure

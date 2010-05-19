@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
 #             Copyright (c) 2009-2010 Kouhei Sutou. All rights reserved.
@@ -308,6 +310,21 @@ EOM
           end
         ensure
           ENV[key] = before_value
+        end
+      end
+
+      def test_assert_equal_with_different_encoding
+        utf8_string = "こんにちは"
+        unless utf8_string.respond_to?(:force_encoding)
+          omit("encoding test is for Ruby >= 1.9")
+        end
+        ascii_8bit_string = utf8_string.dup.force_encoding("ascii-8bit")
+        message = <<-EOM.chomp
+<"こんにちは">("UTF-8") expected but was
+<#{ascii_8bit_string.inspect}>("ASCII-8BIT").
+EOM
+        check_fails(message) do
+          assert_equal(utf8_string, ascii_8bit_string)
         end
       end
 

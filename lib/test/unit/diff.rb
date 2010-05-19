@@ -717,7 +717,16 @@ module Test
 
       def diff(differ_class, from, to, options={})
         differ = differ_class.new(from.split(/\r?\n/), to.split(/\r?\n/))
-        differ.diff(options).join("\n")
+        lines = differ.diff(options)
+        if Object.const_defined?(:EncodingError)
+          begin
+            lines.join("\n")
+          rescue EncodingError
+            lines.collect {|line| line.force_encoding("ASCII-8BIT")}.join("\n")
+          end
+        else
+          lines.join("\n")
+        end
       end
     end
   end

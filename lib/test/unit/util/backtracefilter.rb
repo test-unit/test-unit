@@ -9,6 +9,7 @@ module Test
         module_function
         def filter_backtrace(backtrace, prefix=nil)
           return ["No backtrace"] unless(backtrace)
+          return backtrace if ENV["TEST_UNIT_ALL_BACKTRACE"]
           split_p = if(prefix)
             prefix.split(TESTUNIT_FILE_SEPARATORS)
           else
