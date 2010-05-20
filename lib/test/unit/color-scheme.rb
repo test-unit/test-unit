@@ -8,8 +8,12 @@ module Test
       class << self
         @@default = nil
         def default
-          @@default ||= new("success" => Color.new("green", :bold => true),
-                            "failure" => Color.new("red", :bold => true),
+          @@default ||= new("success" =>
+                              Color.new("green", :foreground => false) +
+                              Color.new("white", :bold => true),
+                            "failure" =>
+                              Color.new("red", :foreground => false) +
+                              Color.new("white", :bold => true),
                             "pending" => Color.new("magenta", :bold => true),
                             "omission" => Color.new("blue", :bold => true),
                             "notification" => Color.new("cyan", :bold => true),
