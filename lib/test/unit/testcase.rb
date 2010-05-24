@@ -19,6 +19,7 @@ require 'test/unit/priority'
 require 'test/unit/testsuite'
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/util/output'
 require 'test/unit/util/method-owner-finder'
 
 module Test
@@ -82,6 +83,7 @@ module Test
       include Priority
       include Assertions
       include Util::BacktraceFilter
+      include Util::Output
 
       STARTED = name + "::STARTED" # :nodoc:
       FINISHED = name + "::FINISHED" # :nodoc:
