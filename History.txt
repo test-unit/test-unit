@@ -1,3 +1,26 @@
+=== 2.0.8 / 2010-06-02
+
+* 5 major enchancements
+  * collect *_test.rb and *-test.rb files as test files.
+  * [#28181] improve assert_in_delta message.
+    [Suggested by David MARCHALAND]
+  * show string encoding in assert_equal failure message if
+    they are different.
+  * change default color scheme:
+    * success: green back + white
+    * failure: red back + white
+  * add capture_output.
+
+* 2 bug fixes
+  * fix a bug that console runner on verbose mode causes an
+    error for long test name (>= 61).
+  * [#28093] Autorunner ignores all files in a directory named test by default
+    [Reported by Florian Frank]
+
+* Thanks
+  * Florian Frank
+  * David MARCHALAND
+
 === 2.0.7 / 2010-03-09
 
 * 4 major enhancements
@@ -14,7 +37,7 @@
   * [#27792] require 'fileutils' and 'tmpdir' lazily for non-priority
     mode users. [Suggested by David MARCHALAND]
 
-* 2n bug fixes
+* 2 bug fixes
   * [#27892] modify processed arguments array destructively.
     [Reported by Bob Saveland]
   * work without HOME environment variable.
