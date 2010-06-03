@@ -342,7 +342,7 @@ module Test
       end
 
       def global_config_file
-        File.expand_path("~/.test-unit.xml")
+        File.expand_path("~/.test-unit.yml")
       rescue ArgumentError
         nil
       end
