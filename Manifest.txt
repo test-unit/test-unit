@@ -1,5 +1,8 @@
+COPYING
+GPL
 History.txt
 Manifest.txt
+PSFL
 README.txt
 Rakefile
 TODO
