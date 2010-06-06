@@ -1,4 +1,11 @@
 # port of Python's difflib.
+#
+# Copyright (c) 2001-2008 Python Software Foundation; All Rights Reserved
+# Copyright (c) 2008-2010 Kouhei Sutou; All Rights Reserved
+#
+# It is free software, and is distributed under the Ruby
+# license and/or the PSF license. See the COPYING file and
+# PSFL file.
 
 module Test
   module Unit

@@ -42,6 +42,9 @@ If you want to use full Test::Unit features:
 
 This software is distributed under the same terms as ruby.
 
+Exception: lib/test/unit/diff.rb is a dual license of the
+Ruby license and PSF license.
+
 == Thanks
 
 * Daniel Berger: Suggestions and bug reports.

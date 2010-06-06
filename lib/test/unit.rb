@@ -90,8 +90,13 @@ module Test # :nodoc:
   # 
   # Test::Unit is copyright (c) 2000-2003 Nathaniel Talbott. It is free
   # software, and is distributed under the Ruby license. See the COPYING
-  # file in the standard Ruby distribution for details.
+  # file.
   # 
+  # Exception: lib/test/unit/diff.rb is copyright (c)
+  # 2008-2010 Kouhei Sutou and 2001-2008 Python Software
+  # Foundation. It is free software, and is distributed
+  # under the Ruby license and/or the PSF license. See the
+  # COPYING file and PSFL file.
   # 
   # == Warranty
   # 
