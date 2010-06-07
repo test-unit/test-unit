@@ -1,4 +1,4 @@
-=== 2.0.9 / 2010-XX-XX
+=== 2.1.0 / 2010-XX-XX
 
 * X bug fixes
   * [#28267] global config file ignored
