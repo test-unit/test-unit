@@ -1154,6 +1154,28 @@ EOM
         end
       end
 
+      def test_assert_path_exist
+        check_nothing_fails do
+          assert_path_exist(__FILE__)
+        end
+
+        nonexistent_file = __FILE__ + ".nonexistent"
+        check_fails("<#{nonexistent_file.inspect}> expected to exist") do
+          assert_path_exist(nonexistent_file)
+        end
+      end
+
+      def test_assert_path_not_exist
+        nonexistent_file = __FILE__ + ".nonexistent"
+        check_nothing_fails do
+          assert_path_not_exist(nonexistent_file)
+        end
+
+        check_fails("<#{__FILE__.inspect}> expected to not exist") do
+          assert_path_not_exist(__FILE__)
+        end
+      end
+
       private
       def add_failure(message, location=caller, options=nil)
         unless @catch_assertions

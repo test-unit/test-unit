@@ -915,6 +915,42 @@ EOT
       end
 
       ##
+      # Passes if +path+ exists.
+      #
+      # Example:
+      #   assert_path_exist("/tmp")          # -> pass
+      #   assert_path_exist("/bin/sh")       # -> pass
+      #   assert_path_exist("/nonexistent")  # -> fail
+      def assert_path_exist(path, message=nil)
+        _wrap_assertion do
+          failure_message = build_message(message,
+                                          "<?> expected to exist",
+                                          path)
+          assert_block(failure_message) do
+            File.exist?(path)
+          end
+        end
+      end
+
+      ##
+      # Passes if +path+ doesn't exist.
+      #
+      # Example:
+      #   assert_path_not_exist("/nonexistent")  # -> pass
+      #   assert_path_not_exist("/tmp")          # -> fail
+      #   assert_path_not_exist("/bin/sh")       # -> fail
+      def assert_path_not_exist(path, message=nil)
+        _wrap_assertion do
+          failure_message = build_message(message,
+                                          "<?> expected to not exist",
+                                          path)
+          assert_block(failure_message) do
+            not File.exist?(path)
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 
