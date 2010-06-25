@@ -837,9 +837,10 @@ EOM
           assert_in_delta(0.5, 0.4, 0.05, "message")
         }
         object = Object.new
+        inspected_object = AssertionMessage.convert(object)
         check_fails("The arguments must respond to to_f; " +
                     "the first float did not.\n" +
-                    "<#{object.inspect}>.respond_to?(:to_f) expected\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
                     "(Class: <Object>)") {
           assert_in_delta(object, 0.4, 0.1)
         }
@@ -1143,12 +1144,13 @@ EOM
           assert_alias_method(object, :other, :original_method)
         end
 
-        check_fails("<#{object.inspect}>.nonexistent doesn't exist\n" +
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("<#{inspected_object}>.nonexistent doesn't exist\n" +
                     "(Class: <Object>)") do
           assert_alias_method(object, :nonexistent, :original_method)
         end
 
-        check_fails("<#{object.inspect}>.nonexistent doesn't exist\n" +
+        check_fails("<#{inspected_object}>.nonexistent doesn't exist\n" +
                     "(Class: <Object>)") do
           assert_alias_method(object, :alias_method, :nonexistent)
         end
