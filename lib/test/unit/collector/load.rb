@@ -95,7 +95,7 @@ module Test
 
         def collect_file(path, test_suites, already_gathered)
           @program_file ||= File.expand_path($0)
-          return if @program_file == path.to_s
+          return if @program_file == path.expand_path.to_s
           add_load_path(path.expand_path.dirname) do
             require(path.to_s)
             find_test_cases(already_gathered).each do |test_case|
