@@ -33,21 +33,12 @@ module Test
           end
 
           private
-          def setup_mediator
-            @mediator = TestRunnerMediator.new(@suite)
-            attach_to_mediator
-          end
-
           def attach_to_mediator
             @mediator.add_listener(TestResult::FAULT, &method(:add_fault))
             @mediator.add_listener(TestRunnerMediator::STARTED, &method(:started))
             @mediator.add_listener(TestRunnerMediator::FINISHED, &method(:finished))
             @mediator.add_listener(TestCase::STARTED, &method(:test_started))
             @mediator.add_listener(TestCase::FINISHED, &method(:test_finished))
-          end
-
-          def start_mediator
-            @mediator.run_suite
           end
 
           def add_fault(fault)

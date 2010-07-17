@@ -45,16 +45,9 @@ module Test
             @faults = []
           end
 
-          # Begins the test run.
-          def start
-            setup_mediator
-            attach_to_mediator
-            return start_mediator
-          end
-
           private
           def setup_mediator
-            @mediator = create_mediator(@suite)
+            super
             output_setup_end
           end
 
@@ -64,10 +57,6 @@ module Test
             output("Loaded suite #{suite_name}")
           end
 
-          def create_mediator(suite)
-            return TestRunnerMediator.new(suite)
-          end
-          
           def attach_to_mediator
             @mediator.add_listener(TestResult::FAULT, &method(:add_fault))
             @mediator.add_listener(TestRunnerMediator::STARTED, &method(:started))
@@ -76,10 +65,6 @@ module Test
             @mediator.add_listener(TestCase::FINISHED, &method(:test_finished))
             @mediator.add_listener(TestSuite::STARTED, &method(:test_suite_started))
             @mediator.add_listener(TestSuite::FINISHED, &method(:test_suite_finished))
-          end
-          
-          def start_mediator
-            return @mediator.run_suite
           end
           
           def add_fault(fault)
@@ -280,21 +265,7 @@ module Test
           end
 
           def result_color
-            if @result.passed?
-              if @result.pending_count > 0
-                color("pending")
-              elsif @result.omission_count > 0
-                color("omission")
-              elsif @result.notification_count > 0
-                color("notification")
-              else
-                color("success")
-              end
-            elsif @result.error_count > 0
-              color("error")
-            elsif @result.failure_count > 0
-              color("failure")
-            end
+            color(@result.status)
           end
 
           def guess_color_availability

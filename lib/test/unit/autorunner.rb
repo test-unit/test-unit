@@ -99,7 +99,7 @@ module Test
 
       attr_reader :suite, :runner_options
       attr_accessor :filters, :to_run, :pattern, :exclude, :base, :workdir
-      attr_accessor :color_scheme
+      attr_accessor :color_scheme, :listeners
       attr_writer :runner, :collector
 
       def initialize(standalone)
@@ -113,6 +113,7 @@ module Test
         @runner_options = {}
         @default_arguments = []
         @workdir = nil
+        @listeners = []
         config_file = "test-unit.yml"
         if File.exist?(config_file)
           load_config(config_file)
@@ -300,6 +301,8 @@ module Test
         runner = @runner[self]
         return false if runner.nil?
         @runner_options[:color_scheme] ||= @color_scheme
+        @runner_options[:listeners] ||= []
+        @runner_options[:listeners].concat(@listeners)
         Dir.chdir(@workdir) if @workdir
         runner.run(suite, @runner_options).passed?
       end

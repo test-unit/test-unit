@@ -65,6 +65,25 @@ module Test
          *@summary_generators.collect {|generator| send(generator)}].join(", ")
       end
 
+      # Returnes a string that shows result status.
+      def status
+        if passed?
+          if pending_count > 0
+            "pending"
+          elsif omission_count > 0
+            "omission"
+          elsif notification_count > 0
+            "notification"
+          else
+            "success"
+          end
+        elsif error_count > 0
+          "error"
+        elsif failure_count > 0
+          "failure"
+        end
+      end
+
       def to_s
         summary
       end
