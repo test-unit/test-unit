@@ -1,5 +1,7 @@
 # -*- ruby -*-
 
+Encoding.default_internal = "UTF-8" if defined?(Encoding.default_internal)
+
 require 'rubygems'
 gem 'rdoc'
 require 'hoe'
