@@ -45,6 +45,21 @@ This software is distributed under the same terms as ruby.
 Exception: lib/test/unit/diff.rb is a dual license of the
 Ruby license and PSF license.
 
+== AUTHORS
+
+=== Active
+
+* Kouhei Sutou: The current maintainer
+
+=== Inactive
+
+* Nathaniel Talbott: The original author
+* Ryan Davis: The second maintainer
+
+=== Images
+
+* Mayu & Co.: kinotan icons: http://cocooooooon.com/kinotan/
+
 == Thanks
 
 * Daniel Berger: Suggestions and bug reports.
