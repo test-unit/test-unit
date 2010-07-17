@@ -6,6 +6,8 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="test-unit.css" type="text/css" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.png" />
     <title>Test::Unit - Ruby用単体テストフレームワーク</title>
   </head>
   <body>
