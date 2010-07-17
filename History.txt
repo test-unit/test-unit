@@ -1,6 +1,6 @@
-=== 2.1.0 / 2010-XX-XX
+=== 2.1.0 / 2010-07-17
 
-* X bug fixes
+* 1 bug fixes
   * [#28267] global config file ignored
     [Daniel Berger]
 
