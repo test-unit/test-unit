@@ -40,6 +40,9 @@
           Test::Unitではなるべく後方互換性を維持したまま開発を進めているため、ほとんどの場合、Ruby 1.8に標準添付されていたTest::Unitで動いたテストは最新のTest::Unitでも動作します。しかし、100%ではありません。もし、完全にRuby 1.8に標準添付されていたバージョンを使用したい場合は、以下のようにtest-unit 1.2.3をインストールし、明示的にtest-unit 1.2.3を利用するようにしてください。
         </p>
         <p>
+          <a href="classic/test-unit/">test-unit 1.2.3のリファレンスマニュアル</a>
+        </p>
+        <p>
           インストール:
           <pre class="command">% sudo gem install test-unit -v 1.2.3</pre>
         </p>

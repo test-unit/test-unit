@@ -11,14 +11,14 @@ ENV["NODOT"] = "yes"
 
 version = Test::Unit::VERSION
 ENV["VERSION"] = version
-Hoe.spec('test-unit') do |p|
+Hoe.spec('test-unit') do
   Hoe::Test::SUPPORTED_TEST_FRAMEWORKS[:testunit2] = "test/run-test.rb"
-  p.version = version
-  p.developer('Kouhei Sutou', 'kou@cozmixng.org')
-  p.developer('Ryan Davis', 'ryand-ruby@zenspider.com')
+  self.version = version
+  developer('Kouhei Sutou', 'kou@cozmixng.org')
+  developer('Ryan Davis', 'ryand-ruby@zenspider.com')
 
   # Ex-Parrot:
-  # p.developer('Nathaniel Talbott', 'nathaniel@talbott.ws')
+  # developer('Nathaniel Talbott', 'nathaniel@talbott.ws')
 end
 
 task :check_manifest => :clean_test_result
