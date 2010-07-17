@@ -236,6 +236,7 @@ require "test/unit"</pre>
       </div>
 
       <div class="sidebar">
+        <h2>プロジェクトについて</h2>
 	<ul>
 	  <li><a href="http://rubyforge.org/projects/test-unit/">プロジェクトページ</a></li>
 	  <li>
@@ -254,6 +255,11 @@ require "test/unit"</pre>
       <p id="sponsor-tango">
 	<a href="http://tango.freedesktop.org/">
           <img width="120" height="53" border="0" alt="Tango Desktop Projectのアイコンを利用しています。" src="tango-logo.png" />
+        </a>
+      </p>
+      <p id="sponsor-famfamfam">
+	<a href="http://www.famfamfam.com/">
+          <img width="120" height="18" border="0" alt="famfamfam.comの国旗を利用しています。" src="famfamfam-logo.png" />
         </a>
       </p>
     </div>

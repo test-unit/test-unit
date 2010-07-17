@@ -189,7 +189,8 @@ div.day h3
   margin-left: -45px;
   text-indent: 45px;
   height: 36px;
-  background: url(heading-mark.png) no-repeat ;
+  background: url(heading-mark.png) no-repeat;
+  clear: both;
 }
 
 div.sidebar
@@ -203,6 +204,14 @@ div.sidebar
   padding-left: 10px;
   border-left: solid 1px black;
   height: 100%;
+}
+
+div.sidebar h2
+{
+  font-size: 1em;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 5px;
 }
 
 div.sidebar ul
@@ -240,6 +249,14 @@ div.sponsors p#sponsor-tango
   position: absolute;
   top: 50px;
   right: 50px;
+}
+
+div.sponsors p#sponsor-famfamfam
+{
+  position: absolute;
+  top: 118px;
+  right: 50px;
+  padding-bottom: 50px;
 }
 
 dt
