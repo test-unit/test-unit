@@ -247,8 +247,9 @@ module Test
           end
 
           def color(name)
-            _color = @color_scheme[name] || ColorScheme.default[name]
-            _color ||= color("success") if name == "pass"
+            _color = @color_scheme[name]
+            _color ||= @color_scheme["success"] if name == "pass"
+            _color ||= ColorScheme.default[name]
             _color
           end
 

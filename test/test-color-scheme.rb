@@ -1,7 +1,7 @@
 class TestUnitColorScheme < Test::Unit::TestCase
   def test_default
     assert_equal({
-                   "success" => color("green", :foreground => false) +
+                   "pass" => color("green", :foreground => false) +
                                 color("white", :bold => true),
                    "failure" => color("red", :foreground => false) +
                                 color("white", :bold => true),
