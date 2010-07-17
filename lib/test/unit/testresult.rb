@@ -34,11 +34,11 @@ module Test
       CHANGED = "CHANGED"
       FAULT = "FAULT"
 
-      attr_reader :run_count, :assertion_count, :faults
+      attr_reader :run_count, :pass_count, :assertion_count, :faults
 
       # Constructs a new, empty TestResult.
       def initialize
-        @run_count, @assertion_count = 0, 0
+        @run_count, @pass_count, @assertion_count = 0, 0, 0
         @summary_generators = []
         @problem_checkers = []
         @faults = []
@@ -49,6 +49,10 @@ module Test
       def add_run
         @run_count += 1
         notify_changed
+      end
+
+      def add_pass
+        @pass_count += 1
       end
 
       # Records an individual assertion.
@@ -75,7 +79,7 @@ module Test
           elsif notification_count > 0
             "notification"
           else
-            "success"
+            "pass"
           end
         elsif error_count > 0
           "error"
@@ -92,6 +96,15 @@ module Test
       # successful completion.
       def passed?
         @problem_checkers.all? {|checker| not send(checker)}
+      end
+
+      def pass_percentage
+        n_tests = @run_count - omission_count
+        if n_tests.zero?
+          0
+        else
+          100.0 * (@pass_count / n_tests.to_f)
+        end
       end
 
       private

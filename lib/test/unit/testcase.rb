@@ -450,6 +450,7 @@ module Test
           notify("#{self.class}\##{@method_name} was redefined")
         end
         __send__(@method_name)
+        add_pass
       end
 
       def handle_exception(exception)
@@ -472,6 +473,10 @@ module Test
 
       def add_assertion
         current_result.add_assertion
+      end
+
+      def add_pass
+        current_result.add_pass
       end
     end
   end

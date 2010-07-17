@@ -38,8 +38,6 @@ module Test
             @progress_row_max = @options[:progress_row_max]
             @progress_row_max ||= guess_progress_row_max
             @already_outputted = false
-            @n_successes = 0
-            @n_omissions = 0
             @indent = 0
             @top_level = true
             @faults = []
@@ -70,7 +68,6 @@ module Test
           def add_fault(fault)
             @faults << fault
             output_progress(fault.single_character_display, fault_color(fault))
-            @n_omissions += 1 if fault.is_a?(Omission)
             @already_outputted = true if fault.critical?
           end
           
@@ -94,13 +91,7 @@ module Test
             output("Finished in #{elapsed_time} seconds.")
             nl
             output(@result, result_color)
-            n_tests = @result.run_count - @n_omissions
-            if n_tests.zero?
-              pass_percentage = 0
-            else
-              pass_percentage = 100.0 * (@n_successes / n_tests.to_f)
-            end
-            output("%g%% passed" % pass_percentage, result_color)
+            output("%g%% passed" % @result.pass_percentage, result_color)
           end
 
           def output_fault(fault)
@@ -144,7 +135,7 @@ module Test
           def output_fault_message(fault)
             output(fault.user_message) if fault.user_message
             output_single("<")
-            output_single(fault.inspected_expected, color("success"))
+            output_single(fault.inspected_expected, color("pass"))
             output("> expected but was")
             output_single("<")
             output_single(fault.inspected_actual, color("failure"))
@@ -180,8 +171,7 @@ module Test
 
           def test_finished(name)
             unless @already_outputted
-              @n_successes += 1
-              output_progress(".", color("success"))
+              output_progress(".", color("pass"))
             end
             @already_outputted = false
 
@@ -257,7 +247,9 @@ module Test
           end
 
           def color(name)
-            @color_scheme[name] || ColorScheme.default[name]
+            _color = @color_scheme[name] || ColorScheme.default[name]
+            _color ||= color("success") if name == "pass"
+            _color
           end
 
           def fault_color(fault)
