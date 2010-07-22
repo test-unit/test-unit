@@ -121,7 +121,7 @@ require "test/unit"</pre>
         <p>
           <img class="eye-catch" alt="スクリーンショット"
                src="test-unit-notify/screenshot/notify-on-gnome.png" />
-          テストの実行結果をポップアップで通知します。通知方法は環境によってことなります。
+          テストの実行結果をポップアップで通知します。通知方法は環境によって異なります。
           <dl class="feature-list">
             <dt>GNOMEやXfceやKDEなどのX Window Systemベースの環境</dt>
             <dd>notify-sendを使ってD-Bus経由でnotification-daemonにリクエストを送ることにより通知します。notify-sendコマンドが無かったり、notification-daemonが動いていない場合は利用できません。</dd>
