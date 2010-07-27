@@ -1,7 +1,7 @@
 #--
 #
 # Author:: Kouhei Sutou.
-# Copyright:: Copyright (c) 2009 Kouhei Sutou <kou@clear-code.com>.
+# Copyright:: Copyright (c) 2009-2010 Kouhei Sutou <kou@clear-code.com>.
 # License:: Ruby license.
 
 require 'test/unit/ui/testrunner'
@@ -24,8 +24,7 @@ module Test
 
           # Begins the test run.
           def start
-            setup_mediator
-            result = start_mediator
+            result = super
             def result.passed?
               true # for prove commend :<
             end
