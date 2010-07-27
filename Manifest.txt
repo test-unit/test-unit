@@ -101,6 +101,7 @@ test/test_failure.rb
 test/test_testresult.rb
 test/test_testsuite.rb
 test/testunit-test-util.rb
+test/ui/test_tap.rb
 test/ui/test_testrunmediator.rb
 test/util/test-method-owner-finder.rb
 test/util/test-output.rb
