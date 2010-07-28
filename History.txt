@@ -1,6 +1,15 @@
+=== 2.1.1 / 2010-07-29
+
+* 1 bug fix
+  * [test-unit-users-en:00026] re-work tap runner.
+    [Daniel Berger]
+
+* Thanks
+  * Daniel Berger
+
 === 2.1.0 / 2010-07-17
 
-* 1 bug fixes
+* 1 bug fix
   * [#28267] global config file ignored
     [Daniel Berger]
 
