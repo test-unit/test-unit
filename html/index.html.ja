@@ -133,7 +133,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-notify-latest">test-unit-notify最新リリース</h3>
 	<p>
-	  2010-07-17にリリースされた0.0.1が最新リリースです。
+	  2010-11-25にリリースされた0.1.0が最新リリースです。
         </p>
 	<h3 id="test-unit-notify-install">test-unit-notifyのインストール</h3>
         <p>
