@@ -7,6 +7,7 @@ module Test
       RUNNERS = {}
       COLLECTORS = {}
       ADDITIONAL_OPTIONS = []
+      PREPARE_HOOKS = []
 
       class << self
         def register_runner(id, runner_builder=Proc.new)
@@ -43,15 +44,20 @@ module Test
         def setup_option(option_builder=Proc.new)
           ADDITIONAL_OPTIONS << option_builder
         end
+
+        def prepare(hook=Proc.new)
+          PREPARE_HOOKS << hook
+        end
       end
 
       def self.run(force_standalone=false, default_dir=nil, argv=ARGV, &block)
         r = new(force_standalone || standalone?, &block)
         r.base = default_dir
+        r.prepare
         r.process_args(argv)
         r.run
       end
-      
+
       def self.standalone?
         return false unless("-e" == $0)
         ObjectSpace.each_object(Class) do |klass|
@@ -121,6 +127,12 @@ module Test
           load_global_config
         end
         yield(self) if block_given?
+      end
+
+      def prepare
+        PREPARE_HOOKS.each do |handler|
+          handler.call(self)
+        end
       end
 
       def process_args(args = ARGV)
