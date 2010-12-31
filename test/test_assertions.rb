@@ -837,13 +837,9 @@ EOM
       end
 
       def test_assert_in_delta_pass_string_delta
-        check_nothing_fails {
-          float_thing = Object.new
-          def float_thing.to_f
-            0.2
-          end
-          assert_in_delta("0.1", float_thing, 0.1)
-        }
+        check_nothing_fails do
+          assert_in_delta("0.5", 0.4, 0.1)
+        end
       end
 
       def test_assert_in_delta_fail_with_message
