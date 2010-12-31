@@ -579,6 +579,7 @@ EOT
                             "The arguments must respond to to_f; " +
                             "the #{name} did not")
         end
+        delta = delta.to_f
         assert_operator(delta, :>=, 0.0, "The delta should not be negative")
       end
 
@@ -597,12 +598,16 @@ EOT
         if normalized_actual < normalized_expected - normalized_delta
           relation_format = "<<?> < <?>-<?>(?) <= <?>+<?>(?)>"
           relation_arguments = [actual_float,
-                                expected_float, delta, expected_float - delta,
-                                expected_float, delta, expected_float + delta]
+                                expected_float, delta,
+                                normalized_expected - normalized_delta,
+                                expected_float, delta,
+                                normalized_expected + normalized_delta]
         elsif normalized_expected - normalized_delta < normalized_actual
           relation_format = "<<?>-<?>(?) <= <?>+<?>(?) < <?>>"
-          relation_arguments = [expected_float, delta, expected_float - delta,
-                                expected_float, delta, expected_float + delta,
+          relation_arguments = [expected_float, delta,
+                                normalized_expected - normalized_delta,
+                                expected_float, delta,
+                                normalized_expected + normalized_delta,
                                 actual_float]
         end
 
