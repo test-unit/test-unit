@@ -284,8 +284,15 @@ module Test
       def test_startup_shutdown
         called = []
         test_case = Class.new(TestCase) do
-          @@called = called
           class << self
+            def called
+              @@called
+            end
+
+            def called=(called)
+              @@called = called
+            end
+
             def startup
               @@called << :startup
             end
@@ -294,13 +301,14 @@ module Test
               @@called << :shutdown
             end
           end
+          self.called = called
 
           def setup
-            @@called << :setup
+            self.class.called << :setup
           end
 
           def teardown
-            @@called << :teardown
+            self.class.called << :teardown
           end
 
           def test1
