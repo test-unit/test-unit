@@ -27,6 +27,7 @@ module Test
         @name = name
         @tests = []
         @test_case = test_case
+        @n_tests = 0
       end
 
       # Runs the tests and/or suites contained in this
@@ -34,7 +35,8 @@ module Test
       def run(result, &progress_block)
         yield(STARTED, name)
         run_startup(result)
-        @tests.each do |test|
+        while test = @tests.shift
+          @n_tests += test.size
           test.run(result, &progress_block)
         end
         run_shutdown(result)
@@ -55,7 +57,7 @@ module Test
       # i.e. if the suite contains other suites, it counts the
       # tests within those suites, not the suites themselves.
       def size
-        total_size = 0
+        total_size = @n_tests
         @tests.each { |test| total_size += test.size }
         total_size
       end
