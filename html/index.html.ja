@@ -105,7 +105,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-full-latest">test-unit-full最新リリース</h3>
 	<p>
-	  2010-07-17にリリースされた0.0.2が最新リリースです。
+	  2011-02-09にリリースされた0.0.3が最新リリースです。
         </p>
 	<h3 id="test-unit-full-install">test-unit-fullのインストール</h3>
         <p>
@@ -146,6 +146,24 @@ require "test/unit"</pre>
         </p>
         <p>
           --notifyオプションが追加されます。--notifyオプションを指定するとテスト終了時にテスト結果をポップアップで通知します。
+        </p>
+
+	<h2 id="test-unit-rr">test-unit-rr</h2>
+        <p>
+          test-unit 2で<a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?TestDouble">テストダブル（テスト代役）</a>ライブラリ<a href="http://github.com/btakita/rr">RR</a>を利用するためのパッケージです。
+        </p>
+	<h3 id="test-unit-rr-latest">test-unit-rr最新リリース</h3>
+	<p>
+	  2011-02-09にリリースされた1.0.0が最新リリースです。
+        </p>
+	<h3 id="test-unit-rr-install">test-unit-rrのインストール</h3>
+        <p>
+          インストール:
+          <pre class="command">% sudo gem install test-unit-rr</pre>
+        </p>
+        <p>
+          使い方:
+          <pre class="code">require "test/unit/rr"</pre>
         </p>
 
 	<h2 id="test-unit-gtk2">test-unit-gtk2</h2>
