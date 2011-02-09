@@ -172,7 +172,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-gtk2-latest">test-unit-gtk2最新リリース</h3>
 	<p>
-	  2008-06-17にリリースされた0.0.1が最新リリースです。
+	  2011-02-09にリリースされた0.0.2が最新リリースです。
         </p>
 	<h3 id="test-unit-gtk2-install">test-unit-gtk2のインストール</h3>
         <p>
