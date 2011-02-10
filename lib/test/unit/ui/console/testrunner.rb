@@ -286,7 +286,7 @@ module Test
           end
 
           def guess_term_width
-            Integer(ENV["TERM_WIDTH"] || 0)
+            Integer(ENV["COLUMNS"] || ENV["TERM_WIDTH"] || 0)
           rescue ArgumentError
             0
           end
