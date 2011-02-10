@@ -119,10 +119,12 @@ require "test/unit"</pre>
 
 	<h2 id="test-unit-notify">test-unit-notify</h2>
         <p>
-          <img class="eye-catch" alt="GNOME上での通知"
-               src="test-unit-notify/screenshot/notify-on-gnome.png" />
-          <img class="eye-catch" alt="Mac OS X上での通知"
-               src="test-unit-notify/screenshot/notify-on-mac-os-x.png" />
+          <div class="eye-catch">
+	    <img alt="GNOME上での通知"
+		 src="test-unit-notify/screenshot/notify-on-gnome.png" />
+	    <img alt="Mac OS X上での通知"
+		 src="test-unit-notify/screenshot/notify-on-mac-os-x.png" />
+          </div>
           テストの実行結果をポップアップで通知します。通知方法は環境によって異なります。
           <dl class="feature-list">
             <dt>GNOMEやXfceやKDEなどのX Window Systemベースの環境</dt>

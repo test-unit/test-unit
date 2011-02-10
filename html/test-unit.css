@@ -300,9 +300,14 @@ pre.code
   padding: 5px 10px;
 }
 
-img.eye-catch
+div.eye-catch
 {
   float: right;
+}
+
+div.eye-catch img
+{
+  display: block;
 }
 
 dl.feature-list
