@@ -119,14 +119,16 @@ require "test/unit"</pre>
 
 	<h2 id="test-unit-notify">test-unit-notify</h2>
         <p>
-          <img class="eye-catch" alt="スクリーンショット"
+          <img class="eye-catch" alt="GNOME上での通知"
                src="test-unit-notify/screenshot/notify-on-gnome.png" />
+          <img class="eye-catch" alt="Mac OS X上での通知"
+               src="test-unit-notify/screenshot/notify-on-mac-os-x.png" />
           テストの実行結果をポップアップで通知します。通知方法は環境によって異なります。
           <dl class="feature-list">
             <dt>GNOMEやXfceやKDEなどのX Window Systemベースの環境</dt>
             <dd>notify-sendを使ってD-Bus経由でnotification-daemonにリクエストを送ることにより通知します。notify-sendコマンドが無かったり、notification-daemonが動いていない場合は利用できません。</dd>
             <dt>Mac OS X</dt>
-            <dd>Growlを使って通知できるようになるといいですね！（未実装）</dd>
+            <dd>growlnotifyを使って通知します。growlnotifyコマンドが無かったり、Growlが動いていない場合は利用できません。</dd>
             <dt>Windows</dt>
             <dd>どうやるのがいいのでしょうか。Growl for Windows？（未実装）</dd>
           </dl>
