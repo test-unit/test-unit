@@ -310,11 +310,6 @@ div.eye-catch img
   display: block;
 }
 
-dl.feature-list
-{
-  clear: both;
-}
-
 dl.feature-list dd
 {
   border: solid 1px #729fcf;
