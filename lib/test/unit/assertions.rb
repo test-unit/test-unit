@@ -1284,21 +1284,21 @@ EOT
       end
 
       private
-      def _wrap_assertion
+      def _wrap_assertion(&block)
         @_assertion_wrapped ||= false
         if @_assertion_wrapped
-          yield
+          block.call
         else
           @_assertion_wrapped = true
           begin
             add_assertion
-            yield
+            block.call
           ensure
             @_assertion_wrapped = false
           end
         end
       end
-      
+
       ##
       # Called whenever an assertion is made.  Define this in classes that
       # include Test::Unit::Assertions to record assertion counts.
