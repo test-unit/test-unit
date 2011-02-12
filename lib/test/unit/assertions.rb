@@ -665,12 +665,12 @@ EOT
                                    message, options={})
         if options[:negative_assertion]
           format = <<-EOT
-<?> -/+ <?> expected to not include but was
+<?> -/+ <?> expected to not include
 <?>.
 EOT
         else
           format = <<-EOT
-<?> -/+ <?> expected to include but was
+<?> -/+ <?> expected to include
 <?>.
 EOT
         end
@@ -801,12 +801,12 @@ EOT
 
         if options[:negative_assertion]
           format = <<-EOT
-<?> -/+ (<?> * <?>)[?] expected to not include but was
+<?> -/+ (<?> * <?>)[?] expected to not include
 <?>.
 EOT
         else
           format = <<-EOT
-<?> -/+ (<?> * <?>)[?] expected to include but was
+<?> -/+ (<?> * <?>)[?] expected to include
 <?>.
 EOT
         end

@@ -1265,7 +1265,7 @@ EOM
 
       def test_fail_with_message
         check_fails("message.\n" +
-                    "<0.5> -/+ <0.05> expected to include but was\n" +
+                    "<0.5> -/+ <0.05> expected to include\n" +
                     "<0.4>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1293,7 +1293,7 @@ EOM
       end
 
       def test_fail_without_delta
-        check_fails("<1.402> -/+ <0.001> expected to include but was\n" +
+        check_fails("<1.402> -/+ <0.001> expected to include\n" +
                     "<1.404>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1345,7 +1345,7 @@ EOM
       end
 
       def test_fail
-        check_fails("<1.4> -/+ <0.11> expected to not include but was\n" +
+        check_fails("<1.4> -/+ <0.11> expected to not include\n" +
                     "<1.5>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1359,7 +1359,7 @@ EOM
       end
 
       def test_fail_without_delta
-        check_fails("<1.402> -/+ <0.001> expected to not include but was\n" +
+        check_fails("<1.402> -/+ <0.001> expected to not include\n" +
                     "<1.4021>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1374,8 +1374,7 @@ EOM
 
       def test_fail_with_message
         check_fails("message.\n" +
-                    "<0.5> -/+ <0.11> expected to not include " +
-                    "but was\n" +
+                    "<0.5> -/+ <0.11> expected to not include\n" +
                     "<0.4>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1447,7 +1446,7 @@ EOM
       def test_fail_with_message
         check_fails("message.\n" +
                     "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
-                    "expected to include but was\n" +
+                    "expected to include\n" +
                     "<8999>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1480,7 +1479,7 @@ EOM
 
       def test_fail_without_epsilon
         check_fails("<10000> -/+ (<10000> * <0.001>)[10.0] " +
-                    "expected to include but was\n" +
+                    "expected to include\n" +
                     "<10011>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1533,8 +1532,7 @@ EOM
 
       def test_fail
         check_fails("<10000> -/+ (<10000> * <0.1>)[1000.0] " +
-                    "expected to not include " +
-                    "but was\n" +
+                    "expected to not include\n" +
                     "<9000>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1549,8 +1547,7 @@ EOM
 
       def test_fail_without_epsilon
         check_fails("<10000> -/+ (<10000> * <0.001>)[10.0] " +
-                    "expected to not include " +
-                    "but was\n" +
+                    "expected to not include\n" +
                     "<9990>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1566,8 +1563,7 @@ EOM
       def test_fail_with_message
         check_fails("message.\n" +
                     "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
-                    "expected to not include " +
-                    "but was\n" +
+                    "expected to not include\n" +
                     "<9000>.\n" +
                     "\n" +
                     "Relation:\n" +
