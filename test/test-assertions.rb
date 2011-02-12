@@ -1226,7 +1226,7 @@ EOM
       end
     end
 
-    class TestAssertionInDelta < TestCase
+    class TestAssertInDelta < TestCase
       include AssertionCheckable
 
       def test_pass
@@ -1257,7 +1257,7 @@ EOM
         end
       end
 
-      def test_pass_string_delta
+      def test_pass_string_expected
         check_nothing_fails do
           assert_in_delta("0.5", 0.4, 0.1)
         end
@@ -1338,7 +1338,7 @@ EOM
         end
       end
 
-      def test_pass_string_delta
+      def test_pass_string_epxected
         check_nothing_fails do
           assert_not_in_delta("0.5", 0.4, 0.09)
         end
@@ -1405,6 +1405,92 @@ EOM
         check_fails("The delta should not be negative.\n" +
                     "<-0.11> expected to be\n>=\n<0.0>.") do
           assert_not_in_delta(0.5, 0.4, -0.11, "message")
+        end
+      end
+    end
+
+    class TestAssertInEpsilon < TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_in_epsilon(10000, 9000, 0.1)
+        end
+      end
+
+      def test_pass_without_epsilon
+        check_nothing_fails do
+          assert_in_epsilon(10000, 9991)
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_in_epsilon(10000, 9000, 0.1, "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            9000.0
+          end
+          assert_in_epsilon(10000, float_thing, 0.1)
+        end
+      end
+
+      def test_pass_string_expected
+        check_nothing_fails do
+          assert_in_epsilon("10000", 9000, 0.1)
+        end
+      end
+
+      def test_fail_with_message
+        check_fails("message.\n" +
+                    "<10000> (-/+ <10.0%>=<1000.0>) expected to include " +
+                    "but was\n" +
+                    "<8999>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<8999> < " +
+                    "<10000>-<10.0%>(9000.0) <= " +
+                    "<10000>+<10.0%>(11000.0)" +
+                    ">") do
+          assert_in_epsilon(10000, 8999, 0.1, "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_in_epsilon(object, 9000, 0.1)
+        end
+      end
+
+      def test_fail_because_negaitve_epsilon
+        check_fails("The epsilon should not be negative.\n" +
+                    "<-0.1> expected to be\n>=\n<0.0>.") do
+          assert_in_epsilon(10000, 9000, -0.1, "message")
+        end
+      end
+
+      def test_fail_without_epsilon
+        check_fails("<10000> (-/+ <0.1%>=<10.0>) expected to include but was\n" +
+                    "<10011>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<10000>-<0.1%>(9990.0) <= " +
+                    "<10000>+<0.1%>(10010.0) < " +
+                    "<10011>" +
+                    ">") do
+          assert_in_epsilon(10000, 10011)
         end
       end
     end

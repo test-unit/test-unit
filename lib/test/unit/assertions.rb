@@ -719,6 +719,112 @@ EOT
       # :startdoc:
 
       ##
+      # Passes if +expected_float+ and +actual_float+ are equal
+      # within +epsilon+ relative error of +expected_float+.
+      #
+      # Example:
+      #   assert_in_epsilon(10000.0, 9900.0, 0.1) # -> pass
+      #   assert_in_epsilon(10000.0, 9899.0, 0.1) # -> fail
+
+      public
+      def assert_in_epsilon(expected_float, actual_float, epsilon=0.001,
+                            message="")
+        _wrap_assertion do
+          _assert_in_epsilon_validate_arguments(expected_float,
+                                                actual_float,
+                                                epsilon)
+          full_message = _assert_in_epsilon_message(expected_float,
+                                                    actual_float,
+                                                    epsilon,
+                                                    message)
+          assert_block(full_message) do
+            normalized_expected_float = expected_float.to_f
+            delta = normalized_expected_float * epsilon.to_f
+            (normalized_expected_float - actual_float.to_f).abs <= delta
+          end
+        end
+      end
+
+      # :stopdoc:
+      private
+      def _assert_in_epsilon_validate_arguments(expected_float,
+                                                actual_float,
+                                                epsilon)
+        {
+          expected_float => "first float",
+          actual_float => "second float",
+          epsilon => "epsilon"
+        }.each do |float, name|
+          assert_respond_to(float, :to_f,
+                            "The arguments must respond to to_f; " +
+                            "the #{name} did not")
+        end
+        epsilon = epsilon.to_f
+        assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
+      end
+
+      def _assert_in_epsilon_message(expected_float, actual_float, epsilon,
+                                     message, options={})
+        normalized_expected = expected_float.to_f
+        normalized_actual = actual_float.to_f
+        normalized_epsilon = epsilon.to_f
+        epsilon_percent = epsilon * 100
+        delta = normalized_expected * normalized_epsilon
+
+        if options[:negative_assertion]
+          format = <<-EOT
+<?> (-/+ <?%>=<?>) expected to not include but was
+<?>.
+EOT
+        else
+          format = <<-EOT
+<?> (-/+ <?%>=<?>) expected to include but was
+<?>.
+EOT
+        end
+        arguments = [expected_float, epsilon_percent, delta, actual_float]
+
+        relation_format = nil
+        relation_arguments = nil
+        if normalized_actual < normalized_expected - delta
+          relation_format = "<<?> < <?>-<?%>(?) <= <?>+<?%>(?)>"
+          relation_arguments = [actual_float,
+                                expected_float, epsilon_percent,
+                                normalized_expected - delta,
+                                expected_float, epsilon_percent,
+                                normalized_expected + delta]
+        elsif normalized_actual <= normalized_expected + delta
+          relation_format = "<<?>-<?%>(?) <= <?> <= <?>+<?%>(?)>"
+          relation_arguments = [expected_float, epsilon_percent,
+                                normalized_expected - delta,
+                                actual_float,
+                                expected_float, epsilon_percent,
+                                normalized_expected + delta]
+        else
+          relation_format = "<<?>-<?%>(?) <= <?>+<?%>(?) < <?>>"
+          relation_arguments = [expected_float, epsilon_percent,
+                                normalized_expected - delta,
+                                expected_float, epsilon_percent,
+                                normalized_expected + delta,
+                                actual_float]
+        end
+
+        if relation_format
+          format << <<-EOT
+
+Relation:
+#{relation_format}
+EOT
+          arguments.concat(relation_arguments)
+        end
+
+        build_message(message, format, *arguments)
+      end
+
+      public
+      # :startdoc:
+
+      ##
       # Passes if the method send returns a true value.
       #
       # +send_array+ is composed of:
