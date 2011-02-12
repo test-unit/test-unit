@@ -62,8 +62,12 @@ module Test
       public
       def assert(boolean, message=nil)
         _wrap_assertion do
-          assert_block("assert should not be called with a block.") { !block_given? }
-          assert_block(build_message(message, "<?> is not true.", boolean)) { boolean }
+          assert_block("assert should not be called with a block.") do
+            !block_given?
+          end
+          assert_block(build_message(message, "<?> is not true.", boolean)) do
+            boolean
+          end
         end
       end
 
