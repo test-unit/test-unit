@@ -9,7 +9,7 @@ require 'test/unit'
 
 module Test
   module Unit
-    class TC_Assertions < TestCase
+    class TestAssertions < TestCase
       backtrace_pre  = "---Backtrace---"
       backtrace_post = "---------------"
       BACKTRACE_RE = /#{backtrace_pre}\n.+\n#{backtrace_post}/m
