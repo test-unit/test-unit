@@ -45,7 +45,7 @@ module Test
       #   end
 
       public
-      def assert_block(message="assert_block failed.") # :yields: 
+      def assert_block(message="assert_block failed.") # :yields:
         _wrap_assertion do
           if (! yield)
             raise AssertionFailedError.new(message.to_s)
