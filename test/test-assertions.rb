@@ -9,11 +9,12 @@ require 'test/unit'
 
 module Test
   module Unit
-    class TestAssertions < TestCase
+    module AssertionCheckable
       backtrace_pre  = "---Backtrace---"
       backtrace_post = "---------------"
       BACKTRACE_RE = /#{backtrace_pre}\n.+\n#{backtrace_post}/m
 
+      private
       def check(value, message="")
         add_assertion
         raise AssertionFailedError.new(message) unless value
@@ -91,6 +92,24 @@ module Test
           tag.inspect
         end
       end
+
+      def add_failure(message, location=caller, options=nil)
+        unless @catch_assertions
+          super
+        end
+      end
+
+      def add_assertion
+        if @catch_assertions
+          @actual_assertion_count += 1
+        else
+          super
+        end
+      end
+    end
+
+    class TestAssertions < TestCase
+      include AssertionCheckable
 
       def test_assert_block
         check_nothing_fails {
@@ -1378,21 +1397,6 @@ EOM
 
         check_fails("<#{__FILE__.inspect}> expected to not exist") do
           assert_path_not_exist(__FILE__)
-        end
-      end
-
-      private
-      def add_failure(message, location=caller, options=nil)
-        unless @catch_assertions
-          super
-        end
-      end
-
-      def add_assertion
-        if @catch_assertions
-          @actual_assertion_count += 1
-        else
-          super
         end
       end
     end
