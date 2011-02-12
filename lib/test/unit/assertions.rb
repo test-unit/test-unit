@@ -1251,6 +1251,29 @@ EOT
       end
 
       ##
+      # Passes if +object+ is not empty.
+      #
+      # Example:
+      #   assert_not_empty(" ")                      # -> pass
+      #   assert_not_empty([nil])                    # -> pass
+      #   assert_not_empty({1 => 2})                 # -> pass
+      #   assert_not_empty("")                       # -> fail
+      #   assert_not_empty([])                       # -> fail
+      #   assert_not_empty({})                       # -> fail
+      def assert_not_empty(object, message=nil)
+        _wrap_assertion do
+          assert_respond_to(object, :empty?,
+                            "The object must respond to :empty?.")
+          full_message = build_message(message,
+                                       "<?> expected to not be empty.",
+                                       object)
+          assert_block(full_message) do
+            not object.empty?
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 
