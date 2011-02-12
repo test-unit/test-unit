@@ -1495,5 +1495,110 @@ EOM
         end
       end
     end
+
+    class TestAssertNotInEpsilon < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_not_in_epsilon(10000, 8999, 0.1)
+        end
+      end
+
+      def test_pass_without_epsilon
+        check_nothing_fails do
+          assert_not_in_epsilon(10000, 9989)
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_not_in_epsilon(10000, 8999, 0.1, "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            8999.0
+          end
+          assert_not_in_epsilon(10000, float_thing, 0.1)
+        end
+      end
+
+      def test_pass_string_epxected
+        check_nothing_fails do
+          assert_not_in_epsilon("10000", 8999, 0.1)
+        end
+      end
+
+      def test_fail
+        check_fails("<10000> -/+ (<10000> * <0.1>)[1000.0] " +
+                    "expected to not include " +
+                    "but was\n" +
+                    "<9000>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<10000>-(<10000>*<0.1>)[9000.0] <= " +
+                    "<9000> <= " +
+                    "<10000>+(<10000>*<0.1>)[11000.0]" +
+                    ">") do
+          assert_not_in_epsilon(10000, 9000, 0.1)
+        end
+      end
+
+      def test_fail_without_epsilon
+        check_fails("<10000> -/+ (<10000> * <0.001>)[10.0] " +
+                    "expected to not include " +
+                    "but was\n" +
+                    "<9990>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<10000>-(<10000>*<0.001>)[9990.0] <= " +
+                    "<9990> <= " +
+                    "<10000>+(<10000>*<0.001>)[10010.0]" +
+                    ">") do
+          assert_not_in_epsilon(10000, 9990)
+        end
+      end
+
+      def test_fail_with_message
+        check_fails("message.\n" +
+                    "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
+                    "expected to not include " +
+                    "but was\n" +
+                    "<9000>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<10000>-(<10000>*<0.1>)[9000.0] <= " +
+                    "<9000> <= " +
+                    "<10000>+(<10000>*<0.1>)[11000.0]" +
+                    ">") do
+          assert_not_in_epsilon(10000, 9000, 0.1, "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_not_in_epsilon(object, 9000, 0.1)
+        end
+      end
+
+      def test_fail_because_negaitve_epsilon
+        check_fails("The epsilon should not be negative.\n" +
+                    "<-0.1> expected to be\n>=\n<0.0>.") do
+          assert_not_in_epsilon(10000, 9000, -0.1, "message")
+        end
+      end
+    end
   end
 end

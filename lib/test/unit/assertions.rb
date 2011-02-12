@@ -745,6 +745,35 @@ EOT
         end
       end
 
+      ##
+      # Passes if +expected_float+ and +actual_float+ are
+      # not equal within +epsilon+ relative error of
+      # +expected_float+.
+      #
+      # Example:
+      #   assert_not_in_epsilon(10000.0, 9900.0, 0.1) # -> fail
+      #   assert_not_in_epsilon(10000.0, 9899.0, 0.1) # -> pass
+
+      public
+      def assert_not_in_epsilon(expected_float, actual_float, epsilon=0.001,
+                                message="")
+        _wrap_assertion do
+          _assert_in_epsilon_validate_arguments(expected_float,
+                                                actual_float,
+                                                epsilon)
+          full_message = _assert_in_epsilon_message(expected_float,
+                                                    actual_float,
+                                                    epsilon,
+                                                    message,
+                                                    :negative_assertion => true)
+          assert_block(full_message) do
+            normalized_expected_float = expected_float.to_f
+            delta = normalized_expected_float * epsilon.to_f
+            (normalized_expected_float - actual_float.to_f).abs > delta
+          end
+        end
+      end
+
       # :stopdoc:
       private
       def _assert_in_epsilon_validate_arguments(expected_float,
