@@ -768,43 +768,43 @@ EOT
         normalized_expected = expected_float.to_f
         normalized_actual = actual_float.to_f
         normalized_epsilon = epsilon.to_f
-        epsilon_percent = epsilon * 100
         delta = normalized_expected * normalized_epsilon
 
         if options[:negative_assertion]
           format = <<-EOT
-<?> (-/+ <?%>=<?>) expected to not include but was
+<?> -/+ (<?> * <?>)[?] expected to not include but was
 <?>.
 EOT
         else
           format = <<-EOT
-<?> (-/+ <?%>=<?>) expected to include but was
+<?> -/+ (<?> * <?>)[?] expected to include but was
 <?>.
 EOT
         end
-        arguments = [expected_float, epsilon_percent, delta, actual_float]
+        arguments = [expected_float, expected_float, epsilon, delta,
+                     actual_float]
 
         relation_format = nil
         relation_arguments = nil
         if normalized_actual < normalized_expected - delta
-          relation_format = "<<?> < <?>-<?%>(?) <= <?>+<?%>(?)>"
+          relation_format = "<<?> < <?>-(<?>*<?>)[?] <= <?>+(<?>*<?>)[?]>"
           relation_arguments = [actual_float,
-                                expected_float, epsilon_percent,
+                                expected_float, expected_float, epsilon,
                                 normalized_expected - delta,
-                                expected_float, epsilon_percent,
+                                expected_float, expected_float, epsilon,
                                 normalized_expected + delta]
         elsif normalized_actual <= normalized_expected + delta
-          relation_format = "<<?>-<?%>(?) <= <?> <= <?>+<?%>(?)>"
-          relation_arguments = [expected_float, epsilon_percent,
+          relation_format = "<<?>-(<?>*<?>)[?] <= <?> <= <?>+(<?>*<?>)[?]>"
+          relation_arguments = [expected_float, expected_float, epsilon,
                                 normalized_expected - delta,
                                 actual_float,
-                                expected_float, epsilon_percent,
+                                expected_float, expected_float, epsilon,
                                 normalized_expected + delta]
         else
-          relation_format = "<<?>-<?%>(?) <= <?>+<?%>(?) < <?>>"
-          relation_arguments = [expected_float, epsilon_percent,
+          relation_format = "<<?>-(<?>*<?>)[?] <= <?>+(<?>*<?>)[?] < <?>>"
+          relation_arguments = [expected_float, expected_float, epsilon,
                                 normalized_expected - delta,
-                                expected_float, epsilon_percent,
+                                expected_float, expected_float, epsilon,
                                 normalized_expected + delta,
                                 actual_float]
         end

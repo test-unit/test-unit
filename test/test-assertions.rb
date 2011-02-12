@@ -1448,15 +1448,15 @@ EOM
 
       def test_fail_with_message
         check_fails("message.\n" +
-                    "<10000> (-/+ <10.0%>=<1000.0>) expected to include " +
-                    "but was\n" +
+                    "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
+                    "expected to include but was\n" +
                     "<8999>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
                     "<8999> < " +
-                    "<10000>-<10.0%>(9000.0) <= " +
-                    "<10000>+<10.0%>(11000.0)" +
+                    "<10000>-(<10000>*<0.1>)[9000.0] <= " +
+                    "<10000>+(<10000>*<0.1>)[11000.0]" +
                     ">") do
           assert_in_epsilon(10000, 8999, 0.1, "message")
         end
@@ -1481,13 +1481,14 @@ EOM
       end
 
       def test_fail_without_epsilon
-        check_fails("<10000> (-/+ <0.1%>=<10.0>) expected to include but was\n" +
+        check_fails("<10000> -/+ (<10000> * <0.001>)[10.0] " +
+                    "expected to include but was\n" +
                     "<10011>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
-                    "<10000>-<0.1%>(9990.0) <= " +
-                    "<10000>+<0.1%>(10010.0) < " +
+                    "<10000>-(<10000>*<0.001>)[9990.0] <= " +
+                    "<10000>+(<10000>*<0.001>)[10010.0] < " +
                     "<10011>" +
                     ">") do
           assert_in_epsilon(10000, 10011)
