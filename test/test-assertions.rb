@@ -1598,5 +1598,46 @@ EOM
         end
       end
     end
+
+    class TestAssertInclude < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_include([1, 2, 3], 1)
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_include([1, 2, 3], 1, "message")
+        end
+      end
+
+      def test_fail
+        check_fails("<[1, 2, 3]> expected to include\n" +
+                    "<4>.") do
+          assert_include([1, 2, 3], 4)
+        end
+      end
+
+      def test_fail_with_message
+        check_fails("message.\n" +
+                    "<[1, 2, 3]> expected to include\n" +
+                    "<4>.") do
+          assert_include([1, 2, 3], 4, "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("The collection must respond to :include?.\n" +
+                    "<#{inspected_object}>.respond_to?(:include?) expected\n" +
+                    "(Class: <Object>)") do
+          assert_include(object, 1)
+        end
+      end
+    end
   end
 end
