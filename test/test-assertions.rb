@@ -1265,11 +1265,11 @@ EOM
 
       def test_fail_with_message
         check_fails("message.\n" +
-                    "<0.5> (tolerance <0.05>) expected to include but was\n" +
+                    "<0.5> -/+ <0.05> expected to include but was\n" +
                     "<0.4>.\n" +
                     "\n" +
                     "Relation:\n" +
-                    "<<0.4> < <0.5>-<0.05>(0.45) <= <0.5>+<0.05>(0.55)>") do
+                    "<<0.4> < <0.5>-<0.05>[0.45] <= <0.5>+<0.05>[0.55]>") do
           assert_in_delta(0.5, 0.4, 0.05, "message")
         end
       end
@@ -1293,13 +1293,13 @@ EOM
       end
 
       def test_fail_without_delta
-        check_fails("<1.402> (tolerance <0.001>) expected to include but was\n" +
+        check_fails("<1.402> -/+ <0.001> expected to include but was\n" +
                     "<1.404>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
-                    "<1.402>-<0.001>(1.401) <= " +
-                    "<1.402>+<0.001>(1.403) < " +
+                    "<1.402>-<0.001>[1.401] <= " +
+                    "<1.402>+<0.001>[1.403] < " +
                     "<1.404>" +
                     ">") do
           assert_in_delta(1.402, 1.404)
@@ -1345,30 +1345,28 @@ EOM
       end
 
       def test_fail
-        check_fails("<1.4> (tolerance <0.11>) expected to not include " +
-                    "but was\n" +
+        check_fails("<1.4> -/+ <0.11> expected to not include but was\n" +
                     "<1.5>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
-                    "<1.4>-<0.11>(1.29) <= " +
+                    "<1.4>-<0.11>[1.29] <= " +
                     "<1.5> <= " +
-                    "<1.4>+<0.11>(1.51)" +
+                    "<1.4>+<0.11>[1.51]" +
                     ">") do
           assert_not_in_delta(1.4, 1.5, 0.11)
         end
       end
 
       def test_fail_without_delta
-        check_fails("<1.402> (tolerance <0.001>) expected to not include " +
-                    "but was\n" +
+        check_fails("<1.402> -/+ <0.001> expected to not include but was\n" +
                     "<1.4021>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
-                    "<1.402>-<0.001>(1.401) <= " +
+                    "<1.402>-<0.001>[1.401] <= " +
                     "<1.4021> <= " +
-                    "<1.402>+<0.001>(1.403)" +
+                    "<1.402>+<0.001>[1.403]" +
                     ">") do
           assert_not_in_delta(1.402, 1.4021)
         end
@@ -1376,15 +1374,15 @@ EOM
 
       def test_fail_with_message
         check_fails("message.\n" +
-                    "<0.5> (tolerance <0.11>) expected to not include " +
+                    "<0.5> -/+ <0.11> expected to not include " +
                     "but was\n" +
                     "<0.4>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
-                    "<0.5>-<0.11>(0.39) <= " +
+                    "<0.5>-<0.11>[0.39] <= " +
                     "<0.4> <= " +
-                    "<0.5>+<0.11>(0.61)" +
+                    "<0.5>+<0.11>[0.61]" +
                     ">") do
           assert_not_in_delta(0.5, 0.4, 0.11, "message")
         end

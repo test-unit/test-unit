@@ -665,12 +665,12 @@ EOT
                                    message, options={})
         if options[:negative_assertion]
           format = <<-EOT
-<?> (tolerance <?>) expected to not include but was
+<?> -/+ <?> expected to not include but was
 <?>.
 EOT
         else
           format = <<-EOT
-<?> (tolerance <?>) expected to include but was
+<?> -/+ <?> expected to include but was
 <?>.
 EOT
         end
@@ -681,21 +681,21 @@ EOT
         relation_format = nil
         relation_arguments = nil
         if normalized_actual < normalized_expected - normalized_delta
-          relation_format = "<<?> < <?>-<?>(?) <= <?>+<?>(?)>"
+          relation_format = "<<?> < <?>-<?>[?] <= <?>+<?>[?]>"
           relation_arguments = [actual_float,
                                 expected_float, delta,
                                 normalized_expected - normalized_delta,
                                 expected_float, delta,
                                 normalized_expected + normalized_delta]
         elsif normalized_actual <= normalized_expected + normalized_delta
-          relation_format = "<<?>-<?>(?) <= <?> <= <?>+<?>(?)>"
+          relation_format = "<<?>-<?>[?] <= <?> <= <?>+<?>[?]>"
           relation_arguments = [expected_float, delta,
                                 normalized_expected - normalized_delta,
                                 actual_float,
                                 expected_float, delta,
                                 normalized_expected + normalized_delta]
         else
-          relation_format = "<<?>-<?>(?) <= <?>+<?>(?) < <?>>"
+          relation_format = "<<?>-<?>[?] <= <?>+<?>[?] < <?>>"
           relation_arguments = [expected_float, delta,
                                 normalized_expected - normalized_delta,
                                 expected_float, delta,
