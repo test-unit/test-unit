@@ -1056,7 +1056,7 @@ EOT
       end
 
       ##
-      # Passes if +object+.+predicate+
+      # Passes if +object+.+predicate+ is _true_.
       #
       # Example:
       #   assert_predicate([], :empty?)  # -> pass
@@ -1078,7 +1078,7 @@ EOT
       end
 
       ##
-      # Passes if +object+.+predicate+
+      # Passes if +object+.+predicate+ is not _true_.
       #
       # Example:
       #   assert_not_predicate([1], :empty?) # -> pass
