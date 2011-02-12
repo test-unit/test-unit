@@ -820,6 +820,12 @@ EOM
         }
       end
 
+      def test_assert_in_delta_pass_without_delta
+        check_nothing_fails do
+          assert_in_delta(1.401, 1.402)
+        end
+      end
+
       def test_assert_in_delta_pass_with_message
         check_nothing_fails {
           assert_in_delta(0.5, 0.4, 0.1, "message")
@@ -869,6 +875,20 @@ EOM
                     "<-0.1> expected to be\n>=\n<0.0>.") {
           assert_in_delta(0.5, 0.4, -0.1, "message")
         }
+      end
+
+      def test_assert_in_delta_fail_without_delta
+        check_fails("<1.402> expected but was\n" +
+                    "<1.404> (tolerance <0.001>).\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<1.402>-<0.001>(1.401) <= " +
+                    "<1.402>+<0.001>(1.403) < " +
+                    "<1.404>" +
+                    ">") do
+          assert_in_delta(1.402, 1.404)
+        end
       end
 
       def test_assert_send

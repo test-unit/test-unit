@@ -550,7 +550,7 @@ EOT
       #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
 
       public
-      def assert_in_delta(expected_float, actual_float, delta, message="")
+      def assert_in_delta(expected_float, actual_float, delta=0.001, message="")
         _wrap_assertion do
           _assert_in_delta_validate_arguments(expected_float,
                                               actual_float,
