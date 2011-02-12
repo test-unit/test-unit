@@ -1228,6 +1228,29 @@ EOT
       end
 
       ##
+      # Passes if +object+ is empty.
+      #
+      # Example:
+      #   assert_empty("")                       # -> pass
+      #   assert_empty([])                       # -> pass
+      #   assert_empty({})                       # -> pass
+      #   assert_empty(" ")                      # -> fail
+      #   assert_empty([nil])                    # -> fail
+      #   assert_empty({1 => 2})                 # -> fail
+      def assert_empty(object, message=nil)
+        _wrap_assertion do
+          assert_respond_to(object, :empty?,
+                            "The object must respond to :empty?.")
+          full_message = build_message(message,
+                                       "<?> expected to be empty.",
+                                       object)
+          assert_block(full_message) do
+            object.empty?
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 

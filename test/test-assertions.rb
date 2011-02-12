@@ -1676,5 +1676,44 @@ EOM
         end
       end
     end
+
+    class TestAssertEmpty < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_empty([])
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_empty([], "message")
+        end
+      end
+
+      def test_fail
+        check_fails("<[1]> expected to be empty.") do
+          assert_empty([1])
+        end
+      end
+
+      def test_fail_with_message
+        check_fails("message.\n" +
+                    "<[1]> expected to be empty.") do
+          assert_empty([1], "message")
+        end
+      end
+
+      def test_fail_because_no_empty_method
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("The object must respond to :empty?.\n" +
+                    "<#{inspected_object}>.respond_to?(:empty?) expected\n" +
+                    "(Class: <Object>)") do
+          assert_empty(object)
+        end
+      end
+    end
   end
 end
