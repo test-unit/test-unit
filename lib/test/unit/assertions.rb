@@ -302,6 +302,31 @@ EOT
       end
 
       ##
+      # Passes if +object+ does not .respond_to? +method+.
+      #
+      # Example:
+      #   assert_not_respond_to('bugbear', :nonexistence) # -> pass
+      #   assert_not_respond_to('bugbear', :size)         # -> fail
+
+      public
+      def assert_not_respond_to(object, method, message="")
+        _wrap_assertion do
+          full_message = build_message(message,
+                                       "<?>.kind_of\\?(Symbol) or\n" +
+                                       "<?>.respond_to\\?(:to_str) expected",
+                                       method, method)
+          assert_block(full_message) do
+            method.kind_of?(Symbol) or method.respond_to?(:to_str)
+          end
+          full_message = build_message(message,
+                                       "!<?>.respond_to\\?(?) expected\n" +
+                                       "(Class: <?>)",
+                                       object, method, object.class)
+          assert_block(full_message) {!object.respond_to?(method)}
+        end
+      end
+
+      ##
       # Passes if +string+ =~ +pattern+.
       #
       # Example:

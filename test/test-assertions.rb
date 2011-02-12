@@ -795,7 +795,7 @@ EOM
           assert_operator("thing1", :==, "thing2", "message")
         }
       end
-      
+
       def test_assert_respond_to
         check_nothing_fails {
           assert_respond_to("thing", :to_s, "message")
@@ -808,10 +808,37 @@ EOM
           assert_respond_to("thing", 0.15)
         }
         check_fails("message.\n" +
-                    "<:symbol>.respond_to?(:non_existent) expected\n" +
+                    "<:symbol>.respond_to?(:nonexistence) expected\n" +
                     "(Class: <Symbol>)") {
-          assert_respond_to(:symbol, :non_existent, "message")
+          assert_respond_to(:symbol, :nonexistence, "message")
         }
+      end
+
+      def test_assert_not_respond_to_pass_symbol
+        check_nothing_fails do
+          assert_not_respond_to("thing", :nonexistent, "message")
+        end
+      end
+
+      def test_assert_not_respond_to_pass_string
+        check_nothing_fails do
+          assert_not_respond_to("thing", :nonexistent, "message")
+        end
+      end
+
+      def test_assert_not_respond_to_fail_number
+        check_fails("<0.15>.kind_of?(Symbol) or\n" +
+                    "<0.15>.respond_to?(:to_str) expected") do
+          assert_respond_to("thing", 0.15)
+        end
+      end
+
+      def tset_assert_not_respond_to_fail_existence
+        check_fails("message.\n" +
+                    "!<:symbol>.respond_to?(:to_s) expected\n" +
+                    "(Class: <Symbol>)") do
+          assert_respond_to(:symbol, :to_s, "message")
+        end
       end
 
       def test_assert_in_delta_pass
