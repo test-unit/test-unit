@@ -897,83 +897,6 @@ EOM
         end
       end
 
-      def test_assert_in_delta_pass
-        check_nothing_fails do
-          assert_in_delta(1.4, 1.4, 0)
-        end
-      end
-
-      def test_assert_in_delta_pass_without_delta
-        check_nothing_fails do
-          assert_in_delta(1.401, 1.402)
-        end
-      end
-
-      def test_assert_in_delta_pass_with_message
-        check_nothing_fails do
-          assert_in_delta(0.5, 0.4, 0.1, "message")
-        end
-      end
-
-      def test_assert_in_delta_pass_float_like_object
-        check_nothing_fails do
-          float_thing = Object.new
-          def float_thing.to_f
-            0.2
-          end
-          assert_in_delta(0.1, float_thing, 0.1)
-        end
-      end
-
-      def test_assert_in_delta_pass_string_delta
-        check_nothing_fails do
-          assert_in_delta("0.5", 0.4, 0.1)
-        end
-      end
-
-      def test_assert_in_delta_fail_with_message
-        check_fails("message.\n" +
-                    "<0.5> (tolerance <0.05>) expected to include but was\n" +
-                    "<0.4>.\n" +
-                    "\n" +
-                    "Relation:\n" +
-                    "<<0.4> < <0.5>-<0.05>(0.45) <= <0.5>+<0.05>(0.55)>") do
-          assert_in_delta(0.5, 0.4, 0.05, "message")
-        end
-      end
-
-      def test_assert_in_delta_fail_because_not_float_like_object
-        object = Object.new
-        inspected_object = AssertionMessage.convert(object)
-        check_fails("The arguments must respond to to_f; " +
-                    "the first float did not.\n" +
-                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
-                    "(Class: <Object>)") do
-          assert_in_delta(object, 0.4, 0.1)
-        end
-      end
-
-      def test_assert_in_delta_fail_because_negaitve_delta
-        check_fails("The delta should not be negative.\n" +
-                    "<-0.1> expected to be\n>=\n<0.0>.") do
-          assert_in_delta(0.5, 0.4, -0.1, "message")
-        end
-      end
-
-      def test_assert_in_delta_fail_without_delta
-        check_fails("<1.402> (tolerance <0.001>) expected to include but was\n" +
-                    "<1.404>.\n" +
-                    "\n" +
-                    "Relation:\n" +
-                    "<" +
-                    "<1.402>-<0.001>(1.401) <= " +
-                    "<1.402>+<0.001>(1.403) < " +
-                    "<1.404>" +
-                    ">") do
-          assert_in_delta(1.402, 1.404)
-        end
-      end
-
       def test_assert_not_in_delta_pass
         check_nothing_fails do
           assert_not_in_delta(1.42, 1.44, 0.01)
@@ -1397,6 +1320,87 @@ EOM
 
         check_fails("<#{__FILE__.inspect}> expected to not exist") do
           assert_path_not_exist(__FILE__)
+        end
+      end
+    end
+
+    class TestAssertionInDelta < TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_in_delta(1.4, 1.4, 0)
+        end
+      end
+
+      def test_pass_without_delta
+        check_nothing_fails do
+          assert_in_delta(1.401, 1.402)
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_in_delta(0.5, 0.4, 0.1, "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            0.2
+          end
+          assert_in_delta(0.1, float_thing, 0.1)
+        end
+      end
+
+      def test_pass_string_delta
+        check_nothing_fails do
+          assert_in_delta("0.5", 0.4, 0.1)
+        end
+      end
+
+      def test_fail_with_message
+        check_fails("message.\n" +
+                    "<0.5> (tolerance <0.05>) expected to include but was\n" +
+                    "<0.4>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<<0.4> < <0.5>-<0.05>(0.45) <= <0.5>+<0.05>(0.55)>") do
+          assert_in_delta(0.5, 0.4, 0.05, "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_in_delta(object, 0.4, 0.1)
+        end
+      end
+
+      def test_fail_because_negaitve_delta
+        check_fails("The delta should not be negative.\n" +
+                    "<-0.1> expected to be\n>=\n<0.0>.") do
+          assert_in_delta(0.5, 0.4, -0.1, "message")
+        end
+      end
+
+      def test_fail_without_delta
+        check_fails("<1.402> (tolerance <0.001>) expected to include but was\n" +
+                    "<1.404>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<1.402>-<0.001>(1.401) <= " +
+                    "<1.402>+<0.001>(1.403) < " +
+                    "<1.404>" +
+                    ">") do
+          assert_in_delta(1.402, 1.404)
         end
       end
     end
