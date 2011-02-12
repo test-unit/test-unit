@@ -18,6 +18,7 @@ module Test
           @patterns = [/\Atest[_\-].+\.rb\z/m, /[_\-]test\.rb\z/]
           @excludes = []
           @base = nil
+          @require_failed_infos = []
         end
 
         def base=(base)
@@ -45,10 +46,11 @@ module Test
               sort(test_suites).each do |sub_test_suite|
                 test_suite << sub_test_suite
               end
-              test_suite
             else
-              test_suites.first
+              test_suite = test_suites.first
             end
+            add_require_failed_notifications(test_suite)
+            test_suite
           end
         end
 
@@ -95,9 +97,14 @@ module Test
 
         def collect_file(path, test_suites, already_gathered)
           @program_file ||= File.expand_path($0)
-          return if @program_file == path.expand_path.to_s
-          add_load_path(path.expand_path.dirname) do
-            require(path.to_s)
+          expanded_path = path.expand_path
+          return if @program_file == expanded_path.to_s
+          add_load_path(expanded_path.dirname) do
+            begin
+              require(path.to_s)
+            rescue LoadError
+              @require_failed_infos << {:path => expanded_path, :exception => $!}
+            end
             find_test_cases(already_gathered).each do |test_case|
               add_suite(test_suites, test_case.suite)
             end
@@ -137,6 +144,35 @@ module Test
           end
 
           false
+        end
+
+        def add_require_failed_notifications(test_suite)
+          return if @require_failed_infos.empty?
+
+          require_failed_infos = @require_failed_infos
+          require_failed_notifications = Class.new(Test::Unit::TestCase)
+          require_failed_notifications.class_eval do
+            class << self
+              def name
+                "RequireFailedNotifications"
+              end
+            end
+
+            require_failed_infos.each do |info|
+              path = info[:path]
+              normalized_path = path.to_s.gsub(/[^a-z0-9\-]+/i, '_')
+              normalized_path = normalized_path.gsub(/\A_+/, '')
+              exception = info[:exception]
+              define_method("test_require_#{normalized_path}") do
+                notify("failed to load: <#{path}>: <#{exception.message}>")
+              end
+            end
+
+            def filter_backtrace(location)
+              []
+            end
+          end
+          test_suite.prepend(require_failed_notifications.suite)
         end
       end
     end

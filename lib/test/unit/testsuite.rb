@@ -49,6 +49,11 @@ module Test
         self
       end
 
+      # Prepends the test to the suite.
+      def prepend(test)
+        @tests.unshift(test)
+      end
+
       def delete(test)
         @tests.delete(test)
       end
