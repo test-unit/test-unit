@@ -618,6 +618,31 @@ EOT
         end
       end
 
+      ##
+      # Passes if +expected_float+ and +actual_float+ are
+      # not equal within +delta+ tolerance.
+      #
+      # Example:
+      #   assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass
+      #   assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail
+
+      public
+      def assert_not_in_delta(expected_float, actual_float, delta=0.001, message="")
+        _wrap_assertion do
+          _assert_in_delta_validate_arguments(expected_float,
+                                              actual_float,
+                                              delta)
+          full_message = _assert_in_delta_message(expected_float,
+                                                  actual_float,
+                                                  delta,
+                                                  message,
+                                                  :negative_assertion => true)
+          assert_block(full_message) do
+            (expected_float.to_f - actual_float.to_f).abs > delta.to_f
+          end
+        end
+      end
+
       # :stopdoc:
       private
       def _assert_in_delta_validate_arguments(expected_float,
@@ -637,12 +662,19 @@ EOT
       end
 
       def _assert_in_delta_message(expected_float, actual_float, delta,
-                                   message)
-        format = <<-EOT
-<?> expected but was
-<?> (tolerance <?>).
+                                   message, options={})
+        if options[:negative_assertion]
+          format = <<-EOT
+<?> (tolerance <?>) expected to not include but was
+<?>.
 EOT
-        arguments = [expected_float, actual_float, delta]
+        else
+          format = <<-EOT
+<?> (tolerance <?>) expected to include but was
+<?>.
+EOT
+        end
+        arguments = [expected_float, delta, actual_float]
         normalized_expected = expected_float.to_f
         normalized_actual = actual_float.to_f
         normalized_delta = delta.to_f
@@ -655,7 +687,14 @@ EOT
                                 normalized_expected - normalized_delta,
                                 expected_float, delta,
                                 normalized_expected + normalized_delta]
-        elsif normalized_expected - normalized_delta < normalized_actual
+        elsif normalized_actual <= normalized_expected + normalized_delta
+          relation_format = "<<?>-<?>(?) <= <?> <= <?>+<?>(?)>"
+          relation_arguments = [expected_float, delta,
+                                normalized_expected - normalized_delta,
+                                actual_float,
+                                expected_float, delta,
+                                normalized_expected + normalized_delta]
+        else
           relation_format = "<<?>-<?>(?) <= <?>+<?>(?) < <?>>"
           relation_arguments = [expected_float, delta,
                                 normalized_expected - normalized_delta,
@@ -675,6 +714,7 @@ EOT
 
         build_message(message, format, *arguments)
       end
+
       public
       # :startdoc:
 
