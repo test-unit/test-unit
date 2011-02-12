@@ -473,17 +473,41 @@ EOT
       end
 
       ##
-      # Passes if +regexp+ !~ +string+ 
+      # Passes if +regexp+ !~ +string+
       #
       # Example:
-      #   assert_no_match(/two/, 'one 2 three')
+      #   assert_not_match(/two/, 'one 2 three')   # -> pass
+      #   assert_not_match(/three/, 'one 2 three') # -> fail
+
+      public
+      def assert_not_match(regexp, string, message="")
+        _wrap_assertion do
+          assert_instance_of(Regexp, regexp,
+                             "<REGEXP> in assert_not_match(<REGEXP>, ...) " +
+                             "should be a Regexp.")
+          full_message = build_message(message,
+                                       "<?> expected to not match\n<?>.",
+                                       regexp, string)
+          assert_block(full_message) { regexp !~ string }
+        end
+      end
+
+      ##
+      # Deprecated. Use #assert_not_match instead.
+      #
+      # Passes if +regexp+ !~ +string+
+      #
+      # Example:
+      #   assert_no_match(/two/, 'one 2 three')   # -> pass
+      #   assert_no_match(/three/, 'one 2 three') # -> fail
 
       public
       def assert_no_match(regexp, string, message="")
         _wrap_assertion do
-          assert_instance_of(Regexp, regexp, "The first argument to assert_no_match should be a Regexp.")
-          full_message = build_message(message, "<?> expected to not match\n<?>.", regexp, string)
-          assert_block(full_message) { regexp !~ string }
+          assert_instance_of(Regexp, regexp,
+                             "The first argument to assert_no_match " +
+                             "should be a Regexp.")
+          assert_not_match(regexp, string, message)
         end
       end
 

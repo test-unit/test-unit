@@ -729,7 +729,44 @@ EOM
           assert_not_equal("string", "string", "message")
         }
       end
-      
+
+      def test_assert_not_match_pass
+        check_nothing_fails do
+          assert_not_match(/sling/, "string")
+        end
+      end
+
+      def test_assert_not_match_pass_with_message
+        check_nothing_fails do
+          assert_not_match(/sling/, "string", "message")
+        end
+      end
+
+      def test_assert_not_match_fail_not_regexp
+        check_fails("<REGEXP> in assert_not_match(<REGEXP>, ...) " +
+                    "should be a Regexp.\n" +
+                    "<\"asdf\"> expected to be an instance of\n" +
+                    "<Regexp> but was\n" +
+                    "<String>.") do
+          assert_not_match("asdf", "asdf")
+        end
+      end
+
+      def test_assert_not_match_fail_match
+        check_fails("</string/> expected to not match\n" +
+                    "<\"string\">.") do
+          assert_not_match(/string/, "string")
+        end
+      end
+
+      def test_assert_not_match_fail_match_with_message
+        check_fails("message.\n" +
+                    "</string/> expected to not match\n" +
+                    "<\"string\">.") do
+          assert_not_match(/string/, "string", "message")
+        end
+      end
+
       def test_assert_no_match
         check_nothing_fails{assert_no_match(/sling/, "string")}
         check_nothing_fails{assert_no_match(/sling/, "string", "message")}
@@ -743,7 +780,7 @@ EOM
           assert_no_match(/string/, "string", "message")
         end
       end
-      
+
       def test_assert_throw
         check_nothing_fails do
           assert_throw(:thing, "message") do
