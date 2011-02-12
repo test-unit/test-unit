@@ -172,7 +172,8 @@ module Test
               []
             end
           end
-          test_suite.prepend(require_failed_notifications.suite)
+          add_suite(test_suite, require_failed_notifications.suite,
+                    :prepend => true)
         end
       end
     end

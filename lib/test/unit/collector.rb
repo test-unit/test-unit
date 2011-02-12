@@ -14,10 +14,16 @@ module Test
         end
       end
 
-      def add_suite(destination, suite)
-        to_delete = suite.tests.find_all{|t| !include?(t)}
-        to_delete.each{|t| suite.delete(t)}
-        destination << suite unless(suite.size == 0)
+      def add_suite(destination, suite, options={})
+        to_delete = suite.tests.find_all {|t| !include?(t)}
+        to_delete.each {|t| suite.delete(t)}
+        unless suite.empty?
+          if options[:prepend]
+            destination.prepend(suite)
+          else
+            destination << suite
+          end
+        end
       end
 
       def include?(test)
