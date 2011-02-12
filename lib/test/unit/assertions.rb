@@ -512,10 +512,10 @@ EOT
       end
 
       UncaughtThrow = {
-        NameError => /^uncaught throw \`(.+)\'$/,
+        NameError => /^uncaught throw \`(.+)\'$/, #`
         ArgumentError => /^uncaught throw (.+)$/,
-        ThreadError => /^uncaught throw \`(.+)\' in thread /
-      } #`
+        ThreadError => /^uncaught throw \`(.+)\' in thread / #`
+      }
 
       ##
       # Passes if the block throws +expected_object+
