@@ -62,6 +62,13 @@ module Test
       public
       def assert(boolean, message=nil)
         _wrap_assertion do
+          case message
+          when nil, String, Proc
+          else
+            error_message = "assertion message must be String or Proc: "
+            error_message << "<#{message.inspect}>"
+            raise ArgumentError, error_message, filter_backtrace(caller)
+          end
           assert_block("assert should not be called with a block.") do
             !block_given?
           end

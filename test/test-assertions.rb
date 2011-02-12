@@ -128,16 +128,7 @@ module Test
           assert_block("failed assert_block") {false}
         }
       end
-      
-      def test_assert
-        check_nothing_fails{assert("a")}
-        check_nothing_fails{assert(true)}
-        check_nothing_fails{assert(true, "successful assert")}
-        check_fails("<nil> is not true."){assert(nil)}
-        check_fails("<false> is not true."){assert(false)}
-        check_fails("failed assert.\n<false> is not true."){assert(false, "failed assert")}
-      end
-      
+
       def test_assert_equal
         check_nothing_fails {
           assert_equal("string1", "string1")
@@ -1222,6 +1213,57 @@ EOM
 
         check_fails("<#{__FILE__.inspect}> expected to not exist") do
           assert_path_not_exist(__FILE__)
+        end
+      end
+    end
+
+    class TestAssert < TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert(true)
+        end
+      end
+
+      def test_pass_neither_false_or_nil
+        check_nothing_fails do
+          assert("a")
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert(true, "successful assert")
+        end
+      end
+
+      def test_fail_nil
+        check_fails("<nil> is not true.") do
+          assert(nil)
+        end
+      end
+
+      def test_fail_false
+        check_fails("<false> is not true.") do
+          assert(false)
+        end
+      end
+
+      def test_fail_false_with_message
+        check_fails("failed assert.\n" +
+                    "<false> is not true.") do
+          assert(false, "failed assert")
+        end
+      end
+
+      def test_error_invalid_message
+        check_fails("assertion message must be String or Proc: <true>") do
+          begin
+            assert(true, true)
+          rescue ArgumentError
+            raise AssertionFailedError, $!.message
+          end
         end
       end
     end
