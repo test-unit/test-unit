@@ -1206,6 +1206,28 @@ EOT
       end
 
       ##
+      # Passes if +collection+ doesn't include +object+.
+      #
+      # Example:
+      #   assert_not_include([1, 10], 5)            # -> pass
+      #   assert_not_include(1..10, 20)             # -> pass
+      #   assert_not_include([1, 10], 1)            # -> fail
+      #   assert_not_include(1..10, 5)              # -> fail
+      def assert_not_include(collection, object, message=nil)
+        _wrap_assertion do
+          assert_respond_to(collection, :include?,
+                            "The collection must respond to :include?.")
+          full_message = build_message(message,
+                                       "<?> expected to not include\n<?>.",
+                                       collection,
+                                       object)
+          assert_block(full_message) do
+            not collection.include?(object)
+          end
+        end
+      end
+
+      ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
 

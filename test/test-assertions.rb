@@ -1625,13 +1625,54 @@ EOM
         end
       end
 
-      def test_fail_because_not_float_like_object
+      def test_fail_because_not_collection_like_object
         object = Object.new
         inspected_object = AssertionMessage.convert(object)
         check_fails("The collection must respond to :include?.\n" +
                     "<#{inspected_object}>.respond_to?(:include?) expected\n" +
                     "(Class: <Object>)") do
           assert_include(object, 1)
+        end
+      end
+    end
+
+    class TestAssertNotInclude < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_not_include([1, 2, 3], 5)
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_not_include([1, 2, 3], 5, "message")
+        end
+      end
+
+      def test_fail
+        check_fails("<[1, 2, 3]> expected to not include\n" +
+                    "<2>.") do
+          assert_not_include([1, 2, 3], 2)
+        end
+      end
+
+      def test_fail_with_message
+        check_fails("message.\n" +
+                    "<[1, 2, 3]> expected to not include\n" +
+                    "<2>.") do
+          assert_not_include([1, 2, 3], 2, "message")
+        end
+      end
+
+      def test_fail_because_not_collection_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fails("The collection must respond to :include?.\n" +
+                    "<#{inspected_object}>.respond_to?(:include?) expected\n" +
+                    "(Class: <Object>)") do
+          assert_not_include(object, 1)
         end
       end
     end
