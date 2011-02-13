@@ -142,18 +142,43 @@ module Test
           end
 
           def output_fault_message(fault)
+            if fault.expected.respond_to?(:encoding) and
+                fault.actual.respond_to?(:encoding) and
+                fault.expected.encoding != fault.actual.encoding
+              need_encoding = true
+            else
+              need_encoding = false
+            end
             output(fault.user_message) if fault.user_message
             output_single("<")
             output_single(fault.inspected_expected, color("pass"))
-            output("> expected but was")
+            output_single(">")
+            if need_encoding
+              output_single("(")
+              output_single(fault.expected.encoding.name, color("pass"))
+              output_single(")")
+            end
+            output(" expected but was")
             output_single("<")
             output_single(fault.inspected_actual, color("failure"))
-            output(">")
+            output_single(">")
+            if need_encoding
+              output_single("(")
+              output_single(fault.actual.encoding.name, color("failure"))
+              output_single(")")
+            end
+            output("")
             from, to = prepare_for_diff(fault.expected, fault.actual)
             if from and to
-              differ = ColorizedReadableDiffer.new(from.split(/\r?\n/),
-                                                   to.split(/\r?\n/),
-                                                   self)
+              from_lines = from.split(/\r?\n/)
+              to_lines = to.split(/\r?\n/)
+              if need_encoding
+                from_lines << ""
+                to_lines << ""
+                from_lines << "Encoding: #{fault.expected.encoding.name}"
+                to_lines << "Encoding: #{fault.actual.encoding.name}"
+              end
+              differ = ColorizedReadableDiffer.new(from_lines, to_lines, self)
               if differ.need_diff?
                 output("")
                 output("diff:")
