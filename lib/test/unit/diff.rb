@@ -726,7 +726,7 @@ module Test
         split_to_lines = lambda do |string|
           if string.respond_to?(:encoding) and
               !string.encoding.ascii_compatible?
-            string.force_encoding("ASCII-8BIT")
+            string = string.dup.force_encoding("ASCII-8BIT")
           end
           string.split(/\r?\n/)
         end
