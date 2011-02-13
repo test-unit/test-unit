@@ -64,13 +64,13 @@ module Test
             @mediator.add_listener(TestSuite::STARTED, &method(:test_suite_started))
             @mediator.add_listener(TestSuite::FINISHED, &method(:test_suite_finished))
           end
-          
+
           def add_fault(fault)
             @faults << fault
             output_progress(fault.single_character_display, fault_color(fault))
             @already_outputted = true if fault.critical?
           end
-          
+
           def started(result)
             @result = result
             output_started
@@ -92,6 +92,15 @@ module Test
             nl
             output(@result, result_color)
             output("%g%% passed" % @result.pass_percentage, result_color)
+            unless elapsed_time.zero?
+              nl
+              throuputs =
+                [
+                 "%.2f tests/s" % [@result.run_count / elapsed_time],
+                 "%.2f assertions/s" % [@result.assertion_count / elapsed_time],
+                ]
+              output(throuputs.join(", "))
+            end
           end
 
           def output_fault(fault)
