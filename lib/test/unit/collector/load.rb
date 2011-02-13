@@ -49,7 +49,14 @@ module Test
             else
               test_suite = test_suites.first
             end
-            add_require_failed_notifications(test_suite)
+
+            _require_failed_test_suite = require_failed_test_suite
+            if test_suite
+              add_suite(test_suite, _require_failed_test_suite, :prepend => true)
+            else
+              test_suite = _require_failed_test_suite
+            end
+
             test_suite
           end
         end
@@ -146,8 +153,8 @@ module Test
           false
         end
 
-        def add_require_failed_notifications(test_suite)
-          return if @require_failed_infos.empty?
+        def require_failed_test_suite
+          return nil if @require_failed_infos.empty?
 
           require_failed_infos = @require_failed_infos
           require_failed_notifications = Class.new(Test::Unit::TestCase)
@@ -172,8 +179,7 @@ module Test
               []
             end
           end
-          add_suite(test_suite, require_failed_notifications.suite,
-                    :prepend => true)
+          require_failed_notifications.suite
         end
       end
     end
