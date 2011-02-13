@@ -2,6 +2,7 @@
 #
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
+# Copyright:: Copyright (c) 2008-2011 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit/error'
@@ -18,7 +19,11 @@ module Test
     # meaningful TestSuite instance.
     class TestSuite
       attr_reader :name, :tests
-      
+
+      # Test suite that has higher priority is ran prior to
+      # test suites that have lower priority.
+      attr_accessor :priority
+
       STARTED = name + "::STARTED"
       FINISHED = name + "::FINISHED"
 
@@ -28,6 +33,7 @@ module Test
         @tests = []
         @test_case = test_case
         @n_tests = 0
+        @priority = 0
       end
 
       # Runs the tests and/or suites contained in this
@@ -47,11 +53,6 @@ module Test
       def <<(test)
         @tests << test
         self
-      end
-
-      # Prepends the test to the suite.
-      def prepend(test)
-        @tests.unshift(test)
       end
 
       def delete(test)

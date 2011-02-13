@@ -14,16 +14,10 @@ module Test
         end
       end
 
-      def add_suite(destination, suite, options={})
+      def add_suite(destination, suite)
         to_delete = suite.tests.find_all {|t| !include?(t)}
         to_delete.each {|t| suite.delete(t)}
-        unless suite.empty?
-          if options[:prepend]
-            destination.prepend(suite)
-          else
-            destination << suite
-          end
-        end
+        destination << suite unless suite.empty?
       end
 
       def include?(test)
@@ -35,7 +29,9 @@ module Test
       end
 
       def sort(suites)
-        suites.sort_by {|suite| suite.name || suite.to_s}
+        suites.sort_by do |suite|
+          [suite.priority, suite.name || suite.to_s]
+        end
       end
     end
   end

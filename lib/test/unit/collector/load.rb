@@ -40,6 +40,7 @@ module Test
                 collect_file(from, test_suites, already_gathered)
               end
             end
+            add_require_failed_test_suite(test_suites)
 
             if test_suites.size > 1
               test_suite = TestSuite.new("[#{froms.join(', ')}]")
@@ -48,13 +49,6 @@ module Test
               end
             else
               test_suite = test_suites.first
-            end
- 
-            _require_failed_test_suite = require_failed_test_suite
-            if test_suite
-              add_suite(test_suite, _require_failed_test_suite, :prepend => true)
-            else
-              test_suite = _require_failed_test_suite
             end
 
             test_suite
@@ -153,8 +147,8 @@ module Test
           false
         end
 
-        def require_failed_test_suite
-          return nil if @require_failed_infos.empty?
+        def add_require_failed_test_suite(test_suites)
+          return if @require_failed_infos.empty?
 
           require_failed_infos = @require_failed_infos
           require_failed_omissions = Class.new(Test::Unit::TestCase)
@@ -175,11 +169,16 @@ module Test
               end
             end
 
+            def priority
+              100
+            end
+
             def filter_backtrace(location)
               []
             end
           end
-          require_failed_omissions.suite
+
+          add_suite(test_suites, require_failed_omissions.suite)
         end
       end
     end
