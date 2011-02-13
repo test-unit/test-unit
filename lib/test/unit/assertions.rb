@@ -66,7 +66,7 @@ module Test
           when nil, String, Proc
           else
             error_message = "assertion message must be String or Proc: "
-            error_message << "<#{message.inspect}>"
+            error_message << "<#{message.inspect}>(<#{message.class}>)"
             raise ArgumentError, error_message, filter_backtrace(caller)
           end
           assert_block("assert should not be called with a block.") do

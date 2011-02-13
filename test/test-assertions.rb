@@ -1258,7 +1258,8 @@ EOM
       end
 
       def test_error_invalid_message
-        check_fails("assertion message must be String or Proc: <true>") do
+        check_fails("assertion message must be String or Proc: " +
+                    "<true>(<TrueClass>)") do
           begin
             assert(true, true)
           rescue ArgumentError
