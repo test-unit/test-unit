@@ -49,7 +49,7 @@ module Test
             else
               test_suite = test_suites.first
             end
-
+ 
             _require_failed_test_suite = require_failed_test_suite
             if test_suite
               add_suite(test_suite, _require_failed_test_suite, :prepend => true)
@@ -157,11 +157,11 @@ module Test
           return nil if @require_failed_infos.empty?
 
           require_failed_infos = @require_failed_infos
-          require_failed_notifications = Class.new(Test::Unit::TestCase)
-          require_failed_notifications.class_eval do
+          require_failed_omissions = Class.new(Test::Unit::TestCase)
+          require_failed_omissions.class_eval do
             class << self
               def name
-                "RequireFailedNotifications"
+                "RequireFailedOmissions"
               end
             end
 
@@ -171,7 +171,7 @@ module Test
               normalized_path = normalized_path.gsub(/\A_+/, '')
               exception = info[:exception]
               define_method("test_require_#{normalized_path}") do
-                notify("failed to load: <#{path}>: <#{exception.message}>")
+                omit("failed to load: <#{path}>: <#{exception.message}>")
               end
             end
 
@@ -179,7 +179,7 @@ module Test
               []
             end
           end
-          require_failed_notifications.suite
+          require_failed_omissions.suite
         end
       end
     end
