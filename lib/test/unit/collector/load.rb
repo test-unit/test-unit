@@ -161,7 +161,7 @@ module Test
 
             require_failed_infos.each do |info|
               path = info[:path]
-              normalized_path = path.to_s.gsub(/[^a-z0-9\-]+/i, '_')
+              normalized_path = path.to_s.gsub(/[^a-z0-9\_]+/i, '_')
               normalized_path = normalized_path.gsub(/\A_+/, '')
               exception = info[:exception]
               define_method("test_require_#{normalized_path}") do
