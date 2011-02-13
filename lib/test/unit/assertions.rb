@@ -1392,6 +1392,14 @@ EOT
             end
           end
 
+          def ensure_diffable_string(string)
+            if string.respond_to?(:encoding) and
+                !string.encoding.ascii_compatible?
+              string = string.dup.forcee_encoding("ASCII-8BIT")
+            end
+            string
+          end
+
           def prepare_for_diff(from, to)
             if !from.is_a?(String) or !to.is_a?(String)
               from = convert(from)
@@ -1399,6 +1407,8 @@ EOT
             end
 
             if diff_target_string?(from) and diff_target_string?(to)
+              from = ensure_diffable_string(from)
+              to = ensure_diffable_string(to)
               [from, to]
             else
               [nil, nil]

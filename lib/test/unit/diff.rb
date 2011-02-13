@@ -723,15 +723,7 @@ module Test
       end
 
       def diff(differ_class, from, to, options={})
-        split_to_lines = lambda do |string|
-          if string.respond_to?(:encoding) and
-              !string.encoding.ascii_compatible?
-            string = string.dup.force_encoding("ASCII-8BIT")
-          end
-          string.split(/\r?\n/)
-        end
-        differ = differ_class.new(split_to_lines.call(from),
-                                  split_to_lines.call(to))
+        differ = differ_class.new(from.split(/\r?\n/), to.split(/\r?\n/))
         lines = differ.diff(options)
         if Object.const_defined?(:EncodingError)
           begin
