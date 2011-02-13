@@ -1395,7 +1395,7 @@ EOT
           def ensure_diffable_string(string)
             if string.respond_to?(:encoding) and
                 !string.encoding.ascii_compatible?
-              string = string.dup.forcee_encoding("ASCII-8BIT")
+              string = string.dup.force_encoding("ASCII-8BIT")
             end
             string
           end
