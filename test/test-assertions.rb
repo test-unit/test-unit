@@ -914,14 +914,22 @@ EOM
             return argument
           end
         end
-        check_nothing_fails {
+        check_nothing_fails do
           assert_send([object, :return_argument, true, "bogus"], "message")
-        }
-        check_fails(%r{\Amessage\.\n<.+> expected to respond to\n<return_argument\(\[false, "bogus"\]\)> with a true value.\Z}) {
+        end
+
+        inspected_object = AssertionMessage.convert(object)
+        expected_message = <<-EOM
+message.
+<#{inspected_object}> expected to respond to
+<return_argument(*[false, "bogus"])> with a true value but was
+<false>.
+EOM
+        check_fails(expected_message.chomp) do
           assert_send([object, :return_argument, false, "bogus"], "message")
-        }
+        end
       end
-      
+
       def test_condition_invariant
         object = Object.new
         def object.inspect
@@ -1812,6 +1820,28 @@ EOM
                     "<#{inspected_object}>.respond_to?(:empty?) expected\n" +
                     "(Class: <Object>)") do
           assert_not_empty(object)
+        end
+      end
+    end
+
+    class TestAssertNotSend < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_not_send([[1, 2], :member?, 4], "message")
+        end
+      end
+
+      def test_fail
+        expected_message = <<-EOM
+message.
+<[1, 2]> expected to respond to
+<member?(*[2])> with not a true value but was
+<true>.
+EOM
+        check_fails(expected_message.chomp) do
+          assert_not_send([[1, 2], :member?, 2], "message")
         end
       end
     end

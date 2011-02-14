@@ -869,18 +869,76 @@ EOT
       # * Arguments to the method
       #
       # Example:
-      #   assert_send [[1, 2], :include?, 4]
+      #   assert_send([[1, 2], :member?, 1]) # -> pass
+      #   assert_send([[1, 2], :member?, 4]) # -> fail
 
       public
-      def assert_send(send_array, message="")
+      def assert_send(send_array, message=nil)
         _wrap_assertion do
-          assert_instance_of(Array, send_array, "assert_send requires an array of send information")
-          assert(send_array.size >= 2, "assert_send requires at least a receiver and a message name")
-          full_message = build_message(message, <<EOT, send_array[0], AssertionMessage.literal(send_array[1].to_s), send_array[2..-1])
+          assert_instance_of(Array, send_array,
+                             "assert_send requires an array " +
+                             "of send information")
+          assert_operator(send_array.size, :>=, 2,
+                          "assert_send requires at least a receiver " +
+                          "and a message name")
+          format = <<EOT
 <?> expected to respond to
-<?(?)> with a true value.
+<?(*?)> with a true value but was
+<?>.
 EOT
-          assert_block(full_message) { send_array[0].__send__(send_array[1], *send_array[2..-1]) }
+          receiver, message_name, *arguments = send_array
+          result = nil
+          full_message =
+            build_message(message,
+                          format,
+                          receiver,
+                          AssertionMessage.literal(message_name.to_s),
+                          arguments,
+                          AssertionMessage.delayed_literal {result})
+          assert_block(full_message) do
+            result = receiver.__send__(message_name, *arguments)
+            result
+          end
+        end
+      end
+
+      ##
+      # Passes if the method send doesn't return a true value.
+      #
+      # +send_array+ is composed of:
+      # * A receiver
+      # * A method
+      # * Arguments to the method
+      #
+      # Example:
+      #   assert_not_send([[1, 2], :member?, 1]) # -> fail
+      #   assert_not_send([[1, 2], :member?, 4]) # -> pass
+      def assert_not_send(send_array, message=nil)
+        _wrap_assertion do
+          assert_instance_of(Array, send_array,
+                             "assert_not_send requires an array " +
+                             "of send information")
+          assert_operator(send_array.size, :>=, 2,
+                          "assert_not_send requires at least a receiver " +
+                          "and a message name")
+          format = <<EOT
+<?> expected to respond to
+<?(*?)> with not a true value but was
+<?>.
+EOT
+          receiver, message_name, *arguments = send_array
+          result = nil
+          full_message =
+            build_message(message,
+                          format,
+                          receiver,
+                          AssertionMessage.literal(message_name.to_s),
+                          arguments,
+                          AssertionMessage.delayed_literal {result})
+          assert_block(full_message) do
+            result = receiver.__send__(message_name, *arguments)
+            not result
+          end
         end
       end
 
