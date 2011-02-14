@@ -154,13 +154,22 @@ module Test
       end
 
       private
-      def run_fixture(fixture)
+      def run_fixture(fixture, options={})
         [
          self.class.send("before_#{fixture}_methods"),
          fixture,
          self.class.send("after_#{fixture}_methods")
         ].flatten.each do |method_name|
-          send(method_name) if respond_to?(method_name, true)
+          next unless respond_to?(method_name, true)
+          if options[:handle_exception]
+            begin
+              send(method_name)
+            rescue Exception
+              raise unless handle_exception($!)
+            end
+          else
+            send(method_name)
+          end
         end
       end
 
@@ -169,7 +178,7 @@ module Test
       end
 
       def run_teardown
-        run_fixture(:teardown)
+        run_fixture(:teardown, :handle_exception => true)
       end
     end
   end

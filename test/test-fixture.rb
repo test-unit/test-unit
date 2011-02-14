@@ -129,6 +129,43 @@ class TestUnitFixture < Test::Unit::TestCase
     assert_called_fixtures(expected_teardown_calls, test_case)
   end
 
+  def test_teardown_with_exception
+    test_case = Class.new(Test::Unit::TestCase) do
+      def called_ids
+        @called_ids ||= []
+      end
+
+      def called(id)
+        called_ids << id
+      end
+
+      def teardown
+        called(:teardown)
+        raise "teardown"
+      end
+
+      teardown
+      def custom_teardown_method0
+        called(:custom_teardown_method0)
+        raise "custom_teardown_method0"
+      end
+
+      teardown
+      def custom_teardown_method1
+        called(:custom_teardown_method1)
+        raise "custom_teardown_method1"
+      end
+
+      def test_nothing
+      end
+    end
+
+    assert_called_fixtures([:custom_teardown_method1,
+                            :custom_teardown_method0,
+                            :teardown],
+                           test_case)
+  end
+
   private
   def assert_called_fixtures(expected, test_case)
     test = test_case.new("test_nothing")
