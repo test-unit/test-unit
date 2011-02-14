@@ -34,6 +34,7 @@
   * normalize entry order of Hash for readable diff.
   * add --ignore-name option.
   * add --ignore-testcase option.
+  * add assert_not_send.
 
 * Thanks
   * Daniel Berger
