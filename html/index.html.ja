@@ -98,6 +98,11 @@ require "test/unit"</pre>
           インストール:
           <pre class="command">% sudo gem install test-unit</pre>
         </p>
+        <p>
+          使い方:
+          <pre class="code">gem "test-unit"
+require "test/unit"</pre>
+        </p>
 
 	<h2 id="test-unit-full">test-unit-full</h2>
         <p>
