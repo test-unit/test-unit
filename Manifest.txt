@@ -84,6 +84,7 @@ test/collector/test-load.rb
 test/collector/test_dir.rb
 test/collector/test_objectspace.rb
 test/run-test.rb
+test/test-assertions.rb
 test/test-attribute.rb
 test/test-color-scheme.rb
 test/test-color.rb
@@ -95,7 +96,6 @@ test/test-omission.rb
 test/test-pending.rb
 test/test-priority.rb
 test/test-testcase.rb
-test/test_assertions.rb
 test/test_error.rb
 test/test_failure.rb
 test/test_testresult.rb
