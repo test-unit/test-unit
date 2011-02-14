@@ -1,3 +1,44 @@
+=== 2.2.0 / 2011-02-14
+
+* enchancements
+  * [#28808] accept String as delta for assert_in_delta.
+    [Daniel Berger]
+  * [test-unit-users-en:00035] make GC-able finished tests.
+    [Daniel Berger]
+  * use also COLUMNS environment variable to guess terminal width.
+  * make delta for assert_in_delta optiona.
+    [Nobuyoshi Nakada]
+  * add assert_not_respond_to.
+    [Nobuyoshi Nakada]
+  * add assert_not_match. assert_no_match is deprecated.
+    [Nobuyoshi Nakada]
+  * add assert_not_in_delta.
+    [Nobuyoshi Nakada]
+  * add assert_in_epsilon.
+    [Nobuyoshi Nakada]
+  * add assert_not_in_epsilon.
+    [Nobuyoshi Nakada]
+  * add assert_include.
+    [Nobuyoshi Nakada]
+  * add assert_not_include.
+    [Nobuyoshi Nakada]
+  * add assert_empty.
+    [Nobuyoshi Nakada]
+  * add assert_not_empty.
+    [Nobuyoshi Nakada]
+  * notify require failed paths.
+  * validate message value for assert.
+  * show throughputs at the last.
+  * support not ASCII compatible string diff.
+  * support colorized diff on encoding different string.
+  * normalize entry order of Hash for readable diff.
+  * add --ignore-name option.
+  * add --ignore-testcase option.
+
+* Thanks
+  * Daniel Berger
+  * Nobuyoshi Nakada
+
 === 2.1.2 / 2010-11-25
 
 * 1 enhanchement
