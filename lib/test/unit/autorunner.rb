@@ -199,6 +199,18 @@ module Test
             end
           end
 
+          o.on('--ignore-name=NAME', String,
+               "Ignores tests matching NAME.",
+               "(patterns may be used).") do |n|
+            n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
+            case n
+            when Regexp
+              @filters << proc {|t| n =~ t.method_name ? false : true}
+            else
+              @filters << proc {|t| n != t.method_name}
+            end
+          end
+
           o.on('-t', '--testcase=TESTCASE', String,
                "Runs tests in TestCases matching TESTCASE.",
                "(patterns may be used).") do |n|
@@ -208,6 +220,18 @@ module Test
               @filters << proc{|t| n =~ t.class.name ? true : false}
             else
               @filters << proc{|t| n == t.class.name}
+            end
+          end
+
+          o.on('--ignore-testcase=TESTCASE', String,
+               "Ignores tests in TestCases matching TESTCASE.",
+               "(patterns may be used).") do |n|
+            n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
+            case n
+            when Regexp
+              @filters << proc {|t| n =~ t.class.name ? false : true}
+            else
+              @filters << proc {|t| n != t.class.name}
             end
           end
 
