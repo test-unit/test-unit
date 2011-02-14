@@ -6,7 +6,7 @@
   * [test-unit-users-en:00035] make GC-able finished tests.
     [Daniel Berger]
   * use also COLUMNS environment variable to guess terminal width.
-  * make delta for assert_in_delta optiona.
+  * make delta for assert_in_delta optional.
     [Nobuyoshi Nakada]
   * add assert_not_respond_to.
     [Nobuyoshi Nakada]
