@@ -338,6 +338,24 @@ EOM
         end
       end
 
+      def test_assert_equal_with_different_hash
+        designers = {
+          "Ruby" => "Matz",
+          "Lisp" => "John McCarthy",
+        }
+        categories = {
+          "LL" => ["Ruby", "Python"],
+          "Heavy" => ["C", "C++"],
+        }
+        message = <<-EOM.chomp
+<{"Lisp"=>"John McCarthy", "Ruby"=>"Matz"}> expected but was
+<{"Heavy"=>["C", "C++"], "LL"=>["Ruby", "Python"]}>.
+EOM
+        check_fails(message) do
+          assert_equal(designers, categories)
+        end
+      end
+
       def test_assert_raise_success
         return_value = nil
         check_nothing_fails(true) do

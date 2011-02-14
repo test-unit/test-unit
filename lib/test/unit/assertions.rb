@@ -1452,8 +1452,13 @@ EOM
               if use_pp
                 begin
                   require 'pp' unless defined?(PP)
+                  if HashInspector.target?(object)
+                    pp_target = HashInspector.new(object)
+                  else
+                    pp_target = object
+                  end
                   begin
-                    return PP.pp(object, '').chomp
+                    return PP.pp(pp_target, '').chomp
                   rescue NameError
                   end
                 rescue LoadError
@@ -1461,6 +1466,56 @@ EOM
                 end
               end
               object.inspect
+            end
+          end
+        end
+
+        class HashInspector
+          class << self
+            def target?(object)
+              object.is_a?(Hash) or object == ENV
+            end
+
+            def normalize(object)
+              if target?(object)
+                new(object)
+              else
+                object
+              end
+            end
+          end
+
+          def initialize(hash)
+            @hash = hash
+          end
+
+          def inspect
+            @hash.inspect
+          end
+
+          def pretty_print(q)
+            q.group(1, '{', '}') do
+              q.seplist(self, nil, :each_pair) do |k, v|
+                q.group do
+                  q.pp(k)
+                  q.text('=>')
+                  q.group(1) do
+                    q.breakable('')
+                    q.pp(v)
+                  end
+                end
+              end
+            end
+          end
+
+          def pretty_print_cycle(q)
+            q.text(@hash.empty? ? '{}' : '{...}')
+          end
+
+          def each_pair
+            @hash.keys.sort.each do |key|
+              yield(self.class.normalize(key),
+                    self.class.normalize(@hash[key]))
             end
           end
         end
