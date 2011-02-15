@@ -1571,7 +1571,12 @@ EOM
           end
 
           def each_pair
-            @hash.keys.sort.each do |key|
+            keys = @hash.keys
+            begin
+              keys = keys.sort # FIXME: more cleverly
+            rescue ArgumentError
+            end
+            keys.each do |key|
               yield(self.class.normalize(key),
                     self.class.normalize(@hash[key]))
             end
