@@ -13,14 +13,14 @@ module Test
           def test_with_arguments(arg1, arg2)
           end
         end
-      
+
         caught = true
         catch(:invalid_test) do
           tc.new(:test_with_arguments)
           caught = false
         end
         check("Should have caught an invalid test when there are arguments", caught)
-        
+
         caught = true
         catch(:invalid_test) do
           tc.new(:non_existent_test)
@@ -28,7 +28,7 @@ module Test
         end
         check("Should have caught an invalid test when the method does not exist", caught)
       end
-      
+
       def setup
         @tc_failure_error = Class.new(TestCase) do
           def test_failure
