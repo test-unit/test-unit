@@ -219,9 +219,11 @@ module Test
           @@test_orders[self] = order
         end
 
-        # Defines a test in declarative syntax.
+        # Defines a test in declarative syntax or marks
+        # following method as a test method.
         #
-        # The following two test definitions are the same:
+        # In declarative syntax usage, the following two
+        # test definitions are the almost same:
         #
         #   description "register user"
         #   def test_register_user
@@ -231,11 +233,33 @@ module Test
         #   test "register user" do
         #     ...
         #   end
-        def test(test_description, &block)
-          normalized_description = test_description.gsub(/[^a-zA-Z\d_]+/, '_')
-          method_name = "test_#{normalized_description}".to_sym
-          define_method(method_name, &block)
-          description(test_description, method_name)
+        #
+        # In test method mark usage, the "my_test_method" is
+        # treated as a test method:
+        #
+        #   test
+        #   def my_test_method
+        #     assert_equal("call me", ...)
+        #   end
+        def test(*test_description_or_targets, &block)
+          if block_given?
+            test_description = test_description_or_targets.first
+            if test_description.nil?
+              raise ArgumentError, "test description is missing"
+            end
+            n_arguments = test_description_or_targets.size
+            if n_arguments > 1
+              message = "wrong number of arguments (#{n_arguments} for 1)"
+              raise ArgumentError, message
+            end
+            method_name = test_description
+            define_method(method_name, &block)
+            description(test_description, method_name)
+            attribute(:test, true, {}, method_name)
+          else
+            targets = test_description_or_targets
+            attribute(:test, true, {}, *targets)
+          end
         end
 
         # Describes a test.
@@ -259,7 +283,7 @@ module Test
             name.to_s
           end
           test_names = method_names.find_all do |method_name|
-            method_name =~ /^test./
+            method_name =~ /^test./ or get_attribute(method_name, :test)
           end
           send("sort_test_names_in_#{test_order}_order", test_names)
         end
