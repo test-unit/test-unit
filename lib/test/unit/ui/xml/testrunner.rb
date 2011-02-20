@@ -57,9 +57,7 @@ module Test
 
           def result_pass_assertion(result)
             open_tag("pass-assertion") do
-              open_tag("test") do
-                add_content("name", @current_test.name)
-              end
+              output_test(@current_test)
             end
           end
 
@@ -69,9 +67,7 @@ module Test
                 open_tag("test-case") do
                   add_content("name", @current_test.class.name)
                 end
-                open_tag("test") do
-                  add_content("name", @current_test.name)
-                end
+                output_test(@current_test)
                 open_tag("backtrace") do
                   fault.location.each do |entry|
                     file, line, info = entry.split(/:/, 3)
@@ -113,25 +109,23 @@ module Test
             @already_outputted = false
             @current_test = test
             open_tag("start-test") do
-              open_tag("test") do
-                add_content("name", test.name)
-              end
+              output_test(test)
             end
           end
 
           def test_finished(test)
             unless @already_outputted
               open_tag("test-result") do
+                output_test(test)
                 open_tag("result") do
+                  output_test(test)
                   add_content("status", "success")
                 end
               end
             end
 
             open_tag("complete-test") do
-              open_tag("test") do
-                add_content("name", test.name)
-              end
+              output_test(test)
               add_content("success", test.passed?)
             end
             @current_test = nil
@@ -196,6 +190,7 @@ module Test
           end
 
           def add_content(name, content)
+            return if content.nil?
             case content
             when Time
               content = content.iso8601
@@ -206,6 +201,14 @@ module Test
           def close_tag(name)
             @indent -= 2
             @output.puts("#{indent}</#{name}>")
+          end
+
+          def output_test(test)
+            open_tag("test") do
+              add_content("name", test.method_name)
+              add_content("start-time", test.start_time)
+              add_content("elapsed", test.elapsed_time)
+            end
           end
         end
       end
