@@ -205,6 +205,7 @@ module Test
             test_case = test_suite.test_case
             if test_case.nil?
               open_tag("test-suite") do
+                add_content("name", test_suite.name)
                 add_content("start-time", test_suite.start_time)
                 add_content("elapsed", test_suite.elapsed_time)
               end
