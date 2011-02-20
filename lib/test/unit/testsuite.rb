@@ -18,7 +18,7 @@ module Test
     # has a suite method as simply providing a way to get a
     # meaningful TestSuite instance.
     class TestSuite
-      attr_reader :name, :tests, :test_case, :start_time
+      attr_reader :name, :tests, :test_case, :start_time, :elapsed_time
 
       # Test suite that has higher priority is ran prior to
       # test suites that have lower priority.
@@ -37,6 +37,7 @@ module Test
         @n_tests = 0
         @priority = 0
         @start_time = nil
+        @elapsed_time = nil
         @passed = true
       end
 
@@ -53,6 +54,8 @@ module Test
           @passed = false unless test.passed?
         end
         run_shutdown(result)
+      ensure
+        @elapsed_time = Time.now - @start_time
         yield(FINISHED, name)
         yield(FINISHED_OBJECT, self)
       end
