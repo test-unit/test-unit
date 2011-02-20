@@ -317,7 +317,7 @@ module Test
         # :startdoc:
       end
 
-      attr_reader :method_name
+      attr_reader :method_name, :start_time, :elapsed_time
 
       # Creates a new instance of the fixture for running the
       # test represented by test_method_name.
@@ -332,6 +332,8 @@ module Test
         @method_name = test_method_name
         @test_passed = true
         @interrupted = false
+        @start_time = nil
+        @elapsed_time = nil
       end
 
       # Runs the individual test method represented by this
@@ -340,6 +342,7 @@ module Test
       def run(result)
         begin
           @_result = result
+          @start_time = Time.now
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)
           begin
@@ -359,6 +362,7 @@ module Test
           yield(FINISHED, name)
           yield(FINISHED_OBJECT, self)
         ensure
+          @elapsed_time = Time.now - @start_time
           # @_result = nil # For test-spec's after_all :<
         end
       end
