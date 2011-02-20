@@ -83,6 +83,14 @@ module Test
         collector.collect(*auto_runner.to_run)
       end
 
+      # JUST TEST!
+      # register_collector(:xml) do |auto_runner|
+      #   require 'test/unit/collector/xml'
+      #   collector = Collector::XML.new
+      #   collector.filter = auto_runner.filters
+      #   collector.collect(auto_runner.to_run[0])
+      # end
+
       # deprecated
       register_collector(:object_space) do |auto_runner|
         require 'test/unit/collector/objectspace'
