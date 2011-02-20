@@ -358,11 +358,11 @@ module Test
               raise unless handle_exception($!)
             end
           end
+          @elapsed_time = Time.now - @start_time
           result.add_run
           yield(FINISHED, name)
           yield(FINISHED_OBJECT, self)
         ensure
-          @elapsed_time = Time.now - @start_time
           # @_result = nil # For test-spec's after_all :<
         end
       end
