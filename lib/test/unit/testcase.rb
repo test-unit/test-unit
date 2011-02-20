@@ -87,6 +87,8 @@ module Test
 
       STARTED = name + "::STARTED" # :nodoc:
       FINISHED = name + "::FINISHED" # :nodoc:
+      STARTED_OBJECT = name + "::STARTED::OBJECT" # :nodoc:
+      FINISHED_OBJECT = name + "::FINISHED::OBJECT" # :nodoc:
 
       DESCENDANTS = [] # :nodoc:
       AVAILABLE_ORDERS = [:alphabetic, :random, :defined] # :nodoc:
@@ -339,6 +341,7 @@ module Test
         begin
           @_result = result
           yield(STARTED, name)
+          yield(STARTED_OBJECT, self)
           begin
             run_setup
             run_test
@@ -354,6 +357,7 @@ module Test
           end
           result.add_run
           yield(FINISHED, name)
+          yield(FINISHED_OBJECT, self)
         ensure
           # @_result = nil # For test-spec's after_all :<
         end

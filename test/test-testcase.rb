@@ -75,7 +75,11 @@ module Test
         test_case.run(result) { |*arguments| progress << arguments }
         check("The failure should have triggered the listener", called)
         check("The failure should have set passed?", !test_case.return_passed?)
-        check("The progress block should have been updated correctly", [[TestCase::STARTED, test_case.name], [TestCase::FINISHED, test_case.name]] == progress)
+        check("The progress block should have been updated correctly",
+              [[TestCase::STARTED, test_case.name],
+               [TestCase::STARTED_OBJECT, test_case],
+               [TestCase::FINISHED, test_case.name],
+               [TestCase::FINISHED_OBJECT, test_case]] == progress)
       end
 
       def test_add_failure_nested

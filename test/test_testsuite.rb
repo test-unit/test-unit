@@ -6,7 +6,7 @@ require 'test/unit'
 
 module Test
   module Unit
-    class TC_TestSuite < TestCase
+    class TestTestSuite < TestCase
       def setup
         @testcase1 = Class.new(TestCase) do
           def test_succeed1
@@ -55,31 +55,39 @@ module Test
       def test_run
         progress = []
         suite = @testcase1.suite
+        tests = suite.tests.dup
         result = TestResult.new
         suite.run(result) { |*values| progress << values }
-  
+
         assert_equal(2, result.run_count, "Should have had four test runs")
         assert_equal(1, result.failure_count, "Should have had one test failure")
         assert_equal(0, result.error_count, "Should have had one test error")
         assert_equal([[TestSuite::STARTED, suite.name],
-                [TestCase::STARTED, "test_fail(#{suite.name})"],
-                [TestCase::FINISHED, "test_fail(#{suite.name})"],
-                [TestCase::STARTED, "test_succeed1(#{suite.name})"],
-                [TestCase::FINISHED, "test_succeed1(#{suite.name})"],
-                [TestSuite::FINISHED, suite.name]],
-                progress, "Should have had the correct progress")
-        
+                      [TestSuite::STARTED_OBJECT, suite],
+                      [TestCase::STARTED, "test_fail(#{suite.name})"],
+                      [TestCase::STARTED_OBJECT, tests[0]],
+                      [TestCase::FINISHED, "test_fail(#{suite.name})"],
+                      [TestCase::FINISHED_OBJECT, tests[0]],
+                      [TestCase::STARTED, "test_succeed1(#{suite.name})"],
+                      [TestCase::STARTED_OBJECT, tests[1]],
+                      [TestCase::FINISHED, "test_succeed1(#{suite.name})"],
+                      [TestCase::FINISHED_OBJECT, tests[1]],
+                      [TestSuite::FINISHED, suite.name],
+                      [TestSuite::FINISHED_OBJECT, suite]],
+                     progress, "Should have had the correct progress")
+
         suite = TestSuite.new
         suite << @testcase1.suite
         suite << @testcase2.suite
         result = TestResult.new
         progress = []
         suite.run(result) { |*values| progress << values }
-  
+
         assert_equal(4, result.run_count, "Should have had four test runs")
         assert_equal(1, result.failure_count, "Should have had one test failure")
         assert_equal(1, result.error_count, "Should have had one test error")
-        assert_equal(14, progress.size, "Should have had the correct number of progress calls")
+        assert_equal(28, progress.size,
+                     "Should have had the correct number of progress calls")
       end
       
       def test_empty?

@@ -18,14 +18,16 @@ module Test
     # has a suite method as simply providing a way to get a
     # meaningful TestSuite instance.
     class TestSuite
-      attr_reader :name, :tests
+      attr_reader :name, :tests, :test_case, :start_time
 
       # Test suite that has higher priority is ran prior to
       # test suites that have lower priority.
       attr_accessor :priority
 
       STARTED = name + "::STARTED"
+      STARTED_OBJECT = name + "::STARTED::OBJECT"
       FINISHED = name + "::FINISHED"
+      FINISHED_OBJECT = name + "::FINISHED::OBJECT"
 
       # Creates a new TestSuite with the given name.
       def initialize(name="Unnamed TestSuite", test_case=nil)
@@ -34,12 +36,15 @@ module Test
         @test_case = test_case
         @n_tests = 0
         @priority = 0
+        @start_time = nil
       end
 
       # Runs the tests and/or suites contained in this
       # TestSuite.
       def run(result, &progress_block)
+        @start_time = Time.now
         yield(STARTED, name)
+        yield(STARTED_OBJECT, self)
         run_startup(result)
         while test = @tests.shift
           @n_tests += test.size
@@ -47,6 +52,7 @@ module Test
         end
         run_shutdown(result)
         yield(FINISHED, name)
+        yield(FINISHED_OBJECT, self)
       end
 
       # Adds the test to the suite.

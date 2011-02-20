@@ -56,13 +56,20 @@ module Test
           end
 
           def attach_to_mediator
-            @mediator.add_listener(TestResult::FAULT, &method(:add_fault))
-            @mediator.add_listener(TestRunnerMediator::STARTED, &method(:started))
-            @mediator.add_listener(TestRunnerMediator::FINISHED, &method(:finished))
-            @mediator.add_listener(TestCase::STARTED, &method(:test_started))
-            @mediator.add_listener(TestCase::FINISHED, &method(:test_finished))
-            @mediator.add_listener(TestSuite::STARTED, &method(:test_suite_started))
-            @mediator.add_listener(TestSuite::FINISHED, &method(:test_suite_finished))
+            @mediator.add_listener(TestResult::FAULT,
+                                   &method(:add_fault))
+            @mediator.add_listener(TestRunnerMediator::STARTED,
+                                   &method(:started))
+            @mediator.add_listener(TestRunnerMediator::FINISHED,
+                                   &method(:finished))
+            @mediator.add_listener(TestCase::STARTED_OBJECT,
+                                   &method(:test_started))
+            @mediator.add_listener(TestCase::FINISHED_OBJECT,
+                                   &method(:test_finished))
+            @mediator.add_listener(TestSuite::STARTED_OBJECT,
+                                   &method(:test_suite_started))
+            @mediator.add_listener(TestSuite::FINISHED_OBJECT,
+                                   &method(:test_suite_finished))
           end
 
           def add_fault(fault)
@@ -191,10 +198,10 @@ module Test
             fault.long_display
           end
 
-          def test_started(name)
+          def test_started(test)
             return unless output?(VERBOSE)
 
-            name = name.sub(/\(.+?\)\z/, '')
+            name = test.name.sub(/\(.+?\)\z/, '')
             right_space = 8 * 2
             left_space = @progress_row_max - right_space
             left_space = left_space - indent.size - name.size
@@ -203,7 +210,7 @@ module Test
             @test_start = Time.now
           end
 
-          def test_finished(name)
+          def test_finished(test)
             unless @already_outputted
               output_progress(".", color("pass"))
             end
@@ -214,24 +221,24 @@ module Test
             output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
           end
 
-          def test_suite_started(name)
+          def test_suite_started(suite)
             if @top_level
               @top_level = false
               return
             end
 
             output_single(indent, nil, VERBOSE)
-            if /\A[A-Z]/ =~ name
-              _color = color("case")
-            else
+            if suite.test_case.nil?
               _color = color("suite")
+            else
+              _color = color("case")
             end
-            output_single(name, _color, VERBOSE)
+            output_single(suite.name, _color, VERBOSE)
             output(": ", nil, VERBOSE)
             @indent += 2
           end
 
-          def test_suite_finished(name)
+          def test_suite_finished(suite)
             @indent -= 2
           end
 
