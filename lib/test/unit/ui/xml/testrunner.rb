@@ -25,6 +25,9 @@ module Test
           def initialize(suite, options={})
             super
             @output = @options[:output] || STDOUT
+            if @options[:output_file_descriptor]
+              @output = IO.new(@options[:output_file_descriptor], "w")
+            end
             @already_outputted = false
             @indent = 0
             @top_level = true
