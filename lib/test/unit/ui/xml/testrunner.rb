@@ -32,6 +32,7 @@ module Test
             @indent = 0
             @top_level = true
             @current_test = nil
+            @current_test_suite = nil
             @already_outputted = false
           end
 
@@ -64,9 +65,7 @@ module Test
           def result_fault(fault)
             open_tag("test-result") do
               open_tag("result") do
-                open_tag("test-case") do
-                  add_content("name", @current_test.class.name)
-                end
+                output_test_suite(@current_test_suite)
                 output_test(@current_test)
                 open_tag("backtrace") do
                   fault.location.each do |entry|
@@ -118,6 +117,7 @@ module Test
               open_tag("test-result") do
                 output_test(test)
                 open_tag("result") do
+                  output_test_suite(@current_test_suite)
                   output_test(test)
                   add_content("status", "success")
                 end
@@ -132,27 +132,21 @@ module Test
           end
 
           def test_suite_started(suite)
+            @current_test_suite = suite
             if suite.test_case.nil?
               open_tag("ready-test-suite") do
                 add_content("n-tests", suite.size)
               end
               open_tag("start-test-suite") do
-                open_tag("test-suite") do
-                  add_content("start-time", suite.start_time)
-                end
+                output_test_suite(suite)
               end
             else
-              test_case = suite.test_case
               open_tag("ready-test-case") do
-                open_tag("test-case") do
-                  add_content("name", test_case.name)
-                end
+                output_test_suite(suite)
                 add_content("n-tests", suite.size)
               end
               open_tag("start-test-case") do
-                open_tag("test-case") do
-                  add_content("name", test_case.name)
-                end
+                output_test_suite(suite)
               end
             end
           end
@@ -160,20 +154,16 @@ module Test
           def test_suite_finished(suite)
             if suite.test_case.nil?
               open_tag("complete-test-suite") do
-                open_tag("test-suite") do
-                  add_content("start-time", suite.start_time)
-                end
+                output_test_suite(suite)
                 add_content("success", suite.passed?)
               end
             else
-              test_case = suite.test_case
               open_tag("complete-test-case") do
-                open_tag("test-case") do
-                  add_content("name", test_case.name)
-                end
+                output_test_suite(suite)
                 add_content("success", suite.passed?)
               end
             end
+            @current_test_suite = nil
           end
 
           def indent
@@ -208,6 +198,22 @@ module Test
               add_content("name", test.method_name)
               add_content("start-time", test.start_time)
               add_content("elapsed", test.elapsed_time)
+            end
+          end
+
+          def output_test_suite(test_suite)
+            test_case = test_suite.test_case
+            if test_case.nil?
+              open_tag("test-suite") do
+                add_content("start-time", test_suite.start_time)
+                add_content("elapsed", test_suite.elapsed_time)
+              end
+            else
+              open_tag("test-case") do
+                add_content("name", test_suite.name)
+                add_content("start-time", test_suite.start_time)
+                add_content("elapsed", test_suite.elapsed_time)
+              end
             end
           end
         end
