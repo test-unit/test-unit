@@ -468,6 +468,13 @@ module Test
         @interrupted
       end
 
+      # Returns whether this individual test passed or
+      # not. Primarily for use in teardown so that artifacts
+      # can be left behind if the test fails.
+      def passed?
+        @test_passed
+      end
+
       private
       def current_result
         @_result
@@ -486,13 +493,6 @@ module Test
           return true if send(handler, exception)
         end
         false
-      end
-
-      # Returns whether this individual test passed or
-      # not. Primarily for use in teardown so that artifacts
-      # can be left behind if the test fails.
-      def passed?
-        @test_passed
       end
 
       def problem_occurred
