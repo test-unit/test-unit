@@ -48,13 +48,14 @@ module Test
 
       # Returns a verbose version of the error description.
       def long_display
-        backtrace_display = backtrace.join("\n    ")
+        backtrace_display = location.join("\n    ")
         "#{label}:\n#@test_name:\n#{message}\n    #{backtrace_display}"
       end
 
-      def backtrace
-        filter_backtrace(@exception.backtrace)
+      def location
+        @location ||= filter_backtrace(@exception.backtrace)
       end
+      alias_method :backtrace, :location # Deprecated
 
       # Overridden to return long_display.
       def to_s
