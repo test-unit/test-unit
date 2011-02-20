@@ -33,8 +33,14 @@ module Test
           Unit.run = true
 
           result = create_result
-          result_listener = result.add_listener(TestResult::CHANGED) do |*args|
+          finished_listener = result.add_listener(TestResult::FINISHED) do |*args|
+            notify_listeners(TestResult::FINISHED, *args)
+          end
+          changed_listener = result.add_listener(TestResult::CHANGED) do |*args|
             notify_listeners(TestResult::CHANGED, *args)
+          end
+          pass_assertion_listener = result.add_listener(TestResult::PASS_ASSERTION) do |*args|
+            notify_listeners(TestResult::PASS_ASSERTION, *args)
           end
           fault_listener = result.add_listener(TestResult::FAULT) do |*args|
             notify_listeners(TestResult::FAULT, *args)
@@ -51,7 +57,10 @@ module Test
           ensure
             elapsed_time = Time.now - start_time
             result.remove_listener(TestResult::FAULT, fault_listener)
-            result.remove_listener(TestResult::CHANGED, result_listener)
+            result.remove_listener(TestResult::CHANGED, changed_listener)
+            result.remove_listener(TestResult::FINISHED, finished_listener)
+            result.remove_listener(TestResult::PASS_ASSERTION,
+                                   pass_assertion_listener)
             notify_listeners(FINISHED, elapsed_time)
           end
 
