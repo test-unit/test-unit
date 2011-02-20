@@ -458,7 +458,3 @@ module Test
     end
   end
 end
-
-if __FILE__ == $0
-  Test::Unit::UI::Console::TestRunner.start_command_line_test
-end
