@@ -37,6 +37,7 @@ module Test
         @n_tests = 0
         @priority = 0
         @start_time = nil
+        @passed = true
       end
 
       # Runs the tests and/or suites contained in this
@@ -49,6 +50,7 @@ module Test
         while test = @tests.shift
           @n_tests += test.size
           test.run(result, &progress_block)
+          @passed = false unless test.passed?
         end
         run_shutdown(result)
         yield(FINISHED, name)
@@ -91,6 +93,10 @@ module Test
         @tests == other.tests
       end
 
+      def passed?
+        @passed
+      end
+
       private
       def run_startup(result)
         return if @test_case.nil? or !@test_case.respond_to?(:startup)
@@ -116,6 +122,7 @@ module Test
           false
         else
           result.add_error(Error.new(@test_case.name, exception))
+          @passed = false
           true
         end
       end
