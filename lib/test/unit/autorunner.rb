@@ -159,6 +159,13 @@ module Test
             @runner = r
           end
 
+          o.on
+          o.on('--collector=COLLECTOR', COLLECTORS,
+               "Use the given COLLECTOR.",
+               "(" + keyword_display(COLLECTORS) + ")") do |collector|
+            @collector = collector
+          end
+
           if (@standalone)
             o.on('-b', '--basedir=DIR', "Base directory of test suites.") do |b|
               @base = b
