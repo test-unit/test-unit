@@ -326,12 +326,16 @@ module Test
       def initialize(test_method_name)
         throw :invalid_test unless respond_to?(test_method_name)
         test_method = method(test_method_name)
-        throw :invalid_test if test_method.arity > 0
+        @method_name = test_method_name
+        if self[:data] != nil
+          throw :invalid_test if test_method.arity == 0
+        else
+          throw :invalid_test if test_method.arity > 0
+        end
         owner = Util::MethodOwnerFinder.find(self, test_method_name)
         if owner.class != Module and self.class != owner
           throw :invalid_test
         end
-        @method_name = test_method_name
         @test_passed = true
         @interrupted = false
         @start_time = nil

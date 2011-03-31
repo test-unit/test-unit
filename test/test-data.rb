@@ -29,6 +29,6 @@ class TestData < Test::Unit::TestCase
   def test_data
     test_plus = TestCalc.new("test_plus")
     assert_equal({"positive positive" => {:expected => 4, :augend => 3, :addend => 1}},
-                 test_plus.attribute("data"))
+                 test_plus[:data])
   end
 end
