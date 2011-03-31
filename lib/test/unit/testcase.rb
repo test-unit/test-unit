@@ -16,6 +16,7 @@ require 'test/unit/pending'
 require 'test/unit/omission'
 require 'test/unit/notification'
 require 'test/unit/priority'
+require 'test/unit/data'
 require 'test/unit/testsuite'
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
@@ -81,6 +82,7 @@ module Test
       include TestCaseOmissionSupport
       include TestCaseNotificationSupport
       include Priority
+      include Data
       include Assertions
       include Util::BacktraceFilter
       include Util::Output
