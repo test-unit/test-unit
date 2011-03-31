@@ -5,7 +5,7 @@ module Test
         def included(base)
           base.extend(ClassMethods)
 
-          [:setup, :teardown].each do |fixture|
+          [:setup, :cleanup, :teardown].each do |fixture|
             observer = Proc.new do |test_case, _, _, value, method_name|
               if value.nil?
                 test_case.send("unregister_#{fixture}_method", method_name)
@@ -28,6 +28,14 @@ module Test
           unregister_fixture(:setup, *method_names)
         end
 
+        def cleanup(*method_names)
+          register_fixture(:cleanup, *method_names)
+        end
+
+        def unregister_cleanup(*method_names)
+          unregister_fixture(:cleanup, *method_names)
+        end
+
         def teardown(*method_names)
           register_fixture(:teardown, *method_names)
         end
@@ -42,6 +50,15 @@ module Test
 
         def unregister_setup_method(method_name)
           unregister_fixture_method(:setup, method_name)
+        end
+
+        def register_cleanup_method(method_name, options)
+          register_fixture_method(:cleanup, method_name, options,
+                                  :before, :prepend)
+        end
+
+        def unregister_cleanup_method(method_name)
+          unregister_fixture_method(:cleanup, method_name)
         end
 
         def register_teardown_method(method_name, options)
@@ -59,6 +76,14 @@ module Test
 
         def after_setup_methods
           collect_fixture_methods(:setup, :after)
+        end
+
+        def before_cleanup_methods
+          collect_fixture_methods(:cleanup, :before)
+        end
+
+        def after_cleanup_methods
+          collect_fixture_methods(:cleanup, :after)
         end
 
         def before_teardown_methods
@@ -175,6 +200,10 @@ module Test
 
       def run_setup
         run_fixture(:setup)
+      end
+
+      def run_cleanup
+        run_fixture(:cleanup)
       end
 
       def run_teardown

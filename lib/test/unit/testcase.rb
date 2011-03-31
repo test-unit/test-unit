@@ -50,6 +50,10 @@ module Test
     #       ...
     #     end
     #
+    #     def cleanup
+    #       ...
+    #     end
+    #
     #     def teardown
     #       ...
     #     end
@@ -67,9 +71,11 @@ module Test
     # * startup
     # * setup
     # * test_my_method1
+    # * cleanup
     # * teardown
     # * setup
     # * test_my_method2
+    # * cleanup
     # * teardown
     # * shutdown
     class TestCase
@@ -354,6 +360,8 @@ module Test
           begin
             run_setup
             run_test
+            run_cleanup
+            add_pass
           rescue Exception
             @interrupted = true
             raise unless handle_exception($!)
@@ -404,6 +412,41 @@ module Test
       # * my_setup2
       # * test_my_class
       def setup
+      end
+
+      # Called after every test method runs but the test
+      # method isn't marked as 'passed'. Can be used to
+      # clean up and/or verify tested condition.
+      # e.g. Can be used to verify mock.
+      #
+      # You can add additional cleanup tasks by the following
+      # code:
+      #   class TestMyClass < Test::Unit::TestCase
+      #     def cleanup
+      #       ...
+      #     end
+      #
+      #     cleanup
+      #     def my_cleanup1
+      #       ...
+      #     end
+      #
+      #     cleanup
+      #     def my_cleanup2
+      #       ...
+      #     end
+      #
+      #     def test_my_class
+      #       ...
+      #     end
+      #   end
+      #
+      # Here is a call order:
+      # * test_my_class
+      # * my_cleanup2
+      # * my_cleanup1
+      # * cleanup
+      def cleanup
       end
 
       # Called after every test method runs. Can be used to tear
@@ -495,7 +538,6 @@ module Test
           notify("#{self.class}\##{@method_name} was redefined")
         end
         __send__(@method_name)
-        add_pass
       end
 
       def handle_exception(exception)
