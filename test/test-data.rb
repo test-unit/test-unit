@@ -1,9 +1,16 @@
 class TestData < Test::Unit::TestCase
   class TestCalc < Test::Unit::TestCase
+    @@testing = false
+
     class << self
-      def suite
-        Test::Unit::TestSuite.new(name)
+      def testing=(testing)
+        @@testing = testing
       end
+    end
+
+    def initialize(*args)
+      super
+      throw(:invalid_test) unless @@testing
     end
 
     class Calc
@@ -19,16 +26,50 @@ class TestData < Test::Unit::TestCase
       @calc = Calc.new
     end
 
-    data({"positive positive" => {:expected => 4, :augend => 3, :addend => 1}})
+    data("positive positive" => {:expected => 4, :augend => 3, :addend => 1},
+         "positive negative" => {:expected => 2, :augend => 5, :addend => -3})
     def test_plus(data)
-      assert_equal(data[:expected], add(data[:augend], data[:addend]))
+      assert_equal(data[:expected],
+                   @calc.plus(data[:augend], data[:addend]))
     end
+  end
 
+  def setup
+    TestCalc.testing = true
+  end
+
+  def teardown
+    TestCalc.testing = false
   end
 
   def test_data
     test_plus = TestCalc.new("test_plus")
-    assert_equal({"positive positive" => {:expected => 4, :augend => 3, :addend => 1}},
+    assert_equal({
+                   "positive positive" => {
+                     :expected => 4,
+                     :augend => 3,
+                     :addend => 1,
+                   },
+                   "positive negative" => {
+                     :expected => 2,
+                     :augend => 5,
+                     :addend => -3,
+                   },
+                 },
                  test_plus[:data])
+  end
+
+  def test_run
+    result = _run_test(TestCalc, "test_plus")
+    assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "0 omissions, 0 notifications", result.to_s)
+  end
+
+  def _run_test(test_case, name)
+    result = Test::Unit::TestResult.new
+    test = test_case.suite
+    yield(test) if block_given?
+    test.run(result) {}
+    result
   end
 end
