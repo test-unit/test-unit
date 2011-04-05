@@ -1507,23 +1507,50 @@ Message: <#{convert(object.message)}>
 ---------------
 EOM
             else
+              inspector = Inspector.new(object)
               if use_pp
                 begin
                   require 'pp' unless defined?(PP)
-                  if HashInspector.target?(object)
-                    pp_target = HashInspector.new(object)
-                  else
-                    pp_target = object
-                  end
                   begin
-                    return PP.pp(pp_target, '').chomp
+                    return PP.pp(inspector, '').chomp
                   rescue NameError
                   end
                 rescue LoadError
                   self.use_pp = false
                 end
               end
-              object.inspect
+              inspector.inspect
+            end
+          end
+        end
+
+        class Inspector
+          def initialize(object)
+            @object = object
+            @inspect_target = inspect_target
+          end
+
+          alias_method :native_inspect, :inspect
+          def inspect
+            @inspect_target.inspect
+          end
+
+          def pretty_print(q)
+            @inspect_target.pretty_print(q)
+          end
+
+          def pretty_print_cycle(q)
+            @inspect_target.pretty_print_cycle(q)
+          end
+
+          private
+          def inspect_target
+            if HashInspector.target?(@object)
+              HashInspector.new(@object)
+            elsif ArrayInspector.target?(@object)
+              ArrayInspector.new(@object)
+            else
+              @object
             end
           end
         end
@@ -1532,14 +1559,6 @@ EOM
           class << self
             def target?(object)
               object.is_a?(Hash) or object == ENV
-            end
-
-            def normalize(object)
-              if target?(object)
-                new(object)
-              else
-                object
-              end
             end
           end
 
@@ -1567,7 +1586,7 @@ EOM
           end
 
           def pretty_print_cycle(q)
-            q.text(@hash.empty? ? '{}' : '{...}')
+            @hash.pretty_print_cycle(q)
           end
 
           def each_pair
@@ -1577,8 +1596,42 @@ EOM
             rescue ArgumentError
             end
             keys.each do |key|
-              yield(self.class.normalize(key),
-                    self.class.normalize(@hash[key]))
+              yield(Inspector.new(key),
+                    Inspector.new(@hash[key]))
+            end
+          end
+        end
+
+        class ArrayInspector
+          class << self
+            def target?(object)
+              object.is_a?(Array)
+            end
+          end
+
+          def initialize(array)
+            @array = array
+          end
+
+          def inspect
+            @array.inspect
+          end
+
+          def pretty_print(q)
+            q.group(1, '[', ']') do
+              q.seplist(self) do |v|
+                q.pp(v)
+              end
+            end
+          end
+
+          def pretty_print_cycle(q)
+            @array.pretty_print_cycle(q)
+          end
+
+          def each
+            @array.each do |element|
+              yield(Inspector.new(element))
             end
           end
         end
