@@ -66,12 +66,12 @@ class TestData < Test::Unit::TestCase
   end
 
   def test_run
-    result = _run_test(TestCalc, "test_plus")
+    result = _run_test(TestCalc)
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
   end
 
-  def _run_test(test_case, name)
+  def _run_test(test_case)
     result = Test::Unit::TestResult.new
     test = test_case.suite
     yield(test) if block_given?
