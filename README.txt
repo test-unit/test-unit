@@ -50,6 +50,7 @@ Ruby license and PSF license.
 === Active
 
 * Kouhei Sutou: The current maintainer
+* Haruka Yoshihara: Data driven test supports.
 
 === Inactive
 
