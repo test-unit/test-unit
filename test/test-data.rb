@@ -8,9 +8,8 @@ class TestData < Test::Unit::TestCase
       end
     end
 
-    def initialize(*args)
-      super
-      throw(:invalid_test) unless @@testing
+    def valid?
+      @@testing
     end
 
     class Calc
@@ -60,6 +59,7 @@ class TestData < Test::Unit::TestCase
   end
 
   def test_run
+    pend
     result = _run_test(TestCalc, "test_plus")
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)

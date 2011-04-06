@@ -9,24 +9,18 @@ module Test
     class TestTestCase < TestCase
       self.test_order = :random
       def test_creation
-        tc = Class.new(TestCase) do
+        test_case = Class.new(TestCase) do
           def test_with_arguments(arg1, arg2)
           end
         end
 
-        caught = true
-        catch(:invalid_test) do
-          tc.new(:test_with_arguments)
-          caught = false
-        end
-        check("Should have caught an invalid test when there are arguments", caught)
+        test = test_case.new(:test_with_arguments)
+        check("Should have caught an invalid test when there are arguments",
+              !test.valid?)
 
-        caught = true
-        catch(:invalid_test) do
-          tc.new(:non_existent_test)
-          caught = false
-        end
-        check("Should have caught an invalid test when the method does not exist", caught)
+        test = test_case.new(:non_existent_test)
+        check("Should have caught an invalid test when the method does not exist",
+              !test.valid?)
       end
 
       def setup
@@ -445,17 +439,14 @@ module Test
           end
         end
 
-        assert_nothing_thrown do
-          test_case.new("test_nothing")
-        end
+        test = test_case.new("test_nothing")
+        assert_predicate(test, :valid?)
 
-        assert_nothing_thrown do
-          sub_test_case.new("test_fail")
-        end
+        test = sub_test_case.new("test_fail")
+        assert_predicate(test, :valid?)
 
-        assert_throw(:invalid_test) do
-          sub_test_case.new("test_nothing")
-        end
+        test = sub_test_case.new("test_nothing")
+        assert_not_predicate(test, :valid?)
       end
 
       def test_mixin_test_should_not_be_ignored

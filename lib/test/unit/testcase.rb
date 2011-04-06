@@ -122,15 +122,14 @@ module Test
         # each method.
         def suite
           suite = TestSuite.new(name, self)
-          collect_test_names.each do |test|
-            catch(:invalid_test) do
-              suite << new(test)
-            end
+          collect_test_names.each do |test_name|
+            test = new(test_name)
+            next unless test.valid?
+            suite << test
           end
           if suite.empty?
-            catch(:invalid_test) do
-              suite << new("default_test")
-            end
+            test = new("default_test")
+            suite << test if test.valid?
           end
           suite
         end
@@ -330,22 +329,26 @@ module Test
       # Creates a new instance of the fixture for running the
       # test represented by test_method_name.
       def initialize(test_method_name)
-        throw :invalid_test unless respond_to?(test_method_name)
-        test_method = method(test_method_name)
         @method_name = test_method_name
-        if self[:data] != nil
-          throw :invalid_test if test_method.arity == 0
-        else
-          throw :invalid_test if test_method.arity > 0
-        end
-        owner = Util::MethodOwnerFinder.find(self, test_method_name)
-        if owner.class != Module and self.class != owner
-          throw :invalid_test
-        end
         @test_passed = true
         @interrupted = false
         @start_time = nil
         @elapsed_time = nil
+      end
+
+      def valid?
+        return false unless respond_to?(@method_name)
+        test_method = method(@method_name)
+        if self[:data] != nil
+          return false if test_method.arity == 0
+        else
+          return false if test_method.arity > 0
+        end
+        owner = Util::MethodOwnerFinder.find(self, @method_name)
+        if owner.class != Module and self.class != owner
+          return false
+        end
+        true
       end
 
       # Runs the individual test method represented by this
