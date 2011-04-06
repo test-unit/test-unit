@@ -1,4 +1,13 @@
 class TestData < Test::Unit::TestCase
+  class Calc
+    def initialize
+    end
+
+    def plus(augend, addend)
+      augend + addend
+    end
+  end
+
   class TestCalc < Test::Unit::TestCase
     @@testing = false
 
@@ -12,24 +21,26 @@ class TestData < Test::Unit::TestCase
       @@testing
     end
 
-    class Calc
-      def initialize
-      end
-
-      def plus(augend, addend)
-        augend + addend
-      end
-    end
-
     def setup
       @calc = Calc.new
     end
 
-    data("positive positive" => {:expected => 4, :augend => 3, :addend => 1},
-         "positive negative" => {:expected => 2, :augend => 5, :addend => -3})
-    def test_plus(data)
-      assert_equal(data[:expected],
-                   @calc.plus(data[:augend], data[:addend]))
+    class TestDataSet < TestCalc
+      data("positive positive" => {:expected => 4, :augend => 3, :addend => 1},
+           "positive negative" => {:expected => 2, :augend => 5, :addend => -3})
+      def test_plus(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
+    end
+
+    class TestNData < TestCalc
+      data("positive positive", {:expected => 4, :augend => 3, :addend => 1})
+      data("positive negative", {:expected => 2, :augend => 5, :addend => -3})
+      def test_plus(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
     end
   end
 
@@ -41,8 +52,10 @@ class TestData < Test::Unit::TestCase
     TestCalc.testing = false
   end
 
-  def test_data
-    test_plus = TestCalc.new("test_plus")
+  data("data set" => TestCalc::TestDataSet,
+       "n-data" => TestCalc::TestNData)
+  def test_data(test_case)
+    test_plus = test_case.new("test_plus")
     assert_equal({
                    "positive positive" => {
                      :expected => 4,
@@ -58,15 +71,19 @@ class TestData < Test::Unit::TestCase
                  test_plus[:data])
   end
 
-  def test_suite
-    suite = TestCalc.suite
-    assert_equal(["test_plus[positive positive](TestData::TestCalc)",
-                  "test_plus[positive negative](TestData::TestCalc)"],
+  data("data set" => TestCalc::TestDataSet,
+       "n-data" => TestCalc::TestNData)
+  def test_suite(test_case)
+    suite = test_case.suite
+    assert_equal(["test_plus[positive positive](#{test_case.name})",
+                  "test_plus[positive negative](#{test_case.name})"],
                  suite.tests.collect {|test| test.name})
   end
 
-  def test_run
-    result = _run_test(TestCalc)
+  data("data set" => TestCalc::TestDataSet,
+       "n-data" => TestCalc::TestNData)
+  def test_run(test_case)
+    result = _run_test(test_case)
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
   end

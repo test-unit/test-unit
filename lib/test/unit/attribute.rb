@@ -34,14 +34,21 @@ module Test
             method_names << options
             options = {}
           end
-          @current_attributes ||= {}
           if method_names.empty?
-            @current_attributes[name] = options.merge(:value => value)
+            current_attributes[name] = options.merge(:value => value)
           else
             method_names.each do |method_name|
               set_attributes(method_name, {name => value})
             end
           end
+        end
+
+        def current_attributes
+          @current_attributes ||= {}
+        end
+
+        def current_attribute(name)
+          current_attributes[name] || {}
         end
 
         def attributes_table
