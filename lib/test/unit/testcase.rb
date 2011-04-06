@@ -123,13 +123,16 @@ module Test
         def suite
           suite = TestSuite.new(name, self)
           collect_test_names.each do |test_name|
-            data_set = get_attribute(test_name, :data)
-            if data_set
-              data_set.each do |label, data|
-                test = new(test_name)
-                test.assign_test_data(label, data)
-                next unless test.valid?
-                suite << test
+            data_sets = get_attribute(test_name, :data)
+            if data_sets
+              data_sets.each do |data_set|
+                data_set = data_set.call if data_set.respond_to?(:call)
+                data_set.each do |label, data|
+                  test = new(test_name)
+                  test.assign_test_data(label, data)
+                  next unless test.valid?
+                  suite << test
+                end
               end
             else
               test = new(test_name)
