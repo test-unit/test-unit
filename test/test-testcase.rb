@@ -550,26 +550,16 @@ module Test
                      result.summary)
       end
 
-      def test_data_driven_test_with_data
+      def test_data_driven_test
         test_case = Class.new(TestCase) do
-          data("label1" => :test_data1,
-               "label2" => :test_data2)
           def test_with_data(data)
           end
         end
 
         test = test_case.new("test_with_data")
-        assert_predicate(test, :valid?)
-      end
-
-      def test_data_driven_test_without_data
-        test_case = Class.new(TestCase) do
-          def test_without_data(data)
-          end
-        end
-
-        test = test_case.new("test_without_data")
         assert_not_predicate(test, :valid?)
+        test.assign_test_data("label1", :test_data1)
+        assert_predicate(test, :valid?)
       end
 
       private

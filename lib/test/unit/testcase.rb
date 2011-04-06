@@ -123,9 +123,19 @@ module Test
         def suite
           suite = TestSuite.new(name, self)
           collect_test_names.each do |test_name|
-            test = new(test_name)
-            next unless test.valid?
-            suite << test
+            data_set = get_attribute(test_name, :data)
+            if data_set
+              data_set.each do |label, data|
+                test = new(test_name)
+                test.assign_test_data(label, data)
+                next unless test.valid?
+                suite << test
+              end
+            else
+              test = new(test_name)
+              next unless test.valid?
+              suite << test
+            end
           end
           if suite.empty?
             test = new("default_test")
@@ -334,15 +344,22 @@ module Test
         @interrupted = false
         @start_time = nil
         @elapsed_time = nil
+        @test_data = nil
+        @test_data_label = nil
+      end
+
+      def assign_test_data(label, data)
+        @test_data_label = label
+        @test_data = data
       end
 
       def valid?
         return false unless respond_to?(@method_name)
         test_method = method(@method_name)
-        if self[:data] != nil
-          return false if test_method.arity == 0
+        if @test_data
+          return false unless test_method.arity == 1
         else
-          return false if test_method.arity > 0
+          return false unless test_method.arity == 0
         end
         owner = Util::MethodOwnerFinder.find(self, @method_name)
         if owner.class != Module and self.class != owner
@@ -496,7 +513,11 @@ module Test
       # Returns a human-readable name for the specific test that
       # this instance of TestCase represents.
       def name
-        "#{@method_name}(#{self.class.name})"
+        if @test_data
+          "#{@method_name}[#{@test_data_label}](#{self.class.name})"
+        else
+          "#{@method_name}(#{self.class.name})"
+        end
       end
 
       # Returns a description for the test. A description
@@ -540,7 +561,11 @@ module Test
         if self.class.get_attribute(@method_name, :redefined)
           notify("#{self.class}\##{@method_name} was redefined")
         end
-        __send__(@method_name)
+        if @test_data
+          __send__(@method_name, @test_data)
+        else
+          __send__(@method_name)
+        end
       end
 
       def handle_exception(exception)

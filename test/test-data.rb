@@ -58,8 +58,14 @@ class TestData < Test::Unit::TestCase
                  test_plus[:data])
   end
 
+  def test_suite
+    suite = TestCalc.suite
+    assert_equal(["test_plus[positive positive](TestData::TestCalc)",
+                  "test_plus[positive negative](TestData::TestCalc)"],
+                 suite.tests.collect {|test| test.name})
+  end
+
   def test_run
-    pend
     result = _run_test(TestCalc, "test_plus")
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
