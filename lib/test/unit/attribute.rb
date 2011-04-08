@@ -1,6 +1,22 @@
 module Test
   module Unit
     module Attribute
+      class StringifyKeyHash < Hash
+        class << self
+          def stringify(object)
+            object.to_s
+          end
+        end
+
+        def [](key)
+          super(self.class.stringify(key))
+        end
+
+        def []=(key, value)
+          super(self.class.stringify(key), value)
+        end
+      end
+
       class << self
         def included(base)
           base.extend(BaseClassMethods)
@@ -44,30 +60,28 @@ module Test
         end
 
         def current_attributes
-          @current_attributes ||= {}
+          @current_attributes ||= StringifyKeyHash.new
         end
 
         def current_attribute(name)
-          current_attributes[name] || {}
+          current_attributes[name] || StringifyKeyHash.new
         end
 
         def attributes_table
-          @attributes_table ||= {}
+          @attributes_table ||= StringifyKeyHash.new
           super.merge(@attributes_table)
         end
 
         def set_attributes(method_name, new_attributes)
           return if new_attributes.empty?
-          method_name = normalize_method_name(method_name)
-          @attributes_table ||= {}
-          @attributes_table[method_name] ||= {}
+          @attributes_table ||= StringifyKeyHash.new
+          @attributes_table[method_name] ||= StringifyKeyHash.new
           current_attributes = @attributes_table[method_name]
           new_attributes.each do |key, value|
-            key = normalize_attribute_name(key)
             observers = attribute_observers(key) || []
             observers.each do |observer|
               observer.call(self,
-                            key,
+                            StringifyKeyHash.stringify(key),
                             (attributes(method_name) || {})[key],
                             value,
                             method_name)
@@ -77,7 +91,6 @@ module Test
         end
 
         def attributes(method_name)
-          method_name = normalize_method_name(method_name)
           attributes = attributes_table[method_name]
           ancestors[1..-1].each do |ancestor|
             if ancestor.is_a?(Class) and ancestor < Test::Unit::Attribute
@@ -90,42 +103,26 @@ module Test
               break
             end
           end
-          attributes
+          attributes || StringifyKeyHash.new
         end
 
-        def get_attribute(method_name, attribute_name)
-          attribute_name = normalize_attribute_name(attribute_name)
-          (attributes(method_name) || {})[attribute_name]
-        end
-
-        @@attribute_observers = {}
+        @@attribute_observers = StringifyKeyHash.new
         def register_attribute_observer(attribute_name, observer=Proc.new)
-          attribute_name = normalize_attribute_name(attribute_name)
           @@attribute_observers[attribute_name] ||= []
           @@attribute_observers[attribute_name] << observer
         end
 
         def attribute_observers(attribute_name)
-          attribute_name = normalize_attribute_name(attribute_name)
           @@attribute_observers[attribute_name]
-        end
-
-        private
-        def normalize_attribute_name(name)
-          name.to_s
-        end
-
-        def normalize_method_name(name)
-          name.to_s
         end
       end
 
       def attributes
-        self.class.attributes(@method_name) || {}
+        self.class.attributes(@method_name) || StringifyKeyHash.new
       end
 
       def [](name)
-        self.class.get_attribute(@method_name, name)
+        attributes[name]
       end
     end
   end

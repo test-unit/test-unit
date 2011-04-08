@@ -506,7 +506,7 @@ module Test
       end
 
       def run_test
-        if self.class.get_attribute(@method_name, :redefined)
+        if self[:redefined]
           notify("#{self.class}\##{@method_name} was redefined")
         end
         if @test_data

@@ -15,7 +15,7 @@ module Test
       def create
         suite = TestSuite.new(@test_case.name, @test_case)
         collect_test_names.each do |test_name|
-          data_sets = @test_case.get_attribute(test_name, :data)
+          data_sets = @test_case.attributes(test_name)[:data]
           if data_sets
             data_sets.each do |data_set|
               data_set = data_set.call if data_set.respond_to?(:call)
@@ -45,7 +45,7 @@ module Test
           name.to_s
         end
         test_names = method_names.find_all do |method_name|
-          method_name =~ /^test./ or @test_case.get_attribute(method_name, :test)
+          method_name =~ /^test./ or @test_case.attributes(method_name)[:test]
         end
         send("sort_test_names_in_#{@test_case.test_order}_order", test_names)
       end
