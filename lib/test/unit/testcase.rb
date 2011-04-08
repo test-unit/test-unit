@@ -362,7 +362,7 @@ module Test
         if @test_data
           return false unless test_method.arity == 1
         else
-          return false unless test_method.arity == 0
+          return false unless test_method.arity <= 0
         end
         owner = Util::MethodOwnerFinder.find(self, @method_name)
         if owner.class != Module and self.class != owner
