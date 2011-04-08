@@ -18,6 +18,7 @@ require 'test/unit/notification'
 require 'test/unit/priority'
 require 'test/unit/data'
 require 'test/unit/testsuite'
+require 'test/unit/testsuitecreator'
 require 'test/unit/assertionfailederror'
 require 'test/unit/util/backtracefilter'
 require 'test/unit/util/output'
@@ -109,42 +110,24 @@ module Test
         @@added_methods = {}
         def method_added(name) # :nodoc:
           super
-          added_methods = (@@added_methods[self] ||= [])
+          _added_methods = added_methods
           stringified_name = name.to_s
-          if added_methods.include?(stringified_name)
+          if _added_methods.include?(stringified_name)
             attribute(:redefined, true, {}, stringified_name)
           end
-          added_methods << stringified_name
+          _added_methods << stringified_name
+        end
+
+        def added_methods # :nodoc:
+          @@added_methods[self] ||= []
         end
 
         # Rolls up all of the test* methods in the fixture into
         # one suite, creating a new instance of the fixture for
         # each method.
         def suite
-          suite = TestSuite.new(name, self)
-          collect_test_names.each do |test_name|
-            data_sets = get_attribute(test_name, :data)
-            if data_sets
-              data_sets.each do |data_set|
-                data_set = data_set.call if data_set.respond_to?(:call)
-                data_set.each do |label, data|
-                  test = new(test_name)
-                  test.assign_test_data(label, data)
-                  next unless test.valid?
-                  suite << test
-                end
-              end
-            else
-              test = new(test_name)
-              next unless test.valid?
-              suite << test
-            end
-          end
-          if suite.empty?
-            test = new("default_test")
-            suite << test if test.valid?
-          end
-          suite
+          suite_creator = TestSuiteCreator.new(self)
+          suite_creator.create
         end
 
         # Called before every test case runs. Can be used
@@ -297,44 +280,6 @@ module Test
         def description(value, target=nil)
           attribute(:description, value, {}, target || [])
         end
-
-        # :stopdoc:
-        private
-        def collect_test_names
-          method_names = public_instance_methods(true).collect do |name|
-            name.to_s
-          end
-          test_names = method_names.find_all do |method_name|
-            method_name =~ /^test./ or get_attribute(method_name, :test)
-          end
-          send("sort_test_names_in_#{test_order}_order", test_names)
-        end
-
-        def sort_test_names_in_alphabetic_order(test_names)
-          test_names.sort
-        end
-
-        def sort_test_names_in_random_order(test_names)
-          test_names.sort_by {rand(test_names.size)}
-        end
-
-        def sort_test_names_in_defined_order(test_names)
-          added_methods = @@added_methods[self]
-          test_names.sort do |test1, test2|
-            test1_defined_order = added_methods.index(test1)
-            test2_defined_order = added_methods.index(test2)
-            if test1_defined_order and test2_defined_order
-              test1_defined_order <=> test2_defined_order
-            elsif test1_defined_order
-              1
-            elsif test2_defined_order
-              -1
-            else
-              test1 <=> test2
-            end
-          end
-        end
-        # :startdoc:
       end
 
       attr_reader :method_name, :start_time, :elapsed_time
