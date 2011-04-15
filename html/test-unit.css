@@ -244,17 +244,24 @@ div.sponsors p#sponsor-rubyforge
   right: 50px;
 }
 
-div.sponsors p#sponsor-tango
+div.sponsors p#sponsor-github
 {
   position: absolute;
   top: 50px;
   right: 50px;
 }
 
+div.sponsors p#sponsor-tango
+{
+  position: absolute;
+  top: 105px;
+  right: 50px;
+}
+
 div.sponsors p#sponsor-famfamfam
 {
   position: absolute;
-  top: 118px;
+  top: 168px;
   right: 50px;
   padding-bottom: 50px;
 }
