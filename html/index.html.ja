@@ -247,23 +247,25 @@ require "test/unit"</pre>
 
 	<h3 id="repository">リポジトリ</h3>
 	<p>
-	  RubyForge上のSubversionリポジトリを利用しています。チェックアウト方法は以下の通りです。
+	  <a href="https://github.com/test-unit/">GitHub上のgitリポジトリ</a>を利用しています。ソースコードは以下のように取得できます。
         </p>
         <dl>
-          <dt>test-unit</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/trunk test-unit</pre></dd>
-          <dt>test-unit-full</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/extensions/test-unit-full/trunk test-unit-full</pre></dd>
-          <dt>test-unit-notify</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/extensions/test-unit-notify/trunk test-unit-notify</pre></dd>
-          <dt>test-unit-rr</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/extensions/test-unit-rr/trunk test-unit-rr</pre></dd>
-          <dt>test-unit-runner-gtk2</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/extensions/test-unit-runner-gtk2/trunk test-unit-runner-gtk2</pre></dd>
-          <dt>test-unit-runner-tk</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/extensions/test-unit-runner-tk/trunk test-unit-runner-tk</pre></dd>
-          <dt>test-unit-runner-fox</dt>
-          <dd><pre class="command">% svn co http://test-unit.rubyforge.org/svn/extensions/test-unit-runner-fox/trunk test-unit-runner-fox</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit/">test-unit</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-full/">test-unit-full</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-full.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-notify/">test-unit-notify</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-notify.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-rr/">test-unit-rr</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-rr.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-capybara/">test-unit-capybara</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-capybara.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-runner-gtk2/">test-unit-runner-gtk2</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-runner-gtk2.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-runner-tk/">test-unit-runner-tk</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-runner-tk.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-runner-fox/">test-unit-runner-fox</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-runner-fox.git</pre></dd>
         </dl>
       </div>
 
@@ -282,6 +284,11 @@ require "test/unit"</pre>
       <p id="sponsor-rubyforge">
         <a href="http://rubyforge.org/projects/groonga/">
           <img src="rubyforge.png" width="120" height="24" border="0" alt="ラングバプロジェクトはRubyForge.orgにホスティングしてもらっています。" />
+        </a>
+      </p>
+      <p id="sponsor-github">
+        <a href="https://github.com/milter-manager/">
+          <img src="github-logo.png" width="100" height="45" border="0" alt="GitHubの提供するgitリポジトリを利用しています。" />
         </a>
       </p>
       <p id="sponsor-tango">
