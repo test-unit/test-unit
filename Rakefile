@@ -46,8 +46,7 @@ end
 desc "Tag the current revision."
 task :tag do
   message = "Released Test::Unit #{version}!"
-  base = "svn+ssh://#{ENV['USER']}@rubyforge.org/var/svn/test-unit/"
-  sh 'svn', 'copy', '-m', message, "#{base}trunk", "#{base}tags/#{version}"
+  sh 'git', 'tag', '-a', version, '-m', message
 end
 
 # vim: syntax=Ruby
