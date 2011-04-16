@@ -288,7 +288,6 @@ module Test
       # test represented by test_method_name.
       def initialize(test_method_name)
         @method_name = test_method_name
-        @test_passed = true
         @interrupted = false
         @internal_data = InternalData.new
       end
@@ -512,7 +511,7 @@ module Test
       # not. Primarily for use in teardown so that artifacts
       # can be left behind if the test fails.
       def passed?
-        @test_passed
+        @internal_data.passed?
       end
 
       private
@@ -539,7 +538,7 @@ module Test
       end
 
       def problem_occurred
-        @test_passed = false
+        @internal_data.problem_occurred
       end
 
       def add_assertion
@@ -556,8 +555,13 @@ module Test
         def initialize
           @start_time = nil
           @elapsed_time = nil
+          @passed = true
           @test_data_label = nil
           @test_data = nil
+        end
+
+        def passed?
+          @passed
         end
 
         def assign_test_data(label, data)
@@ -575,6 +579,10 @@ module Test
 
         def test_finished
           @elapsed_time = Time.now - @start_time
+        end
+
+        def problem_occurred
+          @passed = false
         end
       end
     end
