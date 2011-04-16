@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright::
 #   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#   * Copyright (c) 2008-2009 Kouhei Sutou <tt><kou@clear-code.com></tt>
+#   * Copyright (c) 2008-2011 Kouhei Sutou <tt><kou@clear-code.com></tt>
 # License:: Ruby license.
 
 require 'test/unit/attribute'
@@ -295,11 +295,13 @@ module Test
         @internal_data = InternalData.new
       end
 
-      def assign_test_data(label, data)
+      # Assigns test data to the test. It is used in internal.
+      def assign_test_data(label, data) # :nodoc:
         @internal_data.assign_test_data(label, data)
       end
 
-      def valid?
+      # Returns the test is valid test. It is used in internal.
+      def valid? # :nodoc:
         return false unless respond_to?(@method_name)
         test_method = method(@method_name)
         if @internal_data.have_test_data?
