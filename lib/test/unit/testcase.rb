@@ -282,7 +282,7 @@ module Test
         end
       end
 
-      attr_reader :method_name, :start_time, :elapsed_time
+      attr_reader :method_name
 
       # Creates a new instance of the fixture for running the
       # test represented by test_method_name.
@@ -290,8 +290,6 @@ module Test
         @method_name = test_method_name
         @test_passed = true
         @interrupted = false
-        @start_time = nil
-        @elapsed_time = nil
         @internal_data = InternalData.new
       end
 
@@ -322,7 +320,7 @@ module Test
       def run(result)
         begin
           @_result = result
-          @start_time = Time.now
+          @internal_data.test_started
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)
           begin
@@ -340,7 +338,7 @@ module Test
               raise unless handle_exception($!)
             end
           end
-          @elapsed_time = Time.now - @start_time
+          @internal_data.test_finished
           result.add_run
           yield(FINISHED, name)
           yield(FINISHED_OBJECT, self)
@@ -496,6 +494,16 @@ module Test
         self.class == other.class
       end
 
+      # Returns a Time at the test was started.
+      def start_time
+        @internal_time.start_time
+      end
+
+      # Returns elapsed time for the test was ran.
+      def elapsed_time
+        @internal_time.elapsed_time
+      end
+
       def interrupted?
         @interrupted
       end
@@ -543,8 +551,11 @@ module Test
       end
 
       class InternalData
+        attr_reader :start_time, :elapsed_time
         attr_reader :test_data_label, :test_data
         def initialize
+          @start_time = nil
+          @elapsed_time = nil
           @test_data_label = nil
           @test_data = nil
         end
@@ -556,6 +567,14 @@ module Test
 
         def have_test_data?
           not @test_data_label.nil?
+        end
+
+        def test_started
+          @start_time = Time.now
+        end
+
+        def test_finished
+          @elapsed_time = Time.now - @start_time
         end
       end
     end
