@@ -288,7 +288,6 @@ module Test
       # test represented by test_method_name.
       def initialize(test_method_name)
         @method_name = test_method_name
-        @interrupted = false
         @internal_data = InternalData.new
       end
 
@@ -328,7 +327,7 @@ module Test
             run_cleanup
             add_pass
           rescue Exception
-            @interrupted = true
+            @internal_data.interrupted
             raise unless handle_exception($!)
           ensure
             begin
@@ -495,16 +494,17 @@ module Test
 
       # Returns a Time at the test was started.
       def start_time
-        @internal_time.start_time
+        @internal_data.start_time
       end
 
       # Returns elapsed time for the test was ran.
       def elapsed_time
-        @internal_time.elapsed_time
+        @internal_data.elapsed_time
       end
 
+      # Returns whether the test is interrupted.
       def interrupted?
-        @interrupted
+        @internal_data.interrupted?
       end
 
       # Returns whether this individual test passed or
@@ -556,12 +556,17 @@ module Test
           @start_time = nil
           @elapsed_time = nil
           @passed = true
+          @interrupted = false
           @test_data_label = nil
           @test_data = nil
         end
 
         def passed?
           @passed
+        end
+
+        def interrupted?
+          @interrupted
         end
 
         def assign_test_data(label, data)
@@ -583,6 +588,10 @@ module Test
 
         def problem_occurred
           @passed = false
+        end
+
+        def interrupted
+          @interrupted = true
         end
       end
     end
