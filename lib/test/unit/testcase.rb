@@ -292,19 +292,17 @@ module Test
         @interrupted = false
         @start_time = nil
         @elapsed_time = nil
-        @test_data = nil
-        @test_data_label = nil
+        @internal_data = InternalData.new
       end
 
       def assign_test_data(label, data)
-        @test_data_label = label
-        @test_data = data
+        @internal_data.assign_test_data(label, data)
       end
 
       def valid?
         return false unless respond_to?(@method_name)
         test_method = method(@method_name)
-        if @test_data
+        if @internal_data.have_test_data?
           return false unless test_method.arity == 1
         else
           return false unless test_method.arity <= 0
@@ -458,11 +456,18 @@ module Test
         1
       end
 
+      # Returns a label of test data for the test. If the
+      # test isn't associated with any test data, it returns
+      # +nil+.
+      def data_label
+        @internal_data.test_data_label
+      end
+
       # Returns a human-readable name for the specific test that
       # this instance of TestCase represents.
       def name
-        if @test_data
-          "#{@method_name}[#{@test_data_label}](#{self.class.name})"
+        if @internal_data.have_test_data?
+          "#{@method_name}[#{data_label}](#{self.class.name})"
         else
           "#{@method_name}(#{self.class.name})"
         end
@@ -509,8 +514,8 @@ module Test
         if self[:redefined]
           notify("#{self.class}\##{@method_name} was redefined")
         end
-        if @test_data
-          __send__(@method_name, @test_data)
+        if @internal_data.have_test_data?
+          __send__(@method_name, @internal_data.test_data)
         else
           __send__(@method_name)
         end
@@ -533,6 +538,23 @@ module Test
 
       def add_pass
         current_result.add_pass
+      end
+
+      class InternalData
+        attr_reader :test_data_label, :test_data
+        def initialize
+          @test_data_label = nil
+          @test_data = nil
+        end
+
+        def assign_test_data(label, data)
+          @test_data_label = label
+          @test_data = data
+        end
+
+        def have_test_data?
+          not @test_data_label.nil?
+        end
       end
     end
   end
