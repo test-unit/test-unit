@@ -8,6 +8,7 @@ module Test
       end
 
       module ClassMethods
+        # TODO: WRITE ME.
         def data(*arguments, &block)
           n_arguments = arguments.size
           case n_arguments
@@ -25,6 +26,7 @@ module Test
           attribute(:data, current_data + [data_set])
         end
 
+        # TODO: WRITE ME.
         def load_data(file_name)
           case file_name
           when /\.csv/i
