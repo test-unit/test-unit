@@ -1,3 +1,26 @@
+=== 2.3.0 / 2011-04-17
+
+* 13 enhancements
+  * improve Hash key sorting for diff.
+  * [#28928] support any characters in declarative style description.
+    [Daniel Berger]
+  * add Error#location and make #backtrace deprecated.
+  * make TestCase#passed? public.
+  * add result finished and pass assertion notifications.
+  * add TestSuite#passed? public.
+  * add XML test runner.
+  * add --output-file-descriptor option.
+  * measure elapsed time for each test.
+  * add --collector option.
+  * support test driven test.
+    [Haruka Yoshihara]
+  * add cleanup hook it runs between after test and before teardown.
+  * support recursive collection sort for diff.
+
+* Thanks
+  * Daniel Berger
+  * Haruka Yoshihara
+
 === 2.2.0 / 2011-02-14
 
 * 22 enhancements
