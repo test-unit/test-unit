@@ -160,14 +160,12 @@ module Test
           o.banner = "Test::Unit automatic runner."
           o.banner << "\nUsage: #{$0} [options] [-- untouched arguments]"
 
-          o.on
           o.on('-r', '--runner=RUNNER', RUNNERS,
                "Use the given RUNNER.",
                "(" + keyword_display(RUNNERS) + ")") do |r|
             @runner = r
           end
 
-          o.on
           o.on('--collector=COLLECTOR', COLLECTORS,
                "Use the given COLLECTOR.",
                "(" + keyword_display(COLLECTORS) + ")") do |collector|
