@@ -33,7 +33,7 @@ module Test
             loader = CSVDataLoader.new(self)
             loader.load(file_name)
           else
-            raise ArgumentError, "unsupported file format: <#{filename}>"
+            raise ArgumentError, "unsupported file format: <#{file_name}>"
           end
         end
 
