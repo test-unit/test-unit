@@ -91,7 +91,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-latest">test-unit最新リリース</h3>
 	<p>
-	  2011-02-14にリリースされた2.2.0が最新リリースです。
+	  2011-04-17にリリースされた2.3.0が最新リリースです。
         </p>
 	<h3 id="test-unit-install">test-unitのインストール</h3>
         <p>
