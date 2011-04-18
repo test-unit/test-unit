@@ -15,6 +15,7 @@ html/famfamfam-logo.png
 html/favicon.ico
 html/favicon.png
 html/favicon.svg
+html/github-logo.png
 html/heading-mark.png
 html/heading-mark.svg
 html/index.html
@@ -44,8 +45,10 @@ lib/test/unit/collector/descendant.rb
 lib/test/unit/collector/dir.rb
 lib/test/unit/collector/load.rb
 lib/test/unit/collector/objectspace.rb
+lib/test/unit/collector/xml.rb
 lib/test/unit/color-scheme.rb
 lib/test/unit/color.rb
+lib/test/unit/data.rb
 lib/test/unit/diff.rb
 lib/test/unit/error.rb
 lib/test/unit/exceptionhandler.rb
@@ -58,9 +61,11 @@ lib/test/unit/priority.rb
 lib/test/unit/runner/console.rb
 lib/test/unit/runner/emacs.rb
 lib/test/unit/runner/tap.rb
+lib/test/unit/runner/xml.rb
 lib/test/unit/testcase.rb
 lib/test/unit/testresult.rb
 lib/test/unit/testsuite.rb
+lib/test/unit/testsuitecreator.rb
 lib/test/unit/ui/console/outputlevel.rb
 lib/test/unit/ui/console/testrunner.rb
 lib/test/unit/ui/emacs/testrunner.rb
@@ -68,6 +73,7 @@ lib/test/unit/ui/tap/testrunner.rb
 lib/test/unit/ui/testrunner.rb
 lib/test/unit/ui/testrunnermediator.rb
 lib/test/unit/ui/testrunnerutilities.rb
+lib/test/unit/ui/xml/testrunner.rb
 lib/test/unit/util/backtracefilter.rb
 lib/test/unit/util/method-owner-finder.rb
 lib/test/unit/util/observable.rb
@@ -83,11 +89,13 @@ test/collector/test-descendant.rb
 test/collector/test-load.rb
 test/collector/test_dir.rb
 test/collector/test_objectspace.rb
+test/fixtures/plus.csv
 test/run-test.rb
 test/test-assertions.rb
 test/test-attribute.rb
 test/test-color-scheme.rb
 test/test-color.rb
+test/test-data.rb
 test/test-diff.rb
 test/test-emacs-runner.rb
 test/test-fixture.rb
