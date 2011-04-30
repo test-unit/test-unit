@@ -282,12 +282,12 @@ require "test/unit"</pre>
 
     <div class="sponsors">
       <p id="sponsor-rubyforge">
-        <a href="http://rubyforge.org/projects/groonga/">
+        <a href="http://rubyforge.org/projects/test-unit/">
           <img src="rubyforge.png" width="120" height="24" border="0" alt="ラングバプロジェクトはRubyForge.orgにホスティングしてもらっています。" />
         </a>
       </p>
       <p id="sponsor-github">
-        <a href="https://github.com/milter-manager/">
+        <a href="https://github.com/test-unit/">
           <img src="github-logo.png" width="100" height="45" border="0" alt="GitHubの提供するgitリポジトリを利用しています。" />
         </a>
       </p>
