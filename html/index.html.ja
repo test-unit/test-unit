@@ -159,7 +159,7 @@ require "test/unit"</pre>
 
 	<h2 id="test-unit-rr">test-unit-rr</h2>
         <p>
-          test-unit 2で<a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?TestDouble">テストダブル（テスト代役）</a>ライブラリ<a href="http://github.com/btakita/rr">RR</a>を利用するためのパッケージです。
+          test-unit 2で<a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?TestDouble">テストダブル（テスト代役）</a>ライブラリ<a href="https://github.com/btakita/rr">RR</a>を利用するためのパッケージです。
         </p>
 	<h3 id="test-unit-rr-latest">test-unit-rr最新リリース</h3>
 	<p>
