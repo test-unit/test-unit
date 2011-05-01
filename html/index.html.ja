@@ -175,6 +175,24 @@ require "test/unit"</pre>
           <pre class="code">require "test/unit/rr"</pre>
         </p>
 
+	<h2 id="test-unit-capybara">test-unit-capybara</h2>
+        <p>
+          Rackアプリケーションの統合テストを簡単に行うためのライブラリである<a href="https://github.com/jnicklas/capybara">Capybara</a>をtest-unit 2で利用するためのパッケージです。
+        </p>
+	<h3 id="test-unit-capybara-latest">test-unit-capybara最新リリース</h3>
+	<p>
+	  2011-05-01にリリースされた1.0.0が最新リリースです。
+        </p>
+	<h3 id="test-unit-capybara-install">test-unit-capybaraのインストール</h3>
+        <p>
+          インストール:
+          <pre class="command">% sudo gem install test-unit-capybara</pre>
+        </p>
+        <p>
+          使い方:
+          <pre class="code">require "test/unit/capybara"</pre>
+        </p>
+
 	<h2 id="test-unit-runner-gtk2">test-unit-runner-gtk2</h2>
         <p>
           GTK+を用いて実装されたGUIのテスト実行機能です。
