@@ -74,6 +74,16 @@ require "test/unit"</pre>
         <p>
 	  test-unit関連パッケージは以下の通りです。
 	</p>
+	<ul>
+          <li><a href="#test-unit">test-unit</a>: テスティングフレームワークのコア機能を提供するライブラリ</li>
+          <li><a href="#test-unit-full">test-unit-full</a>: test-unit関連ライブラリをまとめてインストールするためのメタパッケージ</li>
+          <li><a href="#test-unit-notify">test-unit-notify</a>: テスト結果を通知するライブラリ</li>
+          <li><a href="#test-unit-rr">test-unit-rr</a>: テストダブルを利用するためのライブラリ</li>
+          <li><a href="#test-unit-capybara">test-unit-capybara</a>: Rackアプリケーションの統合テストを簡単に行うためのライブラリ</li>
+          <li><a href="#test-unit-runner-gtk2">test-unit-runner-gtk2</a>: GTK+を用いたGUIでテストを実行するためのライブラリ</li>
+          <li><a href="#test-unit-runner-tk">test-unit-runner-tk</a>: Tkを用いたGUIでテストを実行するためのライブラリ</li>
+          <li><a href="#test-unit-runner-fox">test-unit-runner-fox</a>: FOX Toolkitを用いたGUIでテストを実行するためのライブラリ</li>
+	</ul>
 
 	<h2 id="test-unit">test-unit</h2>
         <p>
