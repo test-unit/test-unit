@@ -212,7 +212,20 @@ require "test/unit"</pre>
         </p>
         <p>
           使い方:
-          <pre class="code">require "test/unit/capybara"</pre>
+          <pre class="code"><code>require "test/unit/capybara"
+
+class TestMyRackApplication < Test::Unit::TestCase
+  include Capybara
+
+  def setup
+    Capybara.app = MyRackApplication.new
+  end
+
+  def test_top_page
+    visit("/")
+    assert_equal("Welcome!", find("title").text)
+  end
+end</code></pre>
         </p>
 	<h3 id="test-unit-capybara-document">test-unit-capybaraのドキュメント</h3>
         <ul>
