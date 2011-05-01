@@ -103,6 +103,10 @@ require "test/unit"</pre>
           <pre class="code">gem "test-unit"
 require "test/unit"</pre>
         </p>
+	<h3 id="test-unit-document">test-unitのドキュメント</h3>
+        <p>
+          <a href="test-unit/">リファレンスマニュアル</a>
+        </p>
 
 	<h2 id="test-unit-full">test-unit-full</h2>
         <p>
@@ -156,6 +160,10 @@ require "test/unit"</pre>
         <p>
           --notifyオプションが追加されます。--notifyオプションを指定するとテスト終了時にテスト結果をポップアップで通知します。
         </p>
+	<h3 id="test-unit-notify-document">test-unit-notifyのドキュメント</h3>
+        <p>
+          <a href="test-unit-notify/">リファレンスマニュアル</a>
+        </p>
 
 	<h2 id="test-unit-rr">test-unit-rr</h2>
         <p>
@@ -174,6 +182,10 @@ require "test/unit"</pre>
           使い方:
           <pre class="code">require "test/unit/rr"</pre>
         </p>
+	<h3 id="test-unit-rr-document">test-unit-rrのドキュメント</h3>
+        <p>
+          <a href="test-unit-rr/">リファレンスマニュアル</a>
+        </p>
 
 	<h2 id="test-unit-capybara">test-unit-capybara</h2>
         <p>
@@ -191,6 +203,10 @@ require "test/unit"</pre>
         <p>
           使い方:
           <pre class="code">require "test/unit/capybara"</pre>
+        </p>
+	<h3 id="test-unit-capybara-document">test-unit-capybaraのドキュメント</h3>
+        <p>
+          <a href="test-unit-capybara/">リファレンスマニュアル</a>
         </p>
 
 	<h2 id="test-unit-runner-gtk2">test-unit-runner-gtk2</h2>
