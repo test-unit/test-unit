@@ -9,11 +9,11 @@ module Test
       require 'test/unit/ui/console/outputlevel'
 
       output_levels = [
-        [:silent, UI::Console::OutputLevel::SILENT],
-        [:progress, UI::Console::OutputLevel::PROGRESS_ONLY],
-        [:"important-only", UI::Console::OutputLevel::IMPORTANT_FAULTS_ONLY],
-        [:normal, UI::Console::OutputLevel::NORMAL],
-        [:verbose, UI::Console::OutputLevel::VERBOSE],
+        ["silent", UI::Console::OutputLevel::SILENT],
+        ["progress", UI::Console::OutputLevel::PROGRESS_ONLY],
+        ["important-only", UI::Console::OutputLevel::IMPORTANT_FAULTS_ONLY],
+        ["normal", UI::Console::OutputLevel::NORMAL],
+        ["verbose", UI::Console::OutputLevel::VERBOSE],
       ]
       opts.on('-v', '--verbose=[LEVEL]', output_levels,
               "Set the output level (default is verbose).",
