@@ -40,10 +40,18 @@ module Test
             @already_outputted = false
             @indent = 0
             @top_level = true
+            @current_output_level = NORMAL
             @faults = []
           end
 
           private
+          def change_output_level(level)
+            old_output_level = @current_output_level
+            @current_output_level = level
+            yield
+            @current_output_level = old_output_level
+          end
+
           def setup_mediator
             super
             output_setup_end
@@ -90,29 +98,21 @@ module Test
           def finished(elapsed_time)
             nl if output?(NORMAL) and !output?(VERBOSE)
             output_faults
-            output("Finished in #{elapsed_time} seconds.")
-            nl
-            output(@result, result_color)
-            output("%g%% passed" % @result.pass_percentage, result_color)
-            unless elapsed_time.zero?
-              nl
-              throuputs =
-                [
-                 "%.2f tests/s" % [@result.run_count / elapsed_time],
-                 "%.2f assertions/s" % [@result.assertion_count / elapsed_time],
-                ]
-              output(throuputs.join(", "))
+            change_output_level(IMPORTANT_FAULTS_ONLY) do
+              output_statistics(elapsed_time)
             end
           end
 
           def output_faults
             categorized_faults = categorize_faults
-            output_faults_in_detail(categorized_faults[:need_detail_faults])
+            change_output_level(IMPORTANT_FAULTS_ONLY) do
+              output_faults_in_detail(categorized_faults[:need_detail_faults])
+            end
             output_faults_in_short("Omissions", Omission,
                                    categorized_faults[:omissions])
             output_faults_in_short("Notifications", Notification,
                                    categorized_faults[:notifications])
-            nl
+            nl(IMPORTANT_FAULTS_ONLY)
           end
 
           def max_digit(max_number)
@@ -244,6 +244,23 @@ module Test
             fault.long_display
           end
 
+          def output_statistics(elapsed_time)
+            output("Finished in #{elapsed_time} seconds.")
+            nl
+            output(@result, result_color)
+            output("%g%% passed" % @result.pass_percentage, result_color)
+            unless elapsed_time.zero?
+              nl
+              test_throughput = @result.run_count / elapsed_time
+              assertion_throughput = @result.assertion_count / elapsed_time
+              throughput = [
+                "%.2f tests/s" % test_throughput,
+                "%.2f assertions/s" % assertion_throughput,
+              ]
+              output(throughput.join(", "))
+            end
+          end
+
           def test_started(test)
             return unless output?(VERBOSE)
 
@@ -296,17 +313,17 @@ module Test
             end
           end
 
-          def nl(level=NORMAL)
+          def nl(level=nil)
             output("", nil, level)
           end
-          
-          def output(something, color=nil, level=NORMAL)
+
+          def output(something, color=nil, level=nil)
             return unless output?(level)
             output_single(something, color, level)
             @output.puts
           end
-          
-          def output_single(something, color=nil, level=NORMAL)
+
+          def output_single(something, color=nil, level=nil)
             return false unless output?(level)
             if @use_color and color
               something = "%s%s%s" % [color.escape_sequence,
@@ -330,7 +347,7 @@ module Test
           end
 
           def output?(level)
-            level <= @output_level
+            (level || @current_output_level) <= @output_level
           end
 
           def color(name)

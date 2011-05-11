@@ -5,8 +5,9 @@ module Test
         module OutputLevel
           SILENT = 0
           PROGRESS_ONLY = 1
-          NORMAL = 2
-          VERBOSE = 3
+          IMPORTANT_FAULTS_ONLY = 2
+          NORMAL = 3
+          VERBOSE = 4
         end
       end
     end
