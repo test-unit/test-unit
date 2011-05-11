@@ -122,7 +122,7 @@ class TestData < Test::Unit::TestCase
          :test_case => TestCalc::TestDynamicDataSet,
          :data_set => [TestCalc::TestDynamicDataSet::DATA_PROC],
        })
-    data("load-data-set",
+  data("load-data-set",
        {
          :test_case => TestCalc::TestLoadDataSet,
          :data_set => [{
