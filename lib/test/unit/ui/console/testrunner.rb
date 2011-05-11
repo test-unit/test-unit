@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright::
 #   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#   * Copyright (c) 2008-2009 Kouhei Sutou <kou@clear-code.com>
+#   * Copyright (c) 2008-2011 Kouhei Sutou <kou@clear-code.com>
 # License:: Ruby license.
 
 require 'test/unit/color-scheme'
@@ -89,12 +89,7 @@ module Test
 
           def finished(elapsed_time)
             nl if output?(NORMAL) and !output?(VERBOSE)
-            @faults.each_with_index do |fault, index|
-              nl
-              output_single("%3d) " % (index + 1))
-              output_fault(fault)
-            end
-            nl
+            output_faults
             output("Finished in #{elapsed_time} seconds.")
             nl
             output(@result, result_color)
@@ -107,6 +102,57 @@ module Test
                  "%.2f assertions/s" % [@result.assertion_count / elapsed_time],
                 ]
               output(throuputs.join(", "))
+            end
+          end
+
+          def output_faults
+            categorized_faults = categorize_faults
+            output_faults_in_detail(categorized_faults[:need_detail_faults])
+            output_faults_in_short("Omissions", Omission,
+                                   categorized_faults[:omissions])
+            output_faults_in_short("Notifications", Notification,
+                                   categorized_faults[:notifications])
+            nl
+          end
+
+          def max_digit(max_number)
+            (Math.log10(max_number) + 1).truncate
+          end
+
+          def output_faults_in_detail(faults)
+            return if faults.nil?
+            digit = max_digit(faults.size)
+            faults.each_with_index do |fault, index|
+              nl
+              output_single("%#{digit}d) " % (index + 1))
+              output_fault(fault)
+            end
+          end
+
+          def output_faults_in_short(label, fault_class, faults)
+            return if faults.nil?
+            digit = max_digit(faults.size)
+            nl
+            output_single(label, fault_class_color(fault_class))
+            output(":")
+            faults.each_with_index do |fault, index|
+              output_single("%#{digit}d) " % (index + 1))
+              output_single(fault.message, fault_color(fault))
+              output(" [#{fault.test_name}]")
+              output(fault.location.first)
+            end
+          end
+
+          def categorize_faults
+            @faults.group_by do |fault|
+              case fault
+              when Omission
+                :omissions
+              when Notification
+                :notifications
+              else
+                :need_detail_faults
+              end
             end
           end
 
@@ -295,7 +341,11 @@ module Test
           end
 
           def fault_color(fault)
-            color(fault.class.name.split(/::/).last.downcase)
+            fault_class_color(fault.class)
+          end
+
+          def fault_class_color(fault_class)
+            color(fault_class.name.split(/::/).last.downcase)
           end
 
           def result_color
