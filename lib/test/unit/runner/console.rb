@@ -11,7 +11,7 @@ module Test
       output_levels = [
         [:silent, UI::Console::OutputLevel::SILENT],
         [:progress, UI::Console::OutputLevel::PROGRESS_ONLY],
-        [:important, UI::Console::OutputLevel::IMPORTANT_FAULTS_ONLY],
+        [:"important-only", UI::Console::OutputLevel::IMPORTANT_FAULTS_ONLY],
         [:normal, UI::Console::OutputLevel::NORMAL],
         [:verbose, UI::Console::OutputLevel::VERBOSE],
       ]
