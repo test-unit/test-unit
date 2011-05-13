@@ -121,10 +121,10 @@ module Test
         end
 
         def add_load_path(path)
-          $LOAD_PATH.push(path.to_s) if path
+          $LOAD_PATH.unshift(path.to_s) if path
           yield
         ensure
-          $LOAD_PATH.delete_at($LOAD_PATH.rindex(path.to_s)) if path
+          $LOAD_PATH.delete_at($LOAD_PATH.index(path.to_s)) if path
         end
 
         def excluded_directory?(base)
