@@ -506,9 +506,9 @@ module Test
 
         test_case.test_order = :defined
 
-        assert_equal(["declarative style test definition",
-                      "include parenthesis",
-                      "1 + 2 = 3"],
+        assert_equal(["test: declarative style test definition",
+                      "test: include parenthesis",
+                      "test: 1 + 2 = 3"],
                      test_case.suite.tests.collect {|test| test.method_name})
 
         assert_equal(["declarative style test definition",

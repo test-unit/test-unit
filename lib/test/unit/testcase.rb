@@ -257,7 +257,7 @@ module Test
               message = "wrong number of arguments (#{n_arguments} for 1)"
               raise ArgumentError, message
             end
-            method_name = test_description
+            method_name = "test: #{test_description}"
             define_method(method_name, &block)
             description(test_description, method_name)
             attribute(:test, true, {}, method_name)

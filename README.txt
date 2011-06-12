@@ -75,3 +75,4 @@ Ruby license and PSF license.
 * Champak Ch: A bug report.
 * Florian Frank: A bug report.
 * grafi-tt: A bug fix.
+* Jeremy Stephens: A bug report.
