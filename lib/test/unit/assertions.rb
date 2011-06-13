@@ -1543,6 +1543,10 @@ EOM
             @inspect_target.pretty_print_cycle(q)
           end
 
+          def object_id
+            @object.object_id
+          end
+
           private
           def inspect_target
             if HashInspector.target?(@object)

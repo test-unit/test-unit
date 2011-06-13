@@ -356,6 +356,26 @@ EOM
         end
       end
 
+      def test_assert_equal_with_recursive_hash
+        alice = {"name" => "Alice"}
+        bob = {"name" => "Bob"}
+        alice["followers"] = [bob]
+        bob["followers"] = [alice]
+        message = <<-EOM.chomp
+<{"followers"=>[{"followers"=>[{...}], "name"=>"Bob"}], "name"=>"Alice"}> expected but was
+<{"followers"=>[{"followers"=>[{...}], "name"=>"Alice"}], "name"=>"Bob"}>.
+
+diff:
+- {"followers"=>[{"followers"=>[{...}], "name"=>"Bob"}], "name"=>"Alice"}
+?                                       -----------------
++ {"followers"=>[{"followers"=>[{...}], "name"=>"Alice"}], "name"=>"Bob"}
+?                                                       +++++++++++++++++
+EOM
+        check_fails(message) do
+          assert_equal(alice, bob)
+        end
+      end
+
       def test_assert_raise_success
         return_value = nil
         check_nothing_fails(true) do
