@@ -1525,8 +1525,20 @@ EOM
         end
 
         class Inspector
-          def initialize(object)
+          include Comparable
+
+          class << self
+            def cached_new(object, inspected_objects)
+              inspected_objects[object.object_id] ||=
+                new(object, inspected_objects)
+            end
+          end
+
+          attr_reader :object
+          def initialize(object, inspected_objects={})
+            @inspected_objects = inspected_objects
             @object = object
+            @inspected_objects[@object.object_id] = self
             @inspect_target = inspect_target
           end
 
@@ -1543,16 +1555,20 @@ EOM
             @inspect_target.pretty_print_cycle(q)
           end
 
-          def object_id
-            @object.object_id
+          def <=>(other)
+            if other.is_a?(self.class)
+              @object <=> other.object
+            else
+              @object <=> other
+            end
           end
 
           private
           def inspect_target
             if HashInspector.target?(@object)
-              HashInspector.new(@object)
+              HashInspector.new(@object, @inspected_objects)
             elsif ArrayInspector.target?(@object)
-              ArrayInspector.new(@object)
+              ArrayInspector.new(@object, @inspected_objects)
             else
               @object
             end
@@ -1566,8 +1582,14 @@ EOM
             end
           end
 
-          def initialize(hash)
-            @hash = hash
+          def initialize(hash, inspected_objects)
+            @inspected_objects = inspected_objects
+            @hash = {}
+            hash.each do |key, value|
+              key = Inspector.cached_new(key, @inspected_objects)
+              value = Inspector.cached_new(value, @inspected_objects)
+              @hash[key] = value
+            end
           end
 
           def inspect
@@ -1600,8 +1622,7 @@ EOM
             rescue ArgumentError
             end
             keys.each do |key|
-              yield(Inspector.new(key),
-                    Inspector.new(@hash[key]))
+              yield(key, @hash[key])
             end
           end
         end
@@ -1613,8 +1634,11 @@ EOM
             end
           end
 
-          def initialize(array)
-            @array = array
+          def initialize(array, inspected_objects)
+            @inspected_objects = inspected_objects
+            @array = array.collect do |element|
+              Inspector.cached_new(element, @inspected_objects)
+            end
           end
 
           def inspect
@@ -1633,10 +1657,8 @@ EOM
             @array.pretty_print_cycle(q)
           end
 
-          def each
-            @array.each do |element|
-              yield(Inspector.new(element))
-            end
+          def each(&block)
+            @array.each(&block)
           end
         end
 
