@@ -63,12 +63,27 @@ class TestUnitPriority < Test::Unit::TestCase
     end
   end
 
-  def test_priority
+  def test_priority_must
     assert_priority("must", 1.0, 0.0001)
+  end
+
+  def test_priority_important
     assert_priority("important", 0.9, 0.09)
+  end
+
+  def test_priority_high
     assert_priority("high", 0.70, 0.1)
+  end
+
+  def test_priority_normal
     assert_priority("normal", 0.5, 0.1)
+  end
+
+  def test_priority_low
     assert_priority("low", 0.25, 0.1)
+  end
+
+  def test_priority_never
     assert_priority("never", 0.0, 0.0001)
   end
 
