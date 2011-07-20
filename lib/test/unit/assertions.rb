@@ -1019,7 +1019,7 @@ EOT
                                        expected, actual,
                                        expected, actual)
           assert_block(full_message) do
-            expected.send(operator, actual)
+            expected.__send__(operator, actual)
           end
         end
       end
@@ -1129,7 +1129,7 @@ EOT
       def assert_predicate(object, predicate, message=nil)
         _wrap_assertion do
           assert_respond_to(object, predicate, message)
-          actual = object.send(predicate)
+          actual = object.__send__(predicate)
           full_message = build_message(message,
                                        "<?>.? is true value expected but was\n" +
                                        "<?>",
@@ -1151,7 +1151,7 @@ EOT
       def assert_not_predicate(object, predicate, message=nil)
         _wrap_assertion do
           assert_respond_to(object, predicate, message)
-          actual = object.send(predicate)
+          actual = object.__send__(predicate)
           full_message = build_message(message,
                                        "<?>.? is false value expected but was\n" +
                                        "<?>",
@@ -1769,7 +1769,7 @@ EOM
           end
 
           def method_missing(name, *args, &block)
-            @exception.send(name, *args, &block)
+            @exception.__send__(name, *args, &block)
           end
 
           private
@@ -1825,10 +1825,10 @@ EOM
             elsif exception_type.is_a?(Exception)
               exception_objects << exception_type
             else
-              @test_case.send(:assert,
-                              Exception >= exception_type,
-                              "Should expect a class of exception, " +
-                              "#{exception_type}")
+              @test_case.__send__(:assert,
+                                  Exception >= exception_type,
+                                  "Should expect a class of exception, " +
+                                  "#{exception_type}")
               exception_classes << exception_type
             end
           end
@@ -1837,7 +1837,7 @@ EOM
 
         def expected_class?(actual_exception, equality)
           @expected_classes.any? do |expected_class|
-            actual_exception.send(equality, expected_class)
+            actual_exception.__send__(equality, expected_class)
           end
         end
 
