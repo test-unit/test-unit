@@ -82,7 +82,7 @@ class TestUnitPriority < Test::Unit::TestCase
     n = 1000
     n_need_to_run = 0
     n.times do |i|
-      n_need_to_run +=1 if Test::Unit::Priority::Checker.need_to_run?(test)
+      n_need_to_run += 1 if Test::Unit::Priority::Checker.need_to_run?(test)
     end
     assert_in_delta(expected, n_need_to_run.to_f / n, delta)
   end
