@@ -36,7 +36,7 @@ module Test
           return unless defined?(@current_attributes)
 
           attributes = {}
-          kept_attributes = {}
+          kept_attributes = StringifyKeyHash.new
           @current_attributes.each do |attribute_name, attribute|
             attributes[attribute_name] = attribute[:value]
             kept_attributes[attribute_name] = attribute if attribute[:keep]
