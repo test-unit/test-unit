@@ -116,7 +116,7 @@ EOT
           failure.inspected_expected = AssertionMessage.convert(expected)
           failure.inspected_actual = AssertionMessage.convert(actual)
           failure.user_message = message
-          raise
+          raise failure # For JRuby. :<
         end
       end
 
