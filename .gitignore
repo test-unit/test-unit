@@ -3,3 +3,4 @@
 /doc/po/*.pot
 /pkg/
 /.yardoc/
+/*.gemspec
