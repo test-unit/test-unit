@@ -1,8 +1,8 @@
-= Test::Unit 2.x
+h1. Test::Unit 2.x
 
 * http://rubyforge.org/projects/test-unit/
 
-== DESCRIPTION
+h2. DESCRIPTION
 
 Test::Unit 2.x - Improved version of Test::Unit bundled in
 Ruby 1.8.x.
@@ -11,7 +11,7 @@ Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
 bundled in Ruby 1.8.x had not been improved but unbundled
 Test::Unit (Test::Unit 2.x) will be improved actively.
 
-== FEATURES
+h2. FEATURES
 
 * Test::Unit 1.2.3 is the original Test::Unit, taken
   straight from the ruby distribution. It is being
@@ -28,15 +28,19 @@ Test::Unit (Test::Unit 2.x) will be improved actively.
   provides for installing all Test::Unit related gems
   easily.
 
-== INSTALL
+h2. INSTALL
 
-  % sudo gem install test-unit
+<pre>
+% sudo gem install test-unit
+</pre>
 
 If you want to use full Test::Unit features:
 
-  % sudo gem install test-unit-full
+<pre>
+% sudo gem install test-unit-full
+</pre>
 
-== LICENSE
+h2. LICENSE
 
 (The Ruby License)
 
@@ -45,23 +49,23 @@ This software is distributed under the same terms as ruby.
 Exception: lib/test/unit/diff.rb is a dual license of the
 Ruby license and PSF license.
 
-== AUTHORS
+h2. AUTHORS
 
-=== Active
+h3. Active
 
 * Kouhei Sutou: The current maintainer
 * Haruka Yoshihara: Data driven test supports.
 
-=== Inactive
+h3. Inactive
 
 * Nathaniel Talbott: The original author
 * Ryan Davis: The second maintainer
 
-=== Images
+h3. Images
 
 * Mayu & Co.: kinotan icons: http://cocooooooon.com/kinotan/
 
-== Thanks
+h2. Thanks
 
 * Daniel Berger: Suggestions and bug reports.
 * Designing Patterns: Suggestions.
