@@ -1,2 +1,4 @@
 /doc/reference/
+/doc/html/test-unit/
+/doc/po/*.pot
 /pkg/
