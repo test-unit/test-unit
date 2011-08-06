@@ -185,7 +185,7 @@ h2. 2.0.4 / 2009-10-17
 * 4 minor enhancements
   * improve verbose mode output format. (use indent)
   * support NOT_PASS_THROUGH_EXCEPTIONS.
-  * support arguments option in #{runner}_options.
+  * support arguments option in @#{runner}@_options.
   * TC_ -> Test in sample test case name.
 
 * 1 bug fixes
