@@ -3,6 +3,7 @@
 Encoding.default_internal = "UTF-8" if defined?(Encoding.default_internal)
 
 require "erb"
+require "yaml"
 require "rubygems"
 require "rake/clean"
 require "yard"
