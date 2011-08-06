@@ -1,4 +1,7 @@
-Ruby is copyrighted free software by Yukihiro Matsumoto <matz@netlab.jp>.
+test-unit is copyrighted free software by Kouhei Sutou
+<kou@cozmixng.org>, Ryan Davis <ryand-ruby@zenspider.com>
+and Nathaniel Talbott <nathaniel@talbott.ws>.
+
 You can redistribute it and/or modify it under either the terms of the GPL
 version 2 (see the file GPL), or the conditions below:
 
@@ -54,3 +57,8 @@ version 2 (see the file GPL), or the conditions below:
      IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
      WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
      PURPOSE.
+
+Exceptions
+----------
+
+  * lib/test/unit/diff.rb: PSFL
