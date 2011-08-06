@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"POT-Creation-Date: 2011-08-06 13:13+0900\n"
-"PO-Revision-Date: 2011-08-06 13:18+0900\n"
+"POT-Creation-Date: 2011-08-06 13:50+0900\n"
+"PO-Revision-Date: 2011-08-06 13:49+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:6(title)
@@ -8331,7 +8331,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Observable.html:74(a)
 #: doc/reference/en/Test/Unit/UI/TestRunnerMediator.html:74(li)
-#: doc/reference/en/method_list.html:1782(small)
+#: doc/reference/en/method_list.html:1974(small)
 #: doc/reference/en/method_list.html:3022(small)
 msgid "Test::Unit::UI::TestRunnerMediator"
 msgstr ""
@@ -11385,9 +11385,9 @@ msgid "Inherits:"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:74(li)
-#: doc/reference/en/method_list.html:94(small)
+#: doc/reference/en/method_list.html:78(small)
 #: doc/reference/en/method_list.html:1550(small)
-#: doc/reference/en/method_list.html:1830(small)
+#: doc/reference/en/method_list.html:1958(small)
 #: doc/reference/en/method_list.html:3534(small)
 msgid "Test::Unit::Util::ProcWrapper"
 msgstr ""
@@ -12541,20 +12541,20 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Failure.html:74(li)
 #: doc/reference/en/method_list.html:190(small)
-#: doc/reference/en/method_list.html:1022(small)
-#: doc/reference/en/method_list.html:1182(small)
+#: doc/reference/en/method_list.html:1006(small)
+#: doc/reference/en/method_list.html:1190(small)
 #: doc/reference/en/method_list.html:1406(small)
-#: doc/reference/en/method_list.html:1838(small)
-#: doc/reference/en/method_list.html:2086(small)
+#: doc/reference/en/method_list.html:1758(small)
+#: doc/reference/en/method_list.html:2094(small)
 #: doc/reference/en/method_list.html:2110(small)
-#: doc/reference/en/method_list.html:2190(small)
-#: doc/reference/en/method_list.html:2262(small)
-#: doc/reference/en/method_list.html:2310(small)
+#: doc/reference/en/method_list.html:2182(small)
+#: doc/reference/en/method_list.html:2286(small)
+#: doc/reference/en/method_list.html:2294(small)
 #: doc/reference/en/method_list.html:2382(small)
-#: doc/reference/en/method_list.html:3134(small)
-#: doc/reference/en/method_list.html:3166(small)
+#: doc/reference/en/method_list.html:3118(small)
+#: doc/reference/en/method_list.html:3174(small)
 #: doc/reference/en/method_list.html:3438(small)
-#: doc/reference/en/method_list.html:3590(small)
+#: doc/reference/en/method_list.html:3614(small)
 #: doc/reference/en/method_list.html:3726(small)
 msgid "Test::Unit::Failure"
 msgstr ""
@@ -14137,7 +14137,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/ExceptionHandler.html:174(strong)
 #: doc/reference/en/Test/Unit/ExceptionHandler.html:191(span)
 #: doc/reference/en/Test/Unit/TestCase.html:1210(a)
-#: doc/reference/en/method_list.html:1356(a)
+#: doc/reference/en/method_list.html:1364(a)
 msgid "exception_handlers"
 msgstr ""
 
@@ -14247,14 +14247,14 @@ msgstr ""
 #: doc/reference/en/method_list.html:270(small)
 #: doc/reference/en/method_list.html:694(small)
 #: doc/reference/en/method_list.html:1454(small)
-#: doc/reference/en/method_list.html:1742(small)
+#: doc/reference/en/method_list.html:1798(small)
 #: doc/reference/en/method_list.html:2590(small)
 #: doc/reference/en/method_list.html:2598(small)
-#: doc/reference/en/method_list.html:2622(small)
+#: doc/reference/en/method_list.html:2614(small)
 #: doc/reference/en/method_list.html:2966(small)
 #: doc/reference/en/method_list.html:3286(small)
 #: doc/reference/en/method_list.html:3318(small)
-#: doc/reference/en/method_list.html:3558(small)
+#: doc/reference/en/method_list.html:3582(small)
 msgid "Test::Unit::TestResult"
 msgstr ""
 
@@ -15539,8 +15539,8 @@ msgid "Class: Test::Unit::TestSuiteCreator"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/TestSuiteCreator.html:74(li)
-#: doc/reference/en/method_list.html:990(small)
-#: doc/reference/en/method_list.html:1902(small)
+#: doc/reference/en/method_list.html:998(small)
+#: doc/reference/en/method_list.html:1918(small)
 msgid "Test::Unit::TestSuiteCreator"
 msgstr ""
 
@@ -15569,7 +15569,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:337(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1089(span)
 #: doc/reference/en/Test/Unit/TestCase.html:1695(span)
-#: doc/reference/en/method_list.html:996(a)
+#: doc/reference/en/method_list.html:988(a)
 msgid "create"
 msgstr ""
 
@@ -15675,7 +15675,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/AutoRunner.html:2480(span)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2487(span)
 #: doc/reference/en/Test/Unit.html:188(em)
-#: doc/reference/en/method_list.html:3300(a)
+#: doc/reference/en/method_list.html:3308(a)
 msgid "suite"
 msgstr ""
 
@@ -15798,7 +15798,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit.html:186(em)
 #: doc/reference/en/Test/Unit.html:187(em)
 #: doc/reference/en/Test/Unit.html:189(em)
-#: doc/reference/en/method_list.html:3396(a)
+#: doc/reference/en/method_list.html:3388(a)
 #: doc/reference/en/index.html:86(span) doc/reference/en/index.html:90(span)
 #: doc/reference/en/file.README.html:86(span)
 #: doc/reference/en/file.README.html:90(span)
@@ -15829,16 +15829,16 @@ msgid "Class: Test::Unit::Pending"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Pending.html:74(li)
-#: doc/reference/en/method_list.html:1006(small)
-#: doc/reference/en/method_list.html:1982(small)
-#: doc/reference/en/method_list.html:2198(small)
-#: doc/reference/en/method_list.html:2278(small)
-#: doc/reference/en/method_list.html:2302(small)
-#: doc/reference/en/method_list.html:2366(small)
-#: doc/reference/en/method_list.html:3110(small)
-#: doc/reference/en/method_list.html:3158(small)
-#: doc/reference/en/method_list.html:3454(small)
-#: doc/reference/en/method_list.html:3574(small)
+#: doc/reference/en/method_list.html:1022(small)
+#: doc/reference/en/method_list.html:1822(small)
+#: doc/reference/en/method_list.html:2166(small)
+#: doc/reference/en/method_list.html:2254(small)
+#: doc/reference/en/method_list.html:2326(small)
+#: doc/reference/en/method_list.html:2374(small)
+#: doc/reference/en/method_list.html:3126(small)
+#: doc/reference/en/method_list.html:3166(small)
+#: doc/reference/en/method_list.html:3470(small)
+#: doc/reference/en/method_list.html:3558(small)
 msgid "Test::Unit::Pending"
 msgstr ""
 
@@ -16148,12 +16148,12 @@ msgstr ""
 #: doc/reference/en/method_list.html:710(small)
 #: doc/reference/en/method_list.html:1246(small)
 #: doc/reference/en/method_list.html:1566(small)
-#: doc/reference/en/method_list.html:1934(small)
+#: doc/reference/en/method_list.html:1694(small)
 #: doc/reference/en/method_list.html:2126(small)
 #: doc/reference/en/method_list.html:2134(small)
-#: doc/reference/en/method_list.html:2606(small)
+#: doc/reference/en/method_list.html:2630(small)
 #: doc/reference/en/method_list.html:2790(small)
-#: doc/reference/en/method_list.html:3254(small)
+#: doc/reference/en/method_list.html:3262(small)
 #: doc/reference/en/method_list.html:3414(small)
 #: doc/reference/en/method_list.html:3422(small)
 #: doc/reference/en/method_list.html:3430(small)
@@ -16582,7 +16582,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Diff/UTF8Line.html:235(strong)
 #: doc/reference/en/Test/Unit/Diff/UTF8Line.html:477(strong)
 #: doc/reference/en/Test/Unit/Diff/UTF8Line.html:499(span)
-#: doc/reference/en/method_list.html:132(a)
+#: doc/reference/en/method_list.html:140(a)
 msgid "[]"
 msgstr ""
 
@@ -16786,11 +16786,11 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Inspector.html:74(li)
 #: doc/reference/en/method_list.html:70(small)
 #: doc/reference/en/method_list.html:854(small)
-#: doc/reference/en/method_list.html:2014(small)
-#: doc/reference/en/method_list.html:2046(small)
+#: doc/reference/en/method_list.html:1902(small)
+#: doc/reference/en/method_list.html:2054(small)
 #: doc/reference/en/method_list.html:2454(small)
 #: doc/reference/en/method_list.html:2526(small)
-#: doc/reference/en/method_list.html:2710(small)
+#: doc/reference/en/method_list.html:2726(small)
 #: doc/reference/en/method_list.html:2750(small)
 msgid "Test::Unit::Assertions::AssertionMessage::Inspector"
 msgstr ""
@@ -17007,8 +17007,8 @@ msgid "Class: Test::Unit::Assertions::AssertionMessage::DelayedLiteral"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/DelayedLiteral.html:74(li)
-#: doc/reference/en/method_list.html:1894(small)
-#: doc/reference/en/method_list.html:2038(small)
+#: doc/reference/en/method_list.html:1982(small)
+#: doc/reference/en/method_list.html:2070(small)
 msgid "Test::Unit::Assertions::AssertionMessage::DelayedLiteral"
 msgstr ""
 
@@ -17077,7 +17077,7 @@ msgid "Class: Test::Unit::Assertions::AssertionMessage::MaybeContainer"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/MaybeContainer.html:74(li)
-#: doc/reference/en/method_list.html:1966(small)
+#: doc/reference/en/method_list.html:1766(small)
 #: doc/reference/en/method_list.html:2062(small)
 msgid "Test::Unit::Assertions::AssertionMessage::MaybeContainer"
 msgstr ""
@@ -17197,10 +17197,10 @@ msgid "Class: Test::Unit::Assertions::AssertionMessage::ArrayInspector"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/ArrayInspector.html:74(li)
-#: doc/reference/en/method_list.html:1222(small)
-#: doc/reference/en/method_list.html:1862(small)
-#: doc/reference/en/method_list.html:2070(small)
-#: doc/reference/en/method_list.html:2726(small)
+#: doc/reference/en/method_list.html:1230(small)
+#: doc/reference/en/method_list.html:1966(small)
+#: doc/reference/en/method_list.html:2078(small)
+#: doc/reference/en/method_list.html:2718(small)
 #: doc/reference/en/method_list.html:2734(small)
 #: doc/reference/en/method_list.html:3342(small)
 msgid "Test::Unit::Assertions::AssertionMessage::ArrayInspector"
@@ -17418,8 +17418,8 @@ msgid "Class: Test::Unit::Assertions::AssertionMessage::Literal"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Literal.html:74(li)
-#: doc/reference/en/method_list.html:1734(small)
-#: doc/reference/en/method_list.html:2054(small)
+#: doc/reference/en/method_list.html:1846(small)
+#: doc/reference/en/method_list.html:2030(small)
 msgid "Test::Unit::Assertions::AssertionMessage::Literal"
 msgstr ""
 
@@ -17470,8 +17470,8 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:74(li)
 #: doc/reference/en/method_list.html:982(small)
-#: doc/reference/en/method_list.html:998(small)
-#: doc/reference/en/method_list.html:1790(small)
+#: doc/reference/en/method_list.html:990(small)
+#: doc/reference/en/method_list.html:1990(small)
 #: doc/reference/en/method_list.html:2902(small)
 msgid "Test::Unit::Assertions::AssertionMessage::Template"
 msgstr ""
@@ -17722,9 +17722,9 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/HashInspector.html:74(li)
 #: doc/reference/en/method_list.html:1238(small)
-#: doc/reference/en/method_list.html:1886(small)
-#: doc/reference/en/method_list.html:2030(small)
-#: doc/reference/en/method_list.html:2718(small)
+#: doc/reference/en/method_list.html:2006(small)
+#: doc/reference/en/method_list.html:2046(small)
+#: doc/reference/en/method_list.html:2710(small)
 #: doc/reference/en/method_list.html:2742(small)
 #: doc/reference/en/method_list.html:3350(small)
 msgid "Test::Unit::Assertions::AssertionMessage::HashInspector"
@@ -17924,13 +17924,13 @@ msgstr ""
 #: doc/reference/en/method_list.html:1134(small)
 #: doc/reference/en/method_list.html:1198(small)
 #: doc/reference/en/method_list.html:1294(small)
-#: doc/reference/en/method_list.html:1774(small)
+#: doc/reference/en/method_list.html:1950(small)
 #: doc/reference/en/method_list.html:2222(small)
 #: doc/reference/en/method_list.html:2342(small)
 #: doc/reference/en/method_list.html:2350(small)
 #: doc/reference/en/method_list.html:2702(small)
 #: doc/reference/en/method_list.html:3382(small)
-#: doc/reference/en/method_list.html:3606(small)
+#: doc/reference/en/method_list.html:3574(small)
 #: doc/reference/en/method_list.html:3702(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::Assertions::AssertionMessage"
@@ -18702,8 +18702,8 @@ msgid "Class: Test::Unit::Assertions::AssertExceptionHelper::WrappedException"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertExceptionHelper/WrappedException.html:74(li)
-#: doc/reference/en/method_list.html:1910(small)
-#: doc/reference/en/method_list.html:2078(small)
+#: doc/reference/en/method_list.html:1702(small)
+#: doc/reference/en/method_list.html:2038(small)
 #: doc/reference/en/method_list.html:2414(small)
 msgid "Test::Unit::Assertions::AssertExceptionHelper::WrappedException"
 msgstr ""
@@ -18868,7 +18868,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Assertions/AssertExceptionHelper.html:74(li)
 #: doc/reference/en/method_list.html:1414(small)
 #: doc/reference/en/method_list.html:1422(small)
-#: doc/reference/en/method_list.html:1718(small)
+#: doc/reference/en/method_list.html:1726(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::Assertions::AssertExceptionHelper"
 msgstr ""
@@ -19542,8 +19542,8 @@ msgid "Class: Test::Unit::Attribute::StringifyKeyHash"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Attribute/StringifyKeyHash.html:76(li)
-#: doc/reference/en/method_list.html:150(small)
-#: doc/reference/en/method_list.html:158(small)
+#: doc/reference/en/method_list.html:118(small)
+#: doc/reference/en/method_list.html:166(small)
 #: doc/reference/en/method_list.html:3294(small)
 msgid "Test::Unit::Attribute::StringifyKeyHash"
 msgstr ""
@@ -19561,7 +19561,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/ColorScheme.html:448(span)
 #: doc/reference/en/Test/Unit/ColorScheme.html:610(strong)
 #: doc/reference/en/Test/Unit/ColorScheme.html:627(span)
-#: doc/reference/en/method_list.html:164(a)
+#: doc/reference/en/method_list.html:172(a)
 msgid "[]="
 msgstr ""
 
@@ -19610,14 +19610,14 @@ msgid "Class: Test::Unit::ColorScheme"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/ColorScheme.html:74(li)
-#: doc/reference/en/method_list.html:118(small)
-#: doc/reference/en/method_list.html:134(small)
-#: doc/reference/en/method_list.html:166(small)
+#: doc/reference/en/method_list.html:126(small)
+#: doc/reference/en/method_list.html:142(small)
+#: doc/reference/en/method_list.html:158(small)
 #: doc/reference/en/method_list.html:174(small)
 #: doc/reference/en/method_list.html:318(small)
-#: doc/reference/en/method_list.html:1086(small)
-#: doc/reference/en/method_list.html:1230(small)
-#: doc/reference/en/method_list.html:2006(small)
+#: doc/reference/en/method_list.html:1078(small)
+#: doc/reference/en/method_list.html:1222(small)
+#: doc/reference/en/method_list.html:1774(small)
 #: doc/reference/en/method_list.html:3526(small)
 msgid "Test::Unit::ColorScheme"
 msgstr ""
@@ -23258,7 +23258,7 @@ msgid "Differ"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Diff/UnifiedDiffer.html:76(li)
-#: doc/reference/en/method_list.html:1190(small)
+#: doc/reference/en/method_list.html:1182(small)
 msgid "Test::Unit::Diff::UnifiedDiffer"
 msgstr ""
 
@@ -23341,7 +23341,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Diff/UnifiedDiffer.html:154(a)
 #: doc/reference/en/Test/Unit/Diff/ReadableDiffer.html:158(a)
 #: doc/reference/en/Test/Unit/Diff/Differ.html:74(li)
-#: doc/reference/en/method_list.html:1854(small)
+#: doc/reference/en/method_list.html:1870(small)
 msgid "Test::Unit::Diff::Differ"
 msgstr ""
 
@@ -23596,7 +23596,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Diff/SequenceMatcher.html:74(li)
 #: doc/reference/en/method_list.html:830(small)
 #: doc/reference/en/method_list.html:1542(small)
-#: doc/reference/en/method_list.html:1846(small)
+#: doc/reference/en/method_list.html:1838(small)
 #: doc/reference/en/method_list.html:2334(small)
 #: doc/reference/en/method_list.html:2574(small)
 #: doc/reference/en/method_list.html:2806(small)
@@ -23814,7 +23814,7 @@ msgid "Class: Test::Unit::Diff::ReadableDiffer"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Diff/ReadableDiffer.html:76(li)
-#: doc/reference/en/method_list.html:1166(small)
+#: doc/reference/en/method_list.html:1174(small)
 msgid "Test::Unit::Diff::ReadableDiffer"
 msgstr ""
 
@@ -23879,12 +23879,12 @@ msgid "Class: Test::Unit::Diff::UTF8Line"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Diff/UTF8Line.html:74(li)
-#: doc/reference/en/method_list.html:126(small)
+#: doc/reference/en/method_list.html:150(small)
 #: doc/reference/en/method_list.html:958(small)
 #: doc/reference/en/method_list.html:1214(small)
-#: doc/reference/en/method_list.html:1974(small)
-#: doc/reference/en/method_list.html:3198(small)
-#: doc/reference/en/method_list.html:3614(small)
+#: doc/reference/en/method_list.html:1878(small)
+#: doc/reference/en/method_list.html:3206(small)
+#: doc/reference/en/method_list.html:3598(small)
 #: doc/reference/en/method_list.html:3742(small)
 msgid "Test::Unit::Diff::UTF8Line"
 msgstr ""
@@ -25618,7 +25618,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/UI/XML/TestRunner.html:37(a)
 #: doc/reference/en/Test/Unit/UI/XML.html:39(span)
 #: doc/reference/en/Test/Unit/UI.html:86(a)
-#: doc/reference/en/file.news.html:68(span)
+#: doc/reference/en/file.news.html:96(span)
 #: doc/reference/en/class_list.html:42(a) doc/reference/en/_index.html:865(a)
 #: doc/reference/en/_index.html:872(a)
 msgid "XML"
@@ -25874,7 +25874,7 @@ msgid "Class: Test::Unit::Collector::XML::Listener"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector/XML/Listener.html:74(li)
-#: doc/reference/en/method_list.html:1926(small)
+#: doc/reference/en/method_list.html:1750(small)
 #: doc/reference/en/method_list.html:3326(small)
 #: doc/reference/en/method_list.html:3334(small)
 #: doc/reference/en/method_list.html:3502(small)
@@ -26424,11 +26424,11 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector/Dir.html:74(li)
 #: doc/reference/en/method_list.html:798(small)
-#: doc/reference/en/method_list.html:886(small)
+#: doc/reference/en/method_list.html:902(small)
 #: doc/reference/en/method_list.html:926(small)
-#: doc/reference/en/method_list.html:1382(small)
-#: doc/reference/en/method_list.html:1502(small)
-#: doc/reference/en/method_list.html:1990(small)
+#: doc/reference/en/method_list.html:1374(small)
+#: doc/reference/en/method_list.html:1494(small)
+#: doc/reference/en/method_list.html:1926(small)
 #: doc/reference/en/method_list.html:2646(small)
 #: doc/reference/en/method_list.html:2822(small)
 #: doc/reference/en/method_list.html:2830(small)
@@ -26450,7 +26450,7 @@ msgstr ""
 #: doc/reference/en/method_list.html:278(small)
 #: doc/reference/en/method_list.html:1462(small)
 #: doc/reference/en/method_list.html:1574(small)
-#: doc/reference/en/method_list.html:1798(small)
+#: doc/reference/en/method_list.html:1718(small)
 #: doc/reference/en/method_list.html:3214(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::Collector"
@@ -26972,7 +26972,7 @@ msgid "Class: Test::Unit::Collector::XML"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector/XML.html:74(li)
-#: doc/reference/en/method_list.html:910(small)
+#: doc/reference/en/method_list.html:886(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::Collector::XML"
 msgstr ""
@@ -27041,11 +27041,11 @@ msgid "Class: Test::Unit::Collector::Load"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector/Load.html:74(li)
-#: doc/reference/en/method_list.html:782(small)
-#: doc/reference/en/method_list.html:894(small)
+#: doc/reference/en/method_list.html:790(small)
+#: doc/reference/en/method_list.html:910(small)
 #: doc/reference/en/method_list.html:1390(small)
-#: doc/reference/en/method_list.html:1494(small)
-#: doc/reference/en/method_list.html:1758(small)
+#: doc/reference/en/method_list.html:1502(small)
+#: doc/reference/en/method_list.html:1734(small)
 #: doc/reference/en/method_list.html:2654(small)
 msgid "Test::Unit::Collector::Load"
 msgstr ""
@@ -27240,7 +27240,7 @@ msgid "Class: Test::Unit::Collector::Descendant"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector/Descendant.html:74(li)
-#: doc/reference/en/method_list.html:902(small)
+#: doc/reference/en/method_list.html:894(small)
 msgid "Test::Unit::Collector::Descendant"
 msgstr ""
 
@@ -27295,7 +27295,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector/ObjectSpace.html:74(li)
 #: doc/reference/en/method_list.html:918(small)
-#: doc/reference/en/method_list.html:2022(small)
+#: doc/reference/en/method_list.html:1854(small)
 msgid "Test::Unit::Collector::ObjectSpace"
 msgstr ""
 
@@ -27368,11 +27368,11 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/MixColor.html:74(li)
 #: doc/reference/en/method_list.html:54(small)
-#: doc/reference/en/method_list.html:86(small)
+#: doc/reference/en/method_list.html:94(small)
 #: doc/reference/en/method_list.html:950(small)
-#: doc/reference/en/method_list.html:1326(small)
-#: doc/reference/en/method_list.html:1750(small)
-#: doc/reference/en/method_list.html:3046(small)
+#: doc/reference/en/method_list.html:1334(small)
+#: doc/reference/en/method_list.html:1910(small)
+#: doc/reference/en/method_list.html:3054(small)
 msgid "Test::Unit::MixColor"
 msgstr ""
 
@@ -27643,7 +27643,7 @@ msgid "Class: Test::Unit::Data::ClassMethods::CSVDataLoader"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Data/ClassMethods/CSVDataLoader.html:74(li)
-#: doc/reference/en/method_list.html:1998(small)
+#: doc/reference/en/method_list.html:1710(small)
 #: doc/reference/en/method_list.html:2230(small)
 msgid "Test::Unit::Data::ClassMethods::CSVDataLoader"
 msgstr ""
@@ -27719,7 +27719,7 @@ msgid "Class: Test::Unit::TestCase"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/TestCase.html:74(li)
-#: doc/reference/en/method_list.html:78(small)
+#: doc/reference/en/method_list.html:102(small)
 #: doc/reference/en/method_list.html:286(small)
 #: doc/reference/en/method_list.html:702(small)
 #: doc/reference/en/method_list.html:870(small)
@@ -27727,26 +27727,26 @@ msgstr ""
 #: doc/reference/en/method_list.html:1118(small)
 #: doc/reference/en/method_list.html:1150(small)
 #: doc/reference/en/method_list.html:1158(small)
-#: doc/reference/en/method_list.html:1254(small)
+#: doc/reference/en/method_list.html:1262(small)
 #: doc/reference/en/method_list.html:1686(small)
-#: doc/reference/en/method_list.html:1814(small)
+#: doc/reference/en/method_list.html:1934(small)
 #: doc/reference/en/method_list.html:2142(small)
 #: doc/reference/en/method_list.html:2398(small)
 #: doc/reference/en/method_list.html:2422(small)
-#: doc/reference/en/method_list.html:2430(small)
-#: doc/reference/en/method_list.html:2614(small)
-#: doc/reference/en/method_list.html:2926(small)
+#: doc/reference/en/method_list.html:2446(small)
+#: doc/reference/en/method_list.html:2606(small)
+#: doc/reference/en/method_list.html:2918(small)
 #: doc/reference/en/method_list.html:3078(small)
 #: doc/reference/en/method_list.html:3142(small)
-#: doc/reference/en/method_list.html:3206(small)
+#: doc/reference/en/method_list.html:3198(small)
 #: doc/reference/en/method_list.html:3270(small)
 #: doc/reference/en/method_list.html:3278(small)
-#: doc/reference/en/method_list.html:3302(small)
-#: doc/reference/en/method_list.html:3374(small)
-#: doc/reference/en/method_list.html:3398(small)
+#: doc/reference/en/method_list.html:3310(small)
+#: doc/reference/en/method_list.html:3358(small)
+#: doc/reference/en/method_list.html:3390(small)
 #: doc/reference/en/method_list.html:3478(small)
 #: doc/reference/en/method_list.html:3486(small)
-#: doc/reference/en/method_list.html:3582(small)
+#: doc/reference/en/method_list.html:3606(small)
 #: doc/reference/en/method_list.html:3734(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::TestCase"
@@ -27982,7 +27982,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/TestCase.html:1786(span)
 #: doc/reference/en/Test/Unit/TestCase.html:2123(strong)
 #: doc/reference/en/Test/Unit/TestCase.html:2153(span)
-#: doc/reference/en/method_list.html:1148(a)
+#: doc/reference/en/method_list.html:1156(a)
 msgid "description"
 msgstr ""
 
@@ -28150,7 +28150,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/AutoRunner.html:2478(span)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2487(span)
 #: doc/reference/en/Test/Unit/TestSuite.html:453(strong)
-#: doc/reference/en/method_list.html:2940(a)
+#: doc/reference/en/method_list.html:2908(a)
 msgid "run"
 msgstr ""
 
@@ -28573,7 +28573,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/TestCase.html:1230(a)
 #: doc/reference/en/method_list.html:116(a)
 #: doc/reference/en/method_list.html:124(a)
-#: doc/reference/en/method_list.html:140(a)
+#: doc/reference/en/method_list.html:132(a)
 #: doc/reference/en/method_list.html:148(a)
 msgid "#[]"
 msgstr ""
@@ -29466,8 +29466,8 @@ msgstr ""
 #: doc/reference/en/Test/Unit/UI/Tap/TestRunner.html:69(a)
 #: doc/reference/en/Test/Unit/UI/Tap/TestRunner.html:74(a)
 #: doc/reference/en/Test/Unit/UI/Tap/TestRunner.html:124(a)
-#: doc/reference/en/method_list.html:1878(small)
-#: doc/reference/en/method_list.html:2206(small)
+#: doc/reference/en/method_list.html:1942(small)
+#: doc/reference/en/method_list.html:2214(small)
 #: doc/reference/en/method_list.html:3238(small)
 msgid "Test::Unit::UI::TestRunner"
 msgstr ""
@@ -29489,7 +29489,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/UI/TestRunner.html:101(a)
 #: doc/reference/en/Test/Unit/UI/Tap/TestRunner.html:76(li)
-#: doc/reference/en/method_list.html:1710(small)
+#: doc/reference/en/method_list.html:1782(small)
 #: doc/reference/en/method_list.html:3230(small)
 msgid "Test::Unit::UI::Tap::TestRunner"
 msgstr ""
@@ -29653,7 +29653,7 @@ msgid "Class: Test::Unit::UI::XML::TestRunner"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/UI/XML/TestRunner.html:76(li)
-#: doc/reference/en/method_list.html:1806(small)
+#: doc/reference/en/method_list.html:1886(small)
 msgid "Test::Unit::UI::XML::TestRunner"
 msgstr ""
 
@@ -29702,10 +29702,10 @@ msgstr ""
 #: doc/reference/en/Test/Unit/UI/Console/TestRunner.html:212(a)
 #: doc/reference/en/Test/Unit/UI/Emacs/TestRunner.html:177(a)
 #: doc/reference/en/Test/Unit/UI/Tap/TestRunner.html:204(a)
-#: doc/reference/en/method_list.html:2908(a)
 #: doc/reference/en/method_list.html:2916(a)
 #: doc/reference/en/method_list.html:2924(a)
 #: doc/reference/en/method_list.html:2932(a)
+#: doc/reference/en/method_list.html:2940(a)
 msgid "#run"
 msgstr ""
 
@@ -29807,7 +29807,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/UI/Console/TestRunner.html:76(li)
 #: doc/reference/en/Test/Unit/UI/Emacs/TestRunner.html:181(a)
-#: doc/reference/en/method_list.html:1918(small)
+#: doc/reference/en/method_list.html:2022(small)
 msgid "Test::Unit::UI::Console::TestRunner"
 msgstr ""
 
@@ -29975,7 +29975,7 @@ msgid "Diff::Differ"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/UI/Console/ColorizedReadableDiffer.html:78(li)
-#: doc/reference/en/method_list.html:1694(small)
+#: doc/reference/en/method_list.html:1998(small)
 #: doc/reference/en/method_list.html:2462(small)
 msgid "Test::Unit::UI::Console::ColorizedReadableDiffer"
 msgstr ""
@@ -30180,7 +30180,7 @@ msgid "Runs a Test::Unit::TestSuite and outputs result as TAP format."
 msgstr ""
 
 #: doc/reference/en/Test/Unit/UI/Tap/TestRunner.html:203(a)
-#: doc/reference/en/method_list.html:2918(small)
+#: doc/reference/en/method_list.html:2934(small)
 #: doc/reference/en/method_list.html:3246(small)
 msgid "Test::Unit::UI::TestRunnerUtilities"
 msgstr ""
@@ -30491,17 +30491,17 @@ msgid "Class: Test::Unit::Error"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Error.html:74(li)
-#: doc/reference/en/method_list.html:1030(small)
+#: doc/reference/en/method_list.html:1014(small)
 #: doc/reference/en/method_list.html:1342(small)
-#: doc/reference/en/method_list.html:1702(small)
-#: doc/reference/en/method_list.html:2182(small)
-#: doc/reference/en/method_list.html:2254(small)
-#: doc/reference/en/method_list.html:2318(small)
-#: doc/reference/en/method_list.html:2374(small)
-#: doc/reference/en/method_list.html:3126(small)
+#: doc/reference/en/method_list.html:1790(small)
+#: doc/reference/en/method_list.html:2198(small)
+#: doc/reference/en/method_list.html:2262(small)
+#: doc/reference/en/method_list.html:2302(small)
+#: doc/reference/en/method_list.html:2358(small)
+#: doc/reference/en/method_list.html:3110(small)
 #: doc/reference/en/method_list.html:3182(small)
-#: doc/reference/en/method_list.html:3470(small)
-#: doc/reference/en/method_list.html:3566(small)
+#: doc/reference/en/method_list.html:3462(small)
+#: doc/reference/en/method_list.html:3550(small)
 msgid "Test::Unit::Error"
 msgstr ""
 
@@ -30750,8 +30750,8 @@ msgstr ""
 #: doc/reference/en/Test/Unit/AssertionFailedError.html:76(li)
 #: doc/reference/en/method_list.html:182(small)
 #: doc/reference/en/method_list.html:1398(small)
-#: doc/reference/en/method_list.html:1942(small)
-#: doc/reference/en/method_list.html:2094(small)
+#: doc/reference/en/method_list.html:1742(small)
+#: doc/reference/en/method_list.html:2086(small)
 #: doc/reference/en/method_list.html:2102(small)
 #: doc/reference/en/method_list.html:3718(small)
 msgid "Test::Unit::AssertionFailedError"
@@ -30807,15 +30807,15 @@ msgid "Class: Test::Unit::Notification"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Notification.html:74(li)
-#: doc/reference/en/method_list.html:1014(small)
-#: doc/reference/en/method_list.html:1766(small)
+#: doc/reference/en/method_list.html:1038(small)
+#: doc/reference/en/method_list.html:1806(small)
 #: doc/reference/en/method_list.html:2174(small)
-#: doc/reference/en/method_list.html:2286(small)
-#: doc/reference/en/method_list.html:2326(small)
-#: doc/reference/en/method_list.html:2358(small)
-#: doc/reference/en/method_list.html:3118(small)
-#: doc/reference/en/method_list.html:3150(small)
-#: doc/reference/en/method_list.html:3462(small)
+#: doc/reference/en/method_list.html:2278(small)
+#: doc/reference/en/method_list.html:2318(small)
+#: doc/reference/en/method_list.html:2390(small)
+#: doc/reference/en/method_list.html:3102(small)
+#: doc/reference/en/method_list.html:3158(small)
+#: doc/reference/en/method_list.html:3454(small)
 #: doc/reference/en/method_list.html:3622(small)
 msgid "Test::Unit::Notification"
 msgstr ""
@@ -31028,15 +31028,15 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Color.html:74(li)
 #: doc/reference/en/method_list.html:46(small)
-#: doc/reference/en/method_list.html:102(small)
+#: doc/reference/en/method_list.html:86(small)
 #: doc/reference/en/method_list.html:838(small)
-#: doc/reference/en/method_list.html:1334(small)
+#: doc/reference/en/method_list.html:1326(small)
 #: doc/reference/en/method_list.html:1534(small)
-#: doc/reference/en/method_list.html:1870(small)
+#: doc/reference/en/method_list.html:1862(small)
 #: doc/reference/en/method_list.html:2118(small)
 #: doc/reference/en/method_list.html:2150(small)
-#: doc/reference/en/method_list.html:2446(small)
-#: doc/reference/en/method_list.html:3054(small)
+#: doc/reference/en/method_list.html:2430(small)
+#: doc/reference/en/method_list.html:3046(small)
 #: doc/reference/en/method_list.html:3630(small)
 msgid "Test::Unit::Color"
 msgstr ""
@@ -31275,16 +31275,16 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/AutoRunner.html:74(li)
 #: doc/reference/en/Test/Unit/AutoRunner.html:896(a)
-#: doc/reference/en/method_list.html:790(small)
+#: doc/reference/en/method_list.html:782(small)
 #: doc/reference/en/method_list.html:934(small)
 #: doc/reference/en/method_list.html:942(small)
 #: doc/reference/en/method_list.html:1102(small)
 #: doc/reference/en/method_list.html:1110(small)
-#: doc/reference/en/method_list.html:1374(small)
+#: doc/reference/en/method_list.html:1382(small)
 #: doc/reference/en/method_list.html:1478(small)
-#: doc/reference/en/method_list.html:1726(small)
+#: doc/reference/en/method_list.html:1894(small)
 #: doc/reference/en/method_list.html:2158(small)
-#: doc/reference/en/method_list.html:2214(small)
+#: doc/reference/en/method_list.html:2206(small)
 #: doc/reference/en/method_list.html:2238(small)
 #: doc/reference/en/method_list.html:2582(small)
 #: doc/reference/en/method_list.html:2638(small)
@@ -31300,7 +31300,7 @@ msgstr ""
 #: doc/reference/en/method_list.html:3038(small)
 #: doc/reference/en/method_list.html:3094(small)
 #: doc/reference/en/method_list.html:3222(small)
-#: doc/reference/en/method_list.html:3310(small)
+#: doc/reference/en/method_list.html:3302(small)
 #: doc/reference/en/method_list.html:3542(small)
 #: doc/reference/en/method_list.html:3750(small)
 msgid "Test::Unit::AutoRunner"
@@ -31429,7 +31429,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/AutoRunner.html:1755(span)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2375(strong)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2394(span)
-#: doc/reference/en/method_list.html:2684(a)
+#: doc/reference/en/method_list.html:2692(a)
 msgid "prepare"
 msgstr ""
 
@@ -31991,7 +31991,7 @@ msgid "config"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/AutoRunner.html:1984(span)
-#: doc/reference/en/file.news.html:345(span)
+#: doc/reference/en/file.news.html:373(span)
 msgid "YAML"
 msgstr ""
 
@@ -32589,16 +32589,16 @@ msgid "Class: Test::Unit::Omission"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Omission.html:74(li)
-#: doc/reference/en/method_list.html:1038(small)
-#: doc/reference/en/method_list.html:1958(small)
-#: doc/reference/en/method_list.html:2166(small)
+#: doc/reference/en/method_list.html:1030(small)
+#: doc/reference/en/method_list.html:1814(small)
+#: doc/reference/en/method_list.html:2190(small)
 #: doc/reference/en/method_list.html:2270(small)
-#: doc/reference/en/method_list.html:2294(small)
-#: doc/reference/en/method_list.html:2390(small)
-#: doc/reference/en/method_list.html:3102(small)
-#: doc/reference/en/method_list.html:3174(small)
+#: doc/reference/en/method_list.html:2310(small)
+#: doc/reference/en/method_list.html:2366(small)
+#: doc/reference/en/method_list.html:3134(small)
+#: doc/reference/en/method_list.html:3150(small)
 #: doc/reference/en/method_list.html:3446(small)
-#: doc/reference/en/method_list.html:3550(small)
+#: doc/reference/en/method_list.html:3590(small)
 msgid "Test::Unit::Omission"
 msgstr ""
 
@@ -32670,18 +32670,18 @@ msgstr ""
 #: doc/reference/en/method_list.html:62(small)
 #: doc/reference/en/method_list.html:110(small)
 #: doc/reference/en/method_list.html:1142(small)
-#: doc/reference/en/method_list.html:1262(small)
+#: doc/reference/en/method_list.html:1254(small)
 #: doc/reference/en/method_list.html:1270(small)
-#: doc/reference/en/method_list.html:1822(small)
+#: doc/reference/en/method_list.html:2014(small)
 #: doc/reference/en/method_list.html:2438(small)
-#: doc/reference/en/method_list.html:2630(small)
-#: doc/reference/en/method_list.html:2766(small)
-#: doc/reference/en/method_list.html:2934(small)
+#: doc/reference/en/method_list.html:2622(small)
+#: doc/reference/en/method_list.html:2758(small)
+#: doc/reference/en/method_list.html:2926(small)
 #: doc/reference/en/method_list.html:3190(small)
-#: doc/reference/en/method_list.html:3262(small)
+#: doc/reference/en/method_list.html:3254(small)
 #: doc/reference/en/method_list.html:3406(small)
 #: doc/reference/en/method_list.html:3510(small)
-#: doc/reference/en/method_list.html:3598(small)
+#: doc/reference/en/method_list.html:3566(small)
 msgid "Test::Unit::TestSuite"
 msgstr ""
 
@@ -32901,7 +32901,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Priority/Checker.html:74(li)
 #: doc/reference/en/method_list.html:766(small)
 #: doc/reference/en/method_list.html:1558(small)
-#: doc/reference/en/method_list.html:1950(small)
+#: doc/reference/en/method_list.html:1830(small)
 #: doc/reference/en/method_list.html:2478(small)
 #: doc/reference/en/method_list.html:2486(small)
 #: doc/reference/en/method_list.html:2974(small)
@@ -32910,9 +32910,9 @@ msgstr ""
 #: doc/reference/en/method_list.html:2998(small)
 #: doc/reference/en/method_list.html:3006(small)
 #: doc/reference/en/method_list.html:3014(small)
-#: doc/reference/en/method_list.html:3086(small)
-#: doc/reference/en/method_list.html:3366(small)
-#: doc/reference/en/method_list.html:3390(small)
+#: doc/reference/en/method_list.html:3070(small)
+#: doc/reference/en/method_list.html:3374(small)
+#: doc/reference/en/method_list.html:3398(small)
 msgid "Test::Unit::Priority::Checker"
 msgstr ""
 
@@ -33974,823 +33974,892 @@ msgstr ""
 #: doc/reference/en/top-level-namespace.html:36(a)
 #: doc/reference/en/index.html:36(a) doc/reference/en/file.README.html:36(a)
 msgid "Index"
-msgstr ""
+msgstr "索引"
 
 #: doc/reference/en/file.news.html:37(span)
 msgid "File: news"
-msgstr ""
+msgstr "ファイル: お知らせ"
 
 #: doc/reference/en/file.news.html:57(h1)
 msgid "News"
-msgstr ""
+msgstr "お知らせ"
 
 #: doc/reference/en/file.news.html:58(h2)
-msgid "2.3.0 / 2011-04-17"
+msgid "2.3.1 – 2011-08-06"
 msgstr ""
 
-#: doc/reference/en/file.news.html:60(li)
-msgid "13 enhancements"
+#: doc/reference/en/file.news.html:59(p)
+msgid "Output improvement release!"
 msgstr ""
 
-#: doc/reference/en/file.news.html:61(li)
-msgid "improve Hash key sorting for diff."
+#: doc/reference/en/file.news.html:60(h3)
+msgid "Improvements"
 msgstr ""
 
 #: doc/reference/en/file.news.html:62(li)
+msgid "[ui][console] Outputs omissions and notifications in short."
+msgstr ""
+
+#: doc/reference/en/file.news.html:63(li)
+msgid "[ui][console] Added “important-only” verbose level."
+msgstr ""
+
+#: doc/reference/en/file.news.html:64(li)
+msgid "Intelligence diff supports recursive references."
+msgstr ""
+
+#: doc/reference/en/file.news.html:65(li)
+msgid ""
+"[rubyforge #29325] Supported Ruby Enterprise Edition. [Reported by Hans de "
+"Graaff]"
+msgstr ""
+
+#: doc/reference/en/file.news.html:67(li)
+msgid "[rubyforge #29326] Supported JRuby. [Reported by Hans de Graaff]"
+msgstr ""
+
+#: doc/reference/en/file.news.html:69(li)
+msgid ""
+"Added —show-detail-immediately option that shows fault details when a fault "
+"is occurred."
+msgstr ""
+
+#: doc/reference/en/file.news.html:72(h3)
+msgid "Fixes"
+msgstr ""
+
+#: doc/reference/en/file.news.html:74(li)
+msgid ""
+"[pull request #1] Fixed a problem that load collector can’t load a test file "
+"on Ruby 1.9. [Patch by grafi-tt]"
+msgstr ""
+
+#: doc/reference/en/file.news.html:76(li)
+msgid ""
+"[issue #3] Fixed a problem that implicit method name override by declarative "
+"style test definition. [Reported by Jeremy Stephens]"
+msgstr ""
+
+#: doc/reference/en/file.news.html:80(h3)
+#: doc/reference/en/file.news.html:106(li)
+#: doc/reference/en/file.news.html:149(li)
+#: doc/reference/en/file.news.html:165(li)
+#: doc/reference/en/file.news.html:175(li)
+#: doc/reference/en/file.news.html:199(li)
+#: doc/reference/en/file.news.html:228(li)
+#: doc/reference/en/file.news.html:259(li)
+#: doc/reference/en/file.news.html:269(li)
+#: doc/reference/en/file.news.html:294(li)
+#: doc/reference/en/file.news.html:321(li)
+#: doc/reference/en/file.news.html:343(li)
+#: doc/reference/en/file.news.html:377(li) doc/reference/en/index.html:112(h2)
+#: doc/reference/en/file.README.html:112(h2)
+msgid "Thanks"
+msgstr ""
+
+#: doc/reference/en/file.news.html:82(li)
+msgid "grafi-tt"
+msgstr ""
+
+#: doc/reference/en/file.news.html:83(li)
+msgid "Jeremy Stephens"
+msgstr ""
+
+#: doc/reference/en/file.news.html:84(li)
+msgid "Hans de Graaff"
+msgstr ""
+
+#: doc/reference/en/file.news.html:86(h2)
+msgid "2.3.0 / 2011-04-17"
+msgstr ""
+
+#: doc/reference/en/file.news.html:88(li)
+msgid "13 enhancements"
+msgstr ""
+
+#: doc/reference/en/file.news.html:89(li)
+msgid "improve Hash key sorting for diff."
+msgstr ""
+
+#: doc/reference/en/file.news.html:90(li)
 msgid ""
 "[#28928] support any characters in declarative style description. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:64(li)
+#: doc/reference/en/file.news.html:92(li)
 msgid "add Error#location and make #backtrace deprecated."
 msgstr ""
 
-#: doc/reference/en/file.news.html:65(li)
+#: doc/reference/en/file.news.html:93(li)
 msgid "make TestCase#passed? public."
 msgstr ""
 
-#: doc/reference/en/file.news.html:66(li)
+#: doc/reference/en/file.news.html:94(li)
 msgid "add result finished and pass assertion notifications."
 msgstr ""
 
-#: doc/reference/en/file.news.html:67(li)
+#: doc/reference/en/file.news.html:95(li)
 msgid "add TestSuite#passed? public."
 msgstr ""
 
-#: doc/reference/en/file.news.html:68(li)
+#: doc/reference/en/file.news.html:96(li)
 msgid "add <placeholder-1/> test runner."
 msgstr ""
 
-#: doc/reference/en/file.news.html:69(li)
+#: doc/reference/en/file.news.html:97(li)
 msgid "add —output-file-descriptor option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:70(li)
+#: doc/reference/en/file.news.html:98(li)
 msgid "measure elapsed time for each test."
 msgstr ""
 
-#: doc/reference/en/file.news.html:71(li)
+#: doc/reference/en/file.news.html:99(li)
 msgid "add —collector option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:72(li)
+#: doc/reference/en/file.news.html:100(li)
 msgid "support test driven test. [Haruka Yoshihara]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:74(li)
+#: doc/reference/en/file.news.html:102(li)
 msgid "add cleanup hook it runs between after test and before teardown."
 msgstr ""
 
-#: doc/reference/en/file.news.html:75(li)
+#: doc/reference/en/file.news.html:103(li)
 msgid "support recursive collection sort for diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:78(li)
-#: doc/reference/en/file.news.html:121(li)
-#: doc/reference/en/file.news.html:137(li)
-#: doc/reference/en/file.news.html:147(li)
-#: doc/reference/en/file.news.html:171(li)
-#: doc/reference/en/file.news.html:200(li)
-#: doc/reference/en/file.news.html:231(li)
-#: doc/reference/en/file.news.html:241(li)
-#: doc/reference/en/file.news.html:266(li)
-#: doc/reference/en/file.news.html:293(li)
-#: doc/reference/en/file.news.html:315(li)
-#: doc/reference/en/file.news.html:349(li) doc/reference/en/index.html:112(h2)
-#: doc/reference/en/file.README.html:112(h2)
-msgid "Thanks"
-msgstr ""
-
-#: doc/reference/en/file.news.html:79(li)
-#: doc/reference/en/file.news.html:122(li)
-#: doc/reference/en/file.news.html:138(li)
-#: doc/reference/en/file.news.html:148(li)
-#: doc/reference/en/file.news.html:202(li)
-#: doc/reference/en/file.news.html:233(li)
-#: doc/reference/en/file.news.html:295(li)
-#: doc/reference/en/file.news.html:319(li)
-#: doc/reference/en/file.news.html:352(li)
+#: doc/reference/en/file.news.html:107(li)
+#: doc/reference/en/file.news.html:150(li)
+#: doc/reference/en/file.news.html:166(li)
+#: doc/reference/en/file.news.html:176(li)
+#: doc/reference/en/file.news.html:230(li)
+#: doc/reference/en/file.news.html:261(li)
+#: doc/reference/en/file.news.html:323(li)
+#: doc/reference/en/file.news.html:347(li)
+#: doc/reference/en/file.news.html:380(li)
 msgid "Daniel Berger"
 msgstr ""
 
-#: doc/reference/en/file.news.html:80(li)
+#: doc/reference/en/file.news.html:108(li)
 msgid "Haruka Yoshihara"
 msgstr ""
 
-#: doc/reference/en/file.news.html:82(h2)
+#: doc/reference/en/file.news.html:110(h2)
 msgid "2.2.0 / 2011-02-14"
 msgstr ""
 
-#: doc/reference/en/file.news.html:84(li)
+#: doc/reference/en/file.news.html:112(li)
 msgid "22 enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:85(li)
+#: doc/reference/en/file.news.html:113(li)
 msgid "[#28808] accept String as delta for assert_in_delta. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:87(li)
+#: doc/reference/en/file.news.html:115(li)
 msgid "[test-unit-users-en:00035] make GC-able finished tests. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:89(span)
+#: doc/reference/en/file.news.html:117(span)
 msgid "COLUMNS"
 msgstr ""
 
-#: doc/reference/en/file.news.html:89(li)
+#: doc/reference/en/file.news.html:117(li)
 msgid "use also <placeholder-1/> environment variable to guess terminal width."
 msgstr ""
 
-#: doc/reference/en/file.news.html:90(li)
+#: doc/reference/en/file.news.html:118(li)
 msgid "make delta for assert_in_delta optional. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:92(li)
+#: doc/reference/en/file.news.html:120(li)
 msgid "add assert_not_respond_to. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:94(li)
+#: doc/reference/en/file.news.html:122(li)
 msgid "add assert_not_match. assert_no_match is deprecated. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:96(li)
+#: doc/reference/en/file.news.html:124(li)
 msgid "add assert_not_in_delta. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:98(li)
+#: doc/reference/en/file.news.html:126(li)
 msgid "add assert_in_epsilon. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:100(li)
+#: doc/reference/en/file.news.html:128(li)
 msgid "add assert_not_in_epsilon. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:102(li)
+#: doc/reference/en/file.news.html:130(li)
 msgid "add assert_include. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:104(li)
+#: doc/reference/en/file.news.html:132(li)
 msgid "add assert_not_include. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:106(li)
+#: doc/reference/en/file.news.html:134(li)
 msgid "add assert_empty. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:108(li)
+#: doc/reference/en/file.news.html:136(li)
 msgid "add assert_not_empty. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:110(li)
+#: doc/reference/en/file.news.html:138(li)
 msgid "notify require failed paths."
 msgstr ""
 
-#: doc/reference/en/file.news.html:111(li)
+#: doc/reference/en/file.news.html:139(li)
 msgid "validate message value for assert."
 msgstr ""
 
-#: doc/reference/en/file.news.html:112(li)
+#: doc/reference/en/file.news.html:140(li)
 msgid "show throughputs at the last."
 msgstr ""
 
-#: doc/reference/en/file.news.html:113(span)
+#: doc/reference/en/file.news.html:141(span)
 msgid "ASCII"
 msgstr ""
 
-#: doc/reference/en/file.news.html:113(li)
+#: doc/reference/en/file.news.html:141(li)
 msgid "support not <placeholder-1/> compatible string diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:114(li)
+#: doc/reference/en/file.news.html:142(li)
 msgid "support colorized diff on encoding different string."
 msgstr ""
 
-#: doc/reference/en/file.news.html:115(li)
+#: doc/reference/en/file.news.html:143(li)
 msgid "normalize entry order of Hash for readable diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:116(li)
+#: doc/reference/en/file.news.html:144(li)
 msgid "add —ignore-name option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:117(li)
+#: doc/reference/en/file.news.html:145(li)
 msgid "add —ignore-testcase option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:118(li)
+#: doc/reference/en/file.news.html:146(li)
 msgid "add assert_not_send."
 msgstr ""
 
-#: doc/reference/en/file.news.html:123(li)
+#: doc/reference/en/file.news.html:151(li)
 msgid "Nobuyoshi Nakada"
 msgstr ""
 
-#: doc/reference/en/file.news.html:125(h2)
+#: doc/reference/en/file.news.html:153(h2)
 msgid "2.1.2 / 2010-11-25"
 msgstr ""
 
-#: doc/reference/en/file.news.html:127(li)
+#: doc/reference/en/file.news.html:155(li)
 msgid "1 enhancement"
 msgstr ""
 
-#: doc/reference/en/file.news.html:128(li)
+#: doc/reference/en/file.news.html:156(li)
 msgid "support auto runner prepare hook."
 msgstr ""
 
-#: doc/reference/en/file.news.html:130(h2)
+#: doc/reference/en/file.news.html:158(h2)
 msgid "2.1.1 / 2010-07-29"
 msgstr ""
 
-#: doc/reference/en/file.news.html:132(li)
-#: doc/reference/en/file.news.html:142(li)
-#: doc/reference/en/file.news.html:289(li)
+#: doc/reference/en/file.news.html:160(li)
+#: doc/reference/en/file.news.html:170(li)
+#: doc/reference/en/file.news.html:317(li)
 msgid "1 bug fix"
 msgstr ""
 
-#: doc/reference/en/file.news.html:133(li)
+#: doc/reference/en/file.news.html:161(li)
 msgid "[test-unit-users-en:00026] re-work tap runner. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:140(p)
+#: doc/reference/en/file.news.html:168(p)
 msgid "=== 2.1.0 / 2010-07-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:143(li)
+#: doc/reference/en/file.news.html:171(li)
 msgid "[#28267] global config file ignored [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:150(h2)
+#: doc/reference/en/file.news.html:178(h2)
 msgid "2.0.8 / 2010-06-02"
 msgstr ""
 
-#: doc/reference/en/file.news.html:152(li)
+#: doc/reference/en/file.news.html:180(li)
 msgid "5 major enchancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:153(li)
+#: doc/reference/en/file.news.html:181(li)
 msgid "collect *_test.rb and *-test.rb files as test files."
 msgstr ""
 
-#: doc/reference/en/file.news.html:155(span)
-#: doc/reference/en/file.news.html:173(span)
-#: doc/reference/en/file.news.html:182(span)
-#: doc/reference/en/file.news.html:190(span)
+#: doc/reference/en/file.news.html:183(span)
 #: doc/reference/en/file.news.html:201(span)
-#: doc/reference/en/file.news.html:226(span)
-#: doc/reference/en/file.news.html:232(span)
+#: doc/reference/en/file.news.html:210(span)
+#: doc/reference/en/file.news.html:218(span)
+#: doc/reference/en/file.news.html:229(span)
+#: doc/reference/en/file.news.html:254(span)
+#: doc/reference/en/file.news.html:260(span)
 #: doc/reference/en/index.html:121(span)
 #: doc/reference/en/file.README.html:121(span)
 msgid "MARCHALAND"
 msgstr ""
 
-#: doc/reference/en/file.news.html:154(li)
+#: doc/reference/en/file.news.html:182(li)
 msgid ""
 "[#28181] improve assert_in_delta message. [Suggested by David <placeholder-1/"
 ">]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:156(li)
+#: doc/reference/en/file.news.html:184(li)
 msgid ""
 "show string encoding in assert_equal failure message if they are different."
 msgstr ""
 
-#: doc/reference/en/file.news.html:158(li)
+#: doc/reference/en/file.news.html:186(li)
 msgid "change default color scheme:"
 msgstr ""
 
-#: doc/reference/en/file.news.html:159(li)
+#: doc/reference/en/file.news.html:187(li)
 msgid "success: green back + white"
 msgstr ""
 
-#: doc/reference/en/file.news.html:160(li)
+#: doc/reference/en/file.news.html:188(li)
 msgid "failure: red back + white"
 msgstr ""
 
-#: doc/reference/en/file.news.html:161(li)
+#: doc/reference/en/file.news.html:189(li)
 msgid "add capture_output."
 msgstr ""
 
-#: doc/reference/en/file.news.html:164(li)
-#: doc/reference/en/file.news.html:193(li)
-#: doc/reference/en/file.news.html:225(li)
+#: doc/reference/en/file.news.html:192(li)
+#: doc/reference/en/file.news.html:221(li)
+#: doc/reference/en/file.news.html:253(li)
 msgid "2 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:165(li)
+#: doc/reference/en/file.news.html:193(li)
 msgid ""
 "fix a bug that console runner on verbose mode causes an error for long test "
 "name (&gt;= 61)."
 msgstr ""
 
-#: doc/reference/en/file.news.html:167(li)
+#: doc/reference/en/file.news.html:195(li)
 msgid ""
 "[#28093] Autorunner ignores all files in a directory named test by default "
 "[Reported by Florian Frank]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:172(li)
+#: doc/reference/en/file.news.html:200(li)
 msgid "Florian Frank"
 msgstr ""
 
-#: doc/reference/en/file.news.html:173(li)
 #: doc/reference/en/file.news.html:201(li)
-#: doc/reference/en/file.news.html:232(li)
+#: doc/reference/en/file.news.html:229(li)
+#: doc/reference/en/file.news.html:260(li)
 msgid "David <placeholder-1/>"
 msgstr ""
 
-#: doc/reference/en/file.news.html:175(h2)
+#: doc/reference/en/file.news.html:203(h2)
 msgid "2.0.7 / 2010-03-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:177(li)
-#: doc/reference/en/file.news.html:246(li)
+#: doc/reference/en/file.news.html:205(li)
+#: doc/reference/en/file.news.html:274(li)
 msgid "4 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:178(li)
+#: doc/reference/en/file.news.html:206(li)
 msgid "detect redefined test methods."
 msgstr ""
 
-#: doc/reference/en/file.news.html:179(span)
+#: doc/reference/en/file.news.html:207(span)
 msgid "INTERFACE"
 msgstr ""
 
-#: doc/reference/en/file.news.html:179(span)
+#: doc/reference/en/file.news.html:207(span)
 msgid "IMCOMPATIBLE"
 msgstr ""
 
-#: doc/reference/en/file.news.html:179(li)
+#: doc/reference/en/file.news.html:207(li)
 msgid ""
 "[<placeholder-1/> <placeholder-2/>] multiple —name and —testcase options "
 "narrow down targets instead of adding targets."
 msgstr ""
 
-#: doc/reference/en/file.news.html:181(li)
+#: doc/reference/en/file.news.html:209(li)
 msgid ""
 "[#27764] accept custom test_order for each test case. [Suggested by David "
 "<placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:183(li)
+#: doc/reference/en/file.news.html:211(li)
 msgid ""
 "[#27790] ignore omitted tests from ‘n% passed’ report. [Suggested by Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:187(li)
+#: doc/reference/en/file.news.html:215(li)
 msgid "2 minor enchancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:188(li)
+#: doc/reference/en/file.news.html:216(li)
 msgid "[#27832] ignore .git directory. [Suggested by Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:189(li)
+#: doc/reference/en/file.news.html:217(li)
 msgid ""
 "[#27792] require ‘fileutils’ and ‘tmpdir’ lazily for non-priority mode "
 "users. [Suggested by David <placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:194(li)
+#: doc/reference/en/file.news.html:222(li)
 msgid ""
 "[#27892] modify processed arguments array destructively. [Reported by Bob "
 "Saveland]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:196(span)
+#: doc/reference/en/file.news.html:224(span)
 msgid "HOME"
 msgstr ""
 
-#: doc/reference/en/file.news.html:196(li)
+#: doc/reference/en/file.news.html:224(li)
 msgid ""
 "work without <placeholder-1/> environment variable. [Reported by Champak Ch]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:203(li)
+#: doc/reference/en/file.news.html:231(li)
 msgid "Bob Saveland"
 msgstr ""
 
-#: doc/reference/en/file.news.html:204(li)
+#: doc/reference/en/file.news.html:232(li)
 msgid "Champak Ch"
 msgstr ""
 
-#: doc/reference/en/file.news.html:206(h2)
+#: doc/reference/en/file.news.html:234(h2)
 msgid "2.0.6 / 2010-01-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:208(li)
+#: doc/reference/en/file.news.html:236(li)
 msgid "3 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:209(li)
+#: doc/reference/en/file.news.html:237(li)
 msgid ""
 "[#27380] Declarative syntax? [Daniel Berger] support declarative syntax:"
 msgstr ""
 
-#: doc/reference/en/file.news.html:216(li)
+#: doc/reference/en/file.news.html:244(li)
 msgid ""
 "support test description: description “test description in natural language” "
 "def test_my_test … end"
 msgstr ""
 
-#: doc/reference/en/file.news.html:221(li)
+#: doc/reference/en/file.news.html:249(li)
 msgid ""
 "make max diff target string size customizable by "
 "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE environment variable."
 msgstr ""
 
-#: doc/reference/en/file.news.html:226(li)
+#: doc/reference/en/file.news.html:254(li)
 msgid "[#27374] omit_if unexpected behavior [David <placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:227(li)
+#: doc/reference/en/file.news.html:255(li)
 msgid ""
 "fix a bug that tests in sub directories aren’t load with —basedir. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:235(h2)
+#: doc/reference/en/file.news.html:263(h2)
 msgid "2.0.5 / 2009-10-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:237(li)
-#: doc/reference/en/file.news.html:261(li)
+#: doc/reference/en/file.news.html:265(li)
+#: doc/reference/en/file.news.html:289(li)
 msgid "1 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:238(li)
+#: doc/reference/en/file.news.html:266(li)
 msgid "[#27314] fix diff may raise an exception. [Erik Hollensbe]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:242(li)
-#: doc/reference/en/file.news.html:318(li)
+#: doc/reference/en/file.news.html:270(li)
+#: doc/reference/en/file.news.html:346(li)
 msgid "Erik Hollensbe"
 msgstr ""
 
-#: doc/reference/en/file.news.html:244(h2)
+#: doc/reference/en/file.news.html:272(h2)
 msgid "2.0.4 / 2009-10-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:247(li)
+#: doc/reference/en/file.news.html:275(li)
 msgid "use ~/.test-unit.yml as global configuration file."
 msgstr ""
 
-#: doc/reference/en/file.news.html:248(span)
+#: doc/reference/en/file.news.html:276(span)
 msgid "TAP"
 msgstr ""
 
-#: doc/reference/en/file.news.html:248(li)
+#: doc/reference/en/file.news.html:276(li)
 msgid "add <placeholder-1/> runner. (—runner tap)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:249(li)
+#: doc/reference/en/file.news.html:277(li)
 msgid ""
 "support colorized diff: http://test-unit.rubyforge.org/svn/trunk/images/"
 "color-diff.png"
 msgstr ""
 
-#: doc/reference/en/file.news.html:251(li)
+#: doc/reference/en/file.news.html:279(li)
 msgid ""
 "add Test::Unit::AutoRunner.default_runner= to specify default test runner."
 msgstr ""
 
-#: doc/reference/en/file.news.html:254(li)
-#: doc/reference/en/file.news.html:281(li)
+#: doc/reference/en/file.news.html:282(li)
+#: doc/reference/en/file.news.html:309(li)
 msgid "4 minor enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:255(li)
+#: doc/reference/en/file.news.html:283(li)
 msgid "improve verbose mode output format. (use indent)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:256(li)
+#: doc/reference/en/file.news.html:284(li)
 msgid "support NOT_PASS_THROUGH_EXCEPTIONS."
 msgstr ""
 
-#: doc/reference/en/file.news.html:257(code)
+#: doc/reference/en/file.news.html:285(code)
 msgid "#{runner}"
 msgstr ""
 
-#: doc/reference/en/file.news.html:257(li)
+#: doc/reference/en/file.news.html:285(li)
 msgid "support arguments option in <placeholder-1/>_options."
 msgstr ""
 
-#: doc/reference/en/file.news.html:258(li)
+#: doc/reference/en/file.news.html:286(li)
 msgid "TC_ → Test in sample test case name."
 msgstr ""
 
-#: doc/reference/en/file.news.html:262(li)
+#: doc/reference/en/file.news.html:290(li)
 msgid ""
 "[#27195] test-unit-2.0.3 + ruby-1.9.1 cannot properly test DelegateClass "
 "subclasses [Mike Pomraning]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:267(li)
+#: doc/reference/en/file.news.html:295(li)
 msgid "Mike Pomraning"
 msgstr ""
 
-#: doc/reference/en/file.news.html:269(h2)
+#: doc/reference/en/file.news.html:297(h2)
 msgid "2.0.3 / 2009-07-19"
 msgstr ""
 
-#: doc/reference/en/file.news.html:271(li)
+#: doc/reference/en/file.news.html:299(li)
 msgid "6 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:272(li)
+#: doc/reference/en/file.news.html:300(li)
 msgid "add assert_predicate."
 msgstr ""
 
-#: doc/reference/en/file.news.html:273(li)
+#: doc/reference/en/file.news.html:301(li)
 msgid "add assert_not_predicate."
 msgstr ""
 
-#: doc/reference/en/file.news.html:274(li)
+#: doc/reference/en/file.news.html:302(li)
 msgid ""
 "[#24210] assert_kind_of supports an array of classes or modules. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:276(li)
+#: doc/reference/en/file.news.html:304(li)
 msgid "assert_instance_of supports an array of classes or modules."
 msgstr ""
 
-#: doc/reference/en/file.news.html:277(li)
+#: doc/reference/en/file.news.html:305(li)
 msgid "add —default-priority option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:278(li)
+#: doc/reference/en/file.news.html:306(li)
 msgid "[#26627] add —order option. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:282(li)
+#: doc/reference/en/file.news.html:310(li)
 msgid "use yellow foreground + black background for error."
 msgstr ""
 
-#: doc/reference/en/file.news.html:283(li)
+#: doc/reference/en/file.news.html:311(li)
 msgid "don’t show diff for long string."
 msgstr ""
 
-#: doc/reference/en/file.news.html:284(span)
+#: doc/reference/en/file.news.html:312(span)
 msgid "TERM"
 msgstr ""
 
-#: doc/reference/en/file.news.html:284(li)
+#: doc/reference/en/file.news.html:312(li)
 msgid ""
 "accept “*term-color” <placeholder-1/> environment as colorizable terminal. "
 "(e.g. Apple’s Terminal)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:286(li)
+#: doc/reference/en/file.news.html:314(li)
 msgid "[#26268] add a workaround for test-spec’s after_all. [Angelo Lakra]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:290(li)
+#: doc/reference/en/file.news.html:318(li)
 msgid "[#23586] re-support ruby 1.9.1. [Diego Pettenò]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:294(li)
+#: doc/reference/en/file.news.html:322(li)
 msgid "Diego Pettenò"
 msgstr ""
 
-#: doc/reference/en/file.news.html:296(li)
+#: doc/reference/en/file.news.html:324(li)
 msgid "Angelo Lakra"
 msgstr ""
 
-#: doc/reference/en/file.news.html:298(h2)
+#: doc/reference/en/file.news.html:326(h2)
 msgid "2.0.2 / 2008-12-21"
 msgstr ""
 
-#: doc/reference/en/file.news.html:300(li)
+#: doc/reference/en/file.news.html:328(li)
 msgid "2 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:303(li)
+#: doc/reference/en/file.news.html:331(li)
 msgid "re-support ruby 1.8.5."
 msgstr ""
 
-#: doc/reference/en/file.news.html:304(li)
+#: doc/reference/en/file.news.html:332(li)
 msgid "improve exception object comparison."
 msgstr ""
 
-#: doc/reference/en/file.news.html:307(li)
+#: doc/reference/en/file.news.html:335(li)
 msgid "3 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:310(li)
+#: doc/reference/en/file.news.html:338(li)
 msgid "[#22723]: collector fails on anonymous classes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:311(li)
+#: doc/reference/en/file.news.html:339(li)
 msgid "[#22986]: Test names with ‘?’ blow up on Windows"
 msgstr ""
 
-#: doc/reference/en/file.news.html:312(li)
+#: doc/reference/en/file.news.html:340(li)
 msgid "[#22988]: don’t create .test-result on non-priority mode."
 msgstr ""
 
-#: doc/reference/en/file.news.html:320(li)
+#: doc/reference/en/file.news.html:348(li)
 msgid "Bill Lear"
 msgstr ""
 
-#: doc/reference/en/file.news.html:322(h2)
+#: doc/reference/en/file.news.html:350(h2)
 msgid "2.0.1 / 2008-11-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:324(li)
+#: doc/reference/en/file.news.html:352(li)
 msgid "19 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:327(li)
+#: doc/reference/en/file.news.html:355(li)
 msgid "support ruby 1.9.1."
 msgstr ""
 
-#: doc/reference/en/file.news.html:328(li)
+#: doc/reference/en/file.news.html:356(li)
 msgid "add run_test method to be extensible."
 msgstr ""
 
-#: doc/reference/en/file.news.html:329(li)
+#: doc/reference/en/file.news.html:357(li)
 msgid "improve priority-mode auto off."
 msgstr ""
 
-#: doc/reference/en/file.news.html:330(li)
+#: doc/reference/en/file.news.html:358(li)
 msgid "improve startup/shutdown RDoc. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:331(li)
+#: doc/reference/en/file.news.html:359(li)
 msgid "add assert_compare. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:332(li)
+#: doc/reference/en/file.news.html:360(li)
 msgid "add assert_fail_assertion. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:333(li)
+#: doc/reference/en/file.news.html:361(li)
 msgid "add assert_raise_message. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:334(li)
+#: doc/reference/en/file.news.html:362(li)
 msgid "support folded diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:335(li)
+#: doc/reference/en/file.news.html:363(li)
 msgid "add assert_raise_kind_of. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:336(li)
+#: doc/reference/en/file.news.html:364(li)
 msgid "ingore inherited test for nested test case."
 msgstr ""
 
-#: doc/reference/en/file.news.html:337(li)
+#: doc/reference/en/file.news.html:365(li)
 msgid "add assert_const_defined."
 msgstr ""
 
-#: doc/reference/en/file.news.html:338(li)
+#: doc/reference/en/file.news.html:366(li)
 msgid "add assert_not_const_defined."
 msgstr ""
 
-#: doc/reference/en/file.news.html:339(li)
+#: doc/reference/en/file.news.html:367(li)
 msgid "support assert_raise with an exception object."
 msgstr ""
 
-#: doc/reference/en/file.news.html:340(li)
+#: doc/reference/en/file.news.html:368(li)
 msgid ""
 "support assert_raise with no arguments that asserts any exception is raised. "
 "[#22602] [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:342(li)
+#: doc/reference/en/file.news.html:370(li)
 msgid "support folded dot progress."
 msgstr ""
 
-#: doc/reference/en/file.news.html:343(li)
+#: doc/reference/en/file.news.html:371(li)
 msgid "add —progress-row-max option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:344(li)
+#: doc/reference/en/file.news.html:372(li)
 msgid "support color scheme customize."
 msgstr ""
 
-#: doc/reference/en/file.news.html:345(li)
+#: doc/reference/en/file.news.html:373(li)
 msgid "support configuration file. (<placeholder-1/>)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:346(span)
+#: doc/reference/en/file.news.html:374(span)
 msgid "XXX"
 msgstr ""
 
-#: doc/reference/en/file.news.html:346(li)
+#: doc/reference/en/file.news.html:374(li)
 msgid ""
 "recognize test-<placeholder-1/>.rb files as test files not only test_XXX.rb"
 msgstr ""
 
-#: doc/reference/en/file.news.html:353(li)
+#: doc/reference/en/file.news.html:381(li)
 msgid "Designing Patterns"
 msgstr ""
 
-#: doc/reference/en/file.news.html:355(h2)
+#: doc/reference/en/file.news.html:383(h2)
 msgid "2.0.0 / 2008-06-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:357(li)
+#: doc/reference/en/file.news.html:385(li)
 msgid "15 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:360(li)
+#: doc/reference/en/file.news.html:388(li)
 msgid "support startup/shutdown. (test case level setup/teardown)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:361(li)
+#: doc/reference/en/file.news.html:389(li)
 msgid "support multiple setup/teardown."
 msgstr ""
 
-#: doc/reference/en/file.news.html:362(li)
+#: doc/reference/en/file.news.html:390(li)
 msgid "support pending."
 msgstr ""
 
-#: doc/reference/en/file.news.html:363(li)
+#: doc/reference/en/file.news.html:391(li)
 msgid "support omission."
 msgstr ""
 
-#: doc/reference/en/file.news.html:364(li)
+#: doc/reference/en/file.news.html:392(li)
 msgid "support notification."
 msgstr ""
 
-#: doc/reference/en/file.news.html:365(li)
+#: doc/reference/en/file.news.html:393(li)
 msgid "support colorize."
 msgstr ""
 
-#: doc/reference/en/file.news.html:366(li)
+#: doc/reference/en/file.news.html:394(li)
 msgid "support diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:367(li)
+#: doc/reference/en/file.news.html:395(li)
 msgid "support test attribute."
 msgstr ""
 
-#: doc/reference/en/file.news.html:368(li)
+#: doc/reference/en/file.news.html:396(li)
 msgid "add assert_boolean."
 msgstr ""
 
-#: doc/reference/en/file.news.html:369(li)
+#: doc/reference/en/file.news.html:397(li)
 msgid "add assert_true."
 msgstr ""
 
-#: doc/reference/en/file.news.html:370(li)
+#: doc/reference/en/file.news.html:398(li)
 msgid "add assert_false."
 msgstr ""
 
-#: doc/reference/en/file.news.html:371(li)
+#: doc/reference/en/file.news.html:399(li)
 msgid "add —priority-mode option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:372(li)
+#: doc/reference/en/file.news.html:400(li)
 msgid "don’t use ObjectSpace to collect test cases."
 msgstr ""
 
-#: doc/reference/en/file.news.html:373(li)
+#: doc/reference/en/file.news.html:401(li)
 msgid ""
 "make more customizable. (additional options, exception handling and so on)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:374(li)
+#: doc/reference/en/file.news.html:402(li)
 msgid "improve Emacs integration."
 msgstr ""
 
-#: doc/reference/en/file.news.html:377(li)
+#: doc/reference/en/file.news.html:405(li)
 msgid "4 major changes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:380(li)
+#: doc/reference/en/file.news.html:408(li)
 msgid "remove GTK+1 support."
 msgstr ""
 
-#: doc/reference/en/file.news.html:381(li)
+#: doc/reference/en/file.news.html:409(li)
 msgid "split GTK+ runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:382(span)
+#: doc/reference/en/file.news.html:410(span)
 msgid "FOX"
 msgstr ""
 
-#: doc/reference/en/file.news.html:382(li)
+#: doc/reference/en/file.news.html:410(li)
 msgid "split <placeholder-1/> runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:383(li)
+#: doc/reference/en/file.news.html:411(li)
 msgid "split Tk runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:385(h2)
+#: doc/reference/en/file.news.html:413(h2)
 msgid "1.2.3 / 2008-02-25"
 msgstr ""
 
-#: doc/reference/en/file.news.html:387(li)
+#: doc/reference/en/file.news.html:415(li)
 msgid "1 major enhancement"
 msgstr ""
 
-#: doc/reference/en/file.news.html:390(li)
+#: doc/reference/en/file.news.html:418(li)
 msgid "Birthday (as a gem)!"
 msgstr ""
 
@@ -34798,25 +34867,25 @@ msgstr ""
 msgid ""
 "<placeholder-1/>\n"
 "<placeholder-2/>\n"
-"<ul><placeholder-3/>\n"
-"\t<placeholder-4/>\n"
-"\t<placeholder-5/>\n"
+"<placeholder-3/>\n"
+"<placeholder-4/>\n"
+"<ul><placeholder-5/>\n"
 "\t<placeholder-6/>\n"
 "\t<placeholder-7/>\n"
 "\t<placeholder-8/>\n"
 "\t<placeholder-9/>\n"
-"\t<placeholder-10/>\n"
-"\t<placeholder-11/>\n"
-"\t<placeholder-12/>\n"
-"\t<placeholder-13/>\n"
-"\t<placeholder-14/>\n"
-"\t<placeholder-15/>\n"
-"\t<placeholder-16/></ul>\n"
-"<ul><placeholder-17/>\n"
-"\t<placeholder-18/>\n"
-"\t<placeholder-19/></ul>\n"
-"<placeholder-20/>\n"
-"<ul><placeholder-21/>\n"
+"\t<placeholder-10/></ul>\n"
+"<placeholder-11/>\n"
+"<ul><placeholder-12/>\n"
+"\t<placeholder-13/></ul>\n"
+"<placeholder-14/>\n"
+"<ul><placeholder-15/>\n"
+"\t<placeholder-16/>\n"
+"\t<placeholder-17/></ul>\n"
+"<placeholder-18/>\n"
+"<ul><placeholder-19/>\n"
+"\t<placeholder-20/>\n"
+"\t<placeholder-21/>\n"
 "\t<placeholder-22/>\n"
 "\t<placeholder-23/>\n"
 "\t<placeholder-24/>\n"
@@ -34827,70 +34896,70 @@ msgid ""
 "\t<placeholder-29/>\n"
 "\t<placeholder-30/>\n"
 "\t<placeholder-31/>\n"
-"\t<placeholder-32/>\n"
-"\t<placeholder-33/>\n"
+"\t<placeholder-32/></ul>\n"
+"<ul><placeholder-33/>\n"
 "\t<placeholder-34/>\n"
-"\t<placeholder-35/>\n"
-"\t<placeholder-36/>\n"
-"\t<placeholder-37/>\n"
+"\t<placeholder-35/></ul>\n"
+"<placeholder-36/>\n"
+"<ul><placeholder-37/>\n"
 "\t<placeholder-38/>\n"
 "\t<placeholder-39/>\n"
 "\t<placeholder-40/>\n"
 "\t<placeholder-41/>\n"
 "\t<placeholder-42/>\n"
-"\t<placeholder-43/></ul>\n"
-"<ul><placeholder-44/>\n"
+"\t<placeholder-43/>\n"
+"\t<placeholder-44/>\n"
 "\t<placeholder-45/>\n"
-"\t<placeholder-46/></ul>\n"
-"<placeholder-47/>\n"
-"<ul><placeholder-48/>\n"
-"\t<placeholder-49/></ul>\n"
-"<placeholder-50/>\n"
-"<ul><placeholder-51/>\n"
-"\t<placeholder-52/></ul>\n"
-"<ul><placeholder-53/>\n"
-"\t<placeholder-54/></ul>\n"
-"<placeholder-55/>\n"
-"<ul><placeholder-56/>\n"
-"\t<placeholder-57/></ul>\n"
-"<ul><placeholder-58/>\n"
+"\t<placeholder-46/>\n"
+"\t<placeholder-47/>\n"
+"\t<placeholder-48/>\n"
+"\t<placeholder-49/>\n"
+"\t<placeholder-50/>\n"
+"\t<placeholder-51/>\n"
+"\t<placeholder-52/>\n"
+"\t<placeholder-53/>\n"
+"\t<placeholder-54/>\n"
+"\t<placeholder-55/>\n"
+"\t<placeholder-56/>\n"
+"\t<placeholder-57/>\n"
+"\t<placeholder-58/>\n"
 "\t<placeholder-59/></ul>\n"
-"<placeholder-60/>\n"
-"<ul><placeholder-61/>\n"
-"\t<placeholder-62/>\n"
-"\t<placeholder-63/>\n"
-"\t<placeholder-64/>\n"
-"\t<placeholder-65/>\n"
-"\t<placeholder-66/>\n"
-"\t<placeholder-67/>\n"
+"<ul><placeholder-60/>\n"
+"\t<placeholder-61/>\n"
+"\t<placeholder-62/></ul>\n"
+"<placeholder-63/>\n"
+"<ul><placeholder-64/>\n"
+"\t<placeholder-65/></ul>\n"
+"<placeholder-66/>\n"
+"<ul><placeholder-67/>\n"
 "\t<placeholder-68/></ul>\n"
 "<ul><placeholder-69/>\n"
-"\t<placeholder-70/>\n"
-"\t<placeholder-71/></ul>\n"
+"\t<placeholder-70/></ul>\n"
+"<placeholder-71/>\n"
 "<ul><placeholder-72/>\n"
-"\t<placeholder-73/>\n"
-"\t<placeholder-74/></ul>\n"
-"<placeholder-75/>\n"
-"<ul><placeholder-76/>\n"
-"\t<placeholder-77/>\n"
+"\t<placeholder-73/></ul>\n"
+"<ul><placeholder-74/>\n"
+"\t<placeholder-75/></ul>\n"
+"<placeholder-76/>\n"
+"<ul><placeholder-77/>\n"
 "\t<placeholder-78/>\n"
 "\t<placeholder-79/>\n"
-"\t<placeholder-80/></ul>\n"
-"<ul><placeholder-81/>\n"
+"\t<placeholder-80/>\n"
+"\t<placeholder-81/>\n"
 "\t<placeholder-82/>\n"
-"\t<placeholder-83/></ul>\n"
-"<ul><placeholder-84/>\n"
-"\t<placeholder-85/>\n"
-"\t<placeholder-86/></ul>\n"
-"<ul><placeholder-87/>\n"
-"\t<placeholder-88/>\n"
+"\t<placeholder-83/>\n"
+"\t<placeholder-84/></ul>\n"
+"<ul><placeholder-85/>\n"
+"\t<placeholder-86/>\n"
+"\t<placeholder-87/></ul>\n"
+"<ul><placeholder-88/>\n"
 "\t<placeholder-89/>\n"
-"\t<placeholder-90/>\n"
-"\t<placeholder-91/></ul>\n"
-"<placeholder-92/>\n"
-"<ul><placeholder-93/>\n"
-"\t<placeholder-94/></ul> test “test description in natural language” do … "
-"end <ul><placeholder-95/>\n"
+"\t<placeholder-90/></ul>\n"
+"<placeholder-91/>\n"
+"<ul><placeholder-92/>\n"
+"\t<placeholder-93/>\n"
+"\t<placeholder-94/>\n"
+"\t<placeholder-95/>\n"
 "\t<placeholder-96/></ul>\n"
 "<ul><placeholder-97/>\n"
 "\t<placeholder-98/>\n"
@@ -34898,84 +34967,84 @@ msgid ""
 "<ul><placeholder-100/>\n"
 "\t<placeholder-101/>\n"
 "\t<placeholder-102/></ul>\n"
-"<placeholder-103/>\n"
-"<ul><placeholder-104/>\n"
-"\t<placeholder-105/></ul>\n"
-"<ul><placeholder-106/>\n"
+"<ul><placeholder-103/>\n"
+"\t<placeholder-104/>\n"
+"\t<placeholder-105/>\n"
+"\t<placeholder-106/>\n"
 "\t<placeholder-107/></ul>\n"
 "<placeholder-108/>\n"
 "<ul><placeholder-109/>\n"
-"\t<placeholder-110/>\n"
-"\t<placeholder-111/>\n"
-"\t<placeholder-112/>\n"
-"\t<placeholder-113/></ul>\n"
-"<ul><placeholder-114/>\n"
-"\t<placeholder-115/>\n"
-"\t<placeholder-116/>\n"
+"\t<placeholder-110/></ul> test “test description in natural language” do … "
+"end <ul><placeholder-111/>\n"
+"\t<placeholder-112/></ul>\n"
+"<ul><placeholder-113/>\n"
+"\t<placeholder-114/>\n"
+"\t<placeholder-115/></ul>\n"
+"<ul><placeholder-116/>\n"
 "\t<placeholder-117/>\n"
 "\t<placeholder-118/></ul>\n"
-"<ul><placeholder-119/>\n"
-"\t<placeholder-120/></ul>\n"
-"<ul><placeholder-121/>\n"
-"\t<placeholder-122/></ul>\n"
-"<placeholder-123/>\n"
-"<ul><placeholder-124/>\n"
-"\t<placeholder-125/>\n"
+"<placeholder-119/>\n"
+"<ul><placeholder-120/>\n"
+"\t<placeholder-121/></ul>\n"
+"<ul><placeholder-122/>\n"
+"\t<placeholder-123/></ul>\n"
+"<placeholder-124/>\n"
+"<ul><placeholder-125/>\n"
 "\t<placeholder-126/>\n"
 "\t<placeholder-127/>\n"
 "\t<placeholder-128/>\n"
-"\t<placeholder-129/>\n"
-"\t<placeholder-130/></ul>\n"
-"<ul><placeholder-131/>\n"
+"\t<placeholder-129/></ul>\n"
+"<ul><placeholder-130/>\n"
+"\t<placeholder-131/>\n"
 "\t<placeholder-132/>\n"
 "\t<placeholder-133/>\n"
-"\t<placeholder-134/>\n"
-"\t<placeholder-135/></ul>\n"
-"<ul><placeholder-136/>\n"
-"\t<placeholder-137/></ul>\n"
-"<ul><placeholder-138/>\n"
-"\t<placeholder-139/>\n"
-"\t<placeholder-140/>\n"
-"\t<placeholder-141/></ul>\n"
-"<placeholder-142/>\n"
-"<ul><placeholder-143/></ul>\n"
-"<ul><placeholder-144/>\n"
-"\t<placeholder-145/></ul>\n"
-"<ul><placeholder-146/></ul>\n"
+"\t<placeholder-134/></ul>\n"
+"<ul><placeholder-135/>\n"
+"\t<placeholder-136/></ul>\n"
+"<ul><placeholder-137/>\n"
+"\t<placeholder-138/></ul>\n"
+"<placeholder-139/>\n"
+"<ul><placeholder-140/>\n"
+"\t<placeholder-141/>\n"
+"\t<placeholder-142/>\n"
+"\t<placeholder-143/>\n"
+"\t<placeholder-144/>\n"
+"\t<placeholder-145/>\n"
+"\t<placeholder-146/></ul>\n"
 "<ul><placeholder-147/>\n"
 "\t<placeholder-148/>\n"
-"\t<placeholder-149/></ul>\n"
-"<ul><placeholder-150/></ul>\n"
-"<ul><placeholder-151/>\n"
-"\t<placeholder-152/>\n"
+"\t<placeholder-149/>\n"
+"\t<placeholder-150/>\n"
+"\t<placeholder-151/></ul>\n"
+"<ul><placeholder-152/>\n"
 "\t<placeholder-153/></ul>\n"
-"<placeholder-154/>\n"
-"<ul><placeholder-155/></ul>\n"
-"<ul><placeholder-156/>\n"
-"\t<placeholder-157/>\n"
-"\t<placeholder-158/>\n"
-"\t<placeholder-159/>\n"
-"\t<placeholder-160/>\n"
-"\t<placeholder-161/>\n"
-"\t<placeholder-162/>\n"
-"\t<placeholder-163/>\n"
+"<ul><placeholder-154/>\n"
+"\t<placeholder-155/>\n"
+"\t<placeholder-156/>\n"
+"\t<placeholder-157/></ul>\n"
+"<placeholder-158/>\n"
+"<ul><placeholder-159/></ul>\n"
+"<ul><placeholder-160/>\n"
+"\t<placeholder-161/></ul>\n"
+"<ul><placeholder-162/></ul>\n"
+"<ul><placeholder-163/>\n"
 "\t<placeholder-164/>\n"
-"\t<placeholder-165/>\n"
-"\t<placeholder-166/>\n"
-"\t<placeholder-167/>\n"
+"\t<placeholder-165/></ul>\n"
+"<ul><placeholder-166/></ul>\n"
+"<ul><placeholder-167/>\n"
 "\t<placeholder-168/>\n"
-"\t<placeholder-169/>\n"
-"\t<placeholder-170/>\n"
-"\t<placeholder-171/>\n"
-"\t<placeholder-172/>\n"
+"\t<placeholder-169/></ul>\n"
+"<placeholder-170/>\n"
+"<ul><placeholder-171/></ul>\n"
+"<ul><placeholder-172/>\n"
 "\t<placeholder-173/>\n"
-"\t<placeholder-174/></ul>\n"
-"<ul><placeholder-175/></ul>\n"
-"<ul><placeholder-176/>\n"
-"\t<placeholder-177/></ul>\n"
-"<placeholder-178/>\n"
-"<ul><placeholder-179/></ul>\n"
-"<ul><placeholder-180/>\n"
+"\t<placeholder-174/>\n"
+"\t<placeholder-175/>\n"
+"\t<placeholder-176/>\n"
+"\t<placeholder-177/>\n"
+"\t<placeholder-178/>\n"
+"\t<placeholder-179/>\n"
+"\t<placeholder-180/>\n"
 "\t<placeholder-181/>\n"
 "\t<placeholder-182/>\n"
 "\t<placeholder-183/>\n"
@@ -34985,19 +35054,35 @@ msgid ""
 "\t<placeholder-187/>\n"
 "\t<placeholder-188/>\n"
 "\t<placeholder-189/>\n"
-"\t<placeholder-190/>\n"
-"\t<placeholder-191/>\n"
-"\t<placeholder-192/>\n"
-"\t<placeholder-193/>\n"
-"\t<placeholder-194/></ul>\n"
+"\t<placeholder-190/></ul>\n"
+"<ul><placeholder-191/></ul>\n"
+"<ul><placeholder-192/>\n"
+"\t<placeholder-193/></ul>\n"
+"<placeholder-194/>\n"
 "<ul><placeholder-195/></ul>\n"
 "<ul><placeholder-196/>\n"
 "\t<placeholder-197/>\n"
 "\t<placeholder-198/>\n"
-"\t<placeholder-199/></ul>\n"
-"<placeholder-200/>\n"
-"<ul><placeholder-201/></ul>\n"
-"<ul><placeholder-202/></ul>"
+"\t<placeholder-199/>\n"
+"\t<placeholder-200/>\n"
+"\t<placeholder-201/>\n"
+"\t<placeholder-202/>\n"
+"\t<placeholder-203/>\n"
+"\t<placeholder-204/>\n"
+"\t<placeholder-205/>\n"
+"\t<placeholder-206/>\n"
+"\t<placeholder-207/>\n"
+"\t<placeholder-208/>\n"
+"\t<placeholder-209/>\n"
+"\t<placeholder-210/></ul>\n"
+"<ul><placeholder-211/></ul>\n"
+"<ul><placeholder-212/>\n"
+"\t<placeholder-213/>\n"
+"\t<placeholder-214/>\n"
+"\t<placeholder-215/></ul>\n"
+"<placeholder-216/>\n"
+"<ul><placeholder-217/></ul>\n"
+"<ul><placeholder-218/></ul>"
 msgstr ""
 
 #: doc/reference/en/top-level-namespace.html:6(title)
@@ -35064,15 +35149,15 @@ msgstr ""
 msgid "#=="
 msgstr ""
 
-#: doc/reference/en/method_list.html:142(small)
-#: doc/reference/en/method_list.html:734(small)
-#: doc/reference/en/method_list.html:1606(small)
+#: doc/reference/en/method_list.html:134(small)
+#: doc/reference/en/method_list.html:742(small)
+#: doc/reference/en/method_list.html:1678(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::Attribute"
 msgstr ""
 
 #: doc/reference/en/method_list.html:156(a)
-#: doc/reference/en/method_list.html:172(a)
+#: doc/reference/en/method_list.html:164(a)
 msgid "#[]="
 msgstr ""
 
@@ -35143,8 +35228,8 @@ msgstr ""
 #: doc/reference/en/method_list.html:2846(small)
 #: doc/reference/en/method_list.html:2878(small)
 #: doc/reference/en/method_list.html:2886(small)
-#: doc/reference/en/method_list.html:3070(small)
-#: doc/reference/en/method_list.html:3358(small)
+#: doc/reference/en/method_list.html:3086(small)
+#: doc/reference/en/method_list.html:3366(small)
 #: doc/reference/en/method_list.html:3646(small)
 #: doc/reference/en/method_list.html:3654(small)
 #: doc/reference/en/method_list.html:3670(small)
@@ -35230,7 +35315,7 @@ msgstr ""
 
 #: doc/reference/en/method_list.html:718(small)
 #: doc/reference/en/method_list.html:726(small)
-#: doc/reference/en/method_list.html:742(small)
+#: doc/reference/en/method_list.html:734(small)
 #: doc/reference/en/method_list.html:758(small)
 #: doc/reference/en/method_list.html:1046(small)
 #: doc/reference/en/method_list.html:1054(small)
@@ -35254,12 +35339,12 @@ msgid "Test::Unit::Attribute::BaseClassMethods"
 msgstr ""
 
 #: doc/reference/en/method_list.html:774(small)
-#: doc/reference/en/method_list.html:1078(small)
+#: doc/reference/en/method_list.html:1086(small)
 #: doc/reference/en/method_list.html:1094(small)
 #: doc/reference/en/method_list.html:1206(small)
 #: doc/reference/en/method_list.html:1278(small)
 #: doc/reference/en/method_list.html:1286(small)
-#: doc/reference/en/method_list.html:1598(small)
+#: doc/reference/en/method_list.html:1590(small)
 #: doc/reference/en/method_list.html:2774(small)
 #: doc/reference/en/method_list.html:2782(small)
 #: doc/reference/en/class_list.html:42(small)
@@ -35333,7 +35418,7 @@ msgstr ""
 msgid "#count"
 msgstr ""
 
-#: doc/reference/en/method_list.html:988(a)
+#: doc/reference/en/method_list.html:996(a)
 msgid "#create"
 msgstr ""
 
@@ -35375,11 +35460,11 @@ msgstr ""
 msgid "#delete"
 msgstr ""
 
-#: doc/reference/en/method_list.html:1156(a)
+#: doc/reference/en/method_list.html:1148(a)
 msgid "#description"
 msgstr ""
 
-#: doc/reference/en/method_list.html:1174(small)
+#: doc/reference/en/method_list.html:1166(small)
 #: doc/reference/en/method_list.html:1518(small)
 #: doc/reference/en/method_list.html:1526(small)
 #: doc/reference/en/method_list.html:2470(small)
@@ -35427,19 +35512,19 @@ msgid "#exception_handler"
 msgstr ""
 
 #: doc/reference/en/method_list.html:1350(small)
-#: doc/reference/en/method_list.html:1366(small)
+#: doc/reference/en/method_list.html:1358(small)
 #: doc/reference/en/method_list.html:3662(small)
 msgid "Test::Unit::ExceptionHandler::ClassMethods"
 msgstr ""
 
-#: doc/reference/en/method_list.html:1358(small)
-#: doc/reference/en/method_list.html:1678(small)
-#: doc/reference/en/class_list.html:42(small)
-msgid "Test::Unit::ExceptionHandler"
+#: doc/reference/en/method_list.html:1356(a)
+msgid "#exception_handlers"
 msgstr ""
 
-#: doc/reference/en/method_list.html:1364(a)
-msgid "#exception_handlers"
+#: doc/reference/en/method_list.html:1366(small)
+#: doc/reference/en/method_list.html:1582(small)
+#: doc/reference/en/class_list.html:42(small)
+msgid "Test::Unit::ExceptionHandler"
 msgstr ""
 
 #: doc/reference/en/method_list.html:1372(a)
@@ -35517,51 +35602,51 @@ msgstr ""
 msgid "#have_test_data?"
 msgstr ""
 
-#: doc/reference/en/method_list.html:1582(small)
-msgid "Test::Unit::PendingHandler"
+#: doc/reference/en/method_list.html:1598(small)
+msgid "Test::Unit::FailureHandler"
 msgstr ""
 
-#: doc/reference/en/method_list.html:1590(small)
-#: doc/reference/en/method_list.html:2510(small)
-msgid "Test::Unit::TestCaseNotificationSupport"
+#: doc/reference/en/method_list.html:1606(small)
+msgid "Test::Unit::ErrorHandler"
 msgstr ""
 
 #: doc/reference/en/method_list.html:1614(small)
-msgid "Test::Unit::NotificationHandler"
-msgstr ""
-
-#: doc/reference/en/method_list.html:1622(small)
-msgid "Test::Unit::OmissionHandler"
-msgstr ""
-
-#: doc/reference/en/method_list.html:1630(small)
 #: doc/reference/en/class_list.html:42(small)
 msgid "Test::Unit::Data"
 msgstr ""
 
+#: doc/reference/en/method_list.html:1622(small)
+msgid "Test::Unit::NotificationHandler"
+msgstr ""
+
+#: doc/reference/en/method_list.html:1630(small)
+#: doc/reference/en/class_list.html:42(small)
+msgid "Test::Unit::Fixture"
+msgstr ""
+
 #: doc/reference/en/method_list.html:1638(small)
-msgid "Test::Unit::ErrorHandler"
+#: doc/reference/en/method_list.html:2662(small)
+msgid "Test::Unit::TestCasePendingSupport"
 msgstr ""
 
 #: doc/reference/en/method_list.html:1646(small)
-msgid "Test::Unit::FailureHandler"
-msgstr ""
-
-#: doc/reference/en/method_list.html:1654(small)
 #: doc/reference/en/method_list.html:2550(small)
 #: doc/reference/en/method_list.html:2558(small)
 #: doc/reference/en/method_list.html:2566(small)
 msgid "Test::Unit::TestCaseOmissionSupport"
 msgstr ""
 
+#: doc/reference/en/method_list.html:1654(small)
+msgid "Test::Unit::PendingHandler"
+msgstr ""
+
 #: doc/reference/en/method_list.html:1662(small)
-#: doc/reference/en/class_list.html:42(small)
-msgid "Test::Unit::Fixture"
+#: doc/reference/en/method_list.html:2510(small)
+msgid "Test::Unit::TestCaseNotificationSupport"
 msgstr ""
 
 #: doc/reference/en/method_list.html:1670(small)
-#: doc/reference/en/method_list.html:2662(small)
-msgid "Test::Unit::TestCasePendingSupport"
+msgid "Test::Unit::OmissionHandler"
 msgstr ""
 
 #: doc/reference/en/method_list.html:2028(a)
@@ -35740,7 +35825,7 @@ msgstr ""
 msgid "#pendings"
 msgstr ""
 
-#: doc/reference/en/method_list.html:2692(a)
+#: doc/reference/en/method_list.html:2684(a)
 msgid "#prepare"
 msgstr ""
 
@@ -35761,7 +35846,7 @@ msgstr ""
 msgid "#priority"
 msgstr ""
 
-#: doc/reference/en/method_list.html:2758(small)
+#: doc/reference/en/method_list.html:2766(small)
 msgid "Test::Unit::Priority::ClassMethods"
 msgstr ""
 
@@ -35882,7 +35967,7 @@ msgstr ""
 msgid "#status"
 msgstr ""
 
-#: doc/reference/en/method_list.html:3308(a)
+#: doc/reference/en/method_list.html:3300(a)
 msgid "#suite"
 msgstr ""
 
@@ -35908,7 +35993,7 @@ msgstr ""
 msgid "#template"
 msgstr ""
 
-#: doc/reference/en/method_list.html:3388(a)
+#: doc/reference/en/method_list.html:3396(a)
 msgid "#test"
 msgstr ""
 
@@ -36123,7 +36208,7 @@ msgstr ""
 #: doc/reference/en/index.html:37(span)
 #: doc/reference/en/file.README.html:37(span)
 msgid "File: README"
-msgstr ""
+msgstr "ファイル: はじめに"
 
 #: doc/reference/en/index.html:57(h1) doc/reference/en/file.README.html:57(h1)
 msgid "test-unit 2"
@@ -36135,7 +36220,7 @@ msgstr ""
 
 #: doc/reference/en/index.html:59(h2) doc/reference/en/file.README.html:59(h2)
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #: doc/reference/en/index.html:60(p) doc/reference/en/file.README.html:60(p)
 msgid "test-unit 2 – Improved version of Test::Unit bundled in Ruby 1.8.×."
@@ -36455,20 +36540,20 @@ msgid "(Test::Unit::Priority)"
 msgstr ""
 
 #: doc/reference/en/_index.html:189(small)
-msgid "(Test::Unit::Fixture)"
-msgstr ""
-
-#: doc/reference/en/_index.html:196(small)
 msgid "(Test::Unit::Data)"
 msgstr ""
 
-#: doc/reference/en/_index.html:203(small)
+#: doc/reference/en/_index.html:196(small)
 msgid "(Test::Unit::ExceptionHandler)"
+msgstr ""
+
+#: doc/reference/en/_index.html:203(small)
+msgid "(Test::Unit::Fixture)"
 msgstr ""
 
 #: doc/reference/en/_index.html:238(small)
 #: doc/reference/en/_index.html:551(small)
-#: doc/reference/en/_index.html:745(small)
+#: doc/reference/en/_index.html:738(small)
 msgid "(Test::Unit::UI::Console)"
 msgstr ""
 
@@ -36542,16 +36627,16 @@ msgstr ""
 msgid "T"
 msgstr ""
 
-#: doc/reference/en/_index.html:738(small)
-msgid "(Test::Unit::UI::Tap)"
+#: doc/reference/en/_index.html:745(small)
+msgid "(Test::Unit::UI::Emacs)"
 msgstr ""
 
 #: doc/reference/en/_index.html:752(small)
-msgid "(Test::Unit::UI::XML)"
+msgid "(Test::Unit::UI::Tap)"
 msgstr ""
 
 #: doc/reference/en/_index.html:759(small)
-msgid "(Test::Unit::UI::Emacs)"
+msgid "(Test::Unit::UI::XML)"
 msgstr ""
 
 #: doc/reference/en/_index.html:803(li)
