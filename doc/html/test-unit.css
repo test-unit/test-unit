@@ -1,8 +1,8 @@
 html,
 body
 {
-  margin: 0px;
-  padding: 0px;
+  margin: 0px !important;
+  padding: 0px !important;
   color: black !important;
   background-color: white !important;
 }
@@ -24,7 +24,8 @@ div.header
   padding: 0px;
 }
 
-div.header div.title
+div.header div.title,
+div.header h1.title
 {
   background: url(logo.png) no-repeat;
   font-family: sans-serif;
@@ -131,7 +132,7 @@ ul.menu li
 
 ul.menu li a
 {
-  color: #fed08e;
+  color: #f6ede0;
   text-decoration: none;
   padding-left: 20px;
 }
@@ -143,7 +144,7 @@ ul.menu li a:hover
 
 ul.menu li a:visited
 {
-  color: #ffb84f;
+  color: #f6ede0;
 }
 
 ul.menu li#menu-reference
