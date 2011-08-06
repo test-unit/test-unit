@@ -214,7 +214,7 @@ require "test/unit"</pre>
           使い方:
           <pre class="code"><code>require "test/unit/capybara"
 
-class TestMyRackApplication < Test::Unit::TestCase
+class TestMyRackApplication &lt; Test::Unit::TestCase
   include Capybara
 
   def setup
