@@ -1,5 +1,35 @@
 h1. News
 
+h2. 2.3.1 - 2011-08-06
+
+Output improvement release!
+
+h3. Improvements
+
+  * [ui][console] Outputs omissions and notifications in short.
+  * [ui][console] Added "important-only" verbose level.
+  * Intelligence diff supports recursive references.
+  * [rubyforge #29325] Supported Ruby Enterprise Edition.
+    [Reported by Hans de Graaff]
+  * [rubyforge #29326] Supported JRuby.
+    [Reported by Hans de Graaff]
+  * Added --show-detail-immediately option that shows
+    fault details when a fault is occurred.
+
+h3. Fixes
+
+  * [pull request #1] Fixed a problem that load collector
+    can't load a test file on Ruby 1.9. [Patch by grafi-tt]
+  * [issue #3] Fixed a problem that implicit method name
+    override by declarative style test definition.
+    [Reported by Jeremy Stephens]
+
+h3. Thanks
+
+  * grafi-tt
+  * Jeremy Stephens
+  * Hans de Graaff
+
 h2. 2.3.0 / 2011-04-17
 
 * 13 enhancements
