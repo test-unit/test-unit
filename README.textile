@@ -1,17 +1,17 @@
-h1. Test::Unit 2.x
+h1. test-unit 2
 
-* http://rubyforge.org/projects/test-unit/
+http://rubyforge.org/projects/test-unit/
 
-h2. DESCRIPTION
+h2. Description
 
-Test::Unit 2.x - Improved version of Test::Unit bundled in
-Ruby 1.8.x.
+test-unit 2 - Improved version of Test::Unit bundled in Ruby
+1.8.x.
 
 Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
 bundled in Ruby 1.8.x had not been improved but unbundled
-Test::Unit (Test::Unit 2.x) will be improved actively.
+Test::Unit (test-unit 2) will be improved actively.
 
-h2. FEATURES
+h2. Features
 
 * Test::Unit 1.2.3 is the original Test::Unit, taken
   straight from the ruby distribution. It is being
@@ -19,7 +19,7 @@ h2. FEATURES
   stand-alone package. (The test framework in ruby is going
   to radically change very soon).
 
-* Test::Unit 2.x will be improved actively and may break
+* test-unit 2 will be improved actively and may break
   compatiblity with Test::Unit 1.2.3. (We will not hope it
   if it isn't needed.)
 
@@ -28,7 +28,7 @@ h2. FEATURES
   provides for installing all Test::Unit related gems
   easily.
 
-h2. INSTALL
+h2. Install
 
 <pre>
 % sudo gem install test-unit
@@ -40,7 +40,7 @@ If you want to use full Test::Unit features:
 % sudo gem install test-unit-full
 </pre>
 
-h2. LICENSE
+h2. License
 
 (The Ruby License)
 
@@ -49,7 +49,7 @@ This software is distributed under the same terms as ruby.
 Exception: lib/test/unit/diff.rb is a dual license of the
 Ruby license and PSF license.
 
-h2. AUTHORS
+h2. Authors
 
 h3. Active
 
