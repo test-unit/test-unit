@@ -355,7 +355,10 @@ module Test
           def output_progress_in_detail(fault)
             return if @output_level == SILENT
             return unless categorize_fault(fault) == :need_detail_faults
+            nl
+            nl
             output_fault(fault)
+            nl
           end
 
           def output?(level)
