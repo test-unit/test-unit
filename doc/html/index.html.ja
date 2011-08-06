@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="test-unit.css" type="text/css" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.png" />
-    <title>Test::Unit - Ruby用単体テストフレームワーク</title>
+    <title>test-unit - Ruby用単体テストフレームワーク</title>
   </head>
   <body>
     <div class="header">
@@ -16,7 +16,7 @@
         <a href="index.html.ja">
 	  <span class="title">Ruby用単体テストフレームワーク</span>
 	  <span class="title-separator">-</span>
-	  <span class="title-project">Test::Unit</span>
+	  <span class="title-project">test-unit</span>
         </a>
       </div>
       <ul class="other-languages">
@@ -31,13 +31,13 @@
 
     <div class="content">
       <div class="main">
-	<h1>Test::Unit</h1>
+	<h1>test-unit</h1>
 	<p>
-	  Test::UnitはRuby用のxUnit系の単体テストフレームワークです。Ruby 1.8まではRuby本体に標準添付されていましたが、Ruby 1.9からはより小さな<a href="http://blog.zenspider.com/minitest/">minitest</a>というフレームワークが標準添付されています。Test::UnitがRuby 1.8に標準添付されていた頃はほとんど機能拡張などがされず、<a href="http://rspec.info/">RSpec</a>などより新しいテスティングフレームワークから見劣りするものになっていました。しかし、Ruby標準添付ではなく、1つのプロジェクトとして開発が進められるようになってからは活発に開発が進められています。Ruby本体のバージョンアップに関係なく新しいバージョンをリリースできるようになったことも開発が活発になった理由の1つです。Ruby標準添付の頃のTest::Unitしか知らない人は、一度、最新のTest::Unitを使ってみてはいかがでしょうか。とても使いやすくなっていることを実感できるはずです。
+	  test-unitはRuby用のxUnit系の単体テストフレームワークです。Ruby 1.8まではRuby本体に標準添付されていましたが、Ruby 1.9からはより小さな<a href="http://blog.zenspider.com/minitest/">minitest</a>というフレームワークが標準添付されています。test-unitがRuby 1.8に標準添付されていた頃はほとんど機能拡張などがされず、<a href="http://rspec.info/">RSpec</a>などより新しいテスティングフレームワークから見劣りするものになっていました。しかし、Ruby標準添付ではなく、1つのプロジェクトとして開発が進められるようになってからは活発に開発が進められています。Ruby本体のバージョンアップに関係なく新しいバージョンをリリースできるようになったことも開発が活発になった理由の1つです。Ruby標準添付の頃のtest-unitしか知らない人は、一度、最新のtest-unitを使ってみてはいかがでしょうか。とても使いやすくなっていることを実感できるはずです。
 	</p>
         <h2 id="backward-compatibility">後方互換性</h2>
         <p>
-          Test::Unitではなるべく後方互換性を維持したまま開発を進めているため、ほとんどの場合、Ruby 1.8に標準添付されていたTest::Unitで動いたテストは最新のTest::Unitでも動作します。しかし、100%ではありません。もし、完全にRuby 1.8に標準添付されていたバージョンを使用したい場合は、以下のようにtest-unit 1.2.3をインストールし、明示的にtest-unit 1.2.3を利用するようにしてください。
+          test-unitではなるべく後方互換性を維持したまま開発を進めているため、ほとんどの場合、Ruby 1.8に標準添付されていたtest-unitで動いたテストは最新のtest-unitでも動作します。しかし、100%ではありません。もし、完全にRuby 1.8に標準添付されていたバージョンを使用したい場合は、以下のようにtest-unit 1.2.3をインストールし、明示的にtest-unit 1.2.3を利用するようにしてください。
         </p>
         <p>
           インストール:
@@ -55,7 +55,7 @@ require "test/unit"</pre>
 
 	<h2 id="feature-split">機能の分割</h2>
         <p>
-	  Test::Unitには外部ライブラリに依存している機能がいくつかあります。たとえば、テスト結果をGUIで表示する部分です。これらの部分は別のパッケージとしてリリースすることにし、標準的なコア機能はtest-unitパッケージとしてリリースしています。そのため、付加的な機能を利用する場合は明示的にtest-unitとは異なるパッケージをインストールする必要があります。
+	  test-unitには外部ライブラリに依存している機能がいくつかあります。たとえば、テスト結果をGUIで表示する部分です。これらの部分は別のパッケージとしてリリースすることにし、標準的なコア機能はtest-unitパッケージとしてリリースしています。そのため、付加的な機能を利用する場合は明示的にtest-unitとは異なるパッケージをインストールする必要があります。
         </p>
         <p>
           例えば、GTK+を用いたテスト実行インターフェイスを利用する場合は以下のようになります。
@@ -298,7 +298,7 @@ end</code></pre>
 
 	<h2 id="developer">開発者向け情報</h2>
         <p>
-	  Test::UnitはRubyでもっと便利なテスト環境を提供するため、開発に参加してくれる人を募集しています。
+	  test-unitはRubyでもっと便利なテスト環境を提供するため、開発に参加してくれる人を募集しています。
           以下は開発に必要となる情報です。
         </p>
 
