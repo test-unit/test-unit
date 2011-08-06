@@ -1,4 +1,6 @@
-=== 2.3.0 / 2011-04-17
+h1. News
+
+h2. 2.3.0 / 2011-04-17
 
 * 13 enhancements
   * improve Hash key sorting for diff.
@@ -21,7 +23,7 @@
   * Daniel Berger
   * Haruka Yoshihara
 
-=== 2.2.0 / 2011-02-14
+h2. 2.2.0 / 2011-02-14
 
 * 22 enhancements
   * [#28808] accept String as delta for assert_in_delta.
@@ -63,12 +65,12 @@
   * Daniel Berger
   * Nobuyoshi Nakada
 
-=== 2.1.2 / 2010-11-25
+h2. 2.1.2 / 2010-11-25
 
 * 1 enhancement
   * support auto runner prepare hook.
 
-=== 2.1.1 / 2010-07-29
+h2. 2.1.1 / 2010-07-29
 
 * 1 bug fix
   * [test-unit-users-en:00026] re-work tap runner.
@@ -86,7 +88,7 @@
 * Thanks
   * Daniel Berger
 
-=== 2.0.8 / 2010-06-02
+h2. 2.0.8 / 2010-06-02
 
 * 5 major enchancements
   * collect *_test.rb and *-test.rb files as test files.
@@ -109,7 +111,7 @@
   * Florian Frank
   * David MARCHALAND
 
-=== 2.0.7 / 2010-03-09
+h2. 2.0.7 / 2010-03-09
 
 * 4 major enhancements
   * detect redefined test methods.
@@ -137,7 +139,7 @@
   * Bob Saveland
   * Champak Ch
 
-=== 2.0.6 / 2010-01-09
+h2. 2.0.6 / 2010-01-09
 
 * 3 major enhancements
   * [#27380] Declarative syntax? [Daniel Berger]
@@ -163,7 +165,7 @@
   * David MARCHALAND
   * Daniel Berger
 
-=== 2.0.5 / 2009-10-18
+h2. 2.0.5 / 2009-10-18
 
 * 1 bug fixes
   * [#27314] fix diff may raise an exception. [Erik Hollensbe]
@@ -171,7 +173,7 @@
 * Thanks
   * Erik Hollensbe
 
-=== 2.0.4 / 2009-10-17
+h2. 2.0.4 / 2009-10-17
 
 * 4 major enhancements
   * use ~/.test-unit.yml as global configuration file.
@@ -193,7 +195,7 @@
 * Thanks
   * Mike Pomraning
 
-=== 2.0.3 / 2009-07-19
+h2. 2.0.3 / 2009-07-19
 
 * 6 major enhancements
   * add assert_predicate.
@@ -219,7 +221,7 @@
   * Daniel Berger
   * Angelo Lakra
 
-=== 2.0.2 / 2008-12-21
+h2. 2.0.2 / 2008-12-21
 
 * 2 major enhancements
 
@@ -238,7 +240,7 @@
   * Daniel Berger
   * Bill Lear
 
-=== 2.0.1 / 2008-11-09
+h2. 2.0.1 / 2008-11-09
 
 * 19 major enhancements
 
@@ -268,7 +270,7 @@
   * Daniel Berger
   * Designing Patterns
 
-=== 2.0.0 / 2008-06-18
+h2. 2.0.0 / 2008-06-18
 
 * 15 major enhancements
 
@@ -295,7 +297,7 @@
   * split FOX runner as another gem.
   * split Tk runner as another gem.
 
-=== 1.2.3 / 2008-02-25
+h2. 1.2.3 / 2008-02-25
 
 * 1 major enhancement
 
