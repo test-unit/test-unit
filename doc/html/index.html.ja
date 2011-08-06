@@ -23,7 +23,7 @@
         <li id="other-language-english" lang="en" xml:lang="en"><a href="./">English</a></li>
       </ul>
       <ul class="menu">
-	<li id="menu-reference"><a href="test-unit/">リファレンスマニュアル</a></li>
+	<li id="menu-reference"><a href="test-unit/ja/">リファレンスマニュアル</a></li>
 	<li id="menu-install"><a href="#test-unit-install">インストール</a></li>
 	<li id="menu-developer"><a href="#developer">開発者向け情報</a></li>
       </ul>
