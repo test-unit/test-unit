@@ -37,6 +37,7 @@ module Test
             @progress_row = 0
             @progress_row_max = @options[:progress_row_max]
             @progress_row_max ||= guess_progress_row_max
+            @show_detail_immediately = @options[:show_detail_immediately]
             @already_outputted = false
             @indent = 0
             @top_level = true
@@ -83,6 +84,7 @@ module Test
           def add_fault(fault)
             @faults << fault
             output_progress(fault.single_character_display, fault_color(fault))
+            output_progress_in_detail(fault) if @show_detail_immediately
             @already_outputted = true if fault.critical?
           end
 
@@ -97,7 +99,8 @@ module Test
 
           def finished(elapsed_time)
             nl if output?(NORMAL) and !output?(VERBOSE)
-            output_faults
+            output_faults unless @show_detail_immediately
+            nl(IMPORTANT_FAULTS_ONLY)
             change_output_level(IMPORTANT_FAULTS_ONLY) do
               output_statistics(elapsed_time)
             end
@@ -112,7 +115,6 @@ module Test
                                    categorized_faults[:omissions])
             output_faults_in_short("Notifications", Notification,
                                    categorized_faults[:notifications])
-            nl(IMPORTANT_FAULTS_ONLY)
           end
 
           def max_digit(max_number)
@@ -145,14 +147,18 @@ module Test
 
           def categorize_faults
             @faults.group_by do |fault|
-              case fault
-              when Omission
-                :omissions
-              when Notification
-                :notifications
-              else
-                :need_detail_faults
-              end
+              categorize_fault(fault)
+            end
+          end
+
+          def categorize_fault(fault)
+            case fault
+            when Omission
+              :omissions
+            when Notification
+              :notifications
+            else
+              :need_detail_faults
             end
           end
 
@@ -344,6 +350,12 @@ module Test
                 @progress_row = 0
               end
             end
+          end
+
+          def output_progress_in_detail(fault)
+            return if @output_level == SILENT
+            return unless categorize_fault(fault) == :need_detail_faults
+            output_fault(fault)
           end
 
           def output?(level)
