@@ -146,9 +146,13 @@ module Test
           end
 
           def categorize_faults
-            @faults.group_by do |fault|
-              categorize_fault(fault)
+            faults = {}
+            @faults.each do |fault|
+              category = categorize_fault(fault)
+              faults[category] ||= []
+              faults[category] << fault
             end
+            faults
           end
 
           def categorize_fault(fault)
