@@ -1,5 +1,22 @@
 h1. News
 
+h2. 2.3.2 - 2011-08-15
+
+A bug fix release.
+
+h3. Improvements
+
+  * [ui][console] Added some newlines to improve readability.
+
+h3. Fixes
+
+  * [ui][console] Worked --verbose again.
+  * Re-supported Ruby 1.8.6. [Reported by James Mead]
+
+h3. Thanks
+
+  * James Mead
+
 h2. 2.3.1 - 2011-08-06
 
 Output improvement release!
