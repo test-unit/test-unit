@@ -18,7 +18,7 @@ module Test
       opts.on('-v', '--verbose=[LEVEL]', output_levels,
               "Set the output level (default is verbose).",
               "(#{auto_runner.keyword_display(output_levels)})") do |level|
-        level ||= output_levels.assoc(:verbose)[1]
+        level ||= output_levels.assoc("verbose")[1]
         auto_runner.runner_options[:output_level] = level
       end
 
