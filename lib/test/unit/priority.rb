@@ -1,3 +1,5 @@
+require "fileutils"
+
 module Test
   module Unit
     module Priority
