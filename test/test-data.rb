@@ -150,19 +150,17 @@ class TestData < Test::Unit::TestCase
        "n-data" => TestCalc::TestNData,
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
        "load-data-set" => TestCalc::TestLoadDataSet)
-
   def test_suite(test_case)
     suite = test_case.suite
-    assert_equal(["test_plus[positive positive](#{test_case.name})",
-                  "test_plus[positive negative](#{test_case.name})"],
-                 suite.tests.collect {|test| test.name})
+    assert_equal(["test_plus[positive negative](#{test_case.name})",
+                  "test_plus[positive positive](#{test_case.name})"],
+                 suite.tests.collect {|test| test.name}.sort)
   end
 
   data("data set" => TestCalc::TestDataSet,
        "n-data" => TestCalc::TestNData,
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
        "load-data-set" => TestCalc::TestLoadDataSet)
-
   def test_run(test_case)
     result = _run_test(test_case)
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
