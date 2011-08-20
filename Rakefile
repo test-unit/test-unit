@@ -120,7 +120,7 @@ end
 namespace :reference do
   translate_languages = [:ja]
   supported_languages = [:en, *translate_languages]
-  html_files = FileList[doc_en_dir + "**/*.html"].to_a
+  html_files = FileList[(doc_en_dir + "**/*.html").to_s].to_a
 
   directory reference_base_dir.to_s
   CLOBBER.include(reference_base_dir.to_s)
