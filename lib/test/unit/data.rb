@@ -19,7 +19,7 @@ module Test
           when 2
             data_set = {arguments[0] => arguments[1]}
           else
-            message= "wrong number arguments(#{n_arguments} for 1..2)"
+            message = "wrong number arguments(#{n_arguments} for 1..2)"
             raise ArgumentError, message
           end
           current_data = current_attribute(:data)[:value] || []
