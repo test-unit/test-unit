@@ -10,6 +10,8 @@ require "yard"
 require "jeweler"
 require "./lib/test/unit/version.rb"
 
+task :default => :test
+
 def cleanup_white_space(entry)
   entry.gsub(/(\A\n+|\n+\z)/, '') + "\n"
 end
@@ -321,6 +323,10 @@ namespace :release do
 
   desc "Release to RubyForge."
   task :rubyforge => "release:rubyforge:upload"
+end
+
+task :test do
+  ruby("test/run-test.rb")
 end
 
 # vim: syntax=Ruby
