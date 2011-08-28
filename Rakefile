@@ -34,13 +34,13 @@ Jeweler::Tasks.new do |_spec|
   spec.files = FileList["lib/**/*.rb",
                         "bin/*",
                         "sample/*.rb",
+                        "test/**/*",
                         "README.textile",
                         "TODO",
                         "Rakefile",
                         "COPYING",
                         "GPL",
                         "PSFL"]
-  spec.test_files = FileList["test/**/*.rb"]
 end
 
 Rake::Task["release"].prerequisites.clear
