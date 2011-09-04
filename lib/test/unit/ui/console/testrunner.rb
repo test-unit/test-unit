@@ -100,7 +100,7 @@ module Test
           def finished(elapsed_time)
             nl if output?(NORMAL) and !output?(VERBOSE)
             output_faults unless @show_detail_immediately
-            nl(IMPORTANT_FAULTS_ONLY)
+            nl(PROGRESS_ONLY)
             change_output_level(IMPORTANT_FAULTS_ONLY) do
               output_statistics(elapsed_time)
             end
