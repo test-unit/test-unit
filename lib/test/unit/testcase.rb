@@ -113,7 +113,7 @@ module Test
           _added_methods = added_methods
           stringified_name = name.to_s
           if _added_methods.include?(stringified_name)
-            attribute(:redefined, true, {}, stringified_name)
+            attribute(:redefined, {:backtrace => caller}, {}, stringified_name)
           end
           _added_methods << stringified_name
         end
@@ -520,8 +520,10 @@ module Test
       end
 
       def run_test
-        if self[:redefined]
-          notify("#{self.class}\##{@method_name} was redefined")
+        redefined_info = self[:redefined]
+        if redefined_info
+          notify("#{self.class}\##{@method_name} was redefined",
+                 :backtrace => redefined_info[:backtrace])
         end
         if @internal_data.have_test_data?
           __send__(@method_name, @internal_data.test_data)

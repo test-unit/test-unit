@@ -69,8 +69,12 @@ module Test
       #     notify("Special!") if special_case?
       #     # Reached here too
       #   end
-      def notify(message, &block)
-        notification = Notification.new(name, filter_backtrace(caller), message)
+      #
+      # options:
+      #   :backtrace override backtrace.
+      def notify(message, options={} &block)
+        backtrace = filter_backtrace(options[:backtrace] || caller)
+        notification = Notification.new(name, backtrace, message)
         add_notification(notification)
       end
 
