@@ -127,7 +127,7 @@ module Test
             faults.each_with_index do |fault, index|
               nl
               output_single("%#{digit}d) " % (index + 1))
-              output_fault(fault)
+              output_fault_in_detail(fault)
             end
           end
 
@@ -139,9 +139,7 @@ module Test
             output(":")
             faults.each_with_index do |fault, index|
               output_single("%#{digit}d) " % (index + 1))
-              output_single(fault.message, fault_color(fault))
-              output(" [#{fault.test_name}]")
-              output(fault.location.first)
+              output_fault_in_short(fault)
             end
           end
 
@@ -166,7 +164,7 @@ module Test
             end
           end
 
-          def output_fault(fault)
+          def output_fault_in_detail(fault)
             if @use_color and fault.is_a?(Failure) and
                 fault.inspected_expected and fault.inspected_actual
               output_single(fault.label, fault_color(fault))
@@ -248,6 +246,12 @@ module Test
                 differ.diff
               end
             end
+          end
+
+          def output_fault_in_short(fault)
+            output_single(fault.message, fault_color(fault))
+            output(" [#{fault.test_name}]")
+            output(fault.location.first)
           end
 
           def format_fault(fault)
@@ -358,10 +362,13 @@ module Test
 
           def output_progress_in_detail(fault)
             return if @output_level == SILENT
-            return unless categorize_fault(fault) == :need_detail_faults
             nl
             nl
-            output_fault(fault)
+            if categorize_fault(fault) == :need_detail_faults
+              output_fault_in_detail(fault)
+            else
+              output_fault_in_short(fault)
+            end
             nl
           end
 
