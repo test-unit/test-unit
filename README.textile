@@ -82,3 +82,4 @@ h2. Thanks
 * Jeremy Stephens: A bug report.
 * Hans de Graaff: Bug reports.
 * James Mead: A bug report.
+* Mark Seeger: A bug report.

@@ -279,6 +279,25 @@ module Test
         end
       end
 
+      def test_timeout_error
+        test_case = Class.new(TestCase) do
+          def test_raise_timeout_error
+            require "timeout"
+            raise Timeout::Error
+          end
+        end
+
+        test_suite = test_case.suite
+        result = TestResult.new
+        begin
+          test_suite.run(result) {}
+          check("Timeout::Error should be handled as error",
+                result.error_count == 1)
+        rescue Exception
+          check("Timeout::Error should not be passed through: #{$!}", false)
+        end
+      end
+
       def test_startup_shutdown
         called = []
         test_case = Class.new(TestCase) do
