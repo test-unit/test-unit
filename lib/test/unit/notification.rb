@@ -72,7 +72,7 @@ module Test
       #
       # options:
       #   :backtrace override backtrace.
-      def notify(message, options={} &block)
+      def notify(message, options={}, &block)
         backtrace = filter_backtrace(options[:backtrace] || caller)
         notification = Notification.new(name, backtrace, message)
         add_notification(notification)
