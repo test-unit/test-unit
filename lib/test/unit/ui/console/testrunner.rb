@@ -38,6 +38,7 @@ module Test
             @progress_row_max = @options[:progress_row_max]
             @progress_row_max ||= guess_progress_row_max
             @show_detail_immediately = @options[:show_detail_immediately]
+            @show_detail_immediately = true if @show_detail_immediately.nil?
             @already_outputted = false
             @indent = 0
             @top_level = true

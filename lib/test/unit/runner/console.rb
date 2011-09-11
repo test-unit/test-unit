@@ -49,9 +49,9 @@ module Test
         auto_runner.runner_options[:progress_row_max] = max
       end
 
-      opts.on("--[no-]show-detail-immediately",
+      opts.on("--no-show-detail-immediately",
               "Shows not passed test details immediately.",
-              "(default is no)") do |boolean|
+              "(default is yes)") do |boolean|
         auto_runner.runner_options[:show_detail_immediately] = boolean
       end
     end
