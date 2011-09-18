@@ -1,30 +1,4 @@
 class TestUnitColorScheme < Test::Unit::TestCase
-  def test_default
-    assert_equal({
-                   "pass" => color("green", :foreground => false) +
-                                color("white", :bold => true),
-                   "failure" => color("red", :foreground => false) +
-                                color("white", :bold => true),
-                   "pending" => color("magenta", :bold => true),
-                   "omission" => color("blue", :bold => true),
-                   "notification" => color("cyan", :bold => true),
-                   "error" => color("yellow", :bold => true) +
-                              color("black", :foreground => false),
-                   "case" => color("white", :bold => true) +
-                             color("blue", :foreground => false),
-                   "suite" => color("white", :bold => true) +
-                              color("green", :foreground => false),
-                   "diff-inserted-tag" => color("red", :bold => true),
-                   "diff-deleted-tag" => color("green", :bold => true),
-                   "diff-difference-tag" => color("cyan", :bold => true),
-                   "diff-inserted" => color("red", :foreground => false) +
-                                      color("white", :bold => true),
-                   "diff-deleted" => color("green", :foreground => false) +
-                                     color("white", :bold => true),
-                 },
-                 Test::Unit::ColorScheme.default.to_hash)
-  end
-
   def test_register
     inverted_scheme_spec = {
       "success" => {:name => "red"},
@@ -65,5 +39,44 @@ class TestUnitColorScheme < Test::Unit::TestCase
   private
   def color(name, options={})
     Test::Unit::Color.new(name, options)
+  end
+
+  class TestFor8Colors < self
+    def setup
+      @original_term, ENV["TERM"] = ENV["TERM"], nil
+      @original_color_term, ENV["COLORTERM"] = ENV["COLORTERM"], nil
+      ENV["TERM"] = "xterm"
+    end
+
+    def teardown
+      ENV["TERM"] = @original_term
+      ENV["COLORTERM"] = @original_color_term
+    end
+
+    def test_default
+      assert_equal({
+                     "pass" => color("green", :foreground => false) +
+                               color("white", :bold => true),
+                     "failure" => color("red", :foreground => false) +
+                                  color("white", :bold => true),
+                     "pending" => color("magenta", :bold => true),
+                     "omission" => color("blue", :bold => true),
+                     "notification" => color("cyan", :bold => true),
+                     "error" => color("yellow", :bold => true) +
+                                color("black", :foreground => false),
+                     "case" => color("white", :bold => true) +
+                               color("blue", :foreground => false),
+                     "suite" => color("white", :bold => true) +
+                                color("green", :foreground => false),
+                     "diff-inserted-tag" => color("red", :bold => true),
+                     "diff-deleted-tag" => color("green", :bold => true),
+                     "diff-difference-tag" => color("cyan", :bold => true),
+                     "diff-inserted" => color("red", :foreground => false) +
+                                        color("white", :bold => true),
+                     "diff-deleted" => color("green", :foreground => false) +
+                                       color("white", :bold => true),
+                   },
+                   Test::Unit::ColorScheme.default.to_hash)
+    end
   end
 end

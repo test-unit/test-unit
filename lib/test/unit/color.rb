@@ -1,6 +1,26 @@
 module Test
   module Unit
     class Color
+      class Error < StandardError
+      end
+
+      class ParseError < Error
+      end
+
+      class << self
+        def parse_256_color(string)
+          case string
+          when /\A([0-5])([0-5])([0-5])\z/
+            red, green, blue = $1, $2, $3
+            red.to_i * 36 + green.to_i * 6 + blue.to_i + 16
+          else
+            message = "must be 'RGB' format and R, G and B " +
+              "are in 0-5: #{string.inspect}"
+            raise ParseError, message
+          end
+        end
+      end
+
       NAMES = ["black", "red", "green", "yellow",
                "blue", "magenta", "cyan", "white"]
 
@@ -49,9 +69,16 @@ module Test
         elsif @name == "reset"
           sequence << "0"
         else
-          foreground_parameter = foreground? ? 3 : 4
-          foreground_parameter += 6 if intensity?
-          sequence << "#{foreground_parameter}#{NAMES.index(@name)}"
+          if NAMES.include?(@name)
+            foreground_parameter = foreground? ? 3 : 4
+            foreground_parameter += 6 if intensity?
+            color = NAMES.index(@name)
+            sequence << "#{foreground_parameter}#{color}"
+          else
+            sequence << (foreground? ? "38" : "48")
+            sequence << "5"
+            sequence << self.class.parse_256_color(@name).to_s
+          end
         end
         sequence << "1" if bold?
         sequence << "3" if italic?

@@ -6,35 +6,68 @@ module Test
       include Enumerable
 
       class << self
-        @@default = nil
         def default
-          @@default ||= new("pass" =>
-                              Color.new("green", :foreground => false) +
-                              Color.new("white", :bold => true),
-                            "failure" =>
-                              Color.new("red", :foreground => false) +
-                              Color.new("white", :bold => true),
-                            "pending" => Color.new("magenta", :bold => true),
-                            "omission" => Color.new("blue", :bold => true),
-                            "notification" => Color.new("cyan", :bold => true),
-                            "error" => Color.new("yellow", :bold => true) +
-                                       Color.new("black", :foreground => false),
-                            "case" => Color.new("white", :bold => true) +
-                                       Color.new("blue", :foreground => false),
-                            "suite" => Color.new("white", :bold => true) +
-                                       Color.new("green", :foreground => false),
-                            "diff-inserted-tag" =>
-                               Color.new("red", :bold => true),
-                            "diff-deleted-tag" =>
-                               Color.new("green", :bold => true),
-                            "diff-difference-tag" =>
-                               Color.new("cyan", :bold => true),
-                            "diff-inserted" =>
-                               Color.new("red", :foreground => false) +
-                               Color.new("white", :bold => true),
-                            "diff-deleted" =>
-                               Color.new("green", :foreground => false) +
-                               Color.new("white", :bold => true))
+          if available_colors == 256
+            default_for_256_colors
+          else
+            default_for_8_colors
+          end
+        end
+
+        @@default_for_8_colors = nil
+        def default_for_8_colors
+          @@default_for_8_colors ||=
+            new("pass" => Color.new("green", :foreground => false) +
+                          Color.new("white", :bold => true),
+                "failure" => Color.new("red", :foreground => false) +
+                             Color.new("white", :bold => true),
+                "pending" => Color.new("magenta", :bold => true),
+                "omission" => Color.new("blue", :bold => true),
+                "notification" => Color.new("cyan", :bold => true),
+                "error" => Color.new("yellow", :bold => true) +
+                           Color.new("black", :foreground => false),
+                "case" => Color.new("white", :bold => true) +
+                          Color.new("blue", :foreground => false),
+                "suite" => Color.new("white", :bold => true) +
+                           Color.new("green", :foreground => false),
+                "diff-inserted-tag" => Color.new("red", :bold => true),
+                "diff-deleted-tag" => Color.new("green", :bold => true),
+                "diff-difference-tag" => Color.new("cyan", :bold => true),
+                "diff-inserted" => Color.new("red", :foreground => false) +
+                                   Color.new("white", :bold => true),
+                "diff-deleted" =>  Color.new("green", :foreground => false) +
+                                   Color.new("white", :bold => true))
+        end
+
+        @@default_for_256_colors = nil
+        def default_for_256_colors
+          @@default_for_256_colors ||=
+            new("pass" => Color.new("030", :foreground => false) +
+                          Color.new("555", :bold => true),
+                "failure" => Color.new("300", :foreground => false) +
+                             Color.new("555", :bold => true),
+                "pending" => Color.new("303", :foreground => false) +
+                              Color.new("555", :bold => true),
+                "omission" => Color.new("001", :foreground => false) +
+                              Color.new("555", :bold => true),
+                "notification" => Color.new("011", :foreground => false) +
+                                  Color.new("555", :bold => true),
+                "error" => Color.new("550", :bold => true) +
+                           Color.new("000", :foreground => false),
+                "case" => Color.new("220", :foreground => false) +
+                          Color.new("555", :bold => true),
+                "suite" => Color.new("110", :foreground => false) +
+                           Color.new("555", :bold => true),
+                "diff-inserted-tag" => Color.new("500", :foreground => false) +
+                                       Color.new("000", :bold => true),
+                "diff-deleted-tag" => Color.new("050", :foreground => false) +
+                                      Color.new("000", :bold => true),
+                "diff-difference-tag" => Color.new("005", :foreground => false) +
+                                         Color.new("555", :bold => true),
+                "diff-inserted" => Color.new("300", :foreground => false) +
+                                   Color.new("555", :bold => true),
+                "diff-deleted" =>  Color.new("030", :foreground => false) +
+                                   Color.new("555", :bold => true))
         end
 
         @@schemes = {}
@@ -53,6 +86,20 @@ module Test
             scheme = new(scheme_or_spec)
           end
           @@schemes[id.to_s] = scheme
+        end
+
+        def available_colors
+          case ENV["COLORTERM"]
+          when "gnome-terminal"
+            256
+          else
+            case ENV["TERM"]
+            when "xterm-256color"
+              256
+            else
+              8
+            end
+          end
         end
       end
 
