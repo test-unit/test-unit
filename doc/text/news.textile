@@ -1,5 +1,30 @@
 h1. News
 
+h2. 2.4.0 - 2011-09-18
+
+h3. Improvements
+
+  * Supported Travis CI. #5 [Suggested by James Mead]
+  * Added Gemfile. #6 [Suggested by James Mead]
+  * [ui][console] Supported notification in show-detail-immediately.
+  * [ui][console] enable --show-detail-immediately by default.
+  * [ui] Added --max-diff-target-string-size option.
+  * [ui][console] Supported 256 colors.
+
+h3. Fixes
+
+  * Added missing fixture file. #7 [Reported by grafi-tt]
+  * [ui][console] Added missing the last newline for progress level.
+  * Supported correct backtrace for redefined notification.
+  * Don't handle Timeout::Error as pass through exception on Ruby 1.8. #8
+    [Reported by Marc Seeger (Acquia)]
+
+h3. Thanks
+
+  * James Mead
+  * grafi-tt
+  * Marc Seeger (Acquia)
+
 h2. 2.3.2 - 2011-08-15
 
 A bug fix release.
