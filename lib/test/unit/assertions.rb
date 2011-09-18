@@ -1431,6 +1431,8 @@ EOT
 
           MAX_DIFF_TARGET_STRING_SIZE = 1000
           def max_diff_target_string_size
+            return @@max_diff_target_string_size if @@max_diff_target_string_size
+
             size = ENV["TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE"]
             if size
               begin
@@ -1440,6 +1442,11 @@ EOT
               end
             end
             size || MAX_DIFF_TARGET_STRING_SIZE
+          end
+
+          @@max_diff_target_string_size = nil
+          def max_diff_target_string_size=(size)
+            @@max_diff_target_string_size = size
           end
 
           def diff_target_string?(string)

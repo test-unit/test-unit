@@ -296,6 +296,15 @@ module Test
             TestCase.test_order = order
           end
 
+          assertion_message_class = Test::Unit::Assertions::AssertionMessage
+          o.on("--max-diff-target-string-size=SIZE", Integer,
+               "Shows diff if both expected result string size and " +
+               "actual result string size are " +
+               "less than or equal SIZE in bytes.",
+               "(#{assertion_message_class.max_diff_target_string_size})") do |size|
+            assertion_message_class.max_diff_target_string_size = size
+          end
+
           ADDITIONAL_OPTIONS.each do |option_builder|
             option_builder.call(self, o)
           end
