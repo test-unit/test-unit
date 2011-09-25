@@ -330,7 +330,7 @@ EOM
         end
         ascii_8bit_string = utf8_string.dup.force_encoding("ascii-8bit")
         message = <<-EOM.chomp
-<"こんにちは">("UTF-8") expected but was
+<#{utf8_string.inspect}>("UTF-8") expected but was
 <#{ascii_8bit_string.inspect}>("ASCII-8BIT").
 EOM
         check_fails(message) do
