@@ -1,7 +1,7 @@
 # port of Python's difflib.
 #
 # Copyright (c) 2001-2008 Python Software Foundation; All Rights Reserved
-# Copyright (c) 2008-2010 Kouhei Sutou; All Rights Reserved
+# Copyright (c) 2008-2011 Kouhei Sutou; All Rights Reserved
 #
 # It is free software, and is distributed under the Ruby
 # license and/or the PSF license. See the COPYING file and
@@ -166,7 +166,7 @@ module Test
               end
             end
           end
-          matches.sort_by do |(from_index, to_index, match_size)|
+          matches.sort_by do |(from_index, _, _)|
             from_index
           end
         end
@@ -601,7 +601,7 @@ module Test
           from_tags = from_tags[common..-1].rstrip
           to_tags = to_tags[common..-1].rstrip
 
-          result = tag_deleted([from_line])
+          tag_deleted([from_line])
           unless from_tags.empty?
             tag_difference(["#{"\t" * common}#{from_tags}"])
           end
