@@ -87,7 +87,6 @@ module Test
           check("Should have a Failure", fault.instance_of?(Failure))
           check("The Failure should have the correct message", "nested" == fault.message)
           check("The Failure should have the correct test_name (was <#{fault.test_name}>)", fault.test_name == "test_nested_failure(TC_FailureError)")
-          r = 
 
           location = fault.location
           check("The location should be an array", location.kind_of?(Array))
