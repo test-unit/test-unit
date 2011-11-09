@@ -1303,8 +1303,18 @@ EOM
         end
       end
 
-      def test_error_invalid_message
-        check_fails("assertion message must be String or Proc: " +
+      def test_fail_with_assertion_message
+        check_fails("user message.\n" +
+                    "placeholder <:in> message") do
+          assert(false, build_message("user message",
+                                      "placeholder <?> message",
+                                      :in))
+        end
+      end
+
+      def test_error_invalid_message_true
+        check_fails("assertion message must be String, Proc or " +
+                    "Test::Unit::Assertions::AssertionMessage: " +
                     "<true>(<TrueClass>)") do
           begin
             assert(true, true)
