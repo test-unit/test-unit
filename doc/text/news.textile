@@ -1,5 +1,23 @@
 h1. News
 
+h2. 2.4.1 - 2011-11-09
+
+h3. Improvements
+
+  * Accepted AssertionMessage as assertion's user message.
+    It is used in assert_select in actionpack.
+    [Reported by David Heath]
+
+h3. Fixes
+
+  * Fixed test failure on LANG=C. #11 [Reported by boutil]
+  * Suppress warnings on Ruby 1.9.2.
+
+h3. Thanks
+
+  * boutil
+  * David Heath
+
 h2. 2.4.0 - 2011-09-18
 
 h3. Improvements
