@@ -101,7 +101,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-latest">test-unitの最新リリース</h3>
 	<p>
-	  2011-11-09にリリースされた2.4.1が最新リリースです。
+	  2011-11-09にリリースされた<a href="test-unit/ja/file.news.html">2.4.1が最新リリースです。
         </p>
 	<h3 id="test-unit-install">test-unitのインストール</h3>
         <p>
@@ -115,7 +115,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-document">test-unitのドキュメント</h3>
         <ul>
-          <li><a href="test-unit/">リファレンスマニュアル</a></li>
+          <li><a href="test-unit/ja/">リファレンスマニュアル</a></li>
         </ul>
 
 	<h2 id="test-unit-full">test-unit-full</h2>
