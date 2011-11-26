@@ -1,5 +1,11 @@
 h1. News
 
+h2(#2-4-2). 2.4.2 - 2011-11-26
+
+h3. Improvements
+
+  * @--name@ supported data label.
+
 h2. 2.4.1 - 2011-11-09
 
 h3. Improvements
