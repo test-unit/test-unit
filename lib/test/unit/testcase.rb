@@ -489,6 +489,7 @@ module Test
       def ==(other)
         return false unless other.kind_of?(self.class)
         return false unless @method_name == other.method_name
+        return false unless data_label == other.data_label
         self.class == other.class
       end
 

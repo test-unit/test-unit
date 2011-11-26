@@ -167,6 +167,20 @@ class TestData < Test::Unit::TestCase
                  "0 omissions, 0 notifications", result.to_s)
   end
 
+  data("data set" => TestCalc::TestDataSet,
+       "n-data" => TestCalc::TestNData,
+       "dynamic-data-set" => TestCalc::TestDynamicDataSet,
+       "load-data-set" => TestCalc::TestLoadDataSet)
+  def test_equal(test_case)
+    suite = test_case.suite
+    positive_positive_test = suite.tests.find do |test|
+      test.data_label == "positive positive"
+    end
+    suite.tests.delete(positive_positive_test)
+    assert_equal(["test_plus[positive negative](#{test_case.name})"],
+                 suite.tests.collect {|test| test.name}.sort)
+  end
+
   def _run_test(test_case)
     result = Test::Unit::TestResult.new
     test = test_case.suite
