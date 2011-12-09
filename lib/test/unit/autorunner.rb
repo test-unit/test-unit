@@ -146,7 +146,7 @@ module Test
       def process_args(args = ARGV)
         begin
           args.unshift(*@default_arguments)
-          options.order!(args) {|arg| @to_run << arg}
+          options.order!(args.dup) {|arg| @to_run << arg}
         rescue OptionParser::ParseError => e
           puts e
           puts options
