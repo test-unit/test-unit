@@ -1,5 +1,17 @@
 h1. News
 
+h2(#2-4-3). 2.4.3 - 2011-12-11
+
+h3. Improvements
+
+  * Improved SimpleCov integration by stopping to modify
+    @ARGV@ in auto runner. [GitHub:#12]
+    [Reported by Nikos Dimitrakopoulos]
+
+h3. Thanks
+
+  * Nikos Dimitrakopoulos
+
 h2(#2-4-2). 2.4.2 - 2011-11-26
 
 h3. Improvements
