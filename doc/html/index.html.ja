@@ -85,7 +85,7 @@ require "test/unit"</pre>
           <li><a href="#test-unit-runner-fox">test-unit-runner-fox</a>: FOX Toolkitを用いたGUIでテストを実行するためのライブラリ</li>
 	</ul>
 
-	<h2 id="test-unit">test-unit</h2>
+	<h2 id="test-unit">test-unit <a href="https://secure.travis-ci.org/#!/test-unit/test-unit"><img src="https://secure.travis-ci.org/test-unit/test-unit.png" alt="ビルド結果" /></a></h2>
         <p>
           xUnitベースのテスティングフレームワークのコア機能を提供します。Ruby 1.8に標準添付されていた頃と比べると以下のような機能が追加されています。
           <ul>
