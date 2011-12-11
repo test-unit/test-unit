@@ -20,13 +20,13 @@ module Test
             next false unless(split_e[0..-2] == split_p[0..-2])
             split_e[-1].sub(TESTUNIT_RB_FILE, '') == split_p[-1]
           end
-          return backtrace unless(backtrace.detect(&match))
+          return backtrace unless backtrace.detect(&match)
           found_prefix = false
           new_backtrace = backtrace.reverse.reject do |e|
-            if(match[e])
+            if match[e]
               found_prefix = true
               true
-            elsif(found_prefix)
+            elsif found_prefix
               false
             else
               true
