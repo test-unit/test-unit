@@ -8,33 +8,44 @@ module Test
 
         module_function
         def filter_backtrace(backtrace, prefix=nil)
-          return ["No backtrace"] unless(backtrace)
+          return ["No backtrace"] unless backtrace
           return backtrace if ENV["TEST_UNIT_ALL_BACKTRACE"]
-          split_p = if(prefix)
-            prefix.split(TESTUNIT_FILE_SEPARATORS)
+
+          if prefix
+            split_prefix = prefix.split(TESTUNIT_FILE_SEPARATORS)
           else
-            TESTUNIT_PREFIX
+            split_prefix = TESTUNIT_PREFIX
           end
-          match = proc do |e|
-            split_e = e.split(TESTUNIT_FILE_SEPARATORS)[0, split_p.size]
-            next false unless(split_e[0..-2] == split_p[0..-2])
-            split_e[-1].sub(TESTUNIT_RB_FILE, '') == split_p[-1]
+          test_unit_internal_p = lambda do |entry|
+            components = entry.split(TESTUNIT_FILE_SEPARATORS)
+            split_entry = components[0, split_prefix.size]
+            next false unless split_entry[0..-2] == split_prefix[0..-2]
+            split_entry[-1].sub(TESTUNIT_RB_FILE, '') == split_prefix[-1]
           end
-          return backtrace unless backtrace.detect(&match)
+
+          jruby_internal_p = lambda do |entry|
+            (/\Aorg\/jruby\// =~ entry) ? true : false
+          end
+
           found_prefix = false
-          new_backtrace = backtrace.reverse.reject do |e|
-            if match[e]
+          new_backtrace = backtrace.reverse.reject do |entry|
+            if test_unit_internal_p.call(entry)
               found_prefix = true
               true
             elsif found_prefix
-              false
+              jruby_internal_p.call(entry)
             else
               true
             end
           end.reverse
-          new_backtrace = (new_backtrace.empty? ? backtrace : new_backtrace)
-          new_backtrace = new_backtrace.reject(&match)
-          new_backtrace.empty? ? backtrace : new_backtrace
+
+          if new_backtrace.empty?
+            new_backtrace = backtrace.reject do |entry|
+              test_unit_internal_p.call(entry) or jruby_internal_p.call(entry)
+            end
+            new_backtrace = backtrace if new_backtrace.empty?
+          end
+          new_backtrace
         end
       end
     end
