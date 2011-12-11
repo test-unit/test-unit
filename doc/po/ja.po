@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"POT-Creation-Date: 2011-12-11 14:01+0900\n"
-"PO-Revision-Date: 2011-12-11 14:06+0900\n"
+"POT-Creation-Date: 2011-12-11 14:35+0900\n"
+"PO-Revision-Date: 2011-12-11 14:36+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -423,18 +423,14 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Output.html:145(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:42(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:198(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:199(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:214(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:232(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:42(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:251(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
@@ -1608,18 +1604,14 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Output.html:145(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:42(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:198(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:199(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:214(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:232(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:42(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:251(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
@@ -3998,7 +3990,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:325(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:378(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:178(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:251(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:296(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:329(span)
@@ -4575,9 +4567,9 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Output.html:184(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:187(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:189(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:243(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:245(span)
 #: doc/reference/en/Test/Unit/Failure.html:574(span)
@@ -5370,15 +5362,18 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Output.html:183(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:184(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:189(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:198(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:203(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:209(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:212(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:213(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:226(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:229(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:242(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:252(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:243(span)
@@ -5986,15 +5981,18 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Output.html:182(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:187(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:199(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:232(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:236(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:238(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:242(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:299(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:182(span)
@@ -6664,8 +6662,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:380(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:386(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:388(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:299(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:301(span)
@@ -6713,9 +6710,11 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:269(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:382(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:385(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:198(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:238(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:242(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:214(span)
 #: doc/reference/en/Test/Unit/Failure.html:1080(span)
 #: doc/reference/en/Test/Unit/TestResult.html:981(span)
@@ -6867,6 +6866,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:165(span)
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:170(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:102(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
 #: doc/reference/en/Test/Unit/Failure.html:1081(span)
 #: doc/reference/en/Test/Unit/TestResult.html:984(span)
@@ -6906,6 +6906,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:163(span)
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:165(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:742(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1092(span)
 #: doc/reference/en/Test/Unit/Assertions.html:2367(span)
@@ -7036,8 +7037,10 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:166(span)
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:170(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:143(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:203(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:182(span)
 #: doc/reference/en/Test/Unit/ExceptionHandler.html:230(span)
 #: doc/reference/en/Test/Unit/TestSuiteCreator.html:256(span)
@@ -7220,8 +7223,10 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:166(span)
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:170(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:329(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:203(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
 #: doc/reference/en/Test/Unit/TestResult.html:1037(span)
 #: doc/reference/en/Test/Unit/TestResult.html:1148(span)
 #: doc/reference/en/Test/Unit/ExceptionHandler.html:230(span)
@@ -7341,8 +7346,8 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:167(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:269(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:126(strong)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:270(strong)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:296(span)
@@ -7411,11 +7416,14 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Output.html:146(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:190(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:191(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:202(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:214(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:224(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:235(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:236(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:241(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:243(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:245(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:254(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:302(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:303(span)
@@ -8181,8 +8189,8 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:169(span)
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:174(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:200(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:212(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:233(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:300(span)
 #: doc/reference/en/Test/Unit/Failure.html:1082(span)
 #: doc/reference/en/Test/Unit/TestResult.html:983(span)
@@ -8256,8 +8264,8 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/MethodOwnerFinder.html:170(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:199(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
 #: doc/reference/en/Test/Unit/Failure.html:1124(span)
 #: doc/reference/en/Test/Unit/Pending.html:729(span)
 #: doc/reference/en/Test/Unit/Diff.html:269(span)
@@ -8636,8 +8644,8 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:265(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:144(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:145(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:212(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:214(span)
 #: doc/reference/en/Test/Unit/Failure.html:120(span)
@@ -9374,8 +9382,6 @@ msgid "NOTHING"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Observable.html:263(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:243(span)
 #: doc/reference/en/Test/Unit/ExceptionHandler.html:237(span)
 #: doc/reference/en/Test/Unit/Fixture.html:181(span)
@@ -9434,9 +9440,8 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:264(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:327(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:380(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:678(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1188(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1193(span)
@@ -9704,12 +9709,11 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:379(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:187(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:244(span)
 #: doc/reference/en/Test/Unit/Failure.html:578(span)
 #: doc/reference/en/Test/Unit/Failure.html:579(span)
@@ -9969,12 +9973,11 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/Observable.html:379(span)
 #: doc/reference/en/Test/Unit/Util/Output.html:187(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:244(span)
 #: doc/reference/en/Test/Unit/Failure.html:578(span)
 #: doc/reference/en/Test/Unit/Failure.html:579(span)
@@ -10507,8 +10510,8 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Observable.html:327(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
 #: doc/reference/en/Test/Unit/Failure.html:1081(span)
 #: doc/reference/en/Test/Unit/Failure.html:1124(span)
 #: doc/reference/en/Test/Unit/TestResult.html:649(span)
@@ -10624,6 +10627,9 @@ msgid "each"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Observable.html:329(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:232(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
 #: doc/reference/en/Test/Unit/TestSuiteCreator.html:260(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/DelayedLiteral.html:227(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/MaybeContainer.html:238(span)
@@ -10641,7 +10647,7 @@ msgid "call"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Observable.html:330(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
 #: doc/reference/en/Test/Unit/Failure.html:1080(span)
 #: doc/reference/en/Test/Unit/TestResultNotificationSupport.html:305(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:255(span)
@@ -10700,7 +10706,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Observable.html:380(span)
 #: doc/reference/en/Test/Unit/Util/Observable.html:388(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
 #: doc/reference/en/Test/Unit/TestCase/InternalData.html:453(span)
 #: doc/reference/en/Test/Unit/TestCase/InternalData.html:454(span)
 #: doc/reference/en/Test/Unit/TestCase/InternalData.html:457(span)
@@ -11264,7 +11270,7 @@ msgid "require"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/Output.html:179(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
 #: doc/reference/en/Test/Unit/Failure.html:115(span)
 #: doc/reference/en/Test/Unit/Failure.html:1081(span)
@@ -11562,8 +11568,8 @@ msgid "__FILE__"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:199(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
 #: doc/reference/en/Test/Unit/Pending.html:123(a)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:133(a)
 #: doc/reference/en/Test/Unit/TestCase.html:306(a)
@@ -11574,7 +11580,7 @@ msgid "TESTUNIT_FILE_SEPARATORS"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
 #: doc/reference/en/Test/Unit/Attribute/ClassMethods.html:413(span)
 #: doc/reference/en/Test/Unit/Assertions.html:2114(span)
 #: doc/reference/en/Test/Unit/Assertions.html:2116(span)
@@ -11651,8 +11657,8 @@ msgid ".."
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:97(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/TestResult.html:980(span)
 #: doc/reference/en/Test/Unit/TestCase/InternalData.html:902(span)
 #: doc/reference/en/Test/Unit/Attribute/ClassMethods.html:413(span)
@@ -11692,7 +11698,7 @@ msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:122(strong)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:152(strong)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:244(span)
 #: doc/reference/en/Test/Unit/Pending.html:689(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:671(span)
@@ -11716,20 +11722,19 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:159(pre)
 msgid ""
 "10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 "
-"35 36 37 38"
+"35 36 37 38 39 40 41 42 43 44 45 46 47 48 49"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:193(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
 msgid "# File 'lib/test/unit/util/backtracefilter.rb', line 10"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:242(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:244(span)
 #: doc/reference/en/Test/Unit/TestCaseNotificationSupport.html:245(span)
 #: doc/reference/en/Test/Unit/Pending.html:689(span)
@@ -11745,19 +11750,19 @@ msgstr ""
 msgid "backtrace"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:195(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:198(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:199(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
 #: doc/reference/en/Test/Unit/Collector/XML/Listener.html:562(span)
 #: doc/reference/en/Test/Unit/Collector/XML/Listener.html:563(span)
 msgid "prefix"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:196(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:207(span)
 msgid "No backtrace"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/HashInspector.html:354(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:944(span)
 #: doc/reference/en/Test/Unit/ColorScheme.html:585(span)
@@ -11765,18 +11770,19 @@ msgstr ""
 msgid "ENV"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:197(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
 msgid "TEST_UNIT_ALL_BACKTRACE"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:198(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-msgid "split_p"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:213(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
+msgid "split_prefix"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:201(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:213(span)
 #: doc/reference/en/Test/Unit/Pending.html:123(a)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:133(a)
 #: doc/reference/en/Test/Unit/TestCase.html:306(a)
@@ -11786,59 +11792,43 @@ msgstr ""
 msgid "TESTUNIT_PREFIX"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:203(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
-msgid "match"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
+msgid "test_unit_internal_p"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:203(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3218(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3222(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3941(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3955(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2255(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2257(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2267(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2269(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2279(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2281(span)
-msgid "proc"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2239(span)
+msgid "lambda"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:203(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:211(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:255(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:377(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1192(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3167(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3168(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3169(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3170(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:773(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:774(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:775(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:777(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:781(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2224(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2225(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2230(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2231(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2442(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2443(span)
-msgid "e"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:228(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:232(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
+msgid "entry"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:204(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
-msgid "split_e"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:216(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#, fuzzy
+msgid "components"
+msgstr "改良"
+
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
+msgid "split_entry"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
 #: doc/reference/en/Test/Unit/Collector/Dir.html:774(span)
 #: doc/reference/en/Test/Unit/Collector/Dir.html:777(span)
 #: doc/reference/en/Test/Unit/Collector/Dir.html:781(span)
@@ -11848,9 +11838,9 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:209(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:215(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:226(span)
 #: doc/reference/en/Test/Unit/ExceptionHandler/ClassMethods.html:242(span)
 #: doc/reference/en/Test/Unit/TestCase/InternalData.html:456(span)
 #: doc/reference/en/Test/Unit/TestCase/InternalData.html:874(span)
@@ -11920,7 +11910,7 @@ msgstr ""
 msgid "false"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:205(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:218(span)
 #: doc/reference/en/Test/Unit/Assertions.html:1742(span)
 #: doc/reference/en/Test/Unit/Assertions.html:2521(span)
 #: doc/reference/en/Test/Unit/Assertions.html:3036(span)
@@ -11935,7 +11925,7 @@ msgstr ""
 msgid "2"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/Failure.html:1080(span)
 #: doc/reference/en/Test/Unit/TestResult.html:874(span)
 #: doc/reference/en/Test/Unit/TestResult.html:904(span)
@@ -11982,14 +11972,14 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:253(span)
 #: doc/reference/en/Test/Unit/Failure.html:1081(span)
 #: doc/reference/en/Test/Unit/AutoRunner.html:1920(span)
 msgid "sub"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:206(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
 #: doc/reference/en/Test/Unit/Pending.html:123(a)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:133(a)
 #: doc/reference/en/Test/Unit/TestCase.html:306(a)
@@ -11999,36 +11989,38 @@ msgstr ""
 msgid "TESTUNIT_RB_FILE"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:208(span)
-msgid "detect"
-msgstr ""
-
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:209(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:212(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:214(span)
-msgid "found_prefix"
-msgstr ""
-
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
 #: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
-msgid "new_backtrace"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:232(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
+msgid "jruby_internal_p"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:219(span)
-msgid "reverse"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+msgid "\\Aorg\\/jruby\\/"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:210(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:221(span)
-msgid "reject"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:255(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:338(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:377(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1092(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:775(span)
+#: doc/reference/en/Test/Unit/Color.html:905(span)
+#: doc/reference/en/Test/Unit/Color.html:910(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2238(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2252(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2255(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2264(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2267(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2276(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2279(span)
+msgid "?"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:212(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:213(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:217(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:229(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:230(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:234(span)
 #: doc/reference/en/Test/Unit/Failure.html:980(span)
 #: doc/reference/en/Test/Unit/ExceptionHandler/ClassMethods.html:186(span)
 #: doc/reference/en/Test/Unit/Pending.html:621(span)
@@ -12109,7 +12101,61 @@ msgstr ""
 msgid "true"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:214(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:223(span)
+#: doc/reference/en/Test/Unit/Failure.html:1124(span)
+#: doc/reference/en/Test/Unit/Pending.html:690(span)
+#: doc/reference/en/Test/Unit/Pending.html:729(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:338(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:377(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1092(span)
+#: doc/reference/en/Test/Unit/Assertions.html:1333(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3226(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3965(span)
+#: doc/reference/en/Test/Unit/Collector/XML/Listener.html:484(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:775(span)
+#: doc/reference/en/Test/Unit/Error.html:749(span)
+#: doc/reference/en/Test/Unit/Error.html:788(span)
+#: doc/reference/en/Test/Unit/Notification.html:690(span)
+#: doc/reference/en/Test/Unit/Notification.html:729(span)
+#: doc/reference/en/Test/Unit/Color.html:905(span)
+#: doc/reference/en/Test/Unit/Color.html:910(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2238(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2252(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2255(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2264(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2267(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2276(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2279(span)
+#: doc/reference/en/Test/Unit/Omission.html:690(span)
+#: doc/reference/en/Test/Unit/Omission.html:729(span)
+msgid ":"
+msgstr ""
+
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:226(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:229(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:231(span)
+msgid "found_prefix"
+msgstr ""
+
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:238(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:242(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:244(span)
+msgid "new_backtrace"
+msgstr ""
+
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:236(span)
+msgid "reverse"
+msgstr ""
+
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:227(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:239(span)
+msgid "reject"
+msgstr ""
+
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:231(span)
 #: doc/reference/en/Test/Unit/TestResult.html:1093(span)
 #: doc/reference/en/Test/Unit/TestResult.html:1095(span)
 #: doc/reference/en/Test/Unit/TestResult.html:1100(span)
@@ -12120,8 +12166,8 @@ msgstr ""
 msgid "elsif"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:238(span)
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:242(span)
 #: doc/reference/en/Test/Unit/TestSuiteCreator.html:271(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1188(span)
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1193(span)
@@ -12153,54 +12199,21 @@ msgstr ""
 msgid "empty?"
 msgstr ""
 
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:255(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:338(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:377(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1092(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:775(span)
-#: doc/reference/en/Test/Unit/Color.html:905(span)
-#: doc/reference/en/Test/Unit/Color.html:910(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2238(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2252(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2255(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2264(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2267(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2276(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2279(span)
-msgid "?"
-msgstr ""
-
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:220(span)
-#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:222(span)
-#: doc/reference/en/Test/Unit/Failure.html:1124(span)
-#: doc/reference/en/Test/Unit/Pending.html:690(span)
-#: doc/reference/en/Test/Unit/Pending.html:729(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:338(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:377(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1092(span)
-#: doc/reference/en/Test/Unit/Assertions.html:1333(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3226(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3965(span)
-#: doc/reference/en/Test/Unit/Collector/XML/Listener.html:484(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:775(span)
-#: doc/reference/en/Test/Unit/Error.html:749(span)
-#: doc/reference/en/Test/Unit/Error.html:788(span)
-#: doc/reference/en/Test/Unit/Notification.html:690(span)
-#: doc/reference/en/Test/Unit/Notification.html:729(span)
-#: doc/reference/en/Test/Unit/Color.html:905(span)
-#: doc/reference/en/Test/Unit/Color.html:910(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2238(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2252(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2255(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2264(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2267(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2276(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:2279(span)
-#: doc/reference/en/Test/Unit/Omission.html:690(span)
-#: doc/reference/en/Test/Unit/Omission.html:729(span)
-msgid ":"
+#: doc/reference/en/Test/Unit/Util/BacktraceFilter.html:240(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/HashInspector.html:354(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:738(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:742(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1047(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertExceptionHelper.html:290(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertExceptionHelper.html:291(span)
+#: doc/reference/en/Test/Unit/Assertions.html:2959(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3510(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3759(span)
+#: doc/reference/en/Test/Unit/Diff/UTF8Line.html:459(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:781(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:1913(span)
+#: doc/reference/en/Test/Unit/Priority/Checker.html:1019(span)
+msgid "or"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Util/ProcWrapper.html:6(title)
@@ -18494,6 +18507,27 @@ msgstr ""
 msgid "find_all"
 msgstr ""
 
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:255(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:377(span)
+#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1192(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3167(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3168(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3169(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3170(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:773(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:774(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:775(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:777(span)
+#: doc/reference/en/Test/Unit/Collector/Dir.html:781(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2224(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2225(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2230(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2231(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2442(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2443(span)
+msgid "e"
+msgstr ""
+
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/Template.html:280(p)
 msgid "Returns the value of attribute count"
 msgstr ""
@@ -18674,22 +18708,6 @@ msgstr ""
 #: doc/reference/en/Test/Unit/Attribute/StringifyKeyHash.html:69(span)
 #: doc/reference/en/Test/Unit/Attribute/StringifyKeyHash.html:74(li)
 msgid "Hash"
-msgstr ""
-
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage/HashInspector.html:354(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:738(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:742(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertionMessage.html:1047(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertExceptionHelper.html:290(span)
-#: doc/reference/en/Test/Unit/Assertions/AssertExceptionHelper.html:291(span)
-#: doc/reference/en/Test/Unit/Assertions.html:2959(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3510(span)
-#: doc/reference/en/Test/Unit/Assertions.html:3759(span)
-#: doc/reference/en/Test/Unit/Diff/UTF8Line.html:459(span)
-#: doc/reference/en/Test/Unit/Collector/Dir.html:781(span)
-#: doc/reference/en/Test/Unit/AutoRunner.html:1913(span)
-#: doc/reference/en/Test/Unit/Priority/Checker.html:1019(span)
-msgid "or"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Assertions/AssertionMessage/HashInspector.html:377(pre)
@@ -20814,7 +20832,7 @@ msgid "256"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/ColorScheme.html:589(span)
-#: doc/reference/en/file.news.html:384(span)
+#: doc/reference/en/file.news.html:385(span)
 msgid "TERM"
 msgstr ""
 
@@ -23898,6 +23916,19 @@ msgstr ""
 msgid "# File 'lib/test/unit/assertions.rb', line 594"
 msgstr ""
 
+#: doc/reference/en/Test/Unit/Assertions.html:3218(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3222(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3941(span)
+#: doc/reference/en/Test/Unit/Assertions.html:3955(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2255(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2257(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2267(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2269(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2279(span)
+#: doc/reference/en/Test/Unit/AutoRunner.html:2281(span)
+msgid "proc"
+msgstr ""
+
 #: doc/reference/en/Test/Unit/Assertions.html:3220(span)
 msgid "Should have passed a block to assert_nothing_thrown"
 msgstr ""
@@ -26720,7 +26751,7 @@ msgstr ""
 #: doc/reference/en/Test/Unit/UI/XML/TestRunner.html:37(a)
 #: doc/reference/en/Test/Unit/UI/XML.html:39(span)
 #: doc/reference/en/Test/Unit/UI.html:86(a)
-#: doc/reference/en/file.news.html:168(span)
+#: doc/reference/en/file.news.html:169(span)
 #: doc/reference/en/class_list.html:42(a) doc/reference/en/_index.html:879(a)
 #: doc/reference/en/_index.html:886(a)
 msgid "XML"
@@ -33178,7 +33209,7 @@ msgid "config"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/AutoRunner.html:1968(span)
-#: doc/reference/en/file.news.html:445(span)
+#: doc/reference/en/file.news.html:446(span)
 msgid "YAML"
 msgstr ""
 
@@ -33426,10 +33457,6 @@ msgstr ""
 #: doc/reference/en/Test/Unit/AutoRunner.html:2264(span)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2276(span)
 msgid "\\A/(.*)/\\Z"
-msgstr ""
-
-#: doc/reference/en/Test/Unit/AutoRunner.html:2239(span)
-msgid "lambda"
 msgstr ""
 
 #: doc/reference/en/Test/Unit/AutoRunner.html:2241(span)
@@ -35116,11 +35143,11 @@ msgid "2.4.3 – 2011-12-11"
 msgstr ""
 
 #: doc/reference/en/file.news.html:59(h3)
-#: doc/reference/en/file.news.html:70(h3)
-#: doc/reference/en/file.news.html:75(h3)
-#: doc/reference/en/file.news.html:92(h3)
-#: doc/reference/en/file.news.html:117(h3)
-#: doc/reference/en/file.news.html:132(h3)
+#: doc/reference/en/file.news.html:71(h3)
+#: doc/reference/en/file.news.html:76(h3)
+#: doc/reference/en/file.news.html:93(h3)
+#: doc/reference/en/file.news.html:118(h3)
+#: doc/reference/en/file.news.html:133(h3)
 msgid "Improvements"
 msgstr "改良"
 
@@ -35128,50 +35155,56 @@ msgstr "改良"
 msgid ""
 "Improved SimpleCov integration by stopping to modify <placeholder-1/> in "
 "auto runner. [GitHub:#12] [Reported by Nikos Dimitrakopoulos]"
-msgstr "自動テストランナー内で<placeholder-1/>を変更しないようにしてSimpleCov連携を改良した。 [GitHub:#12] [Nikos Dimitrakopoulosさんが報告]"
+msgstr ""
+"自動テストランナー内で<placeholder-1/>を変更しないようにしてSimpleCov連携を改"
+"良した。 [GitHub:#12] [Nikos Dimitrakopoulosさんが報告]"
 
-#: doc/reference/en/file.news.html:65(h3)
-#: doc/reference/en/file.news.html:86(h3)
-#: doc/reference/en/file.news.html:109(h3)
-#: doc/reference/en/file.news.html:126(h3)
-#: doc/reference/en/file.news.html:152(h3)
-#: doc/reference/en/file.news.html:178(li)
-#: doc/reference/en/file.news.html:221(li)
-#: doc/reference/en/file.news.html:237(li)
-#: doc/reference/en/file.news.html:247(li)
-#: doc/reference/en/file.news.html:271(li)
-#: doc/reference/en/file.news.html:300(li)
-#: doc/reference/en/file.news.html:331(li)
-#: doc/reference/en/file.news.html:341(li)
-#: doc/reference/en/file.news.html:366(li)
-#: doc/reference/en/file.news.html:393(li)
-#: doc/reference/en/file.news.html:415(li)
-#: doc/reference/en/file.news.html:449(li) doc/reference/en/index.html:112(h2)
+#: doc/reference/en/file.news.html:64(li)
+msgid "Improved JRuby integration by removing JRuby internal backtrace."
+msgstr "JRuby内部のバックトレースを削除してJRuby連携を改良した。"
+
+#: doc/reference/en/file.news.html:66(h3)
+#: doc/reference/en/file.news.html:87(h3)
+#: doc/reference/en/file.news.html:110(h3)
+#: doc/reference/en/file.news.html:127(h3)
+#: doc/reference/en/file.news.html:153(h3)
+#: doc/reference/en/file.news.html:179(li)
+#: doc/reference/en/file.news.html:222(li)
+#: doc/reference/en/file.news.html:238(li)
+#: doc/reference/en/file.news.html:248(li)
+#: doc/reference/en/file.news.html:272(li)
+#: doc/reference/en/file.news.html:301(li)
+#: doc/reference/en/file.news.html:332(li)
+#: doc/reference/en/file.news.html:342(li)
+#: doc/reference/en/file.news.html:367(li)
+#: doc/reference/en/file.news.html:394(li)
+#: doc/reference/en/file.news.html:416(li)
+#: doc/reference/en/file.news.html:450(li) doc/reference/en/index.html:112(h2)
 #: doc/reference/en/file.README.html:112(h2)
 msgid "Thanks"
 msgstr "感謝"
 
-#: doc/reference/en/file.news.html:67(li)
+#: doc/reference/en/file.news.html:68(li)
 msgid "Nikos Dimitrakopoulos"
 msgstr "Nikos Dimitrakopoulosさん"
 
-#: doc/reference/en/file.news.html:69(h2)
+#: doc/reference/en/file.news.html:70(h2)
 msgid "2.4.2 – 2011-11-26"
 msgstr ""
 
-#: doc/reference/en/file.news.html:72(code)
+#: doc/reference/en/file.news.html:73(code)
 msgid "--name"
 msgstr ""
 
-#: doc/reference/en/file.news.html:72(li)
+#: doc/reference/en/file.news.html:73(li)
 msgid "<placeholder-1/> supported data label."
 msgstr "<placeholder-1/>がデータのラベルも比較するようになった。"
 
-#: doc/reference/en/file.news.html:74(h2)
+#: doc/reference/en/file.news.html:75(h2)
 msgid "2.4.1 – 2011-11-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:77(li)
+#: doc/reference/en/file.news.html:78(li)
 msgid ""
 "Accepted AssertionMessage as assertion’s user message. It is used in "
 "assert_select in actionpack. [Reported by David Heath]"
@@ -35179,75 +35212,75 @@ msgstr ""
 "アサーションに指定するメッセージにAssertionMessageも使えるようにした。これは"
 "actionpack内のassert_selectで使われている。 [David Heathさんが報告]"
 
-#: doc/reference/en/file.news.html:81(h3)
-#: doc/reference/en/file.news.html:101(h3)
-#: doc/reference/en/file.news.html:121(h3)
-#: doc/reference/en/file.news.html:144(h3)
+#: doc/reference/en/file.news.html:82(h3)
+#: doc/reference/en/file.news.html:102(h3)
+#: doc/reference/en/file.news.html:122(h3)
+#: doc/reference/en/file.news.html:145(h3)
 msgid "Fixes"
 msgstr "修正"
 
-#: doc/reference/en/file.news.html:83(span)
+#: doc/reference/en/file.news.html:84(span)
 msgid "LANG"
 msgstr ""
 
-#: doc/reference/en/file.news.html:83(li)
+#: doc/reference/en/file.news.html:84(li)
 msgid "Fixed test failure on <placeholder-1/>=C. #11 [Reported by boutil]"
 msgstr ""
 "<placeholder-1/>=Cでもテストがパスするようにした。 #11 [boutilさんが報告]"
 
-#: doc/reference/en/file.news.html:84(li)
+#: doc/reference/en/file.news.html:85(li)
 msgid "Suppress warnings on Ruby 1.9.2."
 msgstr "Ruby 1.9.2で警告がでないようにした。"
 
-#: doc/reference/en/file.news.html:88(li)
+#: doc/reference/en/file.news.html:89(li)
 msgid "boutil"
 msgstr "boutilさん"
 
-#: doc/reference/en/file.news.html:89(li)
+#: doc/reference/en/file.news.html:90(li)
 msgid "David Heath"
 msgstr "David Heathさん"
 
-#: doc/reference/en/file.news.html:91(h2)
+#: doc/reference/en/file.news.html:92(h2)
 msgid "2.4.0 – 2011-09-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:94(li)
+#: doc/reference/en/file.news.html:95(li)
 msgid "Supported Travis CI. #5 [Suggested by James Mead]"
 msgstr "Travis CI対応。 #5 [James Meadさんが提案]"
 
-#: doc/reference/en/file.news.html:95(li)
+#: doc/reference/en/file.news.html:96(li)
 msgid "Added Gemfile. #6 [Suggested by James Mead]"
 msgstr "Gemfileを追加。#6 [James Meadさんが提案]"
 
-#: doc/reference/en/file.news.html:96(li)
+#: doc/reference/en/file.news.html:97(li)
 msgid "[ui][console] Supported notification in show-detail-immediately."
 msgstr "[ui][console] show-detail-immediatelyモードで通知をサポート。"
 
-#: doc/reference/en/file.news.html:97(li)
+#: doc/reference/en/file.news.html:98(li)
 msgid "[ui][console] enable —show-detail-immediately by default."
 msgstr "[ui][console] デフォルトで--show-detail-immediatelyを有効にした。"
 
-#: doc/reference/en/file.news.html:98(li)
+#: doc/reference/en/file.news.html:99(li)
 msgid "[ui] Added —max-diff-target-string-size option."
 msgstr "[ui] --max-diff-target-string-sizeを追加。"
 
-#: doc/reference/en/file.news.html:99(li)
+#: doc/reference/en/file.news.html:100(li)
 msgid "[ui][console] Supported 256 colors."
 msgstr "[ui][console] 256色に対応。"
 
-#: doc/reference/en/file.news.html:103(li)
+#: doc/reference/en/file.news.html:104(li)
 msgid "Added missing fixture file. #7 [Reported by grafi-tt]"
 msgstr "抜けていたフィクスチャーファイルを追加。 #7 [grafi-ttさんが報告]"
 
-#: doc/reference/en/file.news.html:104(li)
+#: doc/reference/en/file.news.html:105(li)
 msgid "[ui][console] Added missing the last newline for progress level."
 msgstr "[ui][console] progress出力レベルで足りなかった最後の改行を追加。"
 
-#: doc/reference/en/file.news.html:105(li)
+#: doc/reference/en/file.news.html:106(li)
 msgid "Supported correct backtrace for redefined notification."
 msgstr "再定義した通知で正しくバックトレースを取得できるようにした。"
 
-#: doc/reference/en/file.news.html:106(li)
+#: doc/reference/en/file.news.html:107(li)
 msgid ""
 "Don’t handle Timeout::Error as pass through exception on Ruby 1.8. #8 "
 "[Reported by Marc Seeger (Acquia)]"
@@ -35255,883 +35288,883 @@ msgstr ""
 "Ruby 1.8ではTimeout::Errorを処理するようにした。 #8 [Marc Seeger (Acquia)さん"
 "が報告]"
 
-#: doc/reference/en/file.news.html:111(li)
-#: doc/reference/en/file.news.html:128(li)
+#: doc/reference/en/file.news.html:112(li)
+#: doc/reference/en/file.news.html:129(li)
 msgid "James Mead"
 msgstr "James Meadさん"
 
-#: doc/reference/en/file.news.html:112(li)
-#: doc/reference/en/file.news.html:154(li)
+#: doc/reference/en/file.news.html:113(li)
+#: doc/reference/en/file.news.html:155(li)
 msgid "grafi-tt"
 msgstr "grafi-ttさん"
 
-#: doc/reference/en/file.news.html:113(li)
+#: doc/reference/en/file.news.html:114(li)
 msgid "Marc Seeger (Acquia)"
 msgstr "Marc Seeger (Acquia)さん"
 
-#: doc/reference/en/file.news.html:115(h2)
+#: doc/reference/en/file.news.html:116(h2)
 msgid "2.3.2 – 2011-08-15"
 msgstr ""
 
-#: doc/reference/en/file.news.html:116(p)
+#: doc/reference/en/file.news.html:117(p)
 msgid "A bug fix release."
 msgstr "バグフィックスリリース。"
 
-#: doc/reference/en/file.news.html:119(li)
+#: doc/reference/en/file.news.html:120(li)
 msgid "[ui][console] Added some newlines to improve readability."
 msgstr "[ui][console] 読み易くするために改行を追加。"
 
-#: doc/reference/en/file.news.html:123(li)
+#: doc/reference/en/file.news.html:124(li)
 msgid "[ui][console] Worked —verbose again."
 msgstr "[ui][console] --verboseが動くようにした。"
 
-#: doc/reference/en/file.news.html:124(li)
+#: doc/reference/en/file.news.html:125(li)
 msgid "Re-supported Ruby 1.8.6. [Reported by James Mead]"
 msgstr "Ruby 1.8.6を再サポート。 [James Meadさんが報告]"
 
-#: doc/reference/en/file.news.html:130(h2)
+#: doc/reference/en/file.news.html:131(h2)
 msgid "2.3.1 – 2011-08-06"
 msgstr ""
 
-#: doc/reference/en/file.news.html:131(p)
+#: doc/reference/en/file.news.html:132(p)
 msgid "Output improvement release!"
 msgstr ""
 
-#: doc/reference/en/file.news.html:134(li)
+#: doc/reference/en/file.news.html:135(li)
 msgid "[ui][console] Outputs omissions and notifications in short."
 msgstr ""
 
-#: doc/reference/en/file.news.html:135(li)
+#: doc/reference/en/file.news.html:136(li)
 msgid "[ui][console] Added “important-only” verbose level."
 msgstr ""
 
-#: doc/reference/en/file.news.html:136(li)
+#: doc/reference/en/file.news.html:137(li)
 msgid "Intelligence diff supports recursive references."
 msgstr ""
 
-#: doc/reference/en/file.news.html:137(li)
+#: doc/reference/en/file.news.html:138(li)
 msgid ""
 "[rubyforge #29325] Supported Ruby Enterprise Edition. [Reported by Hans de "
 "Graaff]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:139(li)
+#: doc/reference/en/file.news.html:140(li)
 msgid "[rubyforge #29326] Supported JRuby. [Reported by Hans de Graaff]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:141(li)
+#: doc/reference/en/file.news.html:142(li)
 msgid ""
 "Added —show-detail-immediately option that shows fault details when a fault "
 "is occurred."
 msgstr ""
 
-#: doc/reference/en/file.news.html:146(li)
+#: doc/reference/en/file.news.html:147(li)
 msgid ""
 "[pull request #1] Fixed a problem that load collector can’t load a test file "
 "on Ruby 1.9. [Patch by grafi-tt]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:148(li)
+#: doc/reference/en/file.news.html:149(li)
 msgid ""
 "[issue #3] Fixed a problem that implicit method name override by declarative "
 "style test definition. [Reported by Jeremy Stephens]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:155(li)
+#: doc/reference/en/file.news.html:156(li)
 msgid "Jeremy Stephens"
 msgstr ""
 
-#: doc/reference/en/file.news.html:156(li)
+#: doc/reference/en/file.news.html:157(li)
 msgid "Hans de Graaff"
 msgstr ""
 
-#: doc/reference/en/file.news.html:158(h2)
+#: doc/reference/en/file.news.html:159(h2)
 msgid "2.3.0 / 2011-04-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:160(li)
+#: doc/reference/en/file.news.html:161(li)
 msgid "13 enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:161(li)
+#: doc/reference/en/file.news.html:162(li)
 msgid "improve Hash key sorting for diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:162(li)
+#: doc/reference/en/file.news.html:163(li)
 msgid ""
 "[#28928] support any characters in declarative style description. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:164(li)
+#: doc/reference/en/file.news.html:165(li)
 msgid "add Error#location and make #backtrace deprecated."
 msgstr ""
 
-#: doc/reference/en/file.news.html:165(li)
+#: doc/reference/en/file.news.html:166(li)
 msgid "make TestCase#passed? public."
 msgstr ""
 
-#: doc/reference/en/file.news.html:166(li)
+#: doc/reference/en/file.news.html:167(li)
 msgid "add result finished and pass assertion notifications."
 msgstr ""
 
-#: doc/reference/en/file.news.html:167(li)
+#: doc/reference/en/file.news.html:168(li)
 msgid "add TestSuite#passed? public."
 msgstr ""
 
-#: doc/reference/en/file.news.html:168(li)
+#: doc/reference/en/file.news.html:169(li)
 msgid "add <placeholder-1/> test runner."
 msgstr ""
 
-#: doc/reference/en/file.news.html:169(li)
+#: doc/reference/en/file.news.html:170(li)
 msgid "add —output-file-descriptor option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:170(li)
+#: doc/reference/en/file.news.html:171(li)
 msgid "measure elapsed time for each test."
 msgstr ""
 
-#: doc/reference/en/file.news.html:171(li)
+#: doc/reference/en/file.news.html:172(li)
 msgid "add —collector option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:172(li)
+#: doc/reference/en/file.news.html:173(li)
 msgid "support test driven test. [Haruka Yoshihara]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:174(li)
+#: doc/reference/en/file.news.html:175(li)
 msgid "add cleanup hook it runs between after test and before teardown."
 msgstr ""
 
-#: doc/reference/en/file.news.html:175(li)
+#: doc/reference/en/file.news.html:176(li)
 msgid "support recursive collection sort for diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:179(li)
-#: doc/reference/en/file.news.html:222(li)
-#: doc/reference/en/file.news.html:238(li)
-#: doc/reference/en/file.news.html:248(li)
-#: doc/reference/en/file.news.html:302(li)
-#: doc/reference/en/file.news.html:333(li)
-#: doc/reference/en/file.news.html:395(li)
-#: doc/reference/en/file.news.html:419(li)
-#: doc/reference/en/file.news.html:452(li)
+#: doc/reference/en/file.news.html:180(li)
+#: doc/reference/en/file.news.html:223(li)
+#: doc/reference/en/file.news.html:239(li)
+#: doc/reference/en/file.news.html:249(li)
+#: doc/reference/en/file.news.html:303(li)
+#: doc/reference/en/file.news.html:334(li)
+#: doc/reference/en/file.news.html:396(li)
+#: doc/reference/en/file.news.html:420(li)
+#: doc/reference/en/file.news.html:453(li)
 msgid "Daniel Berger"
 msgstr ""
 
-#: doc/reference/en/file.news.html:180(li)
+#: doc/reference/en/file.news.html:181(li)
 msgid "Haruka Yoshihara"
 msgstr ""
 
-#: doc/reference/en/file.news.html:182(h2)
+#: doc/reference/en/file.news.html:183(h2)
 msgid "2.2.0 / 2011-02-14"
 msgstr ""
 
-#: doc/reference/en/file.news.html:184(li)
+#: doc/reference/en/file.news.html:185(li)
 msgid "22 enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:185(li)
+#: doc/reference/en/file.news.html:186(li)
 msgid "[#28808] accept String as delta for assert_in_delta. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:187(li)
+#: doc/reference/en/file.news.html:188(li)
 msgid "[test-unit-users-en:00035] make GC-able finished tests. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:189(span)
+#: doc/reference/en/file.news.html:190(span)
 msgid "COLUMNS"
 msgstr ""
 
-#: doc/reference/en/file.news.html:189(li)
+#: doc/reference/en/file.news.html:190(li)
 msgid "use also <placeholder-1/> environment variable to guess terminal width."
 msgstr ""
 
-#: doc/reference/en/file.news.html:190(li)
+#: doc/reference/en/file.news.html:191(li)
 msgid "make delta for assert_in_delta optional. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:192(li)
+#: doc/reference/en/file.news.html:193(li)
 msgid "add assert_not_respond_to. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:194(li)
+#: doc/reference/en/file.news.html:195(li)
 msgid "add assert_not_match. assert_no_match is deprecated. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:196(li)
+#: doc/reference/en/file.news.html:197(li)
 msgid "add assert_not_in_delta. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:198(li)
+#: doc/reference/en/file.news.html:199(li)
 msgid "add assert_in_epsilon. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:200(li)
+#: doc/reference/en/file.news.html:201(li)
 msgid "add assert_not_in_epsilon. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:202(li)
+#: doc/reference/en/file.news.html:203(li)
 msgid "add assert_include. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:204(li)
+#: doc/reference/en/file.news.html:205(li)
 msgid "add assert_not_include. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:206(li)
+#: doc/reference/en/file.news.html:207(li)
 msgid "add assert_empty. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:208(li)
+#: doc/reference/en/file.news.html:209(li)
 msgid "add assert_not_empty. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:210(li)
+#: doc/reference/en/file.news.html:211(li)
 msgid "notify require failed paths."
 msgstr ""
 
-#: doc/reference/en/file.news.html:211(li)
+#: doc/reference/en/file.news.html:212(li)
 msgid "validate message value for assert."
 msgstr ""
 
-#: doc/reference/en/file.news.html:212(li)
+#: doc/reference/en/file.news.html:213(li)
 msgid "show throughputs at the last."
 msgstr ""
 
-#: doc/reference/en/file.news.html:213(span)
+#: doc/reference/en/file.news.html:214(span)
 msgid "ASCII"
 msgstr ""
 
-#: doc/reference/en/file.news.html:213(li)
+#: doc/reference/en/file.news.html:214(li)
 msgid "support not <placeholder-1/> compatible string diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:214(li)
+#: doc/reference/en/file.news.html:215(li)
 msgid "support colorized diff on encoding different string."
 msgstr ""
 
-#: doc/reference/en/file.news.html:215(li)
+#: doc/reference/en/file.news.html:216(li)
 msgid "normalize entry order of Hash for readable diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:216(li)
+#: doc/reference/en/file.news.html:217(li)
 msgid "add —ignore-name option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:217(li)
+#: doc/reference/en/file.news.html:218(li)
 msgid "add —ignore-testcase option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:218(li)
+#: doc/reference/en/file.news.html:219(li)
 msgid "add assert_not_send."
 msgstr ""
 
-#: doc/reference/en/file.news.html:223(li)
+#: doc/reference/en/file.news.html:224(li)
 msgid "Nobuyoshi Nakada"
 msgstr ""
 
-#: doc/reference/en/file.news.html:225(h2)
+#: doc/reference/en/file.news.html:226(h2)
 msgid "2.1.2 / 2010-11-25"
 msgstr ""
 
-#: doc/reference/en/file.news.html:227(li)
+#: doc/reference/en/file.news.html:228(li)
 msgid "1 enhancement"
 msgstr ""
 
-#: doc/reference/en/file.news.html:228(li)
+#: doc/reference/en/file.news.html:229(li)
 msgid "support auto runner prepare hook."
 msgstr ""
 
-#: doc/reference/en/file.news.html:230(h2)
+#: doc/reference/en/file.news.html:231(h2)
 msgid "2.1.1 / 2010-07-29"
 msgstr ""
 
-#: doc/reference/en/file.news.html:232(li)
-#: doc/reference/en/file.news.html:242(li)
-#: doc/reference/en/file.news.html:389(li)
+#: doc/reference/en/file.news.html:233(li)
+#: doc/reference/en/file.news.html:243(li)
+#: doc/reference/en/file.news.html:390(li)
 msgid "1 bug fix"
 msgstr ""
 
-#: doc/reference/en/file.news.html:233(li)
+#: doc/reference/en/file.news.html:234(li)
 msgid "[test-unit-users-en:00026] re-work tap runner. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:240(p)
+#: doc/reference/en/file.news.html:241(p)
 msgid "=== 2.1.0 / 2010-07-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:243(li)
+#: doc/reference/en/file.news.html:244(li)
 msgid "[#28267] global config file ignored [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:250(h2)
+#: doc/reference/en/file.news.html:251(h2)
 msgid "2.0.8 / 2010-06-02"
 msgstr ""
 
-#: doc/reference/en/file.news.html:252(li)
+#: doc/reference/en/file.news.html:253(li)
 msgid "5 major enchancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:253(li)
+#: doc/reference/en/file.news.html:254(li)
 msgid "collect *_test.rb and *-test.rb files as test files."
 msgstr ""
 
-#: doc/reference/en/file.news.html:255(span)
-#: doc/reference/en/file.news.html:273(span)
-#: doc/reference/en/file.news.html:282(span)
-#: doc/reference/en/file.news.html:290(span)
-#: doc/reference/en/file.news.html:301(span)
-#: doc/reference/en/file.news.html:326(span)
-#: doc/reference/en/file.news.html:332(span)
+#: doc/reference/en/file.news.html:256(span)
+#: doc/reference/en/file.news.html:274(span)
+#: doc/reference/en/file.news.html:283(span)
+#: doc/reference/en/file.news.html:291(span)
+#: doc/reference/en/file.news.html:302(span)
+#: doc/reference/en/file.news.html:327(span)
+#: doc/reference/en/file.news.html:333(span)
 #: doc/reference/en/index.html:121(span)
 #: doc/reference/en/file.README.html:121(span)
 msgid "MARCHALAND"
 msgstr ""
 
-#: doc/reference/en/file.news.html:254(li)
+#: doc/reference/en/file.news.html:255(li)
 msgid ""
 "[#28181] improve assert_in_delta message. [Suggested by David <placeholder-1/"
 ">]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:256(li)
+#: doc/reference/en/file.news.html:257(li)
 msgid ""
 "show string encoding in assert_equal failure message if they are different."
 msgstr ""
 
-#: doc/reference/en/file.news.html:258(li)
+#: doc/reference/en/file.news.html:259(li)
 msgid "change default color scheme:"
 msgstr ""
 
-#: doc/reference/en/file.news.html:259(li)
+#: doc/reference/en/file.news.html:260(li)
 msgid "success: green back + white"
 msgstr ""
 
-#: doc/reference/en/file.news.html:260(li)
+#: doc/reference/en/file.news.html:261(li)
 msgid "failure: red back + white"
 msgstr ""
 
-#: doc/reference/en/file.news.html:261(li)
+#: doc/reference/en/file.news.html:262(li)
 msgid "add capture_output."
 msgstr ""
 
-#: doc/reference/en/file.news.html:264(li)
-#: doc/reference/en/file.news.html:293(li)
-#: doc/reference/en/file.news.html:325(li)
+#: doc/reference/en/file.news.html:265(li)
+#: doc/reference/en/file.news.html:294(li)
+#: doc/reference/en/file.news.html:326(li)
 msgid "2 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:265(li)
+#: doc/reference/en/file.news.html:266(li)
 msgid ""
 "fix a bug that console runner on verbose mode causes an error for long test "
 "name (&gt;= 61)."
 msgstr ""
 
-#: doc/reference/en/file.news.html:267(li)
+#: doc/reference/en/file.news.html:268(li)
 msgid ""
 "[#28093] Autorunner ignores all files in a directory named test by default "
 "[Reported by Florian Frank]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:272(li)
+#: doc/reference/en/file.news.html:273(li)
 msgid "Florian Frank"
 msgstr ""
 
-#: doc/reference/en/file.news.html:273(li)
-#: doc/reference/en/file.news.html:301(li)
-#: doc/reference/en/file.news.html:332(li)
+#: doc/reference/en/file.news.html:274(li)
+#: doc/reference/en/file.news.html:302(li)
+#: doc/reference/en/file.news.html:333(li)
 msgid "David <placeholder-1/>"
 msgstr ""
 
-#: doc/reference/en/file.news.html:275(h2)
+#: doc/reference/en/file.news.html:276(h2)
 msgid "2.0.7 / 2010-03-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:277(li)
-#: doc/reference/en/file.news.html:346(li)
+#: doc/reference/en/file.news.html:278(li)
+#: doc/reference/en/file.news.html:347(li)
 msgid "4 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:278(li)
+#: doc/reference/en/file.news.html:279(li)
 msgid "detect redefined test methods."
 msgstr ""
 
-#: doc/reference/en/file.news.html:279(span)
+#: doc/reference/en/file.news.html:280(span)
 msgid "INTERFACE"
 msgstr ""
 
-#: doc/reference/en/file.news.html:279(span)
+#: doc/reference/en/file.news.html:280(span)
 msgid "IMCOMPATIBLE"
 msgstr ""
 
-#: doc/reference/en/file.news.html:279(li)
+#: doc/reference/en/file.news.html:280(li)
 msgid ""
 "[<placeholder-1/> <placeholder-2/>] multiple —name and —testcase options "
 "narrow down targets instead of adding targets."
 msgstr ""
 
-#: doc/reference/en/file.news.html:281(li)
+#: doc/reference/en/file.news.html:282(li)
 msgid ""
 "[#27764] accept custom test_order for each test case. [Suggested by David "
 "<placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:283(li)
+#: doc/reference/en/file.news.html:284(li)
 msgid ""
 "[#27790] ignore omitted tests from ‘n% passed’ report. [Suggested by Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:287(li)
+#: doc/reference/en/file.news.html:288(li)
 msgid "2 minor enchancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:288(li)
+#: doc/reference/en/file.news.html:289(li)
 msgid "[#27832] ignore .git directory. [Suggested by Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:289(li)
+#: doc/reference/en/file.news.html:290(li)
 msgid ""
 "[#27792] require ‘fileutils’ and ‘tmpdir’ lazily for non-priority mode "
 "users. [Suggested by David <placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:294(li)
+#: doc/reference/en/file.news.html:295(li)
 msgid ""
 "[#27892] modify processed arguments array destructively. [Reported by Bob "
 "Saveland]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:296(span)
+#: doc/reference/en/file.news.html:297(span)
 msgid "HOME"
 msgstr ""
 
-#: doc/reference/en/file.news.html:296(li)
+#: doc/reference/en/file.news.html:297(li)
 msgid ""
 "work without <placeholder-1/> environment variable. [Reported by Champak Ch]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:303(li)
+#: doc/reference/en/file.news.html:304(li)
 msgid "Bob Saveland"
 msgstr ""
 
-#: doc/reference/en/file.news.html:304(li)
+#: doc/reference/en/file.news.html:305(li)
 msgid "Champak Ch"
 msgstr ""
 
-#: doc/reference/en/file.news.html:306(h2)
+#: doc/reference/en/file.news.html:307(h2)
 msgid "2.0.6 / 2010-01-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:308(li)
+#: doc/reference/en/file.news.html:309(li)
 msgid "3 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:309(li)
+#: doc/reference/en/file.news.html:310(li)
 msgid ""
 "[#27380] Declarative syntax? [Daniel Berger] support declarative syntax:"
 msgstr ""
 
-#: doc/reference/en/file.news.html:316(li)
+#: doc/reference/en/file.news.html:317(li)
 msgid ""
 "support test description: description “test description in natural language” "
 "def test_my_test … end"
 msgstr ""
 
-#: doc/reference/en/file.news.html:321(li)
+#: doc/reference/en/file.news.html:322(li)
 msgid ""
 "make max diff target string size customizable by "
 "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE environment variable."
 msgstr ""
 
-#: doc/reference/en/file.news.html:326(li)
+#: doc/reference/en/file.news.html:327(li)
 msgid "[#27374] omit_if unexpected behavior [David <placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:327(li)
+#: doc/reference/en/file.news.html:328(li)
 msgid ""
 "fix a bug that tests in sub directories aren’t load with —basedir. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:335(h2)
+#: doc/reference/en/file.news.html:336(h2)
 msgid "2.0.5 / 2009-10-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:337(li)
-#: doc/reference/en/file.news.html:361(li)
+#: doc/reference/en/file.news.html:338(li)
+#: doc/reference/en/file.news.html:362(li)
 msgid "1 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:338(li)
+#: doc/reference/en/file.news.html:339(li)
 msgid "[#27314] fix diff may raise an exception. [Erik Hollensbe]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:342(li)
-#: doc/reference/en/file.news.html:418(li)
+#: doc/reference/en/file.news.html:343(li)
+#: doc/reference/en/file.news.html:419(li)
 msgid "Erik Hollensbe"
 msgstr ""
 
-#: doc/reference/en/file.news.html:344(h2)
+#: doc/reference/en/file.news.html:345(h2)
 msgid "2.0.4 / 2009-10-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:347(li)
+#: doc/reference/en/file.news.html:348(li)
 msgid "use ~/.test-unit.yml as global configuration file."
 msgstr ""
 
-#: doc/reference/en/file.news.html:348(span)
+#: doc/reference/en/file.news.html:349(span)
 msgid "TAP"
 msgstr ""
 
-#: doc/reference/en/file.news.html:348(li)
+#: doc/reference/en/file.news.html:349(li)
 msgid "add <placeholder-1/> runner. (—runner tap)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:349(li)
+#: doc/reference/en/file.news.html:350(li)
 msgid ""
 "support colorized diff: http://test-unit.rubyforge.org/svn/trunk/images/"
 "color-diff.png"
 msgstr ""
 
-#: doc/reference/en/file.news.html:351(li)
+#: doc/reference/en/file.news.html:352(li)
 msgid ""
 "add Test::Unit::AutoRunner.default_runner= to specify default test runner."
 msgstr ""
 
-#: doc/reference/en/file.news.html:354(li)
-#: doc/reference/en/file.news.html:381(li)
+#: doc/reference/en/file.news.html:355(li)
+#: doc/reference/en/file.news.html:382(li)
 msgid "4 minor enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:355(li)
+#: doc/reference/en/file.news.html:356(li)
 msgid "improve verbose mode output format. (use indent)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:356(li)
+#: doc/reference/en/file.news.html:357(li)
 msgid "support NOT_PASS_THROUGH_EXCEPTIONS."
 msgstr ""
 
-#: doc/reference/en/file.news.html:357(code)
+#: doc/reference/en/file.news.html:358(code)
 msgid "#{runner}"
 msgstr ""
 
-#: doc/reference/en/file.news.html:357(li)
+#: doc/reference/en/file.news.html:358(li)
 msgid "support arguments option in <placeholder-1/>_options."
 msgstr ""
 
-#: doc/reference/en/file.news.html:358(li)
+#: doc/reference/en/file.news.html:359(li)
 msgid "TC_ → Test in sample test case name."
 msgstr ""
 
-#: doc/reference/en/file.news.html:362(li)
+#: doc/reference/en/file.news.html:363(li)
 msgid ""
 "[#27195] test-unit-2.0.3 + ruby-1.9.1 cannot properly test DelegateClass "
 "subclasses [Mike Pomraning]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:367(li)
+#: doc/reference/en/file.news.html:368(li)
 msgid "Mike Pomraning"
 msgstr ""
 
-#: doc/reference/en/file.news.html:369(h2)
+#: doc/reference/en/file.news.html:370(h2)
 msgid "2.0.3 / 2009-07-19"
 msgstr ""
 
-#: doc/reference/en/file.news.html:371(li)
+#: doc/reference/en/file.news.html:372(li)
 msgid "6 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:372(li)
+#: doc/reference/en/file.news.html:373(li)
 msgid "add assert_predicate."
 msgstr ""
 
-#: doc/reference/en/file.news.html:373(li)
+#: doc/reference/en/file.news.html:374(li)
 msgid "add assert_not_predicate."
 msgstr ""
 
-#: doc/reference/en/file.news.html:374(li)
+#: doc/reference/en/file.news.html:375(li)
 msgid ""
 "[#24210] assert_kind_of supports an array of classes or modules. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:376(li)
+#: doc/reference/en/file.news.html:377(li)
 msgid "assert_instance_of supports an array of classes or modules."
 msgstr ""
 
-#: doc/reference/en/file.news.html:377(li)
+#: doc/reference/en/file.news.html:378(li)
 msgid "add —default-priority option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:378(li)
+#: doc/reference/en/file.news.html:379(li)
 msgid "[#26627] add —order option. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:382(li)
+#: doc/reference/en/file.news.html:383(li)
 msgid "use yellow foreground + black background for error."
 msgstr ""
 
-#: doc/reference/en/file.news.html:383(li)
+#: doc/reference/en/file.news.html:384(li)
 msgid "don’t show diff for long string."
 msgstr ""
 
-#: doc/reference/en/file.news.html:384(li)
+#: doc/reference/en/file.news.html:385(li)
 msgid ""
 "accept “*term-color” <placeholder-1/> environment as colorizable terminal. "
 "(e.g. Apple’s Terminal)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:386(li)
+#: doc/reference/en/file.news.html:387(li)
 msgid "[#26268] add a workaround for test-spec’s after_all. [Angelo Lakra]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:390(li)
+#: doc/reference/en/file.news.html:391(li)
 msgid "[#23586] re-support ruby 1.9.1. [Diego Pettenò]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:394(li)
+#: doc/reference/en/file.news.html:395(li)
 msgid "Diego Pettenò"
 msgstr ""
 
-#: doc/reference/en/file.news.html:396(li)
+#: doc/reference/en/file.news.html:397(li)
 msgid "Angelo Lakra"
 msgstr ""
 
-#: doc/reference/en/file.news.html:398(h2)
+#: doc/reference/en/file.news.html:399(h2)
 msgid "2.0.2 / 2008-12-21"
 msgstr ""
 
-#: doc/reference/en/file.news.html:400(li)
+#: doc/reference/en/file.news.html:401(li)
 msgid "2 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:403(li)
+#: doc/reference/en/file.news.html:404(li)
 msgid "re-support ruby 1.8.5."
 msgstr ""
 
-#: doc/reference/en/file.news.html:404(li)
+#: doc/reference/en/file.news.html:405(li)
 msgid "improve exception object comparison."
 msgstr ""
 
-#: doc/reference/en/file.news.html:407(li)
+#: doc/reference/en/file.news.html:408(li)
 msgid "3 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:410(li)
+#: doc/reference/en/file.news.html:411(li)
 msgid "[#22723]: collector fails on anonymous classes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:411(li)
+#: doc/reference/en/file.news.html:412(li)
 msgid "[#22986]: Test names with ‘?’ blow up on Windows"
 msgstr ""
 
-#: doc/reference/en/file.news.html:412(li)
+#: doc/reference/en/file.news.html:413(li)
 msgid "[#22988]: don’t create .test-result on non-priority mode."
 msgstr ""
 
-#: doc/reference/en/file.news.html:420(li)
+#: doc/reference/en/file.news.html:421(li)
 msgid "Bill Lear"
 msgstr ""
 
-#: doc/reference/en/file.news.html:422(h2)
+#: doc/reference/en/file.news.html:423(h2)
 msgid "2.0.1 / 2008-11-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:424(li)
+#: doc/reference/en/file.news.html:425(li)
 msgid "19 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:427(li)
+#: doc/reference/en/file.news.html:428(li)
 msgid "support ruby 1.9.1."
 msgstr ""
 
-#: doc/reference/en/file.news.html:428(li)
+#: doc/reference/en/file.news.html:429(li)
 msgid "add run_test method to be extensible."
 msgstr ""
 
-#: doc/reference/en/file.news.html:429(li)
+#: doc/reference/en/file.news.html:430(li)
 msgid "improve priority-mode auto off."
 msgstr ""
 
-#: doc/reference/en/file.news.html:430(li)
+#: doc/reference/en/file.news.html:431(li)
 msgid "improve startup/shutdown RDoc. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:431(li)
+#: doc/reference/en/file.news.html:432(li)
 msgid "add assert_compare. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:432(li)
+#: doc/reference/en/file.news.html:433(li)
 msgid "add assert_fail_assertion. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:433(li)
+#: doc/reference/en/file.news.html:434(li)
 msgid "add assert_raise_message. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:434(li)
+#: doc/reference/en/file.news.html:435(li)
 msgid "support folded diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:435(li)
+#: doc/reference/en/file.news.html:436(li)
 msgid "add assert_raise_kind_of. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:436(li)
+#: doc/reference/en/file.news.html:437(li)
 msgid "ingore inherited test for nested test case."
 msgstr ""
 
-#: doc/reference/en/file.news.html:437(li)
+#: doc/reference/en/file.news.html:438(li)
 msgid "add assert_const_defined."
 msgstr ""
 
-#: doc/reference/en/file.news.html:438(li)
+#: doc/reference/en/file.news.html:439(li)
 msgid "add assert_not_const_defined."
 msgstr ""
 
-#: doc/reference/en/file.news.html:439(li)
+#: doc/reference/en/file.news.html:440(li)
 msgid "support assert_raise with an exception object."
 msgstr ""
 
-#: doc/reference/en/file.news.html:440(li)
+#: doc/reference/en/file.news.html:441(li)
 msgid ""
 "support assert_raise with no arguments that asserts any exception is raised. "
 "[#22602] [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:442(li)
+#: doc/reference/en/file.news.html:443(li)
 msgid "support folded dot progress."
 msgstr ""
 
-#: doc/reference/en/file.news.html:443(li)
+#: doc/reference/en/file.news.html:444(li)
 msgid "add —progress-row-max option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:444(li)
+#: doc/reference/en/file.news.html:445(li)
 msgid "support color scheme customize."
 msgstr ""
 
-#: doc/reference/en/file.news.html:445(li)
+#: doc/reference/en/file.news.html:446(li)
 msgid "support configuration file. (<placeholder-1/>)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:446(span)
+#: doc/reference/en/file.news.html:447(span)
 msgid "XXX"
 msgstr ""
 
-#: doc/reference/en/file.news.html:446(li)
+#: doc/reference/en/file.news.html:447(li)
 msgid ""
 "recognize test-<placeholder-1/>.rb files as test files not only test_XXX.rb"
 msgstr ""
 
-#: doc/reference/en/file.news.html:453(li)
+#: doc/reference/en/file.news.html:454(li)
 msgid "Designing Patterns"
 msgstr ""
 
-#: doc/reference/en/file.news.html:455(h2)
+#: doc/reference/en/file.news.html:456(h2)
 msgid "2.0.0 / 2008-06-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:457(li)
+#: doc/reference/en/file.news.html:458(li)
 msgid "15 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:460(li)
+#: doc/reference/en/file.news.html:461(li)
 msgid "support startup/shutdown. (test case level setup/teardown)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:461(li)
+#: doc/reference/en/file.news.html:462(li)
 msgid "support multiple setup/teardown."
 msgstr ""
 
-#: doc/reference/en/file.news.html:462(li)
+#: doc/reference/en/file.news.html:463(li)
 msgid "support pending."
 msgstr ""
 
-#: doc/reference/en/file.news.html:463(li)
+#: doc/reference/en/file.news.html:464(li)
 msgid "support omission."
 msgstr ""
 
-#: doc/reference/en/file.news.html:464(li)
+#: doc/reference/en/file.news.html:465(li)
 msgid "support notification."
 msgstr ""
 
-#: doc/reference/en/file.news.html:465(li)
+#: doc/reference/en/file.news.html:466(li)
 msgid "support colorize."
 msgstr ""
 
-#: doc/reference/en/file.news.html:466(li)
+#: doc/reference/en/file.news.html:467(li)
 msgid "support diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:467(li)
+#: doc/reference/en/file.news.html:468(li)
 msgid "support test attribute."
 msgstr ""
 
-#: doc/reference/en/file.news.html:468(li)
+#: doc/reference/en/file.news.html:469(li)
 msgid "add assert_boolean."
 msgstr ""
 
-#: doc/reference/en/file.news.html:469(li)
+#: doc/reference/en/file.news.html:470(li)
 msgid "add assert_true."
 msgstr ""
 
-#: doc/reference/en/file.news.html:470(li)
+#: doc/reference/en/file.news.html:471(li)
 msgid "add assert_false."
 msgstr ""
 
-#: doc/reference/en/file.news.html:471(li)
+#: doc/reference/en/file.news.html:472(li)
 msgid "add —priority-mode option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:472(li)
+#: doc/reference/en/file.news.html:473(li)
 msgid "don’t use ObjectSpace to collect test cases."
 msgstr ""
 
-#: doc/reference/en/file.news.html:473(li)
+#: doc/reference/en/file.news.html:474(li)
 msgid ""
 "make more customizable. (additional options, exception handling and so on)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:474(li)
+#: doc/reference/en/file.news.html:475(li)
 msgid "improve Emacs integration."
 msgstr ""
 
-#: doc/reference/en/file.news.html:477(li)
+#: doc/reference/en/file.news.html:478(li)
 msgid "4 major changes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:480(li)
+#: doc/reference/en/file.news.html:481(li)
 msgid "remove GTK+1 support."
 msgstr ""
 
-#: doc/reference/en/file.news.html:481(li)
+#: doc/reference/en/file.news.html:482(li)
 msgid "split GTK+ runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:482(span)
+#: doc/reference/en/file.news.html:483(span)
 msgid "FOX"
 msgstr ""
 
-#: doc/reference/en/file.news.html:482(li)
+#: doc/reference/en/file.news.html:483(li)
 msgid "split <placeholder-1/> runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:483(li)
+#: doc/reference/en/file.news.html:484(li)
 msgid "split Tk runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:485(h2)
+#: doc/reference/en/file.news.html:486(h2)
 msgid "1.2.3 / 2008-02-25"
 msgstr ""
 
-#: doc/reference/en/file.news.html:487(li)
+#: doc/reference/en/file.news.html:488(li)
 msgid "1 major enhancement"
 msgstr ""
 
-#: doc/reference/en/file.news.html:490(li)
+#: doc/reference/en/file.news.html:491(li)
 msgid "Birthday (as a gem)!"
 msgstr ""
 
@@ -36140,66 +36173,66 @@ msgid ""
 "<placeholder-1/>\n"
 "<placeholder-2/>\n"
 "<placeholder-3/>\n"
-"<ul><placeholder-4/></ul>\n"
-"<placeholder-5/>\n"
-"<ul><placeholder-6/></ul>\n"
-"<placeholder-7/>\n"
+"<ul><placeholder-4/>\n"
+"\t<placeholder-5/></ul>\n"
+"<placeholder-6/>\n"
+"<ul><placeholder-7/></ul>\n"
 "<placeholder-8/>\n"
-"<ul><placeholder-9/></ul>\n"
-"<placeholder-10/>\n"
+"<placeholder-9/>\n"
+"<ul><placeholder-10/></ul>\n"
 "<placeholder-11/>\n"
-"<ul><placeholder-12/></ul>\n"
-"<placeholder-13/>\n"
-"<ul><placeholder-14/>\n"
-"\t<placeholder-15/></ul>\n"
-"<placeholder-16/>\n"
-"<ul><placeholder-17/>\n"
-"\t<placeholder-18/></ul>\n"
-"<placeholder-19/>\n"
+"<placeholder-12/>\n"
+"<ul><placeholder-13/></ul>\n"
+"<placeholder-14/>\n"
+"<ul><placeholder-15/>\n"
+"\t<placeholder-16/></ul>\n"
+"<placeholder-17/>\n"
+"<ul><placeholder-18/>\n"
+"\t<placeholder-19/></ul>\n"
 "<placeholder-20/>\n"
-"<ul><placeholder-21/>\n"
-"\t<placeholder-22/>\n"
+"<placeholder-21/>\n"
+"<ul><placeholder-22/>\n"
 "\t<placeholder-23/>\n"
 "\t<placeholder-24/>\n"
 "\t<placeholder-25/>\n"
-"\t<placeholder-26/></ul>\n"
-"<placeholder-27/>\n"
-"<ul><placeholder-28/>\n"
-"\t<placeholder-29/>\n"
+"\t<placeholder-26/>\n"
+"\t<placeholder-27/></ul>\n"
+"<placeholder-28/>\n"
+"<ul><placeholder-29/>\n"
 "\t<placeholder-30/>\n"
-"\t<placeholder-31/></ul>\n"
-"<placeholder-32/>\n"
-"<ul><placeholder-33/>\n"
-"\t<placeholder-34/>\n"
-"\t<placeholder-35/></ul>\n"
-"<placeholder-36/>\n"
+"\t<placeholder-31/>\n"
+"\t<placeholder-32/></ul>\n"
+"<placeholder-33/>\n"
+"<ul><placeholder-34/>\n"
+"\t<placeholder-35/>\n"
+"\t<placeholder-36/></ul>\n"
 "<placeholder-37/>\n"
 "<placeholder-38/>\n"
-"<ul><placeholder-39/></ul>\n"
-"<placeholder-40/>\n"
-"<ul><placeholder-41/>\n"
-"\t<placeholder-42/></ul>\n"
-"<placeholder-43/>\n"
-"<ul><placeholder-44/></ul>\n"
-"<placeholder-45/>\n"
+"<placeholder-39/>\n"
+"<ul><placeholder-40/></ul>\n"
+"<placeholder-41/>\n"
+"<ul><placeholder-42/>\n"
+"\t<placeholder-43/></ul>\n"
+"<placeholder-44/>\n"
+"<ul><placeholder-45/></ul>\n"
 "<placeholder-46/>\n"
 "<placeholder-47/>\n"
-"<ul><placeholder-48/>\n"
-"\t<placeholder-49/>\n"
+"<placeholder-48/>\n"
+"<ul><placeholder-49/>\n"
 "\t<placeholder-50/>\n"
 "\t<placeholder-51/>\n"
 "\t<placeholder-52/>\n"
-"\t<placeholder-53/></ul>\n"
-"<placeholder-54/>\n"
-"<ul><placeholder-55/>\n"
-"\t<placeholder-56/></ul>\n"
-"<placeholder-57/>\n"
-"<ul><placeholder-58/>\n"
-"\t<placeholder-59/>\n"
-"\t<placeholder-60/></ul>\n"
-"<placeholder-61/>\n"
-"<ul><placeholder-62/>\n"
-"\t<placeholder-63/>\n"
+"\t<placeholder-53/>\n"
+"\t<placeholder-54/></ul>\n"
+"<placeholder-55/>\n"
+"<ul><placeholder-56/>\n"
+"\t<placeholder-57/></ul>\n"
+"<placeholder-58/>\n"
+"<ul><placeholder-59/>\n"
+"\t<placeholder-60/>\n"
+"\t<placeholder-61/></ul>\n"
+"<placeholder-62/>\n"
+"<ul><placeholder-63/>\n"
 "\t<placeholder-64/>\n"
 "\t<placeholder-65/>\n"
 "\t<placeholder-66/>\n"
@@ -36211,13 +36244,13 @@ msgid ""
 "\t<placeholder-72/>\n"
 "\t<placeholder-73/>\n"
 "\t<placeholder-74/>\n"
-"\t<placeholder-75/></ul>\n"
-"<ul><placeholder-76/>\n"
-"\t<placeholder-77/>\n"
-"\t<placeholder-78/></ul>\n"
-"<placeholder-79/>\n"
-"<ul><placeholder-80/>\n"
-"\t<placeholder-81/>\n"
+"\t<placeholder-75/>\n"
+"\t<placeholder-76/></ul>\n"
+"<ul><placeholder-77/>\n"
+"\t<placeholder-78/>\n"
+"\t<placeholder-79/></ul>\n"
+"<placeholder-80/>\n"
+"<ul><placeholder-81/>\n"
 "\t<placeholder-82/>\n"
 "\t<placeholder-83/>\n"
 "\t<placeholder-84/>\n"
@@ -36238,121 +36271,121 @@ msgid ""
 "\t<placeholder-99/>\n"
 "\t<placeholder-100/>\n"
 "\t<placeholder-101/>\n"
-"\t<placeholder-102/></ul>\n"
-"<ul><placeholder-103/>\n"
-"\t<placeholder-104/>\n"
-"\t<placeholder-105/></ul>\n"
-"<placeholder-106/>\n"
-"<ul><placeholder-107/>\n"
-"\t<placeholder-108/></ul>\n"
-"<placeholder-109/>\n"
-"<ul><placeholder-110/>\n"
-"\t<placeholder-111/></ul>\n"
-"<ul><placeholder-112/>\n"
-"\t<placeholder-113/></ul>\n"
-"<placeholder-114/>\n"
-"<ul><placeholder-115/>\n"
-"\t<placeholder-116/></ul>\n"
-"<ul><placeholder-117/>\n"
-"\t<placeholder-118/></ul>\n"
-"<placeholder-119/>\n"
-"<ul><placeholder-120/>\n"
-"\t<placeholder-121/>\n"
+"\t<placeholder-102/>\n"
+"\t<placeholder-103/></ul>\n"
+"<ul><placeholder-104/>\n"
+"\t<placeholder-105/>\n"
+"\t<placeholder-106/></ul>\n"
+"<placeholder-107/>\n"
+"<ul><placeholder-108/>\n"
+"\t<placeholder-109/></ul>\n"
+"<placeholder-110/>\n"
+"<ul><placeholder-111/>\n"
+"\t<placeholder-112/></ul>\n"
+"<ul><placeholder-113/>\n"
+"\t<placeholder-114/></ul>\n"
+"<placeholder-115/>\n"
+"<ul><placeholder-116/>\n"
+"\t<placeholder-117/></ul>\n"
+"<ul><placeholder-118/>\n"
+"\t<placeholder-119/></ul>\n"
+"<placeholder-120/>\n"
+"<ul><placeholder-121/>\n"
 "\t<placeholder-122/>\n"
 "\t<placeholder-123/>\n"
 "\t<placeholder-124/>\n"
 "\t<placeholder-125/>\n"
 "\t<placeholder-126/>\n"
-"\t<placeholder-127/></ul>\n"
-"<ul><placeholder-128/>\n"
-"\t<placeholder-129/>\n"
-"\t<placeholder-130/></ul>\n"
-"<ul><placeholder-131/>\n"
-"\t<placeholder-132/>\n"
-"\t<placeholder-133/></ul>\n"
-"<placeholder-134/>\n"
-"<ul><placeholder-135/>\n"
-"\t<placeholder-136/>\n"
+"\t<placeholder-127/>\n"
+"\t<placeholder-128/></ul>\n"
+"<ul><placeholder-129/>\n"
+"\t<placeholder-130/>\n"
+"\t<placeholder-131/></ul>\n"
+"<ul><placeholder-132/>\n"
+"\t<placeholder-133/>\n"
+"\t<placeholder-134/></ul>\n"
+"<placeholder-135/>\n"
+"<ul><placeholder-136/>\n"
 "\t<placeholder-137/>\n"
 "\t<placeholder-138/>\n"
-"\t<placeholder-139/></ul>\n"
-"<ul><placeholder-140/>\n"
-"\t<placeholder-141/>\n"
-"\t<placeholder-142/></ul>\n"
-"<ul><placeholder-143/>\n"
-"\t<placeholder-144/>\n"
-"\t<placeholder-145/></ul>\n"
-"<ul><placeholder-146/>\n"
-"\t<placeholder-147/>\n"
+"\t<placeholder-139/>\n"
+"\t<placeholder-140/></ul>\n"
+"<ul><placeholder-141/>\n"
+"\t<placeholder-142/>\n"
+"\t<placeholder-143/></ul>\n"
+"<ul><placeholder-144/>\n"
+"\t<placeholder-145/>\n"
+"\t<placeholder-146/></ul>\n"
+"<ul><placeholder-147/>\n"
 "\t<placeholder-148/>\n"
 "\t<placeholder-149/>\n"
-"\t<placeholder-150/></ul>\n"
-"<placeholder-151/>\n"
-"<ul><placeholder-152/>\n"
-"\t<placeholder-153/></ul> test “test description in natural language” do … "
-"end <ul><placeholder-154/>\n"
-"\t<placeholder-155/></ul>\n"
-"<ul><placeholder-156/>\n"
-"\t<placeholder-157/>\n"
-"\t<placeholder-158/></ul>\n"
-"<ul><placeholder-159/>\n"
-"\t<placeholder-160/>\n"
-"\t<placeholder-161/></ul>\n"
-"<placeholder-162/>\n"
-"<ul><placeholder-163/>\n"
-"\t<placeholder-164/></ul>\n"
-"<ul><placeholder-165/>\n"
-"\t<placeholder-166/></ul>\n"
-"<placeholder-167/>\n"
-"<ul><placeholder-168/>\n"
-"\t<placeholder-169/>\n"
+"\t<placeholder-150/>\n"
+"\t<placeholder-151/></ul>\n"
+"<placeholder-152/>\n"
+"<ul><placeholder-153/>\n"
+"\t<placeholder-154/></ul> test “test description in natural language” do … "
+"end <ul><placeholder-155/>\n"
+"\t<placeholder-156/></ul>\n"
+"<ul><placeholder-157/>\n"
+"\t<placeholder-158/>\n"
+"\t<placeholder-159/></ul>\n"
+"<ul><placeholder-160/>\n"
+"\t<placeholder-161/>\n"
+"\t<placeholder-162/></ul>\n"
+"<placeholder-163/>\n"
+"<ul><placeholder-164/>\n"
+"\t<placeholder-165/></ul>\n"
+"<ul><placeholder-166/>\n"
+"\t<placeholder-167/></ul>\n"
+"<placeholder-168/>\n"
+"<ul><placeholder-169/>\n"
 "\t<placeholder-170/>\n"
 "\t<placeholder-171/>\n"
-"\t<placeholder-172/></ul>\n"
-"<ul><placeholder-173/>\n"
-"\t<placeholder-174/>\n"
+"\t<placeholder-172/>\n"
+"\t<placeholder-173/></ul>\n"
+"<ul><placeholder-174/>\n"
 "\t<placeholder-175/>\n"
 "\t<placeholder-176/>\n"
-"\t<placeholder-177/></ul>\n"
-"<ul><placeholder-178/>\n"
-"\t<placeholder-179/></ul>\n"
-"<ul><placeholder-180/>\n"
-"\t<placeholder-181/></ul>\n"
-"<placeholder-182/>\n"
-"<ul><placeholder-183/>\n"
-"\t<placeholder-184/>\n"
+"\t<placeholder-177/>\n"
+"\t<placeholder-178/></ul>\n"
+"<ul><placeholder-179/>\n"
+"\t<placeholder-180/></ul>\n"
+"<ul><placeholder-181/>\n"
+"\t<placeholder-182/></ul>\n"
+"<placeholder-183/>\n"
+"<ul><placeholder-184/>\n"
 "\t<placeholder-185/>\n"
 "\t<placeholder-186/>\n"
 "\t<placeholder-187/>\n"
 "\t<placeholder-188/>\n"
-"\t<placeholder-189/></ul>\n"
-"<ul><placeholder-190/>\n"
-"\t<placeholder-191/>\n"
+"\t<placeholder-189/>\n"
+"\t<placeholder-190/></ul>\n"
+"<ul><placeholder-191/>\n"
 "\t<placeholder-192/>\n"
 "\t<placeholder-193/>\n"
-"\t<placeholder-194/></ul>\n"
-"<ul><placeholder-195/>\n"
-"\t<placeholder-196/></ul>\n"
-"<ul><placeholder-197/>\n"
-"\t<placeholder-198/>\n"
+"\t<placeholder-194/>\n"
+"\t<placeholder-195/></ul>\n"
+"<ul><placeholder-196/>\n"
+"\t<placeholder-197/></ul>\n"
+"<ul><placeholder-198/>\n"
 "\t<placeholder-199/>\n"
-"\t<placeholder-200/></ul>\n"
-"<placeholder-201/>\n"
-"<ul><placeholder-202/></ul>\n"
-"<ul><placeholder-203/>\n"
-"\t<placeholder-204/></ul>\n"
-"<ul><placeholder-205/></ul>\n"
-"<ul><placeholder-206/>\n"
-"\t<placeholder-207/>\n"
-"\t<placeholder-208/></ul>\n"
-"<ul><placeholder-209/></ul>\n"
-"<ul><placeholder-210/>\n"
-"\t<placeholder-211/>\n"
-"\t<placeholder-212/></ul>\n"
-"<placeholder-213/>\n"
-"<ul><placeholder-214/></ul>\n"
-"<ul><placeholder-215/>\n"
-"\t<placeholder-216/>\n"
+"\t<placeholder-200/>\n"
+"\t<placeholder-201/></ul>\n"
+"<placeholder-202/>\n"
+"<ul><placeholder-203/></ul>\n"
+"<ul><placeholder-204/>\n"
+"\t<placeholder-205/></ul>\n"
+"<ul><placeholder-206/></ul>\n"
+"<ul><placeholder-207/>\n"
+"\t<placeholder-208/>\n"
+"\t<placeholder-209/></ul>\n"
+"<ul><placeholder-210/></ul>\n"
+"<ul><placeholder-211/>\n"
+"\t<placeholder-212/>\n"
+"\t<placeholder-213/></ul>\n"
+"<placeholder-214/>\n"
+"<ul><placeholder-215/></ul>\n"
+"<ul><placeholder-216/>\n"
 "\t<placeholder-217/>\n"
 "\t<placeholder-218/>\n"
 "\t<placeholder-219/>\n"
@@ -36369,14 +36402,14 @@ msgid ""
 "\t<placeholder-230/>\n"
 "\t<placeholder-231/>\n"
 "\t<placeholder-232/>\n"
-"\t<placeholder-233/></ul>\n"
-"<ul><placeholder-234/></ul>\n"
-"<ul><placeholder-235/>\n"
-"\t<placeholder-236/></ul>\n"
-"<placeholder-237/>\n"
-"<ul><placeholder-238/></ul>\n"
-"<ul><placeholder-239/>\n"
-"\t<placeholder-240/>\n"
+"\t<placeholder-233/>\n"
+"\t<placeholder-234/></ul>\n"
+"<ul><placeholder-235/></ul>\n"
+"<ul><placeholder-236/>\n"
+"\t<placeholder-237/></ul>\n"
+"<placeholder-238/>\n"
+"<ul><placeholder-239/></ul>\n"
+"<ul><placeholder-240/>\n"
 "\t<placeholder-241/>\n"
 "\t<placeholder-242/>\n"
 "\t<placeholder-243/>\n"
@@ -36389,15 +36422,16 @@ msgid ""
 "\t<placeholder-250/>\n"
 "\t<placeholder-251/>\n"
 "\t<placeholder-252/>\n"
-"\t<placeholder-253/></ul>\n"
-"<ul><placeholder-254/></ul>\n"
-"<ul><placeholder-255/>\n"
-"\t<placeholder-256/>\n"
+"\t<placeholder-253/>\n"
+"\t<placeholder-254/></ul>\n"
+"<ul><placeholder-255/></ul>\n"
+"<ul><placeholder-256/>\n"
 "\t<placeholder-257/>\n"
-"\t<placeholder-258/></ul>\n"
-"<placeholder-259/>\n"
-"<ul><placeholder-260/></ul>\n"
-"<ul><placeholder-261/></ul>"
+"\t<placeholder-258/>\n"
+"\t<placeholder-259/></ul>\n"
+"<placeholder-260/>\n"
+"<ul><placeholder-261/></ul>\n"
+"<ul><placeholder-262/></ul>"
 msgstr ""
 
 #: doc/reference/en/top-level-namespace.html:6(title)

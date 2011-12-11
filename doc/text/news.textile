@@ -7,6 +7,7 @@ h3. Improvements
   * Improved SimpleCov integration by stopping to modify
     @ARGV@ in auto runner. [GitHub:#12]
     [Reported by Nikos Dimitrakopoulos]
+  * Improved JRuby integration by removing JRuby internal backtrace.
 
 h3. Thanks
 
