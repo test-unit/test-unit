@@ -361,16 +361,24 @@ module Test
             end
           end
 
+          def output_progress_in_detail_marker(fault)
+            if @progress_row_max > 0
+              output("=" * @progress_row_max, fault_color(fault))
+            else
+              nl
+            end
+          end
+
           def output_progress_in_detail(fault)
             return if @output_level == SILENT
             nl
-            nl
+            output_progress_in_detail_marker(fault)
             if categorize_fault(fault) == :need_detail_faults
               output_fault_in_detail(fault)
             else
               output_fault_in_short(fault)
             end
-            nl
+            output_progress_in_detail_marker(fault)
             @progress_row = 0
           end
 
