@@ -371,6 +371,7 @@ module Test
               output_fault_in_short(fault)
             end
             nl
+            @progress_row = 0
           end
 
           def output?(level)
