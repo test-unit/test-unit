@@ -753,7 +753,11 @@ EOT
                                                     message)
           assert_block(full_message) do
             normalized_expected_float = expected_float.to_f
-            delta = normalized_expected_float * epsilon.to_f
+            if normalized_expected_float.zero?
+              delta = epsilon.to_f ** 2
+            else
+              delta = normalized_expected_float * epsilon.to_f
+            end
             (normalized_expected_float - actual_float.to_f).abs <= delta
           end
         end

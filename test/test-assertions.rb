@@ -1542,6 +1542,12 @@ EOM
         end
       end
 
+      def test_pass_zero_expected
+        check_nothing_fails do
+          assert_in_epsilon(0, 0.00000001)
+        end
+      end
+
       def test_fail_with_message
         check_fails("message.\n" +
                     "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
