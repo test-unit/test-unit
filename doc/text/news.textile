@@ -1,5 +1,25 @@
 h1. News
 
+h2(#2-4-4). 2.4.4 - 2012-1-2
+
+It's a Rails integration improved release.
+
+h3. Improvements
+
+  * [ui][console] Don't break progress display when a test is failed.
+  * [ui][console] Added markers betwen a failure detail
+    message in progress to improve visibility.
+  * [travis] Dropped Ruby 1.8.6 as a test target. [GitHub:#13]
+    [Patch by Josh Kalderimis]
+  * Supported expected value == 0 case in assert_in_epsilon. [RubyForge#29485]
+    [Reported by Syver Enstad]
+  * Supported a block style setup/teardown/cleanup.
+
+h3. Thanks
+
+  * Josh Kalderimis
+  * Syver Enstad
+
 h2(#2-4-3). 2.4.3 - 2011-12-11
 
 h3. Improvements
