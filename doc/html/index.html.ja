@@ -121,7 +121,7 @@ require "test/unit"</pre>
 
 	<h2 id="test-unit-rails">test-unit-rails</h2>
         <p>
-          Railsでtest-unit 2を使うためのライブラリです。モック機能などを使えるテストダブルライブラリ<a href="https://rubygems.org/gems/rr">RR</a>と統合テスト用ライブラリ<a href="https://rubygems.org/gems/capybara">Capybara</aa>も一緒にセットアップするので、すぐに高機能なテスト環境を用意できます。
+          Railsでtest-unit 2を使うためのライブラリです。モック機能などを使えるテストダブルライブラリ<a href="https://rubygems.org/gems/rr">RR</a>と統合テスト用ライブラリ<a href="https://rubygems.org/gems/capybara">Capybara</a>も一緒にセットアップするので、すぐに高機能なテスト環境を用意できます。
         </p>
 	<h3 id="test-unit-rails-latest">test-unit-railsの最新リリース</h3>
 	<p>
