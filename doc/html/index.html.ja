@@ -76,6 +76,7 @@ require "test/unit"</pre>
 	</p>
 	<ul>
           <li><a href="#test-unit">test-unit</a>: テスティングフレームワークのコア機能を提供するライブラリ</li>
+          <li><a href="#test-unit-rails">test-unit-rails</a>: Railsとtest-unitを一緒に使うためのライブラリ</li>
           <li><a href="#test-unit-full">test-unit-full</a>: test-unit関連ライブラリをまとめてインストールするためのメタパッケージ</li>
           <li><a href="#test-unit-notify">test-unit-notify</a>: テスト結果を通知するライブラリ</li>
           <li><a href="#test-unit-rr">test-unit-rr</a>: テストダブルを利用するためのライブラリ</li>
@@ -117,6 +118,31 @@ require "test/unit"</pre>
         <ul>
           <li><a href="test-unit/ja/">リファレンスマニュアル</a></li>
         </ul>
+
+	<h2 id="test-unit-rails">test-unit-rails</h2>
+        <p>
+          Railsでtest-unit 2を使うためのライブラリです。モック機能などを使えるテストダブルライブラリ<a href="https://rubygems.org/gems/rr">RR</a>と統合テスト用ライブラリ<a href="https://rubygems.org/gems/capybara">Capybara</aa>も一緒にセットアップするので、すぐに高機能なテスト環境を用意できます。
+        </p>
+	<h3 id="test-unit-rails-latest">test-unit-railsの最新リリース</h3>
+	<p>
+	  2012-01-02にリリースされた<a href="test-unit-rails/ja/file.news.html#1-0-0">1.0.0</a>が最新リリースです。
+        </p>
+	<h3 id="test-unit-rails-install">test-unit-railsのインストール</h3>
+        <p>
+          まず、Gemfileに以下のコードを追加してください。
+          <pre class="code">group :development, :test do
+  gem 'test-unit-rails'
+end</pre>
+        </p>
+        <p>
+          次にgemをアップデートします。
+          <pre class="command">% bundle update</pre>
+        </p>
+        <p>
+          test/test_helper.rbを以下のように変更したらインストールは完了です。
+          <pre class="code"># require 'rails/test_helper'
+require 'test/unit/rails'</pre>
+        </p>
 
 	<h2 id="test-unit-full">test-unit-full</h2>
         <p>
@@ -309,6 +335,8 @@ end</code></pre>
         <dl>
           <dt><a href="https://github.com/test-unit/test-unit/">test-unit</a></dt>
           <dd><pre class="command">% git clone https://github.com/test-unit/test-unit.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-rails/">test-unit-rails</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-rails.git</pre></dd>
           <dt><a href="https://github.com/test-unit/test-unit-full/">test-unit-full</a></dt>
           <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-full.git</pre></dd>
           <dt><a href="https://github.com/test-unit/test-unit-notify/">test-unit-notify</a></dt>

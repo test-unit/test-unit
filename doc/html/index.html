@@ -73,6 +73,7 @@ require "test/unit"</pre>
 	</p>
 	<ul>
           <li><a href="#test-unit">test-unit</a>: The core library.</li>
+          <li><a href="#test-unit-rails">test-unit-rails</a>: A Rails adapter for test-unit 2.</li>
           <li><a href="#test-unit-full">test-unit-full</a>: A meta package to install test-unit related libraries.</li>
           <li><a href="#test-unit-notify">test-unit-notify</a>: A library to notify test result.</li>
           <li><a href="#test-unit-rr">test-unit-rr</a>: A library to use test double in test-unit.</li>
@@ -104,6 +105,31 @@ require "test/unit"</pre>
         <ul>
           <li><a href="test-unit/">Reference manual</a></li>
         </ul>
+
+	<h2 id="test-unit-rails">test-unit-rails</h2>
+        <p>
+          This is a Rails adapter for test-unit 2. This also sets <a href="https://rubygems.org/gems/rr">RR</a>, a test double library, and <a href="https://rubygems.org/gems/capybara">Capybara</aa>, a library for integration test, up. You can get many features test environment.
+        </p>
+	<h3 id="test-unit-rails-latest">test-unit-rails: The latest release</h3>
+	<p>
+	  <a href="test-unit-rails/en/file.news.html#1-0-0">1.0.0</a> is the latest release. It had been released at 2011-1-2.
+        </p>
+	<h3 id="test-unit-rails-install">test-unit-rails: Install</h3>
+        <p>
+          You add the following codes to your Gemfile:
+          <pre class="code">group :development, :test do
+  gem 'test-unit-rails'
+end</pre>
+        </p>
+        <p>
+          And you update bundled gems:
+          <pre class="command">% bundle update</pre>
+        </p>
+        <p>
+          You change test/test_helper.rb like the following codes:
+          <pre class="code"># require 'rails/test_helper'
+require 'test/unit/rails'</pre>
+        </p>
 
 	<h2 id="test-unit-full">test-unit-full</h2>
         <p>
@@ -294,6 +320,8 @@ end</code></pre>
         </p>
           <dt><a href="https://github.com/test-unit/test-unit/">test-unit</a></dt>
           <dd><pre class="command">% git clone https://github.com/test-unit/test-unit.git</pre></dd>
+          <dt><a href="https://github.com/test-unit/test-unit-rails/">test-unit-rails</a></dt>
+          <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-rails.git</pre></dd>
           <dt><a href="https://github.com/test-unit/test-unit-full/">test-unit-full</a></dt>
           <dd><pre class="command">% git clone https://github.com/test-unit/test-unit-full.git</pre></dd>
           <dt><a href="https://github.com/test-unit/test-unit-notify/">test-unit-notify</a></dt>
