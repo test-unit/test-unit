@@ -6,8 +6,11 @@ class TestUnitFixture < Test::Unit::TestCase
     def test_without_option
       expected_setup_calls = [:setup,
                               :custom_setup_method0,
+                              :custom_setup_callback0,
                               :custom_setup_method1,
-                              :custom_setup_method3]
+                              :custom_setup_callback1,
+                              :custom_setup_method3,
+                              :custom_setup_callback3]
       test_case = assert_setup(expected_setup_calls, [])
       assert_inherited_setup(expected_setup_calls, test_case)
 
@@ -16,9 +19,12 @@ class TestUnitFixture < Test::Unit::TestCase
     end
 
     def test_with_before_option
-      expected_setup_calls = [:custom_setup_method3,
+      expected_setup_calls = [:custom_setup_callback3,
+                              :custom_setup_method3,
                               :custom_setup_method0,
+                              :custom_setup_callback0,
                               :custom_setup_method1,
+                              :custom_setup_callback1,
                               :setup]
       test_case = assert_setup(expected_setup_calls,
                                [[{:before => :append}],
@@ -33,9 +39,12 @@ class TestUnitFixture < Test::Unit::TestCase
 
     def test_with_after_option
       expected_setup_calls = [:setup,
+                              :custom_setup_callback3,
                               :custom_setup_method3,
                               :custom_setup_method0,
-                              :custom_setup_method1]
+                              :custom_setup_callback0,
+                              :custom_setup_method1,
+                              :custom_setup_callback1]
       test_case = assert_setup(expected_setup_calls,
                                [[{:after => :append}],
                                 [{:after => :append}],
@@ -58,8 +67,11 @@ class TestUnitFixture < Test::Unit::TestCase
       test_case = assert_setup(expected_setup_calls, nil)
       assert_inherited_setup([:setup,
                               :custom_setup_method0,
+                              :custom_setup_callback0,
                               :custom_setup_method1,
-                              :custom_setup_method3],
+                              :custom_setup_callback1,
+                              :custom_setup_method3,
+                              :custom_setup_callback3],
                              test_case,
                              [])
 
@@ -89,10 +101,22 @@ class TestUnitFixture < Test::Unit::TestCase
           called(:custom_setup_method0)
         end
 
+        if options
+          setup(*(options[0] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_setup_callback0)
+          end
+        end
+
         def custom_setup_method1
           called(:custom_setup_method1)
         end
         setup(*[:custom_setup_method1, *(options[1] || [])]) if options
+
+        if options
+          setup(*(options[1] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_setup_callback1)
+          end
+        end
 
         setup(*(options[2] || [])) if options
         def custom_setup_method2
@@ -100,9 +124,23 @@ class TestUnitFixture < Test::Unit::TestCase
         end
         unregister_setup(:custom_setup_method2) if options
 
+        if options
+          callback = lambda do |test_case_instance|
+            test_case_instance.called(:custom_setup_callback2)
+          end
+          setup(*(options[2] || []), &callback)
+          unregister_setup(callback)
+        end
+
         setup(*(options[3] || [])) if options
         def custom_setup_method3
           called(:custom_setup_method3)
+        end
+
+        if options
+          setup(*(options[3] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_setup_callback3)
+          end
         end
 
         def test_nothing
@@ -138,8 +176,11 @@ class TestUnitFixture < Test::Unit::TestCase
 
   class TestCleanup < self
     def test_without_option
-      expected_cleanup_calls = [:custom_cleanup_method3,
+      expected_cleanup_calls = [:custom_cleanup_callback3,
+                                :custom_cleanup_method3,
+                                :custom_cleanup_callback1,
                                 :custom_cleanup_method1,
+                                :custom_cleanup_callback0,
                                 :custom_cleanup_method0,
                                 :cleanup]
       test_case = assert_cleanup(expected_cleanup_calls, [])
@@ -150,9 +191,12 @@ class TestUnitFixture < Test::Unit::TestCase
     end
 
     def test_with_before_option
-      expected_cleanup_calls = [:custom_cleanup_method3,
+      expected_cleanup_calls = [:custom_cleanup_callback3,
+                                :custom_cleanup_method3,
                                 :custom_cleanup_method0,
+                                :custom_cleanup_callback0,
                                 :custom_cleanup_method1,
+                                :custom_cleanup_callback1,
                                 :cleanup]
       test_case = assert_cleanup(expected_cleanup_calls,
                                   [[{:before => :append}],
@@ -167,9 +211,12 @@ class TestUnitFixture < Test::Unit::TestCase
 
     def test_with_after_option
       expected_cleanup_calls = [:cleanup,
+                                :custom_cleanup_callback3,
                                 :custom_cleanup_method3,
                                 :custom_cleanup_method0,
-                                :custom_cleanup_method1]
+                                :custom_cleanup_callback0,
+                                :custom_cleanup_method1,
+                                :custom_cleanup_callback1]
       test_case = assert_cleanup(expected_cleanup_calls,
                                   [[{:after => :append}],
                                    [{:after => :append}],
@@ -190,8 +237,11 @@ class TestUnitFixture < Test::Unit::TestCase
     def test_with_option_to_inherited
       expected_cleanup_calls = [:cleanup]
       test_case = assert_cleanup(expected_cleanup_calls, nil)
-      assert_inherited_cleanup([:custom_cleanup_method3,
+      assert_inherited_cleanup([:custom_cleanup_callback3,
+                                :custom_cleanup_method3,
+                                :custom_cleanup_callback1,
                                 :custom_cleanup_method1,
+                                :custom_cleanup_callback0,
                                 :custom_cleanup_method0,
                                 :cleanup],
                                 test_case, [])
@@ -221,17 +271,27 @@ class TestUnitFixture < Test::Unit::TestCase
           raise "custom_cleanup_method0"
         end
 
+        cleanup do |test_case_instance|
+          test_case_instance.called(:custom_cleanup_callback0)
+          raise "custom_cleanup_callback0"
+        end
+
         cleanup
         def custom_cleanup_method1
           called(:custom_cleanup_method1)
           raise "custom_cleanup_method1"
         end
 
+        cleanup do |test_case_instance|
+          test_case_instance.called(:custom_cleanup_callback1)
+          raise "custom_cleanup_callback1"
+        end
+
         def test_nothing
         end
       end
 
-      assert_called_fixtures([:custom_cleanup_method1],
+      assert_called_fixtures([:custom_cleanup_callback1],
                              test_case)
     end
 
@@ -257,10 +317,22 @@ class TestUnitFixture < Test::Unit::TestCase
           called(:custom_cleanup_method0)
         end
 
+        if options
+          cleanup(*(options[0] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_cleanup_callback0)
+          end
+        end
+
         def custom_cleanup_method1
           called(:custom_cleanup_method1)
         end
         cleanup(*[:custom_cleanup_method1, *(options[1] || [])]) if options
+
+        if options
+          cleanup(*(options[1] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_cleanup_callback1)
+          end
+        end
 
         cleanup(*(options[2] || [])) if options
         def custom_cleanup_method2
@@ -268,9 +340,23 @@ class TestUnitFixture < Test::Unit::TestCase
         end
         unregister_cleanup(:custom_cleanup_method2) if options
 
+        if options
+          callback = lambda do |test_case_instance|
+            test_case_instance.called(:custom_cleanup_callback2)
+          end
+          cleanup(*(options[2] || []), &callback)
+          unregister_cleanup(callback)
+        end
+
         cleanup(*(options[3] || [])) if options
         def custom_cleanup_method3
           called(:custom_cleanup_method3)
+        end
+
+        if options
+          cleanup(*(options[3] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_cleanup_callback3)
+          end
         end
 
         def test_nothing
@@ -304,8 +390,11 @@ class TestUnitFixture < Test::Unit::TestCase
 
   class TestTeardown < self
     def test_without_option
-      expected_teardown_calls = [:custom_teardown_method3,
+      expected_teardown_calls = [:custom_teardown_callback3,
+                                 :custom_teardown_method3,
+                                 :custom_teardown_callback1,
                                  :custom_teardown_method1,
+                                 :custom_teardown_callback0,
                                  :custom_teardown_method0,
                                  :teardown]
       test_case = assert_teardown(expected_teardown_calls, [])
@@ -316,9 +405,12 @@ class TestUnitFixture < Test::Unit::TestCase
     end
 
     def test_with_before_option
-      expected_teardown_calls = [:custom_teardown_method3,
+      expected_teardown_calls = [:custom_teardown_callback3,
+                                 :custom_teardown_method3,
                                  :custom_teardown_method0,
+                                 :custom_teardown_callback0,
                                  :custom_teardown_method1,
+                                 :custom_teardown_callback1,
                                  :teardown]
       test_case = assert_teardown(expected_teardown_calls,
                                   [[{:before => :append}],
@@ -333,9 +425,12 @@ class TestUnitFixture < Test::Unit::TestCase
 
     def test_with_after_option
       expected_teardown_calls = [:teardown,
+                                 :custom_teardown_callback3,
                                  :custom_teardown_method3,
                                  :custom_teardown_method0,
-                                 :custom_teardown_method1]
+                                 :custom_teardown_callback0,
+                                 :custom_teardown_method1,
+                                 :custom_teardown_callback1]
       test_case = assert_teardown(expected_teardown_calls,
                                   [[{:after => :append}],
                                    [{:after => :append}],
@@ -356,8 +451,11 @@ class TestUnitFixture < Test::Unit::TestCase
     def test_with_option_to_inherited
       expected_teardown_calls = [:teardown]
       test_case = assert_teardown(expected_teardown_calls, nil)
-      assert_inherited_teardown([:custom_teardown_method3,
+      assert_inherited_teardown([:custom_teardown_callback3,
+                                 :custom_teardown_method3,
+                                 :custom_teardown_callback1,
                                  :custom_teardown_method1,
+                                 :custom_teardown_callback0,
                                  :custom_teardown_method0,
                                  :teardown],
                                 test_case, [])
@@ -387,17 +485,29 @@ class TestUnitFixture < Test::Unit::TestCase
           raise "custom_teardown_method0"
         end
 
+        teardown do |test_case_instance|
+          test_case_instance.called(:custom_teardown_callback0)
+          raise "custom_teardown_callback0"
+        end
+
         teardown
         def custom_teardown_method1
           called(:custom_teardown_method1)
           raise "custom_teardown_method1"
         end
 
+        teardown do |test_case_instance|
+          test_case_instance.called(:custom_teardown_callback1)
+          raise "custom_teardown_callback1"
+        end
+
         def test_nothing
         end
       end
 
-      assert_called_fixtures([:custom_teardown_method1,
+      assert_called_fixtures([:custom_teardown_callback1,
+                              :custom_teardown_method1,
+                              :custom_teardown_callback0,
                               :custom_teardown_method0,
                               :teardown],
                              test_case)
@@ -425,10 +535,22 @@ class TestUnitFixture < Test::Unit::TestCase
           called(:custom_teardown_method0)
         end
 
+        if options
+          teardown(*(options[0] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_teardown_callback0)
+          end
+        end
+
         def custom_teardown_method1
           called(:custom_teardown_method1)
         end
         teardown(*[:custom_teardown_method1, *(options[1] || [])]) if options
+
+        if options
+          teardown(*(options[1] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_teardown_callback1)
+          end
+        end
 
         teardown(*(options[2] || [])) if options
         def custom_teardown_method2
@@ -436,9 +558,23 @@ class TestUnitFixture < Test::Unit::TestCase
         end
         unregister_teardown(:custom_teardown_method2) if options
 
+        if options
+          callback = lambda do |test_case_instance|
+            test_case_instance.called(:custom_teardown_callback2)
+          end
+          teardown(*(options[2] || []), &callback)
+          unregister_teardown(callback)
+        end
+
         teardown(*(options[3] || [])) if options
         def custom_teardown_method3
           called(:custom_teardown_method3)
+        end
+
+        if options
+          teardown(*(options[3] || [])) do |test_case_instance|
+            test_case_instance.called(:custom_teardown_callback3)
+          end
         end
 
         def test_nothing
