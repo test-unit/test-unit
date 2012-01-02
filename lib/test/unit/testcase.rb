@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright::
 #   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#   * Copyright (c) 2008-2011 Kouhei Sutou <tt><kou@clear-code.com></tt>
+#   * Copyright (c) 2008-2012 Kouhei Sutou <tt><kou@clear-code.com></tt>
 # License:: Ruby license.
 
 require 'test/unit/attribute'
@@ -360,9 +360,17 @@ module Test
       #       ...
       #     end
       #
+      #     setup do
+      #       ... # setup callback1
+      #     end
+      #
       #     setup
       #     def my_setup2
       #       ...
+      #     end
+      #
+      #     setup do
+      #       ... # setup callback2
       #     end
       #
       #     def test_my_class
@@ -373,7 +381,9 @@ module Test
       # Here is a call order:
       # * setup
       # * my_setup1
+      # * setup callback1
       # * my_setup2
+      # * setup callback2
       # * test_my_class
       def setup
       end
@@ -395,9 +405,17 @@ module Test
       #       ...
       #     end
       #
+      #     cleanup do
+      #       ... # cleanup callback1
+      #     end
+      #
       #     cleanup
       #     def my_cleanup2
       #       ...
+      #     end
+      #
+      #     cleanup do
+      #       ... # cleanup callback2
       #     end
       #
       #     def test_my_class
@@ -407,7 +425,9 @@ module Test
       #
       # Here is a call order:
       # * test_my_class
+      # * cleanup callback2
       # * my_cleanup2
+      # * cleanup callback1
       # * my_cleanup1
       # * cleanup
       def cleanup
@@ -428,9 +448,17 @@ module Test
       #       ...
       #     end
       #
+      #     teardown do
+      #       ... # teardown callback1
+      #     end
+      #
       #     teardown
       #     def my_teardown2
       #       ...
+      #     end
+      #
+      #     teardown do
+      #       ... # teardown callback2
       #     end
       #
       #     def test_my_class
@@ -440,7 +468,9 @@ module Test
       #
       # Here is a call order:
       # * test_my_class
+      # * teardown callback2
       # * my_teardown2
+      # * teardown callback1
       # * my_teardown1
       # * teardown
       def teardown
