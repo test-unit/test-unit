@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
 "POT-Creation-Date: 2012-01-02 20:04+0900\n"
-"PO-Revision-Date: 2012-01-02 20:06+0900\n"
+"PO-Revision-Date: 2012-01-02 20:07+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -35231,7 +35231,7 @@ msgstr ""
 
 #: doc/reference/en/file.news.html:59(p)
 msgid "It’s a Rails integration improved release."
-msgstr ""
+msgstr "Railsと一緒に使いやすくなったリリースです。"
 
 #: doc/reference/en/file.news.html:60(h3)
 #: doc/reference/en/file.news.html:77(h3)
