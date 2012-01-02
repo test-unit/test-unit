@@ -102,8 +102,8 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         if options
-          setup(*(options[0] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_setup_callback0)
+          setup(*(options[0] || [])) do
+            called(:custom_setup_callback0)
           end
         end
 
@@ -113,8 +113,8 @@ class TestUnitFixture < Test::Unit::TestCase
         setup(*[:custom_setup_method1, *(options[1] || [])]) if options
 
         if options
-          setup(*(options[1] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_setup_callback1)
+          setup(*(options[1] || [])) do
+            called(:custom_setup_callback1)
           end
         end
 
@@ -125,8 +125,8 @@ class TestUnitFixture < Test::Unit::TestCase
         unregister_setup(:custom_setup_method2) if options
 
         if options
-          callback = lambda do |test_case_instance|
-            test_case_instance.called(:custom_setup_callback2)
+          callback = lambda do
+            called(:custom_setup_callback2)
           end
           setup(*(options[2] || []), &callback)
           unregister_setup(callback)
@@ -138,8 +138,8 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         if options
-          setup(*(options[3] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_setup_callback3)
+          setup(*(options[3] || [])) do
+            called(:custom_setup_callback3)
           end
         end
 
@@ -271,8 +271,8 @@ class TestUnitFixture < Test::Unit::TestCase
           raise "custom_cleanup_method0"
         end
 
-        cleanup do |test_case_instance|
-          test_case_instance.called(:custom_cleanup_callback0)
+        cleanup do
+          called(:custom_cleanup_callback0)
           raise "custom_cleanup_callback0"
         end
 
@@ -282,8 +282,8 @@ class TestUnitFixture < Test::Unit::TestCase
           raise "custom_cleanup_method1"
         end
 
-        cleanup do |test_case_instance|
-          test_case_instance.called(:custom_cleanup_callback1)
+        cleanup do
+          called(:custom_cleanup_callback1)
           raise "custom_cleanup_callback1"
         end
 
@@ -318,8 +318,8 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         if options
-          cleanup(*(options[0] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_cleanup_callback0)
+          cleanup(*(options[0] || [])) do
+            called(:custom_cleanup_callback0)
           end
         end
 
@@ -329,8 +329,8 @@ class TestUnitFixture < Test::Unit::TestCase
         cleanup(*[:custom_cleanup_method1, *(options[1] || [])]) if options
 
         if options
-          cleanup(*(options[1] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_cleanup_callback1)
+          cleanup(*(options[1] || [])) do
+            called(:custom_cleanup_callback1)
           end
         end
 
@@ -341,8 +341,8 @@ class TestUnitFixture < Test::Unit::TestCase
         unregister_cleanup(:custom_cleanup_method2) if options
 
         if options
-          callback = lambda do |test_case_instance|
-            test_case_instance.called(:custom_cleanup_callback2)
+          callback = lambda do
+            called(:custom_cleanup_callback2)
           end
           cleanup(*(options[2] || []), &callback)
           unregister_cleanup(callback)
@@ -354,8 +354,8 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         if options
-          cleanup(*(options[3] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_cleanup_callback3)
+          cleanup(*(options[3] || [])) do
+            called(:custom_cleanup_callback3)
           end
         end
 
@@ -485,8 +485,8 @@ class TestUnitFixture < Test::Unit::TestCase
           raise "custom_teardown_method0"
         end
 
-        teardown do |test_case_instance|
-          test_case_instance.called(:custom_teardown_callback0)
+        teardown do
+          called(:custom_teardown_callback0)
           raise "custom_teardown_callback0"
         end
 
@@ -496,8 +496,8 @@ class TestUnitFixture < Test::Unit::TestCase
           raise "custom_teardown_method1"
         end
 
-        teardown do |test_case_instance|
-          test_case_instance.called(:custom_teardown_callback1)
+        teardown do
+          called(:custom_teardown_callback1)
           raise "custom_teardown_callback1"
         end
 
@@ -536,8 +536,8 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         if options
-          teardown(*(options[0] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_teardown_callback0)
+          teardown(*(options[0] || [])) do
+            called(:custom_teardown_callback0)
           end
         end
 
@@ -547,8 +547,8 @@ class TestUnitFixture < Test::Unit::TestCase
         teardown(*[:custom_teardown_method1, *(options[1] || [])]) if options
 
         if options
-          teardown(*(options[1] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_teardown_callback1)
+          teardown(*(options[1] || [])) do
+            called(:custom_teardown_callback1)
           end
         end
 
@@ -559,8 +559,8 @@ class TestUnitFixture < Test::Unit::TestCase
         unregister_teardown(:custom_teardown_method2) if options
 
         if options
-          callback = lambda do |test_case_instance|
-            test_case_instance.called(:custom_teardown_callback2)
+          callback = lambda do
+            called(:custom_teardown_callback2)
           end
           teardown(*(options[2] || []), &callback)
           unregister_teardown(callback)
@@ -572,8 +572,8 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         if options
-          teardown(*(options[3] || [])) do |test_case_instance|
-            test_case_instance.called(:custom_teardown_callback3)
+          teardown(*(options[3] || [])) do
+            called(:custom_teardown_callback3)
           end
         end
 

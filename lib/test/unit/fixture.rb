@@ -194,7 +194,7 @@ module Test
       def run_fixture_callback(method_name_or_callback, options)
         if method_name_or_callback.respond_to?(:call)
           callback = lambda do
-            method_name_or_callback.call(self)
+            instance_eval(&method_name_or_callback)
           end
         else
           return unless respond_to?(method_name_or_callback, true)
