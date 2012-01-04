@@ -86,7 +86,7 @@ module Test
       end
 
       ##
-      # Passes if +expected+ == +actual.
+      # Passes if +expected+ == +actual+.
       #
       # Note that the ordering of arguments is important, since a helpful
       # error message is generated when this one fails that tells you the
