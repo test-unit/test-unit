@@ -20,8 +20,9 @@ module Test
         raise AssertionFailedError.new(message) unless value
       end
 
-      def check_assertions(expect_fail, expected_message="",
-                           return_value_expected=false)
+      def check_assertions(expect_fail, options={})
+        expected_message = options[:expected_message]
+        return_value_expected = options[:return_value_expected]
         @actual_assertion_count = 0
         failed = true
         actual_message = nil
@@ -76,11 +77,16 @@ module Test
       end
 
       def check_nothing_fails(return_value_expected=false, &proc)
-        check_assertions(false, "", return_value_expected, &proc)
+        check_assertions(false,
+                         {:expected_message => nil,
+                          :return_value_expected => return_value_expected},
+                         &proc)
       end
 
       def check_fails(expected_message="", &proc)
-        check_assertions(true, expected_message, &proc)
+        check_assertions(true,
+                         {:expected_message => expected_message},
+                         &proc)
       end
 
       def inspect_tag(tag)
