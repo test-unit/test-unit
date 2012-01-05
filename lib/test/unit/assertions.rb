@@ -1519,7 +1519,7 @@ EOT
             when Exception
               <<EOM.chop
 Class: <#{convert(object.class)}>
-Message: <#{convert(object.message)}>
+Message: <#{object.message}>
 ---Backtrace---
 #{Util::BacktraceFilter.filter_backtrace(object.backtrace).join("\n")}
 ---------------

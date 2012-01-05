@@ -426,7 +426,7 @@ EOM
 failed assert_raise.
 <ArgumentError> exception expected but was
 Class: <RuntimeError>
-Message: <"Error">
+Message: <Error>
 EOM
         check_fails(/\A#{message}#{BACKTRACE_RE}\Z/m) do
           assert_raise(ArgumentError, "failed assert_raise") do
@@ -489,7 +489,7 @@ EOM
 failed assert_raise.
 <[ArgumentError, TypeError]> exception expected but was
 Class: <RuntimeError>
-Message: <"Error">
+Message: <Error>
 EOM
         message = Regexp.escape(message)
         check_fails(/\A#{message}#{BACKTRACE_RE}\z/m) do
@@ -516,7 +516,7 @@ EOM
         message = <<-EOM
 <RuntimeError("XXX")> exception expected but was
 Class: <RuntimeError>
-Message: <"Error">
+Message: <Error>
 EOM
         message = Regexp.escape(message)
         check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
@@ -529,7 +529,7 @@ EOM
         message = <<-EOM
 <\#<Class:[xa-f\\d]+>\\("Error"\\)> exception expected but was
 Class: <RuntimeError>
-Message: <"Error">
+Message: <Error>
 EOM
         check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
           assert_raise(different_error_class.new("Error")) do
@@ -544,7 +544,7 @@ EOM
         message = <<-EOM
 <\DifferentError: \\"Error\\"> exception expected but was
 Class: <RuntimeError>
-Message: <"Error">
+Message: <Error>
 EOM
         check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
           assert_raise(different_error) do
@@ -715,17 +715,17 @@ EOM
             1 + 1
           }
         }
-        check_fails(%r{\AException raised:\nClass: <RuntimeError>\nMessage: <"Error">\n---Backtrace---\n.+\n---------------\Z}m) {
+        check_fails(%r{\AException raised:\nClass: <RuntimeError>\nMessage: <Error>\n---Backtrace---\n.+\n---------------\Z}m) {
           assert_nothing_raised {
             raise "Error"
           }
         }
-        check_fails(%r{\Afailed assert_nothing_raised\.\nException raised:\nClass: <RuntimeError>\nMessage: <"Error">\n---Backtrace---\n.+\n---------------\Z}m) {
+        check_fails(%r{\Afailed assert_nothing_raised\.\nException raised:\nClass: <RuntimeError>\nMessage: <Error>\n---Backtrace---\n.+\n---------------\Z}m) {
           assert_nothing_raised("failed assert_nothing_raised") {
             raise "Error"
           }
         }
-        check_fails(%r{\AException raised:\nClass: <RuntimeError>\nMessage: <"Error">\n---Backtrace---\n.+\n---------------\Z}m) {
+        check_fails(%r{\AException raised:\nClass: <RuntimeError>\nMessage: <Error>\n---Backtrace---\n.+\n---------------\Z}m) {
           assert_nothing_raised(StandardError, RuntimeError) {
             raise "Error"
           }
@@ -1136,7 +1136,7 @@ EOM
         expected_message = <<-EOM
 <SystemCallError> family exception expected but was
 Class: <RuntimeError>
-Message: <"XXX">
+Message: <XXX>
 ---Backtrace---
 EOM
         check_fails(/\A#{Regexp.escape(expected_message)}(?m).+\z/) do
