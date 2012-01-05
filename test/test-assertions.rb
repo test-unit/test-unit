@@ -91,7 +91,7 @@ module Test
 
       def check_fail_exception(expected_message, options={}, &proc)
         normalizer = lambda do |actual_message|
-          actual_message.gsub(/(^[^:]+:\d+:.*\n?)+\z/, "")
+          actual_message.gsub(/(^[^:\n]+:\d+:.+\n?)+\z/, "")
         end
         check_assertions(true,
                          options.merge(:expected_message => expected_message,
@@ -441,8 +441,7 @@ EOM
         message = <<-EOM
 failed assert_raise.
 <ArgumentError> exception expected but was
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(message) do
           assert_raise(ArgumentError, "failed assert_raise") do
@@ -504,8 +503,7 @@ EOM
         message = <<-EOM
 failed assert_raise.
 <[ArgumentError, TypeError]> exception expected but was
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(message) do
           assert_raise(ArgumentError, TypeError, "failed assert_raise") do
@@ -530,8 +528,7 @@ EOM
 
         message = <<-EOM
 <RuntimeError("XXX")> exception expected but was
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(message) do
           return_value = assert_raise(RuntimeError.new("XXX")) do
@@ -542,8 +539,7 @@ EOM
         different_error_class = Class.new(StandardError)
         message = <<-EOM
 <#{different_error_class.inspect}("Error")> exception expected but was
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(message) do
           assert_raise(different_error_class.new("Error")) do
@@ -557,8 +553,7 @@ EOM
         end
         message = <<-EOM
 <DifferentError: "Error"> exception expected but was
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(message) do
           assert_raise(different_error) do
@@ -731,8 +726,7 @@ EOM
         }
         expected_message = <<-EOM
 Exception raised:
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised {
@@ -742,8 +736,7 @@ EOM
         expected_message = <<-EOM
 failed assert_nothing_raised.
 Exception raised:
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised("failed assert_nothing_raised") {
@@ -752,8 +745,7 @@ EOM
         }
         expected_message = <<-EOM
 Exception raised:
-Class: <RuntimeError>
-Message: <Error>
+<RuntimeError>(<Error>)
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised(StandardError, RuntimeError) {
@@ -1165,8 +1157,7 @@ EOM
 
         expected_message = <<-EOM
 <SystemCallError> family exception expected but was
-Class: <RuntimeError>
-Message: <XXX>
+<RuntimeError>(<XXX>)
 EOM
         check_fail_exception(expected_message) do
           assert_raise_kind_of(SystemCallError) do

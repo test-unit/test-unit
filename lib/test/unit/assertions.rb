@@ -1518,8 +1518,7 @@ EOT
             case object
             when Exception
               <<EOM.chop
-Class: <#{convert(object.class)}>
-Message: <#{object.message}>
+<#{convert(object.class)}>(<#{object.message}>)
 #{Util::BacktraceFilter.filter_backtrace(object.backtrace).join("\n")}
 EOM
             else
