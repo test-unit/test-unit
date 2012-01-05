@@ -22,6 +22,7 @@ module Test
 
       def check_assertions(expect_fail, options={})
         expected_message = options[:expected_message]
+        actual_message_normalizer = options[:actual_message_normalizer]
         return_value_expected = options[:return_value_expected]
         @actual_assertion_count = 0
         failed = true
@@ -49,6 +50,9 @@ module Test
         check(1 == @actual_assertion_count, message)
 
         if expect_fail
+          if actual_message_normalizer
+            actual_message = actual_message_normalizer.call(actual_message)
+          end
           case expected_message
           when String
             check(expected_message == actual_message,
@@ -83,9 +87,19 @@ module Test
                          &proc)
       end
 
-      def check_fails(expected_message="", &proc)
+      def check_fails(expected_message, options={}, &proc)
         check_assertions(true,
-                         {:expected_message => expected_message},
+                         options.merge(:expected_message => expected_message),
+                         &proc)
+      end
+
+      def check_assert_raise_fails(expected_message, options={}, &proc)
+        normalizer = lambda do |actual_message|
+          actual_message.gsub(BACKTRACE_RE, "")
+        end
+        check_assertions(true,
+                         options.merge(:expected_message => expected_message,
+                                       :actual_message_normalizer => normalizer),
                          &proc)
       end
 
@@ -434,7 +448,7 @@ failed assert_raise.
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_fails(/\A#{message}#{BACKTRACE_RE}\Z/m) do
+        check_assert_raise_fails(message) do
           assert_raise(ArgumentError, "failed assert_raise") do
             raise "Error"
           end
@@ -497,8 +511,7 @@ failed assert_raise.
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        message = Regexp.escape(message)
-        check_fails(/\A#{message}#{BACKTRACE_RE}\z/m) do
+        check_assert_raise_fails(message) do
           assert_raise(ArgumentError, TypeError, "failed assert_raise") do
             raise "Error"
           end
@@ -524,8 +537,7 @@ EOM
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        message = Regexp.escape(message)
-        check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
+        check_assert_raise_fails(message) do
           return_value = assert_raise(RuntimeError.new("XXX")) do
             raise "Error"
           end
@@ -533,11 +545,11 @@ EOM
 
         different_error_class = Class.new(StandardError)
         message = <<-EOM
-<\#<Class:[xa-f\\d]+>\\("Error"\\)> exception expected but was
+<#{different_error_class.inspect}("Error")> exception expected but was
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
+        check_assert_raise_fails(message) do
           assert_raise(different_error_class.new("Error")) do
             raise "Error"
           end
@@ -548,11 +560,11 @@ EOM
           "DifferentError: \"Error\""
         end
         message = <<-EOM
-<\DifferentError: \\"Error\\"> exception expected but was
+<DifferentError: "Error"> exception expected but was
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_fails(/\A#{message}#{BACKTRACE_RE}\z/) do
+        check_assert_raise_fails(message) do
           assert_raise(different_error) do
             raise "Error"
           end
@@ -1143,9 +1155,8 @@ EOM
 <SystemCallError> family exception expected but was
 Class: <RuntimeError>
 Message: <XXX>
----Backtrace---
 EOM
-        check_fails(/\A#{Regexp.escape(expected_message)}(?m).+\z/) do
+        check_assert_raise_fails(expected_message) do
           assert_raise_kind_of(SystemCallError) do
             raise RuntimeError, "XXX"
           end
