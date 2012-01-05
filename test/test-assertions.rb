@@ -50,12 +50,12 @@ module Test
         if expect_fail
           case expected_message
           when String
-            check(actual_message == expected_message,
+            check(expected_message == actual_message,
                   "Should have the correct message.\n" +
                   "<#{expected_message.inspect}> expected but was\n" +
                   "<#{actual_message.inspect}>")
           when Regexp
-            check(actual_message =~ expected_message,
+            check(expected_message =~ actual_message,
                   "The message should match correctly.\n" +
                   "</#{expected_message.source}/> expected to match\n" +
                   "<#{actual_message.inspect}>")
