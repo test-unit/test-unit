@@ -1520,9 +1520,7 @@ EOT
               <<EOM.chop
 Class: <#{convert(object.class)}>
 Message: <#{object.message}>
----Backtrace---
 #{Util::BacktraceFilter.filter_backtrace(object.backtrace).join("\n")}
----------------
 EOM
             else
               inspector = Inspector.new(object)

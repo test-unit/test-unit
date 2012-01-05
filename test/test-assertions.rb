@@ -10,10 +10,6 @@ require 'test/unit'
 module Test
   module Unit
     module AssertionCheckable
-      backtrace_pre  = "---Backtrace---"
-      backtrace_post = "---------------"
-      BACKTRACE_RE = /#{backtrace_pre}\n.+\n#{backtrace_post}/m
-
       private
       def check(value, message="")
         add_assertion
@@ -93,9 +89,9 @@ module Test
                          &proc)
       end
 
-      def check_assert_raise_fails(expected_message, options={}, &proc)
+      def check_fails_exception(expected_message, options={}, &proc)
         normalizer = lambda do |actual_message|
-          actual_message.gsub(BACKTRACE_RE, "")
+          actual_message.gsub(/(^[^:]+:\d+:.*\n?)+\z/, "")
         end
         check_assertions(true,
                          options.merge(:expected_message => expected_message,
@@ -448,7 +444,7 @@ failed assert_raise.
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_assert_raise_fails(message) do
+        check_fails_exception(message) do
           assert_raise(ArgumentError, "failed assert_raise") do
             raise "Error"
           end
@@ -511,7 +507,7 @@ failed assert_raise.
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_assert_raise_fails(message) do
+        check_fails_exception(message) do
           assert_raise(ArgumentError, TypeError, "failed assert_raise") do
             raise "Error"
           end
@@ -537,7 +533,7 @@ EOM
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_assert_raise_fails(message) do
+        check_fails_exception(message) do
           return_value = assert_raise(RuntimeError.new("XXX")) do
             raise "Error"
           end
@@ -549,7 +545,7 @@ EOM
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_assert_raise_fails(message) do
+        check_fails_exception(message) do
           assert_raise(different_error_class.new("Error")) do
             raise "Error"
           end
@@ -564,7 +560,7 @@ EOM
 Class: <RuntimeError>
 Message: <Error>
 EOM
-        check_assert_raise_fails(message) do
+        check_fails_exception(message) do
           assert_raise(different_error) do
             raise "Error"
           end
@@ -733,17 +729,33 @@ EOM
             1 + 1
           }
         }
-        check_fails(%r{\AException raised:\nClass: <RuntimeError>\nMessage: <Error>\n---Backtrace---\n.+\n---------------\Z}m) {
+        expected_message = <<-EOM
+Exception raised:
+Class: <RuntimeError>
+Message: <Error>
+EOM
+        check_fails_exception(expected_message) {
           assert_nothing_raised {
             raise "Error"
           }
         }
-        check_fails(%r{\Afailed assert_nothing_raised\.\nException raised:\nClass: <RuntimeError>\nMessage: <Error>\n---Backtrace---\n.+\n---------------\Z}m) {
+        expected_message = <<-EOM
+failed assert_nothing_raised.
+Exception raised:
+Class: <RuntimeError>
+Message: <Error>
+EOM
+        check_fails_exception(expected_message) {
           assert_nothing_raised("failed assert_nothing_raised") {
             raise "Error"
           }
         }
-        check_fails(%r{\AException raised:\nClass: <RuntimeError>\nMessage: <Error>\n---Backtrace---\n.+\n---------------\Z}m) {
+        expected_message = <<-EOM
+Exception raised:
+Class: <RuntimeError>
+Message: <Error>
+EOM
+        check_fails_exception(expected_message) {
           assert_nothing_raised(StandardError, RuntimeError) {
             raise "Error"
           }
@@ -1156,7 +1168,7 @@ EOM
 Class: <RuntimeError>
 Message: <XXX>
 EOM
-        check_assert_raise_fails(expected_message) do
+        check_fails_exception(expected_message) do
           assert_raise_kind_of(SystemCallError) do
             raise RuntimeError, "XXX"
           end
