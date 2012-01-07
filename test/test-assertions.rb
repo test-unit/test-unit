@@ -438,10 +438,10 @@ EOM
           end
         end
 
-        message = <<-EOM
+        message = <<-EOM.chomp
 failed assert_raise.
 <ArgumentError> exception expected but was
-<RuntimeError>(<Error>)
+<RuntimeError(<Error>)>.
 EOM
         check_fail_exception(message) do
           assert_raise(ArgumentError, "failed assert_raise") do
@@ -500,10 +500,10 @@ EOM
           end
         end
 
-        message = <<-EOM
+        message = <<-EOM.chomp
 failed assert_raise.
 <[ArgumentError, TypeError]> exception expected but was
-<RuntimeError>(<Error>)
+<RuntimeError(<Error>)>.
 EOM
         check_fail_exception(message) do
           assert_raise(ArgumentError, TypeError, "failed assert_raise") do
@@ -526,9 +526,15 @@ EOM
               "Should have returned the correct exception " +
               "from a successful assert_raise")
 
-        message = <<-EOM
-<RuntimeError("XXX")> exception expected but was
-<RuntimeError>(<Error>)
+        message = <<-EOM.chomp
+<RuntimeError(<XXX>)> exception expected but was
+<RuntimeError(<Error>)>.
+
+diff:
+- RuntimeError(<XXX>)
+?               ^^^
++ RuntimeError(<Error>)
+?               ^^^^^
 EOM
         check_fail_exception(message) do
           return_value = assert_raise(RuntimeError.new("XXX")) do
@@ -537,9 +543,9 @@ EOM
         end
 
         different_error_class = Class.new(StandardError)
-        message = <<-EOM
-<#{different_error_class.inspect}("Error")> exception expected but was
-<RuntimeError>(<Error>)
+        message = <<-EOM.chomp
+<#{different_error_class.inspect}(<Error>)> exception expected but was
+<RuntimeError(<Error>)>.
 EOM
         check_fail_exception(message) do
           assert_raise(different_error_class.new("Error")) do
@@ -551,9 +557,9 @@ EOM
         def different_error.inspect
           "DifferentError: \"Error\""
         end
-        message = <<-EOM
+        message = <<-EOM.chomp
 <DifferentError: "Error"> exception expected but was
-<RuntimeError>(<Error>)
+<RuntimeError(<Error>)>.
 EOM
         check_fail_exception(message) do
           assert_raise(different_error) do
@@ -724,28 +730,28 @@ EOM
             1 + 1
           }
         }
-        expected_message = <<-EOM
+        expected_message = <<-EOM.chomp
 Exception raised:
-<RuntimeError>(<Error>)
+RuntimeError(<Error>)
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised {
             raise "Error"
           }
         }
-        expected_message = <<-EOM
+        expected_message = <<-EOM.chomp
 failed assert_nothing_raised.
 Exception raised:
-<RuntimeError>(<Error>)
+RuntimeError(<Error>)
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised("failed assert_nothing_raised") {
             raise "Error"
           }
         }
-        expected_message = <<-EOM
+        expected_message = <<-EOM.chomp
 Exception raised:
-<RuntimeError>(<Error>)
+RuntimeError(<Error>)
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised(StandardError, RuntimeError) {
@@ -758,7 +764,7 @@ EOM
           end
         end
       end
-      
+
       def test_flunk
         check_fail("Flunked.") {
           flunk
@@ -767,7 +773,7 @@ EOM
           flunk("flunk message")
         }
       end
-      
+
       def test_assert_not_same
         thing = "thing"
         thing2 = "thing"
@@ -1155,9 +1161,9 @@ EOM
           end
         end
 
-        expected_message = <<-EOM
+        expected_message = <<-EOM.chomp
 <SystemCallError> family exception expected but was
-<RuntimeError>(<XXX>)
+<RuntimeError(<XXX>)>.
 EOM
         check_fail_exception(expected_message) do
           assert_raise_kind_of(SystemCallError) do

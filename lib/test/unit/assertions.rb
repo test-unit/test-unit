@@ -118,11 +118,7 @@ EOT
         begin
           assert_block(full_message) { expected == actual }
         rescue AssertionFailedError => failure
-          failure.expected = expected
-          failure.actual = actual
-          failure.inspected_expected = AssertionMessage.convert(expected)
-          failure.inspected_actual = AssertionMessage.convert(actual)
-          failure.user_message = message
+          _set_failed_information(failure, expected, actual, message)
           raise failure # For JRuby. :<
         end
       end
@@ -149,11 +145,19 @@ EOT
         assert_expected_exception = Proc.new do |*_args|
           message, assert_exception_helper, actual_exception = _args
           expected = assert_exception_helper.expected_exceptions
+          diff = AssertionMessage.delayed_diff(expected, actual_exception)
           full_message = build_message(message,
-                                       "<?> exception expected but was\n?",
-                                       expected, actual_exception)
-          assert_block(full_message) do
-            expected == [] or assert_exception_helper.expected?(actual_exception)
+                                       "<?> exception expected but was\n<?>.?",
+                                       expected, actual_exception, diff)
+          begin
+            assert_block(full_message) do
+              expected == [] or
+                assert_exception_helper.expected?(actual_exception)
+            end
+          rescue AssertionFailedError => failure
+            _set_failed_information(failure, expected, actual_exception,
+                                    message)
+            raise failure # For JRuby. :<
           end
         end
         _assert_raise(assert_expected_exception, *args, &block)
@@ -183,7 +187,7 @@ EOT
           expected = assert_exception_helper.expected_exceptions
           full_message = build_message(message,
                                        "<?> family exception expected " +
-                                       "but was\n?",
+                                       "but was\n<?>.",
                                        expected, actual_exception)
           assert_block(full_message) do
             assert_exception_helper.expected?(actual_exception, :kind_of?)
@@ -1423,6 +1427,15 @@ EOT
         end
       end
 
+      private
+      def _set_failed_information(failure, expected, actual, user_message)
+        failure.expected = expected
+        failure.actual = actual
+        failure.inspected_expected = AssertionMessage.convert(expected)
+        failure.inspected_actual = AssertionMessage.convert(actual)
+        failure.user_message = user_message
+      end
+
       class AssertionMessage
         @use_pp = true
         class << self
@@ -1515,27 +1528,22 @@ EOT
           end
 
           def convert(object)
-            case object
-            when Exception
-              <<EOM.chop
-<#{convert(object.class)}>(<#{object.message}>)
-#{Util::BacktraceFilter.filter_backtrace(object.backtrace).join("\n")}
-EOM
-            else
-              inspector = Inspector.new(object)
-              if use_pp
-                begin
-                  require 'pp' unless defined?(PP)
-                  begin
-                    return PP.pp(inspector, '').chomp
-                  rescue NameError
-                  end
-                rescue LoadError
-                  self.use_pp = false
-                end
-              end
-              inspector.inspect
+            if object.is_a?(Exception)
+              object = AssertExceptionHelper::WrappedException.new(object)
             end
+            inspector = Inspector.new(object)
+            if use_pp
+              begin
+                require 'pp' unless defined?(PP)
+                begin
+                  return PP.pp(inspector, '').chomp
+                rescue NameError
+                end
+              rescue LoadError
+                self.use_pp = false
+              end
+            end
+            inspector.inspect
           end
         end
 
@@ -1771,13 +1779,14 @@ EOM
 
       class AssertExceptionHelper
         class WrappedException
+          attr_reader :exception
           def initialize(exception)
             @exception = exception
           end
 
           def inspect
             if default_inspect?
-              "#{@exception.class.inspect}(#{@exception.message.inspect})"
+              "#{@exception.class.inspect}(<#{@exception.message}>)"
             else
               @exception.inspect
             end
