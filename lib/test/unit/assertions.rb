@@ -1555,6 +1555,19 @@ EOT
               inspected_objects[object.object_id] ||=
                 new(object, inspected_objects)
             end
+
+            @@inspector_classes = []
+            def inspector_classes
+              @@inspector_classes
+            end
+
+            def register_inspector_class(inspector_class)
+              @@inspector_classes << inspector_class
+            end
+
+            def unregister_inspector_class(inspector_class)
+              @@inspector_classes.delete(inspector_class)
+            end
           end
 
           attr_reader :object
@@ -1588,17 +1601,18 @@ EOT
 
           private
           def inspect_target
-            if HashInspector.target?(@object)
-              HashInspector.new(@object, @inspected_objects)
-            elsif ArrayInspector.target?(@object)
-              ArrayInspector.new(@object, @inspected_objects)
-            else
-              @object
+            self.class.inspector_classes.each do |inspector_class|
+              if inspector_class.target?(@object)
+                return inspector_class.new(@object, @inspected_objects)
+              end
             end
+            @object
           end
         end
 
         class HashInspector
+          Inspector.register_inspector_class(self)
+
           class << self
             def target?(object)
               object.is_a?(Hash) or object == ENV
@@ -1651,6 +1665,8 @@ EOT
         end
 
         class ArrayInspector
+          Inspector.register_inspector_class(self)
+
           class << self
             def target?(object)
               object.is_a?(Array)
