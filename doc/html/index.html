@@ -217,7 +217,7 @@ require 'test/unit/rails'</pre>
         </p>
 	<h3 id="test-unit-capybara-latest">test-unit-capybara: The latest release</h3>
 	<p>
-	  1.0.0 is the latest release. It had been released at 2011-05-01.
+	  <a href="test-unit-capybara/en/file.news.html#1-0-1">1.0.1</a> is the latest release. It had been released at 2012-01-17.
         </p>
 	<h3 id="test-unit-capybara-install">test-unit-capybara: Install</h3>
         <p>
@@ -226,24 +226,69 @@ require 'test/unit/rails'</pre>
         </p>
         <p>
           Usage:
-          <pre class="code"><code>require "test/unit/capybara"
+          <pre class="code"><code>require 'test/unit/capybara'
+
+class MyRackApplication
+  def call(env)
+    html = &lt;&lt;-HTML
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Welcome! - my site&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome!&lt;/h1&gt;
+    &lt;div class="header"&gt;
+      &lt;p&gt;No navigation.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+HTML
+   [200, {"Content-Type" =&gt; "text/html"}, [html]]
+  end
+end
 
 class TestMyRackApplication &lt; Test::Unit::TestCase
-  include Capybara
+  include Capybara::DSL
 
   def setup
     Capybara.app = MyRackApplication.new
   end
 
-  def test_top_page
+  def test_title
     visit("/")
-    assert_equal("Welcome!", find("title").text)
+    within("h1") do
+      assert_equal("Welcome!", text)
+    end
+  end
+
+  def test_no_sidebar
+    visit("/")
+    within("body") do
+      assert_not_find(".sidebar")
+    end
+  end
+
+  def test_header_content
+    visit("/")
+    within(".header") do
+      find("ol.navi")
+      # This fails with the following message:
+      #
+      # &lt;"ol.navi"&gt;(:css) expected to find a element in
+      # &lt;&lt;div class="header"&gt;
+      #       &lt;p&gt;No navigation.&lt;/p&gt;
+      #     &lt;/div&gt;&gt;
+      #
+      # This messages shows the current context. You don't need to
+      # entire HTML. You just see the current context moved by "within".
+      # It helps you debug a problem without save_and_open_page.
+    end
   end
 end</code></pre>
         </p>
 	<h3 id="test-unit-capybara-document">test-unit-capybara: Document</h3>
         <ul>
-          <li><a href="test-unit-capybara/">Reference manual</a></li>
+          <li><a href="test-unit-capybara/en/">Reference manual</a></li>
         </ul>
 
 	<h2 id="test-unit-runner-gtk2">test-unit-runner-gtk2</h2>
