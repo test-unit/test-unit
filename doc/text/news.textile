@@ -1,5 +1,15 @@
 h1. News
 
+h2(#2-4-5). 2.4.5 - 2012-1-17
+
+It's a Rails integration improved release.
+
+h3. Improvements
+
+  * Removed needless information from exception inspected
+    text on failure. It's for easy to read.
+  * Supported custome inspector.
+
 h2(#2-4-4). 2.4.4 - 2012-1-2
 
 It's a Rails integration improved release.
