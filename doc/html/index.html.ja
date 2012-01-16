@@ -284,16 +284,17 @@ class TestMyRackApplication &lt; Test::Unit::TestCase
     visit("/")
     within(".header") do
       find("ol.navi")
-      # This fails with the following message:
+      # これは失敗して以下のエラーメッセージを出力します。
       #
       # &lt;"ol.navi"&gt;(:css) expected to find a element in
       # &lt;&lt;div class="header"&gt;
       #       &lt;p&gt;No navigation.&lt;/p&gt;
       #     &lt;/div&gt;&gt;
       #
-      # This messages shows the current context. You don't need to
-      # entire HTML. You just see the current context moved by "within".
-      # It helps you debug a problem without save_and_open_page.
+      # このメッセージでは現在のコンテキストを示しています。HTML全体ではなく
+      # 必要な部分のみを見ることができます。このコンテキストは"within"で選択
+      # したコンテキストです。この機能によりsave_and_open_pageなしでも問題を
+      # デバッグできるようになります。
     end
   end
 end</code></pre>
