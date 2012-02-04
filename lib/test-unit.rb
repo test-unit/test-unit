@@ -1,1 +1,1 @@
-require File.dirname(__FILE__) + '/test/unit.rb'
+require "test/unit"
