@@ -359,6 +359,7 @@ module Test
       def run
         suite = @collector[self]
         return false if suite.nil?
+        return true if suite.empty?
         runner = @runner[self]
         return false if runner.nil?
         @runner_options[:color_scheme] ||= @color_scheme
