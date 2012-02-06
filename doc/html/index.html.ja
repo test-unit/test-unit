@@ -111,8 +111,7 @@ require "test/unit"</pre>
         </p>
         <p>
           使い方:
-          <pre class="code">gem "test-unit"
-require "test/unit"</pre>
+          <pre class="code">require "test-unit"</pre>
         </p>
 	<h3 id="test-unit-document">test-unitのドキュメント</h3>
         <ul>
