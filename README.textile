@@ -28,6 +28,10 @@ h2. Features
   provides for installing all Test::Unit related gems
   easily.
 
+h2. How To
+
+* {file:doc/text/how-to.textile}
+
 h2. Install
 
 <pre>
