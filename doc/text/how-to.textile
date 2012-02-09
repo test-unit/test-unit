@@ -5,7 +5,7 @@ h1. How To
 h2. Run all tests
 
 To make it easy to run all your tests, you can add a @run_test.rb@ script
-to your @test@ directory. A simnple example might look like:
+to your @test@ directory. A simple example might look like:
 
 <pre>
 base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
