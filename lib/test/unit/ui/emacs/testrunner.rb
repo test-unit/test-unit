@@ -22,20 +22,6 @@ module Test
             end
           end
 
-          def output_fault_backtrace(fault)
-            backtrace = fault.location
-            if backtrace.size == 1
-              output(fault.test_name +
-                     backtrace[0].sub(/\A(.+:\d+).*/, ' [\\1]') +
-                     ":")
-            else
-              output(fault.test_name)
-              backtrace.each do |entry|
-                output(entry)
-              end
-            end
-          end
-
           def format_fault_failure(failure)
             if failure.location.size == 1
               location = failure.location[0]

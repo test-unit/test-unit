@@ -183,28 +183,10 @@ module Test
 
           def output_fault_backtrace(fault)
             backtrace = fault.location
-            if backtrace.size == 1
-              entry = backtrace[0]
-              output(fault.test_name +
-                     entry.sub(/\A(.+:\d+).*/, ' [\\1]') +
-                     ":")
-              output_code_snippet(entry, fault_color(fault))
-            else
-              output(fault.test_name)
-              backtrace.each_with_index do |entry, i|
-                if i.zero?
-                  prefix = "["
-                  postfix = ""
-                elsif i == backtrace.size - 1
-                  prefix = " "
-                  postfix = "]:"
-                else
-                  prefix = " "
-                  postfix = ""
-                end
-                output("    #{prefix}#{entry}#{postfix}")
-                output_code_snippet(entry, fault_color(fault)) if i.zero?
-              end
+            output(fault.test_name)
+            backtrace.each_with_index do |entry, i|
+              output(entry)
+              output_code_snippet(entry, fault_color(fault)) if i.zero?
             end
           end
 
