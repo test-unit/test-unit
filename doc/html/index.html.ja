@@ -81,6 +81,7 @@ require "test/unit"</pre>
           <li><a href="#test-unit-notify">test-unit-notify</a>: テスト結果を通知するライブラリ</li>
           <li><a href="#test-unit-rr">test-unit-rr</a>: テストダブルを利用するためのライブラリ</li>
           <li><a href="#test-unit-capybara">test-unit-capybara</a>: Rackアプリケーションの統合テストを簡単に行うためのライブラリ</li>
+          <li><a href="#test-unit-runner-tap">test-unit-runner-tap</a>: TAP、TAP-Y、TAP-J形式でテスト結果を出力するためのライブラリ</li>
           <li><a href="#test-unit-runner-gtk2">test-unit-runner-gtk2</a>: GTK+を用いたGUIでテストを実行するためのライブラリ</li>
           <li><a href="#test-unit-runner-tk">test-unit-runner-tk</a>: Tkを用いたGUIでテストを実行するためのライブラリ</li>
           <li><a href="#test-unit-runner-fox">test-unit-runner-fox</a>: FOX Toolkitを用いたGUIでテストを実行するためのライブラリ</li>
@@ -302,6 +303,28 @@ end</code></pre>
         <ul>
           <li><a href="test-unit-capybara/ja/">リファレンスマニュアル</a></li>
         </ul>
+
+	<h2 id="test-unit-runner-tap">test-unit-runner-tap</h2>
+        <p>
+          TAP、TAP-Y、TAP-J形式でテスト結果を出力できます。
+        </p>
+	<h3 id="test-unit-runner-tap-latest">test-unit-runner-tapの最新リリース</h3>
+	<p>
+	  2012-02-06にリリースされた1.0.0が最新リリースです。
+        </p>
+	<h3 id="test-unit-runner-tap-install">test-unit-runner-tapのインストール</h3>
+        <p>
+          インストール:
+          <pre class="command">% sudo gem install test-unit-runner-tap</pre>
+        </p>
+        <p>
+          使い方:
+          <pre class="code">require "test/unit/runner/tap"</pre>
+        </p>
+        <p>
+          --runner=tap、--runner=tapy、--runner=tapjオプションが追加されます。これらのオプションを指定するとTAP、TAP-Y、TAP-J形式でテスト結果を出力します。
+        </p>
+
 
 	<h2 id="test-unit-runner-gtk2">test-unit-runner-gtk2</h2>
         <p>
