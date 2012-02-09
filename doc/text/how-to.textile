@@ -1,3 +1,5 @@
+# @title How To
+
 h1. How To
 
 h2. Run all tests
@@ -6,21 +8,21 @@ To make it easy to run all your tests, you can add a @run_test.rb@ script
 to your @test@ directory. A simnple example might look like:
 
 <pre>
-  base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
-  lib_dir  = File.join(base_dir, "lib")
-  test_dir = File.join(base_dir, "test")
+base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+lib_dir  = File.join(base_dir, "lib")
+test_dir = File.join(base_dir, "test")
 
-  $LOAD_PATH.unshift(lib_dir)
+$LOAD_PATH.unshift(lib_dir)
 
-  require 'test/unit'
+require 'test/unit'
 
-  exit Test::Unit::AutoRunner.run(true, test_dir)
+exit Test::Unit::AutoRunner.run(true, test_dir)
 </pre>
 
 Then it's easy to run tests via the command line with,
 
 <pre>
-  $ ruby test/run_test.rb
+$ ruby test/run_test.rb
 </pre>
 
 h2. Change test runner via the command line
@@ -29,7 +31,7 @@ The output format can be changed via the commnad line with
 the @--runner@ option. Simply tack it to the end:
 
 <pre>
-  ruby test/run_test.rb --runner tap
+ruby test/run_test.rb --runner tap
 </pre>
 
 
@@ -50,31 +52,31 @@ line option.
 Here are sample color scheme definitions:
 
 <pre>
-  color_schemes:
-    inverted:
-      success:
-        name: red
-        bold: true
-      failure:
-        name: green
-        bold: true
-    other_scheme:
-      ...
+color_schemes:
+  inverted:
+    success:
+      name: red
+      bold: true
+    failure:
+      name: green
+      bold: true
+  other_scheme:
+    ...
 </pre>
 
 Here are the syntax of color scheme definitions:
 
 <pre>
- color_schemes:
-   SCHEME_NAME:
-     EVENT_NAME:
-       name: COLOR_NAME
-       intensity: BOOLEAN
-       bold: BOOLEAN
-       italic: BOOLEAN
-       underline: BOOLEAN
-     ...
-   ...
+color_schemes:
+  SCHEME_NAME:
+    EVENT_NAME:
+      name: COLOR_NAME
+      intensity: BOOLEAN
+      bold: BOOLEAN
+      italic: BOOLEAN
+      underline: BOOLEAN
+    ...
+  ...
 </pre>
 
 | SCHEME_NAME | the name of the color scheme |
@@ -85,16 +87,16 @@ Here are the syntax of color scheme definitions:
 You can use the above 'inverted' color scheme with the following configuration:
 
 <pre>
-  runner: console
-  console_options:
-    color_scheme: inverted
-  color_schemes:
-    inverted:
-      success:
-        name: red
-        bold: true
-      failure:
-        name: green
-        bold: true
+runner: console
+console_options:
+  color_scheme: inverted
+color_schemes:
+  inverted:
+    success:
+      name: red
+      bold: true
+    failure:
+      name: green
+      bold: true
 </pre>
 
