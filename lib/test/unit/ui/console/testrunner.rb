@@ -7,6 +7,7 @@
 # License:: Ruby license.
 
 require 'test/unit/color-scheme'
+require 'test/unit/code-snippet-fetcher'
 require 'test/unit/ui/testrunner'
 require 'test/unit/ui/testrunnermediator'
 require 'test/unit/ui/console/outputlevel'
@@ -44,6 +45,7 @@ module Test
             @top_level = true
             @current_output_level = NORMAL
             @faults = []
+            @code_snippet_fetcher = CodeSnippetFetcher.new
           end
 
           private
@@ -182,9 +184,11 @@ module Test
           def output_fault_backtrace(fault)
             backtrace = fault.location
             if backtrace.size == 1
+              entry = backtrace[0]
               output(fault.test_name +
-                     backtrace[0].sub(/\A(.+:\d+).*/, ' [\\1]') +
+                     entry.sub(/\A(.+:\d+).*/, ' [\\1]') +
                      ":")
+              output_code_snippet(entry, fault_color(fault))
             else
               output(fault.test_name)
               backtrace.each_with_index do |entry, i|
@@ -199,8 +203,30 @@ module Test
                   postfix = ""
                 end
                 output("    #{prefix}#{entry}#{postfix}")
+                output_code_snippet(entry, fault_color(fault)) if i.zero?
               end
             end
+          end
+
+          def output_code_snippet(entry, target_line_color=nil)
+            return unless /\A(.*):(\d+)/ =~ entry
+            file = $1
+            line = $2.to_i
+            lines = @code_snippet_fetcher.fetch(file, line)
+            max_n = lines.collect {|n, line, attributes| n}.max
+            digits = (Math.log10(max_n) + 1).truncate
+            lines.each do |n, line, attributes|
+              if attributes[:target_line?]
+                line_color = target_line_color
+                current_line_mark = "=>"
+              else
+                line_color = nil
+                current_line_mark = ""
+              end
+              output("  %2s %*d: %s" % [current_line_mark, digits, n, line],
+                     line_color)
+            end
+            nl
           end
 
           def output_fault_message(fault)
