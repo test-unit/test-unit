@@ -1,15 +1,15 @@
-h1. test-unit 2
+h1. test-unit
 
 http://rubyforge.org/projects/test-unit/
 
 h2. Description
 
-test-unit 2 - Improved version of Test::Unit bundled in Ruby
+test-unit - Improved version of Test::Unit bundled in Ruby
 1.8.x.
 
 Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
 bundled in Ruby 1.8.x had not been improved but unbundled
-Test::Unit (test-unit 2) will be improved actively.
+Test::Unit (test-unit) will be improved actively.
 
 h2. Features
 
@@ -19,7 +19,7 @@ h2. Features
   stand-alone package. (The test framework in ruby is going
   to radically change very soon).
 
-* test-unit 2 will be improved actively and may break
+* test-unit will be improved actively and may break
   compatiblity with Test::Unit 1.2.3. (We will not hope it
   if it isn't needed.)
 
