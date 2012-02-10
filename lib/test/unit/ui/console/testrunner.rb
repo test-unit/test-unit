@@ -172,18 +172,24 @@ module Test
                 fault.inspected_expected and fault.inspected_actual
               output_single(fault.label, fault_color(fault))
               output(":")
+              output(fault.test_name)
               output_fault_backtrace(fault)
               output_fault_message(fault)
             else
-              label, detail = format_fault(fault).split(/\r?\n/, 2)
-              output(label, fault_color(fault))
-              output(detail)
+              output_single(fault.label, fault_color(fault))
+              if fault.is_a?(Error)
+                output(": #{fault.test_name}")
+                output(fault.message)
+              else
+                output(": #{fault.message}")
+                output(fault.test_name)
+              end
+              output_fault_backtrace(fault)
             end
           end
 
           def output_fault_backtrace(fault)
             backtrace = fault.location
-            output(fault.test_name)
             backtrace.each_with_index do |entry, i|
               output(entry)
               output_code_snippet(entry, fault_color(fault)) if i.zero?
