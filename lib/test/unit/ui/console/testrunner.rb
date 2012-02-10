@@ -193,8 +193,8 @@ module Test
           def output_code_snippet(entry, target_line_color=nil)
             return unless /\A(.*):(\d+)/ =~ entry
             file = $1
-            line = $2.to_i
-            lines = @code_snippet_fetcher.fetch(file, line)
+            line_number = $2.to_i
+            lines = @code_snippet_fetcher.fetch(file, line_number)
             max_n = lines.collect {|n, line, attributes| n}.max
             digits = (Math.log10(max_n) + 1).truncate
             lines.each do |n, line, attributes|
