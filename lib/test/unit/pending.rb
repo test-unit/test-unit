@@ -112,8 +112,8 @@ module Test
       def handle_pended_error(exception)
         return false unless exception.is_a?(PendedError)
         pending = Pending.new(name,
-                                filter_backtrace(exception.backtrace),
-                                exception.message)
+                              filter_backtrace(exception.backtrace),
+                              exception.message)
         add_pending(pending)
         true
       end
