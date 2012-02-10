@@ -1,5 +1,13 @@
 h1. News
 
+h2(#2-4-7). 2.4.7 - 2012-2-10
+
+It's a code snippet improvement release.
+
+h3. Improvements
+
+  * Supported code snippet display on all faults.
+
 h2(#2-4-6). 2.4.6 - 2012-2-9
 
 It's a TAP runner separated release.
