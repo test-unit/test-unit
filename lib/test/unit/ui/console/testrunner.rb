@@ -201,6 +201,7 @@ module Test
             file = $1
             line_number = $2.to_i
             lines = @code_snippet_fetcher.fetch(file, line_number)
+            return if lines.empty?
             max_n = lines.collect {|n, line, attributes| n}.max
             digits = (Math.log10(max_n) + 1).truncate
             lines.each do |n, line, attributes|
