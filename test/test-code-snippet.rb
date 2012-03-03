@@ -9,7 +9,7 @@ class TestCodeSnippet < Test::Unit::TestCase
       jruby_only_test
 
       backtrace = backtrace_from_jruby
-      no_rb_entries = backtrace.find_all do |(file,)|
+      no_rb_entries = backtrace.find_all do |(file, _, _)|
         File.extname(file) != ".rb"
       end
 
