@@ -9,7 +9,7 @@ test-unit - Improved version of Test::Unit bundled in Ruby
 
 Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
 bundled in Ruby 1.8.x had not been improved but unbundled
-Test::Unit (test-unit) will be improved actively.
+Test::Unit (test-unit) is improved actively.
 
 h2. Features
 

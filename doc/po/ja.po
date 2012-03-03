@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"POT-Creation-Date: 2012-03-03 20:10+0900\n"
+"POT-Creation-Date: 2012-03-03 20:38+0900\n"
 "PO-Revision-Date: 2012-03-03 20:10+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
@@ -38136,7 +38136,7 @@ msgstr ""
 #: doc/reference/en/index.html:62(p) doc/reference/en/file.README.html:62(p)
 msgid ""
 "Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit bundled in Ruby 1.8.x "
-"had not been improved but unbundled Test::Unit (test-unit) will be improved "
+"had not been improved but unbundled Test::Unit (test-unit) is improved "
 "actively."
 msgstr ""
 
