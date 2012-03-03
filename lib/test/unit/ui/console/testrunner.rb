@@ -189,19 +189,22 @@ module Test
           end
 
           def output_fault_backtrace(fault)
+            snippet_is_shown = false
             backtrace = fault.location
             backtrace.each_with_index do |entry, i|
               output(entry)
-              output_code_snippet(entry, fault_color(fault)) if i.zero?
+              next if snippet_is_shown
+              snippet_is_shown = output_code_snippet(entry, fault_color(fault))
             end
           end
 
           def output_code_snippet(entry, target_line_color=nil)
-            return unless /\A(.*):(\d+)/ =~ entry
+            return false unless /\A(.*):(\d+)/ =~ entry
             file = $1
             line_number = $2.to_i
             lines = @code_snippet_fetcher.fetch(file, line_number)
-            return if lines.empty?
+            return false if lines.empty?
+
             max_n = lines.collect {|n, line, attributes| n}.max
             digits = (Math.log10(max_n) + 1).truncate
             lines.each do |n, line, attributes|
@@ -215,7 +218,7 @@ module Test
               output("  %2s %*d: %s" % [current_line_mark, digits, n, line],
                      line_color)
             end
-            nl
+            true
           end
 
           def output_fault_message(fault)
