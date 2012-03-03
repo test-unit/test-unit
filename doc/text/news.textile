@@ -1,5 +1,26 @@
 h1. News
 
+h2(#2-4-8). 2.4.8 - 2012-3-3
+
+It's a bug fix release.
+
+h3. Improvements
+
+  * Delayed at_exit registration until Test::Unit is used.
+    [GitHub:#21] [Reported by Jason Lunn]
+
+h3. Fixes
+
+  * Fixed an error on code snippet display on JRuby.
+    [GitHub:#19][GitHub:#20]
+    [Reported by Jørgen P. Tjernø][Patch by Junegunn Choi]
+
+h3. Thanks
+
+  * Jørgen P. Tjernø
+  * Junegunn Choi
+  * Jason Lunn
+
 h2(#2-4-7). 2.4.7 - 2012-2-10
 
 It's a code snippet improvement release.
