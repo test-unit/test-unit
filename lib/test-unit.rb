@@ -1,1 +1,3 @@
-require "test/unit"
+module Test
+  autoload :Unit, "test/unit"
+end
