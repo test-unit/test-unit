@@ -28,4 +28,3 @@ class TestJRuby < Test::Unit::TestCase
     assert_equal 1, result.faults.size
   end
 end
-
