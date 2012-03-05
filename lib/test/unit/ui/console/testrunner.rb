@@ -191,6 +191,9 @@ module Test
           def output_fault_backtrace(fault)
             snippet_is_shown = false
             backtrace = fault.location
+            # workaround for test-spec. :<
+            # see also GitHub:#22
+            backtrace ||= []
             backtrace.each_with_index do |entry, i|
               output(entry)
               next if snippet_is_shown
