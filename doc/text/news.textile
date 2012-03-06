@@ -1,6 +1,6 @@
 h1. News
 
-h2(#2-4-8). 2.4.8 - 2012-3-3
+h2(#2-4-8). 2.4.8 - 2012-3-6
 
 It's a bug fix release.
 
@@ -8,6 +8,8 @@ h3. Improvements
 
   * Delayed at_exit registration until Test::Unit is used.
     [GitHub:#21] [Reported by Jason Lunn]
+  * Added workaround for test-spec.
+    [GitHub:#22] [Reported by Cédric Boutillier]
 
 h3. Fixes
 
