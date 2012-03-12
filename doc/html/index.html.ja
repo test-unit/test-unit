@@ -229,7 +229,7 @@ require 'test/unit/rails'</pre>
         </p>
 	<h3 id="test-unit-capybara-latest">test-unit-capybaraの最新リリース</h3>
 	<p>
-	  2012-01-17にリリースされた<a href="test-unit-capybara/ja/file.news.html#1-0-1">1.0.1</a>が最新リリースです。
+	  2012-03-12にリリースされた<a href="test-unit-capybara/ja/file.news.html#1-0-2">1.0.2</a>が最新リリースです。
         </p>
 	<h3 id="test-unit-capybara-install">test-unit-capybaraのインストール</h3>
         <p>
