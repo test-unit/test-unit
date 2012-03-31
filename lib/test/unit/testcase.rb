@@ -104,6 +104,7 @@ module Test
 
       class << self
         def inherited(sub_class) # :nodoc:
+          require "test/unit"
           DESCENDANTS << sub_class
         end
 

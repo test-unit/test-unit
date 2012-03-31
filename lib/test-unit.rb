@@ -1,5 +1,5 @@
 module Test
   module Unit
-    autoload :TestCase, "test/unit"
+    autoload :TestCase, "test/unit/testcase"
   end
 end
