@@ -310,19 +310,23 @@ module Test # :nodoc:
   module Unit
     # Set true when Test::Unit has run.  If set to true Test::Unit
     # will not automatically run at exit.
-    def self.run=(flag)
-      @run = flag
+    #
+    # @deprecated Use Test::Unit::AutoRunner.need_auto_run= instead.
+    def self.run=(have_run)
+      AutoRunner.need_auto_run = (not have_run)
     end
 
     # Already tests have run?
+    #
+    # @deprecated Use Test::Unit::AutoRunner.need_auto_run? instead.
     def self.run?
-      @run ||= false
+      not AutoRunner.need_auto_run?
     end
   end
 end
 
 at_exit do
-  break if $!
-  break if Test::Unit.run?
-  exit Test::Unit::AutoRunner.run
+  if $!.nil? and Test::Unit::AutoRunner.need_auto_run?
+    exit Test::Unit::AutoRunner.run
+  end
 end

@@ -64,6 +64,15 @@ module Test
           end
           true
         end
+
+        @@need_auto_run = true
+        def need_auto_run?
+          @@need_auto_run
+        end
+
+        def need_auto_run=(need)
+          @@need_auto_run = need
+        end
       end
 
       register_collector(:descendant) do |auto_runner|
@@ -117,7 +126,6 @@ module Test
       attr_writer :runner, :collector
 
       def initialize(standalone)
-        Unit.run = true
         @standalone = standalone
         @runner = default_runner
         @collector = default_collector
@@ -357,6 +365,7 @@ module Test
       end
 
       def run
+        self.class.need_auto_run = false
         suite = @collector[self]
         return false if suite.nil?
         return true if suite.empty?
