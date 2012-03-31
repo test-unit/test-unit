@@ -374,8 +374,9 @@ module Test
         @runner_options[:color_scheme] ||= @color_scheme
         @runner_options[:listeners] ||= []
         @runner_options[:listeners].concat(@listeners)
-        Dir.chdir(@workdir) if @workdir
-        runner.run(suite, @runner_options).passed?
+        change_work_directory do
+          runner.run(suite, @runner_options).passed?
+        end
       end
 
       def load_config(file)
@@ -424,6 +425,14 @@ module Test
       def load_global_config
         file = global_config_file
         load_config(file) if file and File.exist?(file)
+      end
+
+      def change_work_directory(&block)
+        if @workdir
+          Dir.chdir(@workdir, &block)
+        else
+          yield
+        end
       end
     end
   end
