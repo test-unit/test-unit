@@ -1,4 +1,5 @@
 require 'test/unit/color-scheme'
+require 'test/unit/priority'
 require 'optparse'
 
 module Test
