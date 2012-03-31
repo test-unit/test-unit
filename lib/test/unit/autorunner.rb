@@ -49,21 +49,21 @@ module Test
           PREPARE_HOOKS << hook
         end
 
-      def run(force_standalone=false, default_dir=nil, argv=ARGV, &block)
-        r = new(force_standalone || standalone?, &block)
-        r.base = default_dir
-        r.prepare
-        r.process_args(argv)
-        r.run
-      end
-
-      def standalone?
-        return false unless("-e" == $0)
-        ObjectSpace.each_object(Class) do |klass|
-          return false if(klass < TestCase)
+        def run(force_standalone=false, default_dir=nil, argv=ARGV, &block)
+          r = new(force_standalone || standalone?, &block)
+          r.base = default_dir
+          r.prepare
+          r.process_args(argv)
+          r.run
         end
-        true
-      end
+
+        def standalone?
+          return false unless("-e" == $0)
+          ObjectSpace.each_object(Class) do |klass|
+            return false if(klass < TestCase)
+          end
+          true
+        end
       end
 
       register_collector(:descendant) do |auto_runner|
