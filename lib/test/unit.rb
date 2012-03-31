@@ -322,7 +322,7 @@ module Test # :nodoc:
 end
 
 at_exit do
-  unless $! || Test::Unit.run?
-    exit Test::Unit::AutoRunner.run
-  end
+  break if $!
+  break if Test::Unit.run?
+  exit Test::Unit::AutoRunner.run
 end
