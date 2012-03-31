@@ -48,9 +48,8 @@ module Test
         def prepare(hook=Proc.new)
           PREPARE_HOOKS << hook
         end
-      end
 
-      def self.run(force_standalone=false, default_dir=nil, argv=ARGV, &block)
+      def run(force_standalone=false, default_dir=nil, argv=ARGV, &block)
         r = new(force_standalone || standalone?, &block)
         r.base = default_dir
         r.prepare
@@ -58,12 +57,13 @@ module Test
         r.run
       end
 
-      def self.standalone?
+      def standalone?
         return false unless("-e" == $0)
         ObjectSpace.each_object(Class) do |klass|
           return false if(klass < TestCase)
         end
         true
+      end
       end
 
       register_collector(:descendant) do |auto_runner|
