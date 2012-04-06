@@ -13,7 +13,7 @@ class TestUnitUIMediator < Test::Unit::TestCase
       finished = true
     end
     assert_raise(Interrupt) do
-      mediator.run_suite
+      mediator.run
     end
     assert(finished)
   end

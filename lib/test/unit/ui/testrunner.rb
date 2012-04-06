@@ -37,7 +37,7 @@ module Test
         end
 
         def start_mediator
-          @mediator.run_suite
+          @mediator.run
         end
 
         def diff_target_string?(string)

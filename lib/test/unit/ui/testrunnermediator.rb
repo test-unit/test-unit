@@ -29,7 +29,7 @@ module Test
 
         # Runs the suite the TestRunnerMediator was created
         # with.
-        def run_suite
+        def run
           AutoRunner.need_auto_run = false
 
           result = create_result
