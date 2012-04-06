@@ -51,9 +51,7 @@ module Test
             notify_listeners(RESET, @suite.size)
             notify_listeners(STARTED, result)
 
-            @suite.run(result) do |channel, value|
-              notify_listeners(channel, value)
-            end
+            run_suite(result)
           ensure
             elapsed_time = Time.now - start_time
             result.remove_listener(TestResult::FAULT, fault_listener)
@@ -79,6 +77,12 @@ module Test
           begin_time = Time.now
           yield
           Time.now - begin_time
+        end
+
+        def run_suite(result)
+          @suite.run(result) do |channel, value|
+            notify_listeners(channel, value)
+          end
         end
       end
     end
