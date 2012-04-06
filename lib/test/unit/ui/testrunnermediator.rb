@@ -30,7 +30,7 @@ module Test
         # Runs the suite the TestRunnerMediator was created
         # with.
         def run_suite
-          Unit.run = true
+          AutoRunner.need_auto_run = false
 
           result = create_result
           finished_listener = result.add_listener(TestResult::FINISHED) do |*args|
