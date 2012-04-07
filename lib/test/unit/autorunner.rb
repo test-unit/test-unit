@@ -153,7 +153,6 @@ module Test
       end
 
       def process_args(args=ARGV)
-        args = args.dup
         begin
           args.unshift(*@default_arguments)
           options.order!(args) {|arg| @to_run << arg}
