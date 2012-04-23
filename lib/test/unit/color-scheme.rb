@@ -94,7 +94,7 @@ module Test
             256
           else
             case ENV["TERM"]
-            when "xterm-256color"
+            when /-256color\z/
               256
             else
               8
