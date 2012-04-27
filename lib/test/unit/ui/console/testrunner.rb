@@ -8,6 +8,7 @@
 
 require 'test/unit/color-scheme'
 require 'test/unit/code-snippet-fetcher'
+require 'test/unit/diff'
 require 'test/unit/ui/testrunner'
 require 'test/unit/ui/testrunnermediator'
 require 'test/unit/ui/console/outputlevel'
