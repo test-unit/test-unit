@@ -1907,5 +1907,20 @@ EOM
         end
       end
     end
+
+    class TestTemplate < Test::Unit::TestCase
+      def test_incompatible_encoding_by_diff
+        need_encoding
+        assert_raise(AssertionFailedError) do
+          assert_equal("UTF-8の日本語\n" * 3,
+                       ("Shift_JISの日本語\n" * 3).force_encoding("ASCII-8BIT"))
+        end
+      end
+
+      private
+      def need_encoding
+        omit("need Encoding") unless Object.const_defined?(:Encoding)
+      end
+    end
   end
 end

@@ -1755,7 +1755,30 @@ EOT
           def result(parameters)
             raise "The number of parameters does not match the number of substitutions." if(parameters.size != count)
             params = parameters.dup
-            @parts.collect{|e| e == '?' ? params.shift : e.gsub(/\\\?/m, '?')}.join('')
+            expanded_template = ""
+            @parts.each do |part|
+              if part == '?'
+                encoding_safe_concat(expanded_template, params.shift)
+              else
+                expanded_template << part.gsub(/\\\?/m, '?')
+              end
+            end
+            expanded_template
+          end
+
+          private
+          if Object.const_defined?(:Encoding)
+            def encoding_safe_concat(buffer, parameter)
+              if Encoding.compatible?(buffer.encoding, parameter.encoding)
+                buffer << parameter
+              else
+                buffer << parameter.dup.force_encoding(buffer.encoding)
+              end
+            end
+          else
+            def encoding_safe_concat(buffer, parameter)
+              buffer << parameter
+            end
           end
         end
 
