@@ -6,8 +6,8 @@ It's a bug fix release.
 
 h3. Improvements
 
-  * Test::Unit.run? ->
-    Test::Unit::AutoRunner.need_auto_run?. Test::Unit.run? is marked
+  * @Test::Unit.run?@ ->
+    @Test::Unit::AutoRunner.need_auto_run?@. @Test::Unit.run?@ is marked
     as deprecated but it is still available.
   * [experimental] Added top level "run" method for @"ruby -rtest-unit -e
     run test/test_*.rb"@. Is this API OK or dirty?
@@ -25,7 +25,7 @@ h3. Fixes
   * Consumed processed command line parameters in @ARGV@ as @--help@
     says.
     [RubyForge#29554] [Reported by Bob Saveland]
-  * Added missing @require "test/unit/diff".
+  * Added missing @require "test/unit/diff"@.
     [GitHub#25] [Reported by Stephan Kulow]
 
 h3. Thanks
