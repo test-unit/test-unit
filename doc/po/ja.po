@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
 "POT-Creation-Date: 2012-06-03 11:09+0900\n"
-"PO-Revision-Date: 2012-03-03 20:10+0900\n"
+"PO-Revision-Date: 2012-06-03 11:38+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -33236,7 +33236,7 @@ msgstr ""
 msgid ""
 "<placeholder-1/> → <placeholder-2/>. <placeholder-3/> is marked as "
 "deprecated but it is still available."
-msgstr ""
+msgstr "<placeholder-1/> → <placeholder-2/>。<placeholder-3/>は非推奨になりましたが、まだ利用できます。"
 
 #: doc/reference/en/file.news.html:72(code)
 msgid "\"ruby -rtest-unit -e run test/test_*.rb\""
@@ -33250,11 +33250,11 @@ msgstr ""
 msgid ""
 "[experimental] Added top level “run” method for <placeholder-1/>. Is this "
 "<placeholder-2/> OK or dirty?"
-msgstr ""
+msgstr "[実験的] <placeholder-1/>を実現できるようにするためにトップレベルに「run」メソッドを追加した。この<placeholder-2/>はよいAPIでしょうか、それとも汚いAPIでしょうか？"
 
 #: doc/reference/en/file.news.html:74(li)
 msgid "Made failure output more readable on no color mode."
-msgstr ""
+msgstr "色付け出力ができない場合でも失敗時のメッセージを読みやすく表示するようにした。"
 
 #: doc/reference/en/file.news.html:75(span)
 #: doc/reference/en/file.news.html:313(span)
@@ -33263,7 +33263,7 @@ msgstr ""
 
 #: doc/reference/en/file.news.html:75(li)
 msgid "Supported showing <placeholder-1/>-8BIT diff in failure message."
-msgstr ""
+msgstr "失敗時のメッセージで<placeholder-1/>-8BITのdiffを表示できるようにした。"
 
 #: doc/reference/en/file.news.html:76(code)
 msgid "ENV[\"TERM\"] == \"xterm-256color\""
@@ -33273,7 +33273,7 @@ msgstr ""
 msgid ""
 "[ui][console] Supported <placeholder-1/> as color available terminal. "
 "[GitHub#26] [Reported by Michael Grosser]"
-msgstr ""
+msgstr "[ui][console] <placeholder-1/>を色付けできるターミナルに追加。 [GitHub#26] [Michael Grosserさんが報告]"
 
 #: doc/reference/en/file.news.html:79(code)
 msgid "ENV[\"TERM\"]"
@@ -33283,7 +33283,7 @@ msgstr ""
 msgid ""
 "[ui][console] Supported “-256color” suffix <placeholder-1/> terminal as 256 "
 "color supported terminal."
-msgstr ""
+msgstr "[ui][console] <placeholder-1/>の最後が\"-256color\"となっているターミナルは256色使えるターミナルとして扱うようにした。"
 
 #: doc/reference/en/file.news.html:82(h3)
 #: doc/reference/en/file.news.html:106(h3)
@@ -33300,23 +33300,21 @@ msgstr ""
 
 #: doc/reference/en/file.news.html:84(li)
 msgid "Fixed a bug that <placeholder-1/> doesn’t work."
-msgstr ""
+msgstr "<placeholder-1/>が動かない問題を修正。"
 
 #: doc/reference/en/file.news.html:85(li)
 msgid ""
 "Consumed processed command line parameters in <placeholder-1/> as "
 "<placeholder-2/> says. [RubyForge#29554] [Reported by Bob Saveland]"
-msgstr ""
+msgstr "<placeholder-2/>に書かれている通り、<placeholder-1/>から処理済みのコマンドライン引数を削除するようにした。[RubyForge#29554] [Bob Savelandさんが報告]"
 
 #: doc/reference/en/file.news.html:88(code)
 msgid "require \"test/unit/diff\""
 msgstr ""
 
 #: doc/reference/en/file.news.html:88(li)
-#, fuzzy
 msgid "Added missing <placeholder-1/>. [GitHub#25] [Reported by Stephan Kulow]"
-msgstr ""
-"<placeholder-1/>=Cでもテストがパスするようにした。 #11 [boutilさんが報告]"
+msgstr "抜けていた<placeholder-1/>を追加。[GitHub#25] [Stephan Kulowさんが報告]"
 
 #: doc/reference/en/file.news.html:91(h3)
 #: doc/reference/en/file.news.html:112(h3)
@@ -33345,15 +33343,15 @@ msgstr "感謝"
 #: doc/reference/en/file.news.html:93(li)
 #: doc/reference/en/file.news.html:403(li)
 msgid "Bob Saveland"
-msgstr ""
+msgstr "Bob Savelandさん"
 
 #: doc/reference/en/file.news.html:94(li)
 msgid "Stephan Kulow"
-msgstr ""
+msgstr "Stephan Kulowさん"
 
 #: doc/reference/en/file.news.html:95(li)
 msgid "Michael Grosser"
-msgstr ""
+msgstr "Michael Grosserさん"
 
 #: doc/reference/en/file.news.html:97(h2)
 msgid "2.4.8 – 2012-3-6"
@@ -33370,7 +33368,7 @@ msgstr ""
 #: doc/reference/en/file.news.html:103(li)
 msgid ""
 "Added workaround for test-spec. [GitHub:#22] [Reported by Cédric Boutillier]"
-msgstr ""
+msgstr "test-spec用の回避策を追加。[GitHub:#22] [Cédric Boutillierさんが報告]"
 
 #: doc/reference/en/file.news.html:108(li)
 msgid ""
