@@ -1,5 +1,39 @@
 h1. News
 
+h2(#2-4-9). 2.4.9 - 2012-06-03
+
+It's a bug fix release.
+
+h3. Improvements
+
+  * Test::Unit.run? ->
+    Test::Unit::AutoRunner.need_auto_run?. Test::Unit.run? is marked
+    as deprecated but it is still available.
+  * [experimental] Added top level "run" method for @"ruby -rtest-unit -e
+    run test/test_*.rb"@. Is this API OK or dirty?
+  * Made failure output more readable on no color mode.
+  * Supported showing ASCII-8BIT diff in failure message.
+  * [ui][console] Supported @ENV["TERM"] == "xterm-256color"@ as color
+    available terminal.
+    [GitHub#26] [Reported by Michael Grosser]
+  * [ui][console] Supported "-256color" suffix @ENV["TERM"]@ terminal
+    as 256 color supported terminal.
+
+h3. Fixes
+
+  * Fixed a bug that @--workdir@ doesn't work.
+  * Consumed processed command line parameters in @ARGV@ as @--help@
+    says.
+    [RubyForge#29554] [Reported by Bob Saveland]
+  * Added missing @require "test/unit/diff".
+    [GitHub#25] [Reported by Stephan Kulow]
+
+h3. Thanks
+
+  * Bob Saveland
+  * Stephan Kulow
+  * Michael Grosser
+
 h2(#2-4-8). 2.4.8 - 2012-3-6
 
 It's a bug fix release.
