@@ -33,32 +33,17 @@ module Test
           AutoRunner.need_auto_run = false
 
           result = create_result
-          finished_listener = result.add_listener(TestResult::FINISHED) do |*args|
-            notify_listeners(TestResult::FINISHED, *args)
-          end
-          changed_listener = result.add_listener(TestResult::CHANGED) do |*args|
-            notify_listeners(TestResult::CHANGED, *args)
-          end
-          pass_assertion_listener = result.add_listener(TestResult::PASS_ASSERTION) do |*args|
-            notify_listeners(TestResult::PASS_ASSERTION, *args)
-          end
-          fault_listener = result.add_listener(TestResult::FAULT) do |*args|
-            notify_listeners(TestResult::FAULT, *args)
-          end
 
           start_time = Time.now
           begin
-            notify_listeners(RESET, @suite.size)
-            notify_listeners(STARTED, result)
+            with_listener(result) do
+              notify_listeners(RESET, @suite.size)
+              notify_listeners(STARTED, result)
 
-            run_suite(result)
+              run_suite(result)
+            end
           ensure
             elapsed_time = Time.now - start_time
-            result.remove_listener(TestResult::FAULT, fault_listener)
-            result.remove_listener(TestResult::CHANGED, changed_listener)
-            result.remove_listener(TestResult::FINISHED, finished_listener)
-            result.remove_listener(TestResult::PASS_ASSERTION,
-                                   pass_assertion_listener)
             notify_listeners(FINISHED, elapsed_time)
           end
 
@@ -77,6 +62,31 @@ module Test
           begin_time = Time.now
           yield
           Time.now - begin_time
+        end
+
+        def with_listener(result)
+          finished_listener = result.add_listener(TestResult::FINISHED) do |*args|
+            notify_listeners(TestResult::FINISHED, *args)
+          end
+          changed_listener = result.add_listener(TestResult::CHANGED) do |*args|
+            notify_listeners(TestResult::CHANGED, *args)
+          end
+          pass_assertion_listener = result.add_listener(TestResult::PASS_ASSERTION) do |*args|
+            notify_listeners(TestResult::PASS_ASSERTION, *args)
+          end
+          fault_listener = result.add_listener(TestResult::FAULT) do |*args|
+            notify_listeners(TestResult::FAULT, *args)
+          end
+
+          begin
+            yield
+          ensure
+            result.remove_listener(TestResult::FAULT, fault_listener)
+            result.remove_listener(TestResult::CHANGED, changed_listener)
+            result.remove_listener(TestResult::FINISHED, finished_listener)
+            result.remove_listener(TestResult::PASS_ASSERTION,
+                                   pass_assertion_listener)
+          end
         end
 
         def run_suite(result)
