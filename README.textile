@@ -88,3 +88,4 @@ h2. Thanks
 * James Mead: A bug report.
 * Marc Seeger (Acquia): A bug report.
 * boutil: A bug report.
+* Vladislav Rassokhin: A bug report.
