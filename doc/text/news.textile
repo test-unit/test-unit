@@ -1,5 +1,19 @@
 h1. News
 
+h2(#2-5-0). 2.5.0 - 2012-06-06
+
+It's a bug fix release.
+
+h3. Fixes
+
+  * Fixed a backward incompatibility of @TestUnitMediator#run_suite@
+    introduced in 2.4.9.
+    [GitHub#28] [Reported by Vladislav Rassokhin]
+
+h3. Thanks
+
+  * Vladislav Rassokhin
+
 h2(#2-4-9). 2.4.9 - 2012-06-03
 
 It's a bug fix release.
