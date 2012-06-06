@@ -40,7 +40,10 @@ module Test
               notify_listeners(RESET, @suite.size)
               notify_listeners(STARTED, result)
 
-              run_suite(result)
+
+              @suite.run(result) do |channel, value|
+                notify_listeners(channel, value)
+              end
             end
           ensure
             elapsed_time = Time.now - start_time
@@ -49,6 +52,10 @@ module Test
 
           result
         end
+
+        # Just for backward compatibility.
+        # @see GitHub#28
+        alias_method :run_suite, :run
 
         private
         # A factory method to create the result the mediator
@@ -86,12 +93,6 @@ module Test
             result.remove_listener(TestResult::FINISHED, finished_listener)
             result.remove_listener(TestResult::PASS_ASSERTION,
                                    pass_assertion_listener)
-          end
-        end
-
-        def run_suite(result)
-          @suite.run(result) do |channel, value|
-            notify_listeners(channel, value)
           end
         end
       end
