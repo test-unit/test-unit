@@ -83,6 +83,9 @@ module Test
                                    &method(:test_suite_started))
             @mediator.add_listener(TestSuite::FINISHED_OBJECT,
                                    &method(:test_suite_finished))
+
+            @mediator.add_listener(Test::Unit::TestCase::STARTED, &method(:test_started))
+            @mediator.add_listener(Test::Unit::TestCase::FINISHED, &method(:test_finished))
           end
 
           def add_fault(fault)
