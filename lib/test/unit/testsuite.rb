@@ -48,9 +48,14 @@ module Test
         yield(STARTED, name)
         yield(STARTED_OBJECT, self)
         run_startup(result)
+        context = {:suite => self, :result => result}
         while test = @tests.shift
           @n_tests += test.size
-          test.run(result, &progress_block)
+          context[:test] = test
+          test.run(result) do |event_name, *args|
+            event_name, args = convert_progress_event(event_name, args, context)
+            progress_block.call(event_name, *args)
+          end
           @passed = false unless test.passed?
         end
         run_shutdown(result)
@@ -128,6 +133,18 @@ module Test
           @passed = false
           true
         end
+      end
+
+      def convert_progress_event(event_name, args, context)
+        case event_name
+        when Test::Unit::TestCase::STARTED
+          event_name = Test::Unit::TestCase::STARTED_OBJECT
+          args = [context[:test]]
+        when Test::Unit::TestCase::FINISHED
+          event_name = Test::Unit::TestCase::FINISHED_OBJECT
+          args = [context[:test]]
+        end
+        [event_name, args]
       end
     end
   end
