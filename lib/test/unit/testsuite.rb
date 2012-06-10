@@ -48,14 +48,9 @@ module Test
         yield(STARTED, name)
         yield(STARTED_OBJECT, self)
         run_startup(result)
-        context = {:suite => self, :result => result}
         while test = @tests.shift
           @n_tests += test.size
-          context[:test] = test
-          test.run(result) do |event_name, *args|
-            event_name, args = convert_progress_event(event_name, args, context)
-            progress_block.call(event_name, *args)
-          end
+          run_test(test, result, &progress_block)
           @passed = false unless test.passed?
         end
         run_shutdown(result)
@@ -115,6 +110,40 @@ module Test
         end
       end
 
+      def run_test(test, result)
+        finished_is_yielded = false
+        finished_object_is_yielded = false
+        previous_event_name = nil
+        test.run(result) do |event_name, *args|
+          case previous_event_name
+          when Test::Unit::TestCase::STARTED
+            if event_name != Test::Unit::TestCase::STARTED_OBJECT
+              yield(Test::Unit::TestCase::STARTED_OBJECT, test)
+            end
+          when Test::Unit::TestCase::FINISHED
+            if event_name != Test::Unit::TestCase::FINISHED_OBJECT
+              yield(Test::Unit::TestCase::FINISHED_OBJECT, test)
+            end
+            finished_object_is_yielded = true
+          end
+
+          case event_name
+          when Test::Unit::TestCase::STARTED
+            finished_is_yielded = false
+            finished_object_is_yielded = false
+          when Test::Unit::TestCase::FINISHED
+            finished_is_yielded = true
+          end
+
+          previous_event_name = event_name
+          yield(event_name, *args)
+        end
+
+        if finished_is_yielded and not finished_object_is_yielded
+          yield(Test::Unit::TestCase::FINISHED_OBJECT, test)
+        end
+      end
+
       def run_shutdown(result)
         return if @test_case.nil? or !@test_case.respond_to?(:shutdown)
         begin
@@ -133,18 +162,6 @@ module Test
           @passed = false
           true
         end
-      end
-
-      def convert_progress_event(event_name, args, context)
-        case event_name
-        when Test::Unit::TestCase::STARTED
-          event_name = Test::Unit::TestCase::STARTED_OBJECT
-          args = [context[:test]]
-        when Test::Unit::TestCase::FINISHED
-          event_name = Test::Unit::TestCase::FINISHED_OBJECT
-          args = [context[:test]]
-        end
-        [event_name, args]
       end
     end
   end
