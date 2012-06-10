@@ -7,45 +7,15 @@ require "yaml"
 require "rubygems"
 require "rake/clean"
 require "yard"
-require "jeweler"
-require "./lib/test/unit/version.rb"
+require "bundler/gem_helper"
 
 task :default => :test
 
-def cleanup_white_space(entry)
-  entry.gsub(/(\A\n+|\n+\z)/, '') + "\n"
-end
+base_dir = File.dirname(__FILE__)
 
-version = Test::Unit::VERSION.dup
-ENV["VERSION"] = version
-spec = nil
-Jeweler::Tasks.new do |_spec|
-  spec = _spec
-  spec.name = "test-unit"
-  spec.version = version
-  spec.rubyforge_project = "test-unit"
-  spec.homepage = "http://test-unit.rubyforge.org/"
-  spec.authors = ["Kouhei Sutou", "Haruka Yoshihara"]
-  spec.email = ["kou@cozmixng.org", "yoshihara@clear-code.com"]
-  entries = File.read("README.textile").split(/^h2\.\s(.*)$/)
-  description = cleanup_white_space(entries[entries.index("Description") + 1])
-  spec.summary, spec.description, = description.split(/\n\n+/, 3)
-  spec.license = "Ruby's and PSFL (lib/test/unit/diff.rb)"
-  spec.files = FileList["lib/**/*.rb",
-                        "bin/*",
-                        "sample/*.rb",
-                        "test/**/*",
-                        "README.textile",
-                        "TODO",
-                        "Rakefile",
-                        "COPYING",
-                        "GPL",
-                        "PSFL"]
-end
-
-Rake::Task["release"].prerequisites.clear
-Jeweler::RubygemsDotOrgTasks.new do
-end
+helper = Bundler::GemHelper.new(base_dir)
+helper.install
+spec = helper.gemspec
 
 reference_base_dir = Pathname.new("doc/reference")
 doc_en_dir = reference_base_dir + "en"
