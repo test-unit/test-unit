@@ -175,7 +175,7 @@ module Test
               output(":")
               output(fault.test_name)
               output_fault_backtrace(fault)
-              output_fault_message(fault)
+              output_failure_message(fault)
             else
               output_single(fault.label, fault_color(fault))
               if fault.is_a?(Error)
@@ -225,42 +225,42 @@ module Test
             true
           end
 
-          def output_fault_message(fault)
-            if fault.expected.respond_to?(:encoding) and
-                fault.actual.respond_to?(:encoding) and
-                fault.expected.encoding != fault.actual.encoding
+          def output_failure_message(failure)
+            if failure.expected.respond_to?(:encoding) and
+                failure.actual.respond_to?(:encoding) and
+                failure.expected.encoding != failure.actual.encoding
               need_encoding = true
             else
               need_encoding = false
             end
-            output(fault.user_message) if fault.user_message
+            output(failure.user_message) if failure.user_message
             output_single("<")
-            output_single(fault.inspected_expected, color("pass"))
+            output_single(failure.inspected_expected, color("pass"))
             output_single(">")
             if need_encoding
               output_single("(")
-              output_single(fault.expected.encoding.name, color("pass"))
+              output_single(failure.expected.encoding.name, color("pass"))
               output_single(")")
             end
             output(" expected but was")
             output_single("<")
-            output_single(fault.inspected_actual, color("failure"))
+            output_single(failure.inspected_actual, color("failure"))
             output_single(">")
             if need_encoding
               output_single("(")
-              output_single(fault.actual.encoding.name, color("failure"))
+              output_single(failure.actual.encoding.name, color("failure"))
               output_single(")")
             end
             output("")
-            from, to = prepare_for_diff(fault.expected, fault.actual)
+            from, to = prepare_for_diff(failure.expected, failure.actual)
             if from and to
               from_lines = from.split(/\r?\n/)
               to_lines = to.split(/\r?\n/)
               if need_encoding
                 from_lines << ""
                 to_lines << ""
-                from_lines << "Encoding: #{fault.expected.encoding.name}"
-                to_lines << "Encoding: #{fault.actual.encoding.name}"
+                from_lines << "Encoding: #{failure.expected.encoding.name}"
+                to_lines << "Encoding: #{failure.actual.encoding.name}"
               end
               differ = ColorizedReadableDiffer.new(from_lines, to_lines, self)
               if differ.need_diff?
