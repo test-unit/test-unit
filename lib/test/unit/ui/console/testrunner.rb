@@ -180,12 +180,23 @@ module Test
               output_single(fault.label, fault_color(fault))
               if fault.is_a?(Error)
                 output(": #{fault.test_name}")
-                output(fault.message)
+                output_fault_message(fault)
               else
-                output(": #{fault.message}")
+                if fault.message.include?("\n")
+                  output(":")
+                  output_fault_message(fault)
+                else
+                  output(": #{fault.message}")
+                end
                 output(fault.test_name)
               end
               output_fault_backtrace(fault)
+            end
+          end
+
+          def output_fault_message(fault)
+            fault.message.each_line do |line|
+              output("  #{line.chomp}")
             end
           end
 
