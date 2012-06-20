@@ -15,7 +15,9 @@ Gem::Specification.new do |spec|
   spec.homepage = "http://test-unit.rubyforge.org/"
   spec.authors = ["Kouhei Sutou", "Haruka Yoshihara"]
   spec.email = ["kou@cozmixng.org", "yoshihara@clear-code.com"]
-  entries = File.read("README.textile").split(/^h2\.\s(.*)$/)
+  readme = File.read("README.textile")
+  readme.force_encoding("UTF-8") if readme.respond_to?(:force_encoding)
+  entries = readme.split(/^h2\.\s(.*)$/)
   description = clean_white_space(entries[entries.index("Description") + 1])
   spec.summary, spec.description, = description.split(/\n\n+/, 3)
   spec.license = "Ruby's and PSFL (lib/test/unit/diff.rb)"
