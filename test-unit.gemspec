@@ -1,6 +1,6 @@
 # -*- mode: ruby; coding: utf-8 -*-
 
-def clean_white_space(entry)
+clean_white_space = lambda do |entry|
   entry.gsub(/(\A\n+|\n+\z)/, '') + "\n"
 end
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   readme = File.read("README.textile")
   readme.force_encoding("UTF-8") if readme.respond_to?(:force_encoding)
   entries = readme.split(/^h2\.\s(.*)$/)
-  description = clean_white_space(entries[entries.index("Description") + 1])
+  description = clean_white_space.call(entries[entries.index("Description") + 1])
   spec.summary, spec.description, = description.split(/\n\n+/, 3)
   spec.license = "Ruby's and PSFL (lib/test/unit/diff.rb)"
   spec.files = ["README.textile", "TODO", "Rakefile", "COPYING", "GPL", "PSFL"]
