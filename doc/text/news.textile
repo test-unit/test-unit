@@ -1,5 +1,34 @@
 h1. News
 
+h2(#2-5-1). 2.5.1 - 2012-07-05
+
+It's a bug fix release.
+
+h3. Improvements
+
+  * Supported installing from GitHub.
+    [GitHub#29] [Suggested by Michael Grosser]
+  * Supported ActiveSupport::TestCase.
+    [GitHub#30] [Reported by Michael Grosser]
+  * [ui][console] Improved multiline falut message display.
+
+h3. Fixes
+
+  * [ui][console] Fixed a bug that expected and actual values are
+    empty.
+    [GitHub#31][GitHub#33]
+    [Reported by Kendall Buchanan][Reported by Mathieu Martin]
+    [Hinted by Michael Grosser]
+  * Fixed a bug that .gemspec can't be loaded on LANG=C.
+    [RubyForge#29595] [Reported by Jean-Denis Koeck]
+
+h3. Thanks
+
+  * Michael Grosser
+  * Kendall Buchanan
+  * Mathieu Martin
+  * Jean-Denis Koeck
+
 h2(#2-5-0). 2.5.0 - 2012-06-06
 
 It's a bug fix release.
