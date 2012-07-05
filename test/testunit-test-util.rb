@@ -1,9 +1,9 @@
 module TestUnitTestUtil
   private
   def jruby_only_test
-    begin
+    if RUBY_PLATFORM == "java"
       require "java"
-    rescue LoadError
+    else
       omit("test for JRuby")
     end
   end
