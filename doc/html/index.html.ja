@@ -126,7 +126,7 @@ require "test/unit"</pre>
         </p>
 	<h3 id="test-unit-rails-latest">test-unit-railsの最新リリース</h3>
 	<p>
-	  2012-06-03にリリースされた<a href="test-unit-rails/ja/file.news.html#1-0-1">1.0.1</a>が最新リリースです。
+          2012-07-05にリリースされた<a href="test-unit-rails/ja/file.news.html#1-0-2">1.0.2</a>が最新リリースです。
         </p>
 	<h3 id="test-unit-rails-install">test-unit-railsのインストール</h3>
         <p>
