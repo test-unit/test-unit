@@ -78,7 +78,7 @@ module Test
         @tests.each { |test| total_size += test.size }
         total_size
       end
-      
+
       def empty?
         tests.empty?
       end
@@ -88,7 +88,7 @@ module Test
       def to_s
         @name
       end
-      
+
       # It's handy to be able to compare TestSuite instances.
       def ==(other)
         return false unless(other.kind_of?(self.class))
@@ -114,6 +114,7 @@ module Test
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
+        return unless test.respond_to?(:run) # missing from some irrelevant things in ActiveSupport v2
         test.run(result) do |event_name, *args|
           case previous_event_name
           when Test::Unit::TestCase::STARTED
