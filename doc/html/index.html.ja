@@ -151,7 +151,7 @@ require 'test/unit/rails/test_help'</pre>
         </p>
 	<h3 id="test-unit-activesupport-latest">test-unit-activesupportの最新リリース</h3>
 	<p>
-          2012-06-03にリリースされた<a href="test-unit-activesupport/ja/file.news.html#1-0-0">1.0.0</a>が最新リリースです。
+          2012-07-20にリリースされた<a href="test-unit-activesupport/ja/file.news.html#1-0-1">1.0.1</a>が最新リリースです。
         </p>
 	<h3 id="test-unit-activesupport-install">test-unit-activesupportのインストール</h3>
         <p>
