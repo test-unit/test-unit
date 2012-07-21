@@ -4,7 +4,7 @@ clean_white_space = lambda do |entry|
   entry.gsub(/(\A\n+|\n+\z)/, '') + "\n"
 end
 
-require "./lib/test/unit/version.rb"
+require "./lib/test/unit/version"
 
 version = Test::Unit::VERSION.dup
 
