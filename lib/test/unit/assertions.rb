@@ -506,7 +506,7 @@ EOT
           full_message = build_message(message,
                                        "<?> expected to not match\n<?>.",
                                        regexp, string)
-          assert_block(full_message) { regexp !~ string }
+          assert_block(full_message) { string !~ regexp }
         end
       end
 
