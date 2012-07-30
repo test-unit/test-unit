@@ -680,7 +680,20 @@ EOM
           assert_match(/slin./, "string", "failed assert_match")
         }
       end
-      
+
+      def test_assert_match_on_non_string_object
+        object = Object.new
+        class << object
+          def =~(regexp)
+            "string" =~ regexp
+          end
+        end
+
+        check_nothing_fails do
+          assert_match(/string/, object)
+        end
+      end
+
       def test_assert_same
         thing = "thing"
         check_nothing_fails {
@@ -840,6 +853,19 @@ EOM
                     "</string/> expected to not match\n" +
                     "<\"string\">.") do
           assert_not_match(/string/, "string", "message")
+        end
+      end
+
+      def test_assert_not_match_on_non_string_object
+        object = Object.new
+        class << object
+          def =~(regexp)
+            "string" =~ regexp
+          end
+        end
+
+        check_nothing_fails do
+          assert_not_match(/sling/, object)
         end
       end
 
