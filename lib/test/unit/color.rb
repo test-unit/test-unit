@@ -27,8 +27,15 @@ module Test
       attr_reader :name
       def initialize(name, options={})
         @name = name
-        @foreground = options[:foreground]
-        @foreground = true if @foreground.nil?
+        if options.has_key?(:foreground)
+          if options[:foreground].nil?
+            @background = false
+          else
+            @background = !options[:foreground]
+          end
+        else
+          @background = options[:background]
+        end
         @intensity = options[:intensity]
         @bold = options[:bold]
         @italic = options[:italic]
@@ -36,7 +43,11 @@ module Test
       end
 
       def foreground?
-        @foreground
+        not background?
+      end
+
+      def background?
+        @background
       end
 
       def intensity?
@@ -57,9 +68,9 @@ module Test
 
       def ==(other)
         self.class === other and
-          [name, foreground?, intensity?,
+          [name, background?, intensity?,
            bold?, italic?, underline?] ==
-          [other.name, other.foreground?, other.intensity?,
+          [other.name, other.background?, other.intensity?,
            other.bold?, other.italic?, other.underline?]
       end
 
