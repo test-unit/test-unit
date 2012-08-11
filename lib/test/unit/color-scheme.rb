@@ -58,8 +58,8 @@ module Test
                               Color.new("555", :bold => true),
                 "notification" => Color.new("011", :foreground => false) +
                                   Color.new("555", :bold => true),
-                "error" => Color.new("550", :bold => true) +
-                           Color.new("000", :foreground => false),
+                "error" => Color.new("000", :foreground => false) +
+                           Color.new("550", :bold => true),
                 "case" => Color.new("220", :foreground => false) +
                           Color.new("555", :bold => true),
                 "suite" => Color.new("110", :foreground => false) +
