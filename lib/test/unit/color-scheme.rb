@@ -17,62 +17,62 @@ module Test
         @@default_for_8_colors = nil
         def default_for_8_colors
           @@default_for_8_colors ||=
-            new("pass" => Color.new("green", :foreground => false) +
+            new("pass" => Color.new("green", :background => true) +
                           Color.new("white", :bold => true),
-                "failure" => Color.new("red", :foreground => false) +
+                "failure" => Color.new("red", :background => true) +
                              Color.new("white", :bold => true),
-                "pending" => Color.new("magenta", :foreground => false) +
+                "pending" => Color.new("magenta", :background => true) +
                              Color.new("white", :bold => true),
-                "omission" => Color.new("blue", :foreground => false) +
+                "omission" => Color.new("blue", :background => true) +
                              Color.new("white", :bold => true),
-                "notification" => Color.new("cyan", :foreground => false) +
+                "notification" => Color.new("cyan", :background => true) +
                                   Color.new("white", :bold => true),
-                "error" => Color.new("black", :foreground => false) +
+                "error" => Color.new("black", :background => true) +
                            Color.new("yellow", :bold => true),
-                "case" => Color.new("blue", :foreground => false) +
+                "case" => Color.new("blue", :background => true) +
                           Color.new("white", :bold => true),
-                "suite" => Color.new("green", :foreground => false) +
+                "suite" => Color.new("green", :background => true) +
                            Color.new("white", :bold => true),
-                "diff-inserted-tag" => Color.new("red", :foreground => false) +
+                "diff-inserted-tag" => Color.new("red", :background => true) +
                                        Color.new("black", :bold => true),
-                "diff-deleted-tag" => Color.new("green", :foreground => false) +
+                "diff-deleted-tag" => Color.new("green", :background => true) +
                                       Color.new("black", :bold => true),
-                "diff-difference-tag" => Color.new("cyan", :foreground => false) +
+                "diff-difference-tag" => Color.new("cyan", :background => true) +
                                          Color.new("white", :bold => true),
-                "diff-inserted" => Color.new("red", :foreground => false) +
+                "diff-inserted" => Color.new("red", :background => true) +
                                    Color.new("white", :bold => true),
-                "diff-deleted" =>  Color.new("green", :foreground => false) +
+                "diff-deleted" =>  Color.new("green", :background => true) +
                                    Color.new("white", :bold => true))
         end
 
         @@default_for_256_colors = nil
         def default_for_256_colors
           @@default_for_256_colors ||=
-            new("pass" => Color.new("030", :foreground => false) +
+            new("pass" => Color.new("030", :background => true) +
                           Color.new("555", :bold => true),
-                "failure" => Color.new("300", :foreground => false) +
+                "failure" => Color.new("300", :background => true) +
                              Color.new("555", :bold => true),
-                "pending" => Color.new("303", :foreground => false) +
+                "pending" => Color.new("303", :background => true) +
                               Color.new("555", :bold => true),
-                "omission" => Color.new("001", :foreground => false) +
+                "omission" => Color.new("001", :background => true) +
                               Color.new("555", :bold => true),
-                "notification" => Color.new("011", :foreground => false) +
+                "notification" => Color.new("011", :background => true) +
                                   Color.new("555", :bold => true),
-                "error" => Color.new("000", :foreground => false) +
+                "error" => Color.new("000", :background => true) +
                            Color.new("550", :bold => true),
-                "case" => Color.new("220", :foreground => false) +
+                "case" => Color.new("220", :background => true) +
                           Color.new("555", :bold => true),
-                "suite" => Color.new("110", :foreground => false) +
+                "suite" => Color.new("110", :background => true) +
                            Color.new("555", :bold => true),
-                "diff-inserted-tag" => Color.new("500", :foreground => false) +
+                "diff-inserted-tag" => Color.new("500", :background => true) +
                                        Color.new("000", :bold => true),
-                "diff-deleted-tag" => Color.new("050", :foreground => false) +
+                "diff-deleted-tag" => Color.new("050", :background => true) +
                                       Color.new("000", :bold => true),
-                "diff-difference-tag" => Color.new("005", :foreground => false) +
+                "diff-difference-tag" => Color.new("005", :background => true) +
                                          Color.new("555", :bold => true),
-                "diff-inserted" => Color.new("300", :foreground => false) +
+                "diff-inserted" => Color.new("300", :background => true) +
                                    Color.new("555", :bold => true),
-                "diff-deleted" =>  Color.new("030", :foreground => false) +
+                "diff-deleted" =>  Color.new("030", :background => true) +
                                    Color.new("555", :bold => true))
         end
 

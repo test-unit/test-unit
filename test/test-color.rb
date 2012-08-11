@@ -3,7 +3,7 @@ class TestUnitColor < Test::Unit::TestCase
     assert_escape_sequence(["31"], color("red"))
     assert_escape_sequence(["32", "1"], color("green", :bold => true))
     assert_escape_sequence(["0"], color("reset"))
-    assert_escape_sequence(["45"], color("magenta", :foreground => false))
+    assert_escape_sequence(["45"], color("magenta", :background => true))
   end
 
   def test_mix_color_escape_sequence
