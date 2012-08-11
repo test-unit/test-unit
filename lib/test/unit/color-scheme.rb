@@ -21,18 +21,24 @@ module Test
                           Color.new("white", :bold => true),
                 "failure" => Color.new("red", :foreground => false) +
                              Color.new("white", :bold => true),
-                "pending" => Color.new("magenta", :bold => true),
-                "omission" => Color.new("blue", :bold => true),
-                "notification" => Color.new("cyan", :bold => true),
-                "error" => Color.new("yellow", :bold => true) +
-                           Color.new("black", :foreground => false),
-                "case" => Color.new("white", :bold => true) +
-                          Color.new("blue", :foreground => false),
-                "suite" => Color.new("white", :bold => true) +
-                           Color.new("green", :foreground => false),
-                "diff-inserted-tag" => Color.new("red", :bold => true),
-                "diff-deleted-tag" => Color.new("green", :bold => true),
-                "diff-difference-tag" => Color.new("cyan", :bold => true),
+                "pending" => Color.new("magenta", :foreground => false) +
+                             Color.new("white", :bold => true),
+                "omission" => Color.new("blue", :foreground => false) +
+                             Color.new("white", :bold => true),
+                "notification" => Color.new("cyan", :foreground => false) +
+                                  Color.new("white", :bold => true),
+                "error" => Color.new("black", :foreground => false) +
+                           Color.new("yellow", :bold => true),
+                "case" => Color.new("blue", :foreground => false) +
+                          Color.new("white", :bold => true),
+                "suite" => Color.new("green", :foreground => false) +
+                           Color.new("white", :bold => true),
+                "diff-inserted-tag" => Color.new("red", :foreground => false) +
+                                       Color.new("black", :bold => true),
+                "diff-deleted-tag" => Color.new("green", :foreground => false) +
+                                      Color.new("black", :bold => true),
+                "diff-difference-tag" => Color.new("cyan", :foreground => false) +
+                                         Color.new("white", :bold => true),
                 "diff-inserted" => Color.new("red", :foreground => false) +
                                    Color.new("white", :bold => true),
                 "diff-deleted" =>  Color.new("green", :foreground => false) +

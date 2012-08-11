@@ -54,28 +54,35 @@ class TestUnitColorScheme < Test::Unit::TestCase
     end
 
     def test_default
-      assert_equal({
-                     "pass" => color("green", :foreground => false) +
-                               color("white", :bold => true),
-                     "failure" => color("red", :foreground => false) +
-                                  color("white", :bold => true),
-                     "pending" => color("magenta", :bold => true),
-                     "omission" => color("blue", :bold => true),
-                     "notification" => color("cyan", :bold => true),
-                     "error" => color("yellow", :bold => true) +
-                                color("black", :foreground => false),
-                     "case" => color("white", :bold => true) +
-                               color("blue", :foreground => false),
-                     "suite" => color("white", :bold => true) +
-                                color("green", :foreground => false),
-                     "diff-inserted-tag" => color("red", :bold => true),
-                     "diff-deleted-tag" => color("green", :bold => true),
-                     "diff-difference-tag" => color("cyan", :bold => true),
-                     "diff-inserted" => color("red", :foreground => false) +
-                                        color("white", :bold => true),
-                     "diff-deleted" => color("green", :foreground => false) +
-                                       color("white", :bold => true),
-                   },
+      expected_schema = {
+        "pass"                => color("green",   :foreground => false) +
+                                 color("white",   :bold       => true),
+        "failure"             => color("red",     :foreground => false) +
+                                 color("white",   :bold       => true),
+        "pending"             => color("magenta", :foreground => false) +
+                                 color("white",   :bold       => true),
+        "omission"            => color("blue",    :foreground => false) +
+                                 color("white",   :bold       => true),
+        "notification"        => color("cyan",    :foreground => false) +
+                                 color("white",   :bold       => true),
+        "error"               => color("black",   :foreground => false) +
+                                 color("yellow",  :bold       => true),
+        "case"                => color("blue",    :foreground => false) +
+                                 color("white",   :bold       => true),
+        "suite"               => color("green",   :foreground => false) +
+                                 color("white",   :bold       => true),
+        "diff-inserted-tag"   => color("red",     :foreground => false) +
+                                 color("black",   :bold       => true),
+        "diff-deleted-tag"    => color("green",   :foreground => false) +
+                                 color("black",   :bold       => true),
+        "diff-difference-tag" => color("cyan",    :foreground => false) +
+                                 color("white",   :bold       => true),
+        "diff-inserted"       => color("red",     :foreground => false) +
+                                 color("white",   :bold       => true),
+        "diff-deleted"        => color("green",   :foreground => false) +
+                                 color("white",   :bold       => true),
+      }
+      assert_equal(expected_schema,
                    Test::Unit::ColorScheme.default.to_hash)
     end
   end
