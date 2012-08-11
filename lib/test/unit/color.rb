@@ -81,10 +81,10 @@ module Test
           sequence << "0"
         else
           if NAMES.include?(@name)
-            foreground_parameter = foreground? ? 3 : 4
-            foreground_parameter += 6 if intensity?
+            color_parameter = foreground? ? 3 : 4
+            color_parameter += 6 if intensity?
             color = NAMES.index(@name)
-            sequence << "#{foreground_parameter}#{color}"
+            sequence << "#{color_parameter}#{color}"
           else
             sequence << (foreground? ? "38" : "48")
             sequence << "5"
