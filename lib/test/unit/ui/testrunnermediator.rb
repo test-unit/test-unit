@@ -50,6 +50,22 @@ module Test
           result
         end
 
+        # Just for backward compatibility for NetBeans.
+        # NetBeans should not use monkey patching. NetBeans
+        # should use runner change public API.
+        #
+        # See GitHub#38
+        #   https://github.com/test-unit/test-unit/issues/38
+        def run_suite(result=nil)
+          if result.nil?
+            run
+          else
+            @suite.run(result) do |channel, value|
+              notify_listeners(channel, value)
+            end
+          end
+        end
+
         private
         # A factory method to create the result the mediator
         # should run with. Can be overridden by subclasses if
@@ -86,12 +102,6 @@ module Test
             result.remove_listener(TestResult::FINISHED, finished_listener)
             result.remove_listener(TestResult::PASS_ASSERTION,
                                    pass_assertion_listener)
-          end
-        end
-
-        def run_suite(result)
-          @suite.run(result) do |channel, value|
-            notify_listeners(channel, value)
           end
         end
       end
