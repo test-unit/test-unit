@@ -48,7 +48,7 @@ module Test
           "TC_FailureError"
         end
       end
- 
+
       def test_add_failed_assertion
         test_case = @tc_failure_error.new(:test_failure)
         check("passed? should start out true", test_case.return_passed?)
