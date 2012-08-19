@@ -80,7 +80,7 @@ module Test
       end
       
       def empty?
-        tests.empty?
+        size.zero?
       end
 
       # Overridden to return the name given the suite at

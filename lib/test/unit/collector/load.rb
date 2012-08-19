@@ -106,9 +106,7 @@ module Test
             rescue LoadError
               @require_failed_infos << {:path => expanded_path, :exception => $!}
             end
-            find_test_cases(already_gathered).each do |test_case|
-              add_suite(test_suites, test_case.suite)
-            end
+            add_test_cases(test_suites, find_test_cases(already_gathered))
           end
         end
 

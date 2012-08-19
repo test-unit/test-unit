@@ -10,11 +10,7 @@ module Test
 
         def collect(name=NAME)
           suite = TestSuite.new(name)
-          sub_suites = []
-          TestCase::DESCENDANTS.each do |descendant_test_case|
-            add_suite(sub_suites, descendant_test_case.suite)
-          end
-          sort(sub_suites).each {|s| suite << s}
+          add_test_cases(suite, TestCase::DESCENDANTS)
           suite
         end
       end
