@@ -259,6 +259,23 @@ module Test
             end
           end
 
+          o.on('--location=LOCATION', String,
+               "Runs tests that defined in LOCATION.",
+               "LOCATION is one of PATH:LINE, PATH or LINE") do |location|
+            if /\A\d+\z/ =~ location
+              path = nil
+              line = location.to_i
+            else
+              path, line, = location.split(/:(\d+)/, 2)
+              line = line.to_i unless line.nil?
+            end
+            @filters << lambda do |test|
+              test.class.test_defined?(:path => path,
+                                       :line => line,
+                                       :method_name => test.method_name)
+            end
+          end
+
           priority_filter = Proc.new do |test|
             if @filters == [priority_filter]
               Priority::Checker.new(test).need_to_run?

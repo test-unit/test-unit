@@ -116,6 +116,13 @@ module Test
           if _added_methods.include?(stringified_name)
             attribute(:redefined, {:backtrace => caller}, {}, stringified_name)
           end
+          path, line, = caller[0].split(/:(\d+)/,2)
+          line = line.to_i if line
+          method_locations << {
+            :method_name => stringified_name,
+            :path => path,
+            :line => line,
+          }
           _added_methods << stringified_name
         end
 
@@ -280,6 +287,52 @@ module Test
         #   end
         def description(value, target=nil)
           attribute(:description, value, {}, target || [])
+        end
+
+        # Checkes whether a test that is mathched the query is
+        # defined.
+        #
+        # @option query [String] :path (nil)
+        #   the path where a test is defined in.
+        # @option query [Numeric] :line (nil)
+        #   the line number where a test is defined at.
+        # @option query [String] :method_name (nil)
+        #   the method name for a test.
+        def test_defined?(query)
+          query_path = query[:path]
+          query_line = query[:line]
+          query_method_name = query[:method_name]
+
+          available_locations = method_locations
+          if query_path
+            available_locations = available_locations.find_all do |location|
+              location[:path].end_with?(query_path)
+            end
+          end
+          if query_line
+            available_location = available_locations.reverse.find do |location|
+              query_line >= location[:line]
+            end
+            return false if available_location.nil?
+            available_locations = [available_location]
+          end
+          if query_method_name
+            available_location = available_locations.find do |location|
+              query_method_name == location[:method_name]
+            end
+            return false if available_location.nil?
+            available_locations = [available_location]
+          end
+
+          not available_locations.empty?
+        end
+
+        private
+        # @private
+        @@method_locations = {}
+        # @private
+        def method_locations
+          @@method_locations[self] ||= []
         end
       end
 
