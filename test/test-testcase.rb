@@ -1,5 +1,7 @@
 # Author:: Nathaniel Talbott.
-# Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
+# Copyright:: Copyright (c) 2008-2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright:: Copyright (c) 2011  Haruka Yoshihara <yoshihara@clear-code.com>
+# Copyright:: Copyright (c) 2000-2002  Nathaniel Talbott
 # License:: Ruby license.
 
 require 'test/unit'
