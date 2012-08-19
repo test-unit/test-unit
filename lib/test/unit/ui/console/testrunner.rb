@@ -47,6 +47,7 @@ module Test
             @current_output_level = NORMAL
             @faults = []
             @code_snippet_fetcher = CodeSnippetFetcher.new
+            @test_suites = []
           end
 
           private
@@ -333,6 +334,8 @@ module Test
           end
 
           def test_suite_started(suite)
+            last_test_suite = @test_suites.last
+            @test_suites << suite
             if @top_level
               @top_level = false
               return
@@ -344,13 +347,16 @@ module Test
             else
               _color = color("case")
             end
-            output_single(suite.name, _color, VERBOSE)
+            prefix = "#{last_test_suite.name}::"
+            suite_name = suite.name.sub(/\A#{Regexp.escape(prefix)}/, "")
+            output_single(suite_name, _color, VERBOSE)
             output(": ", nil, VERBOSE)
             @indent += 2
           end
 
           def test_suite_finished(suite)
             @indent -= 2
+            @test_suites.pop
           end
 
           def indent
