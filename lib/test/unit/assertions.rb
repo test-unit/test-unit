@@ -1615,7 +1615,7 @@ EOT
 
           class << self
             def target?(object)
-              object.is_a?(Hash) or object == ENV
+              object.is_a?(Hash) or ENV.equal?(object)
             end
           end
 
