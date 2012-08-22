@@ -325,15 +325,13 @@ module Test # :nodoc:
       end
 
       # @private
-      @@at_enter_hooks = []
+      @@at_start_hooks = []
 
-      # NOTE: experimental
-      #
       # Regsiter a hook that is run before running tests.
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:
-      #   Test::Unit.at_enter do
+      #   Test::Unit.at_start do
       #     # ...
       #   end
       #
@@ -378,7 +376,7 @@ module Test # :nodoc:
       #   end
       #
       # Here is a call order:
-      # * at_enter
+      # * at_start
       # * TestMyClass1.startup
       # * TestMyClass1#setup
       # * TestMyClass1#test_my_class1
@@ -390,20 +388,20 @@ module Test # :nodoc:
       # * TestMyClass2#test_my_class2
       #
       # @example
-      #   Test::Unit.at_enter do
-      #     puts "Enter!"
+      #   Test::Unit.at_start do
+      #     puts "Start!"
       #   end
       #
       # @yield [void] A block that is run before running tests.
       # @yieldreturn [void]
       # @return [void]
-      def at_enter(&hook)
-        @@at_enter_hooks << hook
+      def at_start(&hook)
+        @@at_start_hooks << hook
       end
 
       # @private
-      def run_at_enter_hooks
-        @@at_enter_hooks.each do |hook|
+      def run_at_start_hooks
+        @@at_start_hooks.each do |hook|
           hook.call
         end
       end
@@ -411,8 +409,6 @@ module Test # :nodoc:
       # @private
       @@at_exit_hooks = []
 
-      # NOTE: experimental
-      #
       # Regsiter a hook that is run after running tests.
       # To register multiple hooks, call this method multiple times.
       #

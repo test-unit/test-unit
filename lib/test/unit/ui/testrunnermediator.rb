@@ -34,7 +34,7 @@ module Test
 
           result = create_result
 
-          Test::Unit.run_at_enter_hooks
+          Test::Unit.run_at_start_hooks
           start_time = Time.now
           begin
             with_listener(result) do
