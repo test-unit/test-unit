@@ -323,6 +323,175 @@ module Test # :nodoc:
       def run?
         not AutoRunner.need_auto_run?
       end
+
+      # @private
+      @@at_init_hooks = []
+
+      # NOTE: experimental
+      #
+      # Regsiter a hook that is run before running tests.
+      # To register multiple hooks, call this method multiple times.
+      #
+      # Here is an example test case:
+      #   Test::Unit.at_init do
+      #     # ...
+      #   end
+      #
+      #   class TestMyClass1 < Test::Unit::TestCase
+      #     class << self
+      #       def startup
+      #         # ...
+      #       end
+      #     end
+      #
+      #     def setup
+      #       # ...
+      #     end
+      #
+      #     def test_my_class1
+      #       # ...
+      #     end
+      #
+      #     def test_my_class2
+      #       # ...
+      #     end
+      #   end
+      #
+      #   class TestMyClass2 < Test::Unit::TestCase
+      #     class << self
+      #       def startup
+      #         # ...
+      #       end
+      #     end
+      #
+      #     def setup
+      #       # ...
+      #     end
+      #
+      #     def test_my_class1
+      #       # ...
+      #     end
+      #
+      #     def test_my_class2
+      #       # ...
+      #     end
+      #   end
+      #
+      # Here is a call order:
+      # * at_init
+      # * TestMyClass1.startup
+      # * TestMyClass1#setup
+      # * TestMyClass1#test_my_class1
+      # * TestMyClass1#setup
+      # * TestMyClass1#test_my_class2
+      # * TestMyClass2#setup
+      # * TestMyClass2#test_my_class1
+      # * TestMyClass2#setup
+      # * TestMyClass2#test_my_class2
+      #
+      # @example
+      #   Test::Unit.at_init do
+      #     puts "Init!"
+      #   end
+      #
+      # @yield [void] A block that is run before running tests.
+      # @yieldreturn [void]
+      # @return [void]
+      def at_init(&hook)
+        @@at_init_hooks << hook
+      end
+
+      # @private
+      def run_at_init_hooks
+        @@at_init_hooks.each do |hook|
+          hook.call
+        end
+      end
+
+      # @private
+      @@at_exit_hooks = []
+
+      # NOTE: experimental
+      #
+      # Regsiter a hook that is run after running tests.
+      # To register multiple hooks, call this method multiple times.
+      #
+      # Here is an example test case:
+      #   Test::Unit.at_exit do
+      #     # ...
+      #   end
+      #
+      #   class TestMyClass1 < Test::Unit::TestCase
+      #     class << self
+      #       def shutdown
+      #         # ...
+      #       end
+      #     end
+      #
+      #     def teardown
+      #       # ...
+      #     end
+      #
+      #     def test_my_class1
+      #       # ...
+      #     end
+      #
+      #     def test_my_class2
+      #       # ...
+      #     end
+      #   end
+      #
+      #   class TestMyClass2 < Test::Unit::TestCase
+      #     class << self
+      #       def shutdown
+      #         # ...
+      #       end
+      #     end
+      #
+      #     def teardown
+      #       # ...
+      #     end
+      #
+      #     def test_my_class1
+      #       # ...
+      #     end
+      #
+      #     def test_my_class2
+      #       # ...
+      #     end
+      #   end
+      #
+      # Here is a call order:
+      # * TestMyClass1#test_my_class1
+      # * TestMyClass1#teardown
+      # * TestMyClass1#test_my_class2
+      # * TestMyClass1#teardown
+      # * TestMyClass1.shutdown
+      # * TestMyClass2#test_my_class1
+      # * TestMyClass2#teardown
+      # * TestMyClass2#test_my_class2
+      # * TestMyClass2#teardown
+      # * TestMyClass2.shutdown
+      # * at_exit
+      #
+      # @example
+      #   Test::Unit.at_exit do
+      #     puts "Exit!"
+      #   end
+      #
+      # @yield [void] A block that is run after running tests.
+      # @yieldreturn [void]
+      # @return [void]
+      def at_exit(&hook)
+        @@at_exit_hooks << hook
+      end
+
+      # @private
+      def run_at_exit_hooks
+        @@at_exit_hooks.each do |hook|
+          hook.call
+        end
+      end
     end
   end
 end

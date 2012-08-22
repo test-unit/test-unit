@@ -34,6 +34,7 @@ module Test
 
           result = create_result
 
+          Test::Unit.run_at_init_hooks
           start_time = Time.now
           begin
             with_listener(result) do
@@ -46,6 +47,7 @@ module Test
             elapsed_time = Time.now - start_time
             notify_listeners(FINISHED, elapsed_time)
           end
+          Test::Unit.run_at_exit_hooks
 
           result
         end
