@@ -15,7 +15,7 @@ module Test
     class Error
       include Util::BacktraceFilter
 
-      attr_reader(:test_name, :exception)
+      attr_reader :test_name, :exception
 
       SINGLE_CHARACTER = 'E'
       LABEL = "Error"
