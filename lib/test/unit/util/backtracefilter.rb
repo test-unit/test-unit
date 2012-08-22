@@ -24,7 +24,7 @@ module Test
           end
 
           jruby_internal_p = lambda do |entry|
-            (/\Aorg\/jruby\// =~ entry) ? true : false
+            entry.start_with?("org/jruby/")
           end
 
           found_prefix = false
