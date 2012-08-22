@@ -5,16 +5,18 @@ module Test
     class Pending
       include Util::BacktraceFilter
       attr_reader :test_name, :location, :message
+      attr_reader :method_name
 
       SINGLE_CHARACTER = 'P'
       LABEL = "Pending"
 
       # Creates a new Pending with the given location and
       # message.
-      def initialize(test_name, location, message)
+      def initialize(test_name, location, message, options={})
         @test_name = test_name
         @location = location
         @message = message
+        @method_name = options[:method_name]
       end
 
       # Returns a single character representation of a pending.
@@ -83,7 +85,8 @@ module Test
           begin
             yield
           rescue Exception
-            pending = Pending.new(name, filter_backtrace(caller), message)
+            pending = Pending.new(name, filter_backtrace(caller), message,
+                                  :method_name => @method_name)
             add_pending(pending)
           end
           unless pending
@@ -113,7 +116,8 @@ module Test
         return false unless exception.is_a?(PendedError)
         pending = Pending.new(name,
                               filter_backtrace(exception.backtrace),
-                              exception.message)
+                              exception.message,
+                              :method_name => @method_name)
         add_pending(pending)
         true
       end

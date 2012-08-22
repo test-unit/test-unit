@@ -5,16 +5,18 @@ module Test
     class Omission
       include Util::BacktraceFilter
       attr_reader :test_name, :location, :message
+      attr_reader :method_name
 
       SINGLE_CHARACTER = 'O'
       LABEL = "Omission"
 
       # Creates a new Omission with the given location and
       # message.
-      def initialize(test_name, location, message)
+      def initialize(test_name, location, message, options={})
         @test_name = test_name
         @location = location
         @message = message
+        @method_name = options[:method_name]
       end
 
       # Returns a single character representation of a omission.
@@ -77,7 +79,8 @@ module Test
       def omit(message=nil, &block)
         message ||= "omitted."
         if block_given?
-          omission = Omission.new(name, filter_backtrace(caller), message)
+          omission = Omission.new(name, filter_backtrace(caller), message,
+                                  :method_name => @method_name)
           add_omission(omission)
         else
           raise OmittedError.new(message)
@@ -154,7 +157,8 @@ module Test
         return false unless exception.is_a?(OmittedError)
         omission = Omission.new(name,
                                 filter_backtrace(exception.backtrace),
-                                exception.message)
+                                exception.message,
+                                :method_name => @method_name)
         add_omission(omission)
         true
       end

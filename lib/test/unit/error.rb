@@ -16,15 +16,17 @@ module Test
       include Util::BacktraceFilter
 
       attr_reader :test_name, :exception
+      attr_reader :method_name
 
       SINGLE_CHARACTER = 'E'
       LABEL = "Error"
 
       # Creates a new Error with the given test_name and
       # exception.
-      def initialize(test_name, exception)
+      def initialize(test_name, exception, options={})
         @test_name = test_name
         @exception = exception
+        @method_name = options[:method_name]
       end
 
       # Returns a single character representation of an error.
@@ -111,7 +113,8 @@ module Test
       end
 
       def add_error(exception)
-        current_result.add_error(Error.new(name, exception))
+        error = Error.new(name, exception, :method_name => @method_name)
+        current_result.add_error(error)
       end
     end
 

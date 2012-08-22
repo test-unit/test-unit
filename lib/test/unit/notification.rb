@@ -5,16 +5,18 @@ module Test
     class Notification
       include Util::BacktraceFilter
       attr_reader :test_name, :location, :message
+      attr_reader :method_name
 
       SINGLE_CHARACTER = 'N'
       LABEL = "Notification"
 
       # Creates a new Notification with the given location and
       # message.
-      def initialize(test_name, location, message)
+      def initialize(test_name, location, message, options={})
         @test_name = test_name
         @location = location
         @message = message
+        @method_name = options[:method_name]
       end
 
       # Returns a single character representation of a notification.
@@ -74,7 +76,8 @@ module Test
       #   :backtrace override backtrace.
       def notify(message, options={}, &block)
         backtrace = filter_backtrace(options[:backtrace] || caller)
-        notification = Notification.new(name, backtrace, message)
+        notification = Notification.new(name, backtrace, message,
+                                        :method_name => @method_name)
         add_notification(notification)
       end
 

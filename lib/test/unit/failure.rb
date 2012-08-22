@@ -11,6 +11,7 @@ module Test
     # when an assertion fails.
     class Failure
       attr_reader :test_name, :location, :message
+      attr_reader :method_name
       attr_reader :expected, :actual, :user_message
       attr_reader :inspected_expected, :inspected_actual
 
@@ -23,6 +24,7 @@ module Test
         @test_name = test_name
         @location = location
         @message = message
+        @method_name = options[:method_name]
         @expected = options[:expected]
         @actual = options[:actual]
         @inspected_expected = options[:inspected_expected]
@@ -85,6 +87,7 @@ module Test
         return false unless exception.is_a?(AssertionFailedError)
         problem_occurred
         add_failure(exception.message, exception.backtrace,
+                    :method_name => @method_name,
                     :expected => exception.expected,
                     :actual => exception.actual,
                     :inspected_expected => exception.inspected_expected,

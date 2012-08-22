@@ -203,6 +203,10 @@ module Test
 
           def output_fault_backtrace(fault)
             snippet_is_shown = false
+            target_method_name = nil
+            if fault.respond_to?(:method_name)
+              target_method_name = fault.method_name
+            end
             backtrace = fault.location
             # workaround for test-spec. :<
             # see also GitHub:#22
@@ -210,14 +214,19 @@ module Test
             backtrace.each_with_index do |entry, i|
               output(entry)
               next if snippet_is_shown
-              snippet_is_shown = output_code_snippet(entry, fault_color(fault))
+              next unless /\A(.*):(\d+)(?::in `(.+?)')?/ =~ entry
+              file = $1
+              line_number = $2.to_i
+              method_name = $3
+              if target_method_name and target_method_name != method_name
+                next
+              end
+              snippet_is_shown = output_code_snippet(file, line_number,
+                                                     fault_color(fault))
             end
           end
 
-          def output_code_snippet(entry, target_line_color=nil)
-            return false unless /\A(.*):(\d+)/ =~ entry
-            file = $1
-            line_number = $2.to_i
+          def output_code_snippet(file, line_number, target_line_color=nil)
             lines = @code_snippet_fetcher.fetch(file, line_number)
             return false if lines.empty?
 
