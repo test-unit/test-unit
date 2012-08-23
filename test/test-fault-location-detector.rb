@@ -96,15 +96,18 @@ class TestFaultLocationDetector < Test::Unit::TestCase
       test_case = Class.new(Test::Unit::TestCase) do
         include AlwaysFailAssertion
 
-        @@target_line_number = nil
         class << self
           def target_line_number
             @@target_line_number
           end
+
+          def target_line_number=(line_number)
+            @@target_line_number = line_number
+          end
         end
 
         def test_failed
-          @@target_line_number = __LINE__; assert_always_failed
+          self.class.target_line_number = __LINE__; assert_always_failed
         end
       end
 
