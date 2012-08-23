@@ -42,6 +42,13 @@ class TestFaultLocationDetector < Test::Unit::TestCase
   end
 
   class TestSourceLocation < self
+    setup
+    def setup_check_source_location
+      unless lambda {}.respond_to?(:source_location)
+        omit("Need Proc#source_location")
+      end
+    end
+
     def test_detected
       target_line_number = nil
       test_case = Class.new(Test::Unit::TestCase) do
