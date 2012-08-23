@@ -87,7 +87,6 @@ module Test
         return false unless exception.is_a?(AssertionFailedError)
         problem_occurred
         add_failure(exception.message, exception.backtrace,
-                    :method_name => @method_name,
                     :expected => exception.expected,
                     :actual => exception.actual,
                     :inspected_expected => exception.inspected_expected,
@@ -97,8 +96,11 @@ module Test
       end
 
       def add_failure(message, backtrace, options={})
+        default_options = {
+          :method_name => @method_name,
+        }
         failure = Failure.new(name, filter_backtrace(backtrace), message,
-                              options)
+                              default_options.merge(options))
         current_result.add_failure(failure)
       end
     end
