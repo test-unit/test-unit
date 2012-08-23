@@ -57,7 +57,7 @@ module Test
           return true if current_line_number == line_number
 
           if current_line_number == fault_line_number
-            break if /(?:\send|})\s*$/ =~ line
+            break if /(?:\send|\})\s*$/ =~ line
           else
             break if current_indent_level == base_indent_level
           end
