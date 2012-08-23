@@ -8,6 +8,7 @@
 
 require 'test/unit/color-scheme'
 require 'test/unit/code-snippet-fetcher'
+require 'test/unit/fault-location-detector'
 require 'test/unit/diff'
 require 'test/unit/ui/testrunner'
 require 'test/unit/ui/testrunnermediator'
@@ -203,10 +204,7 @@ module Test
 
           def output_fault_backtrace(fault)
             snippet_is_shown = false
-            target_method_name = nil
-            if fault.respond_to?(:method_name)
-              target_method_name = fault.method_name
-            end
+            detector = FaultLocationDetector.new(fault, @code_snippet_fetcher)
             backtrace = fault.location
             # workaround for test-spec. :<
             # see also GitHub:#22
@@ -214,13 +212,8 @@ module Test
             backtrace.each_with_index do |entry, i|
               output(entry)
               next if snippet_is_shown
-              next unless /\A(.*):(\d+)(?::in `(.+?)')?/ =~ entry
-              file = $1
-              line_number = $2.to_i
-              method_name = $3
-              if target_method_name and target_method_name != method_name
-                next
-              end
+              next unless detector.target?(entry)
+              file, line_number, = detector.split_backtrace_entry(entry)
               snippet_is_shown = output_code_snippet(file, line_number,
                                                      fault_color(fault))
             end

@@ -269,6 +269,9 @@ module Test
             define_method(method_name, &block)
             description(test_description, method_name)
             attribute(:test, true, {}, method_name)
+            if block.respond_to?(:source_location)
+              attribute(:source_location, block.source_location, {}, method_name)
+            end
           else
             targets = test_description_or_targets
             attribute(:test, true, {}, *targets)

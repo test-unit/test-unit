@@ -11,7 +11,7 @@ module Test
     # when an assertion fails.
     class Failure
       attr_reader :test_name, :location, :message
-      attr_reader :method_name
+      attr_reader :method_name, :source_location
       attr_reader :expected, :actual, :user_message
       attr_reader :inspected_expected, :inspected_actual
 
@@ -25,6 +25,7 @@ module Test
         @location = location
         @message = message
         @method_name = options[:method_name]
+        @source_location = options[:source_location]
         @expected = options[:expected]
         @actual = options[:actual]
         @inspected_expected = options[:inspected_expected]
@@ -98,6 +99,7 @@ module Test
       def add_failure(message, backtrace, options={})
         default_options = {
           :method_name => @method_name,
+          :source_location => self[:source_location],
         }
         failure = Failure.new(name, filter_backtrace(backtrace), message,
                               default_options.merge(options))
