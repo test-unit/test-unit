@@ -1379,11 +1379,14 @@ EOT
         end
       end
 
-      ##
-      # Called whenever an assertion is made.  Define this in classes that
-      # include Test::Unit::Assertions to record assertion counts.
-
-      private
+      public
+      # Called whenever an assertion is made. Define this in classes
+      # that include Test::Unit::Assertions to record assertion
+      # counts.
+      #
+      # This is a public API for developers who extend test-unit.
+      #
+      # @return [void]
       def add_assertion
       end
 

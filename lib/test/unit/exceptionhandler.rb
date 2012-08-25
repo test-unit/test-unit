@@ -26,6 +26,14 @@ module Test
           ExceptionHandler.exception_handlers
         end
 
+        # @overload exception_handler(method_name)
+        #   Add an exception handler method.
+        #
+        #   @param method_name [Symbol]
+        #      The method name that handles exception raised in tests.
+        #   @return [void]
+        #
+        # This is a public API for developers who extend test-unit.
         def exception_handler(*method_names)
           attribute(:exception_handler, true, *method_names)
         end

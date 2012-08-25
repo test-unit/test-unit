@@ -324,7 +324,7 @@ module Test # :nodoc:
         not AutoRunner.need_auto_run?
       end
 
-      # @private
+      # @api private
       @@at_start_hooks = []
 
       # Regsiter a hook that is run before running tests.
@@ -395,18 +395,20 @@ module Test # :nodoc:
       # @yield [void] A block that is run before running tests.
       # @yieldreturn [void]
       # @return [void]
+      #
+      # @since 2.5.2
       def at_start(&hook)
         @@at_start_hooks << hook
       end
 
-      # @private
+      # @api private
       def run_at_start_hooks
         @@at_start_hooks.each do |hook|
           hook.call
         end
       end
 
-      # @private
+      # @api private
       @@at_exit_hooks = []
 
       # Regsiter a hook that is run after running tests.
@@ -478,11 +480,13 @@ module Test # :nodoc:
       # @yield [void] A block that is run after running tests.
       # @yieldreturn [void]
       # @return [void]
+      #
+      # @since 2.5.2
       def at_exit(&hook)
         @@at_exit_hooks << hook
       end
 
-      # @private
+      # @api private
       def run_at_exit_hooks
         @@at_exit_hooks.each do |hook|
           hook.call

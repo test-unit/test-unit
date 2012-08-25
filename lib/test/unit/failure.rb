@@ -83,6 +83,42 @@ module Test
         end
       end
 
+      # Report a failure.
+      #
+      # This is a public API for developers who extend test-unit.
+      #
+      # @param message [String] The description about the failure.
+      # @param backtrace [Array<String>] The backtrace for the failure.
+      # @option options [Object] :expected
+      #   The expected value of the assertion.
+      # @option options [Object] :actual
+      #   The actual value of the assertion.
+      # @option options [String] :inspected_expected
+      #   The inspected expected value of the assertion.
+      #   It is used for diff between expected and actual of the failure.
+      # @option options [String] :inspected_actual
+      #   The inspected actual value of the assertion.
+      #   It is used for diff between expected and actual of the failure.
+      # @option options [String] :user_message
+      #   The message of the assertion from user.
+      # @option options [String] :method_name (@method_name)
+      #   The method name of the test.
+      # @option options [Array<String, Integer>] :source_location
+      #   The location where the test is defined. It is the same
+      #   format as Proc#source_location. That is, it's an array of
+      #   path and and line number where the test definition is
+      #   started.
+      # @return [void]
+      def add_failure(message, backtrace, options={})
+        default_options = {
+          :method_name => @method_name,
+          :source_location => self[:source_location],
+        }
+        failure = Failure.new(name, filter_backtrace(backtrace), message,
+                              default_options.merge(options))
+        current_result.add_failure(failure)
+      end
+
       private
       def handle_assertion_failed_error(exception)
         return false unless exception.is_a?(AssertionFailedError)
@@ -94,16 +130,6 @@ module Test
                     :inspected_actual => exception.inspected_actual,
                     :user_message => exception.user_message)
         true
-      end
-
-      def add_failure(message, backtrace, options={})
-        default_options = {
-          :method_name => @method_name,
-          :source_location => self[:source_location],
-        }
-        failure = Failure.new(name, filter_backtrace(backtrace), message,
-                              default_options.merge(options))
-        current_result.add_failure(failure)
       end
     end
 

@@ -602,6 +602,30 @@ module Test
         @internal_data.passed?
       end
 
+      # Notify that a problem is occurred in the test. It means that
+      # the test is a failed test. If any failed tests exist in test
+      # suites, the test process exits with failure exit status.
+      #
+      # This is a public API for developers who extend test-unit.
+      #
+      # @return [void]
+      def problem_occurred
+        @internal_data.problem_occurred
+      end
+
+      # Notify that the test is passed. Normally, it is not needed
+      # because #run calls it automatically. If you want to override
+      # #run, it is not a good idea. Please contact test-unit
+      # developers. We will help you without your custom #run. For
+      # example, we may add a new hook in #run.
+      #
+      # This is a public API for developers who extend test-unit.
+      #
+      # @return [void]
+      def add_pass
+        current_result.add_pass
+      end
+
       private
       def current_result
         @_result
@@ -627,16 +651,8 @@ module Test
         false
       end
 
-      def problem_occurred
-        @internal_data.problem_occurred
-      end
-
       def add_assertion
         current_result.add_assertion
-      end
-
-      def add_pass
-        current_result.add_pass
       end
 
       class InternalData
