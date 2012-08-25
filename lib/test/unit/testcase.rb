@@ -646,7 +646,12 @@ module Test
 
       def handle_exception(exception)
         self.class.exception_handlers.each do |handler|
-          return true if send(handler, exception)
+          if handler.respond_to?(:call)
+            handled = handler.call(self, exception)
+          else
+            handled = send(handler, exception)
+          end
+          return true if handled
         end
         false
       end
