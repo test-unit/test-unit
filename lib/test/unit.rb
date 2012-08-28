@@ -392,7 +392,7 @@ module Test # :nodoc:
       #     puts "Start!"
       #   end
       #
-      # @yield [void] A block that is run before running tests.
+      # @yield A block that is run before running tests.
       # @yieldreturn [void]
       # @return [void]
       #
@@ -477,7 +477,7 @@ module Test # :nodoc:
       #     puts "Exit!"
       #   end
       #
-      # @yield [void] A block that is run after running tests.
+      # @yield A block that is run after running tests.
       # @yieldreturn [void]
       # @return [void]
       #
