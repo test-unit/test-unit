@@ -292,6 +292,52 @@ module Test
           attribute(:description, value, {}, target || [])
         end
 
+        # Defines a sub test case.
+        #
+        # This is a syntax sugar. The both of the following codes are
+        # the same in meaning:
+        #
+        # Standard:
+        #   class TestParent < Test::UnitTestCase
+        #     class TestChild < self
+        #       def test_in_child
+        #       end
+        #     end
+        #   end
+        #
+        # Syntax sugar:
+        #   class TestParent < Test::UnitTestCase
+        #     sub_test_case("TestChild") do
+        #       def test_in_child
+        #       end
+        #     end
+        #   end
+        #
+        # The diffrence of them are the following:
+        #
+        # * Test case created by {sub_test_case} is an anonymous class.
+        #   So you can't refer the test case by name.
+        # * The class name of class style must follow
+        #   constant naming rule in Ruby. But the name of test case
+        #   created by {sub_test_case} doesn't need to follow the rule.
+        #   For example, you can use a space in name such as "child test".
+        #
+        # @param name [String] The name of newly created sub test case.
+        # @yield
+        #   The block is evaludated under the newly created sub test
+        #   case class context.
+        # @return [Test::Unit::TestCase] Created sub test case class.
+        def sub_test_case(name, &block)
+          sub_test_case = Class.new(self) do
+            singleton_class = class << self; self; end
+            singleton_class.send(:define_method, :name) do
+              name
+            end
+          end
+          sub_test_case.class_eval(&block)
+          sub_test_case
+        end
+
         # Checkes whether a test that is mathched the query is
         # defined.
         #
