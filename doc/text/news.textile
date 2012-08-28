@@ -1,5 +1,38 @@
 h1. News
 
+h2(#2-5-2). 2.5.2 - 2012-08-29
+
+It's an improvement release for tmtms. @--location@ is a similar
+feature to @--line_number@ in RSpec. @sub_test_case@ is a similar
+feature to @context@ in shoulda-context and RSpec.
+
+h3. Improvements
+
+  * Cleaned up tests.
+    [GitHub#34] [Path by Michael Grosser]
+  * Added missing background color for 8 color environment.
+  * Added workaround for NetBeans.
+    [GitHub#38] [Path by Marc Cooper]
+  * Added @--location@ command line option that selects target tests
+    by test defined location.
+  * Created sub test suite for each subclassed test case.
+  * [ui][console] Supported nested test suites.
+  * Added {Test::Unit.at_start} and {Test::Unit.at_exit} hooks that
+    are run before/after all tests are run.
+    [Suggested by kdmsnr]
+  * Improved code snippet target on failure. Test method is always used
+    for code snippet target.
+    [GitHub#39] [Suggested by Michael Grosser]
+  * Added {Test::Unit::TestCase.sub_test_case} that creates sub test case.
+    The sub test case name isn't limited Ruby's constant name rule. You can
+    specify the sub test case name in free form.
+
+h3. Thanks
+
+  * Michael Grosser
+  * Marc Cooper
+  * kdmsnr
+
 h2(#2-5-1). 2.5.1 - 2012-07-05
 
 It's a bug fix release.
