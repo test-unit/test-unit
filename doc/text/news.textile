@@ -9,17 +9,17 @@ feature to @context@ in shoulda-context and RSpec.
 h3. Improvements
 
   * Cleaned up tests.
-    [GitHub#34] [Path by Michael Grosser]
+    [GitHub#34] [Patch by Michael Grosser]
   * Added missing background color for 8 color environment.
   * Added workaround for NetBeans.
-    [GitHub#38] [Path by Marc Cooper]
+    [GitHub#38] [Reported by Marc Cooper]
   * Added @--location@ command line option that selects target tests
     by test defined location.
   * Created sub test suite for each subclassed test case.
   * [ui][console] Supported nested test suites.
   * Added {Test::Unit.at_start} and {Test::Unit.at_exit} hooks that
     are run before/after all tests are run.
-    [Suggested by kdmsnr]
+    [Good hook name is suggested by kdmsnr]
   * Improved code snippet target on failure. Test method is always used
     for code snippet target.
     [GitHub#39] [Suggested by Michael Grosser]
