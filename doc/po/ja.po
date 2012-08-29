@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"POT-Creation-Date: 2012-08-28 15:09+0900\n"
-"PO-Revision-Date: 2012-08-28 15:34+0900\n"
+"POT-Creation-Date: 2012-08-29 11:56+0900\n"
+"PO-Revision-Date: 2012-08-29 11:58+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2618,7 +2618,7 @@ msgid ""
 "It’s an improvement release for tmtms. <placeholder-1/> is a similar feature "
 "to <placeholder-2/> in RSpec. <placeholder-3/> is a similar feature to "
 "<placeholder-4/> in shoulda-context and RSpec."
-msgstr "とみたさん用に改良したリリースです。<placeholder-1/>はRSpecの<placeholder-2/>と似た機能です。<placeholder-3/>はshuoda-contextとRSpecの<placeholder-4/>と似た機能です。"
+msgstr "とみたさん用に改良したリリースです。<placeholder-1/>はRSpecの<placeholder-2/>と似た機能です。<placeholder-3/>はshoulda-contextとRSpecの<placeholder-4/>と似た機能です。"
 
 #: doc/reference/en/file.news.html:69(h3)
 #: doc/reference/en/file.news.html:98(h3)
@@ -2643,17 +2643,21 @@ msgstr "テストをキレイにしました。 [GitHub#34] [Michael Grosserさ�
 
 #: doc/reference/en/file.news.html:73(li)
 msgid "Added missing background color for 8 color environment."
-msgstr "8色しか使えない環境用のカラースキームで指定もれがあった背景色を指定しました。"
+msgstr ""
+"8色しか使えない環境用のカラースキームで指定もれがあった背景色を指定しました。"
 
 #: doc/reference/en/file.news.html:74(li)
 msgid "Added workaround for NetBeans. [GitHub#38] [Reported by Marc Cooper]"
-msgstr "NetBeansで動かない問題の回避策を入れた。 [GitHub#38] [Marc Cooperさんが報告]"
+msgstr ""
+"NetBeansで動かない問題の回避策を入れた。 [GitHub#38] [Marc Cooperさんが報告]"
 
 #: doc/reference/en/file.news.html:76(li)
 msgid ""
 "Added <placeholder-1/> command line option that selects target tests by test "
 "defined location."
-msgstr "コマンドラインオプション<placeholder-1/>を追加した。このオプションを使うとテストが定義された場所で実行するテストを絞り込める。"
+msgstr ""
+"コマンドラインオプション<placeholder-1/>を追加した。このオプションを使うとテ"
+"ストが定義された場所で実行するテストを絞り込める。"
 
 #: doc/reference/en/file.news.html:78(li)
 msgid "Created sub test suite for each subclassed test case."
@@ -2676,13 +2680,18 @@ msgid ""
 "Added <span class=\"object_link\"><placeholder-1/></span> and <span class="
 "\"object_link\"><placeholder-2/></span> hooks that are run before/after all "
 "tests are run. [Good hook name is suggested by kdmsnr]"
-msgstr "すべてのテストの実行前後のフック<span class=\"object_link\"><placeholder-1/></span>と<span class=\"object_link\"><placeholder-2/></span>を追加した。 [kdmsnrさんがフックの名前を提案]"
+msgstr ""
+"すべてのテストの実行前後のフック<span class=\"object_link\"><placeholder-1/"
+"></span>と<span class=\"object_link\"><placeholder-2/></span>を追加した。 "
+"[kdmsnrさんがフックの名前を提案]"
 
 #: doc/reference/en/file.news.html:83(li)
 msgid ""
 "Improved code snippet target on failure. Test method is always used for code "
 "snippet target. [GitHub#39] [Suggested by Michael Grosser]"
-msgstr "失敗時のコードスニペット表示機能ではテストメソッドを表示するようにした。 [GitHub#39] [Michael Grosserさんが提案]"
+msgstr ""
+"失敗時のコードスニペット表示機能ではテストメソッドを表示するようにした。 "
+"[GitHub#39] [Michael Grosserさんが提案]"
 
 #: doc/reference/en/file.news.html:86(a)
 msgid "Test::Unit::TestCase.sub_test_case"
@@ -2693,7 +2702,10 @@ msgid ""
 "Added <span class=\"object_link\"><placeholder-1/></span> that creates sub "
 "test case. The sub test case name isn’t limited Ruby’s constant name rule. "
 "You can specify the sub test case name in free form."
-msgstr "サブテストケースを作成する<span class=\"object_link\"><placeholder-1/></span>を追加した。サブテストケース名はRubyの定数名の規則に縛られないので自由な形式で指定することができる。"
+msgstr ""
+"サブテストケースを作成する<span class=\"object_link\"><placeholder-1/></span>"
+"を追加した。サブテストケース名はRubyの定数名の規則に縛られないので自由な形式"
+"で指定することができる。"
 
 #: doc/reference/en/file.news.html:90(h3)
 #: doc/reference/en/file.news.html:116(h3)
@@ -37481,7 +37493,7 @@ msgid ""
 "AssertionFailedError, AutoRunner, CodeSnippetFetcher, Color, ColorScheme, "
 "Error, Failure, FaultLocationDetector, MixColor, Notification, "
 "NotifiedError, Omission, OmittedError, PendedError, Pending, TestCase, "
-"TestResult, TestSuite, TestSuiteCreator Constant Summary VERSION = '2.5.2' "
+"TestResult, TestSuite, TestSuiteCreator Constant Summary VERSION = '2.5.3' "
 "@@at_start_hooks = This classvariable is part of a private API. You should "
 "avoid using this classvariable if possible, as it may be removed or be "
 "changed in the future. [] @@at_exit_hooks = This classvariable is part of a "
