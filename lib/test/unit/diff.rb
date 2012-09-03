@@ -723,6 +723,12 @@ module Test
       end
 
       def diff(differ_class, from, to, options={})
+        if from.respond_to?(:valid_encoding?) and not from.valid_encoding?
+          from = from.dup.force_encoding("ASCII-8BIT")
+        end
+        if to.respond_to?(:valid_encoding?) and not to.valid_encoding?
+          to = to.dup.force_encoding("ASCII-8BIT")
+        end
         differ = differ_class.new(from.split(/\r?\n/), to.split(/\r?\n/))
         lines = differ.diff(options)
         if Object.const_defined?(:EncodingError)

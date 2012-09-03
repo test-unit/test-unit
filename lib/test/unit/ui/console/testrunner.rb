@@ -268,6 +268,14 @@ module Test
             output("")
             from, to = prepare_for_diff(failure.expected, failure.actual)
             if from and to
+              if need_encoding
+                unless from.valid_encoding?
+                  from = from.dup.force_encoding("ASCII-8BIT")
+                end
+                unless to.valid_encoding?
+                  to = to.dup.force_encoding("ASCII-8BIT")
+                end
+              end
               from_lines = from.split(/\r?\n/)
               to_lines = to.split(/\r?\n/)
               if need_encoding
