@@ -1285,6 +1285,13 @@ EOT
         end
       end
 
+      # @note This is an alias of {#assert_include}. This is just for
+      #   compatibility with minitest. If you are test-unit user, use
+      #   {#assert_include} instead.
+      #
+      # @since 2.5.3
+      alias_method :assert_includes, :assert_include
+
       ##
       # Passes if +collection+ doesn't include +object+.
       #
