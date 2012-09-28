@@ -163,15 +163,10 @@ EOT
         _assert_raise(assert_expected_exception, *args, &block)
       end
 
-      ##
-      # Alias of assert_raise.
-      #
-      # It is just for compatibility with minitest.
-
-      public
-      def assert_raises(*args, &block)
-        assert_raise(*args, &block)
-      end
+      # @note This is an alias of {#assert_raise}. This is just for
+      #   compatibility with minitest. If you are test-unit user, use
+      #   {#assert_raise} instead.
+      alias_method :assert_raises, :assert_raise
 
       ##
       # Passes if the block raises one of the given
