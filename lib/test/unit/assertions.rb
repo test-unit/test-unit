@@ -1,6 +1,6 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#             Copyright (c) 2009-2010 Kouhei Sutou. All rights reserved.
+#             Copyright (c) 2009-2012 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit/assertionfailederror'
@@ -166,7 +166,7 @@ EOT
       ##
       # Alias of assert_raise.
       #
-      # Will be deprecated in 1.9, and removed in 2.0.
+      # It is just for compatibility with minitest.
 
       public
       def assert_raises(*args, &block)
