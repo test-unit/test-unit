@@ -337,6 +337,11 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.3
+      alias_method :refute_respond_to, :assert_not_respond_to
+
       ##
       # Passes if +string+ =~ +pattern+.
       #
@@ -459,6 +464,11 @@ EOT
         assert_block(full_message) { !actual.equal?(expected) }
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.3
+      alias_method :refute_same, :assert_not_same
+
       ##
       # Passes if +expected+ != +actual+
       #
@@ -471,6 +481,11 @@ EOT
         assert_block(full_message) { expected != actual }
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.3
+      alias_method :refute_equal, :assert_not_equal
+
       ##
       # Passes if ! +object+ .nil?
       #
@@ -482,6 +497,11 @@ EOT
         full_message = build_message(message, "<?> expected to not be nil.", object)
         assert_block(full_message){!object.nil?}
       end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.3
+      alias_method :refute_nil, :assert_not_nil
 
       ##
       # Passes if +regexp+ !~ +string+
@@ -502,6 +522,11 @@ EOT
           assert_block(full_message) { regexp !~ string }
         end
       end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.3
+      alias_method :refute_match, :assert_not_match
 
       ##
       # Deprecated. Use #assert_not_match instead.
@@ -653,6 +678,11 @@ EOT
           end
         end
       end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.3
+      alias_method :refute_in_delta, :assert_not_in_delta
 
       # :stopdoc:
       private
