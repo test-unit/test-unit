@@ -596,13 +596,10 @@ EOT
         end
       end
 
-      ##
-      # Alias of assert_throw.
+      # Just for minitest compatibility. :<
       #
-      # Will be deprecated in 1.9, and removed in 2.0.
-      def assert_throws(*args, &block)
-        assert_throw(*args, &block)
-      end
+      # @since 2.5.3
+      alias_method :assert_throws, :assert_throw
 
       ##
       # Passes if block does not throw anything.
