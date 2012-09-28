@@ -4,4 +4,3 @@
 --output-dir doc/reference/en
 --charset utf-8
 --use-cache
-lib/**/*.rb
