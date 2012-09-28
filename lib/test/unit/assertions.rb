@@ -163,9 +163,7 @@ EOT
         _assert_raise(assert_expected_exception, *args, &block)
       end
 
-      # @note This is an alias of {#assert_raise}. This is just for
-      #   compatibility with minitest. If you are test-unit user, use
-      #   {#assert_raise} instead.
+      # Just for minitest compatibility. :<
       alias_method :assert_raises, :assert_raise
 
       ##
@@ -1280,9 +1278,7 @@ EOT
         end
       end
 
-      # @note This is an alias of {#assert_include}. This is just for
-      #   compatibility with minitest. If you are test-unit user, use
-      #   {#assert_include} instead.
+      # Just for minitest compatibility. :<
       #
       # @since 2.5.3
       alias_method :assert_includes, :assert_include
