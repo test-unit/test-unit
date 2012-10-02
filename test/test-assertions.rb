@@ -1351,6 +1351,66 @@ EOM
       end
     end
 
+    class TestRefute < TestCase
+      include AssertionCheckable
+
+      class TestPass < self
+        def test_nil
+          check_nothing_fails do
+            refute(nil)
+          end
+        end
+
+        def test_false
+          check_nothing_fails do
+            refute(false)
+          end
+        end
+
+        def test_with_message
+          check_nothing_fails do
+            refute(nil, "successful refute")
+          end
+        end
+      end
+
+      class TestFailure < self
+        def test_true
+          check_fail("<true> is neither nil or false.") do
+            refute(true)
+          end
+        end
+
+        def test_with_message
+          check_fail("failed refute.\n" +
+                       "<true> is neither nil or false.") do
+            refute(true, "failed refute")
+          end
+        end
+
+        def test_fail_with_assertion_message
+          check_fail("user message.\n" +
+                       "placeholder <:in> message") do
+            refute(true, build_message("user message",
+                                       "placeholder <?> message",
+                                       :in))
+          end
+        end
+
+        def test_error_invalid_message_true
+          check_fail("assertion message must be String, Proc or " +
+                       "Test::Unit::Assertions::AssertionMessage: " +
+                "<false>(<FalseClass>)") do
+            begin
+              refute(true, false)
+            rescue ArgumentError
+              raise AssertionFailedError, $!.message
+            end
+          end
+        end
+      end
+    end
+
     class TestAssertInDelta < TestCase
       include AssertionCheckable
 

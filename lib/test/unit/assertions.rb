@@ -85,6 +85,47 @@ module Test
         end
       end
 
+      # Asserts that +object+ is false or nil.
+      #
+      # @note Just for minitest compatibility. :<
+      #
+      # @param [Object] object The object to be asserted.
+      # @return [void]
+      #
+      # @example Pass patterns
+      #   refute(false)    # => pass
+      #   refute(nil)      # => pass
+      #
+      # @example Fialure patterns
+      #   refute(true)     # => failure
+      #   refute("string") # => failure
+      #
+      # @since 2.5.3
+      def refute(object, message=nil)
+        _wrap_assertion do
+          assertion_message = nil
+          case message
+          when nil, String, Proc
+          when AssertionMessage
+            assertion_message = message
+          else
+            error_message = "assertion message must be String, Proc or "
+            error_message << "#{AssertionMessage}: "
+            error_message << "<#{message.inspect}>(<#{message.class}>)"
+            raise ArgumentError, error_message, filter_backtrace(caller)
+          end
+          assert_block("refute should not be called with a block.") do
+            !block_given?
+          end
+          assertion_message ||= build_message(message,
+                                              "<?> is neither nil or false.",
+                                              object)
+          assert_block(assertion_message) do
+            not object
+          end
+        end
+      end
+
       ##
       # Passes if +expected+ == +actual+.
       #
