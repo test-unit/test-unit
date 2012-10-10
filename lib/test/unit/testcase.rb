@@ -106,6 +106,7 @@ module Test
         def inherited(sub_class) # :nodoc:
           require "test/unit"
           DESCENDANTS << sub_class
+          super
         end
 
         @@added_methods = {}
