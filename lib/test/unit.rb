@@ -496,8 +496,10 @@ module Test # :nodoc:
   end
 end
 
+Module.new do
 at_exit do
   if $!.nil? and Test::Unit::AutoRunner.need_auto_run?
     exit Test::Unit::AutoRunner.run
   end
+end
 end
