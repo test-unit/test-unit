@@ -83,4 +83,30 @@ class TestUnitAttribute < Test::Unit::TestCase
                  ],
                  changed_attributes)
   end
+
+  class TestDescription < self
+    def test_decoration_style
+      test_case = Class.new(TestStack) do
+        description "Test for push"
+        def test_push
+        end
+      end
+
+      test_push = test_case.new("test_push")
+      assert_equal({"description" => "Test for push"},
+                   test_push.attributes)
+    end
+
+    def test_explicit_test_name_style
+      test_case = Class.new(TestStack) do
+        def test_push
+        end
+        description "Test for push", :test_push
+      end
+
+      test_push = test_case.new("test_push")
+      assert_equal({"description" => "Test for push"},
+                   test_push.attributes)
+    end
+  end
 end

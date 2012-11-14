@@ -290,7 +290,8 @@ module Test
         #     ...
         #   end
         def description(value, target=nil)
-          attribute(:description, value, {}, target || [])
+          targets = [target].compact
+          attribute(:description, value, {}, *targets)
         end
 
         # Defines a sub test case.
