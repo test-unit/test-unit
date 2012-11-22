@@ -1,5 +1,6 @@
 require 'test/unit/color-scheme'
 require 'test/unit/priority'
+require 'test/unit/attribute-matcher'
 require 'optparse'
 
 module Test
@@ -273,6 +274,19 @@ module Test
               test.class.test_defined?(:path => path,
                                        :line => line,
                                        :method_name => test.method_name)
+            end
+          end
+
+          o.on('--attribute=EXPRESSION', String,
+               "Runs tests that matches EXPRESSION.",
+               "EXPRESSION is evaluated as Ruby's expression.",
+               "Test attribute name can be used with no receiver in EXPRESSION.",
+               "EXPRESSION examples:",
+               "  !slow",
+               "  tag == 'important' and !slow") do |expression|
+            @filters << lambda do |test|
+              matcher = AttributeMatcher.new(test)
+              matcher.match?(expression)
             end
           end
 
