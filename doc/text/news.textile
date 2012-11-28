@@ -1,5 +1,36 @@
 h1. News
 
+h2(#2-5-3). 2.5.3 - 2012-11-28
+
+h3. Improvements
+
+  * Supported diff in invalid encoding.
+  * Added some assersion methods just for minitest compatibility.
+    Added methods are assert_includes(), refute_*() and refute().
+    If you are test-unit user, please don't use them.
+    [GitHub#40] [Suggested by Michael Grosser]
+  * Added --attribute option to select target tests by attribute.
+    [test-unit-users-en:00098] [Suggested by Piotr Nestorow]
+
+h3. Fixes
+
+  * Allowed use of test for inheritance in ActionController::TestCase.
+    [GitHub#42] [Patch by David Rasch]
+  * Ensured evaluating at_exist block in top level.
+    In IRB context, exit() specifies irb_exit().
+    [test-unit-users-en:00089] [Reported by Daniel Berger]
+  * Fixed a bug that decoration style description is ignored.
+    "decoration style description" are using description method
+    above "def test_name" or with Symbol specifying test_name.
+    [GitHub#45] [Reported by Piotr Nestorow]
+
+h3. Thanks
+
+  * Michael Grosser
+  * David Rasch
+  * Daniel Berger
+  * Piotr Nestorow
+
 h2(#2-5-2). 2.5.2 - 2012-08-29
 
 It's an improvement release for tmtms. @--location@ is a similar
