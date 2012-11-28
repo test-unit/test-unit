@@ -2,6 +2,8 @@ h1. News
 
 h2(#2-5-3). 2.5.3 - 2012-11-28
 
+It's an release for minitest compatibility and bug fix.
+
 h3. Improvements
 
   * Supported diff in invalid encoding.

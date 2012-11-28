@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"POT-Creation-Date: 2012-11-28 17:09+0900\n"
-"PO-Revision-Date: 2012-11-28 17:06+0900\n"
+"POT-Creation-Date: 2012-11-28 17:14+0900\n"
+"PO-Revision-Date: 2012-11-28 17:17+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -9896,7 +9896,7 @@ msgid "stringify"
 msgstr ""
 
 #: doc/reference/en/method_list.html:3570(a)
-#: doc/reference/en/file.news.html:97(code)
+#: doc/reference/en/file.news.html:98(code)
 #: doc/reference/en/Test/Unit/TestCase.html:506(strong)
 #: doc/reference/en/Test/Unit/TestCase.html:1751(strong)
 #: doc/reference/en/Test/Unit/TestCase.html:1777(span)
@@ -10406,30 +10406,30 @@ msgstr ""
 msgid "Mayu &amp; Co.: kinotan icons: http://cocooooooon.com/kinotan/"
 msgstr ""
 
-#: doc/reference/en/index.html:130(h2) doc/reference/en/file.news.html:88(h3)
-#: doc/reference/en/file.news.html:120(h3)
-#: doc/reference/en/file.news.html:146(h3)
-#: doc/reference/en/file.news.html:161(h3)
-#: doc/reference/en/file.news.html:191(h3)
-#: doc/reference/en/file.news.html:212(h3)
-#: doc/reference/en/file.news.html:252(h3)
-#: doc/reference/en/file.news.html:265(h3)
-#: doc/reference/en/file.news.html:286(h3)
-#: doc/reference/en/file.news.html:309(h3)
-#: doc/reference/en/file.news.html:326(h3)
-#: doc/reference/en/file.news.html:352(h3)
-#: doc/reference/en/file.news.html:378(li)
-#: doc/reference/en/file.news.html:421(li)
-#: doc/reference/en/file.news.html:437(li)
-#: doc/reference/en/file.news.html:447(li)
-#: doc/reference/en/file.news.html:471(li)
-#: doc/reference/en/file.news.html:500(li)
-#: doc/reference/en/file.news.html:531(li)
-#: doc/reference/en/file.news.html:541(li)
-#: doc/reference/en/file.news.html:566(li)
-#: doc/reference/en/file.news.html:593(li)
-#: doc/reference/en/file.news.html:615(li)
-#: doc/reference/en/file.news.html:649(li)
+#: doc/reference/en/index.html:130(h2) doc/reference/en/file.news.html:89(h3)
+#: doc/reference/en/file.news.html:121(h3)
+#: doc/reference/en/file.news.html:147(h3)
+#: doc/reference/en/file.news.html:162(h3)
+#: doc/reference/en/file.news.html:192(h3)
+#: doc/reference/en/file.news.html:213(h3)
+#: doc/reference/en/file.news.html:253(h3)
+#: doc/reference/en/file.news.html:266(h3)
+#: doc/reference/en/file.news.html:287(h3)
+#: doc/reference/en/file.news.html:310(h3)
+#: doc/reference/en/file.news.html:327(h3)
+#: doc/reference/en/file.news.html:353(h3)
+#: doc/reference/en/file.news.html:379(li)
+#: doc/reference/en/file.news.html:422(li)
+#: doc/reference/en/file.news.html:438(li)
+#: doc/reference/en/file.news.html:448(li)
+#: doc/reference/en/file.news.html:472(li)
+#: doc/reference/en/file.news.html:501(li)
+#: doc/reference/en/file.news.html:532(li)
+#: doc/reference/en/file.news.html:542(li)
+#: doc/reference/en/file.news.html:567(li)
+#: doc/reference/en/file.news.html:594(li)
+#: doc/reference/en/file.news.html:616(li)
+#: doc/reference/en/file.news.html:650(li)
 #: doc/reference/en/file.README.html:130(h2)
 msgid "Thanks"
 msgstr "感謝"
@@ -10470,13 +10470,13 @@ msgid "Mike Pomraning: A bug report."
 msgstr ""
 
 #: doc/reference/en/index.html:139(span)
-#: doc/reference/en/file.news.html:455(span)
-#: doc/reference/en/file.news.html:473(span)
-#: doc/reference/en/file.news.html:482(span)
-#: doc/reference/en/file.news.html:490(span)
-#: doc/reference/en/file.news.html:501(span)
-#: doc/reference/en/file.news.html:526(span)
-#: doc/reference/en/file.news.html:532(span)
+#: doc/reference/en/file.news.html:456(span)
+#: doc/reference/en/file.news.html:474(span)
+#: doc/reference/en/file.news.html:483(span)
+#: doc/reference/en/file.news.html:491(span)
+#: doc/reference/en/file.news.html:502(span)
+#: doc/reference/en/file.news.html:527(span)
+#: doc/reference/en/file.news.html:533(span)
 #: doc/reference/en/file.README.html:139(span)
 msgid "MARCHALAND"
 msgstr ""
@@ -10573,29 +10573,33 @@ msgstr "お知らせ"
 msgid "2.5.3 – 2012-11-28"
 msgstr ""
 
-#: doc/reference/en/file.news.html:66(h3)
-#: doc/reference/en/file.news.html:99(h3)
-#: doc/reference/en/file.news.html:128(h3)
-#: doc/reference/en/file.news.html:167(h3)
-#: doc/reference/en/file.news.html:199(h3)
-#: doc/reference/en/file.news.html:220(h3)
-#: doc/reference/en/file.news.html:226(h3)
-#: doc/reference/en/file.news.html:233(h3)
-#: doc/reference/en/file.news.html:241(h3)
-#: doc/reference/en/file.news.html:258(h3)
-#: doc/reference/en/file.news.html:270(h3)
-#: doc/reference/en/file.news.html:275(h3)
-#: doc/reference/en/file.news.html:292(h3)
-#: doc/reference/en/file.news.html:317(h3)
-#: doc/reference/en/file.news.html:332(h3)
+#: doc/reference/en/file.news.html:66(p)
+msgid "It’s an release for minitest compatibility and bug fix."
+msgstr "minitestとの互換とバグフィックスのリリースです。"
+
+#: doc/reference/en/file.news.html:67(h3)
+#: doc/reference/en/file.news.html:100(h3)
+#: doc/reference/en/file.news.html:129(h3)
+#: doc/reference/en/file.news.html:168(h3)
+#: doc/reference/en/file.news.html:200(h3)
+#: doc/reference/en/file.news.html:221(h3)
+#: doc/reference/en/file.news.html:227(h3)
+#: doc/reference/en/file.news.html:234(h3)
+#: doc/reference/en/file.news.html:242(h3)
+#: doc/reference/en/file.news.html:259(h3)
+#: doc/reference/en/file.news.html:271(h3)
+#: doc/reference/en/file.news.html:276(h3)
+#: doc/reference/en/file.news.html:293(h3)
+#: doc/reference/en/file.news.html:318(h3)
+#: doc/reference/en/file.news.html:333(h3)
 msgid "Improvements"
 msgstr "改良"
 
-#: doc/reference/en/file.news.html:68(li)
+#: doc/reference/en/file.news.html:69(li)
 msgid "Supported diff in invalid encoding."
 msgstr "不正なエンコーディング同士のdiffも表示するようにした。"
 
-#: doc/reference/en/file.news.html:69(li)
+#: doc/reference/en/file.news.html:70(li)
 msgid ""
 "Added some assersion methods just for minitest compatibility. Added methods "
 "are assert_includes(), refute_*() and refute(). If you are test-unit user, "
@@ -10606,7 +10610,7 @@ msgstr ""
 "使っているなら、これらのメソッドははできれば使わないでください。\n"
 "[GitHub#40] [Michael Grosserさんが報告]"
 
-#: doc/reference/en/file.news.html:73(li)
+#: doc/reference/en/file.news.html:74(li)
 msgid ""
 "Added —attribute option to select target tests by attribute. [test-unit-"
 "users-en:00098] [Suggested by Piotr Nestorow]"
@@ -10615,19 +10619,19 @@ msgstr ""
 "を使うとテストごとに付加したattirbuteを使って実行するテストを絞り込むことがで"
 "きます。[test-unit-users-en:00098] [Suggested by Piotr Nestorow]"
 
-#: doc/reference/en/file.news.html:76(h3)
-#: doc/reference/en/file.news.html:136(h3)
-#: doc/reference/en/file.news.html:155(h3)
-#: doc/reference/en/file.news.html:182(h3)
-#: doc/reference/en/file.news.html:206(h3)
-#: doc/reference/en/file.news.html:281(h3)
-#: doc/reference/en/file.news.html:301(h3)
-#: doc/reference/en/file.news.html:321(h3)
-#: doc/reference/en/file.news.html:344(h3)
+#: doc/reference/en/file.news.html:77(h3)
+#: doc/reference/en/file.news.html:137(h3)
+#: doc/reference/en/file.news.html:156(h3)
+#: doc/reference/en/file.news.html:183(h3)
+#: doc/reference/en/file.news.html:207(h3)
+#: doc/reference/en/file.news.html:282(h3)
+#: doc/reference/en/file.news.html:302(h3)
+#: doc/reference/en/file.news.html:322(h3)
+#: doc/reference/en/file.news.html:345(h3)
 msgid "Fixes"
 msgstr "修正"
 
-#: doc/reference/en/file.news.html:78(li)
+#: doc/reference/en/file.news.html:79(li)
 msgid ""
 "Allowed use of test for inheritance in ActionController::TestCase. "
 "[GitHub#42] [Patch by David Rasch]"
@@ -10635,11 +10639,11 @@ msgstr ""
 "ActionController::TestCaseを継承したテストも実行するようにした。 [GitHub#42] "
 "[Patch by David Rasch]"
 
-#: doc/reference/en/file.news.html:81(span)
+#: doc/reference/en/file.news.html:82(span)
 msgid "IRB"
 msgstr ""
 
-#: doc/reference/en/file.news.html:80(li)
+#: doc/reference/en/file.news.html:81(li)
 msgid ""
 "Ensured evaluating at_exist block in top level. In <placeholder-1/> context, "
 "exit() specifies irb_exit(). [test-unit-users-en:00089] [Reported by Daniel "
@@ -10649,7 +10653,7 @@ msgstr ""
 "行した時にexitメソッドではなくirb_exit()が実行されるためです。 [test-unit-"
 "users-en:00089] [Daniel Bergerさんが報告]"
 
-#: doc/reference/en/file.news.html:83(li)
+#: doc/reference/en/file.news.html:84(li)
 msgid ""
 "Fixed a bug that decoration style description is ignored. “decoration style "
 "description” are using description method above “def test_name” or with "
@@ -10658,48 +10662,48 @@ msgstr ""
 "descriptionメソッドを使ってテストにつけた説明が無視されるバグを修正した。 "
 "[GitHub#45] [Piotr Nestorowさんが報告]"
 
-#: doc/reference/en/file.news.html:90(li)
-#: doc/reference/en/file.news.html:122(li)
-#: doc/reference/en/file.news.html:148(li)
-#: doc/reference/en/file.news.html:195(li)
+#: doc/reference/en/file.news.html:91(li)
+#: doc/reference/en/file.news.html:123(li)
+#: doc/reference/en/file.news.html:149(li)
+#: doc/reference/en/file.news.html:196(li)
 msgid "Michael Grosser"
 msgstr "Michael Grosserさん"
 
-#: doc/reference/en/file.news.html:91(li)
+#: doc/reference/en/file.news.html:92(li)
 msgid "David Rasch"
 msgstr "David Raschさん"
 
-#: doc/reference/en/file.news.html:92(li)
-#: doc/reference/en/file.news.html:379(li)
-#: doc/reference/en/file.news.html:422(li)
-#: doc/reference/en/file.news.html:438(li)
-#: doc/reference/en/file.news.html:448(li)
-#: doc/reference/en/file.news.html:502(li)
-#: doc/reference/en/file.news.html:533(li)
-#: doc/reference/en/file.news.html:595(li)
-#: doc/reference/en/file.news.html:619(li)
-#: doc/reference/en/file.news.html:652(li)
+#: doc/reference/en/file.news.html:93(li)
+#: doc/reference/en/file.news.html:380(li)
+#: doc/reference/en/file.news.html:423(li)
+#: doc/reference/en/file.news.html:439(li)
+#: doc/reference/en/file.news.html:449(li)
+#: doc/reference/en/file.news.html:503(li)
+#: doc/reference/en/file.news.html:534(li)
+#: doc/reference/en/file.news.html:596(li)
+#: doc/reference/en/file.news.html:620(li)
+#: doc/reference/en/file.news.html:653(li)
 msgid "Daniel Berger"
 msgstr "Daniel Bergerさん"
 
-#: doc/reference/en/file.news.html:93(li)
+#: doc/reference/en/file.news.html:94(li)
 msgid "Piotr Nestorow"
 msgstr "Piotr Nestorowさん"
 
-#: doc/reference/en/file.news.html:95(h2)
+#: doc/reference/en/file.news.html:96(h2)
 msgid "2.5.2 – 2012-08-29"
 msgstr ""
 
-#: doc/reference/en/file.news.html:96(code)
-#: doc/reference/en/file.news.html:106(code)
+#: doc/reference/en/file.news.html:97(code)
+#: doc/reference/en/file.news.html:107(code)
 msgid "--location"
 msgstr ""
 
-#: doc/reference/en/file.news.html:97(code)
+#: doc/reference/en/file.news.html:98(code)
 msgid "--line_number"
 msgstr ""
 
-#: doc/reference/en/file.news.html:98(code)
+#: doc/reference/en/file.news.html:99(code)
 #: doc/reference/en/Test/Unit/FaultLocationDetector.html:279(span)
 #: doc/reference/en/Test/Unit/FaultLocationDetector.html:281(span)
 #: doc/reference/en/Test/Unit/FaultLocationDetector.html:286(span)
@@ -10708,7 +10712,7 @@ msgstr ""
 msgid "context"
 msgstr ""
 
-#: doc/reference/en/file.news.html:96(p)
+#: doc/reference/en/file.news.html:97(p)
 msgid ""
 "It’s an improvement release for tmtms. <placeholder-1/> is a similar feature "
 "to <placeholder-2/> in RSpec. <placeholder-3/> is a similar feature to "
@@ -10718,21 +10722,21 @@ msgstr ""
 "と似た機能です。<placeholder-3/>はshoulda-contextとRSpecの<placeholder-4/>と"
 "似た機能です。"
 
-#: doc/reference/en/file.news.html:101(li)
+#: doc/reference/en/file.news.html:102(li)
 msgid "Cleaned up tests. [GitHub#34] [Patch by Michael Grosser]"
 msgstr "テストをキレイにしました。 [GitHub#34] [Michael Grosserさんが報告]"
 
-#: doc/reference/en/file.news.html:103(li)
+#: doc/reference/en/file.news.html:104(li)
 msgid "Added missing background color for 8 color environment."
 msgstr ""
 "8色しか使えない環境用のカラースキームで指定もれがあった背景色を指定しました。"
 
-#: doc/reference/en/file.news.html:104(li)
+#: doc/reference/en/file.news.html:105(li)
 msgid "Added workaround for NetBeans. [GitHub#38] [Reported by Marc Cooper]"
 msgstr ""
 "NetBeansで動かない問題の回避策を入れた。 [GitHub#38] [Marc Cooperさんが報告]"
 
-#: doc/reference/en/file.news.html:106(li)
+#: doc/reference/en/file.news.html:107(li)
 msgid ""
 "Added <placeholder-1/> command line option that selects target tests by test "
 "defined location."
@@ -10740,23 +10744,23 @@ msgstr ""
 "コマンドラインオプション<placeholder-1/>を追加した。このオプションを使うとテ"
 "ストが定義された場所で実行するテストを絞り込める。"
 
-#: doc/reference/en/file.news.html:108(li)
+#: doc/reference/en/file.news.html:109(li)
 msgid "Created sub test suite for each subclassed test case."
 msgstr "サブテストケース毎にサブテストスイートを作成するようにした。"
 
-#: doc/reference/en/file.news.html:109(li)
+#: doc/reference/en/file.news.html:110(li)
 msgid "[ui][console] Supported nested test suites."
 msgstr "[ui][console] ネストしたテストスイートに対応。"
 
-#: doc/reference/en/file.news.html:110(a)
+#: doc/reference/en/file.news.html:111(a)
 msgid "Test::Unit.at_start"
 msgstr ""
 
-#: doc/reference/en/file.news.html:110(a)
+#: doc/reference/en/file.news.html:111(a)
 msgid "Test::Unit.at_exit"
 msgstr ""
 
-#: doc/reference/en/file.news.html:110(li)
+#: doc/reference/en/file.news.html:111(li)
 msgid ""
 "Added <span class=\"object_link\"><placeholder-1/></span> and <span class="
 "\"object_link\"><placeholder-2/></span> hooks that are run before/after all "
@@ -10766,7 +10770,7 @@ msgstr ""
 "></span>と<span class=\"object_link\"><placeholder-2/></span>を追加した。 "
 "[kdmsnrさんがフックの名前を提案]"
 
-#: doc/reference/en/file.news.html:113(li)
+#: doc/reference/en/file.news.html:114(li)
 msgid ""
 "Improved code snippet target on failure. Test method is always used for code "
 "snippet target. [GitHub#39] [Suggested by Michael Grosser]"
@@ -10774,11 +10778,11 @@ msgstr ""
 "失敗時のコードスニペット表示機能ではテストメソッドを表示するようにした。 "
 "[GitHub#39] [Michael Grosserさんが提案]"
 
-#: doc/reference/en/file.news.html:116(a)
+#: doc/reference/en/file.news.html:117(a)
 msgid "Test::Unit::TestCase.sub_test_case"
 msgstr ""
 
-#: doc/reference/en/file.news.html:116(li)
+#: doc/reference/en/file.news.html:117(li)
 msgid ""
 "Added <span class=\"object_link\"><placeholder-1/></span> that creates sub "
 "test case. The sub test case name isn’t limited Ruby’s constant name rule. "
@@ -10788,44 +10792,44 @@ msgstr ""
 "を追加した。サブテストケース名はRubyの定数名の規則に縛られないので自由な形式"
 "で指定することができる。"
 
-#: doc/reference/en/file.news.html:123(li)
+#: doc/reference/en/file.news.html:124(li)
 msgid "Marc Cooper"
 msgstr "Marc Cooperさん"
 
-#: doc/reference/en/file.news.html:124(li)
+#: doc/reference/en/file.news.html:125(li)
 msgid "kdmsnr"
 msgstr "kdmsnrさん"
 
-#: doc/reference/en/file.news.html:126(h2)
+#: doc/reference/en/file.news.html:127(h2)
 msgid "2.5.1 – 2012-07-05"
 msgstr ""
 
-#: doc/reference/en/file.news.html:127(p)
-#: doc/reference/en/file.news.html:154(p)
-#: doc/reference/en/file.news.html:166(p)
-#: doc/reference/en/file.news.html:198(p)
+#: doc/reference/en/file.news.html:128(p)
+#: doc/reference/en/file.news.html:155(p)
+#: doc/reference/en/file.news.html:167(p)
+#: doc/reference/en/file.news.html:199(p)
 msgid "It’s a bug fix release."
 msgstr "バグフィックスリリースです。"
 
-#: doc/reference/en/file.news.html:130(li)
+#: doc/reference/en/file.news.html:131(li)
 msgid ""
 "Supported installing from GitHub. [GitHub#29] [Suggested by Michael Grosser]"
 msgstr ""
 "GitHubから直接インストールできるようにした。 [GitHub#29] [Michael Grosserさん"
 "が提案]"
 
-#: doc/reference/en/file.news.html:132(li)
+#: doc/reference/en/file.news.html:133(li)
 msgid ""
 "Supported ActiveSupport::TestCase. [GitHub#30] [Reported by Michael Grosser]"
 msgstr ""
 "ActiveSupport::TestCaseと一緒に使えるようになった。 [GitHub#30] [Michael "
 "Grosserさんが報告]"
 
-#: doc/reference/en/file.news.html:134(li)
+#: doc/reference/en/file.news.html:135(li)
 msgid "[ui][console] Improved multiline falut message display."
 msgstr "[ui][console] 複数行の失敗メッセージをいい感じに表示するようにした。"
 
-#: doc/reference/en/file.news.html:138(li)
+#: doc/reference/en/file.news.html:139(li)
 msgid ""
 "[ui][console] Fixed a bug that expected and actual values are empty. "
 "[GitHub#31][GitHub#33] [Reported by Kendall Buchanan][Reported by Mathieu "
@@ -10835,12 +10839,12 @@ msgstr ""
 "[Kendall Buchananさんが報告][Mathieu Martinさんが報告] [Michael Grosserさんが"
 "ヒントを提供]"
 
-#: doc/reference/en/file.news.html:143(span)
-#: doc/reference/en/file.news.html:283(span)
+#: doc/reference/en/file.news.html:144(span)
+#: doc/reference/en/file.news.html:284(span)
 msgid "LANG"
 msgstr ""
 
-#: doc/reference/en/file.news.html:143(li)
+#: doc/reference/en/file.news.html:144(li)
 msgid ""
 "Fixed a bug that .gemspec can’t be loaded on <placeholder-1/>=C. "
 "[RubyForge#29595] [Reported by Jean-Denis Koeck]"
@@ -10848,27 +10852,27 @@ msgstr ""
 "<placeholder-1/>=Cな環境で.gemspecをロードできない問題を修正。 "
 "[RubyForge#29595] [Jean-Denis Koeckさんが報告]"
 
-#: doc/reference/en/file.news.html:149(li)
+#: doc/reference/en/file.news.html:150(li)
 msgid "Kendall Buchanan"
 msgstr "Kendall Buchananさん"
 
-#: doc/reference/en/file.news.html:150(li)
+#: doc/reference/en/file.news.html:151(li)
 msgid "Mathieu Martin"
 msgstr "Mathieu Martinさん"
 
-#: doc/reference/en/file.news.html:151(li)
+#: doc/reference/en/file.news.html:152(li)
 msgid "Jean-Denis Koeck"
 msgstr "Jean-Denis Koeckさん"
 
-#: doc/reference/en/file.news.html:153(h2)
+#: doc/reference/en/file.news.html:154(h2)
 msgid "2.5.0 – 2012-06-06"
 msgstr ""
 
-#: doc/reference/en/file.news.html:157(code)
+#: doc/reference/en/file.news.html:158(code)
 msgid "TestUnitMediator#run_suite"
 msgstr ""
 
-#: doc/reference/en/file.news.html:157(li)
+#: doc/reference/en/file.news.html:158(li)
 msgid ""
 "Fixed a backward incompatibility of <placeholder-1/> introduced in 2.4.9. "
 "[GitHub#28] [Reported by Vladislav Rassokhin]"
@@ -10876,24 +10880,24 @@ msgstr ""
 "2.4.9で入った<placeholder-1/>の後方非互換な変更を修正しました。 [GitHub#28] "
 "[Vladislav Rassokhinさんが報告]"
 
-#: doc/reference/en/file.news.html:163(li)
+#: doc/reference/en/file.news.html:164(li)
 msgid "Vladislav Rassokhin"
 msgstr "Vladislav Rassokhinさん"
 
-#: doc/reference/en/file.news.html:165(h2)
+#: doc/reference/en/file.news.html:166(h2)
 msgid "2.4.9 – 2012-06-03"
 msgstr ""
 
-#: doc/reference/en/file.news.html:169(code)
 #: doc/reference/en/file.news.html:170(code)
+#: doc/reference/en/file.news.html:171(code)
 msgid "Test::Unit.run?"
 msgstr ""
 
-#: doc/reference/en/file.news.html:170(code)
+#: doc/reference/en/file.news.html:171(code)
 msgid "Test::Unit::AutoRunner.need_auto_run?"
 msgstr ""
 
-#: doc/reference/en/file.news.html:169(li)
+#: doc/reference/en/file.news.html:170(li)
 msgid ""
 "<placeholder-1/> → <placeholder-2/>. <placeholder-3/> is marked as "
 "deprecated but it is still available."
@@ -10901,15 +10905,15 @@ msgstr ""
 "<placeholder-1/> → <placeholder-2/>。<placeholder-3/>は非推奨になりましたが、"
 "まだ利用できます。"
 
-#: doc/reference/en/file.news.html:172(code)
+#: doc/reference/en/file.news.html:173(code)
 msgid "\"ruby -rtest-unit -e run test/test_*.rb\""
 msgstr ""
 
-#: doc/reference/en/file.news.html:173(span)
+#: doc/reference/en/file.news.html:174(span)
 msgid "API"
 msgstr ""
 
-#: doc/reference/en/file.news.html:172(li)
+#: doc/reference/en/file.news.html:173(li)
 msgid ""
 "[experimental] Added top level “run” method for <placeholder-1/>. Is this "
 "<placeholder-2/> OK or dirty?"
@@ -10918,27 +10922,27 @@ msgstr ""
 "ソッドを追加した。この<placeholder-2/>はよいAPIでしょうか、それとも汚いAPIで"
 "しょうか？"
 
-#: doc/reference/en/file.news.html:174(li)
+#: doc/reference/en/file.news.html:175(li)
 msgid "Made failure output more readable on no color mode."
 msgstr ""
 "色付け出力ができない場合でも失敗時のメッセージを読みやすく表示するようにし"
 "た。"
 
-#: doc/reference/en/file.news.html:175(span)
-#: doc/reference/en/file.news.html:413(span)
+#: doc/reference/en/file.news.html:176(span)
+#: doc/reference/en/file.news.html:414(span)
 msgid "ASCII"
 msgstr ""
 
-#: doc/reference/en/file.news.html:175(li)
+#: doc/reference/en/file.news.html:176(li)
 msgid "Supported showing <placeholder-1/>-8BIT diff in failure message."
 msgstr ""
 "失敗時のメッセージで<placeholder-1/>-8BITのdiffを表示できるようにした。"
 
-#: doc/reference/en/file.news.html:176(code)
+#: doc/reference/en/file.news.html:177(code)
 msgid "ENV[\"TERM\"] == \"xterm-256color\""
 msgstr ""
 
-#: doc/reference/en/file.news.html:176(li)
+#: doc/reference/en/file.news.html:177(li)
 msgid ""
 "[ui][console] Supported <placeholder-1/> as color available terminal. "
 "[GitHub#26] [Reported by Michael Grosser]"
@@ -10946,11 +10950,11 @@ msgstr ""
 "[ui][console] <placeholder-1/>を色付けできるターミナルに追加。 [GitHub#26] "
 "[Michael Grosserさんが報告]"
 
-#: doc/reference/en/file.news.html:179(code)
+#: doc/reference/en/file.news.html:180(code)
 msgid "ENV[\"TERM\"]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:179(li)
+#: doc/reference/en/file.news.html:180(li)
 msgid ""
 "[ui][console] Supported “-256color” suffix <placeholder-1/> terminal as 256 "
 "color supported terminal."
@@ -10958,16 +10962,16 @@ msgstr ""
 "[ui][console] <placeholder-1/>の最後が\"-256color\"となっているターミナルは"
 "256色使えるターミナルとして扱うようにした。"
 
-#: doc/reference/en/file.news.html:184(code)
+#: doc/reference/en/file.news.html:185(code)
 msgid "--workdir"
 msgstr ""
 
-#: doc/reference/en/file.news.html:184(li)
+#: doc/reference/en/file.news.html:185(li)
 msgid "Fixed a bug that <placeholder-1/> doesn’t work."
 msgstr "<placeholder-1/>が動かない問題を修正。"
 
-#: doc/reference/en/file.news.html:185(code)
-#: doc/reference/en/file.news.html:261(code)
+#: doc/reference/en/file.news.html:186(code)
+#: doc/reference/en/file.news.html:262(code)
 #: doc/reference/en/Test/Unit/UI/TestRunnerUtilities.html:261(span)
 #: doc/reference/en/Test/Unit/UI/TestRunnerUtilities.html:265(span)
 #: doc/reference/en/Test/Unit/UI/TestRunnerUtilities.html:266(span)
@@ -10976,12 +10980,12 @@ msgstr "<placeholder-1/>が動かない問題を修正。"
 msgid "ARGV"
 msgstr ""
 
-#: doc/reference/en/file.news.html:185(code)
+#: doc/reference/en/file.news.html:186(code)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2629(span)
 msgid "--help"
 msgstr ""
 
-#: doc/reference/en/file.news.html:185(li)
+#: doc/reference/en/file.news.html:186(li)
 msgid ""
 "Consumed processed command line parameters in <placeholder-1/> as "
 "<placeholder-2/> says. [RubyForge#29554] [Reported by Bob Saveland]"
@@ -10989,29 +10993,29 @@ msgstr ""
 "<placeholder-2/>に書かれている通り、<placeholder-1/>から処理済みのコマンドラ"
 "イン引数を削除するようにした。[RubyForge#29554] [Bob Savelandさんが報告]"
 
-#: doc/reference/en/file.news.html:188(code)
+#: doc/reference/en/file.news.html:189(code)
 msgid "require \"test/unit/diff\""
 msgstr ""
 
-#: doc/reference/en/file.news.html:188(li)
+#: doc/reference/en/file.news.html:189(li)
 msgid "Added missing <placeholder-1/>. [GitHub#25] [Reported by Stephan Kulow]"
 msgstr ""
 "抜けていた<placeholder-1/>を追加。[GitHub#25] [Stephan Kulowさんが報告]"
 
-#: doc/reference/en/file.news.html:193(li)
-#: doc/reference/en/file.news.html:503(li)
+#: doc/reference/en/file.news.html:194(li)
+#: doc/reference/en/file.news.html:504(li)
 msgid "Bob Saveland"
 msgstr "Bob Savelandさん"
 
-#: doc/reference/en/file.news.html:194(li)
+#: doc/reference/en/file.news.html:195(li)
 msgid "Stephan Kulow"
 msgstr "Stephan Kulowさん"
 
-#: doc/reference/en/file.news.html:197(h2)
+#: doc/reference/en/file.news.html:198(h2)
 msgid "2.4.8 – 2012-3-6"
 msgstr ""
 
-#: doc/reference/en/file.news.html:201(li)
+#: doc/reference/en/file.news.html:202(li)
 msgid ""
 "Delayed at_exit registration until Test::Unit is used. [GitHub:#21] "
 "[Reported by Jason Lunn]"
@@ -11019,12 +11023,12 @@ msgstr ""
 "Test::Unitが使われるまでat_exitの登録を遅延するようにした。 [GitHub:#21] "
 "[Jason Lunnさんが報告]"
 
-#: doc/reference/en/file.news.html:203(li)
+#: doc/reference/en/file.news.html:204(li)
 msgid ""
 "Added workaround for test-spec. [GitHub:#22] [Reported by Cédric Boutillier]"
 msgstr "test-spec用の回避策を追加。[GitHub:#22] [Cédric Boutillierさんが報告]"
 
-#: doc/reference/en/file.news.html:208(li)
+#: doc/reference/en/file.news.html:209(li)
 msgid ""
 "Fixed an error on code snippet display on JRuby. [GitHub:#19][GitHub:#20] "
 "[Reported by Jørgen P. Tjernø][Patch by Junegunn Choi]"
@@ -11032,64 +11036,64 @@ msgstr ""
 "JRuby上でテスト失敗時のコード表示時に発生していたエラーを修正した。 [GitHub:"
 "#19][GitHub:#20] [Jørgen P. Tjernøさんが報告][Junegunn Choiさんがパッチ提供]"
 
-#: doc/reference/en/file.news.html:214(li)
+#: doc/reference/en/file.news.html:215(li)
 msgid "Jørgen P. Tjernø"
 msgstr "Jørgen P. Tjernøさん"
 
-#: doc/reference/en/file.news.html:215(li)
+#: doc/reference/en/file.news.html:216(li)
 msgid "Junegunn Choi"
 msgstr "Junegunn Choiさん"
 
-#: doc/reference/en/file.news.html:216(li)
+#: doc/reference/en/file.news.html:217(li)
 msgid "Jason Lunn"
 msgstr "Jason Lunnさん"
 
-#: doc/reference/en/file.news.html:218(h2)
+#: doc/reference/en/file.news.html:219(h2)
 msgid "2.4.7 – 2012-2-10"
 msgstr ""
 
-#: doc/reference/en/file.news.html:219(p)
+#: doc/reference/en/file.news.html:220(p)
 msgid "It’s a code snippet improvement release."
 msgstr "失敗時のコード表示を改良したリリースです。"
 
-#: doc/reference/en/file.news.html:222(li)
+#: doc/reference/en/file.news.html:223(li)
 msgid "Supported code snippet display on all faults."
 msgstr "失敗時だけでなくエラー時などでもコードの一部を表示するようにした。"
 
-#: doc/reference/en/file.news.html:224(h2)
+#: doc/reference/en/file.news.html:225(h2)
 msgid "2.4.6 – 2012-2-9"
 msgstr ""
 
-#: doc/reference/en/file.news.html:225(span)
-#: doc/reference/en/file.news.html:228(span)
-#: doc/reference/en/file.news.html:548(span)
+#: doc/reference/en/file.news.html:226(span)
+#: doc/reference/en/file.news.html:229(span)
+#: doc/reference/en/file.news.html:549(span)
 msgid "TAP"
 msgstr ""
 
-#: doc/reference/en/file.news.html:225(p)
+#: doc/reference/en/file.news.html:226(p)
 msgid "It’s a <placeholder-1/> runner separated release."
 msgstr "<placeholder-1/>サポートを分離したリリースです。"
 
-#: doc/reference/en/file.news.html:228(li)
+#: doc/reference/en/file.news.html:229(li)
 msgid ""
 "Moved <placeholder-1/> runner to test-unit-runner-tap gem from test-unit gem."
 msgstr ""
 "<placeholder-1/>出力をするテストランナーをtest-unit-runner-tap gemに分離し"
 "た。"
 
-#: doc/reference/en/file.news.html:229(li)
+#: doc/reference/en/file.news.html:230(li)
 msgid "Supported code snippet display on failure."
 msgstr "失敗時にコードの一部を表示するようにした。"
 
-#: doc/reference/en/file.news.html:231(h2)
+#: doc/reference/en/file.news.html:232(h2)
 msgid "2.4.5 – 2012-1-16"
 msgstr ""
 
-#: doc/reference/en/file.news.html:232(p)
+#: doc/reference/en/file.news.html:233(p)
 msgid "It’s a failure message readability improvement release."
 msgstr "失敗時のメッセージの読みやすさを改良したリリースです。"
 
-#: doc/reference/en/file.news.html:235(li)
+#: doc/reference/en/file.news.html:236(li)
 msgid ""
 "Removed needless information from exception inspected text on failure. It’s "
 "for easy to read."
@@ -11097,24 +11101,24 @@ msgstr ""
 "失敗時に例外の内容を示すテキストから不必要な情報を削除した。これは例外の内容"
 "を読みやすくするためである。"
 
-#: doc/reference/en/file.news.html:237(li)
+#: doc/reference/en/file.news.html:238(li)
 msgid "Supported custom inspector."
 msgstr "オブジェクトのインスペクト方法をカスタマイズできるようにした。"
 
-#: doc/reference/en/file.news.html:239(h2)
+#: doc/reference/en/file.news.html:240(h2)
 msgid "2.4.4 – 2012-1-2"
 msgstr ""
 
-#: doc/reference/en/file.news.html:240(p)
+#: doc/reference/en/file.news.html:241(p)
 msgid "It’s a Rails integration improved release."
 msgstr "Railsと一緒に使いやすくなったリリースです。"
 
-#: doc/reference/en/file.news.html:243(li)
+#: doc/reference/en/file.news.html:244(li)
 msgid "[ui][console] Don’t break progress display when a test is failed."
 msgstr ""
 "[ui][コンソール] テストが失敗してもプログレスの表示が乱れないようにした。"
 
-#: doc/reference/en/file.news.html:244(li)
+#: doc/reference/en/file.news.html:245(li)
 msgid ""
 "[ui][console] Added markers betwen a failure detail message in progress to "
 "improve visibility."
@@ -11122,7 +11126,7 @@ msgstr ""
 "[ui][コンソール] 視認性向上のためにプログレス表示時の詳細表示の前後にマーカー"
 "を追加した。"
 
-#: doc/reference/en/file.news.html:246(li)
+#: doc/reference/en/file.news.html:247(li)
 msgid ""
 "[travis] Dropped Ruby 1.8.6 as a test target. [GitHub:#13] [Patch by Josh "
 "Kalderimis]"
@@ -11130,7 +11134,7 @@ msgstr ""
 "[travis] テスト対象からRuby 1.8.6を削除。 [GitHub:#13] [Josh Kalderimisさんが"
 "パッチを作成]"
 
-#: doc/reference/en/file.news.html:248(li)
+#: doc/reference/en/file.news.html:249(li)
 msgid ""
 "Supported expected value == 0 case in assert_in_epsilon. [RubyForge#29485] "
 "[Reported by Syver Enstad]"
@@ -11138,23 +11142,23 @@ msgstr ""
 "assert_in_epsilonで期待値が0になるケースに対応。 [RubyForge#29485] [Syver "
 "Enstadさんが報告]"
 
-#: doc/reference/en/file.news.html:250(li)
+#: doc/reference/en/file.news.html:251(li)
 msgid "Supported a block style setup/teardown/cleanup."
 msgstr "ブロック形式でのsetup/teardown/cleanupに対応。"
 
-#: doc/reference/en/file.news.html:254(li)
+#: doc/reference/en/file.news.html:255(li)
 msgid "Josh Kalderimis"
 msgstr "Josh Kalderimisさん"
 
-#: doc/reference/en/file.news.html:255(li)
+#: doc/reference/en/file.news.html:256(li)
 msgid "Syver Enstad"
 msgstr "Syver Enstadさん"
 
-#: doc/reference/en/file.news.html:257(h2)
+#: doc/reference/en/file.news.html:258(h2)
 msgid "2.4.3 – 2011-12-11"
 msgstr ""
 
-#: doc/reference/en/file.news.html:260(li)
+#: doc/reference/en/file.news.html:261(li)
 msgid ""
 "Improved SimpleCov integration by stopping to modify <placeholder-1/> in "
 "auto runner. [GitHub:#12] [Reported by Nikos Dimitrakopoulos]"
@@ -11162,31 +11166,31 @@ msgstr ""
 "自動テストランナー内で<placeholder-1/>を変更しないようにしてSimpleCov連携を改"
 "良した。 [GitHub:#12] [Nikos Dimitrakopoulosさんが報告]"
 
-#: doc/reference/en/file.news.html:263(li)
+#: doc/reference/en/file.news.html:264(li)
 msgid "Improved JRuby integration by removing JRuby internal backtrace."
 msgstr "JRuby内部のバックトレースを削除してJRuby連携を改良した。"
 
-#: doc/reference/en/file.news.html:267(li)
+#: doc/reference/en/file.news.html:268(li)
 msgid "Nikos Dimitrakopoulos"
 msgstr "Nikos Dimitrakopoulosさん"
 
-#: doc/reference/en/file.news.html:269(h2)
+#: doc/reference/en/file.news.html:270(h2)
 msgid "2.4.2 – 2011-11-26"
 msgstr ""
 
-#: doc/reference/en/file.news.html:272(code)
+#: doc/reference/en/file.news.html:273(code)
 msgid "--name"
 msgstr ""
 
-#: doc/reference/en/file.news.html:272(li)
+#: doc/reference/en/file.news.html:273(li)
 msgid "<placeholder-1/> supported data label."
 msgstr "<placeholder-1/>がデータのラベルも比較するようになった。"
 
-#: doc/reference/en/file.news.html:274(h2)
+#: doc/reference/en/file.news.html:275(h2)
 msgid "2.4.1 – 2011-11-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:277(li)
+#: doc/reference/en/file.news.html:278(li)
 msgid ""
 "Accepted AssertionMessage as assertion’s user message. It is used in "
 "assert_select in actionpack. [Reported by David Heath]"
@@ -11194,64 +11198,64 @@ msgstr ""
 "アサーションに指定するメッセージにAssertionMessageも使えるようにした。これは"
 "actionpack内のassert_selectで使われている。 [David Heathさんが報告]"
 
-#: doc/reference/en/file.news.html:283(li)
+#: doc/reference/en/file.news.html:284(li)
 msgid "Fixed test failure on <placeholder-1/>=C. #11 [Reported by boutil]"
 msgstr ""
 "<placeholder-1/>=Cでもテストがパスするようにした。 #11 [boutilさんが報告]"
 
-#: doc/reference/en/file.news.html:284(li)
+#: doc/reference/en/file.news.html:285(li)
 msgid "Suppress warnings on Ruby 1.9.2."
 msgstr "Ruby 1.9.2で警告がでないようにした。"
 
-#: doc/reference/en/file.news.html:288(li)
+#: doc/reference/en/file.news.html:289(li)
 msgid "boutil"
 msgstr "boutilさん"
 
-#: doc/reference/en/file.news.html:289(li)
+#: doc/reference/en/file.news.html:290(li)
 msgid "David Heath"
 msgstr "David Heathさん"
 
-#: doc/reference/en/file.news.html:291(h2)
+#: doc/reference/en/file.news.html:292(h2)
 msgid "2.4.0 – 2011-09-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:294(li)
+#: doc/reference/en/file.news.html:295(li)
 msgid "Supported Travis CI. #5 [Suggested by James Mead]"
 msgstr "Travis CI対応。 #5 [James Meadさんが提案]"
 
-#: doc/reference/en/file.news.html:295(li)
+#: doc/reference/en/file.news.html:296(li)
 msgid "Added Gemfile. #6 [Suggested by James Mead]"
 msgstr "Gemfileを追加。#6 [James Meadさんが提案]"
 
-#: doc/reference/en/file.news.html:296(li)
+#: doc/reference/en/file.news.html:297(li)
 msgid "[ui][console] Supported notification in show-detail-immediately."
 msgstr "[ui][console] show-detail-immediatelyモードで通知をサポート。"
 
-#: doc/reference/en/file.news.html:297(li)
+#: doc/reference/en/file.news.html:298(li)
 msgid "[ui][console] enable —show-detail-immediately by default."
 msgstr "[ui][console] デフォルトで--show-detail-immediatelyを有効にした。"
 
-#: doc/reference/en/file.news.html:298(li)
+#: doc/reference/en/file.news.html:299(li)
 msgid "[ui] Added —max-diff-target-string-size option."
 msgstr "[ui] --max-diff-target-string-sizeを追加。"
 
-#: doc/reference/en/file.news.html:299(li)
+#: doc/reference/en/file.news.html:300(li)
 msgid "[ui][console] Supported 256 colors."
 msgstr "[ui][console] 256色に対応。"
 
-#: doc/reference/en/file.news.html:303(li)
+#: doc/reference/en/file.news.html:304(li)
 msgid "Added missing fixture file. #7 [Reported by grafi-tt]"
 msgstr "抜けていたフィクスチャーファイルを追加。 #7 [grafi-ttさんが報告]"
 
-#: doc/reference/en/file.news.html:304(li)
+#: doc/reference/en/file.news.html:305(li)
 msgid "[ui][console] Added missing the last newline for progress level."
 msgstr "[ui][console] progress出力レベルで足りなかった最後の改行を追加。"
 
-#: doc/reference/en/file.news.html:305(li)
+#: doc/reference/en/file.news.html:306(li)
 msgid "Supported correct backtrace for redefined notification."
 msgstr "再定義した通知で正しくバックトレースを取得できるようにした。"
 
-#: doc/reference/en/file.news.html:306(li)
+#: doc/reference/en/file.news.html:307(li)
 msgid ""
 "Don’t handle Timeout::Error as pass through exception on Ruby 1.8. #8 "
 "[Reported by Marc Seeger (Acquia)]"
@@ -11259,131 +11263,131 @@ msgstr ""
 "Ruby 1.8ではTimeout::Errorを処理するようにした。 #8 [Marc Seeger (Acquia)さん"
 "が報告]"
 
-#: doc/reference/en/file.news.html:311(li)
-#: doc/reference/en/file.news.html:328(li)
+#: doc/reference/en/file.news.html:312(li)
+#: doc/reference/en/file.news.html:329(li)
 msgid "James Mead"
 msgstr "James Meadさん"
 
-#: doc/reference/en/file.news.html:312(li)
-#: doc/reference/en/file.news.html:354(li)
+#: doc/reference/en/file.news.html:313(li)
+#: doc/reference/en/file.news.html:355(li)
 msgid "grafi-tt"
 msgstr "grafi-ttさん"
 
-#: doc/reference/en/file.news.html:313(li)
+#: doc/reference/en/file.news.html:314(li)
 msgid "Marc Seeger (Acquia)"
 msgstr "Marc Seeger (Acquia)さん"
 
-#: doc/reference/en/file.news.html:315(h2)
+#: doc/reference/en/file.news.html:316(h2)
 msgid "2.3.2 – 2011-08-15"
 msgstr ""
 
-#: doc/reference/en/file.news.html:316(p)
+#: doc/reference/en/file.news.html:317(p)
 msgid "A bug fix release."
 msgstr "バグフィックスリリース。"
 
-#: doc/reference/en/file.news.html:319(li)
+#: doc/reference/en/file.news.html:320(li)
 msgid "[ui][console] Added some newlines to improve readability."
 msgstr "[ui][console] 読み易くするために改行を追加。"
 
-#: doc/reference/en/file.news.html:323(li)
+#: doc/reference/en/file.news.html:324(li)
 msgid "[ui][console] Worked —verbose again."
 msgstr "[ui][console] --verboseが動くようにした。"
 
-#: doc/reference/en/file.news.html:324(li)
+#: doc/reference/en/file.news.html:325(li)
 msgid "Re-supported Ruby 1.8.6. [Reported by James Mead]"
 msgstr "Ruby 1.8.6を再サポート。 [James Meadさんが報告]"
 
-#: doc/reference/en/file.news.html:330(h2)
+#: doc/reference/en/file.news.html:331(h2)
 msgid "2.3.1 – 2011-08-06"
 msgstr ""
 
-#: doc/reference/en/file.news.html:331(p)
+#: doc/reference/en/file.news.html:332(p)
 msgid "Output improvement release!"
 msgstr ""
 
-#: doc/reference/en/file.news.html:334(li)
+#: doc/reference/en/file.news.html:335(li)
 msgid "[ui][console] Outputs omissions and notifications in short."
 msgstr ""
 
-#: doc/reference/en/file.news.html:335(li)
+#: doc/reference/en/file.news.html:336(li)
 msgid "[ui][console] Added “important-only” verbose level."
 msgstr ""
 
-#: doc/reference/en/file.news.html:336(li)
+#: doc/reference/en/file.news.html:337(li)
 msgid "Intelligence diff supports recursive references."
 msgstr ""
 
-#: doc/reference/en/file.news.html:337(li)
+#: doc/reference/en/file.news.html:338(li)
 msgid ""
 "[rubyforge #29325] Supported Ruby Enterprise Edition. [Reported by Hans de "
 "Graaff]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:339(li)
+#: doc/reference/en/file.news.html:340(li)
 msgid "[rubyforge #29326] Supported JRuby. [Reported by Hans de Graaff]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:341(li)
+#: doc/reference/en/file.news.html:342(li)
 msgid ""
 "Added —show-detail-immediately option that shows fault details when a fault "
 "is occurred."
 msgstr ""
 
-#: doc/reference/en/file.news.html:346(li)
+#: doc/reference/en/file.news.html:347(li)
 msgid ""
 "[pull request #1] Fixed a problem that load collector can’t load a test file "
 "on Ruby 1.9. [Patch by grafi-tt]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:348(li)
+#: doc/reference/en/file.news.html:349(li)
 msgid ""
 "[issue #3] Fixed a problem that implicit method name override by declarative "
 "style test definition. [Reported by Jeremy Stephens]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:355(li)
+#: doc/reference/en/file.news.html:356(li)
 msgid "Jeremy Stephens"
 msgstr ""
 
-#: doc/reference/en/file.news.html:356(li)
+#: doc/reference/en/file.news.html:357(li)
 msgid "Hans de Graaff"
 msgstr ""
 
-#: doc/reference/en/file.news.html:358(h2)
+#: doc/reference/en/file.news.html:359(h2)
 msgid "2.3.0 / 2011-04-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:360(li)
+#: doc/reference/en/file.news.html:361(li)
 msgid "13 enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:361(li)
+#: doc/reference/en/file.news.html:362(li)
 msgid "improve Hash key sorting for diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:362(li)
+#: doc/reference/en/file.news.html:363(li)
 msgid ""
 "[#28928] support any characters in declarative style description. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:364(li)
+#: doc/reference/en/file.news.html:365(li)
 msgid "add Error#location and make #backtrace deprecated."
 msgstr ""
 
-#: doc/reference/en/file.news.html:365(li)
+#: doc/reference/en/file.news.html:366(li)
 msgid "make TestCase#passed? public."
 msgstr ""
 
-#: doc/reference/en/file.news.html:366(li)
+#: doc/reference/en/file.news.html:367(li)
 msgid "add result finished and pass assertion notifications."
 msgstr ""
 
-#: doc/reference/en/file.news.html:367(li)
+#: doc/reference/en/file.news.html:368(li)
 msgid "add TestSuite#passed? public."
 msgstr ""
 
-#: doc/reference/en/file.news.html:368(span)
+#: doc/reference/en/file.news.html:369(span)
 #: doc/reference/en/class_list.html:48(a) doc/reference/en/_index.html:874(a)
 #: doc/reference/en/_index.html:881(a)
 #: doc/reference/en/Test/Unit/UI/XML/TestRunner.html:35(a)
@@ -11396,733 +11400,733 @@ msgstr ""
 msgid "XML"
 msgstr ""
 
-#: doc/reference/en/file.news.html:368(li)
+#: doc/reference/en/file.news.html:369(li)
 msgid "add <placeholder-1/> test runner."
 msgstr ""
 
-#: doc/reference/en/file.news.html:369(li)
+#: doc/reference/en/file.news.html:370(li)
 msgid "add —output-file-descriptor option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:370(li)
+#: doc/reference/en/file.news.html:371(li)
 msgid "measure elapsed time for each test."
 msgstr ""
 
-#: doc/reference/en/file.news.html:371(li)
+#: doc/reference/en/file.news.html:372(li)
 msgid "add —collector option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:372(li)
+#: doc/reference/en/file.news.html:373(li)
 msgid "support test driven test. [Haruka Yoshihara]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:374(li)
+#: doc/reference/en/file.news.html:375(li)
 msgid "add cleanup hook it runs between after test and before teardown."
 msgstr ""
 
-#: doc/reference/en/file.news.html:375(li)
+#: doc/reference/en/file.news.html:376(li)
 msgid "support recursive collection sort for diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:380(li)
+#: doc/reference/en/file.news.html:381(li)
 msgid "Haruka Yoshihara"
 msgstr ""
 
-#: doc/reference/en/file.news.html:382(h2)
+#: doc/reference/en/file.news.html:383(h2)
 msgid "2.2.0 / 2011-02-14"
 msgstr ""
 
-#: doc/reference/en/file.news.html:384(li)
+#: doc/reference/en/file.news.html:385(li)
 msgid "22 enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:385(li)
+#: doc/reference/en/file.news.html:386(li)
 msgid "[#28808] accept String as delta for assert_in_delta. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:387(li)
+#: doc/reference/en/file.news.html:388(li)
 msgid "[test-unit-users-en:00035] make GC-able finished tests. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:389(span)
+#: doc/reference/en/file.news.html:390(span)
 msgid "COLUMNS"
 msgstr ""
 
-#: doc/reference/en/file.news.html:389(li)
+#: doc/reference/en/file.news.html:390(li)
 msgid "use also <placeholder-1/> environment variable to guess terminal width."
 msgstr ""
 
-#: doc/reference/en/file.news.html:390(li)
+#: doc/reference/en/file.news.html:391(li)
 msgid "make delta for assert_in_delta optional. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:392(li)
+#: doc/reference/en/file.news.html:393(li)
 msgid "add assert_not_respond_to. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:394(li)
+#: doc/reference/en/file.news.html:395(li)
 msgid "add assert_not_match. assert_no_match is deprecated. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:396(li)
+#: doc/reference/en/file.news.html:397(li)
 msgid "add assert_not_in_delta. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:398(li)
+#: doc/reference/en/file.news.html:399(li)
 msgid "add assert_in_epsilon. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:400(li)
+#: doc/reference/en/file.news.html:401(li)
 msgid "add assert_not_in_epsilon. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:402(li)
+#: doc/reference/en/file.news.html:403(li)
 msgid "add assert_include. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:404(li)
+#: doc/reference/en/file.news.html:405(li)
 msgid "add assert_not_include. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:406(li)
+#: doc/reference/en/file.news.html:407(li)
 msgid "add assert_empty. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:408(li)
+#: doc/reference/en/file.news.html:409(li)
 msgid "add assert_not_empty. [Nobuyoshi Nakada]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:410(li)
+#: doc/reference/en/file.news.html:411(li)
 msgid "notify require failed paths."
 msgstr ""
 
-#: doc/reference/en/file.news.html:411(li)
+#: doc/reference/en/file.news.html:412(li)
 msgid "validate message value for assert."
 msgstr ""
 
-#: doc/reference/en/file.news.html:412(li)
+#: doc/reference/en/file.news.html:413(li)
 msgid "show throughputs at the last."
 msgstr ""
 
-#: doc/reference/en/file.news.html:413(li)
+#: doc/reference/en/file.news.html:414(li)
 msgid "support not <placeholder-1/> compatible string diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:414(li)
+#: doc/reference/en/file.news.html:415(li)
 msgid "support colorized diff on encoding different string."
 msgstr ""
 
-#: doc/reference/en/file.news.html:415(li)
+#: doc/reference/en/file.news.html:416(li)
 msgid "normalize entry order of Hash for readable diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:416(li)
+#: doc/reference/en/file.news.html:417(li)
 msgid "add —ignore-name option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:417(li)
+#: doc/reference/en/file.news.html:418(li)
 msgid "add —ignore-testcase option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:418(li)
+#: doc/reference/en/file.news.html:419(li)
 msgid "add assert_not_send."
 msgstr ""
 
-#: doc/reference/en/file.news.html:423(li)
+#: doc/reference/en/file.news.html:424(li)
 msgid "Nobuyoshi Nakada"
 msgstr ""
 
-#: doc/reference/en/file.news.html:425(h2)
+#: doc/reference/en/file.news.html:426(h2)
 msgid "2.1.2 / 2010-11-25"
 msgstr ""
 
-#: doc/reference/en/file.news.html:427(li)
+#: doc/reference/en/file.news.html:428(li)
 msgid "1 enhancement"
 msgstr ""
 
-#: doc/reference/en/file.news.html:428(li)
+#: doc/reference/en/file.news.html:429(li)
 msgid "support auto runner prepare hook."
 msgstr ""
 
-#: doc/reference/en/file.news.html:430(h2)
+#: doc/reference/en/file.news.html:431(h2)
 msgid "2.1.1 / 2010-07-29"
 msgstr ""
 
-#: doc/reference/en/file.news.html:432(li)
-#: doc/reference/en/file.news.html:442(li)
-#: doc/reference/en/file.news.html:589(li)
+#: doc/reference/en/file.news.html:433(li)
+#: doc/reference/en/file.news.html:443(li)
+#: doc/reference/en/file.news.html:590(li)
 msgid "1 bug fix"
 msgstr ""
 
-#: doc/reference/en/file.news.html:433(li)
+#: doc/reference/en/file.news.html:434(li)
 msgid "[test-unit-users-en:00026] re-work tap runner. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:440(p)
+#: doc/reference/en/file.news.html:441(p)
 msgid "=== 2.1.0 / 2010-07-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:443(li)
+#: doc/reference/en/file.news.html:444(li)
 msgid "[#28267] global config file ignored [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:450(h2)
+#: doc/reference/en/file.news.html:451(h2)
 msgid "2.0.8 / 2010-06-02"
 msgstr ""
 
-#: doc/reference/en/file.news.html:452(li)
+#: doc/reference/en/file.news.html:453(li)
 msgid "5 major enchancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:453(li)
+#: doc/reference/en/file.news.html:454(li)
 msgid "collect *_test.rb and *-test.rb files as test files."
 msgstr ""
 
-#: doc/reference/en/file.news.html:454(li)
+#: doc/reference/en/file.news.html:455(li)
 msgid ""
 "[#28181] improve assert_in_delta message. [Suggested by David <placeholder-1/"
 ">]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:456(li)
+#: doc/reference/en/file.news.html:457(li)
 msgid ""
 "show string encoding in assert_equal failure message if they are different."
 msgstr ""
 
-#: doc/reference/en/file.news.html:458(li)
+#: doc/reference/en/file.news.html:459(li)
 msgid "change default color scheme:"
 msgstr ""
 
-#: doc/reference/en/file.news.html:459(li)
+#: doc/reference/en/file.news.html:460(li)
 msgid "success: green back + white"
 msgstr ""
 
-#: doc/reference/en/file.news.html:460(li)
+#: doc/reference/en/file.news.html:461(li)
 msgid "failure: red back + white"
 msgstr ""
 
-#: doc/reference/en/file.news.html:461(li)
+#: doc/reference/en/file.news.html:462(li)
 msgid "add capture_output."
 msgstr ""
 
-#: doc/reference/en/file.news.html:464(li)
-#: doc/reference/en/file.news.html:493(li)
-#: doc/reference/en/file.news.html:525(li)
+#: doc/reference/en/file.news.html:465(li)
+#: doc/reference/en/file.news.html:494(li)
+#: doc/reference/en/file.news.html:526(li)
 msgid "2 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:465(li)
+#: doc/reference/en/file.news.html:466(li)
 msgid ""
 "fix a bug that console runner on verbose mode causes an error for long test "
 "name (&gt;= 61)."
 msgstr ""
 
-#: doc/reference/en/file.news.html:467(li)
+#: doc/reference/en/file.news.html:468(li)
 msgid ""
 "[#28093] Autorunner ignores all files in a directory named test by default "
 "[Reported by Florian Frank]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:472(li)
+#: doc/reference/en/file.news.html:473(li)
 msgid "Florian Frank"
 msgstr ""
 
-#: doc/reference/en/file.news.html:473(li)
-#: doc/reference/en/file.news.html:501(li)
-#: doc/reference/en/file.news.html:532(li)
+#: doc/reference/en/file.news.html:474(li)
+#: doc/reference/en/file.news.html:502(li)
+#: doc/reference/en/file.news.html:533(li)
 msgid "David <placeholder-1/>"
 msgstr ""
 
-#: doc/reference/en/file.news.html:475(h2)
+#: doc/reference/en/file.news.html:476(h2)
 msgid "2.0.7 / 2010-03-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:477(li)
-#: doc/reference/en/file.news.html:546(li)
+#: doc/reference/en/file.news.html:478(li)
+#: doc/reference/en/file.news.html:547(li)
 msgid "4 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:478(li)
+#: doc/reference/en/file.news.html:479(li)
 msgid "detect redefined test methods."
 msgstr ""
 
-#: doc/reference/en/file.news.html:479(span)
+#: doc/reference/en/file.news.html:480(span)
 msgid "INTERFACE"
 msgstr ""
 
-#: doc/reference/en/file.news.html:479(span)
+#: doc/reference/en/file.news.html:480(span)
 msgid "IMCOMPATIBLE"
 msgstr ""
 
-#: doc/reference/en/file.news.html:479(li)
+#: doc/reference/en/file.news.html:480(li)
 msgid ""
 "[<placeholder-1/> <placeholder-2/>] multiple —name and —testcase options "
 "narrow down targets instead of adding targets."
 msgstr ""
 
-#: doc/reference/en/file.news.html:481(li)
+#: doc/reference/en/file.news.html:482(li)
 msgid ""
 "[#27764] accept custom test_order for each test case. [Suggested by David "
 "<placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:483(li)
+#: doc/reference/en/file.news.html:484(li)
 msgid ""
 "[#27790] ignore omitted tests from ‘n% passed’ report. [Suggested by Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:487(li)
+#: doc/reference/en/file.news.html:488(li)
 msgid "2 minor enchancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:488(li)
+#: doc/reference/en/file.news.html:489(li)
 msgid "[#27832] ignore .git directory. [Suggested by Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:489(li)
+#: doc/reference/en/file.news.html:490(li)
 msgid ""
 "[#27792] require ‘fileutils’ and ‘tmpdir’ lazily for non-priority mode "
 "users. [Suggested by David <placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:494(li)
+#: doc/reference/en/file.news.html:495(li)
 msgid ""
 "[#27892] modify processed arguments array destructively. [Reported by Bob "
 "Saveland]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:496(span)
+#: doc/reference/en/file.news.html:497(span)
 msgid "HOME"
 msgstr ""
 
-#: doc/reference/en/file.news.html:496(li)
+#: doc/reference/en/file.news.html:497(li)
 msgid ""
 "work without <placeholder-1/> environment variable. [Reported by Champak Ch]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:504(li)
+#: doc/reference/en/file.news.html:505(li)
 msgid "Champak Ch"
 msgstr ""
 
-#: doc/reference/en/file.news.html:506(h2)
+#: doc/reference/en/file.news.html:507(h2)
 msgid "2.0.6 / 2010-01-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:508(li)
+#: doc/reference/en/file.news.html:509(li)
 msgid "3 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:509(li)
+#: doc/reference/en/file.news.html:510(li)
 msgid ""
 "[#27380] Declarative syntax? [Daniel Berger] support declarative syntax:"
 msgstr ""
 
-#: doc/reference/en/file.news.html:516(li)
+#: doc/reference/en/file.news.html:517(li)
 msgid ""
 "support test description: description “test description in natural language” "
 "def test_my_test … end"
 msgstr ""
 
-#: doc/reference/en/file.news.html:521(li)
+#: doc/reference/en/file.news.html:522(li)
 msgid ""
 "make max diff target string size customizable by "
 "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE environment variable."
 msgstr ""
 
-#: doc/reference/en/file.news.html:526(li)
+#: doc/reference/en/file.news.html:527(li)
 msgid "[#27374] omit_if unexpected behavior [David <placeholder-1/>]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:527(li)
+#: doc/reference/en/file.news.html:528(li)
 msgid ""
 "fix a bug that tests in sub directories aren’t load with —basedir. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:535(h2)
+#: doc/reference/en/file.news.html:536(h2)
 msgid "2.0.5 / 2009-10-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:537(li)
-#: doc/reference/en/file.news.html:561(li)
+#: doc/reference/en/file.news.html:538(li)
+#: doc/reference/en/file.news.html:562(li)
 msgid "1 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:538(li)
+#: doc/reference/en/file.news.html:539(li)
 msgid "[#27314] fix diff may raise an exception. [Erik Hollensbe]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:542(li)
-#: doc/reference/en/file.news.html:618(li)
+#: doc/reference/en/file.news.html:543(li)
+#: doc/reference/en/file.news.html:619(li)
 msgid "Erik Hollensbe"
 msgstr ""
 
-#: doc/reference/en/file.news.html:544(h2)
+#: doc/reference/en/file.news.html:545(h2)
 msgid "2.0.4 / 2009-10-17"
 msgstr ""
 
-#: doc/reference/en/file.news.html:547(li)
+#: doc/reference/en/file.news.html:548(li)
 msgid "use ~/.test-unit.yml as global configuration file."
 msgstr ""
 
-#: doc/reference/en/file.news.html:548(li)
+#: doc/reference/en/file.news.html:549(li)
 msgid "add <placeholder-1/> runner. (—runner tap)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:549(li)
+#: doc/reference/en/file.news.html:550(li)
 msgid ""
 "support colorized diff: http://test-unit.rubyforge.org/svn/trunk/images/"
 "color-diff.png"
 msgstr ""
 
-#: doc/reference/en/file.news.html:551(li)
+#: doc/reference/en/file.news.html:552(li)
 msgid ""
 "add Test::Unit::AutoRunner.default_runner= to specify default test runner."
 msgstr ""
 
-#: doc/reference/en/file.news.html:554(li)
-#: doc/reference/en/file.news.html:581(li)
+#: doc/reference/en/file.news.html:555(li)
+#: doc/reference/en/file.news.html:582(li)
 msgid "4 minor enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:555(li)
+#: doc/reference/en/file.news.html:556(li)
 msgid "improve verbose mode output format. (use indent)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:556(li)
+#: doc/reference/en/file.news.html:557(li)
 msgid "support NOT_PASS_THROUGH_EXCEPTIONS."
 msgstr ""
 
-#: doc/reference/en/file.news.html:557(code)
+#: doc/reference/en/file.news.html:558(code)
 msgid "#{runner}"
 msgstr ""
 
-#: doc/reference/en/file.news.html:557(li)
+#: doc/reference/en/file.news.html:558(li)
 msgid "support arguments option in <placeholder-1/>_options."
 msgstr ""
 
-#: doc/reference/en/file.news.html:558(li)
+#: doc/reference/en/file.news.html:559(li)
 msgid "TC_ → Test in sample test case name."
 msgstr ""
 
-#: doc/reference/en/file.news.html:562(li)
+#: doc/reference/en/file.news.html:563(li)
 msgid ""
 "[#27195] test-unit-2.0.3 + ruby-1.9.1 cannot properly test DelegateClass "
 "subclasses [Mike Pomraning]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:567(li)
+#: doc/reference/en/file.news.html:568(li)
 msgid "Mike Pomraning"
 msgstr ""
 
-#: doc/reference/en/file.news.html:569(h2)
+#: doc/reference/en/file.news.html:570(h2)
 msgid "2.0.3 / 2009-07-19"
 msgstr ""
 
-#: doc/reference/en/file.news.html:571(li)
+#: doc/reference/en/file.news.html:572(li)
 msgid "6 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:572(li)
+#: doc/reference/en/file.news.html:573(li)
 msgid "add assert_predicate."
 msgstr ""
 
-#: doc/reference/en/file.news.html:573(li)
+#: doc/reference/en/file.news.html:574(li)
 msgid "add assert_not_predicate."
 msgstr ""
 
-#: doc/reference/en/file.news.html:574(li)
+#: doc/reference/en/file.news.html:575(li)
 msgid ""
 "[#24210] assert_kind_of supports an array of classes or modules. [Daniel "
 "Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:576(li)
+#: doc/reference/en/file.news.html:577(li)
 msgid "assert_instance_of supports an array of classes or modules."
 msgstr ""
 
-#: doc/reference/en/file.news.html:577(li)
+#: doc/reference/en/file.news.html:578(li)
 msgid "add —default-priority option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:578(li)
+#: doc/reference/en/file.news.html:579(li)
 msgid "[#26627] add —order option. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:582(li)
+#: doc/reference/en/file.news.html:583(li)
 msgid "use yellow foreground + black background for error."
 msgstr ""
 
-#: doc/reference/en/file.news.html:583(li)
+#: doc/reference/en/file.news.html:584(li)
 msgid "don’t show diff for long string."
 msgstr ""
 
-#: doc/reference/en/file.news.html:584(span)
+#: doc/reference/en/file.news.html:585(span)
 #: doc/reference/en/Test/Unit/ColorScheme.html:618(span)
 msgid "TERM"
 msgstr ""
 
-#: doc/reference/en/file.news.html:584(li)
+#: doc/reference/en/file.news.html:585(li)
 msgid ""
 "accept “*term-color” <placeholder-1/> environment as colorizable terminal. "
 "(e.g. Apple’s Terminal)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:586(li)
+#: doc/reference/en/file.news.html:587(li)
 msgid "[#26268] add a workaround for test-spec’s after_all. [Angelo Lakra]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:590(li)
+#: doc/reference/en/file.news.html:591(li)
 msgid "[#23586] re-support ruby 1.9.1. [Diego Pettenò]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:594(li)
+#: doc/reference/en/file.news.html:595(li)
 msgid "Diego Pettenò"
 msgstr ""
 
-#: doc/reference/en/file.news.html:596(li)
+#: doc/reference/en/file.news.html:597(li)
 msgid "Angelo Lakra"
 msgstr ""
 
-#: doc/reference/en/file.news.html:598(h2)
+#: doc/reference/en/file.news.html:599(h2)
 msgid "2.0.2 / 2008-12-21"
 msgstr ""
 
-#: doc/reference/en/file.news.html:600(li)
+#: doc/reference/en/file.news.html:601(li)
 msgid "2 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:603(li)
+#: doc/reference/en/file.news.html:604(li)
 msgid "re-support ruby 1.8.5."
 msgstr ""
 
-#: doc/reference/en/file.news.html:604(li)
+#: doc/reference/en/file.news.html:605(li)
 msgid "improve exception object comparison."
 msgstr ""
 
-#: doc/reference/en/file.news.html:607(li)
+#: doc/reference/en/file.news.html:608(li)
 msgid "3 bug fixes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:610(li)
+#: doc/reference/en/file.news.html:611(li)
 msgid "[#22723]: collector fails on anonymous classes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:611(li)
+#: doc/reference/en/file.news.html:612(li)
 msgid "[#22986]: Test names with ‘?’ blow up on Windows"
 msgstr ""
 
-#: doc/reference/en/file.news.html:612(li)
+#: doc/reference/en/file.news.html:613(li)
 msgid "[#22988]: don’t create .test-result on non-priority mode."
 msgstr ""
 
-#: doc/reference/en/file.news.html:620(li)
+#: doc/reference/en/file.news.html:621(li)
 msgid "Bill Lear"
 msgstr ""
 
-#: doc/reference/en/file.news.html:622(h2)
+#: doc/reference/en/file.news.html:623(h2)
 msgid "2.0.1 / 2008-11-09"
 msgstr ""
 
-#: doc/reference/en/file.news.html:624(li)
+#: doc/reference/en/file.news.html:625(li)
 msgid "19 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:627(li)
+#: doc/reference/en/file.news.html:628(li)
 msgid "support ruby 1.9.1."
 msgstr ""
 
-#: doc/reference/en/file.news.html:628(li)
+#: doc/reference/en/file.news.html:629(li)
 msgid "add run_test method to be extensible."
 msgstr ""
 
-#: doc/reference/en/file.news.html:629(li)
+#: doc/reference/en/file.news.html:630(li)
 msgid "improve priority-mode auto off."
 msgstr ""
 
-#: doc/reference/en/file.news.html:630(li)
+#: doc/reference/en/file.news.html:631(li)
 msgid "improve startup/shutdown RDoc. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:631(li)
+#: doc/reference/en/file.news.html:632(li)
 msgid "add assert_compare. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:632(li)
+#: doc/reference/en/file.news.html:633(li)
 msgid "add assert_fail_assertion. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:633(li)
+#: doc/reference/en/file.news.html:634(li)
 msgid "add assert_raise_message. [#20851] [Designing Patterns]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:634(li)
+#: doc/reference/en/file.news.html:635(li)
 msgid "support folded diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:635(li)
+#: doc/reference/en/file.news.html:636(li)
 msgid "add assert_raise_kind_of. [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:636(li)
+#: doc/reference/en/file.news.html:637(li)
 msgid "ingore inherited test for nested test case."
 msgstr ""
 
-#: doc/reference/en/file.news.html:637(li)
+#: doc/reference/en/file.news.html:638(li)
 msgid "add assert_const_defined."
 msgstr ""
 
-#: doc/reference/en/file.news.html:638(li)
+#: doc/reference/en/file.news.html:639(li)
 msgid "add assert_not_const_defined."
 msgstr ""
 
-#: doc/reference/en/file.news.html:639(li)
+#: doc/reference/en/file.news.html:640(li)
 msgid "support assert_raise with an exception object."
 msgstr ""
 
-#: doc/reference/en/file.news.html:640(li)
+#: doc/reference/en/file.news.html:641(li)
 msgid ""
 "support assert_raise with no arguments that asserts any exception is raised. "
 "[#22602] [Daniel Berger]"
 msgstr ""
 
-#: doc/reference/en/file.news.html:642(li)
+#: doc/reference/en/file.news.html:643(li)
 msgid "support folded dot progress."
 msgstr ""
 
-#: doc/reference/en/file.news.html:643(li)
+#: doc/reference/en/file.news.html:644(li)
 msgid "add —progress-row-max option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:644(li)
+#: doc/reference/en/file.news.html:645(li)
 msgid "support color scheme customize."
 msgstr ""
 
-#: doc/reference/en/file.news.html:645(span)
+#: doc/reference/en/file.news.html:646(span)
 #: doc/reference/en/Test/Unit/AutoRunner.html:2184(span)
 msgid "YAML"
 msgstr ""
 
-#: doc/reference/en/file.news.html:645(li)
+#: doc/reference/en/file.news.html:646(li)
 msgid "support configuration file. (<placeholder-1/>)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:646(span)
+#: doc/reference/en/file.news.html:647(span)
 msgid "XXX"
 msgstr ""
 
-#: doc/reference/en/file.news.html:646(li)
+#: doc/reference/en/file.news.html:647(li)
 msgid ""
 "recognize test-<placeholder-1/>.rb files as test files not only test_XXX.rb"
 msgstr ""
 
-#: doc/reference/en/file.news.html:653(li)
+#: doc/reference/en/file.news.html:654(li)
 msgid "Designing Patterns"
 msgstr ""
 
-#: doc/reference/en/file.news.html:655(h2)
+#: doc/reference/en/file.news.html:656(h2)
 msgid "2.0.0 / 2008-06-18"
 msgstr ""
 
-#: doc/reference/en/file.news.html:657(li)
+#: doc/reference/en/file.news.html:658(li)
 msgid "15 major enhancements"
 msgstr ""
 
-#: doc/reference/en/file.news.html:660(li)
+#: doc/reference/en/file.news.html:661(li)
 msgid "support startup/shutdown. (test case level setup/teardown)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:661(li)
+#: doc/reference/en/file.news.html:662(li)
 msgid "support multiple setup/teardown."
 msgstr ""
 
-#: doc/reference/en/file.news.html:662(li)
+#: doc/reference/en/file.news.html:663(li)
 msgid "support pending."
 msgstr ""
 
-#: doc/reference/en/file.news.html:663(li)
+#: doc/reference/en/file.news.html:664(li)
 msgid "support omission."
 msgstr ""
 
-#: doc/reference/en/file.news.html:664(li)
+#: doc/reference/en/file.news.html:665(li)
 msgid "support notification."
 msgstr ""
 
-#: doc/reference/en/file.news.html:665(li)
+#: doc/reference/en/file.news.html:666(li)
 msgid "support colorize."
 msgstr ""
 
-#: doc/reference/en/file.news.html:666(li)
+#: doc/reference/en/file.news.html:667(li)
 msgid "support diff."
 msgstr ""
 
-#: doc/reference/en/file.news.html:667(li)
+#: doc/reference/en/file.news.html:668(li)
 msgid "support test attribute."
 msgstr ""
 
-#: doc/reference/en/file.news.html:668(li)
+#: doc/reference/en/file.news.html:669(li)
 msgid "add assert_boolean."
 msgstr ""
 
-#: doc/reference/en/file.news.html:669(li)
+#: doc/reference/en/file.news.html:670(li)
 msgid "add assert_true."
 msgstr ""
 
-#: doc/reference/en/file.news.html:670(li)
+#: doc/reference/en/file.news.html:671(li)
 msgid "add assert_false."
 msgstr ""
 
-#: doc/reference/en/file.news.html:671(li)
+#: doc/reference/en/file.news.html:672(li)
 msgid "add —priority-mode option."
 msgstr ""
 
-#: doc/reference/en/file.news.html:672(li)
+#: doc/reference/en/file.news.html:673(li)
 msgid "don’t use ObjectSpace to collect test cases."
 msgstr ""
 
-#: doc/reference/en/file.news.html:673(li)
+#: doc/reference/en/file.news.html:674(li)
 msgid ""
 "make more customizable. (additional options, exception handling and so on)"
 msgstr ""
 
-#: doc/reference/en/file.news.html:674(li)
+#: doc/reference/en/file.news.html:675(li)
 msgid "improve Emacs integration."
 msgstr ""
 
-#: doc/reference/en/file.news.html:677(li)
+#: doc/reference/en/file.news.html:678(li)
 msgid "4 major changes"
 msgstr ""
 
-#: doc/reference/en/file.news.html:680(li)
+#: doc/reference/en/file.news.html:681(li)
 msgid "remove GTK+1 support."
 msgstr ""
 
-#: doc/reference/en/file.news.html:681(li)
+#: doc/reference/en/file.news.html:682(li)
 msgid "split GTK+ runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:682(span)
+#: doc/reference/en/file.news.html:683(span)
 msgid "FOX"
 msgstr ""
 
-#: doc/reference/en/file.news.html:682(li)
+#: doc/reference/en/file.news.html:683(li)
 msgid "split <placeholder-1/> runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:683(li)
+#: doc/reference/en/file.news.html:684(li)
 msgid "split Tk runner as another gem."
 msgstr ""
 
-#: doc/reference/en/file.news.html:685(h2)
+#: doc/reference/en/file.news.html:686(h2)
 msgid "1.2.3 / 2008-02-25"
 msgstr ""
 
-#: doc/reference/en/file.news.html:687(li)
+#: doc/reference/en/file.news.html:688(li)
 msgid "1 major enhancement"
 msgstr ""
 
-#: doc/reference/en/file.news.html:690(li)
+#: doc/reference/en/file.news.html:691(li)
 msgid "Birthday (as a gem)!"
 msgstr ""
 
@@ -12131,170 +12135,170 @@ msgid ""
 "<placeholder-1/>\n"
 "<placeholder-2/>\n"
 "<placeholder-3/>\n"
-"<ul><placeholder-4/>\n"
-"\t<placeholder-5/>\n"
-"\t<placeholder-6/></ul>\n"
-"<placeholder-7/>\n"
-"<ul><placeholder-8/>\n"
-"\t<placeholder-9/>\n"
-"\t<placeholder-10/></ul>\n"
-"<placeholder-11/>\n"
-"<ul><placeholder-12/>\n"
-"\t<placeholder-13/>\n"
+"<placeholder-4/>\n"
+"<ul><placeholder-5/>\n"
+"\t<placeholder-6/>\n"
+"\t<placeholder-7/></ul>\n"
+"<placeholder-8/>\n"
+"<ul><placeholder-9/>\n"
+"\t<placeholder-10/>\n"
+"\t<placeholder-11/></ul>\n"
+"<placeholder-12/>\n"
+"<ul><placeholder-13/>\n"
 "\t<placeholder-14/>\n"
-"\t<placeholder-15/></ul>\n"
-"<placeholder-16/>\n"
+"\t<placeholder-15/>\n"
+"\t<placeholder-16/></ul>\n"
 "<placeholder-17/>\n"
 "<placeholder-18/>\n"
-"<ul><placeholder-19/>\n"
-"\t<placeholder-20/>\n"
+"<placeholder-19/>\n"
+"<ul><placeholder-20/>\n"
 "\t<placeholder-21/>\n"
 "\t<placeholder-22/>\n"
 "\t<placeholder-23/>\n"
 "\t<placeholder-24/>\n"
 "\t<placeholder-25/>\n"
 "\t<placeholder-26/>\n"
-"\t<placeholder-27/></ul>\n"
-"<placeholder-28/>\n"
-"<ul><placeholder-29/>\n"
-"\t<placeholder-30/>\n"
-"\t<placeholder-31/></ul>\n"
-"<placeholder-32/>\n"
+"\t<placeholder-27/>\n"
+"\t<placeholder-28/></ul>\n"
+"<placeholder-29/>\n"
+"<ul><placeholder-30/>\n"
+"\t<placeholder-31/>\n"
+"\t<placeholder-32/></ul>\n"
 "<placeholder-33/>\n"
 "<placeholder-34/>\n"
-"<ul><placeholder-35/>\n"
-"\t<placeholder-36/>\n"
-"\t<placeholder-37/></ul>\n"
-"<placeholder-38/>\n"
-"<ul><placeholder-39/>\n"
-"\t<placeholder-40/></ul>\n"
-"<placeholder-41/>\n"
-"<ul><placeholder-42/>\n"
-"\t<placeholder-43/>\n"
+"<placeholder-35/>\n"
+"<ul><placeholder-36/>\n"
+"\t<placeholder-37/>\n"
+"\t<placeholder-38/></ul>\n"
+"<placeholder-39/>\n"
+"<ul><placeholder-40/>\n"
+"\t<placeholder-41/></ul>\n"
+"<placeholder-42/>\n"
+"<ul><placeholder-43/>\n"
 "\t<placeholder-44/>\n"
-"\t<placeholder-45/></ul>\n"
-"<placeholder-46/>\n"
+"\t<placeholder-45/>\n"
+"\t<placeholder-46/></ul>\n"
 "<placeholder-47/>\n"
 "<placeholder-48/>\n"
-"<ul><placeholder-49/></ul>\n"
-"<placeholder-50/>\n"
-"<ul><placeholder-51/></ul>\n"
-"<placeholder-52/>\n"
+"<placeholder-49/>\n"
+"<ul><placeholder-50/></ul>\n"
+"<placeholder-51/>\n"
+"<ul><placeholder-52/></ul>\n"
 "<placeholder-53/>\n"
 "<placeholder-54/>\n"
-"<ul><placeholder-55/>\n"
-"\t<placeholder-56/>\n"
+"<placeholder-55/>\n"
+"<ul><placeholder-56/>\n"
 "\t<placeholder-57/>\n"
 "\t<placeholder-58/>\n"
 "\t<placeholder-59/>\n"
-"\t<placeholder-60/></ul>\n"
-"<placeholder-61/>\n"
-"<ul><placeholder-62/>\n"
-"\t<placeholder-63/>\n"
-"\t<placeholder-64/></ul>\n"
-"<placeholder-65/>\n"
-"<ul><placeholder-66/>\n"
-"\t<placeholder-67/>\n"
-"\t<placeholder-68/></ul>\n"
-"<placeholder-69/>\n"
+"\t<placeholder-60/>\n"
+"\t<placeholder-61/></ul>\n"
+"<placeholder-62/>\n"
+"<ul><placeholder-63/>\n"
+"\t<placeholder-64/>\n"
+"\t<placeholder-65/></ul>\n"
+"<placeholder-66/>\n"
+"<ul><placeholder-67/>\n"
+"\t<placeholder-68/>\n"
+"\t<placeholder-69/></ul>\n"
 "<placeholder-70/>\n"
 "<placeholder-71/>\n"
-"<ul><placeholder-72/>\n"
-"\t<placeholder-73/></ul>\n"
-"<placeholder-74/>\n"
-"<ul><placeholder-75/></ul>\n"
-"<placeholder-76/>\n"
-"<ul><placeholder-77/>\n"
-"\t<placeholder-78/>\n"
-"\t<placeholder-79/></ul>\n"
-"<placeholder-80/>\n"
+"<placeholder-72/>\n"
+"<ul><placeholder-73/>\n"
+"\t<placeholder-74/></ul>\n"
+"<placeholder-75/>\n"
+"<ul><placeholder-76/></ul>\n"
+"<placeholder-77/>\n"
+"<ul><placeholder-78/>\n"
+"\t<placeholder-79/>\n"
+"\t<placeholder-80/></ul>\n"
 "<placeholder-81/>\n"
 "<placeholder-82/>\n"
-"<ul><placeholder-83/></ul>\n"
-"<placeholder-84/>\n"
+"<placeholder-83/>\n"
+"<ul><placeholder-84/></ul>\n"
 "<placeholder-85/>\n"
 "<placeholder-86/>\n"
-"<ul><placeholder-87/>\n"
-"\t<placeholder-88/></ul>\n"
-"<placeholder-89/>\n"
+"<placeholder-87/>\n"
+"<ul><placeholder-88/>\n"
+"\t<placeholder-89/></ul>\n"
 "<placeholder-90/>\n"
 "<placeholder-91/>\n"
-"<ul><placeholder-92/>\n"
-"\t<placeholder-93/></ul>\n"
-"<placeholder-94/>\n"
+"<placeholder-92/>\n"
+"<ul><placeholder-93/>\n"
+"\t<placeholder-94/></ul>\n"
 "<placeholder-95/>\n"
 "<placeholder-96/>\n"
-"<ul><placeholder-97/>\n"
-"\t<placeholder-98/>\n"
+"<placeholder-97/>\n"
+"<ul><placeholder-98/>\n"
 "\t<placeholder-99/>\n"
 "\t<placeholder-100/>\n"
-"\t<placeholder-101/></ul>\n"
-"<placeholder-102/>\n"
-"<ul><placeholder-103/>\n"
-"\t<placeholder-104/></ul>\n"
-"<placeholder-105/>\n"
+"\t<placeholder-101/>\n"
+"\t<placeholder-102/></ul>\n"
+"<placeholder-103/>\n"
+"<ul><placeholder-104/>\n"
+"\t<placeholder-105/></ul>\n"
 "<placeholder-106/>\n"
-"<ul><placeholder-107/>\n"
-"\t<placeholder-108/></ul>\n"
-"<placeholder-109/>\n"
-"<ul><placeholder-110/></ul>\n"
-"<placeholder-111/>\n"
+"<placeholder-107/>\n"
+"<ul><placeholder-108/>\n"
+"\t<placeholder-109/></ul>\n"
+"<placeholder-110/>\n"
+"<ul><placeholder-111/></ul>\n"
 "<placeholder-112/>\n"
-"<ul><placeholder-113/></ul>\n"
-"<placeholder-114/>\n"
+"<placeholder-113/>\n"
+"<ul><placeholder-114/></ul>\n"
 "<placeholder-115/>\n"
-"<ul><placeholder-116/></ul>\n"
-"<placeholder-117/>\n"
-"<ul><placeholder-118/>\n"
-"\t<placeholder-119/></ul>\n"
-"<placeholder-120/>\n"
-"<ul><placeholder-121/>\n"
-"\t<placeholder-122/></ul>\n"
-"<placeholder-123/>\n"
+"<placeholder-116/>\n"
+"<ul><placeholder-117/></ul>\n"
+"<placeholder-118/>\n"
+"<ul><placeholder-119/>\n"
+"\t<placeholder-120/></ul>\n"
+"<placeholder-121/>\n"
+"<ul><placeholder-122/>\n"
+"\t<placeholder-123/></ul>\n"
 "<placeholder-124/>\n"
-"<ul><placeholder-125/>\n"
-"\t<placeholder-126/>\n"
+"<placeholder-125/>\n"
+"<ul><placeholder-126/>\n"
 "\t<placeholder-127/>\n"
 "\t<placeholder-128/>\n"
 "\t<placeholder-129/>\n"
-"\t<placeholder-130/></ul>\n"
-"<placeholder-131/>\n"
-"<ul><placeholder-132/>\n"
-"\t<placeholder-133/>\n"
+"\t<placeholder-130/>\n"
+"\t<placeholder-131/></ul>\n"
+"<placeholder-132/>\n"
+"<ul><placeholder-133/>\n"
 "\t<placeholder-134/>\n"
-"\t<placeholder-135/></ul>\n"
-"<placeholder-136/>\n"
-"<ul><placeholder-137/>\n"
-"\t<placeholder-138/>\n"
-"\t<placeholder-139/></ul>\n"
-"<placeholder-140/>\n"
+"\t<placeholder-135/>\n"
+"\t<placeholder-136/></ul>\n"
+"<placeholder-137/>\n"
+"<ul><placeholder-138/>\n"
+"\t<placeholder-139/>\n"
+"\t<placeholder-140/></ul>\n"
 "<placeholder-141/>\n"
 "<placeholder-142/>\n"
-"<ul><placeholder-143/></ul>\n"
-"<placeholder-144/>\n"
-"<ul><placeholder-145/>\n"
-"\t<placeholder-146/></ul>\n"
-"<placeholder-147/>\n"
-"<ul><placeholder-148/></ul>\n"
-"<placeholder-149/>\n"
+"<placeholder-143/>\n"
+"<ul><placeholder-144/></ul>\n"
+"<placeholder-145/>\n"
+"<ul><placeholder-146/>\n"
+"\t<placeholder-147/></ul>\n"
+"<placeholder-148/>\n"
+"<ul><placeholder-149/></ul>\n"
 "<placeholder-150/>\n"
 "<placeholder-151/>\n"
-"<ul><placeholder-152/>\n"
-"\t<placeholder-153/>\n"
+"<placeholder-152/>\n"
+"<ul><placeholder-153/>\n"
 "\t<placeholder-154/>\n"
 "\t<placeholder-155/>\n"
 "\t<placeholder-156/>\n"
-"\t<placeholder-157/></ul>\n"
-"<placeholder-158/>\n"
-"<ul><placeholder-159/>\n"
-"\t<placeholder-160/></ul>\n"
-"<placeholder-161/>\n"
-"<ul><placeholder-162/>\n"
-"\t<placeholder-163/>\n"
-"\t<placeholder-164/></ul>\n"
-"<placeholder-165/>\n"
-"<ul><placeholder-166/>\n"
-"\t<placeholder-167/>\n"
+"\t<placeholder-157/>\n"
+"\t<placeholder-158/></ul>\n"
+"<placeholder-159/>\n"
+"<ul><placeholder-160/>\n"
+"\t<placeholder-161/></ul>\n"
+"<placeholder-162/>\n"
+"<ul><placeholder-163/>\n"
+"\t<placeholder-164/>\n"
+"\t<placeholder-165/></ul>\n"
+"<placeholder-166/>\n"
+"<ul><placeholder-167/>\n"
 "\t<placeholder-168/>\n"
 "\t<placeholder-169/>\n"
 "\t<placeholder-170/>\n"
@@ -12306,13 +12310,13 @@ msgid ""
 "\t<placeholder-176/>\n"
 "\t<placeholder-177/>\n"
 "\t<placeholder-178/>\n"
-"\t<placeholder-179/></ul>\n"
-"<ul><placeholder-180/>\n"
-"\t<placeholder-181/>\n"
-"\t<placeholder-182/></ul>\n"
-"<placeholder-183/>\n"
-"<ul><placeholder-184/>\n"
-"\t<placeholder-185/>\n"
+"\t<placeholder-179/>\n"
+"\t<placeholder-180/></ul>\n"
+"<ul><placeholder-181/>\n"
+"\t<placeholder-182/>\n"
+"\t<placeholder-183/></ul>\n"
+"<placeholder-184/>\n"
+"<ul><placeholder-185/>\n"
 "\t<placeholder-186/>\n"
 "\t<placeholder-187/>\n"
 "\t<placeholder-188/>\n"
@@ -12333,121 +12337,121 @@ msgid ""
 "\t<placeholder-203/>\n"
 "\t<placeholder-204/>\n"
 "\t<placeholder-205/>\n"
-"\t<placeholder-206/></ul>\n"
-"<ul><placeholder-207/>\n"
-"\t<placeholder-208/>\n"
-"\t<placeholder-209/></ul>\n"
-"<placeholder-210/>\n"
-"<ul><placeholder-211/>\n"
-"\t<placeholder-212/></ul>\n"
-"<placeholder-213/>\n"
-"<ul><placeholder-214/>\n"
-"\t<placeholder-215/></ul>\n"
-"<ul><placeholder-216/>\n"
-"\t<placeholder-217/></ul>\n"
-"<placeholder-218/>\n"
-"<ul><placeholder-219/>\n"
-"\t<placeholder-220/></ul>\n"
-"<ul><placeholder-221/>\n"
-"\t<placeholder-222/></ul>\n"
-"<placeholder-223/>\n"
-"<ul><placeholder-224/>\n"
-"\t<placeholder-225/>\n"
+"\t<placeholder-206/>\n"
+"\t<placeholder-207/></ul>\n"
+"<ul><placeholder-208/>\n"
+"\t<placeholder-209/>\n"
+"\t<placeholder-210/></ul>\n"
+"<placeholder-211/>\n"
+"<ul><placeholder-212/>\n"
+"\t<placeholder-213/></ul>\n"
+"<placeholder-214/>\n"
+"<ul><placeholder-215/>\n"
+"\t<placeholder-216/></ul>\n"
+"<ul><placeholder-217/>\n"
+"\t<placeholder-218/></ul>\n"
+"<placeholder-219/>\n"
+"<ul><placeholder-220/>\n"
+"\t<placeholder-221/></ul>\n"
+"<ul><placeholder-222/>\n"
+"\t<placeholder-223/></ul>\n"
+"<placeholder-224/>\n"
+"<ul><placeholder-225/>\n"
 "\t<placeholder-226/>\n"
 "\t<placeholder-227/>\n"
 "\t<placeholder-228/>\n"
 "\t<placeholder-229/>\n"
 "\t<placeholder-230/>\n"
-"\t<placeholder-231/></ul>\n"
-"<ul><placeholder-232/>\n"
-"\t<placeholder-233/>\n"
-"\t<placeholder-234/></ul>\n"
-"<ul><placeholder-235/>\n"
-"\t<placeholder-236/>\n"
-"\t<placeholder-237/></ul>\n"
-"<placeholder-238/>\n"
-"<ul><placeholder-239/>\n"
-"\t<placeholder-240/>\n"
+"\t<placeholder-231/>\n"
+"\t<placeholder-232/></ul>\n"
+"<ul><placeholder-233/>\n"
+"\t<placeholder-234/>\n"
+"\t<placeholder-235/></ul>\n"
+"<ul><placeholder-236/>\n"
+"\t<placeholder-237/>\n"
+"\t<placeholder-238/></ul>\n"
+"<placeholder-239/>\n"
+"<ul><placeholder-240/>\n"
 "\t<placeholder-241/>\n"
 "\t<placeholder-242/>\n"
-"\t<placeholder-243/></ul>\n"
-"<ul><placeholder-244/>\n"
-"\t<placeholder-245/>\n"
-"\t<placeholder-246/></ul>\n"
-"<ul><placeholder-247/>\n"
-"\t<placeholder-248/>\n"
-"\t<placeholder-249/></ul>\n"
-"<ul><placeholder-250/>\n"
-"\t<placeholder-251/>\n"
+"\t<placeholder-243/>\n"
+"\t<placeholder-244/></ul>\n"
+"<ul><placeholder-245/>\n"
+"\t<placeholder-246/>\n"
+"\t<placeholder-247/></ul>\n"
+"<ul><placeholder-248/>\n"
+"\t<placeholder-249/>\n"
+"\t<placeholder-250/></ul>\n"
+"<ul><placeholder-251/>\n"
 "\t<placeholder-252/>\n"
 "\t<placeholder-253/>\n"
-"\t<placeholder-254/></ul>\n"
-"<placeholder-255/>\n"
-"<ul><placeholder-256/>\n"
-"\t<placeholder-257/></ul> test “test description in natural language” do … "
-"end <ul><placeholder-258/>\n"
-"\t<placeholder-259/></ul>\n"
-"<ul><placeholder-260/>\n"
-"\t<placeholder-261/>\n"
-"\t<placeholder-262/></ul>\n"
-"<ul><placeholder-263/>\n"
-"\t<placeholder-264/>\n"
-"\t<placeholder-265/></ul>\n"
-"<placeholder-266/>\n"
-"<ul><placeholder-267/>\n"
-"\t<placeholder-268/></ul>\n"
-"<ul><placeholder-269/>\n"
-"\t<placeholder-270/></ul>\n"
-"<placeholder-271/>\n"
-"<ul><placeholder-272/>\n"
-"\t<placeholder-273/>\n"
+"\t<placeholder-254/>\n"
+"\t<placeholder-255/></ul>\n"
+"<placeholder-256/>\n"
+"<ul><placeholder-257/>\n"
+"\t<placeholder-258/></ul> test “test description in natural language” do … "
+"end <ul><placeholder-259/>\n"
+"\t<placeholder-260/></ul>\n"
+"<ul><placeholder-261/>\n"
+"\t<placeholder-262/>\n"
+"\t<placeholder-263/></ul>\n"
+"<ul><placeholder-264/>\n"
+"\t<placeholder-265/>\n"
+"\t<placeholder-266/></ul>\n"
+"<placeholder-267/>\n"
+"<ul><placeholder-268/>\n"
+"\t<placeholder-269/></ul>\n"
+"<ul><placeholder-270/>\n"
+"\t<placeholder-271/></ul>\n"
+"<placeholder-272/>\n"
+"<ul><placeholder-273/>\n"
 "\t<placeholder-274/>\n"
 "\t<placeholder-275/>\n"
-"\t<placeholder-276/></ul>\n"
-"<ul><placeholder-277/>\n"
-"\t<placeholder-278/>\n"
+"\t<placeholder-276/>\n"
+"\t<placeholder-277/></ul>\n"
+"<ul><placeholder-278/>\n"
 "\t<placeholder-279/>\n"
 "\t<placeholder-280/>\n"
-"\t<placeholder-281/></ul>\n"
-"<ul><placeholder-282/>\n"
-"\t<placeholder-283/></ul>\n"
-"<ul><placeholder-284/>\n"
-"\t<placeholder-285/></ul>\n"
-"<placeholder-286/>\n"
-"<ul><placeholder-287/>\n"
-"\t<placeholder-288/>\n"
+"\t<placeholder-281/>\n"
+"\t<placeholder-282/></ul>\n"
+"<ul><placeholder-283/>\n"
+"\t<placeholder-284/></ul>\n"
+"<ul><placeholder-285/>\n"
+"\t<placeholder-286/></ul>\n"
+"<placeholder-287/>\n"
+"<ul><placeholder-288/>\n"
 "\t<placeholder-289/>\n"
 "\t<placeholder-290/>\n"
 "\t<placeholder-291/>\n"
 "\t<placeholder-292/>\n"
-"\t<placeholder-293/></ul>\n"
-"<ul><placeholder-294/>\n"
-"\t<placeholder-295/>\n"
+"\t<placeholder-293/>\n"
+"\t<placeholder-294/></ul>\n"
+"<ul><placeholder-295/>\n"
 "\t<placeholder-296/>\n"
 "\t<placeholder-297/>\n"
-"\t<placeholder-298/></ul>\n"
-"<ul><placeholder-299/>\n"
-"\t<placeholder-300/></ul>\n"
-"<ul><placeholder-301/>\n"
-"\t<placeholder-302/>\n"
+"\t<placeholder-298/>\n"
+"\t<placeholder-299/></ul>\n"
+"<ul><placeholder-300/>\n"
+"\t<placeholder-301/></ul>\n"
+"<ul><placeholder-302/>\n"
 "\t<placeholder-303/>\n"
-"\t<placeholder-304/></ul>\n"
-"<placeholder-305/>\n"
-"<ul><placeholder-306/></ul>\n"
-"<ul><placeholder-307/>\n"
-"\t<placeholder-308/></ul>\n"
-"<ul><placeholder-309/></ul>\n"
-"<ul><placeholder-310/>\n"
-"\t<placeholder-311/>\n"
-"\t<placeholder-312/></ul>\n"
-"<ul><placeholder-313/></ul>\n"
-"<ul><placeholder-314/>\n"
-"\t<placeholder-315/>\n"
-"\t<placeholder-316/></ul>\n"
-"<placeholder-317/>\n"
-"<ul><placeholder-318/></ul>\n"
-"<ul><placeholder-319/>\n"
-"\t<placeholder-320/>\n"
+"\t<placeholder-304/>\n"
+"\t<placeholder-305/></ul>\n"
+"<placeholder-306/>\n"
+"<ul><placeholder-307/></ul>\n"
+"<ul><placeholder-308/>\n"
+"\t<placeholder-309/></ul>\n"
+"<ul><placeholder-310/></ul>\n"
+"<ul><placeholder-311/>\n"
+"\t<placeholder-312/>\n"
+"\t<placeholder-313/></ul>\n"
+"<ul><placeholder-314/></ul>\n"
+"<ul><placeholder-315/>\n"
+"\t<placeholder-316/>\n"
+"\t<placeholder-317/></ul>\n"
+"<placeholder-318/>\n"
+"<ul><placeholder-319/></ul>\n"
+"<ul><placeholder-320/>\n"
 "\t<placeholder-321/>\n"
 "\t<placeholder-322/>\n"
 "\t<placeholder-323/>\n"
@@ -12464,14 +12468,14 @@ msgid ""
 "\t<placeholder-334/>\n"
 "\t<placeholder-335/>\n"
 "\t<placeholder-336/>\n"
-"\t<placeholder-337/></ul>\n"
-"<ul><placeholder-338/></ul>\n"
-"<ul><placeholder-339/>\n"
-"\t<placeholder-340/></ul>\n"
-"<placeholder-341/>\n"
-"<ul><placeholder-342/></ul>\n"
-"<ul><placeholder-343/>\n"
-"\t<placeholder-344/>\n"
+"\t<placeholder-337/>\n"
+"\t<placeholder-338/></ul>\n"
+"<ul><placeholder-339/></ul>\n"
+"<ul><placeholder-340/>\n"
+"\t<placeholder-341/></ul>\n"
+"<placeholder-342/>\n"
+"<ul><placeholder-343/></ul>\n"
+"<ul><placeholder-344/>\n"
 "\t<placeholder-345/>\n"
 "\t<placeholder-346/>\n"
 "\t<placeholder-347/>\n"
@@ -12484,15 +12488,16 @@ msgid ""
 "\t<placeholder-354/>\n"
 "\t<placeholder-355/>\n"
 "\t<placeholder-356/>\n"
-"\t<placeholder-357/></ul>\n"
-"<ul><placeholder-358/></ul>\n"
-"<ul><placeholder-359/>\n"
-"\t<placeholder-360/>\n"
+"\t<placeholder-357/>\n"
+"\t<placeholder-358/></ul>\n"
+"<ul><placeholder-359/></ul>\n"
+"<ul><placeholder-360/>\n"
 "\t<placeholder-361/>\n"
-"\t<placeholder-362/></ul>\n"
-"<placeholder-363/>\n"
-"<ul><placeholder-364/></ul>\n"
-"<ul><placeholder-365/></ul>"
+"\t<placeholder-362/>\n"
+"\t<placeholder-363/></ul>\n"
+"<placeholder-364/>\n"
+"<ul><placeholder-365/></ul>\n"
+"<ul><placeholder-366/></ul>"
 msgstr ""
 
 #: doc/reference/en/file.how-to.html:6(title)
