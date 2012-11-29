@@ -14,6 +14,10 @@ task :default => :test
 base_dir = File.dirname(__FILE__)
 
 helper = Bundler::GemHelper.new(base_dir)
+def helper.version_tag
+  version
+end
+
 helper.install
 spec = helper.gemspec
 
