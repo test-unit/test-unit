@@ -28,8 +28,8 @@ module Test
 
         # TODO: WRITE ME.
         def load_data(file_name)
-          case file_name
-          when /\.csv/i
+          case File.extname(file_name).downcase
+          when ".csv"
             loader = CSVDataLoader.new(self)
             loader.load(file_name)
           else
