@@ -190,7 +190,7 @@ class TestData < Test::Unit::TestCase
   end
 
   class TestLoadData < Test::Unit::TestCase
-    def test_load_data_with_invalid_csv_file_name
+    def test_invalid_csv_file_name
       file_name = "hoge.csvv"
       assert_raise(ArgumentError, "unsupported file format: <#{file_name}>") do
         TestLoadData.load_data(file_name)
