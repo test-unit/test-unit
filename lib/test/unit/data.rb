@@ -13,6 +13,7 @@ module Test
           n_arguments = arguments.size
           case n_arguments
           when 0
+            raise ArgumentError, "no block is given" unless block_given?
             data_set = block
           when 1
             data_set = arguments[0]

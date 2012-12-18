@@ -83,6 +83,12 @@ class TestData < Test::Unit::TestCase
     TestCalc.testing = false
   end
 
+  def test_data_no_arguments_without_block
+    assert_raise(ArgumentError) do
+      self.class.data
+    end
+  end
+
   data("data set",
        {
          :test_case => TestCalc::TestDataSet,
