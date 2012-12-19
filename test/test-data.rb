@@ -191,7 +191,7 @@ class TestData < Test::Unit::TestCase
        "false"   => {:expected => false,   :target => "false"},
        "integer" => {:expected => 1,       :target => "1"},
        "float"   => {:expected => 1.5,     :target => "1.5"},
-       "string"  => {:expected => "hello", :target => "hello"},)
+       "string"  => {:expected => "hello", :target => "hello"})
   def test_normalize_value(data)
     loader = Test::Unit::Data::ClassMethods::CSVDataLoader.new(self)
     assert_equal(data[:expected], loader.__send__(:normalize_value, data[:target]))
