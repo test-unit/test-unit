@@ -70,7 +70,23 @@ module Test
           attribute(:data, current_data + [data_set])
         end
 
-        # TODO: WRITE ME.
+        # This method provides Data-Driven-Test functionality.
+        #
+        # Load test data from the file. This is short hand to load
+        # test data from file.  If you want to load complex file, you
+        # can use {#data} with block.
+        #
+        # @param [String] file_name full path to test data file.
+        #   File format is automatically detected from filename extension.
+        # @raise [ArgumentError] if +file_name+ is not supported file format.
+        # @see CSVDataLoader
+        #
+        # @example Load data from CSV file
+        #   load_data("/path/to/test-data.csv")
+        #   def test_empty?(data)
+        #     assert_equal(data["expected"], data["target"].empty?)
+        #   end
+        #
         def load_data(file_name)
           case File.extname(file_name).downcase
           when ".csv"
