@@ -24,11 +24,11 @@ module Test
         #       assert_equal(expected, target.empty?)
         #     end
         #
-        # @overload data(hash)
-        #   @param [Hash] hash specify test data as a Hash that
+        # @overload data(data_set)
+        #   @param [Hash] data_set specify test data as a Hash that
         #     key is test label and value is test data.
         #
-        #   @example data(hash)
+        #   @example data(data_set)
         #     data("empty string" => [true, ""],
         #          "plain string" => [false, "hello"])
         #     def test_empty?(data)
@@ -37,7 +37,7 @@ module Test
         #     end
         #
         # @overload data(&block)
-        #   @yieldreturn [Hash] return test data as a Hash that
+        #   @yieldreturn [Hash] return test data set as a Hash that
         #     key is test label and value is test data.
         #
         #   @example data(&block)
