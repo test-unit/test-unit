@@ -111,15 +111,15 @@ module Test
           def normalize_value(value)
             return true if value == "true"
             return false if value == "false"
-          begin
-            Integer(value)
-          rescue ArgumentError
             begin
-              Float(value)
+              Integer(value)
             rescue ArgumentError
-              value
+              begin
+                Float(value)
+              rescue ArgumentError
+                value
+              end
             end
-          end
           end
         end
       end
