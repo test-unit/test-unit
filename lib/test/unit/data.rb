@@ -90,17 +90,23 @@ module Test
             require 'csv'
             header = nil
             CSV.foreach(file_name) do |row|
-              if header.nil?
-                header = row
-                next
-              end
+              header = row if header.nil?
               label = nil
-              data = {}
-              header.each_with_index do |key, i|
-                if key == "label"
-                  label = row[i]
-                else
-                  data[key] = normalize_value(row[i])
+
+              if header.first == "label"
+                next if header == row
+                data = {}
+                header.each_with_index do |key, i|
+                  if key == "label"
+                    label = row[i]
+                  else
+                    data[key] = normalize_value(row[i])
+                  end
+                end
+              else
+                label = row.shift
+                data = row.collect do |cell|
+                  normalize_value(cell)
                 end
               end
               @test_case.data(label, data)
