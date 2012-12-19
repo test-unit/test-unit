@@ -224,5 +224,16 @@ class TestData < Test::Unit::TestCase
                    ],
                    self.class.current_attribute(:data)[:value])
     end
+
+    def test_csv_file_without_header
+      base_dir = File.dirname(__FILE__)
+      file_name = File.join(base_dir, "fixtures", "no-header.csv")
+      self.class.load_data(file_name)
+      assert_equal([
+                    {"empty string" => [true, ""]},
+                    {"plain string" => [false, "hello"]}
+                   ],
+                   self.class.current_attribute(:data)[:value])
+    end
   end
 end
