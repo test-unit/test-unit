@@ -231,8 +231,8 @@ class TestData < Test::Unit::TestCase
         file_name = File.join(base_dir, "fixtures", "no-header.csv")
         self.class.load_data(file_name)
         assert_equal([
-                      {"empty string" => [true, ""]},
-                      {"plain string" => [false, "hello"]}
+                       {"empty string" => [true, ""]},
+                       {"plain string" => [false, "hello"]}
                      ],
                      self.class.current_attribute(:data)[:value])
       end
