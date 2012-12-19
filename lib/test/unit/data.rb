@@ -111,6 +111,7 @@ module Test
           def normalize_value(value)
             return true if value == "true"
             return false if value == "false"
+          begin
             Integer(value)
           rescue ArgumentError
             begin
@@ -118,6 +119,7 @@ module Test
             rescue ArgumentError
               value
             end
+          end
           end
         end
       end
