@@ -152,10 +152,10 @@ class TestData < Test::Unit::TestCase
     assert_not_nil(data[:data_set])
   end
 
-  data("data set" => TestCalc::TestDataSet,
-       "n-data" => TestCalc::TestNData,
+  data("data set"         => TestCalc::TestDataSet,
+       "n-data"           => TestCalc::TestNData,
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
-       "load-data-set" => TestCalc::TestLoadDataSet)
+       "load-data-set"    => TestCalc::TestLoadDataSet)
   def test_suite(test_case)
     suite = test_case.suite
     assert_equal(["test_plus[positive negative](#{test_case.name})",
@@ -163,20 +163,20 @@ class TestData < Test::Unit::TestCase
                  suite.tests.collect {|test| test.name}.sort)
   end
 
-  data("data set" => TestCalc::TestDataSet,
-       "n-data" => TestCalc::TestNData,
+  data("data set"         => TestCalc::TestDataSet,
+       "n-data"           => TestCalc::TestNData,
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
-       "load-data-set" => TestCalc::TestLoadDataSet)
+       "load-data-set"    => TestCalc::TestLoadDataSet)
   def test_run(test_case)
     result = _run_test(test_case)
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
   end
 
-  data("data set" => TestCalc::TestDataSet,
-       "n-data" => TestCalc::TestNData,
+  data("data set"         => TestCalc::TestDataSet,
+       "n-data"           => TestCalc::TestNData,
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
-       "load-data-set" => TestCalc::TestLoadDataSet)
+       "load-data-set"    => TestCalc::TestLoadDataSet)
   def test_equal(test_case)
     suite = test_case.suite
     positive_positive_test = suite.tests.find do |test|
