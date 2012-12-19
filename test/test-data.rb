@@ -220,8 +220,8 @@ class TestData < Test::Unit::TestCase
         file_name = File.join(base_dir, "fixtures", "header.csv")
         self.class.load_data(file_name)
         assert_equal([
-                        {"empty string" => {"expected" => true, "target" => ""}},
-                        {"plain string" => {"expected" => false, "target" => "hello"}}
+                       {"empty string" => {"expected" => true, "target" => ""}},
+                       {"plain string" => {"expected" => false, "target" => "hello"}}
                      ],
                      self.class.current_attribute(:data)[:value])
       end
