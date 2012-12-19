@@ -13,44 +13,44 @@ module Test
         # Define test data in the test code.
         #
         # @overload data(label, data)
-        # @param [String] label specify test case name.
-        # @param data specify test data.
+        #   @param [String] label specify test case name.
+        #   @param data specify test data.
         #
-        # @example data(label, data)
-        #   data("empty string", [true, ""])
-        #   data("plain string", [false, "hello"])
-        #   def test_empty?(data)
-        #     expected, target = data
-        #     assert_equal(expected, target.empty?)
-        #   end
+        #   @example data(label, data)
+        #     data("empty string", [true, ""])
+        #     data("plain string", [false, "hello"])
+        #     def test_empty?(data)
+        #       expected, target = data
+        #       assert_equal(expected, target.empty?)
+        #     end
         #
         # @overload data(hash)
-        # @param [Hash] hash specify test data as a Hash that
-        #   key is test label and value is test data.
+        #   @param [Hash] hash specify test data as a Hash that
+        #     key is test label and value is test data.
         #
-        # @example data(hash)
-        #   data("empty string" => [true, ""],
-        #        "plain string" => [false, "hello"])
-        #   def test_empty?(data)
-        #     expected, target = data
-        #     assert_equal(expected, target.empty?)
-        #   end
+        #   @example data(hash)
+        #     data("empty string" => [true, ""],
+        #          "plain string" => [false, "hello"])
+        #     def test_empty?(data)
+        #       expected, target = data
+        #       assert_equal(expected, target.empty?)
+        #     end
         #
         # @overload data(&block)
-        # @yieldreturn [Hash] return test data as a Hash that
-        #   key is test label and value is test data.
+        #   @yieldreturn [Hash] return test data as a Hash that
+        #     key is test label and value is test data.
         #
-        # @example data(&block)
-        #   data do
-        #     data_set = {}
-        #     data_set["empty string"] = [true, ""]
-        #     data_set["plain string"] = [false, "hello"]
-        #     data_set
-        #   end
-        #   def test_empty?(data)
-        #     expected, target = data
-        #     assert_equal(expected, target.empty?)
-        #   end
+        #   @example data(&block)
+        #     data do
+        #       data_set = {}
+        #       data_set["empty string"] = [true, ""]
+        #       data_set["plain string"] = [false, "hello"]
+        #       data_set
+        #     end
+        #     def test_empty?(data)
+        #       expected, target = data
+        #       assert_equal(expected, target.empty?)
+        #     end
         #
         def data(*arguments, &block)
           n_arguments = arguments.size
