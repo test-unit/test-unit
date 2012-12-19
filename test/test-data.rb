@@ -215,6 +215,10 @@ class TestData < Test::Unit::TestCase
     end
 
     class TestCSV < self
+      def setup
+        self.class.current_attribute(:data).clear
+      end
+
       def test_with_header
         base_dir = File.dirname(__FILE__)
         file_name = File.join(base_dir, "fixtures", "header.csv")
