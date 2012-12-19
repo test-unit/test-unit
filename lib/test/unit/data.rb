@@ -109,6 +109,8 @@ module Test
 
           private
           def normalize_value(value)
+            return true if value == "true"
+            return false if value == "false"
             Integer(value)
           rescue ArgumentError
             begin
