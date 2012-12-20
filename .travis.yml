@@ -8,4 +8,4 @@ rvm:
   - ruby-head
 notifications:
   recipients:
-    - kou@clear-code.com
+    - travis@clear-code.com
