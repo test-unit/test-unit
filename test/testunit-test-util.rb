@@ -1,7 +1,11 @@
 module TestUnitTestUtil
   private
+  def jruby?
+    RUBY_PLATFORM == "java"
+  end
+
   def jruby_only_test
-    if RUBY_PLATFORM == "java"
+    if jruby?
       require "java"
     else
       omit("test for JRuby")

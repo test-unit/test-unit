@@ -10,6 +10,8 @@ require 'test/unit'
 module Test
   module Unit
     module AssertionCheckable
+      include TestUnitTestUtil
+
       private
       def check(value, message="")
         add_assertion
@@ -100,12 +102,16 @@ module Test
       end
 
       def inspect_tag(tag)
+        if jruby?
+          "`#{tag}'".inspect
+        else
         begin
           throw tag
         rescue NameError
           tag.to_s.inspect
         rescue ArgumentError
           tag.inspect
+        end
         end
       end
 
