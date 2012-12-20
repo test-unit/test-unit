@@ -43,6 +43,19 @@ module Test
         assert_equal(TestSuite.new << t2, s)
       end
 
+      def test_delete_tests
+        suite = TestSuite.new
+        test1 = self.class.new("test_delete_1")
+        suite << test1
+        test2 = self.class.new("test_delete_2")
+        suite << test2
+        test3 = self.class.new("test_add")
+        suite << test3
+        suite.delete_tests([test1, test2])
+        assert_equal(1, suite.size)
+        assert_equal(TestSuite.new << test3, suite)
+      end
+
       def test_size
         suite = TestSuite.new
         suite2 = TestSuite.new

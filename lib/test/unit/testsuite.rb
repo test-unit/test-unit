@@ -70,6 +70,10 @@ module Test
         @tests.delete(test)
       end
 
+      def delete_tests(tests)
+        @tests -= tests
+      end
+
       # Retuns the rolled up number of tests in this suite;
       # i.e. if the suite contains other suites, it counts the
       # tests within those suites, not the suites themselves.
