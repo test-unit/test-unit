@@ -105,13 +105,13 @@ module Test
         if jruby?
           "`#{tag}'".inspect
         else
-        begin
-          throw tag
-        rescue NameError
-          tag.to_s.inspect
-        rescue ArgumentError
-          tag.inspect
-        end
+          begin
+            throw tag
+          rescue NameError
+            tag.to_s.inspect
+          rescue ArgumentError
+            tag.inspect
+          end
         end
       end
 
