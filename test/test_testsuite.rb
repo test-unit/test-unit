@@ -51,7 +51,7 @@ module Test
         suite << self.class.new("test_size")
         assert_equal(2, suite.size, "The count should be correct")
       end
-      
+
       def test_run
         progress = []
         suite = @testcase1.suite
@@ -89,34 +89,34 @@ module Test
         assert_equal(28, progress.size,
                      "Should have had the correct number of progress calls")
       end
-      
+
       def test_empty?
         assert(TestSuite.new.empty?, "A new test suite should be empty?")
         assert(!@testcase2.suite.empty?, "A test suite with tests should not be empty")
       end
-      
+
       def test_equality
         suite1 = TestSuite.new
         suite2 = TestSuite.new
         assert_equal(suite1, suite2)
         assert_equal(suite2, suite1)
-        
+
         suite1 = TestSuite.new('name')
         assert_not_equal(suite1, suite2)
         assert_not_equal(suite2, suite1)
-        
+
         suite2 = TestSuite.new('name')
         assert_equal(suite1, suite2)
         assert_equal(suite2, suite1)
-        
+
         suite1 << 'test'
         assert_not_equal(suite1, suite2)
         assert_not_equal(suite2, suite1)
-        
+
         suite2 << 'test'
         assert_equal(suite1, suite2)
         assert_equal(suite2, suite1)
-        
+
         suite2 = Object.new
         class << suite2
           def name
