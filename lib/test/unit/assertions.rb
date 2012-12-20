@@ -1838,7 +1838,12 @@ EOT
           private
           if Object.const_defined?(:Encoding)
             def encoding_safe_concat(buffer, parameter)
-              if Encoding.compatible?(buffer.encoding, parameter.encoding)
+              # XXX: JRuby 1.7.1 doesn't support Encoding object for
+              # Encoding.compatible. So we need to use Encoding#name. :<
+              # A pull request that solves this issue has been sent to JRuby:
+              #   https://github.com/jruby/jruby/pull/457
+              if Encoding.compatible?(buffer.encoding.name,
+                                      parameter.encoding.name)
                 buffer << parameter
               else
                 buffer << parameter.dup.force_encoding(buffer.encoding)
