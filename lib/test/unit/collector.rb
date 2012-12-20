@@ -18,7 +18,7 @@ module Test
         to_delete = suite.tests.find_all do |test|
           test.is_a?(TestCase) and !include?(test)
         end
-        to_delete.each {|t| suite.delete(t)}
+        suite.delete_tests(to_delete)
         destination << suite unless suite.empty?
       end
 
