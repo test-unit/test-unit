@@ -1838,7 +1838,7 @@ EOT
           private
           if Object.const_defined?(:Encoding)
             def encoding_safe_concat(buffer, parameter)
-              if Encoding.compatible?(buffer.encoding, parameter.encoding)
+              if Encoding.compatible?(buffer, parameter)
                 buffer << parameter
               else
                 buffer << parameter.dup.force_encoding(buffer.encoding)
