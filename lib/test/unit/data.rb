@@ -162,6 +162,35 @@ module Test
             end
           end
 
+          # Load data from TSV file.
+          #
+          # There are 2 types of TSV file as following examples.
+          # First, there is a header on first row and it's first column is "label".
+          # Another, there is no header in the file.
+          #
+          # @example Load data from TSV file with header
+          #   # test-data.tsv:
+          #   #  label	expected	target
+          #   #  empty string	true	""
+          #   #  plain string	false	hello
+          #   #
+          #   load_data("/path/to/test-data.tsv")
+          #   def test_empty?(data)
+          #     assert_equal(data["expected"], data["target"].empty?)
+          #   end
+          #
+          # @example Load data from TSV file without header
+          #   # test-data-without-header.tsv:
+          #   #  empty string	true	""
+          #   #  plain string	false	hello
+          #   #
+          #   load_data("/path/to/test-data-without-header.tsv")
+          #   def test_empty?(data)
+          #     expected, target = data
+          #     assert_equal(expected, target.empty?)
+          #   end
+          #
+          # @api private
           def load_tsv(file_name)
             require "csv"
             if CSV.respond_to?(:dump)
