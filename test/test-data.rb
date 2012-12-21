@@ -217,7 +217,7 @@ class TestData < Test::Unit::TestCase
       end
     end
 
-    class TestCSV < self
+    class TestFileFormat < self
       def setup
         self.class.current_attribute(:data).clear
       end
