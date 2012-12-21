@@ -109,6 +109,8 @@ module Test
             case File.extname(file_name).downcase
             when ".csv"
               load_csv(file_name)
+            when ".tsv"
+              load_tsv(file_name)
             else
               raise ArgumentError, "unsupported file format: <#{file_name}>"
             end
@@ -168,6 +170,62 @@ module Test
                 end
               end
               @test_case.data(label, data)
+            end
+          end
+
+          def load_tsv(file_name)
+            require "csv"
+            if CSV.respond_to?(:dump)
+              first_row = true
+              header = nil
+              CSV.foreach(file_name, :col_sep => "\t") do |row|
+                if first_row
+                  first_row = false
+                  if row.first == "label"
+                    header = row[1..-1]
+                    next
+                  end
+                end
+
+                label = row.shift
+                if header
+                  data = {}
+                  header.each_with_index do |key, i|
+                    data[key] = normalize_value(row[i])
+                  end
+                else
+                  data = row.collect do |cell|
+                    normalize_value(cell)
+                  end
+                end
+                @test_case.data(label, data)
+              end
+            else
+              # for old CSV library
+              first_row = true
+              header = nil
+              CSV.open(file_name, "r", "\t") do |row|
+                if first_row
+                  first_row = false
+                  if row.first == "label"
+                    header = row[1..-1]
+                    next
+                  end
+                end
+
+                label = row.shift
+                if header
+                  data = {}
+                  header.each_with_index do |key, i|
+                    data[key] = normalize_value(row[i])
+                  end
+                else
+                  data = row.collect do |cell|
+                    normalize_value(cell)
+                  end
+                end
+                @test_case.data(label, data)
+              end
             end
           end
 

@@ -274,5 +274,66 @@ class TestData < Test::Unit::TestCase
                      self.class.current_attribute(:data)[:value])
       end
     end
+
+    class TestTSV < self
+      def setup
+        self.class.current_attribute(:data).clear
+      end
+
+      class TestHeader < self
+        def test_normal
+          base_dir = File.dirname(__FILE__)
+          file_name = File.join(base_dir, "fixtures", "header.tsv")
+          self.class.load_data(file_name)
+          assert_equal([
+                         {
+                           "empty string" => {
+                             "expected" => true,
+                             "target"   => ""
+                           }
+                         },
+                         {
+                           "plain string" => {
+                             "expected" => false,
+                             "target"   => "hello"
+                           }
+                         }
+                       ],
+                       self.class.current_attribute(:data)[:value])
+        end
+
+        def test_label
+          base_dir = File.dirname(__FILE__)
+          file_name = File.join(base_dir, "fixtures", "header-label.tsv")
+          self.class.load_data(file_name)
+          assert_equal([
+                         {
+                           "upper case" => {
+                             "expected" => "HELLO",
+                             "label"    => "HELLO"
+                           }
+                         },
+                         {
+                           "lower case" => {
+                             "expected" => "Hello",
+                             "label"    => "hello"
+                           }
+                         }
+                       ],
+                       self.class.current_attribute(:data)[:value])
+        end
+      end
+
+      def test_without_header
+        base_dir = File.dirname(__FILE__)
+        file_name = File.join(base_dir, "fixtures", "no-header.tsv")
+        self.class.load_data(file_name)
+        assert_equal([
+                       {"empty string" => [true, ""]},
+                       {"plain string" => [false, "hello"]}
+                     ],
+                     self.class.current_attribute(:data)[:value])
+      end
+    end
   end
 end
