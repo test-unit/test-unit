@@ -219,7 +219,8 @@ class TestData < Test::Unit::TestCase
         self.class.current_attribute(:data).clear
       end
 
-      def test_with_header
+      class TestHeader < self
+      def test_normal
         base_dir = File.dirname(__FILE__)
         file_name = File.join(base_dir, "fixtures", "header.csv")
         self.class.load_data(file_name)
@@ -228,6 +229,7 @@ class TestData < Test::Unit::TestCase
                        {"plain string" => {"expected" => false, "target" => "hello"}}
                      ],
                      self.class.current_attribute(:data)[:value])
+      end
       end
 
       def test_without_header
