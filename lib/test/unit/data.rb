@@ -145,23 +145,24 @@ module Test
           # @api private
           def load_csv(file_name)
             require 'csv'
+            first_row = true
             header = nil
             CSV.foreach(file_name) do |row|
-              header = row if header.nil?
-              label = nil
+              if first_row
+                first_row = false
+                if row.first == "label"
+                  header = row[1..-1]
+                  next
+                end
+              end
 
-              if header.first == "label"
-                next if header == row
+              label = row.shift
+              if header
                 data = {}
                 header.each_with_index do |key, i|
-                  if key == "label"
-                    label = row[i]
-                  else
-                    data[key] = normalize_value(row[i])
-                  end
+                  data[key] = normalize_value(row[i])
                 end
               else
-                label = row.shift
                 data = row.collect do |cell|
                   normalize_value(cell)
                 end
