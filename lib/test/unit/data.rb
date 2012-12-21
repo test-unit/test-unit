@@ -158,18 +158,7 @@ module Test
                 end
               end
 
-              label = row.shift
-              if header
-                data = {}
-                header.each_with_index do |key, i|
-                  data[key] = normalize_value(row[i])
-                end
-              else
-                data = row.collect do |cell|
-                  normalize_value(cell)
-                end
-              end
-              @test_case.data(label, data)
+              set_test_data(header, row)
             end
           end
 
@@ -187,18 +176,7 @@ module Test
                   end
                 end
 
-                label = row.shift
-                if header
-                  data = {}
-                  header.each_with_index do |key, i|
-                    data[key] = normalize_value(row[i])
-                  end
-                else
-                  data = row.collect do |cell|
-                    normalize_value(cell)
-                  end
-                end
-                @test_case.data(label, data)
+                set_test_data(header, row)
               end
             else
               # for old CSV library
@@ -213,18 +191,7 @@ module Test
                   end
                 end
 
-                label = row.shift
-                if header
-                  data = {}
-                  header.each_with_index do |key, i|
-                    data[key] = normalize_value(row[i])
-                  end
-                else
-                  data = row.collect do |cell|
-                    normalize_value(cell)
-                  end
-                end
-                @test_case.data(label, data)
+                set_test_data(header, row)
               end
             end
           end
@@ -242,6 +209,21 @@ module Test
                 value
               end
             end
+          end
+
+          def set_test_data(header, row)
+            label = row.shift
+            if header
+              data = {}
+              header.each_with_index do |key, i|
+                data[key] = normalize_value(row[i])
+              end
+            else
+              data = row.collect do |cell|
+                normalize_value(cell)
+              end
+            end
+            @test_case.data(label, data)
           end
         end
       end
