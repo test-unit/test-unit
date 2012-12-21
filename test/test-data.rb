@@ -220,16 +220,16 @@ class TestData < Test::Unit::TestCase
       end
 
       class TestHeader < self
-      def test_normal
-        base_dir = File.dirname(__FILE__)
-        file_name = File.join(base_dir, "fixtures", "header.csv")
-        self.class.load_data(file_name)
-        assert_equal([
-                       {"empty string" => {"expected" => true, "target" => ""}},
-                       {"plain string" => {"expected" => false, "target" => "hello"}}
-                     ],
-                     self.class.current_attribute(:data)[:value])
-      end
+        def test_normal
+          base_dir = File.dirname(__FILE__)
+          file_name = File.join(base_dir, "fixtures", "header.csv")
+          self.class.load_data(file_name)
+          assert_equal([
+                         {"empty string" => {"expected" => true, "target" => ""}},
+                         {"plain string" => {"expected" => false, "target" => "hello"}}
+                       ],
+                       self.class.current_attribute(:data)[:value])
+        end
       end
 
       def test_without_header
