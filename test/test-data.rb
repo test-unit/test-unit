@@ -223,9 +223,10 @@ class TestData < Test::Unit::TestCase
       end
 
       class TestHeader < self
-        def test_normal
-          file_name = fixture_file_path("header.csv")
-          self.class.load_data(file_name)
+        data("csv" => "header.csv",
+             "tsv" => "header.tsv")
+        def test_normal(file_name)
+          self.class.load_data(fixture_file_path(file_name))
           assert_equal([
                          {
                            "empty string" => {
@@ -243,9 +244,10 @@ class TestData < Test::Unit::TestCase
                        self.class.current_attribute(:data)[:value])
         end
 
-        def test_label
-          file_name = fixture_file_path("header-label.csv")
-          self.class.load_data(file_name)
+        data("csv" => "header-label.csv",
+             "tsv" => "header-label.csv")
+        def test_label(file_name)
+          self.class.load_data(fixture_file_path(file_name))
           assert_equal([
                          {
                            "upper case" => {
@@ -264,67 +266,10 @@ class TestData < Test::Unit::TestCase
         end
       end
 
-      def test_without_header
-        file_name = fixture_file_path("no-header.csv")
-        self.class.load_data(file_name)
-        assert_equal([
-                       {"empty string" => [true, ""]},
-                       {"plain string" => [false, "hello"]}
-                     ],
-                     self.class.current_attribute(:data)[:value])
-      end
-    end
-
-    class TestTSV < self
-      def setup
-        self.class.current_attribute(:data).clear
-      end
-
-      class TestHeader < self
-        def test_normal
-          file_name = fixture_file_path("header.tsv")
-          self.class.load_data(file_name)
-          assert_equal([
-                         {
-                           "empty string" => {
-                             "expected" => true,
-                             "target"   => ""
-                           }
-                         },
-                         {
-                           "plain string" => {
-                             "expected" => false,
-                             "target"   => "hello"
-                           }
-                         }
-                       ],
-                       self.class.current_attribute(:data)[:value])
-        end
-
-        def test_label
-          file_name = fixture_file_path("header-label.tsv")
-          self.class.load_data(file_name)
-          assert_equal([
-                         {
-                           "upper case" => {
-                             "expected" => "HELLO",
-                             "label"    => "HELLO"
-                           }
-                         },
-                         {
-                           "lower case" => {
-                             "expected" => "Hello",
-                             "label"    => "hello"
-                           }
-                         }
-                       ],
-                       self.class.current_attribute(:data)[:value])
-        end
-      end
-
-      def test_without_header
-        file_name = fixture_file_path("no-header.tsv")
-        self.class.load_data(file_name)
+      data("csv" => "no-header.csv",
+           "tsv" => "no-header.tsv")
+      def test_without_header(file_name)
+        self.class.load_data(fixture_file_path(file_name))
         assert_equal([
                        {"empty string" => [true, ""]},
                        {"plain string" => [false, "hello"]}
