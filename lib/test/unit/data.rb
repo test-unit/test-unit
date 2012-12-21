@@ -92,34 +92,6 @@ module Test
           loader.load(file_name)
         end
 
-        # Load data from CSV file.
-        #
-        # There are 2 types of CSV file as following examples.
-        # First, there is a header on first row and it's first column is "label".
-        # Another, there is no header in the file.
-        #
-        # @example Load data from CSV file with header
-        #   # test-data.csv:
-        #   #  label,expected,target
-        #   #  empty string,true,""
-        #   #  plain string,false,hello
-        #   #
-        #   load_data("/path/to/test-data.csv")
-        #   def test_empty?(data)
-        #     assert_equal(data["expected"], data["target"].empty?)
-        #   end
-        #
-        # @example Load data from CSV file without header
-        #   # test-data-without-header.csv:
-        #   #  empty string,true,""
-        #   #  plain string,false,hello
-        #   #
-        #   load_data("/path/to/test-data-without-header.csv")
-        #   def test_empty?(data)
-        #     expected, target = data
-        #     assert_equal(expected, target.empty?)
-        #   end
-        #
         class Loader
           # @api private
           def initialize(test_case)
@@ -136,6 +108,34 @@ module Test
             end
           end
 
+          # Load data from CSV file.
+          #
+          # There are 2 types of CSV file as following examples.
+          # First, there is a header on first row and it's first column is "label".
+          # Another, there is no header in the file.
+          #
+          # @example Load data from CSV file with header
+          #   # test-data.csv:
+          #   #  label,expected,target
+          #   #  empty string,true,""
+          #   #  plain string,false,hello
+          #   #
+          #   load_data("/path/to/test-data.csv")
+          #   def test_empty?(data)
+          #     assert_equal(data["expected"], data["target"].empty?)
+          #   end
+          #
+          # @example Load data from CSV file without header
+          #   # test-data-without-header.csv:
+          #   #  empty string,true,""
+          #   #  plain string,false,hello
+          #   #
+          #   load_data("/path/to/test-data-without-header.csv")
+          #   def test_empty?(data)
+          #     expected, target = data
+          #     assert_equal(expected, target.empty?)
+          #   end
+          #
           # @api private
           def load_csv(file_name)
             require 'csv'
