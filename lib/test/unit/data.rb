@@ -133,6 +133,11 @@ module Test
 
           # @api private
           def load(file_name)
+            load_csv(file_name)
+          end
+
+          # @api private
+          def load_csv(file_name)
             require 'csv'
             header = nil
             CSV.foreach(file_name) do |row|
