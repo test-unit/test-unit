@@ -88,13 +88,8 @@ module Test
         #   end
         #
         def load_data(file_name)
-          case File.extname(file_name).downcase
-          when ".csv"
-            loader = Loader.new(self)
-            loader.load(file_name)
-          else
-            raise ArgumentError, "unsupported file format: <#{file_name}>"
-          end
+          loader = Loader.new(self)
+          loader.load(file_name)
         end
 
         # Load data from CSV file.
@@ -133,7 +128,12 @@ module Test
 
           # @api private
           def load(file_name)
-            load_csv(file_name)
+            case File.extname(file_name).downcase
+            when ".csv"
+              load_csv(file_name)
+            else
+              raise ArgumentError, "unsupported file format: <#{file_name}>"
+            end
           end
 
           # @api private
