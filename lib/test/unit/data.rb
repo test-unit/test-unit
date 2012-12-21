@@ -104,6 +104,7 @@ module Test
           #   File format is automatically detected from filename extension.
           # @raise [ArgumentError] if +file_name+ is not supported file format.
           # @see #load_csv
+          # @see #load_tsv
           # @api private
           def load(file_name)
             case File.extname(file_name).downcase
