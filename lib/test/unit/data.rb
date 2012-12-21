@@ -98,6 +98,12 @@ module Test
             @test_case = test_case
           end
 
+          # Load data from file.
+          #
+          # @param [String] file_name full path to test data file.
+          #   File format is automatically detected from filename extension.
+          # @raise [ArgumentError] if +file_name+ is not supported file format.
+          # @see #load_csv
           # @api private
           def load(file_name)
             case File.extname(file_name).downcase
