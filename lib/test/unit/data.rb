@@ -90,7 +90,7 @@ module Test
         def load_data(file_name)
           case File.extname(file_name).downcase
           when ".csv"
-            loader = CSVDataLoader.new(self)
+            loader = Loader.new(self)
             loader.load(file_name)
           else
             raise ArgumentError, "unsupported file format: <#{file_name}>"
@@ -125,7 +125,7 @@ module Test
         #     assert_equal(expected, target.empty?)
         #   end
         #
-        class CSVDataLoader
+        class Loader
           # @api private
           def initialize(test_case)
             @test_case = test_case
