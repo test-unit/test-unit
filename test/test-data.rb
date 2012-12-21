@@ -68,8 +68,8 @@ class TestData < Test::Unit::TestCase
     end
 
     class TestLoadDataSet < TestCalc
-      base_dir = File.dirname(__FILE__)
-      load_data("#{base_dir}/fixtures/plus.csv")
+      extend TestUnitTestUtil
+      load_data(fixture_file_path("plus.csv"))
       def test_plus(data)
         assert_equal(data["expected"],
                      @calc.plus(data["augend"], data["addend"]))
