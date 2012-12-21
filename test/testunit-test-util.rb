@@ -23,4 +23,9 @@ module TestUnitTestUtil
     test.run(result) {}
     result
   end
+
+  def fixture_file_path(file_name)
+    base_dir = File.dirname(__FILE__)
+    File.join(base_dir, "fixtures", file_name)
+  end
 end
