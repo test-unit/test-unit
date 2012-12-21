@@ -245,7 +245,7 @@ class TestData < Test::Unit::TestCase
         end
 
         data("csv" => "header-label.csv",
-             "tsv" => "header-label.csv")
+             "tsv" => "header-label.tsv")
         def test_label(file_name)
           self.class.load_data(fixture_file_path(file_name))
           assert_equal([
