@@ -72,7 +72,7 @@ module Test
 
         # This method provides Data-Driven-Test functionality.
         #
-        # Load test data from the file. This is short hand to load
+        # Load test data from the file. This is shorthand to load
         # test data from file.  If you want to load complex file, you
         # can use {#data} with block.
         #
