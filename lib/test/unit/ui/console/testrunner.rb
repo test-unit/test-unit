@@ -343,7 +343,7 @@ module Test
             output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
           end
 
-          def suite_name(suite)
+          def suite_name(prefix, suite)
             name = suite.name
             if name.nil?
               "(anonymous)"
@@ -367,7 +367,7 @@ module Test
               _color = color("case")
             end
             prefix = "#{last_test_suite.name}::"
-            output_single(suite_name(suite), _color, VERBOSE)
+            output_single(suite_name(prefix, suite), _color, VERBOSE)
             output(": ", nil, VERBOSE)
             @indent += 2
           end
