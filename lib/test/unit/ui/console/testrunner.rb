@@ -343,6 +343,15 @@ module Test
             output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
           end
 
+          def suite_name(suite)
+            name = suite.name
+            if name.nil?
+              "(anonymous)"
+            else
+              name.sub(/\A#{Regexp.escape(prefix)}/, "")
+            end
+          end
+
           def test_suite_started(suite)
             last_test_suite = @test_suites.last
             @test_suites << suite
@@ -358,8 +367,7 @@ module Test
               _color = color("case")
             end
             prefix = "#{last_test_suite.name}::"
-            suite_name = suite.name.sub(/\A#{Regexp.escape(prefix)}/, "")
-            output_single(suite_name, _color, VERBOSE)
+            output_single(suite_name(suite), _color, VERBOSE)
             output(": ", nil, VERBOSE)
             @indent += 2
           end
