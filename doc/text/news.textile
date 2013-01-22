@@ -1,6 +1,6 @@
 h1. News
 
-h2(#2-5-4). 2.5.4 - 2013-01-xx
+h2(#2-5-4). 2.5.4 - 2013-01-23
 
 It's a bug fix release.
 
@@ -14,6 +14,12 @@ h3. Fixes
 
   * Fixed a bug. It is too slow to filter tests when there are many
     tests. [GitHub#46]
+  * Accept anonymous test suite.
+    [GitHub:#49] [Reported by Matthew Rudy Jacobs]
+
+h3. Thanks
+
+  * Matthew Rudy Jacobs
 
 h2(#2-5-3). 2.5.3 - 2012-11-28
 
