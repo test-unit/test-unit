@@ -1,6 +1,7 @@
 h1. test-unit
 
-http://rubyforge.org/projects/test-unit/
+* http://test-unit.rubyforge.org/
+* https://github.com/test-unit/test-unit
 
 h2. Description
 
