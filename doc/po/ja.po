@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"POT-Creation-Date: 2013-01-23 08:58+0900\n"
+"POT-Creation-Date: 2013-01-23 09:06+0900\n"
 "PO-Revision-Date: 2013-01-23 09:02+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
@@ -10821,12 +10821,16 @@ msgstr "修正"
 msgid ""
 "Fixed a bug. It is too slow to filter tests when there are many tests. "
 "[GitHub#46]"
-msgstr "たくさんのテストがあるときにテストをフィルターするのが遅かった問題を修正した。[GitHub#46]"
+msgstr ""
+"たくさんのテストがあるときにテストをフィルターするのが遅かった問題を修正し"
+"た。[GitHub#46]"
 
 #: doc/reference/en/file.news.html:77(li)
 msgid ""
 "Accept anonymous test suite. [GitHub:#49] [Reported by Matthew Rudy Jacobs]"
-msgstr "無名のテストスイートを使用できなかった問題を修正した。[GitHub:#49] [Matthew Rudy Jacobs さんが報告]"
+msgstr ""
+"無名のテストスイートを使用できなかった問題を修正した。[GitHub:#49] [Matthew "
+"Rudy Jacobs さんが報告]"
 
 #: doc/reference/en/file.news.html:82(li)
 msgid "Matthew Rudy Jacobs"
