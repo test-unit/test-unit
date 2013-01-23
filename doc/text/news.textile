@@ -313,7 +313,7 @@ h3. Thanks
 
   * James Mead
 
-h2. 2.3.1 - 2011-08-06
+h2(#2-3-1). 2.3.1 - 2011-08-06
 
 Output improvement release!
 
