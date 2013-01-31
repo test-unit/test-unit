@@ -1,5 +1,5 @@
 # @title How To
-# HTML の meta charset を UTF-8 にするためのコメント
+p{display:none}. HTML の meta charset を UTF-8 にするためのコメント
 
 h1. How To
 
