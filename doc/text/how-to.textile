@@ -28,7 +28,7 @@ $ ruby test/run_test.rb
 
 h2. Change test runner via the command line
 
-The output format can be changed via the commnad line with
+The output format can be changed via the command line with
 the @--runner@ option. Simply tack it to the end:
 
 <pre>
