@@ -465,7 +465,7 @@ module Test
           def guess_color_availability
             return false unless @output.tty?
             case ENV["TERM"]
-            when /term(?:-(?:256)?color)?\z/, "screen"
+            when /(term|screen)(?:-(?:256)?color)?\z/
               true
             else
               return true if ENV["EMACS"] == "t"
