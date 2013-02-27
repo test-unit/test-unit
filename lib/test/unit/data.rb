@@ -194,7 +194,7 @@ module Test
           # @api private
           def load_tsv(file_name)
             require "csv"
-            if CSV.respond_to?(:dump)
+            if CSV.const_defined?(:VERSION)
               first_row = true
               header = nil
               CSV.foreach(file_name, :col_sep => "\t") do |row|
