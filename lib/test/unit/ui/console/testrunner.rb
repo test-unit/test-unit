@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright::
 #   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#   * Copyright (c) 2008-2011 Kouhei Sutou <kou@clear-code.com>
+#   * Copyright (c) 2008-2013 Kouhei Sutou <kou@clear-code.com>
 # License:: Ruby license.
 
 require 'test/unit/color-scheme'
@@ -465,7 +465,7 @@ module Test
           def guess_color_availability
             return false unless @output.tty?
             case ENV["TERM"]
-            when /(term|screen)(?:-(?:256)?color)?\z/
+            when /(?:term|screen)(?:-(?:256)?color)?\z/
               true
             else
               return true if ENV["EMACS"] == "t"
