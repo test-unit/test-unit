@@ -2,7 +2,7 @@
 #
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
-#             Copyright (c) 2009-2010 Kouhei Sutou. All rights reserved.
+#             Copyright (c) 2009-2013 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit'
@@ -1637,6 +1637,12 @@ EOM
       def test_pass_zero_expected
         check_nothing_fails do
           assert_in_epsilon(0, 0.00000001)
+        end
+      end
+
+      def test_pass_minus_expected
+        check_nothing_fails do
+          assert_in_epsilon(-1, -1)
         end
       end
 

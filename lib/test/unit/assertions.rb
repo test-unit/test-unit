@@ -823,6 +823,7 @@ EOT
             else
               delta = normalized_expected_float * epsilon.to_f
             end
+            delta = delta.abs
             (normalized_expected_float - actual_float.to_f).abs <= delta
           end
         end
