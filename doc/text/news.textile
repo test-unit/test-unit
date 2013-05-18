@@ -14,7 +14,7 @@ h3. Fixes
 
   * Fixed a typo in document.
     [GitHub#53] [Patch by Baptiste Fontaine]
-  * Fixed a bug in {Test::Unit::TestCase#assert_in_epsilon}. It doesn't work
+  * Fixed a bug in {Test::Unit::Assertions#assert_in_epsilon}. It doesn't work
     as expected if expected value is negative value.
     [Ruby Bug #8317] [Reported by Nobuhiro IMAI]
 
