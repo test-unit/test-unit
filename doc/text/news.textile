@@ -1,5 +1,30 @@
 h1. News
 
+h2(#2-5-5). 2.5.5 - 2013-05-18
+
+It's Ruby 2.0.0 supported release!
+
+h3. Improvements
+
+  * Supported Ruby 2.0.0. [GitHub#54] [Reported by mtasaka]
+  * Accepted screen-256color TERM as 256 colors available environment.
+    [GitHub#55] [Reported by Tom Miller]
+
+h3. Fixes
+
+  * Fixed a typo in document.
+    [GitHub#53] [Patch by Baptiste Fontaine]
+  * Fixed a bug in {Test::Unit::TestCase#assert_in_epsilon}. It doesn't work
+    as expected if expected value is negative value.
+    [Ruby Bug #8317] [Reported by Nobuhiro IMAI]
+
+h3. Thanks
+
+  * Baptiste Fontaine
+  * mtasaka
+  * Tom Miller
+  * Nobuhiro IMAI
+
 h2(#2-5-4). 2.5.4 - 2013-01-23
 
 It's a bug fix release.
