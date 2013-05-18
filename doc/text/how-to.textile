@@ -47,7 +47,7 @@ settings:
 * test runner options
 * test collector to be used
 
-Except color scheme definitions, all of them can be  specified by command
+Except color scheme definitions, all of them can be specified by command
 line option.
 
 Here are sample color scheme definitions:
