@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
 "POT-Creation-Date: 2011-11-20 22:17+0900\n"
-"PO-Revision-Date: 2013-01-23 09:02+0900\n"
+"PO-Revision-Date: 2013-05-18 15:17+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -26,9 +26,8 @@ msgid ""
 msgstr ""
 
 #: ./README.textile:6
-#, fuzzy
 msgid "h2. Description"
-msgstr "説明"
+msgstr "h2. 説明"
 
 #: ./README.textile:8
 msgid ""
@@ -72,9 +71,8 @@ msgid ""
 msgstr ""
 
 #: ./README.textile:32
-#, fuzzy
 msgid "h2. How To"
-msgstr "一歩進んだ使い方"
+msgstr "h2. 一歩進んだ使い方"
 
 #: ./README.textile:34
 msgid "* {file:doc/text/how-to.textile}"
@@ -82,7 +80,7 @@ msgstr ""
 
 #: ./README.textile:36
 msgid "h2. Install"
-msgstr ""
+msgstr "h2. インストール"
 
 #: ./README.textile:38
 msgid ""
@@ -163,9 +161,8 @@ msgid "* Mayu & Co.: kinotan icons: http://cocooooooon.com/kinotan/"
 msgstr ""
 
 #: ./README.textile:78
-#, fuzzy
 msgid "h2. Thanks"
-msgstr "感謝"
+msgstr "h2. 感謝"
 
 #: ./README.textile:80
 msgid ""
@@ -199,21 +196,18 @@ msgid "utf-8"
 msgstr ""
 
 #: ./doc/text/how-to.textile:4
-#, fuzzy
 msgid "h1. How To"
-msgstr "一歩進んだ使い方"
+msgstr "h1. 一歩進んだ使い方"
 
 #: ./doc/text/how-to.textile:6
-#, fuzzy
 msgid "h2. Run all tests"
-msgstr "すべてのテストを実行する"
+msgstr "h2. すべてのテストを実行する"
 
 #: ./doc/text/how-to.textile:8
-#, fuzzy
 msgid ""
 "To make it easy to run all your tests, you can add a @run_test.rb@ script\n"
 "to your @test@ directory. A simple example might look like:"
-msgstr "すべてのテストを簡単に実行するために、<placeholder-1/>スクリプトを<placeholder-2/>ディレクトリにおきます。スクリプトは以下のようにします。"
+msgstr "すべてのテストを簡単に実行するために、 @run_test.rb@ スクリプトを @test@ ディレクトリにおきます。スクリプトは以下のようにします。"
 
 #: ./doc/text/how-to.textile:11
 msgid ""
@@ -238,7 +232,6 @@ msgid ""
 msgstr ""
 
 #: ./doc/text/how-to.textile:23
-#, fuzzy
 msgid "Then it's easy to run tests via the command line with,"
 msgstr "これで以下のコマンドで簡単にテストを実行できます。"
 
@@ -250,9 +243,8 @@ msgid ""
 msgstr ""
 
 #: ./doc/text/how-to.textile:29
-#, fuzzy
 msgid "h2. Change test runner via the command line"
-msgstr "コマンドラインでテストランナーを変更する"
+msgstr "h2. コマンドラインでテストランナーを変更する"
 
 #: ./doc/text/how-to.textile:34
 msgid ""
@@ -262,17 +254,15 @@ msgid ""
 msgstr ""
 
 #: ./doc/text/how-to.textile:39
-#, fuzzy
 msgid "h2. Configure test-unit per-project"
-msgstr "プロジェクトごとにtest-unitを設定する"
+msgstr "h2. プロジェクトごとにtest-unitを設定する"
 
 #: ./doc/text/how-to.textile:41
-#, fuzzy
 msgid ""
 "Test::Unit reads @test-unit.yml@ or @.test-unit.yml@ in the current working\n"
 "directory as Test::Unit's configuration file. It can contain the following\n"
 "settings:"
-msgstr "Test::Unitは<placeholder-1/>または現在のワーキングディレクトリにある<placeholder-2/>をTest::Unitの設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
+msgstr "Test::Unitは @test-unit.yml@ または現在のワーキングディレクトリにある @.test-unit.yml@ をTest::Unitの設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
 
 # Test::Unit
 #: ./doc/text/how-to.textile:45 ./lib/test-unit.rb:247
@@ -321,9 +311,8 @@ msgid ""
 msgstr ""
 
 #: ./doc/text/how-to.textile:50
-#, fuzzy
 msgid ""
-"Except color scheme definitions, all of them can be  specified by command\n"
+"Except color scheme definitions, all of them can be specified by command\n"
 "line option."
 msgstr "カラースキーム定義以外はコマンドラインオプションで指定することができます。"
 
@@ -482,29 +471,6 @@ msgstr ""
 msgid "It's Ruby 2.0.0 supported release!"
 msgstr ""
 
-#: ./doc/text/news.textile:7 ./doc/text/news.textile:32
-#: ./doc/text/news.textile:53 ./doc/text/news.textile:88
-#: ./doc/text/news.textile:119 ./doc/text/news.textile:162
-#: ./doc/text/news.textile:196 ./doc/text/news.textile:219
-#: ./doc/text/news.textile:227 ./doc/text/news.textile:236
-#: ./doc/text/news.textile:246 ./doc/text/news.textile:264
-#: ./doc/text/news.textile:277 ./doc/text/news.textile:283
-#: ./doc/text/news.textile:301 ./doc/text/news.textile:328
-#: ./doc/text/news.textile:345
-#, fuzzy
-msgid "h3. Improvements"
-msgstr "改良"
-
-#: ./doc/text/news.textile:13 ./doc/text/news.textile:38
-#: ./doc/text/news.textile:63 ./doc/text/news.textile:127
-#: ./doc/text/news.textile:148 ./doc/text/news.textile:177
-#: ./doc/text/news.textile:203 ./doc/text/news.textile:289
-#: ./doc/text/news.textile:310 ./doc/text/news.textile:332
-#: ./doc/text/news.textile:357
-#, fuzzy
-msgid "h3. Fixes"
-msgstr "修正"
-
 #: ./doc/text/news.textile:15
 msgid ""
 "  * Fixed a typo in document.\n"
@@ -513,17 +479,6 @@ msgid ""
 "    as expected if expected value is negative value.\n"
 "    [Ruby Bug #8317] [Reported by Nobuhiro IMAI]"
 msgstr ""
-
-#: ./doc/text/news.textile:21 ./doc/text/news.textile:45
-#: ./doc/text/news.textile:75 ./doc/text/news.textile:109
-#: ./doc/text/news.textile:137 ./doc/text/news.textile:154
-#: ./doc/text/news.textile:186 ./doc/text/news.textile:209
-#: ./doc/text/news.textile:257 ./doc/text/news.textile:271
-#: ./doc/text/news.textile:294 ./doc/text/news.textile:318
-#: ./doc/text/news.textile:337 ./doc/text/news.textile:365
-#, fuzzy
-msgid "h3. Thanks"
-msgstr "感謝"
 
 #: ./doc/text/news.textile:23
 msgid ""
@@ -536,13 +491,6 @@ msgstr ""
 #: ./doc/text/news.textile:28
 msgid "h2(#2-5-4). 2.5.4 - 2013-01-23"
 msgstr ""
-
-#: ./doc/text/news.textile:30 ./doc/text/news.textile:117
-#: ./doc/text/news.textile:146 ./doc/text/news.textile:160
-#: ./doc/text/news.textile:194
-#, fuzzy
-msgid "It's a bug fix release."
-msgstr "バグフィックスリリースです。"
 
 #: ./doc/text/news.textile:34
 msgid ""
@@ -568,12 +516,10 @@ msgid "h2(#2-5-3). 2.5.3 - 2012-11-28"
 msgstr ""
 
 #: ./doc/text/news.textile:51
-#, fuzzy
 msgid "It's a release for minitest compatibility and bug fix."
-msgstr "minitestとの互換とバグフィックスのリリースです。"
+msgstr "minitestとの互換製の改良とバグフィックスのリリースです。"
 
 #: ./doc/text/news.textile:55
-#, fuzzy
 msgid ""
 "  * Supported diff in invalid encoding.\n"
 "  * Added some assersion methods just for minitest compatibility.\n"
@@ -583,8 +529,11 @@ msgid ""
 "  * Added --attribute option to select target tests by attribute.\n"
 "    [test-unit-users-en:00098] [Suggested by Piotr Nestorow]"
 msgstr ""
-"minitestとの互換性のために、assert_includes(), refute_*() and refute()を追加した。minitestとの互換性のために入れただけのメソッドなので、もしtest-unitを使っているなら、これらのメソッドははできれば使わないでください。\n"
-"[GitHub#40] [Michael Grosserさんが報告]"
+"  * Supported diff in invalid encoding.\n"
+"  * minitestとの互換性のために、assert_includes(), refute_*() and refute()を追加た。minitestとの互換性のために入れただけのメソッドなので、もしtest-unitを使っているなら、これらのメソッドははできれば使わないでください。\n"
+"    [GitHub#40] [Michael Grosserさんが提案]\n"
+"  * Added --attribute option to select target tests by attribute.\n"
+"    [test-unit-users-en:00098] [Suggested by Piotr Nestorow]"
 
 #: ./doc/text/news.textile:65
 msgid ""
@@ -612,12 +561,11 @@ msgid "h2(#2-5-2). 2.5.2 - 2012-08-29"
 msgstr ""
 
 #: ./doc/text/news.textile:84
-#, fuzzy
 msgid ""
 "It's an improvement release for tmtms. @--location@ is a similar\n"
 "feature to @--line_number@ in RSpec. @sub_test_case@ is a similar\n"
 "feature to @context@ in shoulda-context and RSpec."
-msgstr "とみたさん用に改良したリリースです。<placeholder-1/>はRSpecの<placeholder-2/>と似た機能です。<placeholder-3/>はshoulda-contextとRSpecの<placeholder-4/>と似た機能です。"
+msgstr "とみたさん用に改良したリリースです。 @--location@ はRSpecの @--line_number@ と似た機能です。 @sub_test_case@ はshoulda-contextとRSpecの @context@ と似た機能です。"
 
 #: ./doc/text/news.textile:90
 msgid ""
@@ -662,7 +610,6 @@ msgid ""
 msgstr ""
 
 #: ./doc/text/news.textile:129
-#, fuzzy
 msgid ""
 "  * [ui][console] Fixed a bug that expected and actual values are\n"
 "    empty.\n"
@@ -671,7 +618,13 @@ msgid ""
 "    [Hinted by Michael Grosser]\n"
 "  * Fixed a bug that .gemspec can't be loaded on LANG=C.\n"
 "    [RubyForge#29595] [Reported by Jean-Denis Koeck]"
-msgstr "[ui][console] 期待値と実測値が空になる問題を修正。 [GitHub#31][GitHub#33] [Kendall Buchananさんが報告][Mathieu Martinさんが報告] [Michael Grosserさんがヒントを提供]"
+msgstr ""
+"  * [ui][console] 期待値と実測値が空になる問題を修正。\n"
+"    [GitHub#31][GitHub#33]\n"
+"    [Kendall Buchananさんが報告][Mathieu Martinさんが報告]\n"
+"    [Michael Grosserさんがヒントを提供]\n"
+"  * Fixed a bug that .gemspec can't be loaded on LANG=C.\n"
+"    [RubyForge#29595] [Reported by Jean-Denis Koeck]"
 
 #: ./doc/text/news.textile:139
 msgid ""
@@ -686,17 +639,17 @@ msgid "h2(#2-5-0). 2.5.0 - 2012-06-06"
 msgstr ""
 
 #: ./doc/text/news.textile:150
-#, fuzzy
 msgid ""
 "  * Fixed a backward incompatibility of @TestUnitMediator#run_suite@\n"
 "    introduced in 2.4.9.\n"
 "    [GitHub#28] [Reported by Vladislav Rassokhin]"
-msgstr "2.4.9で入った<placeholder-1/>の後方非互換な変更を修正しました。 [GitHub#28] [Vladislav Rassokhinさんが報告]"
+msgstr ""
+"  * 2.4.9で入った @TestUnitMediator#run_suite@ の後方非互換な変更を修正しました。\n"
+"    [GitHub#28] [Vladislav Rassokhinさんが報告]"
 
 #: ./doc/text/news.textile:156
-#, fuzzy
 msgid "  * Vladislav Rassokhin"
-msgstr "Vladislav Rassokhinさん"
+msgstr "  * Vladislav Rassokhinさん"
 
 #: ./doc/text/news.textile:158
 msgid "h2(#2-4-9). 2.4.9 - 2012-06-03"
@@ -739,6 +692,12 @@ msgstr ""
 msgid "h2(#2-4-8). 2.4.8 - 2012-3-6"
 msgstr ""
 
+#: ./doc/text/news.textile:194
+#: ./doc/text/news.textile:146 ./doc/text/news.textile:160
+#: ./doc/text/news.textile:30 ./doc/text/news.textile:117
+msgid "It's a bug fix release."
+msgstr "バグフィックスリリースです。"
+
 #: ./doc/text/news.textile:198
 msgid ""
 "  * Delayed at_exit registration until Test::Unit is used.\n"
@@ -748,12 +707,14 @@ msgid ""
 msgstr ""
 
 #: ./doc/text/news.textile:205
-#, fuzzy
 msgid ""
 "  * Fixed an error on code snippet display on JRuby.\n"
 "    [GitHub:#19][GitHub:#20]\n"
 "    [Reported by Jørgen P. Tjernø][Patch by Junegunn Choi]"
-msgstr "JRuby上でテスト失敗時のコード表示時に発生していたエラーを修正した。 [GitHub:#19][GitHub:#20] [Jørgen P. Tjernøさんが報告][Junegunn Choiさんがパッチ提供]"
+msgstr ""
+"  * JRuby上でテスト失敗時のコード表示時に発生していたエラーを修正した。\n"
+"    [GitHub:#19][GitHub:#20]\n"
+"    [Jørgen P. Tjernøさんが報告][Junegunn Choiさんがパッチ提供]"
 
 #: ./doc/text/news.textile:211
 msgid ""
@@ -767,23 +728,20 @@ msgid "h2(#2-4-7). 2.4.7 - 2012-2-10"
 msgstr ""
 
 #: ./doc/text/news.textile:217
-#, fuzzy
 msgid "It's a code snippet improvement release."
 msgstr "失敗時のコード表示を改良したリリースです。"
 
 #: ./doc/text/news.textile:221
-#, fuzzy
 msgid "  * Supported code snippet display on all faults."
-msgstr "失敗時だけでなくエラー時などでもコードの一部を表示するようにした。"
+msgstr "  * 失敗時だけでなくエラー時などでもコードの一部を表示するようにした。"
 
 #: ./doc/text/news.textile:223
 msgid "h2(#2-4-6). 2.4.6 - 2012-2-9"
 msgstr ""
 
 #: ./doc/text/news.textile:225
-#, fuzzy
 msgid "It's a TAP runner separated release."
-msgstr "<placeholder-1/>サポートを分離したリリースです。"
+msgstr "TAPランナーサポートを分離したリリースです。"
 
 #: ./doc/text/news.textile:229
 msgid ""
@@ -796,24 +754,23 @@ msgid "h2(#2-4-5). 2.4.5 - 2012-1-16"
 msgstr ""
 
 #: ./doc/text/news.textile:234
-#, fuzzy
 msgid "It's a failure message readability improvement release."
 msgstr "失敗時のメッセージの読みやすさを改良したリリースです。"
 
 #: ./doc/text/news.textile:238
-#, fuzzy
 msgid ""
 "  * Removed needless information from exception inspected\n"
 "    text on failure. It's for easy to read.\n"
 "  * Supported custom inspector."
-msgstr "失敗時に例外の内容を示すテキストから不必要な情報を削除した。これは例外の内容を読みやすくするためである。"
+msgstr ""
+"  * 失敗時に例外の内容を示すテキストから不必要な情報を削除した。これは例外の内容を読みやすくするためである。\n"
+"  * Supported custom inspector."
 
 #: ./doc/text/news.textile:242
 msgid "h2(#2-4-4). 2.4.4 - 2012-1-2"
 msgstr ""
 
 #: ./doc/text/news.textile:244
-#, fuzzy
 msgid "It's a Rails integration improved release."
 msgstr "Railsと一緒に使いやすくなったリリースです。"
 
@@ -846,33 +803,36 @@ msgid ""
 "    @ARGV@ in auto runner. [GitHub:#12]\n"
 "    [Reported by Nikos Dimitrakopoulos]\n"
 "  * Improved JRuby integration by removing JRuby internal backtrace."
-msgstr "自動テストランナー内で<placeholder-1/>を変更しないようにしてSimpleCov連携を改良した。 [GitHub:#12] [Nikos Dimitrakopoulosさんが報告]"
+msgstr ""
+"  * 自動テストランナー内で<placeholder-1/>を変更しないようにしてSimpleCov連携を改良した。\n"
+"    [GitHub:#12]\n"
+"    [Nikos Dimitrakopoulosさんが報告]\n"
+"  * Improved JRuby integration by removing JRuby internal backtrace.\n"
 
 #: ./doc/text/news.textile:273
-#, fuzzy
 msgid "  * Nikos Dimitrakopoulos"
-msgstr "Nikos Dimitrakopoulosさん"
+msgstr "  * Nikos Dimitrakopoulosさん"
 
 #: ./doc/text/news.textile:275
 msgid "h2(#2-4-2). 2.4.2 - 2011-11-26"
 msgstr ""
 
 #: ./doc/text/news.textile:279
-#, fuzzy
 msgid "  * @--name@ supported data label."
-msgstr "<placeholder-1/>がデータのラベルも比較するようになった。"
+msgstr "  * @--name@ がデータのラベルも比較するようになった。"
 
 #: ./doc/text/news.textile:281
 msgid "h2. 2.4.1 - 2011-11-09"
 msgstr ""
 
 #: ./doc/text/news.textile:285
-#, fuzzy
 msgid ""
 "  * Accepted AssertionMessage as assertion's user message.\n"
 "    It is used in assert_select in actionpack.\n"
 "    [Reported by David Heath]"
-msgstr "アサーションに指定するメッセージにAssertionMessageも使えるようにした。これはactionpack内のassert_selectで使われている。 [David Heathさんが報告]"
+msgstr ""
+"  * アサーションに指定するメッセージにAssertionMessageも使えるようにした。これはactionpack内のassert_selectで使われている。\n"
+"    [David Heathさんが報告]"
 
 #: ./doc/text/news.textile:291
 msgid ""
@@ -925,21 +885,21 @@ msgid "A bug fix release."
 msgstr "バグフィックスリリース。"
 
 #: ./doc/text/news.textile:330
-#, fuzzy
 msgid "  * [ui][console] Added some newlines to improve readability."
-msgstr "[ui][console] 読み易くするために改行を追加。"
+msgstr "  * [ui][console] 読み易くするために改行を追加。"
 
 #: ./doc/text/news.textile:334
-#, fuzzy
 msgid ""
 "  * [ui][console] Worked --verbose again.\n"
 "  * Re-supported Ruby 1.8.6. [Reported by James Mead]"
-msgstr "Ruby 1.8.6を再サポート。 [James Meadさんが報告]"
+msgstr ""
+"  * [ui][console] Worked --verbose again.\n"
+"  * Ruby 1.8.6を再サポート。\n"
+"    [James Meadさんが報告]"
 
 #: ./doc/text/news.textile:339
-#, fuzzy
 msgid "  * James Mead"
-msgstr "James Meadさん"
+msgstr "  * James Meadさん"
 
 #: ./doc/text/news.textile:341
 msgid "h2(#2-3-1). 2.3.1 - 2011-08-06"
@@ -948,6 +908,18 @@ msgstr ""
 #: ./doc/text/news.textile:343
 msgid "Output improvement release!"
 msgstr ""
+
+#: ./doc/text/news.textile:345
+#: ./doc/text/news.textile:119 ./doc/text/news.textile:162
+#: ./doc/text/news.textile:196 ./doc/text/news.textile:219
+#: ./doc/text/news.textile:227 ./doc/text/news.textile:236
+#: ./doc/text/news.textile:246 ./doc/text/news.textile:264
+#: ./doc/text/news.textile:277 ./doc/text/news.textile:283
+#: ./doc/text/news.textile:301 ./doc/text/news.textile:328
+#: ./doc/text/news.textile:53 ./doc/text/news.textile:88
+#: ./doc/text/news.textile:7 ./doc/text/news.textile:32
+msgid "h3. Improvements"
+msgstr "h3. 改良"
 
 #: ./doc/text/news.textile:347
 msgid ""
@@ -961,6 +933,15 @@ msgid ""
 "  * Added --show-detail-immediately option that shows\n"
 "    fault details when a fault is occurred."
 msgstr ""
+
+#: ./doc/text/news.textile:357
+#: ./doc/text/news.textile:13 ./doc/text/news.textile:38
+#: ./doc/text/news.textile:148 ./doc/text/news.textile:177
+#: ./doc/text/news.textile:203 ./doc/text/news.textile:289
+#: ./doc/text/news.textile:310 ./doc/text/news.textile:332
+#: ./doc/text/news.textile:63 ./doc/text/news.textile:127
+msgid "h3. Fixes"
+msgstr "h3. 修正"
 
 #: ./doc/text/news.textile:359
 msgid ""
@@ -1330,11 +1311,6 @@ msgid ""
 "  * [#22988]: don't create .test-result on non-priority mode."
 msgstr ""
 
-#: ./doc/text/news.textile:605 ./doc/text/news.textile:636
-#, fuzzy
-msgid "* Thanks"
-msgstr "感謝"
-
 #: ./doc/text/news.textile:607
 msgid ""
 "  * Erik Hollensbe\n"
@@ -1430,6 +1406,20 @@ msgstr ""
 #: ./doc/text/news.textile:672
 msgid "  * Birthday (as a gem)!"
 msgstr ""
+
+#: ./doc/text/news.textile:137 ./doc/text/news.textile:154
+#: ./doc/text/news.textile:186 ./doc/text/news.textile:209
+#: ./doc/text/news.textile:21 ./doc/text/news.textile:45
+#: ./doc/text/news.textile:257 ./doc/text/news.textile:271
+#: ./doc/text/news.textile:294 ./doc/text/news.textile:318
+#: ./doc/text/news.textile:337 ./doc/text/news.textile:365
+#: ./doc/text/news.textile:75 ./doc/text/news.textile:109
+msgid "h3. Thanks"
+msgstr "h3. 感謝"
+
+#: ./doc/text/news.textile:605 ./doc/text/news.textile:636
+msgid "* Thanks"
+msgstr "* 感謝"
 
 # Test
 #: ./lib/test-unit.rb:2 ./lib/test/unit.rb:2
@@ -3761,95 +3751,6 @@ msgstr ""
 msgid "== Configuration file"
 msgstr ""
 
-#: ./lib/test-unit.rb:243 ./lib/test/unit.rb:243
-#: ./lib/test/unit/assertionfailederror.rb:243
-#: ./lib/test/unit/assertions.rb:243
-#: ./lib/test/unit/attribute-matcher.rb:243
-#: ./lib/test/unit/attribute.rb:243 ./lib/test/unit/autorunner.rb:243
-#: ./lib/test/unit/code-snippet-fetcher.rb:243
-#: ./lib/test/unit/collector.rb:243
-#: ./lib/test/unit/collector/descendant.rb:243
-#: ./lib/test/unit/collector/dir.rb:243
-#: ./lib/test/unit/collector/load.rb:243
-#: ./lib/test/unit/collector/objectspace.rb:243
-#: ./lib/test/unit/collector/xml.rb:243
-#: ./lib/test/unit/color-scheme.rb:243 ./lib/test/unit/color.rb:243
-#: ./lib/test/unit/data.rb:243 ./lib/test/unit/diff.rb:243
-#: ./lib/test/unit/error.rb:243 ./lib/test/unit/exceptionhandler.rb:243
-#: ./lib/test/unit/failure.rb:243
-#: ./lib/test/unit/fault-location-detector.rb:243
-#: ./lib/test/unit/fixture.rb:243 ./lib/test/unit/notification.rb:243
-#: ./lib/test/unit/omission.rb:243 ./lib/test/unit/pending.rb:243
-#: ./lib/test/unit/priority.rb:243
-#: ./lib/test/unit/runner/console.rb:243
-#: ./lib/test/unit/runner/emacs.rb:243
-#: ./lib/test/unit/runner/xml.rb:243 ./lib/test/unit/testcase.rb:243
-#: ./lib/test/unit/testresult.rb:243 ./lib/test/unit/testsuite.rb:243
-#: ./lib/test/unit/testsuitecreator.rb:243
-#: ./lib/test/unit/ui/console/outputlevel.rb:243
-#: ./lib/test/unit/ui/console/testrunner.rb:243
-#: ./lib/test/unit/ui/emacs/testrunner.rb:243
-#: ./lib/test/unit/ui/testrunner.rb:243
-#: ./lib/test/unit/ui/testrunnermediator.rb:243
-#: ./lib/test/unit/ui/testrunnerutilities.rb:243
-#: ./lib/test/unit/ui/xml/testrunner.rb:243
-#: ./lib/test/unit/util/backtracefilter.rb:243
-#: ./lib/test/unit/util/method-owner-finder.rb:243
-#: ./lib/test/unit/util/observable.rb:243
-#: ./lib/test/unit/util/output.rb:243
-#: ./lib/test/unit/util/procwrapper.rb:243
-#: ./lib/test/unit/version.rb:243
-#, fuzzy
-msgid ""
-"Test::Unit reads 'test-unit.yml' in the current working\n"
-"directory as Test::Unit's configuration file. It can\n"
-"contain the following configurations:"
-msgstr "Test::Unitは現在のワーキングディレクトリにある'test-unit.yml'をTest::Unitの設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
-
-#: ./lib/test-unit.rb:252 ./lib/test/unit.rb:252
-#: ./lib/test/unit/assertionfailederror.rb:252
-#: ./lib/test/unit/assertions.rb:252
-#: ./lib/test/unit/attribute-matcher.rb:252
-#: ./lib/test/unit/attribute.rb:252 ./lib/test/unit/autorunner.rb:252
-#: ./lib/test/unit/code-snippet-fetcher.rb:252
-#: ./lib/test/unit/collector.rb:252
-#: ./lib/test/unit/collector/descendant.rb:252
-#: ./lib/test/unit/collector/dir.rb:252
-#: ./lib/test/unit/collector/load.rb:252
-#: ./lib/test/unit/collector/objectspace.rb:252
-#: ./lib/test/unit/collector/xml.rb:252
-#: ./lib/test/unit/color-scheme.rb:252 ./lib/test/unit/color.rb:252
-#: ./lib/test/unit/data.rb:252 ./lib/test/unit/diff.rb:252
-#: ./lib/test/unit/error.rb:252 ./lib/test/unit/exceptionhandler.rb:252
-#: ./lib/test/unit/failure.rb:252
-#: ./lib/test/unit/fault-location-detector.rb:252
-#: ./lib/test/unit/fixture.rb:252 ./lib/test/unit/notification.rb:252
-#: ./lib/test/unit/omission.rb:252 ./lib/test/unit/pending.rb:252
-#: ./lib/test/unit/priority.rb:252
-#: ./lib/test/unit/runner/console.rb:252
-#: ./lib/test/unit/runner/emacs.rb:252
-#: ./lib/test/unit/runner/xml.rb:252 ./lib/test/unit/testcase.rb:252
-#: ./lib/test/unit/testresult.rb:252 ./lib/test/unit/testsuite.rb:252
-#: ./lib/test/unit/testsuitecreator.rb:252
-#: ./lib/test/unit/ui/console/outputlevel.rb:252
-#: ./lib/test/unit/ui/console/testrunner.rb:252
-#: ./lib/test/unit/ui/emacs/testrunner.rb:252
-#: ./lib/test/unit/ui/testrunner.rb:252
-#: ./lib/test/unit/ui/testrunnermediator.rb:252
-#: ./lib/test/unit/ui/testrunnerutilities.rb:252
-#: ./lib/test/unit/ui/xml/testrunner.rb:252
-#: ./lib/test/unit/util/backtracefilter.rb:252
-#: ./lib/test/unit/util/method-owner-finder.rb:252
-#: ./lib/test/unit/util/observable.rb:252
-#: ./lib/test/unit/util/output.rb:252
-#: ./lib/test/unit/util/procwrapper.rb:252
-#: ./lib/test/unit/version.rb:252
-#, fuzzy
-msgid ""
-"Except color scheme definitions, all of them are\n"
-"specified by command line option."
-msgstr "カラースキーム定義以外はコマンドラインオプションで指定することができます。"
-
 # Test::Unit
 #: ./lib/test-unit.rb:257 ./lib/test/unit.rb:257
 #: ./lib/test/unit/assertionfailederror.rb:257
@@ -4002,50 +3903,6 @@ msgid ""
 "BOOLEAN:: true or false"
 msgstr ""
 
-#: ./lib/test-unit.rb:288 ./lib/test/unit.rb:288
-#: ./lib/test/unit/assertionfailederror.rb:288
-#: ./lib/test/unit/assertions.rb:288
-#: ./lib/test/unit/attribute-matcher.rb:288
-#: ./lib/test/unit/attribute.rb:288 ./lib/test/unit/autorunner.rb:288
-#: ./lib/test/unit/code-snippet-fetcher.rb:288
-#: ./lib/test/unit/collector.rb:288
-#: ./lib/test/unit/collector/descendant.rb:288
-#: ./lib/test/unit/collector/dir.rb:288
-#: ./lib/test/unit/collector/load.rb:288
-#: ./lib/test/unit/collector/objectspace.rb:288
-#: ./lib/test/unit/collector/xml.rb:288
-#: ./lib/test/unit/color-scheme.rb:288 ./lib/test/unit/color.rb:288
-#: ./lib/test/unit/data.rb:288 ./lib/test/unit/diff.rb:288
-#: ./lib/test/unit/error.rb:288 ./lib/test/unit/exceptionhandler.rb:288
-#: ./lib/test/unit/failure.rb:288
-#: ./lib/test/unit/fault-location-detector.rb:288
-#: ./lib/test/unit/fixture.rb:288 ./lib/test/unit/notification.rb:288
-#: ./lib/test/unit/omission.rb:288 ./lib/test/unit/pending.rb:288
-#: ./lib/test/unit/priority.rb:288
-#: ./lib/test/unit/runner/console.rb:288
-#: ./lib/test/unit/runner/emacs.rb:288
-#: ./lib/test/unit/runner/xml.rb:288 ./lib/test/unit/testcase.rb:288
-#: ./lib/test/unit/testresult.rb:288 ./lib/test/unit/testsuite.rb:288
-#: ./lib/test/unit/testsuitecreator.rb:288
-#: ./lib/test/unit/ui/console/outputlevel.rb:288
-#: ./lib/test/unit/ui/console/testrunner.rb:288
-#: ./lib/test/unit/ui/emacs/testrunner.rb:288
-#: ./lib/test/unit/ui/testrunner.rb:288
-#: ./lib/test/unit/ui/testrunnermediator.rb:288
-#: ./lib/test/unit/ui/testrunnerutilities.rb:288
-#: ./lib/test/unit/ui/xml/testrunner.rb:288
-#: ./lib/test/unit/util/backtracefilter.rb:288
-#: ./lib/test/unit/util/method-owner-finder.rb:288
-#: ./lib/test/unit/util/observable.rb:288
-#: ./lib/test/unit/util/output.rb:288
-#: ./lib/test/unit/util/procwrapper.rb:288
-#: ./lib/test/unit/version.rb:288
-#, fuzzy
-msgid ""
-"You can use the above 'inverted' color scheme with the\n"
-"following configuration:"
-msgstr "上で定義した'inverted'カラースキムを使う設定は以下の通りです。"
-
 # Test::Unit
 #: ./lib/test-unit.rb:291 ./lib/test/unit.rb:291
 #: ./lib/test/unit/assertionfailederror.rb:291
@@ -4186,6 +4043,136 @@ msgid ""
 "missing points, etc., in this document (or any other)."
 msgstr ""
 
+#: ./lib/test-unit.rb:243 ./lib/test/unit.rb:243
+#: ./lib/test/unit/assertionfailederror.rb:243
+#: ./lib/test/unit/assertions.rb:243
+#: ./lib/test/unit/attribute-matcher.rb:243
+#: ./lib/test/unit/attribute.rb:243 ./lib/test/unit/autorunner.rb:243
+#: ./lib/test/unit/code-snippet-fetcher.rb:243
+#: ./lib/test/unit/collector.rb:243
+#: ./lib/test/unit/collector/descendant.rb:243
+#: ./lib/test/unit/collector/dir.rb:243
+#: ./lib/test/unit/collector/load.rb:243
+#: ./lib/test/unit/collector/objectspace.rb:243
+#: ./lib/test/unit/collector/xml.rb:243
+#: ./lib/test/unit/color-scheme.rb:243 ./lib/test/unit/color.rb:243
+#: ./lib/test/unit/data.rb:243 ./lib/test/unit/diff.rb:243
+#: ./lib/test/unit/error.rb:243 ./lib/test/unit/exceptionhandler.rb:243
+#: ./lib/test/unit/failure.rb:243
+#: ./lib/test/unit/fault-location-detector.rb:243
+#: ./lib/test/unit/fixture.rb:243 ./lib/test/unit/notification.rb:243
+#: ./lib/test/unit/omission.rb:243 ./lib/test/unit/pending.rb:243
+#: ./lib/test/unit/priority.rb:243
+#: ./lib/test/unit/runner/console.rb:243
+#: ./lib/test/unit/runner/emacs.rb:243
+#: ./lib/test/unit/runner/xml.rb:243 ./lib/test/unit/testcase.rb:243
+#: ./lib/test/unit/testresult.rb:243 ./lib/test/unit/testsuite.rb:243
+#: ./lib/test/unit/testsuitecreator.rb:243
+#: ./lib/test/unit/ui/console/outputlevel.rb:243
+#: ./lib/test/unit/ui/console/testrunner.rb:243
+#: ./lib/test/unit/ui/emacs/testrunner.rb:243
+#: ./lib/test/unit/ui/testrunner.rb:243
+#: ./lib/test/unit/ui/testrunnermediator.rb:243
+#: ./lib/test/unit/ui/testrunnerutilities.rb:243
+#: ./lib/test/unit/ui/xml/testrunner.rb:243
+#: ./lib/test/unit/util/backtracefilter.rb:243
+#: ./lib/test/unit/util/method-owner-finder.rb:243
+#: ./lib/test/unit/util/observable.rb:243
+#: ./lib/test/unit/util/output.rb:243
+#: ./lib/test/unit/util/procwrapper.rb:243
+#: ./lib/test/unit/version.rb:243
+msgid ""
+"Test::Unit reads 'test-unit.yml' in the current working\n"
+"directory as Test::Unit's configuration file. It can\n"
+"contain the following configurations:"
+msgstr "Test::Unitは現在のワーキングディレクトリにある'test-unit.yml'をTest::Unitの設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
+
+#: ./lib/test-unit.rb:252 ./lib/test/unit.rb:252
+#: ./lib/test/unit/assertionfailederror.rb:252
+#: ./lib/test/unit/assertions.rb:252
+#: ./lib/test/unit/attribute-matcher.rb:252
+#: ./lib/test/unit/attribute.rb:252 ./lib/test/unit/autorunner.rb:252
+#: ./lib/test/unit/code-snippet-fetcher.rb:252
+#: ./lib/test/unit/collector.rb:252
+#: ./lib/test/unit/collector/descendant.rb:252
+#: ./lib/test/unit/collector/dir.rb:252
+#: ./lib/test/unit/collector/load.rb:252
+#: ./lib/test/unit/collector/objectspace.rb:252
+#: ./lib/test/unit/collector/xml.rb:252
+#: ./lib/test/unit/color-scheme.rb:252 ./lib/test/unit/color.rb:252
+#: ./lib/test/unit/data.rb:252 ./lib/test/unit/diff.rb:252
+#: ./lib/test/unit/error.rb:252 ./lib/test/unit/exceptionhandler.rb:252
+#: ./lib/test/unit/failure.rb:252
+#: ./lib/test/unit/fault-location-detector.rb:252
+#: ./lib/test/unit/fixture.rb:252 ./lib/test/unit/notification.rb:252
+#: ./lib/test/unit/omission.rb:252 ./lib/test/unit/pending.rb:252
+#: ./lib/test/unit/priority.rb:252
+#: ./lib/test/unit/runner/console.rb:252
+#: ./lib/test/unit/runner/emacs.rb:252
+#: ./lib/test/unit/runner/xml.rb:252 ./lib/test/unit/testcase.rb:252
+#: ./lib/test/unit/testresult.rb:252 ./lib/test/unit/testsuite.rb:252
+#: ./lib/test/unit/testsuitecreator.rb:252
+#: ./lib/test/unit/ui/console/outputlevel.rb:252
+#: ./lib/test/unit/ui/console/testrunner.rb:252
+#: ./lib/test/unit/ui/emacs/testrunner.rb:252
+#: ./lib/test/unit/ui/testrunner.rb:252
+#: ./lib/test/unit/ui/testrunnermediator.rb:252
+#: ./lib/test/unit/ui/testrunnerutilities.rb:252
+#: ./lib/test/unit/ui/xml/testrunner.rb:252
+#: ./lib/test/unit/util/backtracefilter.rb:252
+#: ./lib/test/unit/util/method-owner-finder.rb:252
+#: ./lib/test/unit/util/observable.rb:252
+#: ./lib/test/unit/util/output.rb:252
+#: ./lib/test/unit/util/procwrapper.rb:252
+#: ./lib/test/unit/version.rb:252
+msgid ""
+"Except color scheme definitions, all of them are\n"
+"specified by command line option."
+msgstr "カラースキーム定義以外はコマンドラインオプションで指定することができます。"
+
+#: ./lib/test-unit.rb:288 ./lib/test/unit.rb:288
+#: ./lib/test/unit/assertionfailederror.rb:288
+#: ./lib/test/unit/assertions.rb:288
+#: ./lib/test/unit/attribute-matcher.rb:288
+#: ./lib/test/unit/attribute.rb:288 ./lib/test/unit/autorunner.rb:288
+#: ./lib/test/unit/code-snippet-fetcher.rb:288
+#: ./lib/test/unit/collector.rb:288
+#: ./lib/test/unit/collector/descendant.rb:288
+#: ./lib/test/unit/collector/dir.rb:288
+#: ./lib/test/unit/collector/load.rb:288
+#: ./lib/test/unit/collector/objectspace.rb:288
+#: ./lib/test/unit/collector/xml.rb:288
+#: ./lib/test/unit/color-scheme.rb:288 ./lib/test/unit/color.rb:288
+#: ./lib/test/unit/data.rb:288 ./lib/test/unit/diff.rb:288
+#: ./lib/test/unit/error.rb:288 ./lib/test/unit/exceptionhandler.rb:288
+#: ./lib/test/unit/failure.rb:288
+#: ./lib/test/unit/fault-location-detector.rb:288
+#: ./lib/test/unit/fixture.rb:288 ./lib/test/unit/notification.rb:288
+#: ./lib/test/unit/omission.rb:288 ./lib/test/unit/pending.rb:288
+#: ./lib/test/unit/priority.rb:288
+#: ./lib/test/unit/runner/console.rb:288
+#: ./lib/test/unit/runner/emacs.rb:288
+#: ./lib/test/unit/runner/xml.rb:288 ./lib/test/unit/testcase.rb:288
+#: ./lib/test/unit/testresult.rb:288 ./lib/test/unit/testsuite.rb:288
+#: ./lib/test/unit/testsuitecreator.rb:288
+#: ./lib/test/unit/ui/console/outputlevel.rb:288
+#: ./lib/test/unit/ui/console/testrunner.rb:288
+#: ./lib/test/unit/ui/emacs/testrunner.rb:288
+#: ./lib/test/unit/ui/testrunner.rb:288
+#: ./lib/test/unit/ui/testrunnermediator.rb:288
+#: ./lib/test/unit/ui/testrunnerutilities.rb:288
+#: ./lib/test/unit/ui/xml/testrunner.rb:288
+#: ./lib/test/unit/util/backtracefilter.rb:288
+#: ./lib/test/unit/util/method-owner-finder.rb:288
+#: ./lib/test/unit/util/observable.rb:288
+#: ./lib/test/unit/util/output.rb:288
+#: ./lib/test/unit/util/procwrapper.rb:288
+#: ./lib/test/unit/version.rb:288
+msgid ""
+"You can use the above 'inverted' color scheme with the\n"
+"following configuration:"
+msgstr "上で定義した'inverted'カラースキムを使う設定は以下の通りです。"
+
 # Test::Unit.run=
 #: ./lib/test/unit.rb:313
 msgid ""
@@ -4298,11 +4285,6 @@ msgid ""
 "* TestMyClass2#test_my_class2"
 msgstr ""
 
-# @since
-#: ./lib/test/unit.rb:400 ./lib/test/unit.rb:485
-msgid "2.5.2"
-msgstr ""
-
 # @example
 #: ./lib/test/unit.rb:400
 msgid ""
@@ -4314,6 +4296,11 @@ msgstr ""
 # @yield
 #: ./lib/test/unit.rb:400
 msgid "A block that is run before running tests."
+msgstr ""
+
+# @since
+#: ./lib/test/unit.rb:400 ./lib/test/unit.rb:485
+msgid "2.5.2"
 msgstr ""
 
 # Test::Unit.at_exit
@@ -4420,9 +4407,9 @@ msgstr ""
 msgid "the value to set the attribute expected to."
 msgstr ""
 
-# @param value
 #: ./lib/test/unit/assertionfailederror.rb:13
-msgid "the value to set the attribute inspected_expected to."
+#: ./lib/test/unit/failure.rb:16
+msgid "Returns the value of attribute actual"
 msgstr ""
 
 # @param value
@@ -4435,14 +4422,19 @@ msgstr ""
 msgid "Returns the value of attribute expected"
 msgstr ""
 
+# Test::Unit::AssertionFailedError#expected=
+#: ./lib/test/unit/assertionfailederror.rb:13
+msgid "Sets the attribute expected"
+msgstr ""
+
 # Test::Unit::AssertionFailedError#actual=
 #: ./lib/test/unit/assertionfailederror.rb:13
 msgid "Sets the attribute actual"
 msgstr ""
 
+# @param value
 #: ./lib/test/unit/assertionfailederror.rb:13
-#: ./lib/test/unit/failure.rb:16
-msgid "Returns the value of attribute user_message"
+msgid "the value to set the attribute inspected_expected to."
 msgstr ""
 
 # Test::Unit::AssertionFailedError#user_message=
@@ -4452,12 +4444,7 @@ msgstr ""
 
 #: ./lib/test/unit/assertionfailederror.rb:13
 #: ./lib/test/unit/failure.rb:16
-msgid "Returns the value of attribute actual"
-msgstr ""
-
-# Test::Unit::AssertionFailedError#expected=
-#: ./lib/test/unit/assertionfailederror.rb:13
-msgid "Sets the attribute expected"
+msgid "Returns the value of attribute user_message"
 msgstr ""
 
 #: ./lib/test/unit/assertionfailederror.rb:14
@@ -4470,14 +4457,14 @@ msgstr ""
 msgid "Returns the value of attribute inspected_expected"
 msgstr ""
 
-# Test::Unit::AssertionFailedError#inspected_actual=
-#: ./lib/test/unit/assertionfailederror.rb:14
-msgid "Sets the attribute inspected_actual"
-msgstr ""
-
 # Test::Unit::AssertionFailedError#inspected_expected=
 #: ./lib/test/unit/assertionfailederror.rb:14
 msgid "Sets the attribute inspected_expected"
+msgstr ""
+
+# Test::Unit::AssertionFailedError#inspected_actual=
+#: ./lib/test/unit/assertionfailederror.rb:14
+msgid "Sets the attribute inspected_actual"
 msgstr ""
 
 # Test::Unit::Assertions
@@ -4529,9 +4516,16 @@ msgstr ""
 msgid "Asserts that +object+ is false or nil."
 msgstr ""
 
-# @param [Object] object
+# @example Pass patterns
 #: ./lib/test/unit/assertions.rb:104
-msgid "The object to be asserted."
+msgid ""
+"refute(false)    # => pass\n"
+"refute(nil)      # => pass"
+msgstr ""
+
+# @example
+#: ./lib/test/unit/assertions.rb:104
+msgid "tag|example|Fialure patterns"
 msgstr ""
 
 # @example Fialure patterns
@@ -4541,20 +4535,13 @@ msgid ""
 "refute(\"string\") # => failure"
 msgstr ""
 
-#: ./lib/test/unit/assertions.rb:104 ./lib/test/unit/assertions.rb:208
-#: ./lib/test/unit/assertions.rb:382 ./lib/test/unit/assertions.rb:509
-#: ./lib/test/unit/assertions.rb:526 ./lib/test/unit/assertions.rb:543
-#: ./lib/test/unit/assertions.rb:568 ./lib/test/unit/assertions.rb:641
-#: ./lib/test/unit/assertions.rb:721
-#, fuzzy
-msgid "Just for minitest compatibility. :<"
-msgstr "minitestとの互換とバグフィックスのリリースです。"
-
-# @example Pass patterns
-#: ./lib/test/unit/assertions.rb:104
-msgid ""
-"refute(false)    # => pass\n"
-"refute(nil)      # => pass"
+# @since
+#: ./lib/test/unit/assertions.rb:104 ./lib/test/unit/assertions.rb:364
+#: ./lib/test/unit/assertions.rb:498 ./lib/test/unit/assertions.rb:520
+#: ./lib/test/unit/assertions.rb:537 ./lib/test/unit/assertions.rb:555
+#: ./lib/test/unit/assertions.rb:606 ./lib/test/unit/assertions.rb:704
+#: ./lib/test/unit/assertions.rb:1336
+msgid "2.5.3"
 msgstr ""
 
 # @param [Object]
@@ -4564,21 +4551,12 @@ msgstr ""
 
 # @example
 #: ./lib/test/unit/assertions.rb:104
-msgid "tag|example|Fialure patterns"
-msgstr ""
-
-# @example
-#: ./lib/test/unit/assertions.rb:104
 msgid "tag|example|Pass patterns"
 msgstr ""
 
-# @since
-#: ./lib/test/unit/assertions.rb:104 ./lib/test/unit/assertions.rb:364
-#: ./lib/test/unit/assertions.rb:498 ./lib/test/unit/assertions.rb:520
-#: ./lib/test/unit/assertions.rb:537 ./lib/test/unit/assertions.rb:555
-#: ./lib/test/unit/assertions.rb:606 ./lib/test/unit/assertions.rb:704
-#: ./lib/test/unit/assertions.rb:1336
-msgid "2.5.3"
+# @param [Object] object
+#: ./lib/test/unit/assertions.rb:104
+msgid "The object to be asserted."
 msgstr ""
 
 # Test::Unit::Assertions#assert_raise_kind_of
@@ -4596,6 +4574,14 @@ msgid ""
 "    raise Errno::EACCES\n"
 "  end"
 msgstr ""
+
+#: ./lib/test/unit/assertions.rb:721
+#: ./lib/test/unit/assertions.rb:104 ./lib/test/unit/assertions.rb:208
+#: ./lib/test/unit/assertions.rb:382 ./lib/test/unit/assertions.rb:509
+#: ./lib/test/unit/assertions.rb:526 ./lib/test/unit/assertions.rb:543
+#: ./lib/test/unit/assertions.rb:568 ./lib/test/unit/assertions.rb:641
+msgid "Just for minitest compatibility. :<"
+msgstr "minitestとの互換製のためだけのリリースです。 :"
 
 #: ./lib/test/unit/assertions.rb:983
 msgid "Passes if the method send doesn't return a true value."
@@ -4908,14 +4894,36 @@ msgid "Returns the value of attribute object"
 msgstr ""
 
 #: ./lib/test/unit/assertions.rb:1775
-#, fuzzy
 msgid "a new instance of Literal"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/assertions.rb:1775
+msgid "a new instance of Literal"
+msgstr ""
+
+#: ./lib/test/unit/assertions.rb:1775
+msgid "a new instance of Literal"
+msgstr ""
+
+#: ./lib/test/unit/assertions.rb:1775
+msgid "a new instance of Literal"
+msgstr ""
 
 #: ./lib/test/unit/assertions.rb:1795
-#, fuzzy
 msgid "a new instance of MaybeContainer"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/assertions.rb:1795
+msgid "a new instance of MaybeContainer"
+msgstr ""
+
+#: ./lib/test/unit/assertions.rb:1795
+msgid "a new instance of MaybeContainer"
+msgstr ""
+
+#: ./lib/test/unit/assertions.rb:1795
+msgid "a new instance of MaybeContainer"
+msgstr ""
 
 #: ./lib/test/unit/assertions.rb:1819
 msgid "Returns the value of attribute count"
@@ -4925,19 +4933,9 @@ msgstr ""
 msgid "Returns the value of attribute exception"
 msgstr ""
 
-#: ./lib/test/unit/autorunner.rb:126
-msgid "Returns the value of attribute suite"
-msgstr ""
-
 # @param value
 #: ./lib/test/unit/autorunner.rb:126
-msgid "the value to set the attribute workdir to."
-msgstr ""
-
-# @param value
-#: ./lib/test/unit/autorunner.rb:126
-#: ./lib/test/unit/collector/dir.rb:11
-msgid "the value to set the attribute base to."
+msgid "the value to set the attribute to_run to."
 msgstr ""
 
 # @param value
@@ -4945,9 +4943,14 @@ msgstr ""
 msgid "the value to set the attribute exclude to."
 msgstr ""
 
+#: ./lib/test/unit/autorunner.rb:126
+msgid "Returns the value of attribute suite"
+msgstr ""
+
 # @param value
 #: ./lib/test/unit/autorunner.rb:126
-msgid "the value to set the attribute to_run to."
+#: ./lib/test/unit/collector/dir.rb:11
+msgid "the value to set the attribute base to."
 msgstr ""
 
 # @param value
@@ -4960,58 +4963,17 @@ msgstr ""
 msgid "the value to set the attribute filters to."
 msgstr ""
 
+# @param value
+#: ./lib/test/unit/autorunner.rb:126
+msgid "the value to set the attribute workdir to."
+msgstr ""
+
 #: ./lib/test/unit/autorunner.rb:126
 msgid "Returns the value of attribute runner_options"
 msgstr ""
 
 #: ./lib/test/unit/autorunner.rb:127
-#: ./lib/test/unit/collector/dir.rb:11
-msgid "Returns the value of attribute pattern"
-msgstr ""
-
-# Test::Unit::AutoRunner#base=
-# Test::Unit::Collector::Dir#base=
-#: ./lib/test/unit/autorunner.rb:127
-#: ./lib/test/unit/collector/dir.rb:12
-msgid "Sets the attribute base"
-msgstr ""
-
-#: ./lib/test/unit/autorunner.rb:127
-#: ./lib/test/unit/collector/dir.rb:12
-#: ./lib/test/unit/collector/load.rb:13
-msgid "Returns the value of attribute base"
-msgstr ""
-
-#: ./lib/test/unit/autorunner.rb:127
 msgid "Returns the value of attribute filters"
-msgstr ""
-
-#: ./lib/test/unit/autorunner.rb:127
-msgid "Returns the value of attribute to_run"
-msgstr ""
-
-# Test::Unit::AutoRunner#to_run=
-#: ./lib/test/unit/autorunner.rb:127
-msgid "Sets the attribute to_run"
-msgstr ""
-
-#: ./lib/test/unit/autorunner.rb:127
-msgid "Returns the value of attribute workdir"
-msgstr ""
-
-# Test::Unit::AutoRunner#exclude=
-#: ./lib/test/unit/autorunner.rb:127
-msgid "Sets the attribute exclude"
-msgstr ""
-
-#: ./lib/test/unit/autorunner.rb:127
-#, fuzzy
-msgid "the value to set the attribute color_scheme to."
-msgstr "カラースキームの名前"
-
-# Test::Unit::AutoRunner#filters=
-#: ./lib/test/unit/autorunner.rb:127
-msgid "Sets the attribute filters"
 msgstr ""
 
 # Test::Unit::AutoRunner#workdir=
@@ -5019,9 +4981,21 @@ msgstr ""
 msgid "Sets the attribute workdir"
 msgstr ""
 
+#: ./lib/test/unit/autorunner.rb:127
+msgid "Returns the value of attribute to_run"
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:127
+msgid "Returns the value of attribute workdir"
+msgstr ""
+
 # @param value
 #: ./lib/test/unit/autorunner.rb:127
 msgid "the value to set the attribute listeners to."
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:127
+msgid "the value to set the attribute color_scheme to."
 msgstr ""
 
 # Test::Unit::AutoRunner#pattern=
@@ -5034,13 +5008,37 @@ msgstr ""
 msgid "Returns the value of attribute exclude"
 msgstr ""
 
-#: ./lib/test/unit/autorunner.rb:128
-#, fuzzy
-msgid "Sets the attribute color_scheme"
-msgstr "カラースキームの名前"
+# Test::Unit::AutoRunner#exclude=
+#: ./lib/test/unit/autorunner.rb:127
+msgid "Sets the attribute exclude"
+msgstr ""
 
-#: ./lib/test/unit/autorunner.rb:128
-msgid "the value to set the attribute collector to."
+#: ./lib/test/unit/autorunner.rb:127
+#: ./lib/test/unit/collector/dir.rb:11
+msgid "Returns the value of attribute pattern"
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:127
+#: ./lib/test/unit/collector/dir.rb:12
+#: ./lib/test/unit/collector/load.rb:13
+msgid "Returns the value of attribute base"
+msgstr ""
+
+# Test::Unit::AutoRunner#base=
+# Test::Unit::Collector::Dir#base=
+#: ./lib/test/unit/autorunner.rb:127
+#: ./lib/test/unit/collector/dir.rb:12
+msgid "Sets the attribute base"
+msgstr ""
+
+# Test::Unit::AutoRunner#to_run=
+#: ./lib/test/unit/autorunner.rb:127
+msgid "Sets the attribute to_run"
+msgstr ""
+
+# Test::Unit::AutoRunner#filters=
+#: ./lib/test/unit/autorunner.rb:127
+msgid "Sets the attribute filters"
 msgstr ""
 
 #: ./lib/test/unit/autorunner.rb:128
@@ -5049,7 +5047,7 @@ msgid "Returns the value of attribute listeners"
 msgstr ""
 
 #: ./lib/test/unit/autorunner.rb:128
-msgid "Returns the value of attribute color_scheme"
+msgid "Sets the attribute color_scheme"
 msgstr ""
 
 # Test::Unit::AutoRunner#listeners=
@@ -5058,15 +5056,31 @@ msgid "Sets the attribute listeners"
 msgstr ""
 
 #: ./lib/test/unit/autorunner.rb:128
+msgid "the value to set the attribute collector to."
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:128
 msgid "the value to set the attribute runner to."
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:128
+msgid "Returns the value of attribute color_scheme"
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:129
+msgid "Sets the attribute collector"
 msgstr ""
 
 #: ./lib/test/unit/autorunner.rb:129
 msgid "Sets the attribute runner"
 msgstr ""
 
-#: ./lib/test/unit/autorunner.rb:129
-msgid "Sets the attribute collector"
+#: ./lib/test/unit/autorunner.rb:130
+msgid "a new instance of AutoRunner"
+msgstr ""
+
+#: ./lib/test/unit/autorunner.rb:130
+msgid "a new instance of AutoRunner"
 msgstr ""
 
 # @yieldparam [Test::Unit::AutoRunner]
@@ -5078,37 +5092,45 @@ msgstr ""
 msgid "the object that the method was called on"
 msgstr ""
 
-#: ./lib/test/unit/autorunner.rb:130
-#, fuzzy
-msgid "a new instance of AutoRunner"
-msgstr "Loaderの新しいインスタンスを作成します。"
+#: ./lib/test/unit/collector/dir.rb:13
+msgid "a new instance of Dir"
+msgstr ""
 
 #: ./lib/test/unit/collector/dir.rb:13
-#, fuzzy
 msgid "a new instance of Dir"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: ./lib/test/unit/collector/load.rb:13
-msgid "Returns the value of attribute excludes"
 msgstr ""
 
 #: ./lib/test/unit/collector/load.rb:13
 msgid "Returns the value of attribute patterns"
 msgstr ""
 
+#: ./lib/test/unit/collector/load.rb:13
+msgid "Returns the value of attribute excludes"
+msgstr ""
+
 #: ./lib/test/unit/collector/load.rb:14
-#, fuzzy
 msgid "a new instance of Load"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/collector/xml.rb:37
+msgid "a new instance of Listener"
+msgstr ""
+
+#: ./lib/test/unit/collector/xml.rb:37
+msgid "a new instance of Listener"
+msgstr ""
+
+#: ./lib/test/unit/collector/xml.rb:37
+msgid "a new instance of Listener"
+msgstr ""
+
+#: ./lib/test/unit/collector/xml.rb:37
+msgid "a new instance of Listener"
+msgstr ""
 
 #: ./lib/test/unit/collector/xml.rb:37
 msgid "Returns the value of attribute test_suites"
 msgstr ""
-
-#: ./lib/test/unit/collector/xml.rb:37
-#, fuzzy
-msgid "a new instance of Listener"
-msgstr "Loaderの新しいインスタンスを作成します。"
 
 #: ./lib/test/unit/color.rb:28 ./lib/test/unit/testsuite.rb:22
 msgid "Returns the value of attribute name"
@@ -5117,11 +5139,6 @@ msgstr ""
 #: ./lib/test/unit/color.rb:111
 msgid "Returns the value of attribute colors"
 msgstr ""
-
-#: ./lib/test/unit/data.rb:12 ./lib/test/unit/data.rb:74
-#, fuzzy
-msgid "This method provides Data-Driven-Test functionality."
-msgstr "データ駆動テスト機能のドキュメントを追加しました。"
 
 # Test::Unit::Data::ClassMethods#data
 #: ./lib/test/unit/data.rb:14
@@ -5141,22 +5158,14 @@ msgid ""
 "can use {#data} with block."
 msgstr ""
 
-#: ./lib/test/unit/data.rb:90 ./lib/test/unit/data.rb:109
-#, fuzzy
-msgid "if +file_name+ is not supported file format."
-msgstr "<placeholder-1/>がサポートされていないファイルフォーマットのときに発生します。"
-
 # @see
 #: ./lib/test/unit/data.rb:90
 msgid "tag|see|Loader#load"
 msgstr ""
 
-#: ./lib/test/unit/data.rb:90 ./lib/test/unit/data.rb:109
-#, fuzzy
-msgid ""
-"full path to test data file.\n"
-"File format is automatically detected from filename extension."
-msgstr "データファイルのフルパスを指定します。ファイルフォーマットはファイルの拡張子から自動的に判別します。"
+#: ./lib/test/unit/data.rb:90
+msgid "tag|example|Load data from CSV file"
+msgstr "CSVファイルからデータを読み込みます。"
 
 # @example Load data from CSV file
 #: ./lib/test/unit/data.rb:90
@@ -5172,15 +5181,9 @@ msgstr ""
 msgid "tag|param|file_name"
 msgstr ""
 
-#: ./lib/test/unit/data.rb:90
-#, fuzzy
-msgid "tag|example|Load data from CSV file"
-msgstr "CSVファイルからデータを読み込みます。"
-
 #: ./lib/test/unit/data.rb:97
-#, fuzzy
 msgid "a new instance of Loader"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: ./lib/test/unit/data.rb:102
 msgid "Load data from file."
@@ -5188,12 +5191,12 @@ msgstr "ファイルからデータを読み込みます。"
 
 # @see
 #: ./lib/test/unit/data.rb:109
-msgid "tag|see|#load_tsv"
+msgid "tag|see|#load_csv"
 msgstr ""
 
 # @see
 #: ./lib/test/unit/data.rb:109
-msgid "tag|see|#load_csv"
+msgid "tag|see|#load_tsv"
 msgstr ""
 
 #: ./lib/test/unit/data.rb:121
@@ -5201,7 +5204,6 @@ msgid "Load data from CSV file."
 msgstr "CSVファイルからデータを読み込みます。"
 
 #: ./lib/test/unit/data.rb:123
-#, fuzzy
 msgid ""
 "There are 2 types of CSV file as following examples.\n"
 "First, there is a header on first row and it's first column is \"label\".\n"
@@ -5212,28 +5214,8 @@ msgstr ""
 "もう一つは、ヘッダ行のないファイルです。"
 
 #: ./lib/test/unit/data.rb:149
-#, fuzzy
 msgid "tag|example|Load data from CSV file with header"
 msgstr "ヘッダのあるCSVファイルを読み込みます"
-
-# @example Load data from CSV file without header
-#: ./lib/test/unit/data.rb:149
-msgid ""
-"# test-data-without-header.csv:\n"
-"#  empty string,true,\"\"\n"
-"#  plain string,false,hello\n"
-"#\n"
-"load_data(\"/path/to/test-data-without-header.csv\")\n"
-"def test_empty?(data)\n"
-"  expected, target = data\n"
-"  assert_equal(expected, target.empty?)\n"
-"end"
-msgstr ""
-
-#: ./lib/test/unit/data.rb:149
-#, fuzzy
-msgid "tag|example|Load data from CSV file without header"
-msgstr "ヘッダのないCSVファイルを読み込みます"
 
 # @example Load data from CSV file with header
 #: ./lib/test/unit/data.rb:149
@@ -5249,12 +5231,29 @@ msgid ""
 "end"
 msgstr ""
 
+#: ./lib/test/unit/data.rb:149
+msgid "tag|example|Load data from CSV file without header"
+msgstr "ヘッダのないCSVファイルを読み込みます"
+
+# @example Load data from CSV file without header
+#: ./lib/test/unit/data.rb:149
+msgid ""
+"# test-data-without-header.csv:\n"
+"#  empty string,true,\"\"\n"
+"#  plain string,false,hello\n"
+"#\n"
+"load_data(\"/path/to/test-data-without-header.csv\")\n"
+"def test_empty?(data)\n"
+"  expected, target = data\n"
+"  assert_equal(expected, target.empty?)\n"
+"end"
+msgstr ""
+
 #: ./lib/test/unit/data.rb:167
 msgid "Load data from TSV file."
 msgstr "TSVファイルからデータを読み込みます。"
 
 #: ./lib/test/unit/data.rb:169
-#, fuzzy
 msgid ""
 "There are 2 types of TSV file as following examples.\n"
 "First, there is a header on first row and it's first column is \"label\".\n"
@@ -5263,6 +5262,14 @@ msgstr ""
 "以下の2種類のサンプルのようなTSVファイルを使用できます。\n"
 "一つ目は、一行目の最初のカラムが\"label\"という文字列であるものです。\n"
 "もう一つは、ヘッダ行のないファイルです。"
+
+#: ./lib/test/unit/data.rb:195
+msgid "tag|example|Load data from TSV file without header"
+msgstr "ヘッダのないTSVファイルを読み込みます"
+
+#: ./lib/test/unit/data.rb:195
+msgid "tag|example|Load data from TSV file with header"
+msgstr "ヘッダのあるTSVファイルを読み込みます"
 
 # @example Load data from TSV file without header
 #: ./lib/test/unit/data.rb:195
@@ -5278,11 +5285,6 @@ msgid ""
 "end"
 msgstr ""
 
-#: ./lib/test/unit/data.rb:195
-#, fuzzy
-msgid "tag|example|Load data from TSV file with header"
-msgstr "ヘッダのあるTSVファイルを読み込みます"
-
 # @example Load data from TSV file with header
 #: ./lib/test/unit/data.rb:195
 msgid ""
@@ -5297,15 +5299,27 @@ msgid ""
 "end"
 msgstr ""
 
-#: ./lib/test/unit/data.rb:195
-#, fuzzy
-msgid "tag|example|Load data from TSV file without header"
-msgstr "ヘッダのないTSVファイルを読み込みます"
+#: ./lib/test/unit/data.rb:12 ./lib/test/unit/data.rb:74
+msgid "This method provides Data-Driven-Test functionality."
+msgstr "データ駆動テスト機能のドキュメントを追加しました。"
+
+#: ./lib/test/unit/data.rb:90 ./lib/test/unit/data.rb:109
+msgid ""
+"full path to test data file.\n"
+"File format is automatically detected from filename extension."
+msgstr "データファイルのフルパスを指定します。ファイルフォーマットはファイルの拡張子から自動的に判別します。"
+
+#: ./lib/test/unit/data.rb:90 ./lib/test/unit/data.rb:109
+msgid "if +file_name+ is not supported file format."
+msgstr "+file_name+ がサポートされていないファイルフォーマットのときに発生します。"
 
 #: ./lib/test/unit/diff.rb:265
-#, fuzzy
 msgid "a new instance of Differ"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/diff.rb:265
+msgid "a new instance of Differ"
+msgstr ""
 
 # Test::Unit::Diff::UTF8Line::WIDE_CHARACTERS
 #: ./lib/test/unit/diff.rb:279
@@ -5340,9 +5354,12 @@ msgid ""
 msgstr ""
 
 #: ./lib/test/unit/error.rb:26
-#, fuzzy
 msgid "a new instance of Error"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/error.rb:26
+msgid "a new instance of Error"
+msgstr ""
 
 #: ./lib/test/unit/error.rb:33
 msgid "Returns a single character representation of an error."
@@ -5424,9 +5441,8 @@ msgid ""
 msgstr ""
 
 #: ./lib/test/unit/failure.rb:23
-#, fuzzy
 msgid "a new instance of Failure"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: ./lib/test/unit/failure.rb:37
 msgid "Returns a single character representation of a failure."
@@ -5436,17 +5452,13 @@ msgstr ""
 msgid "Report a failure."
 msgstr ""
 
+# @param [String]
 #: ./lib/test/unit/failure.rb:112
-msgid "The description about the failure."
+msgid "tag|param|message"
 msgstr ""
 
 #: ./lib/test/unit/failure.rb:112
 msgid "The backtrace for the failure."
-msgstr ""
-
-# @param [Array<String>]
-#: ./lib/test/unit/failure.rb:112
-msgid "tag|param|backtrace"
 msgstr ""
 
 # @option
@@ -5454,18 +5466,22 @@ msgstr ""
 msgid "tag|option|options"
 msgstr ""
 
-#: ./lib/test/unit/failure.rb:112 ./lib/test/unit/testcase.rb:352
-msgid "a customizable set of options"
-msgstr ""
-
 # @param [Hash]
 #: ./lib/test/unit/failure.rb:112
 msgid "tag|param|options"
 msgstr ""
 
-# @param [String]
 #: ./lib/test/unit/failure.rb:112
-msgid "tag|param|message"
+msgid "The description about the failure."
+msgstr ""
+
+#: ./lib/test/unit/failure.rb:112 ./lib/test/unit/testcase.rb:352
+msgid "a customizable set of options"
+msgstr ""
+
+# @param [Array<String>]
+#: ./lib/test/unit/failure.rb:112
+msgid "tag|param|backtrace"
 msgstr ""
 
 #: ./lib/test/unit/failure.rb:138
@@ -5653,9 +5669,12 @@ msgid ""
 msgstr ""
 
 #: ./lib/test/unit/pending.rb:15
-#, fuzzy
 msgid "a new instance of Pending"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/pending.rb:15
+msgid "a new instance of Pending"
+msgstr ""
 
 #: ./lib/test/unit/pending.rb:23
 msgid "Returns a single character representation of a pending."
@@ -6046,6 +6065,11 @@ msgid ""
 "  For example, you can use a space in name such as \"child test\"."
 msgstr ""
 
+# @param [String]
+#: ./lib/test/unit/testcase.rb:332
+msgid "tag|param|name"
+msgstr ""
+
 # @yield
 #: ./lib/test/unit/testcase.rb:332
 msgid ""
@@ -6053,17 +6077,12 @@ msgid ""
 "case class context."
 msgstr ""
 
-# @param [String]
 #: ./lib/test/unit/testcase.rb:332
-msgid "tag|param|name"
+msgid "Created sub test case class."
 msgstr ""
 
 #: ./lib/test/unit/testcase.rb:332
 msgid "The name of newly created sub test case."
-msgstr ""
-
-#: ./lib/test/unit/testcase.rb:332
-msgid "Created sub test case class."
 msgstr ""
 
 # Test::Unit::TestCase.test_defined?
@@ -6073,14 +6092,14 @@ msgid ""
 "defined."
 msgstr ""
 
-# @param [Hash]
-#: ./lib/test/unit/testcase.rb:352
-msgid "tag|param|query"
-msgstr ""
-
 # @option
 #: ./lib/test/unit/testcase.rb:352
 msgid "tag|option|query"
+msgstr ""
+
+# @param [Hash]
+#: ./lib/test/unit/testcase.rb:352
+msgid "tag|param|query"
 msgstr ""
 
 # Test::Unit::TestCase#initialize
@@ -6091,9 +6110,20 @@ msgid ""
 msgstr ""
 
 #: ./lib/test/unit/testcase.rb:394
-#, fuzzy
 msgid "a new instance of TestCase"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/testcase.rb:394
+msgid "a new instance of TestCase"
+msgstr ""
+
+#: ./lib/test/unit/testcase.rb:394
+msgid "a new instance of TestCase"
+msgstr ""
+
+#: ./lib/test/unit/testcase.rb:394
+msgid "a new instance of TestCase"
+msgstr ""
 
 #: ./lib/test/unit/testcase.rb:400
 msgid "Assigns test data to the test. It is used in internal."
@@ -6398,14 +6428,14 @@ msgstr ""
 msgid "Returns the value of attribute elapsed_time"
 msgstr ""
 
-# Test::Unit::TestCase::InternalData#test_data
-#: ./lib/test/unit/testcase.rb:714
-msgid "Returns the value of attribute test_data"
-msgstr ""
-
 # Test::Unit::TestCase::InternalData#test_data_label
 #: ./lib/test/unit/testcase.rb:714
 msgid "Returns the value of attribute test_data_label"
+msgstr ""
+
+# Test::Unit::TestCase::InternalData#test_data
+#: ./lib/test/unit/testcase.rb:714
+msgid "Returns the value of attribute test_data"
 msgstr ""
 
 # Test::Unit::TestResult
@@ -6426,11 +6456,11 @@ msgid "Returns the value of attribute faults"
 msgstr ""
 
 #: ./lib/test/unit/testresult.rb:40
-msgid "Returns the value of attribute assertion_count"
+msgid "Returns the value of attribute pass_count"
 msgstr ""
 
 #: ./lib/test/unit/testresult.rb:40
-msgid "Returns the value of attribute pass_count"
+msgid "Returns the value of attribute assertion_count"
 msgstr ""
 
 #: ./lib/test/unit/testresult.rb:42
@@ -6545,9 +6575,26 @@ msgstr ""
 #: ./lib/test/unit/ui/console/testrunner.rb:32
 #: ./lib/test/unit/ui/testrunner.rb:10
 #: ./lib/test/unit/ui/xml/testrunner.rb:25
-#, fuzzy
 msgid "a new instance of TestRunner"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
+
+#: ./lib/test/unit/ui/console/testrunner.rb:32
+#: ./lib/test/unit/ui/testrunner.rb:10
+#: ./lib/test/unit/ui/xml/testrunner.rb:25
+msgid "a new instance of TestRunner"
+msgstr ""
+
+#: ./lib/test/unit/ui/console/testrunner.rb:32
+#: ./lib/test/unit/ui/testrunner.rb:10
+#: ./lib/test/unit/ui/xml/testrunner.rb:25
+msgid "a new instance of TestRunner"
+msgstr ""
+
+#: ./lib/test/unit/ui/console/testrunner.rb:32
+#: ./lib/test/unit/ui/testrunner.rb:10
+#: ./lib/test/unit/ui/xml/testrunner.rb:25
+msgid "a new instance of TestRunner"
+msgstr ""
 
 #: ./lib/test/unit/ui/testrunner.rb:21
 msgid "Begins the test run."
@@ -6740,839 +6787,55 @@ msgid ""
 msgstr ""
 
 #: ./lib/test/unit/util/procwrapper.rb:23
-#, fuzzy
 msgid "a new instance of ProcWrapper"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: ./lib/test/unit/util/procwrapper.rb:23
 msgid "Creates a new wrapper for a_proc."
 msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
 msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-msgid "a new instance of Collector"
-msgstr "Loaderの新しいインスタンスを作成します。"
+msgstr ""
 
 #: doc/reference/en/file.how-to.html:84(p)
-#, fuzzy
 msgid "The output format can be changed via the command line with the <placeholder-1/> option. Simply tack it to the end:"
 msgstr "テスト結果の出力フォーマットはコマンドラインで<placeholder-1/>オプションを指定すると変更できます。単純にこのオプションを最後に追加してください。"
 
 #: doc/reference/en/file.news.html:70(li)
-#, fuzzy
 msgid "Accepted screen-256color <placeholder-1/> as 256 colors available environment. [GitHub#55] [Reported by Tom Miller]"
-msgstr "[ui][console] <placeholder-1/>を色付けできるターミナルに追加。 [GitHub#26] [Michael Grosserさんが報告]"
-
-#: doc/reference/en/top-level-namespace.html:34(a)
-#: doc/reference/en/index.html:34(a) doc/reference/en/file.news.html:34(a)
-#: doc/reference/en/file.how-to.html:34(a)
-#: doc/reference/en/file.README.html:34(a)
-#~ msgid "Index"
-#~ msgstr "索引"
-
-#: doc/reference/en/index.html:35(span)
-#: doc/reference/en/file.README.html:35(span)
-#~ msgid "File: README"
-#~ msgstr "ファイル: はじめに"
-
-#:
-#: doc/reference/en/index.html:69(h2) doc/reference/en/file.README.html:69(h2)
-#~ msgid "Description"
-#~ msgstr "説明"
-
-#:
-#: doc/reference/en/index.html:133(h2) doc/reference/en/file.news.html:81(h3)
-#: doc/reference/en/file.news.html:103(h3)
-#: doc/reference/en/file.news.html:131(h3)
-#: doc/reference/en/file.news.html:163(h3)
-#: doc/reference/en/file.news.html:189(h3)
-#: doc/reference/en/file.news.html:204(h3)
-#: doc/reference/en/file.news.html:234(h3)
-#: doc/reference/en/file.news.html:255(h3)
-#: doc/reference/en/file.news.html:295(h3)
-#: doc/reference/en/file.news.html:308(h3)
-#: doc/reference/en/file.news.html:329(h3)
-#: doc/reference/en/file.news.html:352(h3)
-#: doc/reference/en/file.news.html:369(h3)
-#: doc/reference/en/file.news.html:395(h3)
-#: doc/reference/en/file.news.html:421(li)
-#: doc/reference/en/file.news.html:464(li)
-#: doc/reference/en/file.news.html:480(li)
-#: doc/reference/en/file.news.html:490(li)
-#: doc/reference/en/file.news.html:514(li)
-#: doc/reference/en/file.news.html:543(li)
-#: doc/reference/en/file.news.html:574(li)
-#: doc/reference/en/file.news.html:584(li)
-#: doc/reference/en/file.news.html:609(li)
-#: doc/reference/en/file.news.html:636(li)
-#: doc/reference/en/file.news.html:658(li)
-#: doc/reference/en/file.news.html:692(li)
-#: doc/reference/en/file.README.html:133(h2)
-#~ msgid "Thanks"
-#~ msgstr "感謝"
-
-#: doc/reference/en/file_list.html:49(span)
-#, fuzzy
-#~ msgid "<placeholder-1/> How To news"
-#~ msgstr "<placeholder-1/>がデータのラベルも比較するようになった。"
-
-#: doc/reference/en/file.news.html:35(span)
-#~ msgid "File: news"
-#~ msgstr "ファイル: お知らせ"
-
-#: doc/reference/en/file.news.html:64(h1)
-#~ msgid "News"
-#~ msgstr "お知らせ"
-
-#: doc/reference/en/file.news.html:67(h3)
-#: doc/reference/en/file.news.html:90(h3)
-#: doc/reference/en/file.news.html:109(h3)
-#: doc/reference/en/file.news.html:142(h3)
-#: doc/reference/en/file.news.html:171(h3)
-#: doc/reference/en/file.news.html:210(h3)
-#: doc/reference/en/file.news.html:242(h3)
-#: doc/reference/en/file.news.html:263(h3)
-#: doc/reference/en/file.news.html:269(h3)
-#: doc/reference/en/file.news.html:276(h3)
-#: doc/reference/en/file.news.html:284(h3)
-#: doc/reference/en/file.news.html:301(h3)
-#: doc/reference/en/file.news.html:313(h3)
-#: doc/reference/en/file.news.html:318(h3)
-#: doc/reference/en/file.news.html:335(h3)
-#: doc/reference/en/file.news.html:360(h3)
-#: doc/reference/en/file.news.html:375(h3)
-#~ msgid "Improvements"
-#~ msgstr "改良"
-
-#: doc/reference/en/file.news.html:69(li)
-#, fuzzy
-#~ msgid "Supported Ruby 2.0.0. [GitHub#54] [Reported by mtasaka]"
-#~ msgstr "Ruby 1.8.6を再サポート。 [James Meadさんが報告]"
-
-#: doc/reference/en/file.news.html:70(li)
-#, fuzzy
-#~ msgid "Accepted screen-256color <placeholder-1/> as 256 colors available environment. [GitHub#55] [Reported by Tom Miller]"
-#~ msgstr "[ui][console] <placeholder-1/>を色付けできるターミナルに追加。 [GitHub#26] [Michael Grosserさんが報告]"
-
-#: doc/reference/en/file.news.html:73(h3)
-#: doc/reference/en/file.news.html:96(h3)
-#: doc/reference/en/file.news.html:119(h3)
-#: doc/reference/en/file.news.html:179(h3)
-#: doc/reference/en/file.news.html:198(h3)
-#: doc/reference/en/file.news.html:225(h3)
-#: doc/reference/en/file.news.html:249(h3)
-#: doc/reference/en/file.news.html:324(h3)
-#: doc/reference/en/file.news.html:344(h3)
-#: doc/reference/en/file.news.html:364(h3)
-#: doc/reference/en/file.news.html:387(h3)
-#~ msgid "Fixes"
-#~ msgstr "修正"
-
-#: doc/reference/en/file.news.html:89(p)
-#: doc/reference/en/file.news.html:170(p)
-#: doc/reference/en/file.news.html:197(p)
-#: doc/reference/en/file.news.html:209(p)
-#: doc/reference/en/file.news.html:241(p)
-#~ msgid "It’s a bug fix release."
-#~ msgstr "バグフィックスリリースです。"
-
-#: doc/reference/en/file.news.html:92(li)
-#~ msgid "Added documents for data driven test functionality."
-#~ msgstr "データ駆動テスト機能のドキュメントを追加しました。"
-
-#: doc/reference/en/file.news.html:93(li)
-#~ msgid "Added <placeholder-1/> support for data driven test functionality."
-#~ msgstr "データ駆動テスト機能で<placeholder-1/>サポートを追加した。"
-
-#: doc/reference/en/file.news.html:94(li)
-#~ msgid "Support tag inspection on JRuby."
-#~ msgstr "JRubyでタグのインスペクションをサポートした。"
-
-#: doc/reference/en/file.news.html:98(li)
-#~ msgid "Fixed a bug. It is too slow to filter tests when there are many tests. [GitHub#46]"
-#~ msgstr "たくさんのテストがあるときにテストをフィルターするのが遅かった問題を修正した。[GitHub#46]"
-
-#: doc/reference/en/file.news.html:100(li)
-#~ msgid "Accept anonymous test suite. [GitHub:#49] [Reported by Matthew Rudy Jacobs]"
-#~ msgstr "無名のテストスイートを使用できなかった問題を修正した。[GitHub:#49] [Matthew Rudy Jacobs さんが報告]"
-
-#: doc/reference/en/file.news.html:108(p)
-#~ msgid "It’s a release for minitest compatibility and bug fix."
-#~ msgstr "minitestとの互換とバグフィックスのリリースです。"
-
-#: doc/reference/en/file.news.html:111(li)
-#~ msgid "Supported diff in invalid encoding."
-#~ msgstr "不正なエンコーディング同士のdiffも表示するようにした。"
-
-#: doc/reference/en/file.news.html:112(li)
-#~ msgid "Added some assersion methods just for minitest compatibility. Added methods are assert_includes(), refute_*() and refute(). If you are test-unit user, please don’t use them. [GitHub#40] [Suggested by Michael Grosser]"
-#~ msgstr ""
-#~ "minitestとの互換性のために、assert_includes(), refute_*() and refute()を追加した。minitestとの互換性のために入れただけのメソッドなので、もしtest-unitを使っているなら、これらのメソッドははできれば使わないでください。\n"
-#~ "[GitHub#40] [Michael Grosserさんが報告]"
-
-#: doc/reference/en/file.news.html:116(li)
-#~ msgid "Added —attribute option to select target tests by attribute. [test-unit-users-en:00098] [Suggested by Piotr Nestorow]"
-#~ msgstr "実行するテストを絞り込むための--attributeオプションを追加した。このオプションを使うとテストごとに付加したattirbuteを使って実行するテストを絞り込むことができます。[test-unit-users-en:00098] [Suggested by Piotr Nestorow]"
-
-#: doc/reference/en/file.news.html:121(li)
-#~ msgid "Allowed use of test for inheritance in ActionController::TestCase. [GitHub#42] [Patch by David Rasch]"
-#~ msgstr "ActionController::TestCaseを継承したテストも実行するようにした。 [GitHub#42] [Patch by David Rasch]"
-
-#: doc/reference/en/file.news.html:123(li)
-#~ msgid "Ensured evaluating at_exist block in top level. In <placeholder-1/> context, exit() specifies irb_exit(). [test-unit-users-en:00089] [Reported by Daniel Berger]"
-#~ msgstr "at_exitに指定したブロックを確実に実行するようにした。これはirbだとexit()を実行した時にexitメソッドではなくirb_exit()が実行されるためです。 [test-unit-users-en:00089] [Daniel Bergerさんが報告]"
-
-#: doc/reference/en/file.news.html:126(li)
-#~ msgid "Fixed a bug that decoration style description is ignored. “decoration style description” are using description method above “def test_name” or with Symbol specifying test_name. [GitHub#45] [Reported by Piotr Nestorow]"
-#~ msgstr "descriptionメソッドを使ってテストにつけた説明が無視されるバグを修正した。 [GitHub#45] [Piotr Nestorowさんが報告]"
-
-#: doc/reference/en/file.news.html:133(li)
-#: doc/reference/en/file.news.html:165(li)
-#: doc/reference/en/file.news.html:191(li)
-#: doc/reference/en/file.news.html:238(li)
-#~ msgid "Michael Grosser"
-#~ msgstr "Michael Grosserさん"
-
-#: doc/reference/en/file.news.html:134(li)
-#~ msgid "David Rasch"
-#~ msgstr "David Raschさん"
-
-#: doc/reference/en/file.news.html:135(li)
-#: doc/reference/en/file.news.html:422(li)
-#: doc/reference/en/file.news.html:465(li)
-#: doc/reference/en/file.news.html:481(li)
-#: doc/reference/en/file.news.html:491(li)
-#: doc/reference/en/file.news.html:545(li)
-#: doc/reference/en/file.news.html:576(li)
-#: doc/reference/en/file.news.html:638(li)
-#: doc/reference/en/file.news.html:662(li)
-#: doc/reference/en/file.news.html:695(li)
-#~ msgid "Daniel Berger"
-#~ msgstr "Daniel Bergerさん"
-
-#: doc/reference/en/file.news.html:136(li)
-#~ msgid "Piotr Nestorow"
-#~ msgstr "Piotr Nestorowさん"
-
-#: doc/reference/en/file.news.html:139(p)
-#~ msgid "It’s an improvement release for tmtms. <placeholder-1/> is a similar feature to <placeholder-2/> in RSpec. <placeholder-3/> is a similar feature to <placeholder-4/> in shoulda-context and RSpec."
-#~ msgstr "とみたさん用に改良したリリースです。<placeholder-1/>はRSpecの<placeholder-2/>と似た機能です。<placeholder-3/>はshoulda-contextとRSpecの<placeholder-4/>と似た機能です。"
-
-#: doc/reference/en/file.news.html:144(li)
-#~ msgid "Cleaned up tests. [GitHub#34] [Patch by Michael Grosser]"
-#~ msgstr "テストをキレイにしました。 [GitHub#34] [Michael Grosserさんが報告]"
-
-#: doc/reference/en/file.news.html:146(li)
-#~ msgid "Added missing background color for 8 color environment."
-#~ msgstr "8色しか使えない環境用のカラースキームで指定もれがあった背景色を指定しました。"
-
-#: doc/reference/en/file.news.html:147(li)
-#~ msgid "Added workaround for NetBeans. [GitHub#38] [Reported by Marc Cooper]"
-#~ msgstr "NetBeansで動かない問題の回避策を入れた。 [GitHub#38] [Marc Cooperさんが報告]"
-
-#: doc/reference/en/file.news.html:149(li)
-#~ msgid "Added <placeholder-1/> command line option that selects target tests by test defined location."
-#~ msgstr "コマンドラインオプション<placeholder-1/>を追加した。このオプションを使うとテストが定義された場所で実行するテストを絞り込める。"
-
-#: doc/reference/en/file.news.html:151(li)
-#~ msgid "Created sub test suite for each subclassed test case."
-#~ msgstr "サブテストケース毎にサブテストスイートを作成するようにした。"
-
-#: doc/reference/en/file.news.html:152(li)
-#~ msgid "[ui][console] Supported nested test suites."
-#~ msgstr "[ui][console] ネストしたテストスイートに対応。"
-
-#: doc/reference/en/file.news.html:153(li)
-#~ msgid "Added <span class=\"object_link\"><placeholder-1/></span> and <span class=\"object_link\"><placeholder-2/></span> hooks that are run before/after all tests are run. [Good hook name is suggested by kdmsnr]"
-#~ msgstr "すべてのテストの実行前後のフック<span class=\"object_link\"><placeholder-1/></span>と<span class=\"object_link\"><placeholder-2/></span>を追加した。 [kdmsnrさんがフックの名前を提案]"
-
-#: doc/reference/en/file.news.html:156(li)
-#~ msgid "Improved code snippet target on failure. Test method is always used for code snippet target. [GitHub#39] [Suggested by Michael Grosser]"
-#~ msgstr "失敗時のコードスニペット表示機能ではテストメソッドを表示するようにした。 [GitHub#39] [Michael Grosserさんが提案]"
-
-#: doc/reference/en/file.news.html:159(li)
-#~ msgid "Added <span class=\"object_link\"><placeholder-1/></span> that creates sub test case. The sub test case name isn’t limited Ruby’s constant name rule. You can specify the sub test case name in free form."
-#~ msgstr "サブテストケースを作成する<span class=\"object_link\"><placeholder-1/></span>を追加した。サブテストケース名はRubyの定数名の規則に縛られないので自由な形式で指定することができる。"
-
-#: doc/reference/en/file.news.html:166(li)
-#~ msgid "Marc Cooper"
-#~ msgstr "Marc Cooperさん"
-
-#: doc/reference/en/file.news.html:167(li)
-#~ msgid "kdmsnr"
-#~ msgstr "kdmsnrさん"
-
-#: doc/reference/en/file.news.html:173(li)
-#~ msgid "Supported installing from GitHub. [GitHub#29] [Suggested by Michael Grosser]"
-#~ msgstr "GitHubから直接インストールできるようにした。 [GitHub#29] [Michael Grosserさんが提案]"
-
-#: doc/reference/en/file.news.html:175(li)
-#~ msgid "Supported ActiveSupport::TestCase. [GitHub#30] [Reported by Michael Grosser]"
-#~ msgstr "ActiveSupport::TestCaseと一緒に使えるようになった。 [GitHub#30] [Michael Grosserさんが報告]"
-
-#: doc/reference/en/file.news.html:177(li)
-#~ msgid "[ui][console] Improved multiline falut message display."
-#~ msgstr "[ui][console] 複数行の失敗メッセージをいい感じに表示するようにした。"
-
-#: doc/reference/en/file.news.html:181(li)
-#~ msgid "[ui][console] Fixed a bug that expected and actual values are empty. [GitHub#31][GitHub#33] [Reported by Kendall Buchanan][Reported by Mathieu Martin] [Hinted by Michael Grosser]"
-#~ msgstr "[ui][console] 期待値と実測値が空になる問題を修正。 [GitHub#31][GitHub#33] [Kendall Buchananさんが報告][Mathieu Martinさんが報告] [Michael Grosserさんがヒントを提供]"
-
-#: doc/reference/en/file.news.html:186(li)
-#~ msgid "Fixed a bug that .gemspec can’t be loaded on <placeholder-1/>=C. [RubyForge#29595] [Reported by Jean-Denis Koeck]"
-#~ msgstr "<placeholder-1/>=Cな環境で.gemspecをロードできない問題を修正。 [RubyForge#29595] [Jean-Denis Koeckさんが報告]"
-
-#: doc/reference/en/file.news.html:192(li)
-#~ msgid "Kendall Buchanan"
-#~ msgstr "Kendall Buchananさん"
-
-#: doc/reference/en/file.news.html:193(li)
-#~ msgid "Mathieu Martin"
-#~ msgstr "Mathieu Martinさん"
-
-#: doc/reference/en/file.news.html:194(li)
-#~ msgid "Jean-Denis Koeck"
-#~ msgstr "Jean-Denis Koeckさん"
-
-#: doc/reference/en/file.news.html:200(li)
-#~ msgid "Fixed a backward incompatibility of <placeholder-1/> introduced in 2.4.9. [GitHub#28] [Reported by Vladislav Rassokhin]"
-#~ msgstr "2.4.9で入った<placeholder-1/>の後方非互換な変更を修正しました。 [GitHub#28] [Vladislav Rassokhinさんが報告]"
-
-#: doc/reference/en/file.news.html:206(li)
-#~ msgid "Vladislav Rassokhin"
-#~ msgstr "Vladislav Rassokhinさん"
-
-#: doc/reference/en/file.news.html:212(li)
-#~ msgid "<placeholder-1/> → <placeholder-2/>. <placeholder-3/> is marked as deprecated but it is still available."
-#~ msgstr "<placeholder-1/> → <placeholder-2/>。<placeholder-3/>は非推奨になりましたが、まだ利用できます。"
-
-#: doc/reference/en/file.news.html:215(li)
-#~ msgid "[experimental] Added top level “run” method for <placeholder-1/>. Is this <placeholder-2/> OK or dirty?"
-#~ msgstr "[実験的] <placeholder-1/>を実現できるようにするためにトップレベルに「run」メソッドを追加した。この<placeholder-2/>はよいAPIでしょうか、それとも汚いAPIでしょうか？"
-
-#: doc/reference/en/file.news.html:217(li)
-#~ msgid "Made failure output more readable on no color mode."
-#~ msgstr "色付け出力ができない場合でも失敗時のメッセージを読みやすく表示するようにした。"
-
-#: doc/reference/en/file.news.html:218(li)
-#~ msgid "Supported showing <placeholder-1/>-8BIT diff in failure message."
-#~ msgstr "失敗時のメッセージで<placeholder-1/>-8BITのdiffを表示できるようにした。"
-
-#: doc/reference/en/file.news.html:219(li)
-#~ msgid "[ui][console] Supported <placeholder-1/> as color available terminal. [GitHub#26] [Reported by Michael Grosser]"
-#~ msgstr "[ui][console] <placeholder-1/>を色付けできるターミナルに追加。 [GitHub#26] [Michael Grosserさんが報告]"
-
-#: doc/reference/en/file.news.html:222(li)
-#~ msgid "[ui][console] Supported “-256color” suffix <placeholder-1/> terminal as 256 color supported terminal."
-#~ msgstr "[ui][console] <placeholder-1/>の最後が\"-256color\"となっているターミナルは256色使えるターミナルとして扱うようにした。"
-
-#: doc/reference/en/file.news.html:227(li)
-#~ msgid "Fixed a bug that <placeholder-1/> doesn’t work."
-#~ msgstr "<placeholder-1/>が動かない問題を修正。"
-
-#: doc/reference/en/file.news.html:228(li)
-#~ msgid "Consumed processed command line parameters in <placeholder-1/> as <placeholder-2/> says. [RubyForge#29554] [Reported by Bob Saveland]"
-#~ msgstr "<placeholder-2/>に書かれている通り、<placeholder-1/>から処理済みのコマンドライン引数を削除するようにした。[RubyForge#29554] [Bob Savelandさんが報告]"
-
-#: doc/reference/en/file.news.html:231(li)
-#~ msgid "Added missing <placeholder-1/>. [GitHub#25] [Reported by Stephan Kulow]"
-#~ msgstr "抜けていた<placeholder-1/>を追加。[GitHub#25] [Stephan Kulowさんが報告]"
-
-#: doc/reference/en/file.news.html:236(li)
-#: doc/reference/en/file.news.html:546(li)
-#~ msgid "Bob Saveland"
-#~ msgstr "Bob Savelandさん"
-
-#: doc/reference/en/file.news.html:237(li)
-#~ msgid "Stephan Kulow"
-#~ msgstr "Stephan Kulowさん"
-
-#: doc/reference/en/file.news.html:244(li)
-#~ msgid "Delayed at_exit registration until Test::Unit is used. [GitHub:#21] [Reported by Jason Lunn]"
-#~ msgstr "Test::Unitが使われるまでat_exitの登録を遅延するようにした。 [GitHub:#21] [Jason Lunnさんが報告]"
-
-#: doc/reference/en/file.news.html:246(li)
-#~ msgid "Added workaround for test-spec. [GitHub:#22] [Reported by Cédric Boutillier]"
-#~ msgstr "test-spec用の回避策を追加。[GitHub:#22] [Cédric Boutillierさんが報告]"
-
-#: doc/reference/en/file.news.html:251(li)
-#~ msgid "Fixed an error on code snippet display on JRuby. [GitHub:#19][GitHub:#20] [Reported by Jørgen P. Tjernø][Patch by Junegunn Choi]"
-#~ msgstr "JRuby上でテスト失敗時のコード表示時に発生していたエラーを修正した。 [GitHub:#19][GitHub:#20] [Jørgen P. Tjernøさんが報告][Junegunn Choiさんがパッチ提供]"
-
-#: doc/reference/en/file.news.html:257(li)
-#~ msgid "Jørgen P. Tjernø"
-#~ msgstr "Jørgen P. Tjernøさん"
-
-#: doc/reference/en/file.news.html:258(li)
-#~ msgid "Junegunn Choi"
-#~ msgstr "Junegunn Choiさん"
-
-#: doc/reference/en/file.news.html:259(li)
-#~ msgid "Jason Lunn"
-#~ msgstr "Jason Lunnさん"
-
-#: doc/reference/en/file.news.html:262(p)
-#~ msgid "It’s a code snippet improvement release."
-#~ msgstr "失敗時のコード表示を改良したリリースです。"
-
-#: doc/reference/en/file.news.html:265(li)
-#~ msgid "Supported code snippet display on all faults."
-#~ msgstr "失敗時だけでなくエラー時などでもコードの一部を表示するようにした。"
-
-#: doc/reference/en/file.news.html:268(p)
-#~ msgid "It’s a <placeholder-1/> runner separated release."
-#~ msgstr "<placeholder-1/>サポートを分離したリリースです。"
-
-#: doc/reference/en/file.news.html:271(li)
-#~ msgid "Moved <placeholder-1/> runner to test-unit-runner-tap gem from test-unit gem."
-#~ msgstr "<placeholder-1/>出力をするテストランナーをtest-unit-runner-tap gemに分離した。"
-
-#: doc/reference/en/file.news.html:272(li)
-#~ msgid "Supported code snippet display on failure."
-#~ msgstr "失敗時にコードの一部を表示するようにした。"
-
-#: doc/reference/en/file.news.html:275(p)
-#~ msgid "It’s a failure message readability improvement release."
-#~ msgstr "失敗時のメッセージの読みやすさを改良したリリースです。"
-
-#: doc/reference/en/file.news.html:278(li)
-#~ msgid "Removed needless information from exception inspected text on failure. It’s for easy to read."
-#~ msgstr "失敗時に例外の内容を示すテキストから不必要な情報を削除した。これは例外の内容を読みやすくするためである。"
-
-#: doc/reference/en/file.news.html:280(li)
-#~ msgid "Supported custom inspector."
-#~ msgstr "オブジェクトのインスペクト方法をカスタマイズできるようにした。"
-
-#: doc/reference/en/file.news.html:283(p)
-#~ msgid "It’s a Rails integration improved release."
-#~ msgstr "Railsと一緒に使いやすくなったリリースです。"
-
-#: doc/reference/en/file.news.html:286(li)
-#~ msgid "[ui][console] Don’t break progress display when a test is failed."
-#~ msgstr "[ui][コンソール] テストが失敗してもプログレスの表示が乱れないようにした。"
-
-#: doc/reference/en/file.news.html:287(li)
-#~ msgid "[ui][console] Added markers betwen a failure detail message in progress to improve visibility."
-#~ msgstr "[ui][コンソール] 視認性向上のためにプログレス表示時の詳細表示の前後にマーカーを追加した。"
-
-#: doc/reference/en/file.news.html:289(li)
-#~ msgid "[travis] Dropped Ruby 1.8.6 as a test target. [GitHub:#13] [Patch by Josh Kalderimis]"
-#~ msgstr "[travis] テスト対象からRuby 1.8.6を削除。 [GitHub:#13] [Josh Kalderimisさんがパッチを作成]"
-
-#: doc/reference/en/file.news.html:291(li)
-#~ msgid "Supported expected value == 0 case in assert_in_epsilon. [RubyForge#29485] [Reported by Syver Enstad]"
-#~ msgstr "assert_in_epsilonで期待値が0になるケースに対応。 [RubyForge#29485] [Syver Enstadさんが報告]"
-
-#: doc/reference/en/file.news.html:293(li)
-#~ msgid "Supported a block style setup/teardown/cleanup."
-#~ msgstr "ブロック形式でのsetup/teardown/cleanupに対応。"
-
-#: doc/reference/en/file.news.html:297(li)
-#~ msgid "Josh Kalderimis"
-#~ msgstr "Josh Kalderimisさん"
-
-#: doc/reference/en/file.news.html:298(li)
-#~ msgid "Syver Enstad"
-#~ msgstr "Syver Enstadさん"
-
-#: doc/reference/en/file.news.html:303(li)
-#~ msgid "Improved SimpleCov integration by stopping to modify <placeholder-1/> in auto runner. [GitHub:#12] [Reported by Nikos Dimitrakopoulos]"
-#~ msgstr "自動テストランナー内で<placeholder-1/>を変更しないようにしてSimpleCov連携を改良した。 [GitHub:#12] [Nikos Dimitrakopoulosさんが報告]"
-
-#: doc/reference/en/file.news.html:306(li)
-#~ msgid "Improved JRuby integration by removing JRuby internal backtrace."
-#~ msgstr "JRuby内部のバックトレースを削除してJRuby連携を改良した。"
-
-#: doc/reference/en/file.news.html:310(li)
-#~ msgid "Nikos Dimitrakopoulos"
-#~ msgstr "Nikos Dimitrakopoulosさん"
-
-#: doc/reference/en/file.news.html:315(li)
-#~ msgid "<placeholder-1/> supported data label."
-#~ msgstr "<placeholder-1/>がデータのラベルも比較するようになった。"
-
-#: doc/reference/en/file.news.html:320(li)
-#~ msgid "Accepted AssertionMessage as assertion’s user message. It is used in assert_select in actionpack. [Reported by David Heath]"
-#~ msgstr "アサーションに指定するメッセージにAssertionMessageも使えるようにした。これはactionpack内のassert_selectで使われている。 [David Heathさんが報告]"
-
-#: doc/reference/en/file.news.html:326(li)
-#~ msgid "Fixed test failure on <placeholder-1/>=C. #11 [Reported by boutil]"
-#~ msgstr "<placeholder-1/>=Cでもテストがパスするようにした。 #11 [boutilさんが報告]"
-
-#: doc/reference/en/file.news.html:327(li)
-#~ msgid "Suppress warnings on Ruby 1.9.2."
-#~ msgstr "Ruby 1.9.2で警告がでないようにした。"
-
-#: doc/reference/en/file.news.html:331(li)
-#~ msgid "boutil"
-#~ msgstr "boutilさん"
-
-#: doc/reference/en/file.news.html:332(li)
-#~ msgid "David Heath"
-#~ msgstr "David Heathさん"
-
-#: doc/reference/en/file.news.html:337(li)
-#~ msgid "Supported Travis CI. #5 [Suggested by James Mead]"
-#~ msgstr "Travis CI対応。 #5 [James Meadさんが提案]"
-
-#: doc/reference/en/file.news.html:338(li)
-#~ msgid "Added Gemfile. #6 [Suggested by James Mead]"
-#~ msgstr "Gemfileを追加。#6 [James Meadさんが提案]"
-
-#: doc/reference/en/file.news.html:339(li)
-#~ msgid "[ui][console] Supported notification in show-detail-immediately."
-#~ msgstr "[ui][console] show-detail-immediatelyモードで通知をサポート。"
-
-#: doc/reference/en/file.news.html:340(li)
-#~ msgid "[ui][console] enable —show-detail-immediately by default."
-#~ msgstr "[ui][console] デフォルトで--show-detail-immediatelyを有効にした。"
-
-#: doc/reference/en/file.news.html:341(li)
-#~ msgid "[ui] Added —max-diff-target-string-size option."
-#~ msgstr "[ui] --max-diff-target-string-sizeを追加。"
-
-#: doc/reference/en/file.news.html:342(li)
-#~ msgid "[ui][console] Supported 256 colors."
-#~ msgstr "[ui][console] 256色に対応。"
-
-#: doc/reference/en/file.news.html:346(li)
-#~ msgid "Added missing fixture file. #7 [Reported by grafi-tt]"
-#~ msgstr "抜けていたフィクスチャーファイルを追加。 #7 [grafi-ttさんが報告]"
-
-#: doc/reference/en/file.news.html:347(li)
-#~ msgid "[ui][console] Added missing the last newline for progress level."
-#~ msgstr "[ui][console] progress出力レベルで足りなかった最後の改行を追加。"
-
-#: doc/reference/en/file.news.html:348(li)
-#~ msgid "Supported correct backtrace for redefined notification."
-#~ msgstr "再定義した通知で正しくバックトレースを取得できるようにした。"
-
-#: doc/reference/en/file.news.html:349(li)
-#~ msgid "Don’t handle Timeout::Error as pass through exception on Ruby 1.8. #8 [Reported by Marc Seeger (Acquia)]"
-#~ msgstr "Ruby 1.8ではTimeout::Errorを処理するようにした。 #8 [Marc Seeger (Acquia)さんが報告]"
-
-#: doc/reference/en/file.news.html:354(li)
-#: doc/reference/en/file.news.html:371(li)
-#~ msgid "James Mead"
-#~ msgstr "James Meadさん"
-
-#: doc/reference/en/file.news.html:355(li)
-#: doc/reference/en/file.news.html:397(li)
-#~ msgid "grafi-tt"
-#~ msgstr "grafi-ttさん"
-
-#: doc/reference/en/file.news.html:356(li)
-#~ msgid "Marc Seeger (Acquia)"
-#~ msgstr "Marc Seeger (Acquia)さん"
-
-#: doc/reference/en/file.news.html:362(li)
-#~ msgid "[ui][console] Added some newlines to improve readability."
-#~ msgstr "[ui][console] 読み易くするために改行を追加。"
-
-#: doc/reference/en/file.news.html:366(li)
-#~ msgid "[ui][console] Worked —verbose again."
-#~ msgstr "[ui][console] --verboseが動くようにした。"
-
-#: doc/reference/en/file.news.html:367(li)
-#~ msgid "Re-supported Ruby 1.8.6. [Reported by James Mead]"
-#~ msgstr "Ruby 1.8.6を再サポート。 [James Meadさんが報告]"
-
-#: doc/reference/en/file.how-to.html:35(span)
-#~ msgid "File: How To"
-#~ msgstr "ファイル: 一歩進んだ使い方"
-
-#: doc/reference/en/file.how-to.html:65(h2)
-#~ msgid "Run all tests"
-#~ msgstr "すべてのテストを実行する"
-
-#: doc/reference/en/file.how-to.html:66(p)
-#~ msgid "To make it easy to run all your tests, you can add a <placeholder-1/> script to your <placeholder-2/> directory. A simple example might look like:"
-#~ msgstr "すべてのテストを簡単に実行するために、<placeholder-1/>スクリプトを<placeholder-2/>ディレクトリにおきます。スクリプトは以下のようにします。"
-
-#: doc/reference/en/file.how-to.html:79(p)
-#~ msgid "Then it’s easy to run tests via the command line with,"
-#~ msgstr "これで以下のコマンドで簡単にテストを実行できます。"
-
-#: doc/reference/en/file.how-to.html:83(h2)
-#~ msgid "Change test runner via the command line"
-#~ msgstr "コマンドラインでテストランナーを変更する"
+msgstr ""
 
 #: doc/reference/en/file.how-to.html:84(p)
 #, fuzzy
 #~ msgid "The output format can be changed via the command line with the <placeholder-1/> option. Simply tack it to the end:"
 #~ msgstr "テスト結果の出力フォーマットはコマンドラインで<placeholder-1/>オプションを指定すると変更できます。単純にこのオプションを最後に追加してください。"
 
-#: doc/reference/en/file.how-to.html:89(h2)
-#~ msgid "Configure test-unit per-project"
-#~ msgstr "プロジェクトごとにtest-unitを設定する"
-
-#: doc/reference/en/file.how-to.html:90(p)
-#~ msgid "Test::Unit reads <placeholder-1/> or <placeholder-2/> in the current working directory as Test::Unit’s configuration file. It can contain the following settings:"
-#~ msgstr "Test::Unitは<placeholder-1/>または現在のワーキングディレクトリにある<placeholder-2/>をTest::Unitの設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
-
-#: doc/reference/en/file.how-to.html:94(li)
-#: doc/reference/en/Test/Unit.html:313(p)
-#~ msgid "color scheme definitions"
-#~ msgstr "カラースキーム定義"
-
-#: doc/reference/en/file.how-to.html:95(li)
-#: doc/reference/en/Test/Unit.html:315(p)
-#~ msgid "test runner to be used"
-#~ msgstr "使用するテストランナー"
-
-#: doc/reference/en/file.how-to.html:96(li)
-#: doc/reference/en/Test/Unit.html:317(p)
-#~ msgid "test runner options"
-#~ msgstr "テストランナーのオプション"
-
-#: doc/reference/en/file.how-to.html:97(li)
-#: doc/reference/en/Test/Unit.html:319(p)
-#~ msgid "test collector to be used"
-#~ msgstr "使用するテスト収集方法"
-
-#: doc/reference/en/file.how-to.html:99(p)
-#~ msgid "Except color scheme definitions, all of them can be specified by command line option."
-#~ msgstr "カラースキーム定義以外はコマンドラインオプションで指定することができます。"
-
-#: doc/reference/en/file.how-to.html:130(td)
-#: doc/reference/en/Test/Unit.html:352(p)
-#~ msgid "the name of the color scheme"
-#~ msgstr "カラースキームの名前"
-
-#: doc/reference/en/file.how-to.html:142(td)
-#: doc/reference/en/Test/Unit.html:361(p)
-#~ msgid "true or false"
-#~ msgstr "trueまたはfalse"
-
-#: doc/reference/en/file.how-to.html:145(p)
-#~ msgid "You can use the above ‘inverted’ color scheme with the following configuration:"
-#~ msgstr "上で定義した'inverted'カラースキムを使う設定は以下の通りです。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:137(p)
-#~ msgid "A new instance of Loader."
-#~ msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:233(strong)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:285(strong)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:392(strong)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:502(strong)
-#~ msgid "This method is part of a private API."
-#~ msgstr "このメソッドは非公開APIの一部です。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:232(p)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:284(p)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:391(p)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:501(p)
-#~ msgid "<placeholder-1/> You should avoid using this method if possible, as it may be removed or be changed in the future."
-#~ msgstr "将来、削除されたり変更されたりするかもしれないので、このメソッドの使用は可能であれば避けるべきです。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:237(p)
-#~ msgid "A new instance of Loader"
-#~ msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:309(p)
-#~ msgid "full path to test data file. File format is automatically detected from filename extension."
-#~ msgstr "データファイルのフルパスを指定します。ファイルフォーマットはファイルの拡張子から自動的に判別します。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:317(p)
-#~ msgid "Raises:"
-#~ msgstr "例外:"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:329(p)
-#~ msgid "if <placeholder-1/> is not supported file format."
-#~ msgstr "<placeholder-1/>がサポートされていないファイルフォーマットのときに発生します。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:336(p)
-#~ msgid "See Also:"
-#~ msgstr "参照:"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:398(p)
-#~ msgid "There are 2 types of CSV file as following examples. First, there is a header on first row and it's first column is \"label\". Another, there is no header in the file."
-#~ msgstr ""
-#~ "以下の2種類のサンプルのようなCSVファイルを使用できます。\n"
-#~ "一つ目は、一行目の最初のカラムが\"label\"という文字列であるものです。\n"
-#~ "もう一つは、ヘッダ行のないファイルです。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:408(p)
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:518(p)
-#~ msgid "Examples:"
-#~ msgstr "例:"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:412(p)
-#~ msgid "Load data from CSV file with header"
-#~ msgstr "ヘッダのあるCSVファイルを読み込みます"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:427(p)
-#~ msgid "Load data from CSV file without header"
-#~ msgstr "ヘッダのないCSVファイルを読み込みます"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:508(p)
-#~ msgid "There are 2 types of TSV file as following examples. First, there is a header on first row and it's first column is \"label\". Another, there is no header in the file."
-#~ msgstr ""
-#~ "以下の2種類のサンプルのようなTSVファイルを使用できます。\n"
-#~ "一つ目は、一行目の最初のカラムが\"label\"という文字列であるものです。\n"
-#~ "もう一つは、ヘッダ行のないファイルです。"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:522(p)
-#~ msgid "Load data from TSV file with header"
-#~ msgstr "ヘッダのあるTSVファイルを読み込みます"
-
-#: doc/reference/en/Test/Unit/Data/ClassMethods/Loader.html:537(p)
-#~ msgid "Load data from TSV file without header"
-#~ msgstr "ヘッダのないTSVファイルを読み込みます"
-
-#:
-#: doc/reference/en/Test/Unit/Data/ClassMethods/CSVDataLoader.html:137(p)
+#: doc/reference/en/file.news.html:70(li)
 #, fuzzy
-#~ msgid "A new instance of CSVDataLoader."
-#~ msgstr "Loaderの新しいインスタンスを作成します。"
-
-#:
-#: doc/reference/en/Test/Unit/Data/ClassMethods/CSVDataLoader.html:183(p)
-#, fuzzy
-#~ msgid "A new instance of CSVDataLoader"
-#~ msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Collector.html:480(p)
-#, fuzzy
-#~ msgid "a new instance of Collector"
-#~ msgstr "Loaderの新しいインスタンスを作成します。"
-
-#: doc/reference/en/Test/Unit/Assertions.html:323(p)
-#: doc/reference/en/Test/Unit/Assertions.html:1712(p)
-#~ msgid "Passes if expression \"<placeholder-1/> <placeholder-2/> <placeholder-3/>\" is true."
-#~ msgstr "\"<placeholder-1/> <placeholder-2/> <placeholder-3/>\"が真ならパスします。"
-
-#: doc/reference/en/Test/Unit.html:309(p)
-#~ msgid "Test::Unit reads 'test-unit.yml' in the current working directory as Test::Unit's configuration file. It can contain the following configurations:"
-#~ msgstr "Test::Unitは現在のワーキングディレクトリにある'test-unit.yml'をTest::Unitの設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
+#~ msgid "Accepted screen-256color <placeholder-1/> as 256 colors available environment. [GitHub#55] [Reported by Tom Miller]"
+#~ msgstr "[ui][console] <placeholder-1/>を色付けできるターミナルに追加。 [GitHub#26] [Michael Grosserさんが報告]"
