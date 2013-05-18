@@ -29,6 +29,7 @@ require "packnga"
 task :default => :test
 
 base_dir = File.dirname(__FILE__)
+html_base_dir = File.join(base_dir, "doc", "html")
 
 helper = Bundler::GemHelper.new(base_dir)
 def helper.version_tag
