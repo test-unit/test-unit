@@ -27,13 +27,17 @@ module Test
             entry.start_with?("org/jruby/")
           end
 
+          rubinius_internal_p = lambda do |entry|
+            entry.start_with?("kernel/")
+          end
+
           found_prefix = false
           new_backtrace = backtrace.reverse.reject do |entry|
             if test_unit_internal_p.call(entry)
               found_prefix = true
               true
             elsif found_prefix
-              jruby_internal_p.call(entry)
+              jruby_internal_p.call(entry) or rubinius_internal_p.call(entry)
             else
               true
             end
@@ -41,7 +45,9 @@ module Test
 
           if new_backtrace.empty?
             new_backtrace = backtrace.reject do |entry|
-              test_unit_internal_p.call(entry) or jruby_internal_p.call(entry)
+              test_unit_internal_p.call(entry) or
+                jruby_internal_p.call(entry) or
+                rubinius_internal_p.call(entry)
             end
             new_backtrace = backtrace if new_backtrace.empty?
           end
