@@ -1,5 +1,6 @@
 /doc/reference/
 /doc/html/test-unit/
+/doc/html/test-unit-rr/
 /doc/po/*.pot
 /pkg/
 /.yardoc/
