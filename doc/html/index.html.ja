@@ -227,7 +227,7 @@ end</pre>
 
 	<h2 id="test-unit-rr">test-unit-rr</h2>
         <p>
-          test-unitで<a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?TestDouble">テストダブル（テスト代役）</a>ライブラリ<a href="https://github.com/btakita/rr">RR</a>を利用するためのパッケージです。
+          test-unitで<a href="http://capsctrl.que.jp/kdmsnr/wiki/bliki/?TestDouble">テストダブル（テスト代役）</a>ライブラリ<a href="https://github.com/rr/rr">RR</a>を利用するためのパッケージです。
         </p>
 	<h3 id="test-unit-rr-latest">test-unit-rrの最新リリース</h3>
 	<p>
