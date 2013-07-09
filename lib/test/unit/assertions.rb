@@ -858,6 +858,11 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_in_epsilon, :assert_not_in_epsilon
+
       # :stopdoc:
       private
       def _assert_in_epsilon_validate_arguments(expected_float,
@@ -1241,6 +1246,11 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_predicate, :assert_not_predicate
+
       ##
       # Passes if +object+#+alias_name+ is an alias method of
       # +object+#+original_name+.
@@ -1419,6 +1429,11 @@ EOT
           end
         end
       end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_empty, :assert_not_empty
 
       ##
       # Builds a failure message.  +head+ is added before the +template+ and
