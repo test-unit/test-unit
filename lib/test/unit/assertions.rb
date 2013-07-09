@@ -1384,6 +1384,16 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :assert_not_includes, :assert_not_include
+      
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_includes, :assert_not_include
+
       ##
       # Passes if +object+ is empty.
       #
