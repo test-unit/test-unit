@@ -593,21 +593,46 @@ EOM
         check_nothing_fails {
           assert_instance_of(String, "string", "successful assert_instance_of")
         }
-        check_fail(%Q{<"string"> expected to be an instance of\n<Hash> but was\n<String>.}) {
+        check_fail(%Q{<"string"> expected to be instance_of?\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string")
         }
-        check_fail(%Q{failed assert_instance_of.\n<"string"> expected to be an instance of\n<Hash> but was\n<String>.}) {
+        check_fail(%Q{failed assert_instance_of.\n<"string"> expected to be instance_of?\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string", "failed assert_instance_of")
         }
 
         check_nothing_fails do
           assert_instance_of([Fixnum, NilClass], 100)
         end
-        check_fail(%Q{<"string"> expected to be an instance of\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+        check_fail(%Q{<"string"> expected to be instance_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_instance_of([Fixnum, NilClass], "string")
         end
-        check_fail(%Q{<100> expected to be an instance of\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
+        check_fail(%Q{<100> expected to be instance_of?\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
           assert_instance_of([Numeric, NilClass], 100)
+        end
+      end
+
+      def test_assert_not_instance_of
+        check_nothing_fails {
+          assert_not_instance_of(NilClass, "string")
+        }
+        check_nothing_fails {
+          assert_not_instance_of(NilClass, "string", "successful assert_instance_of")
+        }
+        check_fail(%Q{<"string"> expected to not be instance_of?\n<String> but was.}) {
+          assert_not_instance_of(String, "string")
+        }
+        check_fail(%Q{failed assert.\n<"string"> expected to not be instance_of?\n<String> but was.}) {
+          assert_not_instance_of(String, "string", "failed assert")
+        }
+
+        check_nothing_fails do
+          assert_not_instance_of([Numeric, NilClass], 100)
+        end
+        check_fail(%Q{<100> expected to not be instance_of?\n[<Fixnum>, <NilClass>] but was.}) do
+          assert_not_instance_of([Fixnum, NilClass], 100)
+        end
+        check_fail(%Q{<"str"> expected to not be instance_of?\n[<Numeric>, <String>] but was.}) do
+          assert_not_instance_of([Numeric, String], 'str')
         end
       end
 
@@ -628,14 +653,14 @@ EOM
           assert_nil("string", "failed assert_nil")
         }
       end
-      
+
       def test_assert_not_nil
         check_nothing_fails{assert_not_nil(false)}
         check_nothing_fails{assert_not_nil(false, "message")}
         check_fail("<nil> expected to not be nil."){assert_not_nil(nil)}
         check_fail("message.\n<nil> expected to not be nil.") {assert_not_nil(nil, "message")}
       end
-        
+
       def test_assert_kind_of
         check_nothing_fails {
           assert_kind_of(Module, Array)
@@ -687,7 +712,7 @@ EOM
           assert_match(/slin./, "string", "failed assert_match")
         }
       end
-      
+
       def test_assert_same
         thing = "thing"
         check_nothing_fails {
@@ -707,7 +732,7 @@ EOM
           assert_same(thing, thing2, "failed assert_same")
         }
       end
-      
+
       def test_assert_nothing_raised
         check_nothing_fails {
           assert_nothing_raised {
@@ -797,7 +822,7 @@ EOM
           assert_not_same(thing, thing, "message")
         }
       end
-      
+
       def test_assert_not_equal
         check_nothing_fails {
           assert_not_equal("string1", "string2")
@@ -828,7 +853,7 @@ EOM
       def test_assert_not_match_fail_not_regexp
         check_fail("<REGEXP> in assert_not_match(<REGEXP>, ...) " +
                     "should be a Regexp.\n" +
-                    "<\"asdf\"> expected to be an instance of\n" +
+                    "<\"asdf\"> expected to be instance_of?\n" +
                     "<Regexp> but was\n" +
                     "<String>.") do
           assert_not_match("asdf", "asdf")
@@ -853,7 +878,7 @@ EOM
       def test_assert_no_match
         check_nothing_fails{assert_no_match(/sling/, "string")}
         check_nothing_fails{assert_no_match(/sling/, "string", "message")}
-        check_fail(%Q{The first argument to assert_no_match should be a Regexp.\n<"asdf"> expected to be an instance of\n<Regexp> but was\n<String>.}) do
+        check_fail(%Q{The first argument to assert_no_match should be a Regexp.\n<"asdf"> expected to be instance_of?\n<Regexp> but was\n<String>.}) do
           assert_no_match("asdf", "asdf")
         end
         check_fail(%Q{</string/> expected to not match\n<"string">.}) do
@@ -886,7 +911,7 @@ EOM
           end
         end
       end
-      
+
       def test_assert_nothing_thrown
         check_nothing_fails do
           assert_nothing_thrown("message") do
@@ -903,7 +928,7 @@ EOM
           end
         end
       end
-      
+
       def test_assert_operator
         check_nothing_fails {
           assert_operator("thing", :==, "thing", "message")

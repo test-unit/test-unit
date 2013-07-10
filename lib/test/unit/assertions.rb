@@ -263,14 +263,52 @@ EOT
 <?>.
 EOT
           assert_block(full_message) do
-            if klasses
-              klasses.any? {|k| object.instance_of?(k)}
-            else
-              object.instance_of?(klass)
-            end
+            klasses ? klasses.any? {|k| object.instance_of?(k)} : object.instance_of?(klass)
           end
         end
       end
+
+      ##
+      # Passes if +object+.instance_of?(+klass+) does not hold.
+      # When +klass+ is an array of classes, it passes if no class
+      # satisfies +object.instance_of?(class).
+      #
+      # Example:
+      #   assert_not_instance_of(String, 100)                # -> pass
+      #   assert_not_instance_of([Fixnum, NilClass], '100')  # -> pass
+      #   assert_not_instance_of([Numeric, NilClass], 100)   # -> fail
+
+      public
+      def assert_not_instance_of(klass, object, message="")
+        _wrap_assertion do
+          klasses = nil
+          klasses = klass if klass.is_a?(Array)
+          assert_block("The first parameter to assert_not_instance_of should be " <<
+                       "a Class or an Array of Class.") do
+            if klasses
+              klasses.all? {|k| k.is_a?(Class)}
+            else
+              klass.is_a?(Class)
+            end
+          end
+          klass_message = AssertionMessage.maybe_container(klass) do |value|
+            "<#{value}>"
+          end
+          full_message = build_message(message,
+                                       "<?> expected to not be instance_of\\?\n" +
+                                       "? but was.",
+                                       object,
+                                       klass_message)
+          assert_block(full_message) do
+            ! ( klasses ? klasses.any? {|k| object.instance_of?(k)} : object.instance_of?(klass) )
+          end
+        end
+      end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
       # Passes if +object+ is nil.
@@ -320,11 +358,7 @@ EOT
                                        klass_message,
                                        object.class)
           assert_block(full_message) do
-            if klasses
-              klasses.any? {|k| object.kind_of?(k)}
-            else
-              object.kind_of?(klass)
-            end
+            klasses ? klasses.any? {|k| object.kind_of?(k)} : object.kind_of?(klass)
           end
         end
       end
@@ -1388,7 +1422,7 @@ EOT
       #
       # @since 2.5.7
       alias_method :assert_not_includes, :assert_not_include
-      
+
       # Just for minitest compatibility. :<
       #
       # @since 2.5.7
