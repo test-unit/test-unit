@@ -966,6 +966,18 @@ EOM
         }
       end
 
+      def test_assert_not_operator
+        check_nothing_fails {
+          assert_not_operator("thing", :==, "Thing", "message")
+        }
+        check_fail(%Q{<42>\ngiven as the operator for #assert_not_operator must be a Symbol or #respond_to?(:to_str).}) do
+          assert_not_operator("thing", 42, "message")
+        end
+        check_fail(%Q{message.\n<0> expected to not be\n==\n<0.0>.}) {
+          assert_not_operator(0, :==, 0.0, "message")
+        }
+      end
+
       def test_assert_respond_to
         check_nothing_fails {
           assert_respond_to("thing", :to_s, "message")

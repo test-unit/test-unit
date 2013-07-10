@@ -520,6 +520,25 @@ EOT
         end
       end
 
+      public
+      def assert_not_operator(object1, operator, object2, message="")
+        _wrap_assertion do
+          full_message = build_message(nil, "<?>\ngiven as the operator for #assert_not_operator must be a Symbol or #respond_to\\?(:to_str).", operator)
+          assert_block(full_message){operator.kind_of?(Symbol) || operator.respond_to?(:to_str)}
+          full_message = build_message(message, <<EOT, object1, AssertionMessage.literal(operator), object2)
+<?> expected to not be
+?
+<?>.
+EOT
+          assert_block(full_message) { ! object1.__send__(operator, object2) }
+        end
+      end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_operator, :assert_not_operator
+
       ##
       # Passes if block does not raise an exception.
       #
