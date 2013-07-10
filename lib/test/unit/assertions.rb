@@ -364,6 +364,48 @@ EOT
       end
 
       ##
+      # Passes if +object+.kind_of?(+klass+) does not hold.
+      # When +klass+ is an array of classes or modules, it passes only if all
+      # classes (and modules) do not satisfy +object.kind_of?(class_or_module).
+      #
+      # Example:
+      #   assert_not_kind_of(Fixnum, 'foo')           # -> pass
+      #   assert_not_kind_of([Fixnum, NilClass], '0') # -> pass
+      #   assert_not_kind_of([Fixnum, NilClass], 100) # -> fail
+
+      public
+      def assert_not_kind_of(klass, object, message="")
+        _wrap_assertion do
+          klasses = nil
+          klasses = klass if klass.is_a?(Array)
+          assert_block("The first parameter to assert_not_kind_of should be " +
+                       "a kind_of Module or an Array of a kind_of Module.") do
+            if klasses
+              klasses.all? {|k| k.kind_of?(Module)}
+            else
+              klass.kind_of?(Module)
+            end
+          end
+          klass_message = AssertionMessage.maybe_container(klass) do |value|
+            "<#{value}>"
+          end
+          full_message = build_message(message,
+                                       "<?> expected to not be kind_of\\?\n" +
+                                       "? but was.",
+                                       object,
+                                       klass_message)
+          assert_block(full_message) do
+            ! ( klasses ? klasses.any? {|k| object.kind_of?(k)} : object.kind_of?(klass) )
+          end
+        end
+      end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_kind_of, :assert_not_kind_of
+
+      ##
       # Passes if +object+ .respond_to? +method+
       #
       # Example:

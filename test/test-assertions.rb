@@ -669,7 +669,7 @@ EOM
           assert_kind_of(Object, "string", "successful assert_kind_of")
         }
         check_nothing_fails {
-          assert_kind_of(Object, "string", "successful assert_kind_of")
+          assert_kind_of(String, "string", "successful assert_kind_of")
         }
         check_nothing_fails {
           assert_kind_of(Comparable, 1)
@@ -686,6 +686,31 @@ EOM
         end
         check_fail(%Q{<"string"> expected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_kind_of([Fixnum, NilClass], "string")
+        end
+      end
+
+      def test_assert_not_kind_of
+        check_nothing_fails {
+          assert_not_kind_of(Class, 42)
+        }
+        check_nothing_fails {
+          assert_not_kind_of(Symbol, "string", "successful assert_not_kind_of")
+        }
+        check_nothing_fails {
+          assert_not_kind_of(Integer, 1.1)
+        }
+        check_fail(%Q{<1> expected to not be kind_of?\n<Integer> but was.}) {
+          assert_not_kind_of(Integer, 1)
+        }
+        check_fail(%Q{failed assert_not_kind_of.\n<"string"> expected to not be kind_of?\n<String> but was.}) {
+          assert_not_kind_of(String, "string", "failed assert_not_kind_of")
+        }
+
+        check_nothing_fails do
+          assert_not_kind_of([String, NilClass], 100)
+        end
+        check_fail(%Q{<100> expected to not be kind_of?\n[<Fixnum>, <NilClass>] but was.}) do
+          assert_not_kind_of([Fixnum, NilClass], 100)
         end
       end
 
