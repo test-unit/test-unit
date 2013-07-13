@@ -103,9 +103,6 @@ module Test
       end
 
       def inspect_tag(tag)
-        if jruby?
-          "`#{tag}'".inspect
-        else
           begin
             throw tag
           rescue NameError
@@ -113,7 +110,6 @@ module Test
           rescue ArgumentError
             tag.inspect
           end
-        end
       end
 
       def add_failure(message, location=caller, options=nil)
