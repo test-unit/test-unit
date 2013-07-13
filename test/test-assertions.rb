@@ -593,20 +593,20 @@ EOM
         check_nothing_fails {
           assert_instance_of(String, "string", "successful assert_instance_of")
         }
-        check_fail(%Q{<"string"> expected to be instance_of?\n<Hash> but was\n<String>.}) {
+        check_fail(%Q{<"string"> expected to be an instance of\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string")
         }
-        check_fail(%Q{failed assert_instance_of.\n<"string"> expected to be instance_of?\n<Hash> but was\n<String>.}) {
+        check_fail(%Q{failed assert_instance_of.\n<"string"> expected to be an instance of\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string", "failed assert_instance_of")
         }
 
         check_nothing_fails do
           assert_instance_of([Fixnum, NilClass], 100)
         end
-        check_fail(%Q{<"string"> expected to be instance_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+        check_fail(%Q{<"string"> expected to be an instance of\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_instance_of([Fixnum, NilClass], "string")
         end
-        check_fail(%Q{<100> expected to be instance_of?\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
+        check_fail(%Q{<100> expected to be an instance of\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
           assert_instance_of([Numeric, NilClass], 100)
         end
       end
@@ -878,7 +878,7 @@ EOM
       def test_assert_not_match_fail_not_regexp
         check_fail("<REGEXP> in assert_not_match(<REGEXP>, ...) " +
                     "should be a Regexp.\n" +
-                    "<\"asdf\"> expected to be instance_of?\n" +
+                    "<\"asdf\"> expected to be an instance of\n" +
                     "<Regexp> but was\n" +
                     "<String>.") do
           assert_not_match("asdf", "asdf")
@@ -903,7 +903,7 @@ EOM
       def test_assert_no_match
         check_nothing_fails{assert_no_match(/sling/, "string")}
         check_nothing_fails{assert_no_match(/sling/, "string", "message")}
-        check_fail(%Q{The first argument to assert_no_match should be a Regexp.\n<"asdf"> expected to be instance_of?\n<Regexp> but was\n<String>.}) do
+        check_fail(%Q{The first argument to assert_no_match should be a Regexp.\n<"asdf"> expected to be an instance of\n<Regexp> but was\n<String>.}) do
           assert_no_match("asdf", "asdf")
         end
         check_fail(%Q{</string/> expected to not match\n<"string">.}) do
