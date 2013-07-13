@@ -305,7 +305,7 @@ EOT
                                        klass_message)
           assert_block(full_message) do
             if klasses
-              not klasses.any? {|k| object.instance_of?(k)}
+              klasses.all? {|k| not object.instance_of?(k)}
             else
               not object.instance_of?(klass)
             end
@@ -408,7 +408,7 @@ EOT
                                        klass_message)
           assert_block(full_message) do
             if klasses
-              not klasses.any? {|k| object.kind_of?(k)}
+              klasses.all? {|k| not object.kind_of?(k)}
             else
               not object.kind_of?(klass)
             end
