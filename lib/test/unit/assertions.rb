@@ -263,14 +263,52 @@ EOT
 <?>.
 EOT
           assert_block(full_message) do
-            if klasses
-              klasses.any? {|k| object.instance_of?(k)}
-            else
-              object.instance_of?(klass)
-            end
+            klasses ? klasses.any? {|k| object.instance_of?(k)} : object.instance_of?(klass)
           end
         end
       end
+
+      ##
+      # Passes if +object+.instance_of?(+klass+) does not hold.
+      # When +klass+ is an array of classes, it passes if no class
+      # satisfies +object.instance_of?(class).
+      #
+      # Example:
+      #   assert_not_instance_of(String, 100)                # -> pass
+      #   assert_not_instance_of([Fixnum, NilClass], '100')  # -> pass
+      #   assert_not_instance_of([Numeric, NilClass], 100)   # -> fail
+
+      public
+      def assert_not_instance_of(klass, object, message="")
+        _wrap_assertion do
+          klasses = nil
+          klasses = klass if klass.is_a?(Array)
+          assert_block("The first parameter to assert_not_instance_of should be " <<
+                       "a Class or an Array of Class.") do
+            if klasses
+              klasses.all? {|k| k.is_a?(Class)}
+            else
+              klass.is_a?(Class)
+            end
+          end
+          klass_message = AssertionMessage.maybe_container(klass) do |value|
+            "<#{value}>"
+          end
+          full_message = build_message(message,
+                                       "<?> expected to not be instance_of\\?\n" +
+                                       "? but was.",
+                                       object,
+                                       klass_message)
+          assert_block(full_message) do
+            ! ( klasses ? klasses.any? {|k| object.instance_of?(k)} : object.instance_of?(klass) )
+          end
+        end
+      end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
       # Passes if +object+ is nil.
@@ -320,14 +358,52 @@ EOT
                                        klass_message,
                                        object.class)
           assert_block(full_message) do
-            if klasses
-              klasses.any? {|k| object.kind_of?(k)}
-            else
-              object.kind_of?(klass)
-            end
+            klasses ? klasses.any? {|k| object.kind_of?(k)} : object.kind_of?(klass)
           end
         end
       end
+
+      ##
+      # Passes if +object+.kind_of?(+klass+) does not hold.
+      # When +klass+ is an array of classes or modules, it passes only if all
+      # classes (and modules) do not satisfy +object.kind_of?(class_or_module).
+      #
+      # Example:
+      #   assert_not_kind_of(Fixnum, 'foo')           # -> pass
+      #   assert_not_kind_of([Fixnum, NilClass], '0') # -> pass
+      #   assert_not_kind_of([Fixnum, NilClass], 100) # -> fail
+
+      public
+      def assert_not_kind_of(klass, object, message="")
+        _wrap_assertion do
+          klasses = nil
+          klasses = klass if klass.is_a?(Array)
+          assert_block("The first parameter to assert_not_kind_of should be " +
+                       "a kind_of Module or an Array of a kind_of Module.") do
+            if klasses
+              klasses.all? {|k| k.kind_of?(Module)}
+            else
+              klass.kind_of?(Module)
+            end
+          end
+          klass_message = AssertionMessage.maybe_container(klass) do |value|
+            "<#{value}>"
+          end
+          full_message = build_message(message,
+                                       "<?> expected to not be kind_of\\?\n" +
+                                       "? but was.",
+                                       object,
+                                       klass_message)
+          assert_block(full_message) do
+            ! ( klasses ? klasses.any? {|k| object.kind_of?(k)} : object.kind_of?(klass) )
+          end
+        end
+      end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_kind_of, :assert_not_kind_of
 
       ##
       # Passes if +object+ .respond_to? +method+
@@ -443,6 +519,25 @@ EOT
           assert_block(full_message) { object1.__send__(operator, object2) }
         end
       end
+
+      public
+      def assert_not_operator(object1, operator, object2, message="")
+        _wrap_assertion do
+          full_message = build_message(nil, "<?>\ngiven as the operator for #assert_not_operator must be a Symbol or #respond_to\\?(:to_str).", operator)
+          assert_block(full_message){operator.kind_of?(Symbol) || operator.respond_to?(:to_str)}
+          full_message = build_message(message, <<EOT, object1, AssertionMessage.literal(operator), object2)
+<?> expected to not be
+?
+<?>.
+EOT
+          assert_block(full_message) { ! object1.__send__(operator, object2) }
+        end
+      end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_operator, :assert_not_operator
 
       ##
       # Passes if block does not raise an exception.
@@ -858,6 +953,11 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_in_epsilon, :assert_not_in_epsilon
+
       # :stopdoc:
       private
       def _assert_in_epsilon_validate_arguments(expected_float,
@@ -1241,6 +1341,11 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_predicate, :assert_not_predicate
+
       ##
       # Passes if +object+#+alias_name+ is an alias method of
       # +object+#+original_name+.
@@ -1374,6 +1479,16 @@ EOT
         end
       end
 
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :assert_not_includes, :assert_not_include
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_includes, :assert_not_include
+
       ##
       # Passes if +object+ is empty.
       #
@@ -1419,6 +1534,11 @@ EOT
           end
         end
       end
+
+      # Just for minitest compatibility. :<
+      #
+      # @since 2.5.7
+      alias_method :refute_empty, :assert_not_empty
 
       ##
       # Builds a failure message.  +head+ is added before the +template+ and
