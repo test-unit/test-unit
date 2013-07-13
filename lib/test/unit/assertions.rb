@@ -311,7 +311,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
@@ -410,7 +410,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_kind_of, :assert_not_kind_of
 
       ##
@@ -544,7 +544,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_operator, :assert_not_operator
 
       ##
@@ -963,7 +963,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_in_epsilon, :assert_not_in_epsilon
 
       # :stopdoc:
@@ -1351,7 +1351,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_predicate, :assert_not_predicate
 
       ##
@@ -1489,12 +1489,12 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :assert_not_includes, :assert_not_include
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_includes, :assert_not_include
 
       ##
@@ -1545,7 +1545,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.7
+      # @since 2.5.6
       alias_method :refute_empty, :assert_not_empty
 
       ##
