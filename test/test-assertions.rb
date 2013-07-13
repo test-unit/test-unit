@@ -103,13 +103,13 @@ module Test
       end
 
       def inspect_tag(tag)
-          begin
-            throw tag
-          rescue NameError
-            tag.to_s.inspect
-          rescue ArgumentError
-            tag.inspect
-          end
+        begin
+          throw tag
+        rescue NameError
+          tag.to_s.inspect
+        rescue ArgumentError
+          tag.inspect
+        end
       end
 
       def add_failure(message, location=caller, options=nil)
