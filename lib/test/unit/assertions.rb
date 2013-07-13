@@ -304,7 +304,11 @@ EOT
                                        object,
                                        klass_message)
           assert_block(full_message) do
-            ! ( klasses ? klasses.any? {|k| object.instance_of?(k)} : object.instance_of?(klass) )
+            if klasses
+              not klasses.any? {|k| object.instance_of?(k)}
+            else
+              not object.instance_of?(klass)
+            end
           end
         end
       end
@@ -403,7 +407,11 @@ EOT
                                        object,
                                        klass_message)
           assert_block(full_message) do
-            ! ( klasses ? klasses.any? {|k| object.kind_of?(k)} : object.kind_of?(klass) )
+            if klasses
+              not klasses.any? {|k| object.kind_of?(k)}
+            else
+              not object.kind_of?(klass)
+            end
           end
         end
       end
