@@ -1,6 +1,6 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#             Copyright (c) 2009-2012 Kouhei Sutou. All rights reserved.
+#             Copyright (c) 2009-2013 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit/assertionfailederror'
@@ -263,7 +263,11 @@ EOT
 <?>.
 EOT
           assert_block(full_message) do
-            klasses ? klasses.any? {|k| object.instance_of?(k)} : object.instance_of?(klass)
+            if klasses
+              klasses.any? {|k| object.instance_of?(k)}
+            else
+              object.instance_of?(klass)
+            end
           end
         end
       end
@@ -358,7 +362,11 @@ EOT
                                        klass_message,
                                        object.class)
           assert_block(full_message) do
-            klasses ? klasses.any? {|k| object.kind_of?(k)} : object.kind_of?(klass)
+            if klasses
+              klasses.any? {|k| object.kind_of?(k)}
+            else
+              object.kind_of?(klass)
+            end
           end
         end
       end
