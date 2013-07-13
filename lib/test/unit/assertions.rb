@@ -244,15 +244,14 @@ EOT
       public
       def assert_instance_of(klass, object, message="")
         _wrap_assertion do
-          klasses = nil
-          klasses = klass if klass.is_a?(Array)
+          if klass.is_a?(Array)
+            klasses = klass
+          else
+            klasses = [klass]
+          end
           assert_block("The first parameter to assert_instance_of should be " +
                        "a Class or an Array of Class.") do
-            if klasses
-              klasses.all? {|k| k.is_a?(Class)}
-            else
-              klass.is_a?(Class)
-            end
+            klasses.all? {|k| k.is_a?(Class)}
           end
           klass_message = AssertionMessage.maybe_container(klass) do |value|
             "<#{value}>"
@@ -263,11 +262,7 @@ EOT
 <?>.
 EOT
           assert_block(full_message) do
-            if klasses
-              klasses.any? {|k| object.instance_of?(k)}
-            else
-              object.instance_of?(klass)
-            end
+            klasses.any? {|k| object.instance_of?(k)}
           end
         end
       end
@@ -285,15 +280,14 @@ EOT
       public
       def assert_not_instance_of(klass, object, message="")
         _wrap_assertion do
-          klasses = nil
-          klasses = klass if klass.is_a?(Array)
+          if klass.is_a?(Array)
+            klasses = klass
+          else
+            klasses = [klass]
+          end
           assert_block("The first parameter to assert_not_instance_of should be " <<
                        "a Class or an Array of Class.") do
-            if klasses
-              klasses.all? {|k| k.is_a?(Class)}
-            else
-              klass.is_a?(Class)
-            end
+            klasses.all? {|k| k.is_a?(Class)}
           end
           klass_message = AssertionMessage.maybe_container(klass) do |value|
             "<#{value}>"
@@ -304,11 +298,7 @@ EOT
                                        object,
                                        klass_message)
           assert_block(full_message) do
-            if klasses
-              klasses.all? {|k| not object.instance_of?(k)}
-            else
-              not object.instance_of?(klass)
-            end
+            klasses.all? {|k| not object.instance_of?(k)}
           end
         end
       end
@@ -345,15 +335,14 @@ EOT
       public
       def assert_kind_of(klass, object, message="")
         _wrap_assertion do
-          klasses = nil
-          klasses = klass if klass.is_a?(Array)
+          if klass.is_a?(Array)
+            klasses = klass
+          else
+            klasses = [klass]
+          end
           assert_block("The first parameter to assert_kind_of should be " +
                        "a kind_of Module or an Array of a kind_of Module.") do
-            if klasses
-              klasses.all? {|k| k.kind_of?(Module)}
-            else
-              klass.kind_of?(Module)
-            end
+            klasses.all? {|k| k.kind_of?(Module)}
           end
           klass_message = AssertionMessage.maybe_container(klass) do |value|
             "<#{value}>"
@@ -366,11 +355,7 @@ EOT
                                        klass_message,
                                        object.class)
           assert_block(full_message) do
-            if klasses
-              klasses.any? {|k| object.kind_of?(k)}
-            else
-              object.kind_of?(klass)
-            end
+            klasses.any? {|k| object.kind_of?(k)}
           end
         end
       end
@@ -388,15 +373,14 @@ EOT
       public
       def assert_not_kind_of(klass, object, message="")
         _wrap_assertion do
-          klasses = nil
-          klasses = klass if klass.is_a?(Array)
+          if klass.is_a?(Array)
+            klasses = klass
+          else
+            klasses = [klass]
+          end
           assert_block("The first parameter to assert_not_kind_of should be " +
                        "a kind_of Module or an Array of a kind_of Module.") do
-            if klasses
-              klasses.all? {|k| k.kind_of?(Module)}
-            else
-              klass.kind_of?(Module)
-            end
+            klasses.all? {|k| k.kind_of?(Module)}
           end
           klass_message = AssertionMessage.maybe_container(klass) do |value|
             "<#{value}>"
@@ -407,11 +391,7 @@ EOT
                                        object,
                                        klass_message)
           assert_block(full_message) do
-            if klasses
-              klasses.all? {|k| not object.kind_of?(k)}
-            else
-              not object.kind_of?(klass)
-            end
+            klasses.all? {|k| not object.kind_of?(k)}
           end
         end
       end
