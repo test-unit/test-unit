@@ -257,7 +257,7 @@ EOT
             "<#{value}>"
           end
           full_message = build_message(message, <<EOT, object, klass_message, object.class)
-<?> expected to be an instance of
+<?> expected to be instance_of\\?
 ? but was
 <?>.
 EOT
