@@ -276,6 +276,8 @@ EOT
       #   assert_not_instance_of(String, 100)                # -> pass
       #   assert_not_instance_of([Fixnum, NilClass], '100')  # -> pass
       #   assert_not_instance_of([Numeric, NilClass], 100)   # -> fail
+      #
+      # @since 2.5.6
 
       public
       def assert_not_instance_of(klass, object, message="")
@@ -369,6 +371,8 @@ EOT
       #   assert_not_kind_of(Fixnum, 'foo')           # -> pass
       #   assert_not_kind_of([Fixnum, NilClass], '0') # -> pass
       #   assert_not_kind_of([Fixnum, NilClass], 100) # -> fail
+      #
+      # @since 2.5.6
 
       public
       def assert_not_kind_of(klass, object, message="")
@@ -515,6 +519,9 @@ EOT
           assert_block(full_message) { object1.__send__(operator, object2) }
         end
       end
+
+      #
+      # @since 2.5.6
 
       public
       def assert_not_operator(object1, operator, object2, message="")
