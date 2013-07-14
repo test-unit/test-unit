@@ -520,6 +520,14 @@ EOT
         end
       end
 
+      ##
+      # Compares the +object1+ with +object2+ using +operator+.
+      #
+      # Passes if object1.__send__(operator, object2) is not true.
+      #
+      # Example:
+      #   assert_not_operator(5, :<, 4) # => pass
+      #   assert_not_operator(5, :>, 4) # => fail
       #
       # @since 2.5.6
 
