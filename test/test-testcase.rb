@@ -811,6 +811,42 @@ module Test
               assert_false(test_case.test_defined?(query))
             end
           end
+
+          class TestMethodStyle < self
+            def test_line_middle
+              line_middle = nil
+              test_case = Class.new(TestCase) do
+                test "before" do
+                end
+                line_middle = __LINE__
+                test "after" do
+                end
+              end
+              query = {
+                :path => __FILE__,
+                :line => line_middle,
+                :method_name => "test: before",
+              }
+              assert_true(test_case.test_defined?(query))
+            end
+
+            def test_line_after_method
+              line_after_method = nil
+              test_case = Class.new(TestCase) do
+                test "before" do
+                end
+
+                line_after_method = __LINE__; test "after" do
+                end
+              end
+              query = {
+                :path => __FILE__,
+                :line => line_after_method,
+                :method_name => "test: before",
+              }
+              assert_false(test_case.test_defined?(query))
+            end
+          end
         end
       end
 
