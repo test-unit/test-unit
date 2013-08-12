@@ -641,6 +641,13 @@ module Test
               end
             end
             assert_false(test_case.test_defined?(:line => line_before))
+
+            test_case = Class.new(TestCase) do
+              line_before = __LINE__
+              test "nothing" do
+              end
+            end
+            assert_false(test_case.test_defined?(:line => line_before))
           end
 
           def test_def
@@ -650,12 +657,25 @@ module Test
               end
             end
             assert_true(test_case.test_defined?(:line => line_def))
+
+            test_case = Class.new(TestCase) do
+              line_def = __LINE__; test "nothing" do
+              end
+            end
+            assert_true(test_case.test_defined?(:line => line_def))
           end
 
           def test_after
             line_after = nil
             test_case = Class.new(TestCase) do
               def test_nothing
+              end
+              line_after = __LINE__
+            end
+            assert_true(test_case.test_defined?(:line => line_after))
+
+            test_case = Class.new(TestCase) do
+              test "nothing" do
               end
               line_after = __LINE__
             end
@@ -670,6 +690,12 @@ module Test
               end
             end
             assert_true(test_case.test_defined?(:method_name => "test_nothing"))
+
+            test_case = Class.new(TestCase) do
+              test "nothing" do
+              end
+            end
+            assert_true(test_case.test_defined?(:method_name => "test: nothing"))
           end
 
           def test_not_match
@@ -678,6 +704,13 @@ module Test
               end
             end
             query = {:method_name => "test_nonexistent"}
+            assert_false(test_case.test_defined?(query))
+
+            test_case = Class.new(TestCase) do
+              test "nothing" do
+              end
+            end
+            query = {:method_name => "test: nonexistent"}
             assert_false(test_case.test_defined?(query))
           end
         end
