@@ -741,12 +741,6 @@ module Test
                 end
               end
               assert_true(test_case.test_defined?(:method_name => "test_nothing"))
-
-              test_case = Class.new(TestCase) do
-                test "nothing" do
-                end
-              end
-              assert_true(test_case.test_defined?(:method_name => "test: nothing"))
             end
 
             def test_not_match
@@ -756,7 +750,19 @@ module Test
               end
               query = {:method_name => "test_nonexistent"}
               assert_false(test_case.test_defined?(query))
+            end
+          end
 
+          class TestMethodStyle < self
+            def test_match
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
+              end
+              assert_true(test_case.test_defined?(:method_name => "test: nothing"))
+            end
+
+            def test_not_match
               test_case = Class.new(TestCase) do
                 test "nothing" do
                 end
