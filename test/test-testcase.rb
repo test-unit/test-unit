@@ -589,8 +589,8 @@ module Test
       end
 
       class TestTestDefined < self
-        class TestDef < self
-          class TestNoQuery < self
+        class TestNoQuery < self
+          class TestDef < self
             def test_have_test
               test_case = Class.new(TestCase) do
                 def test_nothing
@@ -605,8 +605,10 @@ module Test
               assert_false(test_case.test_defined?({}))
             end
           end
+        end
 
-          class TestPath < self
+        class TestPath < self
+          class TestDef < self
             def test_base_name
               test_case = Class.new(TestCase) do
                 def test_nothing
@@ -632,8 +634,10 @@ module Test
               assert_false(test_case.test_defined?(:path => "nonexistent.rb"))
             end
           end
+        end
 
-          class TestLine < self
+        class TestLine < self
+          class TestDef < self
             def test_before
               line_before = nil
               test_case = Class.new(TestCase) do
@@ -683,8 +687,10 @@ module Test
               assert_true(test_case.test_defined?(:line => line_after))
             end
           end
+        end
 
-          class TestMethodName < self
+        class TestMethodName < self
+          class TestDef < self
             def test_match
               test_case = Class.new(TestCase) do
                 def test_nothing
@@ -715,8 +721,10 @@ module Test
               assert_false(test_case.test_defined?(query))
             end
           end
+        end
 
-          class TestCombine < self
+        class TestCombine < self
+          class TestDef < self
             def test_line_middle
               line_middle = nil
               test_case = Class.new(TestCase) do
