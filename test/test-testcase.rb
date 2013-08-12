@@ -1,5 +1,5 @@
 # Author:: Nathaniel Talbott.
-# Copyright:: Copyright (c) 2008-2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright:: Copyright (c) 2008-2013  Kouhei Sutou <kou@clear-code.com>
 # Copyright:: Copyright (c) 2011  Haruka Yoshihara <yoshihara@clear-code.com>
 # Copyright:: Copyright (c) 2000-2002  Nathaniel Talbott
 # License:: Ruby license.
@@ -589,6 +589,7 @@ module Test
       end
 
       class TestTestDefined < self
+        class TestDef < self
         class TestNoQuery < self
           def test_have_test
             test_case = Class.new(TestCase) do
@@ -749,6 +750,7 @@ module Test
             }
             assert_false(test_case.test_defined?(query))
           end
+        end
         end
       end
 
