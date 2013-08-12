@@ -614,7 +614,7 @@ module Test
         end
 
         class TestPath < self
-          class TestDef < self
+          class TestDefStyle < self
             def test_base_name
               test_case = Class.new(TestCase) do
                 def test_nothing
@@ -643,7 +643,7 @@ module Test
         end
 
         class TestLine < self
-          class TestDef < self
+          class TestDefStyle < self
             def test_before
               line_before = nil
               test_case = Class.new(TestCase) do
@@ -696,7 +696,7 @@ module Test
         end
 
         class TestMethodName < self
-          class TestDef < self
+          class TestDefStyle < self
             def test_match
               test_case = Class.new(TestCase) do
                 def test_nothing
@@ -730,7 +730,7 @@ module Test
         end
 
         class TestCombine < self
-          class TestDef < self
+          class TestDefStyle < self
             def test_line_middle
               line_middle = nil
               test_case = Class.new(TestCase) do
