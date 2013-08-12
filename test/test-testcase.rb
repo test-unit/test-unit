@@ -590,20 +590,26 @@ module Test
 
       class TestTestDefined < self
         class TestNoQuery < self
-          class TestDef < self
-            def test_have_test
-              test_case = Class.new(TestCase) do
-                def test_nothing
-                end
-              end
-              assert_true(test_case.test_defined?({}))
+          def test_no_test
+            test_case = Class.new(TestCase) do
             end
+            assert_false(test_case.test_defined?({}))
+          end
 
-            def test_no_test
-              test_case = Class.new(TestCase) do
+          def test_have_def_style_test
+            test_case = Class.new(TestCase) do
+              def test_nothing
               end
-              assert_false(test_case.test_defined?({}))
             end
+            assert_true(test_case.test_defined?({}))
+          end
+
+          def test_have_method_style_test
+            test_case = Class.new(TestCase) do
+              test "nothing" do
+              end
+            end
+            assert_true(test_case.test_defined?({}))
           end
         end
 
