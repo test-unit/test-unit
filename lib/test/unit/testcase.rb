@@ -117,8 +117,14 @@ module Test
           if _added_methods.include?(stringified_name)
             attribute(:redefined, {:backtrace => caller}, {}, stringified_name)
           end
-          path, line, = caller[0].split(/:(\d+)/,2)
-          line = line.to_i if line
+          _attributes = attributes_table[stringified_name] || {}
+          source_location = _attributes[:source_location]
+          if source_location
+            path, line = source_location
+          else
+            path, line, = caller[0].split(/:(\d+)/,2)
+            line = line.to_i if line
+          end
           method_locations << {
             :method_name => stringified_name,
             :path => path,
@@ -267,15 +273,12 @@ module Test
               raise ArgumentError, message
             end
             method_name = "test: #{test_description}"
-            define_method(method_name, &block)
             description(test_description, method_name)
             attribute(:test, true, {}, method_name)
             if block.respond_to?(:source_location)
               attribute(:source_location, block.source_location, {}, method_name)
-              if location = method_locations.find{|m| m[:method_name] == method_name }
-                location[:path], location[:line] = block.source_location
-              end
             end
+            define_method(method_name, &block)
           else
             targets = test_description_or_targets
             attribute(:test, true, {}, *targets)
