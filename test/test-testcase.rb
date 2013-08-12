@@ -740,7 +740,8 @@ module Test
                 def test_nothing
                 end
               end
-              assert_true(test_case.test_defined?(:method_name => "test_nothing"))
+              query = {:method_name => "test_nothing"}
+              assert_true(test_case.test_defined?(query))
             end
 
             def test_not_match
@@ -759,7 +760,8 @@ module Test
                 test "nothing" do
                 end
               end
-              assert_true(test_case.test_defined?(:method_name => "test: nothing"))
+              query = {:method_name => "test: nothing"}
+              assert_true(test_case.test_defined?(query))
             end
 
             def test_not_match
