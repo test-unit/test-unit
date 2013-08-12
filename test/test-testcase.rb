@@ -590,167 +590,167 @@ module Test
 
       class TestTestDefined < self
         class TestDef < self
-        class TestNoQuery < self
-          def test_have_test
-            test_case = Class.new(TestCase) do
-              def test_nothing
+          class TestNoQuery < self
+            def test_have_test
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
               end
+              assert_true(test_case.test_defined?({}))
             end
-            assert_true(test_case.test_defined?({}))
+
+            def test_no_test
+              test_case = Class.new(TestCase) do
+              end
+              assert_false(test_case.test_defined?({}))
+            end
           end
 
-          def test_no_test
-            test_case = Class.new(TestCase) do
-            end
-            assert_false(test_case.test_defined?({}))
-          end
-        end
-
-        class TestPath < self
-          def test_base_name
-            test_case = Class.new(TestCase) do
-              def test_nothing
+          class TestPath < self
+            def test_base_name
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
               end
+              base_name = File.basename(__FILE__)
+              assert_true(test_case.test_defined?(:path => base_name))
             end
-            base_name = File.basename(__FILE__)
-            assert_true(test_case.test_defined?(:path => base_name))
-          end
 
-          def test_absolute_path
-            test_case = Class.new(TestCase) do
-              def test_nothing
+            def test_absolute_path
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
               end
+              assert_true(test_case.test_defined?(:path => __FILE__))
             end
-            assert_true(test_case.test_defined?(:path => __FILE__))
-          end
 
-          def test_not_match
-            test_case = Class.new(TestCase) do
-              def test_nothing
+            def test_not_match
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
               end
+              assert_false(test_case.test_defined?(:path => "nonexistent.rb"))
             end
-            assert_false(test_case.test_defined?(:path => "nonexistent.rb"))
-          end
-        end
-
-        class TestLine < self
-          def test_before
-            line_before = nil
-            test_case = Class.new(TestCase) do
-              line_before = __LINE__
-              def test_nothing
-              end
-            end
-            assert_false(test_case.test_defined?(:line => line_before))
-
-            test_case = Class.new(TestCase) do
-              line_before = __LINE__
-              test "nothing" do
-              end
-            end
-            assert_false(test_case.test_defined?(:line => line_before))
           end
 
-          def test_def
-            line_def = nil
-            test_case = Class.new(TestCase) do
-              line_def = __LINE__; def test_nothing
+          class TestLine < self
+            def test_before
+              line_before = nil
+              test_case = Class.new(TestCase) do
+                line_before = __LINE__
+                def test_nothing
+                end
               end
-            end
-            assert_true(test_case.test_defined?(:line => line_def))
+              assert_false(test_case.test_defined?(:line => line_before))
 
-            test_case = Class.new(TestCase) do
-              line_def = __LINE__; test "nothing" do
+              test_case = Class.new(TestCase) do
+                line_before = __LINE__
+                test "nothing" do
+                end
               end
+              assert_false(test_case.test_defined?(:line => line_before))
             end
-            assert_true(test_case.test_defined?(:line => line_def))
+
+            def test_def
+              line_def = nil
+              test_case = Class.new(TestCase) do
+                line_def = __LINE__; def test_nothing
+                end
+              end
+              assert_true(test_case.test_defined?(:line => line_def))
+
+              test_case = Class.new(TestCase) do
+                line_def = __LINE__; test "nothing" do
+                end
+              end
+              assert_true(test_case.test_defined?(:line => line_def))
+            end
+
+            def test_after
+              line_after = nil
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
+                line_after = __LINE__
+              end
+              assert_true(test_case.test_defined?(:line => line_after))
+
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
+                line_after = __LINE__
+              end
+              assert_true(test_case.test_defined?(:line => line_after))
+            end
           end
 
-          def test_after
-            line_after = nil
-            test_case = Class.new(TestCase) do
-              def test_nothing
+          class TestMethodName < self
+            def test_match
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
               end
-              line_after = __LINE__
-            end
-            assert_true(test_case.test_defined?(:line => line_after))
+              assert_true(test_case.test_defined?(:method_name => "test_nothing"))
 
-            test_case = Class.new(TestCase) do
-              test "nothing" do
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
               end
-              line_after = __LINE__
+              assert_true(test_case.test_defined?(:method_name => "test: nothing"))
             end
-            assert_true(test_case.test_defined?(:line => line_after))
-          end
-        end
 
-        class TestMethodName < self
-          def test_match
-            test_case = Class.new(TestCase) do
-              def test_nothing
+            def test_not_match
+              test_case = Class.new(TestCase) do
+                def test_nothing
+                end
               end
-            end
-            assert_true(test_case.test_defined?(:method_name => "test_nothing"))
+              query = {:method_name => "test_nonexistent"}
+              assert_false(test_case.test_defined?(query))
 
-            test_case = Class.new(TestCase) do
-              test "nothing" do
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
               end
+              query = {:method_name => "test: nonexistent"}
+              assert_false(test_case.test_defined?(query))
             end
-            assert_true(test_case.test_defined?(:method_name => "test: nothing"))
-          end
-
-          def test_not_match
-            test_case = Class.new(TestCase) do
-              def test_nothing
-              end
-            end
-            query = {:method_name => "test_nonexistent"}
-            assert_false(test_case.test_defined?(query))
-
-            test_case = Class.new(TestCase) do
-              test "nothing" do
-              end
-            end
-            query = {:method_name => "test: nonexistent"}
-            assert_false(test_case.test_defined?(query))
-          end
-        end
-
-        class TestCombine < self
-          def test_line_middle
-            line_middle = nil
-            test_case = Class.new(TestCase) do
-              def test_before
-              end
-              line_middle = __LINE__
-              def test_after
-              end
-            end
-            query = {
-              :path => __FILE__,
-              :line => line_middle,
-              :method_name => "test_before",
-            }
-            assert_true(test_case.test_defined?(query))
           end
 
-          def test_line_after_def
-            line_after_def = nil
-            test_case = Class.new(TestCase) do
-              def test_before
+          class TestCombine < self
+            def test_line_middle
+              line_middle = nil
+              test_case = Class.new(TestCase) do
+                def test_before
+                end
+                line_middle = __LINE__
+                def test_after
+                end
               end
-
-              line_after_def = __LINE__; def test_after
-              end
+              query = {
+                :path => __FILE__,
+                :line => line_middle,
+                :method_name => "test_before",
+              }
+              assert_true(test_case.test_defined?(query))
             end
-            query = {
-              :path => __FILE__,
-              :line => line_after_def,
-              :method_name => "test_before",
-            }
-            assert_false(test_case.test_defined?(query))
+
+            def test_line_after_def
+              line_after_def = nil
+              test_case = Class.new(TestCase) do
+                def test_before
+                end
+
+                line_after_def = __LINE__; def test_after
+                end
+              end
+              query = {
+                :path => __FILE__,
+                :line => line_after_def,
+                :method_name => "test_before",
+              }
+              assert_false(test_case.test_defined?(query))
+            end
           end
-        end
         end
       end
 
