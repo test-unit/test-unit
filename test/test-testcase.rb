@@ -679,25 +679,12 @@ module Test
                 end
               end
               assert_false(test_case.test_defined?(:line => line_before))
-
-              test_case = Class.new(TestCase) do
-                line_before = __LINE__
-                test "nothing" do
-                end
-              end
-              assert_false(test_case.test_defined?(:line => line_before))
             end
 
             def test_def
               line_def = nil
               test_case = Class.new(TestCase) do
                 line_def = __LINE__; def test_nothing
-                end
-              end
-              assert_true(test_case.test_defined?(:line => line_def))
-
-              test_case = Class.new(TestCase) do
-                line_def = __LINE__; test "nothing" do
                 end
               end
               assert_true(test_case.test_defined?(:line => line_def))
@@ -711,7 +698,31 @@ module Test
                 line_after = __LINE__
               end
               assert_true(test_case.test_defined?(:line => line_after))
+            end
+          end
 
+          class TestMethodStyle < self
+            def test_before
+              line_before = nil
+              test_case = Class.new(TestCase) do
+                line_before = __LINE__
+                test "nothing" do
+                end
+              end
+              assert_false(test_case.test_defined?(:line => line_before))
+            end
+
+            def test_method
+              line_method = nil
+              test_case = Class.new(TestCase) do
+                line_method = __LINE__; test "nothing" do
+                end
+              end
+              assert_true(test_case.test_defined?(:line => line_method))
+            end
+
+            def test_after
+              line_after = nil
               test_case = Class.new(TestCase) do
                 test "nothing" do
                 end
