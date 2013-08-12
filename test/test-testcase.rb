@@ -640,6 +640,33 @@ module Test
               assert_false(test_case.test_defined?(:path => "nonexistent.rb"))
             end
           end
+
+          class TestMethodStyle < self
+            def test_base_name
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
+              end
+              base_name = File.basename(__FILE__)
+              assert_true(test_case.test_defined?(:path => base_name))
+            end
+
+            def test_absolute_path
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
+              end
+              assert_true(test_case.test_defined?(:path => __FILE__))
+            end
+
+            def test_not_match
+              test_case = Class.new(TestCase) do
+                test "nothing" do
+                end
+              end
+              assert_false(test_case.test_defined?(:path => "nonexistent.rb"))
+            end
+          end
         end
 
         class TestLine < self
