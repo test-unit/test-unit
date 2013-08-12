@@ -272,6 +272,9 @@ module Test
             attribute(:test, true, {}, method_name)
             if block.respond_to?(:source_location)
               attribute(:source_location, block.source_location, {}, method_name)
+              if location = method_locations.find{|m| m[:method_name] == method_name }
+                location[:path], location[:line] = block.source_location
+              end
             end
           else
             targets = test_description_or_targets
