@@ -55,7 +55,7 @@ module Test
           sub_suites = []
           path = realdir(name)
           if @file.directory?(path)
-	    dir_name = name unless name == '.'
+            dir_name = name unless name == '.'
             @dir.entries(path).each do |e|
               next if(e == '.' || e == '..')
               e_name = dir_name ? @file.join(dir_name, e) : e
@@ -95,13 +95,13 @@ module Test
           $:.delete_at($:.rindex(dir)) if(dir)
         end
 
-	def realdir(path)
-	  if @base
-	    @file.join(@base, path)
-	  else
-	    path
-	  end
-	end
+        def realdir(path)
+          if @base
+            @file.join(@base, path)
+          else
+            path
+          end
+        end
       end
     end
   end
