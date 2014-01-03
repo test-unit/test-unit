@@ -240,11 +240,8 @@ module Test
                "Runs tests in TestCases matching TESTCASE.",
                "(patterns may be used).") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
-            case n
-            when Regexp
-              @filters << proc{|t| n =~ t.class.name ? true : false}
-            else
-              @filters << proc{|t| n == t.class.name}
+            @filters << lambda do |test|
+              match_test_case_name(test, n)
             end
           end
 
@@ -252,11 +249,8 @@ module Test
                "Ignores tests in TestCases matching TESTCASE.",
                "(patterns may be used).") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
-            case n
-            when Regexp
-              @filters << proc {|t| n =~ t.class.name ? false : true}
-            else
-              @filters << proc {|t| n != t.class.name}
+            @filters << lambda do |test|
+              not match_test_case_name(test, n)
             end
           end
 
@@ -464,6 +458,14 @@ module Test
         else
           yield
         end
+      end
+
+      def match_test_case_name(test, pattern)
+        test.class.ancestors.each do |test_class|
+          break if test_class == TestCase
+          return true if pattern === test_class.name
+        end
+        false
       end
     end
   end
