@@ -4,7 +4,6 @@ module Test
   module Unit
     class TestTestSuiteCreator < TestCase
       def setup
-
         @test_module = Module.new do
           def test_0; end
         end
@@ -17,7 +16,6 @@ module Test
         @test_case2 = Class.new(@test_case1) do
           def test_2; end
         end
-
       end
 
       def test_collects_tests
@@ -41,7 +39,6 @@ module Test
         creator = TestSuiteCreator.new @test_case2
         assert_equal [ "test_2" ], creator.send(:collect_test_names)
       end
-
     end
   end
 end
