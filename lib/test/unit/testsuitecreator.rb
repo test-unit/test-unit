@@ -41,10 +41,13 @@ module Test
       end
 
       def collect_test_names
-        method_names = @test_case.public_instance_methods(true).collect do |name|
-          name.to_s
+        methods = @test_case.public_instance_methods(true)
+        test_case_super = @test_case.superclass
+        while test_case_super && test_case_super != TestCase
+          methods -= test_case_super.public_instance_methods(true)
+          test_case_super = test_case_super.superclass
         end
-        test_names = method_names.find_all do |method_name|
+        test_names = methods.map(&:to_s).find_all do |method_name|
           method_name =~ /^test./ or @test_case.attributes(method_name)[:test]
         end
         send("sort_test_names_in_#{@test_case.test_order}_order", test_names)
