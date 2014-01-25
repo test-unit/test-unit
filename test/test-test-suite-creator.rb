@@ -26,6 +26,27 @@ module Test
         end
       end
 
+      class TestModule < self
+        def setup
+          test_module = Module.new do
+            def test_in_module
+            end
+          end
+
+          @test_case = Class.new(TestCase) do
+            include test_module
+
+            def test_in_test_case
+            end
+          end
+        end
+
+        def test_collect_test_names
+          assert_equal(["test_in_module", "test_in_test_case"].sort,
+                       collect_test_names(@test_case).sort)
+        end
+      end
+
       def setup
         @test_module = Module.new do
           def test_0; end
@@ -44,13 +65,6 @@ module Test
       def test_collects_tests
         creator = TestSuiteCreator.new @test_case1
         assert_equal(["test_1"], creator.send(:collect_test_names))
-      end
-
-      def test_collects_included_tests
-        @test_case1.send(:include, @test_module)
-
-        creator = TestSuiteCreator.new @test_case1
-        assert_equal(["test_0", "test_1"], creator.send(:collect_test_names))
       end
 
       def test_skips_collecting_inherited_tests
