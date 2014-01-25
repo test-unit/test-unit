@@ -3,7 +3,7 @@
 #             Copyright (c) 2009-2013 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/assertionfailederror'
+require 'test/unit/assertion-failed-error'
 require 'test/unit/util/backtracefilter'
 require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
