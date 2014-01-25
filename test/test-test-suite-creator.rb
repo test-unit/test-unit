@@ -37,7 +37,7 @@ module Test
         assert_equal [ "test_2" ], creator.send(:collect_test_names)
 
         @test_case1.send(:include, @test_module)
-        
+
         creator = TestSuiteCreator.new @test_case2
         assert_equal [ "test_2" ], creator.send(:collect_test_names)
       end
