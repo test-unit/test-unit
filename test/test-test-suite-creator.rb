@@ -8,6 +8,19 @@ module Test
         creator.send(:collect_test_names)
       end
 
+      class TestStandalone < self
+        def setup
+          @test_case = Class.new(TestCase) do
+            def test_in_test_case
+            end
+          end
+        end
+
+        def test_collect_test_names
+          assert_equal(["test_in_test_case"], collect_test_names(@test_case))
+        end
+      end
+
       class TestInherited < self
         def setup
           @parent_test_case = Class.new(TestCase) do
@@ -60,11 +73,6 @@ module Test
         @test_case2 = Class.new(@test_case1) do
           def test_2; end
         end
-      end
-
-      def test_collects_tests
-        creator = TestSuiteCreator.new @test_case1
-        assert_equal(["test_1"], creator.send(:collect_test_names))
       end
 
       def test_skips_collecting_inherited_tests
