@@ -62,27 +62,34 @@ module Test
 
       class TestInheritedModule < self
         def setup
-          test_module = Module.new do
-            def test_in_module
+          parent_test_module = Module.new do
+            def test_in_module_in_parent
+            end
+          end
+
+          child_test_module = Module.new do
+            def test_in_module_in_child
             end
           end
 
           @parent_test_case = Class.new(TestCase) do
-            include test_module
+            include parent_test_module
 
             def test_in_parent
             end
           end
 
           @child_test_case = Class.new(@parent_test_case) do
+            include child_test_module
+
             def test_in_child
             end
           end
         end
 
         def test_collect_test_names
-          assert_equal(["test_in_child"],
-                       collect_test_names(@child_test_case))
+          assert_equal(["test_in_child", "test_in_module_in_child"].sort,
+                       collect_test_names(@child_test_case).sort)
         end
       end
     end

@@ -42,11 +42,8 @@ module Test
 
       def collect_test_names
         methods = @test_case.public_instance_methods(true)
-        test_case_super = @test_case.superclass
-        while test_case_super && test_case_super != TestCase
-          methods -= test_case_super.public_instance_methods(true)
-          test_case_super = test_case_super.superclass
-        end
+        super_test_case = @test_case.superclass
+        methods -= super_test_case.public_instance_methods(true)
         test_names = methods.map(&:to_s).find_all do |method_name|
           method_name =~ /^test./ or @test_case.attributes(method_name)[:test]
         end
