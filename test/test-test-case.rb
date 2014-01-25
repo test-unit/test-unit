@@ -299,135 +299,6 @@ module Test
         end
       end
 
-      def test_startup_shutdown
-        called = []
-        test_case = Class.new(TestCase) do
-          class << self
-            def called
-              @@called
-            end
-
-            def called=(called)
-              @@called = called
-            end
-
-            def startup
-              @@called << :startup
-            end
-
-            def shutdown
-              @@called << :shutdown
-            end
-          end
-          self.called = called
-
-          def setup
-            self.class.called << :setup
-          end
-
-          def teardown
-            self.class.called << :teardown
-          end
-
-          def test1
-          end
-
-          def test2
-          end
-        end
-
-        test_suite = test_case.suite
-        test_suite.run(TestResult.new) {}
-        check("startup/shutdown should be called once per test case" +
-              ": #{called.inspect}",
-              called == [:startup,
-                         :setup, :teardown,
-                         :setup, :teardown,
-                         :shutdown])
-      end
-
-      def test_error_on_startup
-        test_case = Class.new(TestCase) do
-          class << self
-            def startup
-              raise "from startup"
-            end
-          end
-
-          def test_nothing
-          end
-        end
-
-        test_suite = test_case.suite
-        result = TestResult.new
-        test_suite.run(result) {}
-        check("Should record an error on startup: #{result}",
-              result.error_count == 1)
-      end
-
-      def test_pass_through_error_on_startup
-        test_case = Class.new(TestCase) do
-          class << self
-            def startup
-              raise Interrupt, "from startup"
-            end
-          end
-
-          def test_nothing
-          end
-        end
-
-        test_suite = test_case.suite
-        begin
-          test_suite.run(TestResult.new) {}
-          check("Should not be reached", false)
-        rescue Exception
-          check("Interrupt should be passed through: #{$!}",
-                Interrupt === $!)
-        end
-      end
-
-      def test_error_on_shutdown
-        test_case = Class.new(TestCase) do
-          class << self
-            def shutdown
-              raise "from shutdown"
-            end
-          end
-
-          def test_nothing
-          end
-        end
-
-        test_suite = test_case.suite
-        result = TestResult.new
-        test_suite.run(result) {}
-        check("Should record an error on shutdown: #{result}",
-              result.error_count == 1)
-      end
-
-      def test_pass_through_error_on_shutdown
-        test_case = Class.new(TestCase) do
-          class << self
-            def shutdown
-              raise Interrupt, "from shutdown"
-            end
-          end
-
-          def test_nothing
-          end
-        end
-
-        test_suite = test_case.suite
-        begin
-          test_suite.run(TestResult.new) {}
-          check("Should not be reached", false)
-        rescue Exception
-          check("Interrupt should be passed through: #{$!}",
-                Interrupt === $!)
-        end
-      end
-
       def test_interrupted
         test_case = Class.new(TestCase) do
           def test_fail
@@ -868,6 +739,142 @@ module Test
             test.method_name
           end
           assert_equal(["test_nothing"], test_method_names)
+        end
+      end
+
+      class TestStartupShutdown < self
+        class TestOrder < self
+          module CallLogger
+            def called
+              @@called ||= []
+            end
+          end
+
+          def call_order(test_case)
+            test_case.called.clear
+            test_suite = test_case.suite
+            test_suite.run(TestResult.new) {}
+            test_case.called
+          end
+
+          class TestNoInheritance < self
+            def setup
+              @test_case = Class.new(TestCase) do
+                extend CallLogger
+
+                class << self
+                  def startup
+                    called << :startup
+                  end
+
+                  def shutdown
+                    called << :shutdown
+                  end
+                end
+
+                def setup
+                  self.class.called << :setup
+                end
+
+                def teardown
+                  self.class.called << :teardown
+                end
+
+                def test1
+                end
+
+                def test2
+                end
+              end
+            end
+
+            def test_call_order
+              assert_equal([
+                             :startup,
+                             :setup, :teardown,
+                             :setup, :teardown,
+                             :shutdown,
+                           ],
+                           call_order(@test_case))
+            end
+          end
+        end
+
+        class TestError < self
+          def run_test_case(test_case)
+            test_suite = test_case.suite
+            result = TestResult.new
+            test_suite.run(result) {}
+            result
+          end
+
+          def error_count(test_case)
+            run_test_case(test_case).error_count
+          end
+
+          def test_on_startup
+            test_case = Class.new(TestCase) do
+              class << self
+                def startup
+                  raise "from startup"
+                end
+              end
+
+              def test_nothing
+              end
+            end
+
+            assert_equal(1, error_count(test_case))
+          end
+
+          def test_pass_through_on_startup
+            test_case = Class.new(TestCase) do
+              class << self
+                def startup
+                  raise Interrupt, "from startup"
+                end
+              end
+
+              def test_nothing
+              end
+            end
+
+            assert_raise(Interrupt) do
+              run_test_case(test_case)
+            end
+          end
+
+          def test_on_shutdown
+            test_case = Class.new(TestCase) do
+              class << self
+                def shutdown
+                  raise "from shutdown"
+                end
+              end
+
+              def test_nothing
+              end
+            end
+
+            assert_equal(1, error_count(test_case))
+          end
+
+          def test_pass_through_on_shutdown
+            test_case = Class.new(TestCase) do
+              class << self
+                def shutdown
+                  raise Interrupt, "from shutdown"
+                end
+              end
+
+              def test_nothing
+              end
+            end
+
+            assert_raise(Interrupt) do
+              run_test_case(test_case)
+            end
+          end
         end
       end
     end
