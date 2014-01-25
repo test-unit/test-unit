@@ -11,7 +11,6 @@ module Test
       class TestInherited < self
         def setup
           @parent_test_case = Class.new(TestCase) do
-            self.test_order = :alphabetic
             def test_in_parent
             end
           end
