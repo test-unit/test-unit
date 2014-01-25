@@ -798,6 +798,93 @@ module Test
                            call_order(@test_case))
             end
           end
+
+          class TestInheritance < self
+            def setup
+              @original_descendants = TestCase::DESCENDANTS.dup
+              TestCase::DESCENDANTS.clear
+
+              @parent_test_case = Class.new(TestCase) do
+                extend CallLogger
+
+                class << self
+                  def startup
+                    called << :startup_parent
+                  end
+
+                  def shutdown
+                    called << :shutdown_parent
+                  end
+                end
+
+                def setup
+                  self.class.called << :setup_parent
+                end
+
+                def teardown
+                  self.class.called << :teardown_parent
+                end
+
+                def test1_parent
+                  self.class.called << :test1_parent
+                end
+
+                def test2_parent
+                  self.class.called << :test2_parent
+                end
+              end
+
+              @child_test_case = Class.new(@parent_test_case) do
+                class << self
+                  def startup
+                    called << :startup_child
+                  end
+
+                  def shutdown
+                    called << :shutdown_child
+                  end
+                end
+
+                def setup
+                  self.class.called << :setup_child
+                end
+
+                def teardown
+                  self.class.called << :teardown_child
+                end
+
+                def test1_child
+                  self.class.called << :test1_child
+                end
+
+                def test2_child
+                  self.class.called << :test2_child
+                end
+              end
+            end
+
+            def teardown
+              TestCase::DESCENDANTS.replace(@original_descendants)
+            end
+
+            def test_call_order
+              collector = Collector::Descendant.new
+              test_suite = collector.collect
+              test_suite.run(TestResult.new) {}
+              called = @parent_test_case.called
+              assert_equal([
+                             :startup_parent,
+                             :setup_parent, :test1_parent, :teardown_parent,
+                             :setup_parent, :test2_parent, :teardown_parent,
+                             :startup_child,
+                             :setup_child, :test1_child, :teardown_child,
+                             :setup_child, :test2_child, :teardown_child,
+                             :shutdown_child,
+                             :shutdown_parent,
+                           ],
+                           called)
+            end
+          end
         end
 
         class TestError < self
