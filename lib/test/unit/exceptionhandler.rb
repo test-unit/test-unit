@@ -5,7 +5,7 @@ module Test
       class << self
         def exception_handlers
           @@exception_handlers
-	end
+        end
 
         def included(base)
           base.extend(ClassMethods)
