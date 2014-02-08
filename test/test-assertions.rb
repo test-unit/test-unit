@@ -150,22 +150,22 @@ module Test
 
       class TestAssertEqual < self
         class TestSuccess < self
-        def test_success
-          check_nothing_fails {
-            assert_equal("string1", "string1")
-          }
-        end
+          def test_success
+            check_nothing_fails {
+              assert_equal("string1", "string1")
+            }
+          end
 
-        def test_success_with_message
-          check_nothing_fails {
-            assert_equal("string1", "string1", "successful assert_equal")
-          }
-        end
+          def test_success_with_message
+            check_nothing_fails {
+              assert_equal("string1", "string1", "successful assert_equal")
+            }
+          end
         end
 
         class TestFailure < self
-        def test_failure
-          message = <<-EOM.chomp
+          def test_failure
+            message = <<-EOM.chomp
 <"string1"> expected but was
 <"string2">.
 
@@ -175,13 +175,13 @@ diff:
 + string2
 ?       ^
 EOM
-          check_fail(message) {
-            assert_equal("string1", "string2")
-          }
-        end
+            check_fail(message) {
+              assert_equal("string1", "string2")
+            }
+          end
 
-        def test_failure_with_message
-          message = <<-EOM.chomp
+          def test_failure_with_message
+            message = <<-EOM.chomp
 failed assert_equal.
 <"string1"> expected but was
 <"string2">.
@@ -192,13 +192,13 @@ diff:
 + string2
 ?       ^
 EOM
-         check_fail(message) {
-           assert_equal("string1", "string2", "failed assert_equal")
-          }
-        end
+           check_fail(message) {
+             assert_equal("string1", "string2", "failed assert_equal")
+            }
+          end
 
-        def test_failure_different_type
-         message = <<-EOM.chomp
+          def test_failure_different_type
+            message = <<-EOM.chomp
 <"111111"> expected but was
 <111111>.
 
@@ -207,31 +207,31 @@ diff:
 ? -      -
 + 111111
 EOM
-          check_fail(message) do
-            assert_equal("111111", 111111)
+            check_fail(message) do
+              assert_equal("111111", 111111)
+            end
           end
-        end
 
-        def test_long_line
-          expected = ["0123456789",
-                      "1123456789",
-                      "2123456789",
-                      "3123456789",
-                      "4123456789",
-                      "5123456789",
-                      "6123456789",
-                      "7123456789",
-                      "8123456789"].join
-          actual =   ["0000000000",
-                      "1123456789",
-                      "2123456789",
-                      "3123456789",
-                      "4123456789",
-                      "5123456789",
-                      "6123456789",
-                      "7123456789",
-                      "8123456789"].join
-          message = <<-EOM.chomp
+          def test_long_line
+            expected = ["0123456789",
+                        "1123456789",
+                        "2123456789",
+                        "3123456789",
+                        "4123456789",
+                        "5123456789",
+                        "6123456789",
+                        "7123456789",
+                        "8123456789"].join
+            actual =   ["0000000000",
+                        "1123456789",
+                        "2123456789",
+                        "3123456789",
+                        "4123456789",
+                        "5123456789",
+                        "6123456789",
+                        "7123456789",
+                        "8123456789"].join
+            message = <<-EOM.chomp
 <"#{expected}"> expected but was
 <"#{actual}">.
 
@@ -248,35 +248,35 @@ folded diff:
 ?  ^^^^^^^^^
   898123456789
 EOM
-          check_fail(message) do
-            assert_equal(expected, actual)
+            check_fail(message) do
+              assert_equal(expected, actual)
+            end
           end
-        end
 
-        def test_too_small_difference
-          message = <<-EOM.chomp
+          def test_too_small_difference
+            message = <<-EOM.chomp
 <1> expected but was
 <2>.
 EOM
-          check_fail(message) do
-            assert_equal(1, 2)
+            check_fail(message) do
+              assert_equal(1, 2)
+            end
           end
-        end
 
-        def test_same_inspected_objects
-          now = Time.now
-          now_without_usec = Time.at(now.to_i)
-          message = <<-EOM.chomp
+          def test_same_inspected_objects
+            now = Time.now
+            now_without_usec = Time.at(now.to_i)
+            message = <<-EOM.chomp
 <#{now.inspect}> expected but was
 <#{now.inspect}>.
 EOM
-          check_fail(message) do
-            assert_equal(now, now_without_usec)
+            check_fail(message) do
+              assert_equal(now, now_without_usec)
+            end
           end
-        end
 
-        def test_multi_lines_result
-          message = <<-EOM.chomp
+          def test_multi_lines_result
+            message = <<-EOM.chomp
 <#{"a\nb".inspect}> expected but was
 <#{"x".inspect}>.
 
@@ -285,13 +285,13 @@ diff:
 - a
 - b
 EOM
-          check_fail(message) do
-            assert_equal("a\nb", "x")
+            check_fail(message) do
+              assert_equal("a\nb", "x")
+            end
           end
-        end
 
-        def test_large_string
-          message = <<-EOM.chomp
+          def test_large_string
+            message = <<-EOM.chomp
 <#{("a\n" + "x" * 997).inspect}> expected but was
 <#{"x".inspect}>.
 
@@ -306,25 +306,25 @@ folded diff:
 #{(["- " + ("x" * 78)] * 12).join("\n")}
 - #{"x" * 61}
 EOM
-          check_fail(message) do
-            assert_equal("a\n" + "x" * 997, "x")
-          end
+            check_fail(message) do
+              assert_equal("a\n" + "x" * 997, "x")
+            end
 
-          message = <<-EOM.chomp
+            message = <<-EOM.chomp
 <#{("a\n" + "x" * 998).inspect}> expected but was
 <#{"x".inspect}>.
 EOM
-          check_fail(message) do
-            assert_equal("a\n" + "x" * 998, "x")
+            check_fail(message) do
+              assert_equal("a\n" + "x" * 998, "x")
+            end
           end
-        end
 
-        def test_max_diff_target_string_size
-          key = "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE"
-          before_value = ENV[key]
-          ENV[key] = "100"
-          begin
-            message = <<-EOM.chomp
+          def test_max_diff_target_string_size
+            key = "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE"
+            before_value = ENV[key]
+            ENV[key] = "100"
+            begin
+              message = <<-EOM.chomp
 <#{("a\n" + "x" * 97).inspect}> expected but was
 <#{"x".inspect}>.
 
@@ -339,61 +339,61 @@ folded diff:
 #{(["- " + ("x" * 78)]).join("\n")}
 - #{"x" * 19}
 EOM
-            check_fail(message) do
-              assert_equal("a\n" + "x" * 97, "x")
-            end
+              check_fail(message) do
+                assert_equal("a\n" + "x" * 97, "x")
+              end
 
-            message = <<-EOM.chomp
+              message = <<-EOM.chomp
 <#{("a\n" + "x" * 98).inspect}> expected but was
 <#{"x".inspect}>.
 EOM
-            check_fail(message) do
-              assert_equal("a\n" + "x" * 98, "x")
+              check_fail(message) do
+                assert_equal("a\n" + "x" * 98, "x")
+              end
+            ensure
+              ENV[key] = before_value
             end
-          ensure
-            ENV[key] = before_value
           end
-        end
 
-        def test_different_encoding
-          utf8_string = "こんにちは"
-          unless utf8_string.respond_to?(:force_encoding)
-            omit("encoding test is for Ruby >= 1.9")
-          end
-          ascii_8bit_string = utf8_string.dup.force_encoding("ascii-8bit")
-          message = <<-EOM.chomp
+          def test_different_encoding
+            utf8_string = "こんにちは"
+            unless utf8_string.respond_to?(:force_encoding)
+              omit("encoding test is for Ruby >= 1.9")
+            end
+            ascii_8bit_string = utf8_string.dup.force_encoding("ascii-8bit")
+            message = <<-EOM.chomp
 <#{utf8_string.inspect}>("UTF-8") expected but was
 <#{ascii_8bit_string.inspect}>("ASCII-8BIT").
 EOM
-          check_fail(message) do
-            assert_equal(utf8_string, ascii_8bit_string)
+            check_fail(message) do
+              assert_equal(utf8_string, ascii_8bit_string)
+            end
           end
-        end
 
-        def test_different_hash
-          designers = {
-            "Ruby" => "Matz",
-            "Lisp" => "John McCarthy",
-          }
-          categories = {
-            "LL" => ["Ruby", "Python"],
-            "Heavy" => ["C", "C++"],
-          }
-          message = <<-EOM.chomp
+          def test_different_hash
+            designers = {
+              "Ruby" => "Matz",
+              "Lisp" => "John McCarthy",
+            }
+            categories = {
+              "LL" => ["Ruby", "Python"],
+              "Heavy" => ["C", "C++"],
+            }
+            message = <<-EOM.chomp
 <{"Lisp"=>"John McCarthy", "Ruby"=>"Matz"}> expected but was
 <{"Heavy"=>["C", "C++"], "LL"=>["Ruby", "Python"]}>.
 EOM
-          check_fail(message) do
-            assert_equal(designers, categories)
+            check_fail(message) do
+              assert_equal(designers, categories)
+            end
           end
-        end
 
-        def test_recursive_hash
-          alice = {"name" => "Alice"}
-          bob = {"name" => "Bob"}
-          alice["followers"] = [bob]
-          bob["followers"] = [alice]
-          message = <<-EOM.chomp
+          def test_recursive_hash
+            alice = {"name" => "Alice"}
+            bob = {"name" => "Bob"}
+            alice["followers"] = [bob]
+            bob["followers"] = [alice]
+            message = <<-EOM.chomp
 <{"followers"=>[{"followers"=>[{...}], "name"=>"Bob"}], "name"=>"Alice"}> expected but was
 <{"followers"=>[{"followers"=>[{...}], "name"=>"Alice"}], "name"=>"Bob"}>.
 
@@ -403,10 +403,10 @@ diff:
 + {"followers"=>[{"followers"=>[{...}], "name"=>"Alice"}], "name"=>"Bob"}
 ?                                                       +++++++++++++++++
 EOM
-          check_fail(message) do
-            assert_equal(alice, bob)
+            check_fail(message) do
+              assert_equal(alice, bob)
+            end
           end
-        end
         end
       end
 
