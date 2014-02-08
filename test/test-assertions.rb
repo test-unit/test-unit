@@ -209,7 +209,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_long_line
+        def test_long_line
           expected = ["0123456789",
                       "1123456789",
                       "2123456789",
@@ -250,7 +250,7 @@ EOM
           end
         end
 
-        def test_assert_equal_for_too_small_difference
+        def test_too_small_difference
           message = <<-EOM.chomp
 <1> expected but was
 <2>.
@@ -260,7 +260,7 @@ EOM
           end
         end
 
-        def test_assert_equal_for_same_inspected_objects
+        def test_same_inspected_objects
           now = Time.now
           now_without_usec = Time.at(now.to_i)
           message = <<-EOM.chomp
@@ -272,7 +272,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_multi_lines_result
+        def test_multi_lines_result
           message = <<-EOM.chomp
 <#{"a\nb".inspect}> expected but was
 <#{"x".inspect}>.
@@ -287,7 +287,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_large_string
+        def test_large_string
           message = <<-EOM.chomp
 <#{("a\n" + "x" * 997).inspect}> expected but was
 <#{"x".inspect}>.
@@ -316,7 +316,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_max_diff_target_string_size
+        def test_max_diff_target_string_size
           key = "TEST_UNIT_MAX_DIFF_TARGET_STRING_SIZE"
           before_value = ENV[key]
           ENV[key] = "100"
@@ -352,7 +352,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_different_encoding
+        def test_different_encoding
           utf8_string = "こんにちは"
           unless utf8_string.respond_to?(:force_encoding)
             omit("encoding test is for Ruby >= 1.9")
@@ -367,7 +367,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_different_hash
+        def test_different_hash
           designers = {
             "Ruby" => "Matz",
             "Lisp" => "John McCarthy",
@@ -385,7 +385,7 @@ EOM
           end
         end
 
-        def test_assert_equal_with_recursive_hash
+        def test_recursive_hash
           alice = {"name" => "Alice"}
           bob = {"name" => "Bob"}
           alice["followers"] = [bob]
