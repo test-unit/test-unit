@@ -2,7 +2,7 @@
 #
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
-#             Copyright (c) 2009-2013 Kouhei Sutou. All rights reserved.
+#             Copyright (c) 2009-2014 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
 require 'test/unit'
@@ -148,6 +148,7 @@ module Test
         }
       end
 
+      class TestAssertEqual < self
       def test_assert_equal
         check_nothing_fails {
           assert_equal("string1", "string1")
@@ -393,6 +394,7 @@ EOM
         check_fail(message) do
           assert_equal(alice, bob)
         end
+      end
       end
 
       def test_assert_raise_success
