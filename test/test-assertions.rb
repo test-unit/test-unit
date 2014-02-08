@@ -409,6 +409,27 @@ EOM
               assert_equal(alice, bob)
             end
           end
+
+          def test_numeric
+            numeric_family_class = Class.new(Numeric) do
+              def inspect
+                "inspect is called"
+              end
+
+              def to_s
+                "to_s is called"
+              end
+            end
+            numeric = numeric_family_class.new
+
+            message = <<-MESSAGE.chomp
+<to_s is called> expected but was
+<"must be failed">.
+            MESSAGE
+            check_fail(message) do
+              assert_equal(numeric, "must be failed")
+            end
+          end
         end
       end
 

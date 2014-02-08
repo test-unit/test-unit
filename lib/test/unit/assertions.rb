@@ -1811,6 +1811,33 @@ EOT
           end
         end
 
+        class NumericInspector
+          Inspector.register_inspector_class(self)
+
+          class << self
+            def target?(object)
+              object.is_a?(Numeric)
+            end
+          end
+
+          def initialize(numeric, inspected_objects)
+            @inspected_objects = inspected_objects
+            @numeric = numeric
+          end
+
+          def inspect
+            @numeric.to_s
+          end
+
+          def pretty_print(q)
+            q.text(@numeric.to_s)
+          end
+
+          def pretty_print_cycle(q)
+            q.text(@numeric.to_s)
+          end
+        end
+
         class HashInspector
           Inspector.register_inspector_class(self)
 
