@@ -150,13 +150,13 @@ module Test
 
       class TestAssertEqual < self
         class TestSuccess < self
-          def test_success
+          def test_without_message
             check_nothing_fails {
               assert_equal("string1", "string1")
             }
           end
 
-          def test_success_with_message
+          def test_with_message
             check_nothing_fails {
               assert_equal("string1", "string1", "successful assert_equal")
             }
@@ -164,7 +164,7 @@ module Test
         end
 
         class TestFailure < self
-          def test_failure
+          def test_without_message
             message = <<-EOM.chomp
 <"string1"> expected but was
 <"string2">.
@@ -180,7 +180,7 @@ EOM
             }
           end
 
-          def test_failure_with_message
+          def test_with_message
             message = <<-EOM.chomp
 failed assert_equal.
 <"string1"> expected but was
@@ -197,7 +197,7 @@ EOM
             }
           end
 
-          def test_failure_different_type
+          def test_different_type
             message = <<-EOM.chomp
 <"111111"> expected but was
 <111111>.
