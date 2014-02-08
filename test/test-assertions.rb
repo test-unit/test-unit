@@ -196,7 +196,9 @@ EOM
              assert_equal("string1", "string2", "failed assert_equal")
             }
           end
+        end
 
+        class TestSystemMessage < self
           def test_different_type
             message = <<-EOM.chomp
 <"111111"> expected but was
