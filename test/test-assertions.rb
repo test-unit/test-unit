@@ -149,6 +149,7 @@ module Test
       end
 
       class TestAssertEqual < self
+        class TestSuccess < self
         def test_success
           check_nothing_fails {
             assert_equal("string1", "string1")
@@ -160,7 +161,9 @@ module Test
             assert_equal("string1", "string1", "successful assert_equal")
           }
         end
+        end
 
+        class TestFailure < self
         def test_failure
           message = <<-EOM.chomp
 <"string1"> expected but was
@@ -403,6 +406,7 @@ EOM
           check_fail(message) do
             assert_equal(alice, bob)
           end
+        end
         end
       end
 
