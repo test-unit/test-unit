@@ -695,9 +695,9 @@ EOT
       end
 
       UncaughtThrow = {
-        NameError => /^uncaught throw \`(.+)\'$/, #`
-        ArgumentError => /^uncaught throw (.+)$/,
-        ThreadError => /^uncaught throw \`(.+)\' in thread / #`
+        NameError => /^uncaught throw `(.+)'$/,
+        ArgumentError => /^uncaught throw (`.+'|.+)$/,
+        ThreadError => /^uncaught throw `(.+)' in thread /,
       }
 
       ##
@@ -732,8 +732,7 @@ EOT
             assert_block(full_message) {caught}
           rescue NameError, ArgumentError, ThreadError => error
             raise unless UncaughtThrow[error.class] =~ error.message
-            tag = $1
-            tag = tag[1..-1].intern if tag[0, 1] == ":"
+            tag = AssertionMessage.normalize_tag($1)
             full_message = build_message(message,
                                          "<?> expected to be thrown but\n" +
                                          "<?> was thrown.",
@@ -764,8 +763,7 @@ EOT
             proc.call
           rescue NameError, ArgumentError, ThreadError => error
             raise unless UncaughtThrow[error.class] =~ error.message
-            tag = $1
-            tag = tag[1..-1].intern if tag[0, 1] == ":"
+            tag = AssertionMessage.normalize_tag($1)
             full_message = build_message(message,
                                          "<?> was thrown when nothing was expected",
                                          tag)
@@ -1652,6 +1650,19 @@ EOT
 
           def maybe_container(value, &formatter)
             MaybeContainer.new(value, &formatter)
+          end
+
+          def normalize_tag(tag)
+            case tag
+            when /\A:/
+              tag[1..-1].intern
+            when /\A`(.+)'\z/
+              $1.intern
+            when String
+              tag.intern
+            else
+              tag
+            end
           end
 
           MAX_DIFF_TARGET_STRING_SIZE = 1000
