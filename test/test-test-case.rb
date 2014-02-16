@@ -722,11 +722,23 @@ module Test
       end
 
       class TestSubTestCase < self
-        def test_name
-          test_case = Class.new(TestCase)
-          sub_test_case = test_case.sub_test_case("sub test case") do
+        class TestName < self
+          def test_anonymous
+            test_case = Class.new(TestCase)
+            sub_test_case = test_case.sub_test_case("sub test case") do
+            end
+            assert_equal("sub test case", sub_test_case.name)
           end
-          assert_equal("sub test case", sub_test_case.name)
+
+          def test_named
+            test_case = Class.new(TestCase)
+            def test_case.name
+              "ParentTestCase"
+            end
+            sub_test_case = test_case.sub_test_case("sub test case") do
+            end
+            assert_equal("ParentTestCase::sub test case", sub_test_case.name)
+          end
         end
 
         def test_suite
