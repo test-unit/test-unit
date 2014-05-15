@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   entries = readme.split(/^h2\.\s(.*)$/)
   description = clean_white_space.call(entries[entries.index("Description") + 1])
   spec.summary, spec.description, = description.split(/\n\n+/, 3)
-  spec.license = ["Ruby", "PSFL"] # lib/test/unit/diff.rb is PSFL
+  spec.licenses = ["Ruby", "PSFL"] # lib/test/unit/diff.rb is PSFL
   spec.files = ["README.textile", "TODO", "Rakefile"]
   spec.files += ["COPYING", "GPL", "LGPL", "PSFL"]
   spec.files += Dir.glob("{lib,sample}/**/*.rb")
