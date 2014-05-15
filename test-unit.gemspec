@@ -29,7 +29,6 @@ version = Test::Unit::VERSION.dup
 Gem::Specification.new do |spec|
   spec.name = "test-unit"
   spec.version = version
-  spec.rubyforge_project = "test-unit"
   spec.homepage = "http://test-unit.rubyforge.org/"
   spec.authors = ["Kouhei Sutou", "Haruka Yoshihara"]
   spec.email = ["kou@cozmixng.org", "yoshihara@clear-code.com"]
