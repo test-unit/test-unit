@@ -451,20 +451,12 @@ end</code></pre>
       <div class="sidebar">
         <h2>プロジェクトについて</h2>
         <ul>
-          <li><a href="http://rubyforge.org/projects/test-unit/">プロジェクトページ</a></li>
-          <li>
-            <a href="http://rubyforge.org/mailman/listinfo/test-unit-users-ja">メーリングリスト</a>
-          </li>
+          <li><a href="https://github.com/test-unit/test-unit/">プロジェクトページ</a></li>
         </ul>
       </div>
     </div>
 
     <div class="sponsors">
-      <p id="sponsor-rubyforge">
-        <a href="http://rubyforge.org/projects/test-unit/">
-          <img src="rubyforge.png" width="120" height="24" border="0" alt="ラングバプロジェクトはRubyForge.orgにホスティングしてもらっています。" />
-        </a>
-      </p>
       <p id="sponsor-github">
         <a href="https://github.com/test-unit/">
           <img src="github-logo.png" width="100" height="45" border="0" alt="GitHubの提供するgitリポジトリを利用しています。" />
