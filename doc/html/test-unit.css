@@ -238,13 +238,6 @@ div.sponsors p
   margin: 0px;
 }
 
-div.sponsors p#sponsor-rubyforge
-{
-  position: absolute;
-  top: 15px;
-  right: 50px;
-}
-
 div.sponsors p#sponsor-github
 {
   position: absolute;
