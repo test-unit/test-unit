@@ -85,6 +85,7 @@ class TestUnitAttribute < Test::Unit::TestCase
   end
 
   def test_attributes_with_prepended_module
+    return unless Module.respond_to?(:prepend, true)
     test_case = Class.new(TestStack) do
       prepend Module.new
     end
