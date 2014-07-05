@@ -1475,11 +1475,14 @@ EOM
 
       class TestBlock < self
         def test_with_message
-          message = <<-MESSAGE
-user message.
+          if defined?(PowerAssert)
+            system_message = <<-MESSAGE
               1 == 2
 MESSAGE
-          check_fail(message) do
+          else
+            system_message = "<false> is not true."
+          end
+          check_fail("user message.\n#{system_message}") do
             assert("user message") do
               1 == 2
             end
