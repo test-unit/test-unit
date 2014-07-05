@@ -40,8 +40,6 @@ module Test
 
     module Assertions
 
-      DUMMY = Object.new # :nodoc:
-
       ##
       # The assertion upon which all other assertions are based. Passes if the
       # block yields true.
@@ -59,6 +57,8 @@ module Test
           end
         end
       end
+
+      DUMMY = Object.new # :nodoc:
 
       ##
       # Asserts that +boolean+ or the value of the given block is not false or nil.
