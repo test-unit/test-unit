@@ -75,10 +75,8 @@ module Test
             message = boolean if have_boolean
             if defined?(PowerAssert)
               PowerAssert.start(block, assertion_method: __callee__) do |pa|
-                assertion_message =
-                  build_message(message,
-                                "?",
-                                AssertionMessage.delayed_literal(&pa.message_proc))
+                pa_message = AssertionMessage.delayed_literal(&pa.message_proc)
+                assertion_message = build_message(message, "?", pa_message)
                 assert_block(assertion_message) do
                   pa.yield
                 end
