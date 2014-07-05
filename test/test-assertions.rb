@@ -1471,11 +1471,18 @@ EOM
             raise AssertionFailedError, $!.message
           end
         end
-        check_fail("wrong number of arguments (1..2 for 0)") do
-          begin
-            assert(true) { true }
-          rescue ArgumentError
-            raise AssertionFailedError, $!.message
+      end
+
+      class TestBlock < self
+        def test_with_message
+          message = <<-MESSAGE
+user message.
+              1 == 2
+MESSAGE
+          check_fail(message) do
+            assert("user message") do
+              1 == 2
+            end
           end
         end
       end

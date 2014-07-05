@@ -72,13 +72,11 @@ module Test
         _wrap_assertion do
           have_boolean = (boolean != NOT_SPECIFIED)
           if block
-            if have_boolean
-              raise ArgumentError, "wrong number of arguments (1..2 for 0)"
-            end
+            message = boolean if have_boolean
             if defined?(PowerAssert)
               PowerAssert.start(block, assertion_method: __callee__) do |pa|
                 assertion_message =
-                  build_message(nil,
+                  build_message(message,
                                 "?",
                                 AssertionMessage.delayed_literal(&pa.message_proc))
                 assert_block(assertion_message) do
@@ -86,7 +84,7 @@ module Test
                 end
               end
             else
-              assert(yield)
+              assert(yield, message)
             end
           else
             unless have_boolean
