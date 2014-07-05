@@ -58,7 +58,7 @@ module Test
         end
       end
 
-      DUMMY = Object.new # :nodoc:
+      NOT_SPECIFIED = Object.new # :nodoc:
 
       ##
       # Asserts that +boolean+ or the value of the given block is not false or nil.
@@ -68,10 +68,10 @@ module Test
       #   assert { [1, 2].include?(5) }
 
       public
-      def assert(boolean=DUMMY, message=nil, &block) # :yields:
+      def assert(boolean=NOT_SPECIFIED, message=nil, &block) # :yields:
         _wrap_assertion do
           if block
-            raise ArgumentError, "wrong number of arguments (1..2 for 0)" unless DUMMY == boolean
+            raise ArgumentError, "wrong number of arguments (1..2 for 0)" unless NOT_SPECIFIED == boolean
             if defined?(PowerAssert)
               PowerAssert.start(block, assertion_method: __callee__) do |pa|
                 assertion_message =
@@ -86,7 +86,7 @@ module Test
               assert(yield)
             end
           else
-            raise ArgumentError, "wrong number of arguments (0 for 1..2)" if DUMMY == boolean
+            raise ArgumentError, "wrong number of arguments (0 for 1..2)" if NOT_SPECIFIED == boolean
             assertion_message = nil
             case message
             when nil, String, Proc
