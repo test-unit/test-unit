@@ -84,6 +84,13 @@ class TestUnitAttribute < Test::Unit::TestCase
                  changed_attributes)
   end
 
+  def test_attributes_with_prepended_module
+    test_case = Class.new(TestStack) do
+      prepend Module.new
+    end
+    assert_equal({}, test_case.attributes(:bug))
+  end
+
   class TestDescription < self
     def test_decoration_style
       test_case = Class.new(TestStack) do

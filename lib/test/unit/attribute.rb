@@ -92,7 +92,7 @@ module Test
 
         def attributes(method_name)
           attributes = attributes_table[method_name]
-          ancestors[1..-1].each do |ancestor|
+          ancestors.find_all {|i| self != i }.each do |ancestor|
             if ancestor.is_a?(Class) and ancestor < Test::Unit::Attribute
               parent_attributes = ancestor.attributes(method_name)
               if attributes
