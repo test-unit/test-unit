@@ -70,8 +70,9 @@ module Test
       public
       def assert(boolean=NOT_SPECIFIED, message=nil, &block) # :yields:
         _wrap_assertion do
+          have_boolean = (boolean != NOT_SPECIFIED)
           if block
-            raise ArgumentError, "wrong number of arguments (1..2 for 0)" unless NOT_SPECIFIED == boolean
+            raise ArgumentError, "wrong number of arguments (1..2 for 0)" if have_boolean
             if defined?(PowerAssert)
               PowerAssert.start(block, assertion_method: __callee__) do |pa|
                 assertion_message =
@@ -86,7 +87,7 @@ module Test
               assert(yield)
             end
           else
-            raise ArgumentError, "wrong number of arguments (0 for 1..2)" if NOT_SPECIFIED == boolean
+            raise ArgumentError, "wrong number of arguments (0 for 1..2)" unless have_boolean
             assertion_message = nil
             case message
             when nil, String, Proc
