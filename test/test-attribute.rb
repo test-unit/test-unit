@@ -89,7 +89,10 @@ class TestUnitAttribute < Test::Unit::TestCase
     test_case = Class.new(TestStack) do
       prepend Module.new
     end
-    assert_equal({}, test_case.attributes(:bug))
+    assert_equal({
+                   "category" => :accessor,
+                 },
+                 test_case.attributes("test_peek"))
   end
 
   class TestDescription < self
