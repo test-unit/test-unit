@@ -8,6 +8,11 @@ require 'test/unit/util/backtracefilter'
 require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
 
+begin
+  require 'power_assert'
+rescue LoadError, SyntaxError
+end
+
 module Test
   module Unit
 
@@ -35,6 +40,8 @@ module Test
 
     module Assertions
 
+      DUMMY = Object.new # :nodoc:
+
       ##
       # The assertion upon which all other assertions are based. Passes if the
       # block yields true.
@@ -54,33 +61,49 @@ module Test
       end
 
       ##
-      # Asserts that +boolean+ is not false or nil.
+      # Asserts that +boolean+ or the value of the given block is not false or nil.
       #
       # Example:
       #   assert [1, 2].include?(5)
+      #   assert { [1, 2].include?(5) }
 
       public
-      def assert(boolean, message=nil)
+      def assert(boolean=DUMMY, message=nil, &block) # :yields:
         _wrap_assertion do
-          assertion_message = nil
-          case message
-          when nil, String, Proc
-          when AssertionMessage
-            assertion_message = message
+          if block
+            raise ArgumentError, "wrong number of arguments (1..2 for 0)" unless DUMMY == boolean
+            if defined?(PowerAssert)
+              PowerAssert.start(block, assertion_method: __callee__) do |pa|
+                assertion_message =
+                  build_message(nil,
+                                "?",
+                                AssertionMessage.delayed_literal(&pa.message_proc))
+                assert_block(assertion_message) do
+                  pa.yield
+                end
+              end
+            else
+              assert(yield)
+            end
           else
-            error_message = "assertion message must be String, Proc or "
-            error_message << "#{AssertionMessage}: "
-            error_message << "<#{message.inspect}>(<#{message.class}>)"
-            raise ArgumentError, error_message, filter_backtrace(caller)
-          end
-          assert_block("assert should not be called with a block.") do
-            !block_given?
-          end
-          assertion_message ||= build_message(message,
-                                              "<?> is not true.",
-                                              boolean)
-          assert_block(assertion_message) do
-            boolean
+            raise ArgumentError, "wrong number of arguments (0 for 1..2)" if DUMMY == boolean
+            assertion_message = nil
+            case message
+            when nil, String, Proc
+            when AssertionMessage
+              assertion_message = message
+            else
+              error_message = "assertion message must be String, Proc or "
+              error_message << "#{AssertionMessage}: "
+              error_message << "<#{message.inspect}>(<#{message.class}>)"
+              raise ArgumentError, error_message, filter_backtrace(caller)
+            end
+            assertion_message ||= build_message(message,
+                                                "<?> is not true.",
+                                                boolean)
+            assert_block(assertion_message) do
+              boolean
+            end
           end
         end
       end

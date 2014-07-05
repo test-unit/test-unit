@@ -1407,6 +1407,14 @@ EOM
         end
       end
 
+      def test_pass_block
+        check_nothing_fails do
+          assert do
+            true
+          end
+        end
+      end
+
       def test_fail_nil
         check_fail("<nil> is not true.") do
           assert(nil)
@@ -1435,12 +1443,37 @@ EOM
         end
       end
 
+      def test_fail_block
+        check_fail(//) do
+          assert do
+            0.odd?
+          end
+        end
+      end
+
       def test_error_invalid_message_true
         check_fail("assertion message must be String, Proc or " +
                     "Test::Unit::Assertions::AssertionMessage: " +
                     "<true>(<TrueClass>)") do
           begin
             assert(true, true)
+          rescue ArgumentError
+            raise AssertionFailedError, $!.message
+          end
+        end
+      end
+
+      def test_error_wrong_number_of_arguments
+        check_fail("wrong number of arguments (0 for 1..2)") do
+          begin
+            assert
+          rescue ArgumentError
+            raise AssertionFailedError, $!.message
+          end
+        end
+        check_fail("wrong number of arguments (1..2 for 0)") do
+          begin
+            assert(true) { true }
           rescue ArgumentError
             raise AssertionFailedError, $!.message
           end
