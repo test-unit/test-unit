@@ -32,21 +32,22 @@ Gem::Specification.new do |spec|
   spec.homepage = "http://rubygems.org/gems/test-unit"
   spec.authors = ["Kouhei Sutou", "Haruka Yoshihara"]
   spec.email = ["kou@cozmixng.org", "yoshihara@clear-code.com"]
-  readme = File.read("README.textile")
+  readme = File.read("README.md")
   readme.force_encoding("UTF-8") if readme.respond_to?(:force_encoding)
-  entries = readme.split(/^h2\.\s(.*)$/)
+  entries = readme.split(/^\#\#\s(.*)$/)
   description = clean_white_space.call(entries[entries.index("Description") + 1])
   spec.summary, spec.description, = description.split(/\n\n+/, 3)
   spec.licenses = ["Ruby", "PSFL"] # lib/test/unit/diff.rb is PSFL
-  spec.files = ["README.textile", "TODO", "Rakefile"]
+  spec.files = ["README.md", "TODO", "Rakefile"]
   spec.files += ["COPYING", "GPL", "LGPL", "PSFL"]
   spec.files += Dir.glob("{lib,sample}/**/*.rb")
+  spec.files += Dir.glob("doc/text/**/*.*")
   spec.test_files += Dir.glob("test/**/*")
 
   spec.add_runtime_dependency("power_assert")
   spec.add_development_dependency("bundler")
   spec.add_development_dependency("rake")
   spec.add_development_dependency("yard")
-  spec.add_development_dependency("RedCloth")
+  spec.add_development_dependency("kramdown")
   spec.add_development_dependency("packnga")
 end

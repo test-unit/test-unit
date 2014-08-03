@@ -1,11 +1,12 @@
-h1. test-unit
+# test-unit
 
-!https://badge.fury.io/rb/test-unit.png!:http://badge.fury.io/rb/test-unit !https://travis-ci.org/test-unit/test-unit.png?branch=master!:https://travis-ci.org/test-unit/test-unit
+![http://badge.fury.io/rb/test-unit](https://badge.fury.io/rb/test-unit.png)
+![https://travis-ci.org/test-unit/test-unit](https://travis-ci.org/test-unit/test-unit.png?branch=master)
 
 * http://test-unit.github.io/
 * https://github.com/test-unit/test-unit
 
-h2. Description
+## Description
 
 test-unit - Improved version of Test::Unit bundled in Ruby
 1.8.x.
@@ -14,7 +15,7 @@ Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
 bundled in Ruby 1.8.x had not been improved but unbundled
 Test::Unit (test-unit) is improved actively.
 
-h2. Features
+## Features
 
 * Test::Unit 1.2.3 is the original Test::Unit, taken
   straight from the ruby distribution. It is being
@@ -31,11 +32,11 @@ h2. Features
   provides for installing all Test::Unit related gems
   easily.
 
-h2. How To
+## How To
 
 * {file:doc/text/how-to.textile}
 
-h2. Install
+## Install
 
 <pre>
 % sudo gem install test-unit
@@ -47,7 +48,7 @@ If you want to use full Test::Unit features:
 % sudo gem install test-unit-full
 </pre>
 
-h2. License
+## License
 
 (The Ruby License)
 
@@ -61,23 +62,23 @@ Exception:
   * lib/test-unit.rb is a dual license of the Ruby license and LGPLv2.1
     or later.
 
-h2. Authors
+## Authors
 
-h3. Active
+### Active
 
 * Kouhei Sutou: The current maintainer
 * Haruka Yoshihara: Data driven test supports.
 
-h3. Inactive
+### Inactive
 
 * Nathaniel Talbott: The original author
 * Ryan Davis: The second maintainer
 
-h3. Images
+### Images
 
 * Mayu & Co.: kinotan icons: http://cocooooooon.com/kinotan/
 
-h2. Thanks
+## Thanks
 
 * Daniel Berger: Suggestions and bug reports.
 * Designing Patterns: Suggestions.

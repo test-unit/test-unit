@@ -1,16 +1,16 @@
-h1. News
+# News
 
-h2(#2-5-5). 2.5.5 - 2013-05-18
+## 2.5.5 - 2013-05-18 {#version-2-5-5}
 
 It's Ruby 2.0.0 supported release!
 
-h3. Improvements
+### Improvements
 
   * Supported Ruby 2.0.0. [GitHub#54] [Reported by mtasaka]
   * Accepted screen-256color TERM as 256 colors available environment.
     [GitHub#55] [Reported by Tom Miller]
 
-h3. Fixes
+### Fixes
 
   * Fixed a typo in document.
     [GitHub#53] [Patch by Baptiste Fontaine]
@@ -18,39 +18,39 @@ h3. Fixes
     as expected if expected value is negative value.
     [Ruby Bug #8317] [Reported by Nobuhiro IMAI]
 
-h3. Thanks
+### Thanks
 
   * Baptiste Fontaine
   * mtasaka
   * Tom Miller
   * Nobuhiro IMAI
 
-h2(#2-5-4). 2.5.4 - 2013-01-23
+## 2.5.4 - 2013-01-23 {#version-2-5-4}
 
 It's a bug fix release.
 
-h3. Improvements
+### Improvements
 
   * Added documents for data driven test functionality.
   * Added TSV support for data driven test functionality.
   * Support tag inspection on JRuby.
 
-h3. Fixes
+### Fixes
 
   * Fixed a bug. It is too slow to filter tests when there are many
     tests. [GitHub#46]
   * Accept anonymous test suite.
     [GitHub:#49] [Reported by Matthew Rudy Jacobs]
 
-h3. Thanks
+### Thanks
 
   * Matthew Rudy Jacobs
 
-h2(#2-5-3). 2.5.3 - 2012-11-28
+## 2.5.3 - 2012-11-28 {#version-2-5-3}
 
 It's a release for minitest compatibility and bug fix.
 
-h3. Improvements
+### Improvements
 
   * Supported diff in invalid encoding.
   * Added some assersion methods just for minitest compatibility.
@@ -60,7 +60,7 @@ h3. Improvements
   * Added --attribute option to select target tests by attribute.
     [test-unit-users-en:00098] [Suggested by Piotr Nestorow]
 
-h3. Fixes
+### Fixes
 
   * Allowed use of test for inheritance in ActionController::TestCase.
     [GitHub#42] [Patch by David Rasch]
@@ -72,27 +72,27 @@ h3. Fixes
     above "def test_name" or with Symbol specifying test_name.
     [GitHub#45] [Reported by Piotr Nestorow]
 
-h3. Thanks
+### Thanks
 
   * Michael Grosser
   * David Rasch
   * Daniel Berger
   * Piotr Nestorow
 
-h2(#2-5-2). 2.5.2 - 2012-08-29
+## 2.5.2 - 2012-08-29 {#version-2-5-2}
 
-It's an improvement release for tmtms. @--location@ is a similar
-feature to @--line_number@ in RSpec. @sub_test_case@ is a similar
-feature to @context@ in shoulda-context and RSpec.
+It's an improvement release for tmtms. `--location` is a similar
+feature to `--line_number` in RSpec. `sub_test_case` is a similar
+feature to `context` in shoulda-context and RSpec.
 
-h3. Improvements
+### Improvements
 
   * Cleaned up tests.
     [GitHub#34] [Patch by Michael Grosser]
   * Added missing background color for 8 color environment.
   * Added workaround for NetBeans.
     [GitHub#38] [Reported by Marc Cooper]
-  * Added @--location@ command line option that selects target tests
+  * Added `--location` command line option that selects target tests
     by test defined location.
   * Created sub test suite for each subclassed test case.
   * [ui][console] Supported nested test suites.
@@ -106,17 +106,17 @@ h3. Improvements
     The sub test case name isn't limited Ruby's constant name rule. You can
     specify the sub test case name in free form.
 
-h3. Thanks
+### Thanks
 
   * Michael Grosser
   * Marc Cooper
   * kdmsnr
 
-h2(#2-5-1). 2.5.1 - 2012-07-05
+## 2.5.1 - 2012-07-05 {#version-2-5-1}
 
 It's a bug fix release.
 
-h3. Improvements
+### Improvements
 
   * Supported installing from GitHub.
     [GitHub#29] [Suggested by Michael Grosser]
@@ -124,7 +124,7 @@ h3. Improvements
     [GitHub#30] [Reported by Michael Grosser]
   * [ui][console] Improved multiline falut message display.
 
-h3. Fixes
+### Fixes
 
   * [ui][console] Fixed a bug that expected and actual values are
     empty.
@@ -134,116 +134,116 @@ h3. Fixes
   * Fixed a bug that .gemspec can't be loaded on LANG=C.
     [RubyForge#29595] [Reported by Jean-Denis Koeck]
 
-h3. Thanks
+### Thanks
 
   * Michael Grosser
   * Kendall Buchanan
   * Mathieu Martin
   * Jean-Denis Koeck
 
-h2(#2-5-0). 2.5.0 - 2012-06-06
+## 2.5.0 - 2012-06-06 {#version-2-5-0}
 
 It's a bug fix release.
 
-h3. Fixes
+### Fixes
 
-  * Fixed a backward incompatibility of @TestUnitMediator#run_suite@
+  * Fixed a backward incompatibility of `TestUnitMediator#run_suite`
     introduced in 2.4.9.
     [GitHub#28] [Reported by Vladislav Rassokhin]
 
-h3. Thanks
+### Thanks
 
   * Vladislav Rassokhin
 
-h2(#2-4-9). 2.4.9 - 2012-06-03
+## 2.4.9 - 2012-06-03 {#version-2-4-9}
 
 It's a bug fix release.
 
-h3. Improvements
+### Improvements
 
-  * @Test::Unit.run?@ ->
-    @Test::Unit::AutoRunner.need_auto_run?@. @Test::Unit.run?@ is marked
+  * `Test::Unit.run?` ->
+    `Test::Unit::AutoRunner.need_auto_run?`. `Test::Unit.run?` is marked
     as deprecated but it is still available.
-  * [experimental] Added top level "run" method for @"ruby -rtest-unit -e
-    run test/test_*.rb"@. Is this API OK or dirty?
+  * [experimental] Added top level "run" method for `"ruby -rtest-unit -e
+    run test/test_*.rb"`. Is this API OK or dirty?
   * Made failure output more readable on no color mode.
   * Supported showing ASCII-8BIT diff in failure message.
-  * [ui][console] Supported @ENV["TERM"] == "xterm-256color"@ as color
+  * [ui][console] Supported `ENV["TERM"] == "xterm-256color"` as color
     available terminal.
     [GitHub#26] [Reported by Michael Grosser]
-  * [ui][console] Supported "-256color" suffix @ENV["TERM"]@ terminal
+  * [ui][console] Supported "-256color" suffix `ENV["TERM"]` terminal
     as 256 color supported terminal.
 
-h3. Fixes
+### Fixes
 
-  * Fixed a bug that @--workdir@ doesn't work.
-  * Consumed processed command line parameters in @ARGV@ as @--help@
+  * Fixed a bug that `--workdir` doesn't work.
+  * Consumed processed command line parameters in `ARGV` as `--help`
     says.
     [RubyForge#29554] [Reported by Bob Saveland]
-  * Added missing @require "test/unit/diff"@.
+  * Added missing `require "test/unit/diff"`.
     [GitHub#25] [Reported by Stephan Kulow]
 
-h3. Thanks
+### Thanks
 
   * Bob Saveland
   * Stephan Kulow
   * Michael Grosser
 
-h2(#2-4-8). 2.4.8 - 2012-3-6
+## 2.4.8 - 2012-3-6 {#version-2-4-8}
 
 It's a bug fix release.
 
-h3. Improvements
+### Improvements
 
   * Delayed at_exit registration until Test::Unit is used.
     [GitHub:#21] [Reported by Jason Lunn]
   * Added workaround for test-spec.
     [GitHub:#22] [Reported by Cédric Boutillier]
 
-h3. Fixes
+### Fixes
 
   * Fixed an error on code snippet display on JRuby.
     [GitHub:#19][GitHub:#20]
     [Reported by Jørgen P. Tjernø][Patch by Junegunn Choi]
 
-h3. Thanks
+### Thanks
 
   * Jørgen P. Tjernø
   * Junegunn Choi
   * Jason Lunn
 
-h2(#2-4-7). 2.4.7 - 2012-2-10
+## 2.4.7 - 2012-2-10 {#version-2-4-7}
 
 It's a code snippet improvement release.
 
-h3. Improvements
+### Improvements
 
   * Supported code snippet display on all faults.
 
-h2(#2-4-6). 2.4.6 - 2012-2-9
+## 2.4.6 - 2012-2-9 {#version-2-4-6}
 
 It's a TAP runner separated release.
 
-h3. Improvements
+### Improvements
 
   * Moved TAP runner to test-unit-runner-tap gem from test-unit gem.
   * Supported code snippet display on failure.
 
-h2(#2-4-5). 2.4.5 - 2012-1-16
+## 2.4.5 - 2012-1-16 {#version-2-4-5}
 
 It's a failure message readability improvement release.
 
-h3. Improvements
+### Improvements
 
   * Removed needless information from exception inspected
     text on failure. It's for easy to read.
   * Supported custom inspector.
 
-h2(#2-4-4). 2.4.4 - 2012-1-2
+## 2.4.4 - 2012-1-2 {#version-2-4-4}
 
 It's a Rails integration improved release.
 
-h3. Improvements
+### Improvements
 
   * [ui][console] Don't break progress display when a test is failed.
   * [ui][console] Added markers betwen a failure detail
@@ -254,51 +254,51 @@ h3. Improvements
     [Reported by Syver Enstad]
   * Supported a block style setup/teardown/cleanup.
 
-h3. Thanks
+### Thanks
 
   * Josh Kalderimis
   * Syver Enstad
 
-h2(#2-4-3). 2.4.3 - 2011-12-11
+## 2.4.3 - 2011-12-11 {#version-2-4-3}
 
-h3. Improvements
+### Improvements
 
   * Improved SimpleCov integration by stopping to modify
-    @ARGV@ in auto runner. [GitHub:#12]
+    `ARGV` in auto runner. [GitHub:#12]
     [Reported by Nikos Dimitrakopoulos]
   * Improved JRuby integration by removing JRuby internal backtrace.
 
-h3. Thanks
+### Thanks
 
   * Nikos Dimitrakopoulos
 
-h2(#2-4-2). 2.4.2 - 2011-11-26
+## 2.4.2 - 2011-11-26 {#version-2-4-2}
 
-h3. Improvements
+### Improvements
 
-  * @--name@ supported data label.
+  * `--name` supported data label.
 
-h2. 2.4.1 - 2011-11-09
+## 2.4.1 - 2011-11-09
 
-h3. Improvements
+### Improvements
 
   * Accepted AssertionMessage as assertion's user message.
     It is used in assert_select in actionpack.
     [Reported by David Heath]
 
-h3. Fixes
+### Fixes
 
   * Fixed test failure on LANG=C. #11 [Reported by boutil]
   * Suppress warnings on Ruby 1.9.2.
 
-h3. Thanks
+### Thanks
 
   * boutil
   * David Heath
 
-h2. 2.4.0 - 2011-09-18
+## 2.4.0 - 2011-09-18
 
-h3. Improvements
+### Improvements
 
   * Supported Travis CI. #5 [Suggested by James Mead]
   * Added Gemfile. #6 [Suggested by James Mead]
@@ -307,7 +307,7 @@ h3. Improvements
   * [ui] Added --max-diff-target-string-size option.
   * [ui][console] Supported 256 colors.
 
-h3. Fixes
+### Fixes
 
   * Added missing fixture file. #7 [Reported by grafi-tt]
   * [ui][console] Added missing the last newline for progress level.
@@ -315,34 +315,34 @@ h3. Fixes
   * Don't handle Timeout::Error as pass through exception on Ruby 1.8. #8
     [Reported by Marc Seeger (Acquia)]
 
-h3. Thanks
+### Thanks
 
   * James Mead
   * grafi-tt
   * Marc Seeger (Acquia)
 
-h2. 2.3.2 - 2011-08-15
+## 2.3.2 - 2011-08-15
 
 A bug fix release.
 
-h3. Improvements
+### Improvements
 
   * [ui][console] Added some newlines to improve readability.
 
-h3. Fixes
+### Fixes
 
   * [ui][console] Worked --verbose again.
   * Re-supported Ruby 1.8.6. [Reported by James Mead]
 
-h3. Thanks
+### Thanks
 
   * James Mead
 
-h2(#2-3-1). 2.3.1 - 2011-08-06
+## 2.3.1 - 2011-08-06 {#version-2-3-1}
 
 Output improvement release!
 
-h3. Improvements
+### Improvements
 
   * [ui][console] Outputs omissions and notifications in short.
   * [ui][console] Added "important-only" verbose level.
@@ -354,7 +354,7 @@ h3. Improvements
   * Added --show-detail-immediately option that shows
     fault details when a fault is occurred.
 
-h3. Fixes
+### Fixes
 
   * [pull request #1] Fixed a problem that load collector
     can't load a test file on Ruby 1.9. [Patch by grafi-tt]
@@ -362,13 +362,13 @@ h3. Fixes
     override by declarative style test definition.
     [Reported by Jeremy Stephens]
 
-h3. Thanks
+### Thanks
 
   * grafi-tt
   * Jeremy Stephens
   * Hans de Graaff
 
-h2. 2.3.0 / 2011-04-17
+## 2.3.0 / 2011-04-17
 
 * 13 enhancements
   * improve Hash key sorting for diff.
@@ -391,7 +391,7 @@ h2. 2.3.0 / 2011-04-17
   * Daniel Berger
   * Haruka Yoshihara
 
-h2. 2.2.0 / 2011-02-14
+## 2.2.0 / 2011-02-14
 
 * 22 enhancements
   * [#28808] accept String as delta for assert_in_delta.
@@ -433,12 +433,12 @@ h2. 2.2.0 / 2011-02-14
   * Daniel Berger
   * Nobuyoshi Nakada
 
-h2. 2.1.2 / 2010-11-25
+## 2.1.2 / 2010-11-25
 
 * 1 enhancement
   * support auto runner prepare hook.
 
-h2. 2.1.1 / 2010-07-29
+## 2.1.1 / 2010-07-29
 
 * 1 bug fix
   * [test-unit-users-en:00026] re-work tap runner.
@@ -456,7 +456,7 @@ h2. 2.1.1 / 2010-07-29
 * Thanks
   * Daniel Berger
 
-h2. 2.0.8 / 2010-06-02
+## 2.0.8 / 2010-06-02
 
 * 5 major enchancements
   * collect *_test.rb and *-test.rb files as test files.
@@ -479,7 +479,7 @@ h2. 2.0.8 / 2010-06-02
   * Florian Frank
   * David MARCHALAND
 
-h2. 2.0.7 / 2010-03-09
+## 2.0.7 / 2010-03-09
 
 * 4 major enhancements
   * detect redefined test methods.
@@ -507,7 +507,7 @@ h2. 2.0.7 / 2010-03-09
   * Bob Saveland
   * Champak Ch
 
-h2. 2.0.6 / 2010-01-09
+## 2.0.6 / 2010-01-09
 
 * 3 major enhancements
   * [#27380] Declarative syntax? [Daniel Berger]
@@ -533,7 +533,7 @@ h2. 2.0.6 / 2010-01-09
   * David MARCHALAND
   * Daniel Berger
 
-h2. 2.0.5 / 2009-10-18
+## 2.0.5 / 2009-10-18
 
 * 1 bug fixes
   * [#27314] fix diff may raise an exception. [Erik Hollensbe]
@@ -541,7 +541,7 @@ h2. 2.0.5 / 2009-10-18
 * Thanks
   * Erik Hollensbe
 
-h2. 2.0.4 / 2009-10-17
+## 2.0.4 / 2009-10-17
 
 * 4 major enhancements
   * use ~/.test-unit.yml as global configuration file.
@@ -552,8 +552,8 @@ h2. 2.0.4 / 2009-10-17
 
 * 4 minor enhancements
   * improve verbose mode output format. (use indent)
-  * support NOT_PASS_THROUGH_EXCEPTIONS.
-  * support arguments option in @#{runner}@_options.
+  * support `NOT_PASS_THROUGH_EXCEPTIONS`.
+  * support arguments option in `#{runner}_options`.
   * TC_ -> Test in sample test case name.
 
 * 1 bug fixes
@@ -563,7 +563,7 @@ h2. 2.0.4 / 2009-10-17
 * Thanks
   * Mike Pomraning
 
-h2. 2.0.3 / 2009-07-19
+## 2.0.3 / 2009-07-19
 
 * 6 major enhancements
   * add assert_predicate.
@@ -589,7 +589,7 @@ h2. 2.0.3 / 2009-07-19
   * Daniel Berger
   * Angelo Lakra
 
-h2. 2.0.2 / 2008-12-21
+## 2.0.2 / 2008-12-21
 
 * 2 major enhancements
 
@@ -608,7 +608,7 @@ h2. 2.0.2 / 2008-12-21
   * Daniel Berger
   * Bill Lear
 
-h2. 2.0.1 / 2008-11-09
+## 2.0.1 / 2008-11-09
 
 * 19 major enhancements
 
@@ -638,7 +638,7 @@ h2. 2.0.1 / 2008-11-09
   * Daniel Berger
   * Designing Patterns
 
-h2. 2.0.0 / 2008-06-18
+## 2.0.0 / 2008-06-18
 
 * 15 major enhancements
 
@@ -665,7 +665,7 @@ h2. 2.0.0 / 2008-06-18
   * split FOX runner as another gem.
   * split Tk runner as another gem.
 
-h2. 1.2.3 / 2008-02-25
+## 1.2.3 / 2008-02-25
 
 * 1 major enhancement
 
