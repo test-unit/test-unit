@@ -60,17 +60,77 @@ module Test
       # @private
       NOT_SPECIFIED = Object.new
 
-      ##
-      # Asserts that +boolean+ or the value of the given block is not false or nil.
+      # @overload assert(object, message=nil)
       #
-      # @example
-      #   assert [1, 2].include?(5)
-      #   assert { [1, 2].include?(5) }
-      def assert(boolean=NOT_SPECIFIED, message=nil, &block)
+      #   Asserts that `object` is not false nor nil.
+      #
+      #   Normally, you don't need to use this assertion. Use more
+      #   specific assertions such as #assert_equal and
+      #   #assert_include.
+      #
+      #   @example Pass patterns
+      #     assert(true)               # => pass
+      #     assert([1, 2].include?(1)) # => pass
+      #
+      #   @example Failure patterns
+      #     assert(nil)                # => failure
+      #     assert(false)              # => failure
+      #     assert([1, 2].include?(5)) # => failure
+      #
+      #   @param [Object] object The check target.
+      #   @param [String] message The additional user message. It is
+      #     showed when the assertion is failed.
+      #   @return [void]
+      #
+      # @overload assert(message=nil) {}
+      #
+      #   Asserts that the givens block returns not false nor nil.
+      #
+      #   This style uses Power Assert. It means that you can see each
+      #   object values in method chains on failure. See the following
+      #   example about Power Assert.
+      #
+      #   @example Power Assert
+      #     coins = [1, 5, 50]
+      #     target_coin = 10
+      #     assert do
+      #       coins.include?(target_coin)
+      #     end
+      #     # =>
+      #     #  coins.include?(target_coin)
+      #     #  |     |        |
+      #     #  |     |        10
+      #     #  |     false
+      #     #  [1, 5, 50]
+      #
+      #   We recommend you to use Power Assert for predicate method
+      #   checks rather than existing assertions such as
+      #   #assert_include and #assert_predicate. Power Assert shows
+      #   useful message for debugging.
+      #
+      #   We don't recommend you use Power Assert for equality
+      #   check. You should use #assert_equal for the case. Because
+      #   #assert_equal shows more useful message for debugging.
+      #
+      #   @example Pass patterns
+      #     assert {true}               # => pass
+      #     assert {[1, 2].include?(1)} # => pass
+      #
+      #   @example Failure patterns
+      #     assert {nil}                # => failure
+      #     assert {false}              # => failure
+      #     assert {[1, 2].include?(5)} # => failure
+      #
+      #   @param [String] message The additional user message. It is
+      #     showed when the assertion is failed.
+      #   @yield [] Given no parameters to the block.
+      #   @yieldreturn [Object] The checked object.
+      #   @return [void]
+      def assert(object=NOT_SPECIFIED, message=nil, &block)
         _wrap_assertion do
-          have_boolean = (boolean != NOT_SPECIFIED)
+          have_object = (object != NOT_SPECIFIED)
           if block
-            message = boolean if have_boolean
+            message = object if have_object
             if defined?(PowerAssert)
               PowerAssert.start(block, assertion_method: __callee__) do |pa|
                 pa_message = AssertionMessage.delayed_literal(&pa.message_proc)
@@ -83,7 +143,7 @@ module Test
               assert(yield, message)
             end
           else
-            unless have_boolean
+            unless have_object
               raise ArgumentError, "wrong number of arguments (0 for 1..2)"
             end
             assertion_message = nil
@@ -99,9 +159,9 @@ module Test
             end
             assertion_message ||= build_message(message,
                                                 "<?> is not true.",
-                                                boolean)
+                                                object)
             assert_block(assertion_message) do
-              boolean
+              object
             end
           end
         end
