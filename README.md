@@ -1,7 +1,7 @@
 # test-unit
 
-![http://badge.fury.io/rb/test-unit](https://badge.fury.io/rb/test-unit.png)
-![https://travis-ci.org/test-unit/test-unit](https://travis-ci.org/test-unit/test-unit.png?branch=master)
+[![](https://badge.fury.io/rb/test-unit.png)](http://badge.fury.io/rb/test-unit)
+[![](https://travis-ci.org/test-unit/test-unit.png?branch=master)](https://travis-ci.org/test-unit/test-unit)
 
 * http://test-unit.github.io/
 * https://github.com/test-unit/test-unit
