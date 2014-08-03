@@ -7,3 +7,4 @@ rvm:
 notifications:
   recipients:
     - travis@clear-code.com
+    - test-unit-commit@googlegroups.com
