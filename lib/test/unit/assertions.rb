@@ -58,7 +58,8 @@ module Test
         end
       end
 
-      NOT_SPECIFIED = Object.new # :nodoc:
+      # @private
+      NOT_SPECIFIED = Object.new
 
       ##
       # Asserts that +boolean+ or the value of the given block is not false or nil.
