@@ -1,5 +1,64 @@
 # News
 
+## 3.0.0 - 2014-08-03 {#version-3-0-0}
+
+It's Power Assert supported release!
+
+### Improvements
+
+  * Improved Rubinius support. [Ryo Onodera]
+  * Updated RR repository link. [GitHub#56][Patch by Kenichi Kamiya]
+  * Added some minitest compatible assertions. We don't recommend
+    using these assertions. They are just for migrating from minitest.
+    [GitHub#57][Patch by Karol Bucek]
+    * {Test::Unit::Assertions#refute}
+    * {Test::Unit::Assertions#refute_predicate}
+    * {Test::Unit::Assertions#refute_empty}
+    * {Test::Unit::Assertions#assert_not_includes}
+    * {Test::Unit::Assertions#refute_includes}
+    * {Test::Unit::Assertions#assert_not_instance_of}
+    * {Test::Unit::Assertions#refute_instance_of}
+    * {Test::Unit::Assertions#assert_not_kind_of}
+    * {Test::Unit::Assertions#refute_kind_of}
+    * {Test::Unit::Assertions#assert_not_operator}
+    * {Test::Unit::Assertions#refute_operator}
+  * Improved code readability. [Suggested by Kenichi Kamiya]
+  * Made license field in RubyGems parseable.
+    [GitHub#60][Patch by Michael Grosser]
+  * Improved test case match feature by `--testcase` and `--ignore-testcase`
+    options. They also checks parent class names. 
+  * Made inspected representation of Numeric objects especially
+    BigDecimal more readable. [GitHub#64][Reported by Byron Appelt]
+  * Added badges for Traivs CI and RubyGems.
+    [GitHub#65][Patch by Byron Appelt]
+  * Supported Power Assert. You can use Power Assert with
+    {Test::Unit::Assertions#assert} with block. See method document
+    for details. We recommend using Power Assert for predicate method
+    checks. For example, we recommend Power Assert rather than
+    {Test::Unit::Assertions#assert_true},
+    {Test::Unit::Assertions#assert_predicate} and so on. We don't
+    recommend using Power Assert for equality check assertion.
+    {Test::Unit::Assertions#assert_equal} should be used for the case.
+    [Kazuki Tsujimoto]
+
+### Fixes
+
+  * Fixed a bug that test case defined by block has wrong location.
+    [GitHub#58][Patch by Narihiro Nakamura]
+  * Fixed a bug that test methods defined in included modules in
+    super-class are also collected.
+    [GitHub#62][GitHub#63][Patch by Karol Bucek]
+
+### Thanks
+
+  * Ryo Onodera
+  * Kenichi Kamiya
+  * Karol Bucek
+  * Narihiro Nakamura
+  * Michael Grosser
+  * Byron Appelt
+  * Kazuki Tsujimoto
+
 ## 2.5.5 - 2013-05-18 {#version-2-5-5}
 
 It's Ruby 2.0.0 supported release!
