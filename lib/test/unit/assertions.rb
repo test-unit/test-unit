@@ -25,11 +25,12 @@ module Test
     # override add_assertion to get notified whenever an assertion is made.
     #
     # Notes:
+    #
     # * The message to each assertion, if given, will be propagated with the
     #   failure.
     # * It is easy to add your own assertions based on assert_block().
     #
-    # = Example Custom Assertion
+    # @example Example Custom Assertion
     #
     #   def deny(boolean, message = nil)
     #     message = build_message message, '<?> is not false or nil.', boolean
@@ -44,13 +45,11 @@ module Test
       # The assertion upon which all other assertions are based. Passes if the
       # block yields true.
       #
-      # Example:
+      # @example
       #   assert_block "Couldn't do the thing" do
       #     do_the_thing
       #   end
-
-      public
-      def assert_block(message="assert_block failed.") # :yields:
+      def assert_block(message="assert_block failed.")
         _wrap_assertion do
           if (! yield)
             raise AssertionFailedError.new(message.to_s)
@@ -64,12 +63,10 @@ module Test
       ##
       # Asserts that +boolean+ or the value of the given block is not false or nil.
       #
-      # Example:
+      # @example
       #   assert [1, 2].include?(5)
       #   assert { [1, 2].include?(5) }
-
-      public
-      def assert(boolean=NOT_SPECIFIED, message=nil, &block) # :yields:
+      def assert(boolean=NOT_SPECIFIED, message=nil, &block)
         _wrap_assertion do
           have_boolean = (boolean != NOT_SPECIFIED)
           if block
@@ -158,10 +155,8 @@ module Test
       # error message is generated when this one fails that tells you the
       # values of expected and actual.
       #
-      # Example:
+      # @example
       #   assert_equal 'MY STRING', 'my string'.upcase
-
-      public
       def assert_equal(expected, actual, message=nil)
         diff = AssertionMessage.delayed_diff(expected, actual)
         if expected.respond_to?(:encoding) and
@@ -194,7 +189,7 @@ EOT
       # exceptions. When an expected exception is an Exception
       # object, passes if expected_exception == actual_exception.
       #
-      # Example:
+      # @example
       #   assert_raise(RuntimeError, LoadError) do
       #     raise 'Boom!!!'
       #   end # -> pass
@@ -206,7 +201,6 @@ EOT
       #   assert_raise(RuntimeError.new("XXX")) {raise "XXX"} # -> pass
       #   assert_raise(MyError.new("XXX"))      {raise "XXX"} # -> fail
       #   assert_raise(RuntimeError.new("ZZZ")) {raise "XXX"} # -> fail
-      public
       def assert_raise(*args, &block)
         assert_expected_exception = Proc.new do |*_args|
           message, assert_exception_helper, actual_exception = _args
@@ -236,7 +230,7 @@ EOT
       # Passes if the block raises one of the given
       # exceptions or sub exceptions of the given exceptions.
       #
-      # Example:
+      # @example
       #   assert_raise_kind_of(SystemCallError) do
       #     raise Errno::EACCES
       #   end
@@ -261,12 +255,10 @@ EOT
       # an array of classes, it passes if any class
       # satisfies +object.instance_of?(class).
       #
-      # Example:
+      # @example
       #   assert_instance_of(String, 'foo')            # -> pass
       #   assert_instance_of([Fixnum, NilClass], 100)  # -> pass
       #   assert_instance_of([Numeric, NilClass], 100) # -> fail
-
-      public
       def assert_instance_of(klass, object, message="")
         _wrap_assertion do
           if klass.is_a?(Array)
@@ -297,14 +289,12 @@ EOT
       # When +klass+ is an array of classes, it passes if no class
       # satisfies +object.instance_of?(class).
       #
-      # Example:
+      # @example
       #   assert_not_instance_of(String, 100)                # -> pass
       #   assert_not_instance_of([Fixnum, NilClass], '100')  # -> pass
       #   assert_not_instance_of([Numeric, NilClass], 100)   # -> fail
       #
       # @since 3.0.0
-
-      public
       def assert_not_instance_of(klass, object, message="")
         _wrap_assertion do
           if klass.is_a?(Array)
@@ -338,10 +328,8 @@ EOT
       ##
       # Passes if +object+ is nil.
       #
-      # Example:
+      # @example
       #   assert_nil [1, 2].uniq!
-
-      public
       def assert_nil(object, message="")
         full_message = build_message(message, <<EOT, object)
 <?> expected to be nil.
@@ -354,12 +342,10 @@ EOT
       # an array of classes or modules, it passes if any
       # class or module satisfies +object.kind_of?(class_or_module).
       #
-      # Example:
+      # @example
       #   assert_kind_of(Object, 'foo')                # -> pass
       #   assert_kind_of([Fixnum, NilClass], 100)      # -> pass
       #   assert_kind_of([Fixnum, NilClass], "string") # -> fail
-
-      public
       def assert_kind_of(klass, object, message="")
         _wrap_assertion do
           if klass.is_a?(Array)
@@ -392,14 +378,12 @@ EOT
       # When +klass+ is an array of classes or modules, it passes only if all
       # classes (and modules) do not satisfy +object.kind_of?(class_or_module).
       #
-      # Example:
+      # @example
       #   assert_not_kind_of(Fixnum, 'foo')           # -> pass
       #   assert_not_kind_of([Fixnum, NilClass], '0') # -> pass
       #   assert_not_kind_of([Fixnum, NilClass], 100) # -> fail
       #
       # @since 3.0.0
-
-      public
       def assert_not_kind_of(klass, object, message="")
         _wrap_assertion do
           if klass.is_a?(Array)
@@ -433,10 +417,8 @@ EOT
       ##
       # Passes if +object+ .respond_to? +method+
       #
-      # Example:
+      # @example
       #   assert_respond_to 'bugbear', :slice
-
-      public
       def assert_respond_to(object, method, message="")
         _wrap_assertion do
           full_message = build_message(message,
@@ -457,11 +439,9 @@ EOT
       ##
       # Passes if +object+ does not .respond_to? +method+.
       #
-      # Example:
+      # @example
       #   assert_not_respond_to('bugbear', :nonexistence) # -> pass
       #   assert_not_respond_to('bugbear', :size)         # -> fail
-
-      public
       def assert_not_respond_to(object, method, message="")
         _wrap_assertion do
           full_message = build_message(message,
@@ -487,10 +467,8 @@ EOT
       ##
       # Passes if +string+ =~ +pattern+.
       #
-      # Example:
+      # @example
       #   assert_match(/\d+/, 'five, 6, seven')
-
-      public
       def assert_match(pattern, string, message="")
         _wrap_assertion do
           pattern = case(pattern)
@@ -508,11 +486,9 @@ EOT
       # Passes if +actual+ .equal? +expected+ (i.e. they are the same
       # instance).
       #
-      # Example:
+      # @example
       #   o = Object.new
       #   assert_same o, o
-
-      public
       def assert_same(expected, actual, message="")
         full_message = build_message(message, <<EOT, expected, expected.__id__, actual, actual.__id__)
 <?>
@@ -528,10 +504,8 @@ EOT
       #
       # Passes if object1.__send__(operator, object2) is true.
       #
-      # Example:
+      # @example
       #   assert_operator 5, :>=, 4
-
-      public
       def assert_operator(object1, operator, object2, message="")
         _wrap_assertion do
           full_message = build_message(nil, "<?>\ngiven as the operator for #assert_operator must be a Symbol or #respond_to\\?(:to_str).", operator)
@@ -550,13 +524,11 @@ EOT
       #
       # Passes if object1.__send__(operator, object2) is not true.
       #
-      # Example:
+      # @example
       #   assert_not_operator(5, :<, 4) # => pass
       #   assert_not_operator(5, :>, 4) # => fail
       #
       # @since 3.0.0
-
-      public
       def assert_not_operator(object1, operator, object2, message="")
         _wrap_assertion do
           full_message = build_message(nil, "<?>\ngiven as the operator for #assert_not_operator must be a Symbol or #respond_to\\?(:to_str).", operator)
@@ -578,12 +550,10 @@ EOT
       ##
       # Passes if block does not raise an exception.
       #
-      # Example:
+      # @example
       #   assert_nothing_raised do
       #     [1, 2].uniq
       #   end
-
-      public
       def assert_nothing_raised(*args)
         _wrap_assertion do
           if args.last.is_a?(String)
@@ -611,10 +581,8 @@ EOT
       ##
       # Flunk always fails.
       #
-      # Example:
+      # @example
       #   flunk 'Not done testing yet.'
-
-      public
       def flunk(message="Flunked")
         assert_block(build_message(message)){false}
       end
@@ -622,10 +590,8 @@ EOT
       ##
       # Passes if ! +actual+ .equal? +expected+
       #
-      # Example:
+      # @example
       #   assert_not_same Object.new, Object.new
-
-      public
       def assert_not_same(expected, actual, message="")
         full_message = build_message(message, <<EOT, expected, expected.__id__, actual, actual.__id__)
 <?>
@@ -644,10 +610,8 @@ EOT
       ##
       # Passes if +expected+ != +actual+
       #
-      # Example:
+      # @example
       #   assert_not_equal 'some string', 5
-
-      public
       def assert_not_equal(expected, actual, message="")
         full_message = build_message(message, "<?> expected to be != to\n<?>.", expected, actual)
         assert_block(full_message) { expected != actual }
@@ -661,10 +625,8 @@ EOT
       ##
       # Passes if ! +object+ .nil?
       #
-      # Example:
+      # @example
       #   assert_not_nil '1 two 3'.sub!(/two/, '2')
-
-      public
       def assert_not_nil(object, message="")
         full_message = build_message(message, "<?> expected to not be nil.", object)
         assert_block(full_message){!object.nil?}
@@ -678,11 +640,9 @@ EOT
       ##
       # Passes if +regexp+ !~ +string+
       #
-      # Example:
+      # @example
       #   assert_not_match(/two/, 'one 2 three')   # -> pass
       #   assert_not_match(/three/, 'one 2 three') # -> fail
-
-      public
       def assert_not_match(regexp, string, message="")
         _wrap_assertion do
           assert_instance_of(Regexp, regexp,
@@ -705,11 +665,9 @@ EOT
       #
       # Passes if +regexp+ !~ +string+
       #
-      # Example:
+      # @example
       #   assert_no_match(/two/, 'one 2 three')   # -> pass
       #   assert_no_match(/three/, 'one 2 three') # -> fail
-
-      public
       def assert_no_match(regexp, string, message="")
         _wrap_assertion do
           assert_instance_of(Regexp, regexp,
@@ -719,6 +677,7 @@ EOT
         end
       end
 
+      # @private
       UncaughtThrow = {
         NameError => /^uncaught throw `(.+)'$/,
         ArgumentError => /^uncaught throw (`.+'|.+)$/,
@@ -728,12 +687,10 @@ EOT
       ##
       # Passes if the block throws +expected_object+
       #
-      # Example:
+      # @example
       #   assert_throw(:done) do
       #     throw(:done)
       #   end
-
-      public
       def assert_throw(expected_object, message="", &proc)
         _wrap_assertion do
           begin
@@ -775,12 +732,10 @@ EOT
       ##
       # Passes if block does not throw anything.
       #
-      # Example:
+      # @example
       #  assert_nothing_thrown do
       #    [1, 2].uniq
       #  end
-
-      public
       def assert_nothing_thrown(message="", &proc)
         _wrap_assertion do
           assert(block_given?, "Should have passed a block to assert_nothing_thrown")
@@ -802,10 +757,8 @@ EOT
       # Passes if +expected_float+ and +actual_float+ are equal
       # within +delta+ tolerance.
       #
-      # Example:
+      # @example
       #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
-
-      public
       def assert_in_delta(expected_float, actual_float, delta=0.001, message="")
         _wrap_assertion do
           _assert_in_delta_validate_arguments(expected_float,
@@ -825,11 +778,9 @@ EOT
       # Passes if +expected_float+ and +actual_float+ are
       # not equal within +delta+ tolerance.
       #
-      # Example:
+      # @example
       #   assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass
       #   assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail
-
-      public
       def assert_not_in_delta(expected_float, actual_float, delta=0.001, message="")
         _wrap_assertion do
           _assert_in_delta_validate_arguments(expected_float,
@@ -851,7 +802,6 @@ EOT
       # @since 2.5.3
       alias_method :refute_in_delta, :assert_not_in_delta
 
-      # :stopdoc:
       private
       def _assert_in_delta_validate_arguments(expected_float,
                                               actual_float,
@@ -924,17 +874,13 @@ EOT
       end
 
       public
-      # :startdoc:
-
       ##
       # Passes if +expected_float+ and +actual_float+ are equal
       # within +epsilon+ relative error of +expected_float+.
       #
-      # Example:
+      # @example
       #   assert_in_epsilon(10000.0, 9900.0, 0.1) # -> pass
       #   assert_in_epsilon(10000.0, 9899.0, 0.1) # -> fail
-
-      public
       def assert_in_epsilon(expected_float, actual_float, epsilon=0.001,
                             message="")
         _wrap_assertion do
@@ -963,11 +909,9 @@ EOT
       # not equal within +epsilon+ relative error of
       # +expected_float+.
       #
-      # Example:
+      # @example
       #   assert_not_in_epsilon(10000.0, 9900.0, 0.1) # -> fail
       #   assert_not_in_epsilon(10000.0, 9899.0, 0.1) # -> pass
-
-      public
       def assert_not_in_epsilon(expected_float, actual_float, epsilon=0.001,
                                 message="")
         _wrap_assertion do
@@ -992,7 +936,6 @@ EOT
       # @since 3.0.0
       alias_method :refute_in_epsilon, :assert_not_in_epsilon
 
-      # :stopdoc:
       private
       def _assert_in_epsilon_validate_arguments(expected_float,
                                                 actual_float,
@@ -1069,8 +1012,6 @@ EOT
       end
 
       public
-      # :startdoc:
-
       ##
       # Passes if the method send returns a true value.
       #
@@ -1079,11 +1020,9 @@ EOT
       # * A method
       # * Arguments to the method
       #
-      # Example:
+      # @example
       #   assert_send([[1, 2], :member?, 1]) # -> pass
       #   assert_send([[1, 2], :member?, 4]) # -> fail
-
-      public
       def assert_send(send_array, message=nil)
         _wrap_assertion do
           assert_instance_of(Array, send_array,
@@ -1121,7 +1060,7 @@ EOT
       # * A method
       # * Arguments to the method
       #
-      # Example:
+      # @example
       #   assert_not_send([[1, 2], :member?, 1]) # -> fail
       #   assert_not_send([[1, 2], :member?, 4]) # -> pass
       def assert_not_send(send_array, message=nil)
@@ -1156,7 +1095,7 @@ EOT
       ##
       # Passes if +actual+ is a boolean value.
       #
-      # Example:
+      # @example
       #   assert_boolean(true) # -> pass
       #   assert_boolean(nil)  # -> fail
       def assert_boolean(actual, message=nil)
@@ -1172,7 +1111,7 @@ EOT
       ##
       # Passes if +actual+ is true.
       #
-      # Example:
+      # @example
       #   assert_true(true)  # -> pass
       #   assert_true(:true) # -> fail
       def assert_true(actual, message=nil)
@@ -1188,7 +1127,7 @@ EOT
       ##
       # Passes if +actual+ is false.
       #
-      # Example:
+      # @example
       #   assert_false(false)  # -> pass
       #   assert_false(nil)    # -> fail
       def assert_false(actual, message=nil)
@@ -1205,7 +1144,7 @@ EOT
       # Passes if expression "+expected+ +operator+
       # +actual+" is true.
       #
-      # Example:
+      # @example
       #   assert_compare(1, "<", 10)  # -> pass
       #   assert_compare(1, ">=", 10) # -> fail
       def assert_compare(expected, operator, actual, message=nil)
@@ -1238,7 +1177,7 @@ EOT
       ##
       # Passes if assertion is failed in block.
       #
-      # Example:
+      # @example
       #   assert_fail_assertion {assert_equal("A", "B")}  # -> pass
       #   assert_fail_assertion {assert_equal("A", "A")}  # -> fail
       def assert_fail_assertion(message=nil)
@@ -1260,7 +1199,7 @@ EOT
       # Passes if an exception is raised in block and its
       # message is +expected+.
       #
-      # Example:
+      # @example
       #   assert_raise_message("exception") {raise "exception"}  # -> pass
       #   assert_raise_message(/exc/i) {raise "exception"}       # -> pass
       #   assert_raise_message("exception") {raise "EXCEPTION"}  # -> fail
@@ -1300,7 +1239,7 @@ EOT
       ##
       # Passes if +object+.const_defined?(+constant_name+)
       #
-      # Example:
+      # @example
       #   assert_const_defined(Test, :Unit)          # -> pass
       #   assert_const_defined(Object, :Nonexistent) # -> fail
       def assert_const_defined(object, constant_name, message=nil)
@@ -1317,7 +1256,7 @@ EOT
       ##
       # Passes if !+object+.const_defined?(+constant_name+)
       #
-      # Example:
+      # @example
       #   assert_not_const_defined(Object, :Nonexistent) # -> pass
       #   assert_not_const_defined(Test, :Unit)          # -> fail
       def assert_not_const_defined(object, constant_name, message=nil)
@@ -1334,7 +1273,7 @@ EOT
       ##
       # Passes if +object+.+predicate+ is _true_.
       #
-      # Example:
+      # @example
       #   assert_predicate([], :empty?)  # -> pass
       #   assert_predicate([1], :empty?) # -> fail
       def assert_predicate(object, predicate, message=nil)
@@ -1356,7 +1295,7 @@ EOT
       ##
       # Passes if +object+.+predicate+ is not _true_.
       #
-      # Example:
+      # @example
       #   assert_not_predicate([1], :empty?) # -> pass
       #   assert_not_predicate([], :empty?)  # -> fail
       def assert_not_predicate(object, predicate, message=nil)
@@ -1384,7 +1323,7 @@ EOT
       # Passes if +object+#+alias_name+ is an alias method of
       # +object+#+original_name+.
       #
-      # Example:
+      # @example
       #   assert_alias_method([], :length, :size)  # -> pass
       #   assert_alias_method([], :size, :length)  # -> pass
       #   assert_alias_method([], :each, :size)    # -> fail
@@ -1431,7 +1370,7 @@ EOT
       ##
       # Passes if +path+ exists.
       #
-      # Example:
+      # @example
       #   assert_path_exist("/tmp")          # -> pass
       #   assert_path_exist("/bin/sh")       # -> pass
       #   assert_path_exist("/nonexistent")  # -> fail
@@ -1449,7 +1388,7 @@ EOT
       ##
       # Passes if +path+ doesn't exist.
       #
-      # Example:
+      # @example
       #   assert_path_not_exist("/nonexistent")  # -> pass
       #   assert_path_not_exist("/tmp")          # -> fail
       #   assert_path_not_exist("/bin/sh")       # -> fail
@@ -1467,7 +1406,7 @@ EOT
       ##
       # Passes if +collection+ includes +object+.
       #
-      # Example:
+      # @example
       #   assert_include([1, 10], 1)            # -> pass
       #   assert_include(1..10, 5)              # -> pass
       #   assert_include([1, 10], 5)            # -> fail
@@ -1494,7 +1433,7 @@ EOT
       ##
       # Passes if +collection+ doesn't include +object+.
       #
-      # Example:
+      # @example
       #   assert_not_include([1, 10], 5)            # -> pass
       #   assert_not_include(1..10, 20)             # -> pass
       #   assert_not_include([1, 10], 1)            # -> fail
@@ -1526,7 +1465,7 @@ EOT
       ##
       # Passes if +object+ is empty.
       #
-      # Example:
+      # @example
       #   assert_empty("")                       # -> pass
       #   assert_empty([])                       # -> pass
       #   assert_empty({})                       # -> pass
@@ -1549,7 +1488,7 @@ EOT
       ##
       # Passes if +object+ is not empty.
       #
-      # Example:
+      # @example
       #   assert_not_empty(" ")                      # -> pass
       #   assert_not_empty([nil])                    # -> pass
       #   assert_not_empty({1 => 2})                 # -> pass
@@ -1577,8 +1516,6 @@ EOT
       ##
       # Builds a failure message.  +head+ is added before the +template+ and
       # +arguments+ replaces the '?'s positionally in the template.
-
-      public
       def build_message(head, template=nil, *arguments)
         template &&= template.chomp
         return AssertionMessage.new(head, template, arguments)
@@ -1614,13 +1551,10 @@ EOT
       ##
       # Select whether or not to use the pretty-printer. If this option is set
       # to false before any assertions are made, pp.rb will not be required.
-
-      public
       def self.use_pp=(value)
         AssertionMessage.use_pp = value
       end
 
-      # :stopdoc:
       private
       def _assert_raise(assert_expected_exception, *args, &block)
         _wrap_assertion do
@@ -1651,7 +1585,6 @@ EOT
         end
       end
 
-      private
       def _set_failed_information(failure, expected, actual, user_message)
         failure.expected = expected
         failure.actual = actual
