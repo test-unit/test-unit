@@ -301,7 +301,7 @@ EOT
       #   assert_not_instance_of([Fixnum, NilClass], '100')  # -> pass
       #   assert_not_instance_of([Numeric, NilClass], 100)   # -> fail
       #
-      # @since 2.5.6
+      # @since 3.0.0
 
       public
       def assert_not_instance_of(klass, object, message="")
@@ -331,7 +331,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
@@ -396,7 +396,7 @@ EOT
       #   assert_not_kind_of([Fixnum, NilClass], '0') # -> pass
       #   assert_not_kind_of([Fixnum, NilClass], 100) # -> fail
       #
-      # @since 2.5.6
+      # @since 3.0.0
 
       public
       def assert_not_kind_of(klass, object, message="")
@@ -426,7 +426,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_kind_of, :assert_not_kind_of
 
       ##
@@ -553,7 +553,7 @@ EOT
       #   assert_not_operator(5, :<, 4) # => pass
       #   assert_not_operator(5, :>, 4) # => fail
       #
-      # @since 2.5.6
+      # @since 3.0.0
 
       public
       def assert_not_operator(object1, operator, object2, message="")
@@ -571,7 +571,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_operator, :assert_not_operator
 
       ##
@@ -988,7 +988,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_in_epsilon, :assert_not_in_epsilon
 
       # :stopdoc:
@@ -1376,7 +1376,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_predicate, :assert_not_predicate
 
       ##
@@ -1514,12 +1514,12 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :assert_not_includes, :assert_not_include
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_includes, :assert_not_include
 
       ##
@@ -1570,7 +1570,7 @@ EOT
 
       # Just for minitest compatibility. :<
       #
-      # @since 2.5.6
+      # @since 3.0.0
       alias_method :refute_empty, :assert_not_empty
 
       ##
