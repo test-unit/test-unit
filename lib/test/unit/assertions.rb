@@ -9,7 +9,7 @@ require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
 
 begin
-  require 'power_assert'
+  require 'power_assert' if RUBY_VERSION > '1.8.7'
 rescue LoadError, SyntaxError
 end
 
@@ -132,7 +132,7 @@ module Test
           if block
             message = object if have_object
             if defined?(PowerAssert)
-              PowerAssert.start(block, assertion_method: __callee__) do |pa|
+              PowerAssert.start(block, :assertion_method => __callee__) do |pa|
                 pa_message = AssertionMessage.delayed_literal(&pa.message_proc)
                 assertion_message = build_message(message, "?", pa_message)
                 assert_block(assertion_message) do
