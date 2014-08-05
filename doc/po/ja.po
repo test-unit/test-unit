@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"PO-Revision-Date: 2014-08-03 12:53+0900\n"
+"PO-Revision-Date: 2014-08-05 22:04+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -291,14 +291,32 @@ msgstr ""
 msgid "# News"
 msgstr ""
 
+msgid "## 3.0.1 - 2014-08-05 {#version-3-0-1}"
+msgstr ""
+
+msgid "It's a minor update release."
+msgstr "マイナーアップデートリリースです。"
+
+msgid "### Improvements"
+msgstr "### 改良"
+
+msgid ""
+"  * Improved Ruby 1.8.7 support. Note that we don't support Ruby 1.8.7\n"
+"    actively. We just support if its support is painless.\n"
+"    [GitHub#71][Patch by estolfo]"
+msgstr ""
+
+msgid "### Thanks"
+msgstr "### 感謝"
+
+msgid "  * estolfo"
+msgstr ""
+
 msgid "## 3.0.0 - 2014-08-03 {#version-3-0-0}"
 msgstr ""
 
 msgid "It's Power Assert supported release!"
 msgstr "Power Assertをサポートしたリリースです！"
-
-msgid "### Improvements"
-msgstr "### 改良"
 
 msgid ""
 "  * Improved Rubinius support. [Ryo Onodera]\n"
@@ -321,7 +339,7 @@ msgid ""
 "  * Made license field in RubyGems parseable.\n"
 "    [GitHub#60][Patch by Michael Grosser]\n"
 "  * Improved test case match feature by `--testcase` and `--ignore-testcase`\n"
-"    options. They also checks parent class names. \n"
+"    options. They also checks parent class names.\n"
 "  * Made inspected representation of Numeric objects especially\n"
 "    BigDecimal more readable. [GitHub#64][Reported by Byron Appelt]\n"
 "  * Added badges for Traivs CI and RubyGems.\n"
@@ -347,9 +365,6 @@ msgid ""
 "    super-class are also collected.\n"
 "    [GitHub#62][GitHub#63][Patch by Karol Bucek]"
 msgstr ""
-
-msgid "### Thanks"
-msgstr "### 感謝"
 
 msgid ""
 "  * Ryo Onodera\n"
@@ -2819,18 +2834,8 @@ msgstr ""
 "一つ目は、一行目の最初のカラムが\"label\"という文字列であるものです。\n"
 "もう一つは、ヘッダ行のないファイルです。"
 
-# @example Load data from CSV file without header
-msgid ""
-"# test-data-without-header.csv:\n"
-"#  empty string,true,\"\"\n"
-"#  plain string,false,hello\n"
-"#\n"
-"load_data(\"/path/to/test-data-without-header.csv\")\n"
-"def test_empty?(data)\n"
-"  expected, target = data\n"
-"  assert_equal(expected, target.empty?)\n"
-"end"
-msgstr ""
+msgid "tag|example|Load data from CSV file with header"
+msgstr "ヘッダのあるCSVファイルを読み込みます"
 
 # @example Load data from CSV file with header
 msgid ""
@@ -2845,11 +2850,21 @@ msgid ""
 "end"
 msgstr ""
 
+# @example Load data from CSV file without header
+msgid ""
+"# test-data-without-header.csv:\n"
+"#  empty string,true,\"\"\n"
+"#  plain string,false,hello\n"
+"#\n"
+"load_data(\"/path/to/test-data-without-header.csv\")\n"
+"def test_empty?(data)\n"
+"  expected, target = data\n"
+"  assert_equal(expected, target.empty?)\n"
+"end"
+msgstr ""
+
 msgid "tag|example|Load data from CSV file without header"
 msgstr "ヘッダのないCSVファイルを読み込みます"
-
-msgid "tag|example|Load data from CSV file with header"
-msgstr "ヘッダのあるCSVファイルを読み込みます"
 
 msgid "Load data from TSV file."
 msgstr "TSVファイルからデータを読み込みます。"
@@ -2866,22 +2881,6 @@ msgstr ""
 msgid "tag|example|Load data from TSV file with header"
 msgstr "ヘッダのあるTSVファイルを読み込みます"
 
-# @example Load data from TSV file with header
-msgid ""
-"# test-data.tsv:\n"
-"#  label\texpected\ttarget\n"
-"#  empty string\ttrue\t\"\"\n"
-"#  plain string\tfalse\thello\n"
-"#\n"
-"load_data(\"/path/to/test-data.tsv\")\n"
-"def test_empty?(data)\n"
-"  assert_equal(data[\"expected\"], data[\"target\"].empty?)\n"
-"end"
-msgstr ""
-
-msgid "tag|example|Load data from TSV file without header"
-msgstr "ヘッダのないTSVファイルを読み込みます"
-
 # @example Load data from TSV file without header
 msgid ""
 "# test-data-without-header.tsv:\n"
@@ -2892,6 +2891,22 @@ msgid ""
 "def test_empty?(data)\n"
 "  expected, target = data\n"
 "  assert_equal(expected, target.empty?)\n"
+"end"
+msgstr ""
+
+msgid "tag|example|Load data from TSV file without header"
+msgstr "ヘッダのないTSVファイルを読み込みます"
+
+# @example Load data from TSV file with header
+msgid ""
+"# test-data.tsv:\n"
+"#  label\texpected\ttarget\n"
+"#  empty string\ttrue\t\"\"\n"
+"#  plain string\tfalse\thello\n"
+"#\n"
+"load_data(\"/path/to/test-data.tsv\")\n"
+"def test_empty?(data)\n"
+"  assert_equal(data[\"expected\"], data[\"target\"].empty?)\n"
 "end"
 msgstr ""
 
@@ -2997,8 +3012,8 @@ msgstr ""
 msgid "Report a failure."
 msgstr ""
 
-# @param [Array<String>]
-msgid "tag|param|backtrace"
+# @param [Hash]
+msgid "tag|param|options"
 msgstr ""
 
 # @param [String]
@@ -3008,7 +3023,8 @@ msgstr ""
 msgid "The description about the failure."
 msgstr ""
 
-msgid "a customizable set of options"
+# @param [Array<String>]
+msgid "tag|param|backtrace"
 msgstr ""
 
 msgid "The backtrace for the failure."
@@ -3018,8 +3034,7 @@ msgstr ""
 msgid "tag|option|options"
 msgstr ""
 
-# @param [Hash]
-msgid "tag|param|options"
+msgid "a customizable set of options"
 msgstr ""
 
 msgid "Returns the value of attribute failures"
@@ -3234,11 +3249,11 @@ msgid ""
 "recorded."
 msgstr ""
 
-msgid "Returns the value of attribute test"
-msgstr ""
-
 # @return [Checker]
 msgid "a new instance of Checker"
+msgstr ""
+
+msgid "Returns the value of attribute test"
 msgstr ""
 
 # @return [TestSuiteCreator]
@@ -3540,6 +3555,10 @@ msgid ""
 "  For example, you can use a space in name such as \"child test\"."
 msgstr ""
 
+# @param [String]
+msgid "tag|param|name"
+msgstr ""
+
 # @yield
 msgid ""
 "The block is evaludated under the newly created sub test\n"
@@ -3550,10 +3569,6 @@ msgid "The name of newly created sub test case."
 msgstr ""
 
 msgid "Created sub test case class."
-msgstr ""
-
-# @param [String]
-msgid "tag|param|name"
 msgstr ""
 
 # Test::Unit::TestCase.test_defined?
@@ -3842,12 +3857,12 @@ msgstr ""
 msgid "Returns the value of attribute start_time"
 msgstr ""
 
-# Test::Unit::TestCase::InternalData#test_data_label
-msgid "Returns the value of attribute test_data_label"
-msgstr ""
-
 # @return [InternalData]
 msgid "a new instance of InternalData"
+msgstr ""
+
+# Test::Unit::TestCase::InternalData#test_data_label
+msgid "Returns the value of attribute test_data_label"
 msgstr ""
 
 # Test::Unit::TestCase::InternalData#test_data
@@ -3868,17 +3883,17 @@ msgstr ""
 msgid "Returns the value of attribute pass_count"
 msgstr ""
 
-msgid "Returns the value of attribute assertion_count"
-msgstr ""
-
 msgid "Returns the value of attribute faults"
 msgstr ""
 
-msgid "Constructs a new, empty TestResult."
+msgid "Returns the value of attribute assertion_count"
 msgstr ""
 
 # @return [TestResult]
 msgid "a new instance of TestResult"
+msgstr ""
+
+msgid "Constructs a new, empty TestResult."
 msgstr ""
 
 msgid "Records a test run."
