@@ -45,6 +45,13 @@ document_task = Packnga::DocumentTask.new(spec) do |task|
 end
 
 Packnga::ReleaseTask.new(spec) do |task|
+  test_unit_github_io_dir_candidates = [
+    "../../www/test-unit.github.io",
+  ]
+  test_unit_github_io_dir = test_unit_github_io_dir_candidates.find do |dir|
+    File.directory?(dir)
+  end
+  task.index_html_dir = test_unit_github_io_dir
 end
 
 def rake(*arguments)
