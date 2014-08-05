@@ -26,7 +26,7 @@ It's Power Assert supported release!
   * Made license field in RubyGems parseable.
     [GitHub#60][Patch by Michael Grosser]
   * Improved test case match feature by `--testcase` and `--ignore-testcase`
-    options. They also checks parent class names. 
+    options. They also checks parent class names.
   * Made inspected representation of Numeric objects especially
     BigDecimal more readable. [GitHub#64][Reported by Byron Appelt]
   * Added badges for Traivs CI and RubyGems.
