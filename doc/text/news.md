@@ -1,5 +1,19 @@
 # News
 
+## 3.0.1 - 2014-08-05 {#version-3-0-1}
+
+It's a minor update release.
+
+### Improvements
+
+  * Improved Ruby 1.8.7 support. Note that we don't support Ruby 1.8.7
+    actively. We just support if its support is painless.
+    [GitHub#71][Patch by estolfo]
+
+### Thanks
+
+  * estolfo
+
 ## 3.0.0 - 2014-08-03 {#version-3-0-0}
 
 It's Power Assert supported release!
