@@ -132,7 +132,7 @@ module Test
           if block
             message = object if have_object
             if defined?(PowerAssert)
-              PowerAssert.start(block, assertion_method: __callee__) do |pa|
+              PowerAssert.start(block, :assertion_method => __callee__) do |pa|
                 pa_message = AssertionMessage.delayed_literal(&pa.message_proc)
                 assertion_message = build_message(message, "?", pa_message)
                 assert_block(assertion_message) do
