@@ -128,7 +128,7 @@ module Test
       #   @return [void]
       def assert(object=NOT_SPECIFIED, message=nil, &block)
         _wrap_assertion do
-          have_object = (object != NOT_SPECIFIED)
+          have_object = !NOT_SPECIFIED.equal?(object)
           if block
             message = object if have_object
             if defined?(PowerAssert)
