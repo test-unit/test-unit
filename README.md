@@ -8,12 +8,12 @@
 
 ## Description
 
-test-unit - Improved version of Test::Unit bundled in Ruby
-1.8.x.
+An xUnit family unit testing framework for Ruby.
 
-Ruby 1.9.x bundles minitest not Test::Unit. Test::Unit
-bundled in Ruby 1.8.x had not been improved but unbundled
-Test::Unit (test-unit) is improved actively.
+Test::Unit (test-unit) is unit testing framework for Ruby, based on xUnit
+principles. These were originally designed by Kent Beck, creator of extreme
+programming software development methodology, for Smalltalk's SUnit. It allows
+writing tests, checking results and automated testing in Ruby.
 
 ## Features
 
