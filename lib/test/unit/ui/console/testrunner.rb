@@ -184,12 +184,7 @@ module Test
                 output(": #{fault.test_name}")
                 output_fault_message(fault)
               else
-                if fault.message.include?("\n")
-                  output(":")
-                  output_fault_message(fault)
-                else
-                  output(": #{fault.message}")
-                end
+                output_fault_message(fault)
                 output(fault.test_name)
               end
               output_fault_backtrace(fault)
@@ -197,8 +192,16 @@ module Test
           end
 
           def output_fault_message(fault)
-            fault.message.each_line do |line|
-              output("  #{line.chomp}")
+            message = fault.message
+            return if message.nil?
+
+            if message.include?("\n")
+              output(":")
+              message.each_line do |line|
+                output("  #{line.chomp}")
+              end
+            else
+              output(": #{message}")
             end
           end
 
