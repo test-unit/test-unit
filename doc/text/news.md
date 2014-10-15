@@ -1,5 +1,32 @@
 # News
 
+## 3.0.2 - 2014-10-15 {#version-3-0-2}
+
+It's a minor update release.
+
+### Improvements
+
+  * Supported broken `==` implementation.
+    `==` implementation should be fixed but it's not work of test-unit. :<
+    [GitHub#71][Reported by Emily]
+  * [UI][console]: Accepted no message failure.
+    [GitHub#66][Reported by Brian Tatnall]
+  * Updated gem description.
+    [GitHub#74][Patch by Vít Ondruch]
+  * Updated GPL text.
+    [GitHub#78][Patch by Vít Ondruch]
+
+### Fixes
+
+  * Removed needless executable bit from README file.
+    [GitHub#79][Patch by Vít Ondruch]
+
+### Thanks
+
+  * Emily
+  * Brian Tatnall
+  * Vít Ondruch
+
 ## 3.0.1 - 2014-08-05 {#version-3-0-1}
 
 It's a minor update release.
