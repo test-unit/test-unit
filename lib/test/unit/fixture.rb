@@ -5,20 +5,134 @@ module Test
         def included(base)
           base.extend(ClassMethods)
 
-          [:setup, :cleanup, :teardown].each do |fixture|
+          [:setup, :cleanup, :teardown].each do |type|
             observer = lambda do |test_case, _, _, value, callback|
               if value.nil?
-                test_case.__send__("unregister_#{fixture}_callback", callback)
+                test_case.fixture[type].unregister(callback)
               else
-                test_case.__send__("register_#{fixture}_callback", callback, value)
+                test_case.fixture[type].register(callback, value)
               end
             end
-            base.register_attribute_observer(fixture, &observer)
+            base.register_attribute_observer(type, &observer)
+          end
+        end
+      end
+
+      class Fixture
+        attr_reader :setup
+        attr_reader :cleanup
+        attr_reader :teardown
+        def initialize(test_case)
+          @test_case = test_case
+          @setup = HookPoint.new(:after => :append)
+          @cleanup = HookPoint.new(:before => :prepend)
+          @teardown = HookPoint.new(:before => :prepend)
+        end
+
+        def [](type)
+          case type
+          when :setup
+            @setup
+          when :cleanup
+            @cleanup
+          when :teardown
+            @teardown
+          end
+        end
+
+        def before_callbacks(type)
+          target_test_cases.inject([]) do |callbacks, ancestor|
+            callbacks | ancestor.fixture[type].before_callbacks
+          end
+        end
+
+        def after_callbacks(type)
+          target_test_cases.inject([]) do |callbacks, ancestor|
+            callbacks | ancestor.fixture[type].after_callbacks
+          end
+        end
+
+        private
+        def target_test_cases
+          ancestors = @test_case.ancestors
+          base_index = ancestors.index(::Test::Unit::Fixture)
+          interested_ancestors = ancestors[0, base_index].find_all do |ancestor|
+            ancestor.is_a?(Class)
+          end
+          interested_ancestors.reverse
+        end
+      end
+
+      class HookPoint
+        def initialize(default_options)
+          @default_options = default_options
+          @before_callbacks = []
+          @after_callbacks = []
+          @unregistered_callbacks = []
+        end
+
+        def register(method_name_or_callback, options=nil)
+          options ||= {}
+          unless valid_register_options?(options)
+            message = "must be {:before => :prepend}, " +
+              "{:before => :append}, {:after => :prepend} or " +
+              "{:after => :append}: #{options.inspect}"
+            raise ArgumentError, message
+          end
+
+          if options.empty?
+            options = @default_options
+          end
+          before_how = options[:before]
+          after_how = options[:after]
+          if before_how
+            @before_callbacks = add_callback(@before_callbacks,
+                                             method_name_or_callback,
+                                             before_how)
+          else
+            @after_callbacks = add_callback(@after_callbacks,
+                                            method_name_or_callback,
+                                            after_how)
+          end
+        end
+
+        def unregister(method_name_or_callback)
+          @unregistered_callbacks << method_name_or_callback
+        end
+
+        def before_callbacks
+          @before_callbacks - @unregistered_callbacks
+        end
+
+        def after_callbacks
+          @after_callbacks - @unregistered_callbacks
+        end
+
+        private
+        def valid_register_options?(options)
+          return true if options.empty?
+          return false if options.size > 1
+
+          key = options.keys.first
+          [:before, :after].include?(key) and
+            [:prepend, :append].include?(options[key])
+        end
+
+        def add_callback(callbacks, method_name_or_callback, how)
+          case how
+          when :prepend
+            [method_name_or_callback] | callbacks
+          when :append
+            callbacks | [method_name_or_callback]
           end
         end
       end
 
       module ClassMethods
+        def fixture
+          @fixture ||= Fixture.new(self)
+        end
+
         def setup(*method_names, &callback)
           register_fixture(:setup, *method_names, &callback)
         end
@@ -43,57 +157,6 @@ module Test
           unregister_fixture(:teardown, *method_names_or_callbacks)
         end
 
-        def register_setup_callback(method_name_or_callback, options)
-          register_fixture_callback(:setup, method_name_or_callback,
-                                    options, :after, :append)
-        end
-
-        def unregister_setup_callback(method_name_or_callback)
-          unregister_fixture_callback(:setup, method_name_or_callback)
-        end
-
-        def register_cleanup_callback(method_name_or_callback, options)
-          register_fixture_callback(:cleanup, method_name_or_callback,
-                                    options, :before, :prepend)
-        end
-
-        def unregister_cleanup_callback(method_name_or_callback)
-          unregister_fixture_callback(:cleanup, method_name_or_callback)
-        end
-
-        def register_teardown_callback(method_name_or_callback, options)
-          register_fixture_callback(:teardown, method_name_or_callback,
-                                    options, :before, :prepend)
-        end
-
-        def unregister_teardown_callback(method_name_or_callback)
-          unregister_fixture_callback(:teardown, method_name_or_callback)
-        end
-
-        def before_setup_callbacks
-          collect_fixture_callbacks(:setup, :before)
-        end
-
-        def after_setup_callbacks
-          collect_fixture_callbacks(:setup, :after)
-        end
-
-        def before_cleanup_callbacks
-          collect_fixture_callbacks(:cleanup, :before)
-        end
-
-        def after_cleanup_callbacks
-          collect_fixture_callbacks(:cleanup, :after)
-        end
-
-        def before_teardown_callbacks
-          collect_fixture_callbacks(:teardown, :before)
-        end
-
-        def after_teardown_callbacks
-          collect_fixture_callbacks(:teardown, :after)
-        end
-
         private
         def register_fixture(fixture, *method_names, &callback)
           options = {}
@@ -106,86 +169,14 @@ module Test
         def unregister_fixture(fixture, *method_names_or_callbacks)
           attribute(fixture, nil, *method_names_or_callbacks)
         end
-
-        def valid_register_fixture_options?(options)
-          return true if options.empty?
-          return false if options.size > 1
-
-          key = options.keys.first
-          [:before, :after].include?(key) and
-            [:prepend, :append].include?(options[key])
-        end
-
-        def add_fixture_callback(how, variable_name, method_name_or_callback)
-          callbacks = instance_eval("#{variable_name} ||= []")
-
-          if how == :prepend
-            callbacks = [method_name_or_callback] | callbacks
-          else
-            callbacks = callbacks | [method_name_or_callback]
-          end
-          instance_variable_set(variable_name, callbacks)
-        end
-
-        def registered_callbacks_variable_name(fixture, order)
-          "@#{order}_#{fixture}_callbacks"
-        end
-
-        def unregistered_callbacks_variable_name(fixture)
-          "@unregistered_#{fixture}_callbacks"
-        end
-
-        def register_fixture_callback(fixture, method_name_or_callback, options,
-                                      default_order, default_how)
-          unless valid_register_fixture_options?(options)
-            message = "must be {:before => :prepend}, " +
-              "{:before => :append}, {:after => :prepend} or " +
-              "{:after => :append}: #{options.inspect}"
-            raise ArgumentError, message
-          end
-
-          if options.empty?
-            order, how = default_order, default_how
-          else
-            order, how = options.to_a.first
-          end
-          variable_name = registered_callbacks_variable_name(fixture, order)
-          add_fixture_callback(how, variable_name, method_name_or_callback)
-        end
-
-        def unregister_fixture_callback(fixture, method_name_or_callback)
-          variable_name = unregistered_callbacks_variable_name(fixture)
-          add_fixture_callback(:append, variable_name, method_name_or_callback)
-        end
-
-        def collect_fixture_callbacks(fixture, order)
-          callbacks_variable = registered_callbacks_variable_name(fixture, order)
-          unregistered_callbacks_variable =
-            unregistered_callbacks_variable_name(fixture)
-
-          base_index = ancestors.index(Fixture)
-          interested_ancestors = ancestors[0, base_index].reverse
-          interested_ancestors.inject([]) do |result, ancestor|
-            if ancestor.is_a?(Class)
-              ancestor.class_eval do
-                callbacks = instance_eval("#{callbacks_variable} ||= []")
-                unregistered_callbacks =
-                  instance_eval("#{unregistered_callbacks_variable} ||= []")
-                (result | callbacks) - unregistered_callbacks
-              end
-            else
-              result
-            end
-          end
-        end
       end
 
       private
-      def run_fixture(fixture, options={})
+      def run_fixture(type, options={})
         [
-         self.class.__send__("before_#{fixture}_callbacks"),
-         fixture,
-         self.class.__send__("after_#{fixture}_callbacks")
+          self.class.fixture.before_callbacks(type),
+          type,
+          self.class.fixture.after_callbacks(type),
         ].flatten.each do |method_name_or_callback|
           run_fixture_callback(method_name_or_callback, options)
         end
