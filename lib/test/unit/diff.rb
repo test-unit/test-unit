@@ -81,7 +81,7 @@ module Test
             each = :each
           end
           i = 0
-          @to.send(each) do |item|
+          @to.__send__(each) do |item|
             @to_indexes[item] ||= []
             @to_indexes[item] << i
             i += 1
@@ -685,7 +685,7 @@ module Test
           to_index = to_start
           while from_index >= 0 or to_index >= 0
             [@from[from_index], @to[to_index]].each do |line|
-              return line if line and send(predicate, line)
+              return line if line and __send__(predicate, line)
             end
 
             from_index -= 1

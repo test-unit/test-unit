@@ -52,7 +52,7 @@ module Test
           def need_to_run?(test)
             priority = test[:priority] || Priority.default
             if have_priority?(priority)
-              send(priority_check_method_name(priority), test)
+              __send__(priority_check_method_name(priority), test)
             else
               true
             end
@@ -105,7 +105,7 @@ module Test
         end
 
         def teardown
-          if @test.send(:passed?)
+          if @test.__send__(:passed?)
             FileUtils.touch(passed_file)
           else
             FileUtils.rm_f(passed_file)

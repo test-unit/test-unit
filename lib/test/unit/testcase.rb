@@ -339,7 +339,7 @@ module Test
           parent_test_case = self
           sub_test_case = Class.new(self) do
             singleton_class = class << self; self; end
-            singleton_class.send(:define_method, :name) do
+            singleton_class.__send__(:define_method, :name) do
               [parent_test_case.name, name].compact.join("::")
             end
           end
@@ -704,7 +704,7 @@ module Test
           if handler.respond_to?(:call)
             handled = handler.call(self, exception)
           else
-            handled = send(handler, exception)
+            handled = __send__(handler, exception)
           end
           return true if handled
         end

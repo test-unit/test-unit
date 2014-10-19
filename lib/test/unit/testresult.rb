@@ -70,7 +70,7 @@ module Test
       def summary
         ["#{run_count} tests",
          "#{assertion_count} assertions",
-         *@summary_generators.collect {|generator| send(generator)}].join(", ")
+         *@summary_generators.collect {|generator| __send__(generator)}].join(", ")
       end
 
       # Returnes a string that shows result status.
@@ -99,7 +99,7 @@ module Test
       # Returns whether or not this TestResult represents
       # successful completion.
       def passed?
-        @problem_checkers.all? {|checker| not send(checker)}
+        @problem_checkers.all? {|checker| not __send__(checker)}
       end
 
       def pass_percentage

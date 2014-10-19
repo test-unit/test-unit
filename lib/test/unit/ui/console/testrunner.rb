@@ -511,15 +511,15 @@ module Test
 
           private
           def output_single(something, color=nil)
-            @runner.send(:output_single, something, color)
+            @runner.__send__(:output_single, something, color)
           end
 
           def output(something, color=nil)
-            @runner.send(:output, something, color)
+            @runner.__send__(:output, something, color)
           end
 
           def color(name)
-            @runner.send(:color, name)
+            @runner.__send__(:color, name)
           end
 
           def cut_off_ratio

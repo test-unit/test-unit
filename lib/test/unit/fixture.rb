@@ -8,9 +8,9 @@ module Test
           [:setup, :cleanup, :teardown].each do |fixture|
             observer = lambda do |test_case, _, _, value, callback|
               if value.nil?
-                test_case.send("unregister_#{fixture}_callback", callback)
+                test_case.__send__("unregister_#{fixture}_callback", callback)
               else
-                test_case.send("register_#{fixture}_callback", callback, value)
+                test_case.__send__("register_#{fixture}_callback", callback, value)
               end
             end
             base.register_attribute_observer(fixture, &observer)
@@ -183,9 +183,9 @@ module Test
       private
       def run_fixture(fixture, options={})
         [
-         self.class.send("before_#{fixture}_callbacks"),
+         self.class.__send__("before_#{fixture}_callbacks"),
          fixture,
-         self.class.send("after_#{fixture}_callbacks")
+         self.class.__send__("after_#{fixture}_callbacks")
         ].flatten.each do |method_name_or_callback|
           run_fixture_callback(method_name_or_callback, options)
         end
@@ -199,7 +199,7 @@ module Test
         else
           return unless respond_to?(method_name_or_callback, true)
           callback = lambda do
-            send(method_name_or_callback)
+            __send__(method_name_or_callback)
           end
         end
 

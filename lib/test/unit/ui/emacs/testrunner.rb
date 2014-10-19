@@ -16,7 +16,7 @@ module Test
             return super unless fault.respond_to?(:label)
             format_method_name = "format_fault_#{fault.label.downcase}"
             if respond_to?(format_method_name, true)
-              send(format_method_name, fault)
+              __send__(format_method_name, fault)
             else
               super
             end

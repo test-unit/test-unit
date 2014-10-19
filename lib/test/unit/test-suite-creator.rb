@@ -48,7 +48,7 @@ module Test
         test_names = method_names.find_all do |method_name|
           method_name =~ /^test./ or @test_case.attributes(method_name)[:test]
         end
-        send("sort_test_names_in_#{@test_case.test_order}_order", test_names)
+        __send__("sort_test_names_in_#{@test_case.test_order}_order", test_names)
       end
 
       def sort_test_names_in_alphabetic_order(test_names)
