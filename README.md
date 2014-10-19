@@ -34,7 +34,7 @@ writing tests, checking results and automated testing in Ruby.
 
 ## How To
 
-* {file:doc/text/how-to.textile}
+* [doc/text/how-to.md](doc/text/how-to.md)
 
 ## Install
 
