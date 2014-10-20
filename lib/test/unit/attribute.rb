@@ -149,7 +149,7 @@ module Test
       end
 
       def [](name)
-        attributes[name]
+        self.class.find_attribute(@method_name, name)
       end
     end
   end
