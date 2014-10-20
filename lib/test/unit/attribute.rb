@@ -120,11 +120,14 @@ module Test
             end
           end
 
-          ancestors.each do |ancestor|
-            next if ancestor == self
-            if ancestor.is_a?(Class) and ancestor < Test::Unit::Attribute
-              return ancestor.find_attribute(method_name, name)
-            end
+          @cached_parent_test_case ||= ancestors.find do |ancestor|
+            ancestor != self and
+              ancestor.is_a?(Class) and
+              ancestor < Test::Unit::Attribute
+          end
+
+          if @cached_parent_test_case
+            return @cached_parent_test_case.find_attribute(method_name, name)
           end
 
           nil
