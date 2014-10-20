@@ -54,6 +54,10 @@ module Test
 
         private
         def target_test_cases
+          @cached_target_test_cases ||= collect_target_test_cases
+        end
+
+        def collect_target_test_cases
           ancestors = @test_case.ancestors
           base_index = ancestors.index(::Test::Unit::Fixture)
           interested_ancestors = ancestors[0, base_index].find_all do |ancestor|
