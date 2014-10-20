@@ -117,8 +117,7 @@ module Test
           if added_method_names.key?(stringified_name)
             attribute(:redefined, {:backtrace => caller}, {}, stringified_name)
           end
-          _attributes = attributes_table[stringified_name] || {}
-          source_location = _attributes[:source_location]
+          source_location = find_attribute(stringified_name, :source_location)
           if source_location
             path, line = source_location
           else

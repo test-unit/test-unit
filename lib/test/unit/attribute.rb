@@ -8,6 +8,10 @@ module Test
           end
         end
 
+        def key?(key)
+          super(self.class.stringify(key))
+        end
+
         def [](key)
           super(self.class.stringify(key))
         end
@@ -105,6 +109,25 @@ module Test
             end
           end
           attributes || StringifyKeyHash.new
+        end
+
+        def find_attribute(method_name, name)
+          @attributes_table ||= StringifyKeyHash.new
+          if @attributes_table.key?(method_name)
+            attributes = @attributes_table[method_name]
+            if attributes.key?(name)
+              return attributes[name]
+            end
+          end
+
+          ancestors.each do |ancestor|
+            next if ancestor == self
+            if ancestor.is_a?(Class) and ancestor < Test::Unit::Attribute
+              return ancestor.find_attribute(method_name, name)
+            end
+          end
+
+          nil
         end
 
         @@attribute_observers = StringifyKeyHash.new
