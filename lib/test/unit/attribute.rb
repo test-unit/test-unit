@@ -120,17 +120,15 @@ module Test
             end
           end
 
+          return nil if self == TestCase
+
           @cached_parent_test_case ||= ancestors.find do |ancestor|
             ancestor != self and
               ancestor.is_a?(Class) and
               ancestor < Test::Unit::Attribute
           end
 
-          if @cached_parent_test_case
-            return @cached_parent_test_case.find_attribute(method_name, name)
-          end
-
-          nil
+          @cached_parent_test_case.find_attribute(method_name, name)
         end
 
         @@attribute_observers = StringifyKeyHash.new
