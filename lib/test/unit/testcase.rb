@@ -109,12 +109,12 @@ module Test
           super
         end
 
-        @@added_methods = {}
+        @@added_method_names = {}
         def method_added(name) # :nodoc:
           super
-          _added_methods = added_methods
+          added_method_names = (@@added_method_names[self] ||= {})
           stringified_name = name.to_s
-          if _added_methods.include?(stringified_name)
+          if added_method_names.key?(stringified_name)
             attribute(:redefined, {:backtrace => caller}, {}, stringified_name)
           end
           _attributes = attributes_table[stringified_name] || {}
@@ -130,11 +130,11 @@ module Test
             :path => path,
             :line => line,
           }
-          _added_methods << stringified_name
+          added_method_names[stringified_name] = true
         end
 
-        def added_methods # :nodoc:
-          @@added_methods[self] ||= []
+        def added_method_names # :nodoc:
+          (@@added_method_names[self] ||= {}).keys
         end
 
         # Rolls up all of the test* methods in the fixture into

@@ -60,10 +60,10 @@ module Test
       end
 
       def sort_test_names_in_defined_order(test_names)
-        added_methods = @test_case.added_methods
+        added_method_names = @test_case.added_method_names
         test_names.sort do |test1, test2|
-          test1_defined_order = added_methods.index(test1)
-          test2_defined_order = added_methods.index(test2)
+          test1_defined_order = added_method_names.index(test1)
+          test2_defined_order = added_method_names.index(test2)
           if test1_defined_order and test2_defined_order
             test1_defined_order <=> test2_defined_order
           elsif test1_defined_order
