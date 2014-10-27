@@ -2062,7 +2062,9 @@ EOT
         def to_s
           message_parts = []
           if (@head)
-            head = @head.to_s
+            head = @head
+            head = head.call if head.respond_to?(:call)
+            head = head.to_s
             unless(head.empty?)
               message_parts << add_period(head)
             end

@@ -190,6 +190,23 @@ EOM
              assert_equal("string1", "string2", "failed assert_equal")
             }
           end
+
+          def test_with_message_proc
+            message = <<-EOM.chomp
+failed assert_equal.
+<"string1"> expected but was
+<"string2">.
+
+diff:
+- string1
+?       ^
++ string2
+?       ^
+EOM
+           check_fail(message) do
+              assert_equal("string1", "string2", lambda {"failed assert_equal"})
+            end
+          end
         end
 
         class TestSystemMessage < self
