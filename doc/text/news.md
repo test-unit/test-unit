@@ -1,5 +1,26 @@
 # News
 
+## 3.0.3 - 2014-10-29 {#version-3-0-3}
+
+It's a minor update release.
+
+### Improvements
+
+  * Improved `Test::Unit::TestCase.test` performance.
+    100 times faster.
+  * Supported `Proc` for user message.
+    [Sugested by Nobuyoshi Nakada]
+
+### Fixes
+
+  * Fixed markup in document.
+    [GitHub#81][Patch by Masafumi Yokoyama]
+
+### Thanks
+
+  * Masafumi Yokoyama
+  * Nobuyoshi Nakada
+
 ## 3.0.2 - 2014-10-15 {#version-3-0-2}
 
 It's a minor update release.
