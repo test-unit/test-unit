@@ -772,13 +772,13 @@ EOM
         check_nothing_fails {
           assert_match(/strin./, "string", "successful assert_match")
         }
-        check_fail(%Q{<"string"> expected to be =~\n</slin./>.}) {
+        check_fail(%Q{</slin./> expected to be =~\n<"string">.}) {
           assert_match(/slin./, "string")
         }
-        check_fail(%Q{<"string"> expected to be =~\n</strin\\./>.}) {
+        check_fail(%Q{</strin\\./> expected to be =~\n<"string">.}) {
           assert_match("strin.", "string")
         }
-        check_fail(%Q{failed assert_match.\n<"string"> expected to be =~\n</slin./>.}) {
+        check_fail(%Q{failed assert_match.\n</slin./> expected to be =~\n<"string">.}) {
           assert_match(/slin./, "string", "failed assert_match")
         }
       end

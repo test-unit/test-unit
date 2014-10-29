@@ -525,7 +525,7 @@ EOT
       alias_method :refute_respond_to, :assert_not_respond_to
 
       ##
-      # Passes if +string+ =~ +pattern+.
+      # Passes if +pattern+ =~ +string+.
       #
       # @example
       #   assert_match(/\d+/, 'five, 6, seven')
@@ -537,8 +537,9 @@ EOT
             else
               pattern
           end
-          full_message = build_message(message, "<?> expected to be =~\n<?>.", string, pattern)
-          assert_block(full_message) { string =~ pattern }
+          full_message = build_message(message, "<?> expected to be =~\n<?>.",
+                                       pattern, string)
+          assert_block(full_message) { pattern =~ string }
         end
       end
 
