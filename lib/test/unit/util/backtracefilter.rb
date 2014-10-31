@@ -23,21 +23,13 @@ module Test
             split_entry[-1].sub(TESTUNIT_RB_FILE, '') == split_prefix[-1]
           end
 
-          jruby_internal_p = lambda do |entry|
-            entry.start_with?("org/jruby/")
-          end
-
-          rubinius_internal_p = lambda do |entry|
-            entry.start_with?("kernel/")
-          end
-
           found_prefix = false
           new_backtrace = backtrace.reverse.reject do |entry|
             if test_unit_internal_p.call(entry)
               found_prefix = true
               true
             elsif found_prefix
-              jruby_internal_p.call(entry) or rubinius_internal_p.call(entry)
+              false
             else
               true
             end
