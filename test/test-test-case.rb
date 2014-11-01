@@ -161,20 +161,41 @@ module Test
 
       def test_add_error
         test_case = @tc_failure_error.new(:test_error)
-        check("passed? should start out true", test_case.return_passed?)
+        assert do
+          test_case.passed?
+        end
+
         result = TestResult.new
-        called = false
-        result.add_listener(TestResult::FAULT) {
-          | fault |
-          check("Should have a TestError", fault.instance_of?(Error))
-          check("The Error should have the correct message", "ZeroDivisionError: divided by 0" == fault.message)
-          check("The Error should have the correct test_name", "test_error(TC_FailureError)" == fault.test_name)
-          check("The Error should have the correct exception", fault.exception.instance_of?(ZeroDivisionError))
-          called = true
-        }
-        test_case.run(result) {}
-        check("The error should have triggered the listener", called)
-        check("The error should have set passed?", !test_case.return_passed?)
+        faults = []
+        result.add_listener(TestResult::FAULT) do |fault|
+          faults << fault
+        end
+        test_case.run(result) do
+        end
+        fault_details = faults.collect do |fault|
+          {
+            :class     => fault.class,
+            :message   => fault.message,
+            :test_name => fault.test_name,
+            :location  => normalize_location(fault.location),
+          }
+        end
+        assert_equal([
+                       {
+                         :class     => Error,
+                         :message   => "ZeroDivisionError: divided by 0",
+                         :test_name => "test_error(TC_FailureError)",
+                         :location  => [
+                           "#{__FILE__}:0:in `test_error'",
+                           "#{__FILE__}:0:in `#{__method__}'",
+                         ],
+                       },
+                     ],
+                     fault_details)
+
+        assert do
+          not test_case.passed?
+        end
       end
 
       def test_no_tests
