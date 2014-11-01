@@ -23,15 +23,13 @@ module Test
             split_entry[-1].sub(TESTUNIT_RB_FILE, '') == split_prefix[-1]
           end
 
-          found_prefix = false
+          in_user_code = false
           new_backtrace = backtrace.reverse.reject do |entry|
             if test_unit_internal_p.call(entry)
-              found_prefix = true
+              in_user_code = true
               true
-            elsif found_prefix
-              false
             else
-              true
+              not in_user_code
             end
           end.reverse
 
