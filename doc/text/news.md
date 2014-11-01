@@ -1,5 +1,19 @@
 # News
 
+## 3.0.4 - 2014-11-01 {#version-3-0-4}
+
+It's a minor update release.
+
+### Improvements
+
+  * Stopped to remove JRuby and Rubinius internal backtrace entries from
+    backtrace on failure/error.
+    [GitHub#82][Patch by Charles Oliver Nutter]
+
+### Thanks
+
+  * Charles Oliver Nutter
+
 ## 3.0.3 - 2014-10-29 {#version-3-0-3}
 
 It's a minor update release.
