@@ -115,25 +115,37 @@ module Test
 
       def test_add_failure_nested
         test_case = @tc_failure_error.new(:test_nested_failure)
-        check("passed? should start out true", test_case.return_passed?)
+        assert do
+          test_case.passed?
+        end
 
         result = TestResult.new
-        called = false
-        result.add_listener(TestResult::FAULT) {
-          | fault |
-          check("Should have a Failure", fault.instance_of?(Failure))
-          check("The Failure should have the correct message", "nested" == fault.message)
-          check("The Failure should have the correct test_name (was <#{fault.test_name}>)", fault.test_name == "test_nested_failure(TC_FailureError)")
-
-          location = fault.location
-          check("The location should be an array", location.kind_of?(Array))
-          check("The location should have the correct number of lines (was: <#{location.inspect}>)", location.size == 3)
-          check("The Failure should have the correct location (was <#{location[0].inspect}>)", /\A.*#{Regexp.escape(File.basename(__FILE__))}:\d+:in `nested'\Z/ =~ location[0])
-          check("The Failure should have the correct location (was <#{location[1].inspect}>)", /\A.*#{Regexp.escape(File.basename(__FILE__))}:\d+:in `test_nested_failure'\Z/ =~ location[1])
-          called = true
-        }
-        test_case.run(result){}
-        check("The failure should have triggered the listener", called)
+        faults = []
+        result.add_listener(TestResult::FAULT) do |fault|
+          faults << fault
+        end
+        test_case.run(result) {}
+        fault_details = faults.collect do |fault|
+          {
+            :class     => fault.class,
+            :message   => fault.message,
+            :test_name => fault.test_name,
+            :location  => normalize_location(fault.location),
+          }
+        end
+        assert_equal([
+                       {
+                         :class     => Failure,
+                         :message   => "nested",
+                         :test_name => "test_nested_failure(TC_FailureError)",
+                         :location  => [
+                           "#{__FILE__}:0:in `nested'",
+                           "#{__FILE__}:0:in `test_nested_failure'",
+                           "#{__FILE__}:0:in `#{__method__}'",
+                         ],
+                       },
+                     ],
+                     fault_details)
       end
 
       def test_add_error
