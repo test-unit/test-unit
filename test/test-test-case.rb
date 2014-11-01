@@ -69,7 +69,9 @@ module Test
 
       def test_add_failed_assertion
         test_case = @tc_failure_error.new(:test_failure)
-        check("passed? should start out true", test_case.return_passed?)
+        assert do
+          test_case.passed?
+        end
 
         result = TestResult.new
         faults = []
@@ -99,7 +101,9 @@ module Test
                      ],
                      fault_details)
 
-        check("The failure should have set passed?", !test_case.return_passed?)
+        assert do
+          not test_case.passed?
+        end
         check("The progress block should have been updated correctly",
               [[TestCase::STARTED, test_case.name],
                [TestCase::STARTED_OBJECT, test_case],
