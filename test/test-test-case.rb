@@ -1,5 +1,5 @@
 # Author:: Nathaniel Talbott.
-# Copyright:: Copyright (c) 2008-2013  Kouhei Sutou <kou@clear-code.com>
+# Copyright:: Copyright (c) 2008-2014  Kouhei Sutou <kou@clear-code.com>
 # Copyright:: Copyright (c) 2011  Haruka Yoshihara <yoshihara@clear-code.com>
 # Copyright:: Copyright (c) 2000-2002  Nathaniel Talbott
 # License:: Ruby license.
@@ -100,7 +100,7 @@ module Test
         test_case.run(result){}
         check("The failure should have triggered the listener", called)
       end
-      
+
       def test_add_error
         test_case = @tc_failure_error.new(:test_error)
         check("passed? should start out true", test_case.return_passed?)
@@ -119,12 +119,12 @@ module Test
         check("The error should have set passed?", !test_case.return_passed?)
       end
 
-      def test_no_tests      
+      def test_no_tests
         suite = TestCase.suite
         check("Should have a test suite", suite.instance_of?(TestSuite))
         check("Should have one test", suite.size == 1)
         check("Should have the default test", suite.tests.first.name == "default_test(Test::Unit::TestCase)")
-        
+
         result = TestResult.new
         suite.run(result) {}
         check("Should have had one test run", result.run_count == 1)
@@ -153,19 +153,18 @@ module Test
             assert_block {true}
           end
         end
-      
+
         suite = tc.suite
         check("Should have a test suite", suite.instance_of?(TestSuite))
         check("Should have three tests", suite.size == 3)
-  
+
         result = TestResult.new
         suite.run(result) {}
         check("Should have had three test runs", result.run_count == 3)
         check("Should have had one test failure", result.failure_count == 1)
         check("Should have had one test error", result.error_count == 1)
       end
-      
-     
+
       def test_setup_teardown
         tc = Class.new(TestCase) do
           attr_reader(:setup_called, :teardown_called)
@@ -191,34 +190,34 @@ module Test
           end
         end
         result = TestResult.new
-  
+
         test = tc.new(:test_succeed)
         test.run(result) {}
         check("Should have called setup the correct number of times", test.setup_called)
         check("Should have called teardown the correct number of times", test.teardown_called)
-  
+
         test = tc.new(:test_fail)
         test.run(result) {}
         check("Should have called setup the correct number of times", test.setup_called)
         check("Should have called teardown the correct number of times", test.teardown_called)
-  
+
         test = tc.new(:test_error)
         test.run(result) {}
         check("Should have called setup the correct number of times", test.setup_called)
         check("Should have called teardown the correct number of times", test.teardown_called)
-  
+
         check("Should have had two test runs", result.run_count == 3)
         check("Should have had a test failure", result.failure_count == 1)
         check("Should have had a test error", result.error_count == 1)
       end
-      
+
       def test_assertion_failed_not_called
         tc = Class.new(TestCase) do
           def test_thing
             raise AssertionFailedError.new
           end
         end
-        
+
         suite = tc.suite
         check("Should have one test", suite.size == 1)
         result = TestResult.new
@@ -227,7 +226,7 @@ module Test
         check("Should have had one assertion failure", result.failure_count == 1)
         check("Should not have any assertion errors but had #{result.error_count}", result.error_count == 0)
       end
-      
+
       def test_equality
         tc1 = Class.new(TestCase) do
           def test_1
@@ -235,31 +234,30 @@ module Test
           def test_2
           end
         end
-        
+
         tc2 = Class.new(TestCase) do
           def test_1
           end
         end
-      
+
         test1 = tc1.new('test_1')
         test2 = tc1.new('test_1')
         check("Should be equal", test1 == test2)
         check("Should be equal", test2 == test1)
-        
+
         test1 = tc1.new('test_2')
         check("Should not be equal", test1 != test2)
         check("Should not be equal", test2 != test1)
-        
+
         test2 = tc1.new('test_2')
         check("Should be equal", test1 == test2)
         check("Should be equal", test2 == test1)
-        
+
         test1 = tc1.new('test_1')
         test2 = tc2.new('test_1')
         check("Should not be equal", test1 != test2)
         check("Should not be equal", test2 != test1)
 
-        
         check("Should not be equal", test1 != Object.new)
         check("Should not be equal", Object.new != test1)
       end
