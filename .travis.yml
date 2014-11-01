@@ -5,9 +5,9 @@ rvm:
   - 2.2
   - rbx-2
   - jruby
- matrix:
-   allow_failures:
-     - rvm: rbx-2
+matrix:
+  allow_failures:
+    - rvm: rbx-2
 notifications:
   recipients:
     - test-unit-commit@googlegroups.com
