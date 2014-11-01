@@ -95,7 +95,7 @@ module Test
                          :test_name => "test_failure(TC_FailureError)",
                          :location  => [
                            "#{__FILE__}:0:in `test_failure'",
-                           "#{__FILE__}:0:in `test_add_failed_assertion'",
+                           "#{__FILE__}:0:in `#{__method__}'",
                          ],
                        },
                      ],
