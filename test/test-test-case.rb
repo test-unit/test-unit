@@ -28,7 +28,9 @@ module Test
       def setup
         @tc_failure_error = Class.new(TestCase) do
           def test_failure
-            assert_block("failure") { false }
+            assert_block("failure") do
+              false
+            end
           end
           def test_error
             1 / 0
@@ -37,7 +39,9 @@ module Test
             nested
           end
           def nested
-            assert_block("nested"){false}
+            assert_block("nested") do
+              false
+            end
           end
           def return_passed?
             return passed?
@@ -79,7 +83,9 @@ module Test
           faults << fault
         end
         progress = []
-        test_case.run(result) { |*arguments| progress << arguments }
+        test_case.run(result) do |*arguments|
+          progress << arguments
+        end
         fault_details = faults.collect do |fault|
           {
             :class     => fault.class,
@@ -124,7 +130,8 @@ module Test
         result.add_listener(TestResult::FAULT) do |fault|
           faults << fault
         end
-        test_case.run(result) {}
+        test_case.run(result) do
+        end
         fault_details = faults.collect do |fault|
           {
             :class     => fault.class,
