@@ -153,6 +153,10 @@ module Test
                        },
                      ],
                      fault_details)
+
+        assert do
+          not test_case.passed?
+        end
       end
 
       def test_add_error
