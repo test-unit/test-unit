@@ -160,7 +160,7 @@ module Test
       end
 
       def jruby?
-        defined?(java)
+        defined?(JRUBY_VERSION)
       end
 
       def rubinius?
