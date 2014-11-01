@@ -159,6 +159,18 @@ module Test
         end
       end
 
+      def jruby?
+        defined?(java)
+      end
+
+      def rubinius?
+        false # TODO
+      end
+
+      def cruby?
+        (not jruby?) and (not rubinius?)
+      end
+
       def test_add_error
         test_case = @tc_failure_error.new(:test_error)
         assert do
@@ -180,15 +192,16 @@ module Test
             :location  => normalize_location(fault.location),
           }
         end
+        location = []
+        location << "#{__FILE__}:0:in `/'" if cruby?
+        location << "#{__FILE__}:0:in `test_error'"
+        location << "#{__FILE__}:0:in `#{__method__}'"
         assert_equal([
                        {
                          :class     => Error,
                          :message   => "ZeroDivisionError: divided by 0",
                          :test_name => "test_error(TC_FailureError)",
-                         :location  => [
-                           "#{__FILE__}:0:in `test_error'",
-                           "#{__FILE__}:0:in `#{__method__}'",
-                         ],
+                         :location  => location,
                        },
                      ],
                      fault_details)
