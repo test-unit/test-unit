@@ -49,27 +49,56 @@ module Test
         end
       end
 
+      def jruby_backtrace_entry?(entry)
+        entry.start_with?("org/jruby/")
+      end
+
+      def rubinius_backtrace_entry?(entry)
+        entry.start_with?("kernel/")
+      end
+
+      def normalize_location(location)
+        filtered_location = location.reject do |entry|
+          jruby_backtrace_entry?(entry) or
+            rubinius_backtrace_entry?(entry)
+        end
+        filtered_location.collect do |entry|
+          entry.sub(/:\d+:/, ":0:")
+        end
+      end
+
       def test_add_failed_assertion
         test_case = @tc_failure_error.new(:test_failure)
         check("passed? should start out true", test_case.return_passed?)
-        result = TestResult.new
-        called = false
-        result.add_listener(TestResult::FAULT) {
-          | fault |
-          check("Should have a Failure", fault.instance_of?(Failure))
-          check("The Failure should have the correct message", "failure" == fault.message)
-          check("The Failure should have the correct test_name (was <#{fault.test_name}>)", fault.test_name == "test_failure(TC_FailureError)")
-          r = /\A.*#{Regexp.escape(File.basename(__FILE__))}:\d+:in `test_failure'\Z/
 
-          location = fault.location
-          check("The location should be an array", location.kind_of?(Array))
-          check("The location should have two lines (was: <#{location.inspect}>)", location.size == 2)
-          check("The Failure should have the correct location (was <#{location[0].inspect}>, expected <#{r.inspect}>)", r =~ location[0])
-          called = true
-        }
+        result = TestResult.new
+        faults = []
+        result.add_listener(TestResult::FAULT) do |fault|
+          faults << fault
+        end
         progress = []
         test_case.run(result) { |*arguments| progress << arguments }
-        check("The failure should have triggered the listener", called)
+        fault_details = faults.collect do |fault|
+          {
+            :class     => fault.class,
+            :message   => fault.message,
+            :test_name => fault.test_name,
+            :location  => normalize_location(fault.location),
+          }
+        end
+        assert_equal([
+                       {
+                         :class     => Failure,
+                         :message   => "failure",
+                         :test_name => "test_failure(TC_FailureError)",
+                         :location  => [
+                           "#{__FILE__}:0:in `test_failure'",
+                           "#{__FILE__}:0:in `test_add_failed_assertion'",
+                         ],
+                       },
+                     ],
+                     fault_details)
+
         check("The failure should have set passed?", !test_case.return_passed?)
         check("The progress block should have been updated correctly",
               [[TestCase::STARTED, test_case.name],
