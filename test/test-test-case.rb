@@ -104,11 +104,13 @@ module Test
         assert do
           not test_case.passed?
         end
-        check("The progress block should have been updated correctly",
-              [[TestCase::STARTED, test_case.name],
-               [TestCase::STARTED_OBJECT, test_case],
-               [TestCase::FINISHED, test_case.name],
-               [TestCase::FINISHED_OBJECT, test_case]] == progress)
+        assert_equal([
+                       [TestCase::STARTED,         test_case.name],
+                       [TestCase::STARTED_OBJECT,  test_case],
+                       [TestCase::FINISHED,        test_case.name],
+                       [TestCase::FINISHED_OBJECT, test_case],
+                     ],
+                     progress)
       end
 
       def test_add_failure_nested
