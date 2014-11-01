@@ -37,9 +37,7 @@ module Test
 
           if new_backtrace.empty?
             new_backtrace = backtrace.reject do |entry|
-              test_unit_internal_p.call(entry) or
-                jruby_internal_p.call(entry) or
-                rubinius_internal_p.call(entry)
+              test_unit_internal_p.call(entry)
             end
             new_backtrace = backtrace if new_backtrace.empty?
           end
