@@ -1,5 +1,19 @@
 # News
 
+## 3.0.5 - 2014-11-08 {#version-3-0-5}
+
+It's a minor update release.
+
+### Fixes
+
+  * Fixed a bug that startup/shutdown of parent test case isn't called
+    when the test case includes one or more modules.
+    [GitHub#83][Reported by Chadderton Odwazny]
+
+### Thanks
+
+  * Chadderton Odwazny
+
 ## 3.0.4 - 2014-11-01 {#version-3-0-4}
 
 It's a minor update release.
