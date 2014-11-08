@@ -137,4 +137,42 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
       suite
     end
   end
+
+  class TestModule < self
+    def test_included_in_child
+      tests = Module.new do
+        def test_in_module
+        end
+      end
+
+      parent_test_case = Class.new(Test::Unit::TestCase) do
+        class << self
+          def name
+            "Parent"
+          end
+        end
+      end
+
+      child_test_case = Class.new(parent_test_case) do
+        include tests
+
+        class << self
+          def name
+            "Child"
+          end
+        end
+      end
+
+      child_suite = Test::Unit::TestSuite.new(child_test_case.name)
+      child_suite << child_test_case.new("test_in_module")
+
+      parent_suite = Test::Unit::TestSuite.new(parent_test_case.name)
+      parent_suite << child_suite
+
+      suite = empty_suite("all")
+      suite << parent_suite
+
+      assert_collect(suite, "all")
+    end
+  end
 end

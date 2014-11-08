@@ -24,10 +24,13 @@ module Test
 
       def add_test_cases(suite, test_cases)
         children_map = {}
-        test_cases.each do |descendant_test_case|
-          parent = descendant_test_case.ancestors[1]
+        test_cases.each do |test_case|
+          ancestor_classes = test_case.ancestors.find_all do |ancestor|
+            ancestor.is_a?(Class)
+          end
+          parent = ancestor_classes[1]
           children_map[parent] ||= []
-          children_map[parent] << descendant_test_case
+          children_map[parent] << test_case
         end
 
         root_test_cases = children_map.keys - test_cases
