@@ -24,18 +24,21 @@ class TestFaultLocationDetector < Test::Unit::TestCase
   def assert_detect(fault, target_line_number)
     detector = Test::Unit::FaultLocationDetector.new(fault, @fetcher)
 
-    snippet_is_shown = false
-    expected = fault.location.collect do |backtrace_entry|
+    expected_backtrace_entries_until_detected = []
+    fault.location.each do |backtrace_entry|
+      expected_backtrace_entries_until_detected << backtrace_entry
       _, line_number, = detector.split_backtrace_entry(backtrace_entry)
-      snippet_is_shown = true if !snippet_is_shown && target_line_number == line_number
-      [backtrace_entry, snippet_is_shown]
+      break if target_line_number == line_number
     end
-    snippet_is_shown = false
-    actual = fault.location.collect do |backtrace_entry|
-      snippet_is_shown = true if !snippet_is_shown && detector.target?(backtrace_entry)
-      [backtrace_entry, snippet_is_shown]
+
+    actual_backtrace_entries_until_detected = []
+    fault.location.each do |backtrace_entry|
+      actual_backtrace_entries_until_detected << backtrace_entry
+      break if detector.target?(backtrace_entry)
     end
-    assert_equal(expected, actual)
+
+    assert_equal(expected_backtrace_entries_until_detected,
+                 actual_backtrace_entries_until_detected)
   end
 
   module AlwaysFailAssertion
