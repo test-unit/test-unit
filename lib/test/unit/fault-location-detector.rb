@@ -66,7 +66,7 @@ module Test
       end
 
       def target_method?(method_name)
-        @fault_method_name == method_name
+        @fault_method_name == method_name.split(/\s+/).last
       end
 
       def guess_indent_level(line)

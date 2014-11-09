@@ -24,12 +24,16 @@ class TestFaultLocationDetector < Test::Unit::TestCase
   def assert_detect(fault, target_line_number)
     detector = Test::Unit::FaultLocationDetector.new(fault, @fetcher)
 
+    snippet_is_shown = false
     expected = fault.location.collect do |backtrace_entry|
       _, line_number, = detector.split_backtrace_entry(backtrace_entry)
-      [backtrace_entry, target_line_number == line_number]
+      snippet_is_shown = true if !snippet_is_shown && target_line_number == line_number
+      [backtrace_entry, snippet_is_shown]
     end
+    snippet_is_shown = false
     actual = fault.location.collect do |backtrace_entry|
-      [backtrace_entry, detector.target?(backtrace_entry)]
+      snippet_is_shown = true if !snippet_is_shown && detector.target?(backtrace_entry)
+      [backtrace_entry, snippet_is_shown]
     end
     assert_equal(expected, actual)
   end
@@ -115,6 +119,37 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
         def test_failed
           self.class.target_line_number = __LINE__; assert_always_failed
+        end
+      end
+
+      fault = run_test_case(test_case)
+      assert_detect(fault, test_case.target_line_number)
+    end
+  end
+
+  class TestInBlock < self
+    def test_in_block
+      test_case = Class.new(Test::Unit::TestCase) do
+        include AlwaysFailAssertion
+
+        class << self
+          def target_line_number
+            @@target_line_number
+          end
+
+          def target_line_number=(line_number)
+            @@target_line_number = line_number
+          end
+        end
+
+        def run_yield
+          yield
+        end
+
+        def test_failed
+          run_yield do
+            self.class.target_line_number = __LINE__; assert_always_failed
+          end
         end
       end
 
