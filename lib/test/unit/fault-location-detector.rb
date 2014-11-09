@@ -2,6 +2,8 @@
 #
 # License: Ruby's
 
+require "English"
+
 module Test
   module Unit
     class FaultLocationDetector
@@ -18,6 +20,9 @@ module Test
         line_number = line_number.to_i
         if /\Ain `(.+?)'/ =~ context
           method_name = $1
+          if /\Ablock (?:\(.+?\) )?in / =~ method_name
+            method_name = $POSTMATCH
+          end
         else
           method_name = nil
         end
@@ -66,7 +71,7 @@ module Test
       end
 
       def target_method?(method_name)
-        @fault_method_name == method_name.split(/\s+/).last
+        @fault_method_name == method_name
       end
 
       def guess_indent_level(line)
