@@ -1,5 +1,18 @@
 # News
 
+## 3.0.6 - 2014-11-09 {#version-3-0-6}
+
+It's a minor update release.
+
+### Improvements
+
+  * Improved code snippet location.
+    [GitHub#84][Patch by Yuki Kurihara]
+
+### Thanks
+
+  * Yuki Kurihara
+
 ## 3.0.5 - 2014-11-08 {#version-3-0-5}
 
 It's a minor update release.
