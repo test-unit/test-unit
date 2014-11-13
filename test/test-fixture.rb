@@ -513,6 +513,28 @@ class TestUnitFixture < Test::Unit::TestCase
                              test_case)
     end
 
+    def test_nested
+      called = []
+      parent_test_case = Class.new(Test::Unit::TestCase) do
+        teardown do
+          called << :parent
+        end
+      end
+
+      child_test_case = Class.new(parent_test_case) do
+        teardown do
+          called << :child
+        end
+
+        def test_nothing
+        end
+      end
+
+      run_test_nothing(child_test_case)
+      assert_equal([:child, :parent],
+                   called)
+    end
+
     private
     def assert_teardown_customizable(expected, parent, options)
       test_case = Class.new(parent || Test::Unit::TestCase) do
@@ -607,9 +629,14 @@ class TestUnitFixture < Test::Unit::TestCase
   end
 
   private
-  def assert_called_fixtures(expected, test_case)
+  def run_test_nothing(test_case)
     test = test_case.new("test_nothing")
     test.run(Test::Unit::TestResult.new) {}
+    test
+  end
+
+  def assert_called_fixtures(expected, test_case)
+    test = run_test_nothing(test_case)
     assert_equal(expected, test.called_ids)
   end
 

@@ -41,15 +41,25 @@ module Test
         end
 
         def before_callbacks(type)
-          target_test_cases.inject([]) do |callbacks, ancestor|
-            callbacks | ancestor.fixture[type].before_callbacks
+          prepend_callbacks = []
+          append_callbacks = []
+          target_test_cases.each do |ancestor|
+            prepend_callbacks << ancestor.fixture[type].before_prepend_callbacks
+            append_callbacks << ancestor.fixture[type].before_append_callbacks
           end
+
+          merge_callbacks(prepend_callbacks, append_callbacks)
         end
 
         def after_callbacks(type)
-          target_test_cases.inject([]) do |callbacks, ancestor|
-            callbacks | ancestor.fixture[type].after_callbacks
+          prepend_callbacks = []
+          append_callbacks = []
+          target_test_cases.each do |ancestor|
+            prepend_callbacks << ancestor.fixture[type].after_prepend_callbacks
+            append_callbacks << ancestor.fixture[type].after_append_callbacks
           end
+
+          merge_callbacks(prepend_callbacks, append_callbacks)
         end
 
         private
@@ -65,13 +75,26 @@ module Test
           end
           interested_ancestors.reverse
         end
+
+        def merge_callbacks(prepend_callbacks, append_callbacks)
+          all_callbacks = []
+          prepend_callbacks.reverse_each do |callbacks|
+            all_callbacks.concat(callbacks)
+          end
+          append_callbacks.each do |callbacks|
+            all_callbacks.concat(callbacks)
+          end
+          all_callbacks
+        end
       end
 
       class HookPoint
         def initialize(default_options)
           @default_options = default_options
-          @before_callbacks = []
-          @after_callbacks = []
+          @before_prepend_callbacks = []
+          @before_append_callbacks = []
+          @after_prepend_callbacks = []
+          @after_append_callbacks = []
           @unregistered_callbacks = []
         end
 
@@ -89,27 +112,27 @@ module Test
           end
           before_how = options[:before]
           after_how = options[:after]
-          if before_how
-            @before_callbacks = add_callback(@before_callbacks,
-                                             method_name_or_callback,
-                                             before_how)
-          else
-            @after_callbacks = add_callback(@after_callbacks,
-                                            method_name_or_callback,
-                                            after_how)
-          end
+          add_callback(method_name_or_callback, before_how, after_how)
         end
 
         def unregister(method_name_or_callback)
           @unregistered_callbacks << method_name_or_callback
         end
 
-        def before_callbacks
-          @before_callbacks - @unregistered_callbacks
+        def before_prepend_callbacks
+          @before_prepend_callbacks - @unregistered_callbacks
         end
 
-        def after_callbacks
-          @after_callbacks - @unregistered_callbacks
+        def before_append_callbacks
+          @before_append_callbacks - @unregistered_callbacks
+        end
+
+        def after_prepend_callbacks
+          @after_prepend_callbacks - @unregistered_callbacks
+        end
+
+        def after_append_callbacks
+          @after_append_callbacks - @unregistered_callbacks
         end
 
         private
@@ -122,12 +145,21 @@ module Test
             [:prepend, :append].include?(options[key])
         end
 
-        def add_callback(callbacks, method_name_or_callback, how)
-          case how
+        def add_callback(method_name_or_callback, before_how, after_how)
+          case before_how
           when :prepend
-            [method_name_or_callback] | callbacks
+            @before_prepend_callbacks =
+              [method_name_or_callback] | @before_prepend_callbacks
           when :append
-            callbacks | [method_name_or_callback]
+            @before_append_callbacks |= [method_name_or_callback]
+          else
+            case after_how
+            when :prepend
+              @after_prepend_callbacks =
+                [method_name_or_callback] | @after_prepend_callbacks
+            when :append
+              @after_append_callbacks |= [method_name_or_callback]
+            end
           end
         end
       end
