@@ -1,5 +1,19 @@
 # News
 
+## 3.0.7 - 2014-11-14 {#version-3-0-7}
+
+It's a minor update release.
+
+### Fixes
+
+  * Fixed a bug that teardown blocks aren't called with sub class to
+    parent class order.
+    [GitHub#85][Reported by TOMITA Masahiro]
+
+### Thanks
+
+  * TOMITA Masahiro
+
 ## 3.0.6 - 2014-11-09 {#version-3-0-6}
 
 It's a minor update release.
