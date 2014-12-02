@@ -34,7 +34,8 @@ writing tests, checking results and automated testing in Ruby.
 
 ## How To
 
-* [doc/text/how-to.md](doc/text/how-to.md)
+* [How To](doc/text/how-to.md) (link for GitHub)
+* {file:doc/text/how-to.md How To} (link for YARD)
 
 ## Install
 
