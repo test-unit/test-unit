@@ -212,7 +212,7 @@ module Test
 
           o.on('-n', '--name=NAME', String,
                "Runs tests matching NAME.",
-               "(patterns may be used).") do |name|
+               "Use '/PATTERN/' for NAME to use regular expression.") do |name|
             name = (%r{\A/(.*)/\Z} =~ name ? Regexp.new($1) : name)
             @filters << lambda do |test|
               return true if name === test.method_name
@@ -226,7 +226,7 @@ module Test
 
           o.on('--ignore-name=NAME', String,
                "Ignores tests matching NAME.",
-               "(patterns may be used).") do |n|
+               "Use '/PATTERN/' for NAME to use regular expression.") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
             case n
             when Regexp
@@ -238,7 +238,7 @@ module Test
 
           o.on('-t', '--testcase=TESTCASE', String,
                "Runs tests in TestCases matching TESTCASE.",
-               "(patterns may be used).") do |n|
+               "Use '/PATTERN/' for TESTCASE to use regular expression.") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
             @filters << lambda do |test|
               match_test_case_name(test, n)
@@ -247,7 +247,7 @@ module Test
 
           o.on('--ignore-testcase=TESTCASE', String,
                "Ignores tests in TestCases matching TESTCASE.",
-               "(patterns may be used).") do |n|
+               "Use '/PATTERN/' for TESTCASE to use regular expression.") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
             @filters << lambda do |test|
               not match_test_case_name(test, n)
