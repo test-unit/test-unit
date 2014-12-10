@@ -739,11 +739,47 @@ EOT
       end
 
       # @private
-      UncaughtThrow = {
-        NameError => /^uncaught throw `(.+)'$/,
-        ArgumentError => /^uncaught throw (`.+'|.+)$/,
-        ThreadError => /^uncaught throw `(.+)' in thread /,
-      }
+      class ThrowTagExtractor
+        @@have_uncaught_throw_error = const_defined?(:UncaughtThrowError)
+
+        UncaughtThrowPatterns = {
+          NameError => /^uncaught throw `(.+)'$/,
+          ArgumentError => /^uncaught throw (`.+'|.+)$/,
+          ThreadError => /^uncaught throw `(.+)' in thread /,
+        }
+
+        def initialize(error)
+          @error = error
+        end
+
+        def extract_tag
+          tag = nil
+          if @@have_uncaught_throw_error
+            return nil unless @error.is_a?(UncaughtThrowError)
+            tag = @error.tag
+          else
+            pattern = UncaughtThrowPatterns[@error.class]
+            return nil if pattern.nil?
+            return nil unless pattern =~ @error.message
+            tag = $1
+          end
+          normalize_tag(tag)
+        end
+
+        private
+        def normalize_tag(tag)
+          case tag
+          when /\A:/
+            tag[1..-1].intern
+          when /\A`(.+)'\z/
+            $1.intern
+          when String
+            tag.intern
+          else
+            tag
+          end
+        end
+      end
 
       ##
       # Passes if the block throws +expected_object+
@@ -773,9 +809,10 @@ EOT
                                          "<?> should have been thrown.",
                                          expected_object)
             assert_block(full_message) {caught}
-          rescue NameError, ArgumentError, ThreadError => error
-            raise unless UncaughtThrow[error.class] =~ error.message
-            tag = AssertionMessage.normalize_tag($1)
+          rescue => error
+            extractor = ThrowTagExtractor.new(error)
+            tag = extractor.extract_tag
+            raise if tag.nil?
             full_message = build_message(message,
                                          "<?> expected to be thrown but\n" +
                                          "<?> was thrown.",
@@ -802,9 +839,10 @@ EOT
           assert(block_given?, "Should have passed a block to assert_nothing_thrown")
           begin
             proc.call
-          rescue NameError, ArgumentError, ThreadError => error
-            raise unless UncaughtThrow[error.class] =~ error.message
-            tag = AssertionMessage.normalize_tag($1)
+          rescue => error
+            extractor = ThrowTagExtractor.new(error)
+            tag = extractor.extract_tag
+            raise if tag.nil?
             full_message = build_message(message,
                                          "<?> was thrown when nothing was expected",
                                          tag)
@@ -1669,19 +1707,6 @@ EOT
 
           def maybe_container(value, &formatter)
             MaybeContainer.new(value, &formatter)
-          end
-
-          def normalize_tag(tag)
-            case tag
-            when /\A:/
-              tag[1..-1].intern
-            when /\A`(.+)'\z/
-              $1.intern
-            when String
-              tag.intern
-            else
-              tag
-            end
           end
 
           MAX_DIFF_TARGET_STRING_SIZE = 1000
