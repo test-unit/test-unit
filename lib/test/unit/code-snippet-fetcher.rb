@@ -25,7 +25,32 @@ module Test
       private
       def read_source(path)
         return nil unless File.exist?(path)
-        File.readlines(path)
+        lines = []
+        File.open(path) do |file|
+          first_line = file.gets
+          break if first_line.nil?
+          encoding = detect_encoding(first_line)
+          if encoding
+            first_line.force_encoding(encoding)
+            file.set_encoding(encoding)
+          end
+          lines << first_line
+          lines.concat(file.readlines)
+        end
+        lines
+      end
+
+      def detect_encoding(first_line)
+        return nil unless first_line.ascii_only?
+        if /\b(?:en)?coding[:=]\s*([a-z\d_-]+)/i =~ first_line
+          begin
+            Encoding.find($1)
+          rescue ArgumentError
+            nil
+          end
+        else
+          nil
+        end
       end
     end
   end
