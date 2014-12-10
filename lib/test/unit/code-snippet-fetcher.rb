@@ -5,9 +5,9 @@ module Test
         @sources = {}
       end
 
-      def fetch(file, line, options={})
+      def fetch(path, line, options={})
         n_context_line = options[:n_context_line] || 3
-        lines = source(file)
+        lines = source(path)
         return [] if lines.nil?
         min_line = [line - n_context_line, 1].max
         max_line = [line + n_context_line, lines.length].min
@@ -18,14 +18,14 @@ module Test
         end
       end
 
-      def source(file)
-        @sources[file] ||= read_source(file)
+      def source(path)
+        @sources[path] ||= read_source(path)
       end
 
       private
-      def read_source(file)
-        return nil unless File.exist?(file)
-        File.readlines(file)
+      def read_source(path)
+        return nil unless File.exist?(path)
+        File.readlines(path)
       end
     end
   end
