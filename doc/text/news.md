@@ -1,5 +1,29 @@
 # News
 
+## 3.0.8 - 2014-12-12 {#version-3-0-8}
+
+It's a release that support Ruby 2.2.0 preview2.
+
+### Improvements
+
+  * Added a link for YARD in README.
+    [GitHub:test-unit.github.io#2][Reported by sunnyone]
+  * Added description about "/PATTERN/" style value in auto runner usage.
+    [GitHub#86][Suggested by sunnyone]
+  * Supported Ruby 2.2.0 preview2 in `assert_throw` and
+    `assert_nothing_thrown`.
+
+### Fixes
+
+  * Fixed a bug that error report is failed when source encoding and
+    locale encoding are different.
+    [GitHub#87][Reported by scivola]
+
+### Thanks
+
+  * sunnyone
+  * scivola
+
 ## 3.0.7 - 2014-11-14 {#version-3-0-7}
 
 It's a minor update release.
