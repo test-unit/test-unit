@@ -41,6 +41,7 @@ module Test
       end
 
       def detect_encoding(first_line)
+        return nil unless first_line.respond_to?(:ascii_only?)
         return nil unless first_line.ascii_only?
         if /\b(?:en)?coding[:=]\s*([a-z\d_-]+)/i =~ first_line
           begin
