@@ -467,7 +467,7 @@ module Test
 
           def guess_color_availability
             return false unless @output.tty?
-            return true if windows? and RUBY_VERSION >= "2.0.0"
+            return true if windows? and ruby_2_0_or_later?
             case ENV["TERM"]
             when /(?:term|screen)(?:-(?:256)?color)?\z/
               true
@@ -479,6 +479,10 @@ module Test
 
           def windows?
             /mswin|mingw/ === RUBY_PLATFORM
+          end
+
+          def ruby_2_0_or_later?
+            RUBY_VERSION >= "2.0.0"
           end
 
           def guess_progress_row_max
