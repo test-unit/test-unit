@@ -467,7 +467,7 @@ module Test
 
           def guess_color_availability
             return false unless @output.tty?
-            return true if /mswin|mingw/ =~ RUBY_PLATFORM && RUBY_VERSION >= "2.0.0"
+            return true if /mswin|mingw/ =~ RUBY_PLATFORM and RUBY_VERSION >= "2.0.0"
             case ENV["TERM"]
             when /(?:term|screen)(?:-(?:256)?color)?\z/
               true
