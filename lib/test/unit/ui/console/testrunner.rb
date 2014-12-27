@@ -423,7 +423,7 @@ module Test
 
           def output_progress_in_detail_marker(fault)
             if @progress_row_max > 0
-              output("=" * @progress_row_max, fault_color(fault))
+              output("=" * @progress_row_max)
             else
               nl
             end
