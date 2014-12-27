@@ -512,6 +512,7 @@ module Test
           end
 
           def need_diff?(options={})
+            return false if small_change?
             operations.each do |tag,|
               return true if [:replace, :equal].include?(tag)
             end
@@ -519,6 +520,11 @@ module Test
           end
 
           private
+          def small_change?
+            @from.size == 1 and @to.size == 1 and
+              @from.first.size == 1 and @to.first.size == 1
+          end
+
           def output_single(something, color=nil)
             @runner.__send__(:output_single, something, color)
           end
