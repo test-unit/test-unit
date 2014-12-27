@@ -173,17 +173,17 @@ module Test
           def output_fault_in_detail(fault)
             if fault.is_a?(Failure) and
                 fault.inspected_expected and fault.inspected_actual
-              output_single(fault.label, fault_color(fault))
-              output(":")
-              output(fault.test_name)
+              output_single("#{fault.label}: ")
+              output(fault.test_name, fault_color(fault))
               output_fault_backtrace(fault)
               output_failure_message(fault)
             else
-              output_single(fault.label, fault_color(fault))
               if fault.is_a?(Error)
-                output(": #{fault.test_name}")
+                output_single("#{fault.label}: ")
+                output(fault.test_name, fault_color(fault))
                 output_fault_message(fault)
               else
+                output_single(fault.label, fault_color(fault))
                 output_fault_message(fault)
                 output(fault.test_name)
               end
