@@ -6,6 +6,11 @@
 #   * Copyright (c) 2008-2013 Kouhei Sutou <kou@clear-code.com>
 # License:: Ruby license.
 
+begin
+  require 'io/console'
+rescue LoadError
+end
+
 require 'test/unit/color-scheme'
 require 'test/unit/code-snippet-fetcher'
 require 'test/unit/fault-location-detector'
@@ -509,9 +514,26 @@ module Test
           end
 
           def guess_term_width
-            Integer(ENV["COLUMNS"] || ENV["TERM_WIDTH"] || 0)
-          rescue ArgumentError
-            0
+            guess_term_width_from_io || guess_term_width_from_env || 0
+          end
+
+          def guess_term_width_from_io
+            if @output.respond_to?(:winsize)
+              @output.winsize[1]
+            else
+              nil
+            end
+          end
+
+          def guess_term_width_from_env
+            env = ENV["COLUMNS"] || ENV["TERM_WIDTH"]
+            return nil if env.nil?
+
+            begin
+              Integer(env)
+            rescue ArgumentError
+              nil
+            end
           end
         end
 
