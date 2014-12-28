@@ -519,7 +519,11 @@ module Test
 
           def guess_term_width_from_io
             if @output.respond_to?(:winsize)
-              @output.winsize[1]
+              begin
+                @output.winsize[1]
+              rescue SystemError
+                nil
+              end
             else
               nil
             end
