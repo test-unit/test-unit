@@ -521,7 +521,7 @@ module Test
             if @output.respond_to?(:winsize)
               begin
                 @output.winsize[1]
-              rescue SystemError
+              rescue SystemCallError
                 nil
               end
             else
