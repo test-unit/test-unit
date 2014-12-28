@@ -512,7 +512,7 @@ module Test
           end
 
           def need_diff?(options={})
-            return false if small_change?
+            return false if one_line_all_change?
             operations.each do |tag,|
               return true if [:replace, :equal].include?(tag)
             end
@@ -520,9 +520,16 @@ module Test
           end
 
           private
-          def small_change?
-            @from.size == 1 and @to.size == 1 and
-              @from.first.size == 1 and @to.first.size == 1
+          def one_line_all_change?
+            return false if operations.size != 1
+
+            tag, from_start, from_end, to_start, to_end = operations.first
+            return false if tag != :replace
+            return false if [from_start, from_end] != [0, 1]
+            return false if [from_start, from_end] != [to_start, to_end]
+
+            _, _, _line_operations = line_operations(@from.first, @to.first)
+            _line_operations.size == 1
           end
 
           def output_single(something, color=nil)
