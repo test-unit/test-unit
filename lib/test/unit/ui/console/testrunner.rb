@@ -308,11 +308,11 @@ module Test
 
           def output_statistics(elapsed_time)
             output("Finished in #{elapsed_time} seconds.")
-            nl
-            output(@result, result_color)
-            output("%g%% passed" % @result.pass_percentage, result_color)
+            output_summary_marker
+            output(@result)
+            output("%g%% passed" % @result.pass_percentage)
             unless elapsed_time.zero?
-              nl
+              output_summary_marker
               test_throughput = @result.run_count / elapsed_time
               assertion_throughput = @result.assertion_count / elapsed_time
               throughput = [
@@ -321,6 +321,16 @@ module Test
               ]
               output(throughput.join(", "))
             end
+          end
+
+          def output_summary_marker
+            term_width = guess_term_width
+            if term_width.zero?
+              marker_width = 6
+            else
+              marker_width = term_width
+            end
+            output("-" * marker_width, summary_marker_color)
           end
 
           def test_started(test)
@@ -461,8 +471,8 @@ module Test
             color(fault_class.name.split(/::/).last.downcase)
           end
 
-          def result_color
-            color(@result.status)
+          def summary_marker_color
+            color("#{@result.status}-marker")
           end
 
           def guess_color_availability

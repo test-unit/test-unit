@@ -19,16 +19,22 @@ module Test
           @@default_for_8_colors ||=
             new("pass" => Color.new("green", :background => true) +
                           Color.new("white", :bold => true),
+                "pass-marker" => Color.new("green", :bold => true),
                 "failure" => Color.new("red", :background => true) +
                              Color.new("white", :bold => true),
+                "failure-marker" => Color.new("red", :bold => true),
                 "pending" => Color.new("magenta", :background => true) +
                              Color.new("white", :bold => true),
+                "pending-marker" => Color.new("magenta", :bold => true),
                 "omission" => Color.new("blue", :background => true) +
                              Color.new("white", :bold => true),
+                "omission-marker" => Color.new("blue", :bold => true),
                 "notification" => Color.new("cyan", :background => true) +
                                   Color.new("white", :bold => true),
+                "notification-marker" => Color.new("cyan", :bold => true),
                 "error" => Color.new("black", :background => true) +
                            Color.new("yellow", :bold => true),
+                "error-marker" => Color.new("yellow", :bold => true),
                 "case" => Color.new("blue", :background => true) +
                           Color.new("white", :bold => true),
                 "suite" => Color.new("green", :background => true) +
@@ -50,16 +56,22 @@ module Test
           @@default_for_256_colors ||=
             new("pass" => Color.new("030", :background => true) +
                           Color.new("555", :bold => true),
+                "pass-marker" => Color.new("050", :bold => true),
                 "failure" => Color.new("300", :background => true) +
                              Color.new("555", :bold => true),
+                "failure-marker" => Color.new("500", :bold => true),
                 "pending" => Color.new("303", :background => true) +
                               Color.new("555", :bold => true),
+                "pending-marker" => Color.new("303", :bold => true),
                 "omission" => Color.new("001", :background => true) +
                               Color.new("555", :bold => true),
+                "omission-marker" => Color.new("001", :bold => true),
                 "notification" => Color.new("011", :background => true) +
                                   Color.new("555", :bold => true),
+                "notification-marker" => Color.new("011", :bold => true),
                 "error" => Color.new("000", :background => true) +
                            Color.new("550", :bold => true),
+                "error-marker" => Color.new("550", :bold => true),
                 "case" => Color.new("220", :background => true) +
                           Color.new("555", :bold => true),
                 "suite" => Color.new("110", :background => true) +
