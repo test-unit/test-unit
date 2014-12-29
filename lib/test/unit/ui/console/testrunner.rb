@@ -94,7 +94,8 @@ module Test
 
           def add_fault(fault)
             @faults << fault
-            output_progress(fault.single_character_display, fault_color(fault))
+            output_progress(fault.single_character_display,
+                            fault_marker_color(fault))
             output_progress_in_detail(fault) if @show_detail_immediately
             @already_outputted = true if fault.critical?
           end
@@ -352,7 +353,7 @@ module Test
 
           def test_finished(test)
             unless @already_outputted
-              output_progress(".", color("pass"))
+              output_progress(".", color("pass-marker"))
             end
             @already_outputted = false
 
@@ -468,12 +469,16 @@ module Test
             _color
           end
 
-          def fault_color(fault)
-            fault_class_color(fault.class)
+          def fault_class_color_name(fault_class)
+            fault_class.name.split(/::/).last.downcase
           end
 
-          def fault_class_color(fault_class)
-            color(fault_class.name.split(/::/).last.downcase)
+          def fault_color(fault)
+            color(fault_class_color_name(fault.class))
+          end
+
+          def fault_marker_color(fault)
+            color("#{fault_class_color_name(fault.class)}-marker")
           end
 
           def summary_marker_color
