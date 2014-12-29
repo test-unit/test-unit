@@ -54,42 +54,29 @@ class TestUnitColorScheme < Test::Unit::TestCase
     end
 
     def test_default
-      expected_schema = {
-        "pass"                => color("green",   :background => true) +
-                                 color("white",   :bold       => true),
-        "pass-marker"         => color("green",   :bold       => true),
-        "failure"             => color("red",     :background => true) +
-                                 color("white",   :bold       => true),
-        "failure-marker"      => color("red",     :bold       => true),
-        "pending"             => color("magenta", :background => true) +
-                                 color("white",   :bold       => true),
-        "pending-marker"      => color("magenta", :bold       => true),
-        "omission"            => color("blue",    :background => true) +
-                                 color("white",   :bold       => true),
-        "omission-marker"     => color("blue",    :bold       => true),
-        "notification"        => color("cyan",    :background => true) +
-                                 color("white",   :bold       => true),
-        "notification-marker" => color("cyan",    :bold       => true),
-        "error"               => color("black",   :background => true) +
-                                 color("yellow",  :bold       => true),
-        "error-marker"        => color("yellow",  :bold       => true),
-        "case"                => color("blue",    :background => true) +
-                                 color("white",   :bold       => true),
-        "suite"               => color("green",   :background => true) +
-                                 color("white",   :bold       => true),
-        "diff-inserted-tag"   => color("red",     :background => true) +
-                                 color("black",   :bold       => true),
-        "diff-deleted-tag"    => color("green",   :background => true) +
-                                 color("black",   :bold       => true),
-        "diff-difference-tag" => color("cyan",    :background => true) +
-                                 color("white",   :bold       => true),
-        "diff-inserted"       => color("red",     :background => true) +
-                                 color("white",   :bold       => true),
-        "diff-deleted"        => color("green",   :background => true) +
-                                 color("white",   :bold       => true),
-      }
-      assert_equal(expected_schema,
-                   Test::Unit::ColorScheme.default.to_hash)
+      expected_schema_keys = [
+        "pass",
+        "pass-marker",
+        "failure",
+        "failure-marker",
+        "pending",
+        "pending-marker",
+        "omission",
+        "omission-marker",
+        "notification",
+        "notification-marker",
+        "error",
+        "error-marker",
+        "case",
+        "suite",
+        "diff-inserted-tag",
+        "diff-deleted-tag",
+        "diff-difference-tag",
+        "diff-inserted",
+        "diff-deleted",
+      ]
+      assert_equal(expected_schema_keys.sort,
+                   Test::Unit::ColorScheme.default.to_hash.keys.sort)
     end
   end
 end
