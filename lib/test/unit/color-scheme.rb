@@ -107,12 +107,28 @@ module Test
         end
 
         def available_colors
-          guess_available_colors_from_colorterm_env ||
+          guess_available_colors_from_vte_version_env ||
+            guess_available_colors_from_colorterm_env ||
             guess_available_colors_from_term_env ||
             8
         end
 
         private
+        def guess_available_colors_from_vte_version_env
+          vte_version = ENV["VTE_VERSION"]
+          return nil if vte_version.nil?
+
+          major = 0
+          minor = 13
+          micro = 0
+          packed_version = major * 10000 + minor * 100 + micro
+          if vte_version.to_i >= packed_version
+            256
+          else
+            8
+          end
+        end
+
         def guess_available_colors_from_colorterm_env
           case ENV["COLORTERM"]
           when "gnome-terminal", "xfce4-terminal"
