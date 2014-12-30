@@ -8,6 +8,7 @@ rvm:
 matrix:
   allow_failures:
     - rvm: rbx-2
+    - rvm: jruby
 notifications:
   recipients:
     - test-unit-commit@googlegroups.com
