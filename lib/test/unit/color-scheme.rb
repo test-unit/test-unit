@@ -108,7 +108,7 @@ module Test
 
         def available_colors
           case ENV["COLORTERM"]
-          when "gnome-terminal"
+          when "gnome-terminal", "xfce4-terminal"
             256
           else
             case ENV["TERM"]
