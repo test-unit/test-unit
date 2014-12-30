@@ -107,16 +107,27 @@ module Test
         end
 
         def available_colors
+          guess_available_colors_from_colorterm_env ||
+            guess_available_colors_from_term_env ||
+            8
+        end
+
+        private
+        def guess_available_colors_from_colorterm_env
           case ENV["COLORTERM"]
           when "gnome-terminal", "xfce4-terminal"
             256
           else
-            case ENV["TERM"]
-            when /-256color\z/
-              256
-            else
-              8
-            end
+            nil
+          end
+        end
+
+        def guess_available_colors_from_term_env
+          case ENV["TERM"]
+          when /-256color\z/
+            256
+          else
+            nil
           end
         end
       end
