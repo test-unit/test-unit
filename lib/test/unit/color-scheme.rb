@@ -19,7 +19,7 @@ module Test
           @@default_for_8_colors ||=
             new("pass" => Color.new("green", :background => true) +
                           Color.new("white", :bold => true),
-                "pass-marker" => Color.new("green"),
+                "pass-marker" => Color.new("green", :bold => true),
                 "failure" => Color.new("red", :background => true) +
                              Color.new("white", :bold => true),
                 "failure-marker" => Color.new("red"),
@@ -56,7 +56,7 @@ module Test
           @@default_for_256_colors ||=
             new("pass" => Color.new("030", :background => true) +
                           Color.new("555", :bold => true),
-                "pass-marker" => Color.new("050"),
+                "pass-marker" => Color.new("050", :bold => true),
                 "failure" => Color.new("300", :background => true) +
                              Color.new("555", :bold => true),
                 "failure-marker" => Color.new("500"),
