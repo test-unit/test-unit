@@ -1,8 +1,28 @@
 # News
 
+## 3.0.9 - 2014-12-31 {#version-3-0-9}
+
+It's a release that improves colors.
+
+### Improvements
+
+  * Added a work around for Ruby 1.8. (Note: Ruby 1.8 isn't
+    supported.) [GitHub#89][Patch by Aaron Stone]
+  * Supported colorized output on Windows.
+    [GitHub#90][Patch by usa]
+  * Improved colorized output.
+    http://www.a-k-r.org/d/2014-12.html#a2014_12_27_1
+    [Suggested by Tanaka Akira]
+
+### Thanks
+
+  * Aaron Stone
+  * usa
+  * Tanaka Akira
+
 ## 3.0.8 - 2014-12-12 {#version-3-0-8}
 
-It's a release that support Ruby 2.2.0 preview2.
+It's a release that supports Ruby 2.2.0 preview2.
 
 ### Improvements
 
