@@ -186,7 +186,7 @@ module Test
             else
               if fault.is_a?(Error)
                 output_single("#{fault.label}: ")
-                output(fault.test_name, fault_color(fault))
+                output_single(fault.test_name, fault_color(fault))
                 output_fault_message(fault)
               else
                 output_single(fault.label, fault_color(fault))
