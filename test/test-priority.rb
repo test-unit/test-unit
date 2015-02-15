@@ -123,10 +123,19 @@ class TestUnitPriority < Test::Unit::TestCase
       end
     end
 
-    def test_escaped?
+    def test_question
       assert_escaped_name("test_question.predicate", "test_question?")
+    end
+
+    def test_exclamation
       assert_escaped_name("test_exclamation.destructive", "test_exclamation!")
+    end
+
+    def test_equal
       assert_escaped_name("test_equal.equal", "test_equal=")
+    end
+
+    def test_colon_and_space
       assert_escaped_name("test_colon__have_space", "test: have space")
     end
 
