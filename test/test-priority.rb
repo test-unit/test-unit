@@ -103,38 +103,38 @@ class TestUnitPriority < Test::Unit::TestCase
   end
 
   class TestFileName < self
-  class SpecialNameTestCase < Test::Unit::TestCase
-    class << self
-      def suite
-        Test::Unit::TestSuite.new(name)
+    class SpecialNameTestCase < Test::Unit::TestCase
+      class << self
+        def suite
+          Test::Unit::TestSuite.new(name)
+        end
+      end
+
+      def test_question?
+      end
+
+      def test_exclamation!
+      end
+
+      def test_equal=
+      end
+
+      test "have space" do
       end
     end
 
-    def test_question?
+    def test_escaped?
+      assert_escaped_name("test_question.predicate", "test_question?")
+      assert_escaped_name("test_exclamation.destructive", "test_exclamation!")
+      assert_escaped_name("test_equal.equal", "test_equal=")
+      assert_escaped_name("test_colon__have_space", "test: have space")
     end
 
-    def test_exclamation!
+    def assert_escaped_name(expected, test_method_name)
+      checker = Checker.new(SpecialNameTestCase.new(test_method_name))
+      passed_file = checker.send(:passed_file)
+      method_name_component = File.basename(File.dirname(passed_file))
+      assert_equal(expected, method_name_component)
     end
-
-    def test_equal=
-    end
-
-    test "have space" do
-    end
-  end
-
-  def test_escaped?
-    assert_escaped_name("test_question.predicate", "test_question?")
-    assert_escaped_name("test_exclamation.destructive", "test_exclamation!")
-    assert_escaped_name("test_equal.equal", "test_equal=")
-    assert_escaped_name("test_colon__have_space", "test: have space")
-  end
-
-  def assert_escaped_name(expected, test_method_name)
-    checker = Checker.new(SpecialNameTestCase.new(test_method_name))
-    passed_file = checker.send(:passed_file)
-    method_name_component = File.basename(File.dirname(passed_file))
-    assert_equal(expected, method_name_component)
-  end
   end
 end
