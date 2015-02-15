@@ -117,12 +117,16 @@ class TestUnitPriority < Test::Unit::TestCase
 
     def test_equal=
     end
+
+    test "have space" do
+    end
   end
 
   def test_escaped?
     assert_escaped_name("test_question.predicate", "test_question?")
     assert_escaped_name("test_exclamation.destructive", "test_exclamation!")
     assert_escaped_name("test_equal.equal", "test_equal=")
+    assert_escaped_name("test_colon_ have space", "test: have space")
   end
 
   def assert_escaped_name(expected, test_method_name)
