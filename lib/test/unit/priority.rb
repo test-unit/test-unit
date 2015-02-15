@@ -146,10 +146,12 @@ module Test
         end
 
         def escaped_method_name
-          @test.method_name.to_s.gsub(/(?:[:]|[!?=]$)/) do |matched|
+          @test.method_name.to_s.gsub(/(?:[: ]|[!?=]$)/) do |matched|
             case matched
             when ":"
               "_colon_"
+            when " "
+              "_"
             when "!"
               ".destructive"
             when "?"
