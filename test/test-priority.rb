@@ -102,6 +102,7 @@ class TestUnitPriority < Test::Unit::TestCase
     assert_in_delta(expected, n_need_to_run.to_f / n, delta)
   end
 
+  class TestFileName < self
   class SpecialNameTestCase < Test::Unit::TestCase
     class << self
       def suite
@@ -134,5 +135,6 @@ class TestUnitPriority < Test::Unit::TestCase
     passed_file = checker.send(:passed_file)
     method_name_component = File.basename(File.dirname(passed_file))
     assert_equal(expected, method_name_component)
+  end
   end
 end
