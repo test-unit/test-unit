@@ -29,7 +29,7 @@ version = Test::Unit::VERSION.dup
 Gem::Specification.new do |spec|
   spec.name = "test-unit"
   spec.version = version
-  spec.homepage = "http://rubygems.org/gems/test-unit"
+  spec.homepage = "http://test-unit.github.io/"
   spec.authors = ["Kouhei Sutou", "Haruka Yoshihara"]
   spec.email = ["kou@cozmixng.org", "yoshihara@clear-code.com"]
   readme = File.read("README.md")
