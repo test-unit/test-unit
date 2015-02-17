@@ -102,6 +102,30 @@ class TestUnitPriority < Test::Unit::TestCase
     assert_in_delta(expected, n_need_to_run.to_f / n, delta)
   end
 
+  class TestClassName < self
+    def test_colon
+      assert_escaped_name("Test__Priority", "Test::Priority")
+    end
+
+    def test_space
+      assert_escaped_name("test_priority", "test priority")
+    end
+
+    def test_slash
+      assert_escaped_name("test_priority", "test/priority")
+    end
+
+    def test_back_slash
+      assert_escaped_name("test_priority", "test\/priority")
+    end
+
+    def assert_escaped_name(expected, class_name)
+      checker = Checker.new(nil)
+      escaped_class_name = checker.send(:escape_class_name, class_name)
+      assert_equal(expected, escaped_class_name)
+    end
+  end
+
   class TestFileName < self
     class SpecialNameTestCase < Test::Unit::TestCase
       class << self
