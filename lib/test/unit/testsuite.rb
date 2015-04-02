@@ -53,11 +53,14 @@ module Test
           run_test(test, result, &progress_block)
           @passed = false unless test.passed?
         end
-        run_shutdown(result)
       ensure
-        @elapsed_time = Time.now - @start_time
-        yield(FINISHED, name)
-        yield(FINISHED_OBJECT, self)
+        begin
+          run_shutdown(result)
+        ensure
+          @elapsed_time = Time.now - @start_time
+          yield(FINISHED, name)
+          yield(FINISHED_OBJECT, self)
+        end
       end
 
       # Adds the test to the suite.

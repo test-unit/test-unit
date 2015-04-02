@@ -1064,6 +1064,35 @@ module Test
               run_test_case(test_case)
             end
           end
+
+          def test_pass_through_in_test
+            test_case = Class.new(TestCase) do
+              @called = []
+              class << self
+                def called
+                  @called
+                end
+
+                def startup
+                  @called << :startup
+                end
+
+                def shutdown
+                  @called << :shutdown
+                end
+              end
+
+              def test_error
+                raise Interrupt, "from test"
+              end
+            end
+
+            assert_raise(Interrupt) do
+              run_test_case(test_case)
+            end
+            assert_equal([:startup, :shutdown],
+                         test_case.called)
+          end
         end
       end
     end
