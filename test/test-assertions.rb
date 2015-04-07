@@ -124,22 +124,30 @@ module Test
     class TestAssertions < TestCase
       include AssertionCheckable
 
-      def test_assert_block
+      class TestAssertBlock < self
+        def test_pass_without_message
         check_nothing_fails {
           assert_block {true}
         }
+        end
+
+        def test_pass_with_message
         check_nothing_fails {
           assert_block("successful assert_block") {true}
         }
-        check_nothing_fails {
-          assert_block("successful assert_block") {true}
-        }
+        end
+
+        def test_failure_without_message
         check_fail("assert_block failed.") {
           assert_block {false}
         }
+        end
+
+        def test_failure_with_message
         check_fail("failed assert_block") {
           assert_block("failed assert_block") {false}
         }
+        end
       end
 
       class TestAssertEqual < self
