@@ -320,7 +320,7 @@ module Test
         #     end
         #   end
         #
-        # The diffrence of them are the following:
+        # The difference of them are the following:
         #
         # * Test case created by {sub_test_case} is an anonymous class.
         #   So you can't refer the test case by name.
@@ -331,7 +331,7 @@ module Test
         #
         # @param name [String] The name of newly created sub test case.
         # @yield
-        #   The block is evaludated under the newly created sub test
+        #   The block is evaluated under the newly created sub test
         #   case class context.
         # @return [Test::Unit::TestCase] Created sub test case class.
         def sub_test_case(name, &block)
@@ -346,7 +346,7 @@ module Test
           sub_test_case
         end
 
-        # Checkes whether a test that is mathched the query is
+        # Checks whether a test that is matched the query is
         # defined.
         #
         # @option query [String] :path (nil)
