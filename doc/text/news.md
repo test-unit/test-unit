@@ -1,5 +1,38 @@
 # News
 
+## 3.1.0 - 2015-05-28 {#version-3-1-0}
+
+It's a bug fix release.
+
+### Improvements
+
+  * [ui][console] Removed needless new line.
+
+### Fixes
+
+  * Fixed a bug that priority mode can't be used on Windows.
+    [GitHub#95][Reported by Daniel Berger]
+  * Fixed a homepage URL RubyGems spec.
+    [GitHub#96][Patch by Masayoshi Takahashi]
+    supported.) [GitHub#89][Patch by Aaron Stone]
+  * Fixed a bug that shutdown hook isn't called when pass throw
+    exception such as `Interrupt` is raised.
+    [GitHub#98][Reported by jeremiahishere.]
+  * Fixed typos in documents.
+    [GitHub#100][Reported by scivola]
+    [GitHub#102][GitHub#103][Patch by Masafumi Yokoyama]
+  * Fixed a bug that the same name test isn't executed in sub test case.
+    [GitHub#104][Reported by wanabe]
+
+### Thanks
+
+  * Daniel Berger
+  * Masayoshi Takahashi
+  * jeremiahishere
+  * scivola
+  * Masafumi Yokoyama
+  * wanabe
+
 ## 3.0.9 - 2014-12-31 {#version-3-0-9}
 
 It's a release that improves colors.
