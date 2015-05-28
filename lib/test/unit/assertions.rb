@@ -178,7 +178,7 @@ module Test
       #   refute(false)    # => pass
       #   refute(nil)      # => pass
       #
-      # @example Fialure patterns
+      # @example Failure patterns
       #   refute(true)     # => failure
       #   refute("string") # => failure
       #
