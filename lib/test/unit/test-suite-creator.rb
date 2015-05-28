@@ -44,6 +44,7 @@ module Test
         methods = @test_case.public_instance_methods(true)
         super_test_case = @test_case.superclass
         methods -= super_test_case.public_instance_methods(true)
+        methods |= @test_case.public_instance_methods(false)
         method_names = methods.collect(&:to_s)
         test_names = method_names.find_all do |method_name|
           /\Atest./ =~ method_name or

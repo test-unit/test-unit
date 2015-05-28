@@ -842,6 +842,33 @@ module Test
           end
           assert_equal(["test_nothing"], test_method_names)
         end
+
+        def test_duplicated_name
+          test_case = Class.new(TestCase) do
+            def test_nothing
+            end
+          end
+          sub_test_case = test_case.sub_test_case("sub test case") do
+            def test_nothing
+            end
+          end
+
+          test_method_names = test_case.suite.tests.collect do |test|
+            test.method_name
+          end
+          sub_test_method_names = sub_test_case.suite.tests.collect do |test|
+            test.method_name
+          end
+
+          assert_equal([
+                         ["test_nothing"],
+                         ["test_nothing"],
+                       ],
+                       [
+                         test_method_names,
+                         sub_test_method_names,
+                       ])
+        end
       end
 
       class TestStartupShutdown < self
