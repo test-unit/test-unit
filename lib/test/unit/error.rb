@@ -78,8 +78,12 @@ module Test
 
       NOT_PASS_THROUGH_EXCEPTIONS = []
       NOT_PASS_THROUGH_EXCEPTION_NAMES = ["Timeout::Error"]
-      PASS_THROUGH_EXCEPTIONS = [NoMemoryError, SignalException, Interrupt,
-                                 SystemExit]
+      PASS_THROUGH_EXCEPTIONS = [
+        NoMemoryError,
+        SignalException,
+        Interrupt,
+        SystemExit,
+      ]
       PASS_THROUGH_EXCEPTION_NAMES = []
       private
       def handle_all_exception(exception)
