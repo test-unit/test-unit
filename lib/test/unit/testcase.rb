@@ -360,17 +360,16 @@ module Test
           query_line = query[:line]
           query_method_name = query[:method_name]
 
-          available_locations = method_locations
-          if query_path
-            available_locations = available_locations.find_all do |location|
-              location[:path].end_with?(query_path)
-            end
-          end
+          available_locations = target_method_locations(query_path)
           if query_line
-            available_location = available_locations.reverse.find do |location|
+            available_locations = available_locations.sort_by do |location|
+              -location[:line]
+            end
+            available_location = available_locations.find do |location|
               query_line >= location[:line]
             end
             return false if available_location.nil?
+            return false if available_location[:test_case] != self
             available_locations = [available_location]
           end
           if query_method_name
@@ -390,6 +389,25 @@ module Test
         # @private
         def method_locations
           @@method_locations[self] ||= []
+        end
+
+        # @private
+        def target_method_locations(path)
+          if path.nil?
+            self_location = method_locations.first
+            path = self_location[:path] if self_location
+          end
+          return [] if path.nil?
+
+          target_locations = []
+          @@method_locations.each do |test_case, locations|
+            locations.each do |location|
+              if location[:path].end_with?(path)
+                target_locations << location.merge(:test_case => test_case)
+              end
+            end
+          end
+          target_locations
         end
       end
 

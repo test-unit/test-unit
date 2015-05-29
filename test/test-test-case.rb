@@ -660,6 +660,28 @@ module Test
               end
               assert_true(test_case.test_defined?(:line => line_after))
             end
+
+            def test_child
+              child_test_case = nil
+              line_child = nil
+              parent_test_case = Class.new(TestCase) do
+                test "parent" do
+                end
+
+                child_test_case = Class.new(self) do
+                  line_child = __LINE__; test "child" do
+                  end
+                end
+              end
+              assert_equal([
+                             false,
+                             true,
+                           ],
+                           [
+                             parent_test_case.test_defined?(:line => line_child),
+                             child_test_case.test_defined?(:line => line_child),
+                           ])
+            end
           end
 
           class TestMethodStyle < self
@@ -690,6 +712,28 @@ module Test
                 line_after = __LINE__
               end
               assert_true(test_case.test_defined?(:line => line_after))
+            end
+
+            def test_child
+              child_test_case = nil
+              line_child = nil
+              parent_test_case = Class.new(TestCase) do
+                test "parent" do
+                end
+
+                child_test_case = Class.new(self) do
+                  line_child = __LINE__; test "child" do
+                  end
+                end
+              end
+              assert_equal([
+                             false,
+                             true,
+                           ],
+                           [
+                             parent_test_case.test_defined?(:line => line_child),
+                             child_test_case.test_defined?(:line => line_child),
+                           ])
             end
           end
         end
