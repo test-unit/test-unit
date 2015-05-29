@@ -1,5 +1,19 @@
 # News
 
+## 3.1.1 - 2015-05-29 {#version-3-1-1}
+
+It's a bug fix release.
+
+### Fixes
+
+  * Fixed a bug that `--location` detects tests not only in sub test
+    case but also parent test case.
+    [GitHub#105][Reported by wanabe]
+
+### Thanks
+
+  * wanabe
+
 ## 3.1.0 - 2015-05-28 {#version-3-1-0}
 
 It's a bug fix release.
