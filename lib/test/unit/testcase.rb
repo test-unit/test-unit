@@ -402,7 +402,10 @@ module Test
           target_locations = []
           @@method_locations.each do |test_case, locations|
             locations.each do |location|
-              if location[:path].end_with?(path)
+              absolete_path = File.expand_path(path)
+              location_path = location[:path]
+              location_basename = File.basename(location_path)
+              if location_path == absolete_path or location_basename == path
                 target_locations << location.merge(:test_case => test_case)
               end
             end
