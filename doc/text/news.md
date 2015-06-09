@@ -1,5 +1,32 @@
 # News
 
+## 3.1.2 - 2015-06-09 {#version-3-1-2}
+
+It's command line option improvements fix release.
+
+### Improvements
+
+  * `--location`: Made path match rule more strict.
+    [Suggested by kimura wataru]
+    * Before:
+      * If test defined path ends with the specified path, the test is
+        matched.
+    * After:
+      * If base name of test defined path equals to the specified
+        path, the test is matched.
+      * If relative path of test defined path equals to the specified
+        path, the test is matched.
+      * If the specified path is absolute path and test defined path
+        equals to the specified path, the test is matched.
+  * `--pattern`: If the option is specified, the default patterns
+    aren't used. In the earlier versions, both the default patterns
+    and the specified patterns are used.
+    [Suggested by kimura wataru]
+
+### Thanks
+
+  * kimura wataru
+
 ## 3.1.1 - 2015-05-29 {#version-3-1-1}
 
 It's a bug fix release.
