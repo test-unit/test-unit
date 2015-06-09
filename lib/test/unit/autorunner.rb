@@ -87,8 +87,8 @@ module Test
       register_collector(:load) do |auto_runner|
         require 'test/unit/collector/load'
         collector = Collector::Load.new
-        collector.patterns.concat(auto_runner.pattern) if auto_runner.pattern
-        collector.excludes.concat(auto_runner.exclude) if auto_runner.exclude
+        collector.patterns.replace(auto_runner.pattern) if auto_runner.pattern
+        collector.excludes.replace(auto_runner.exclude) if auto_runner.exclude
         collector.base = auto_runner.base
         collector.filter = auto_runner.filters
         collector.collect(*auto_runner.to_run)
@@ -115,8 +115,8 @@ module Test
         require 'test/unit/collector/dir'
         c = Collector::Dir.new
         c.filter = auto_runner.filters
-        c.pattern.concat(auto_runner.pattern) if auto_runner.pattern
-        c.exclude.concat(auto_runner.exclude) if auto_runner.exclude
+        c.pattern.replace(auto_runner.pattern) if auto_runner.pattern
+        c.exclude.replace(auto_runner.exclude) if auto_runner.exclude
         c.base = auto_runner.base
         $:.push(auto_runner.base) if auto_runner.base
         c.collect(*(auto_runner.to_run.empty? ? ['.'] : auto_runner.to_run))
