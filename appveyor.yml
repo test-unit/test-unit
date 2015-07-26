@@ -23,6 +23,9 @@ install:
   - bundler --version
   - bundle install
 
+# Disable build
+build_script:
+  - cd .
 build: off
 
 test_script:
