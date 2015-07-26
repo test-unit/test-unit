@@ -1,5 +1,26 @@
 # News
 
+## 3.1.3 - 2015-07-26 {#version-3-1-3}
+
+It's a bug fix release.
+
+### Fixes
+
+  * `--location`: Fixed a bug that `--location LINE` doesn't work when
+    test script is specified as relative path. [Reported by TOMITA Masahiro]
+
+    The following doesn't work:
+
+        % ruby ./test.rb --location 10
+
+    The following works:
+
+        % ruby test.rb --location 10
+
+### Thanks
+
+  * TOMITA Masahiro.
+
 ## 3.1.2 - 2015-06-09 {#version-3-1-2}
 
 It's command line option improvements fix release.
