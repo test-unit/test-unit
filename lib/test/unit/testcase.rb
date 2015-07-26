@@ -126,7 +126,7 @@ module Test
           end
           method_locations << {
             :method_name => stringified_name,
-            :path => path,
+            :path => File.expand_path(path),
             :line => line,
           }
           added_method_names[stringified_name] = true
