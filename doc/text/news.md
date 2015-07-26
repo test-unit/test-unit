@@ -4,6 +4,10 @@
 
 It's a bug fix release.
 
+### Improvements
+
+  * Removed unused `TODO` file. [GitHub#108][Patch by takiy33]
+
 ### Fixes
 
   * `--location`: Fixed a bug that `--location LINE` doesn't work when
@@ -19,7 +23,8 @@ It's a bug fix release.
 
 ### Thanks
 
-  * TOMITA Masahiro.
+  * takiy33
+  * TOMITA Masahiro
 
 ## 3.1.2 - 2015-06-09 {#version-3-1-2}
 
