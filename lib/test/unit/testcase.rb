@@ -121,7 +121,7 @@ module Test
           if source_location
             path, line = source_location
           else
-            path, line, = caller[0].split(/:(\d+)/,2)
+            path, line, = caller[0].split(/:(\d+)/, 2)
             line = line.to_i if line
           end
           method_locations << {
