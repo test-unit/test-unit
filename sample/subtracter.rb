@@ -7,6 +7,6 @@ class Subtracter
     @number = number
   end
   def subtract(number)
-    return @number - number
+    @number - number
   end
 end
