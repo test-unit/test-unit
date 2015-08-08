@@ -3,7 +3,7 @@
 # License:: Ruby license.
 
 require 'test/unit'
-require 'subtracter'
+require_relative 'subtracter'
 
 class TestSubtracter < Test::Unit::TestCase
   def setup

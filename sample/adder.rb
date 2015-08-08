@@ -7,7 +7,7 @@ class Adder
     @number = number
   end
   def add(number)
-    return @number + number
+    @number + number
   end
 end
 

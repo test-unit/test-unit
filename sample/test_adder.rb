@@ -3,7 +3,7 @@
 # License:: Ruby license.
 
 require 'test/unit'
-require 'adder'
+require_relative 'adder'
 
 class TestAdder < Test::Unit::TestCase
   def setup
