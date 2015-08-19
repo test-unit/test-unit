@@ -66,7 +66,8 @@ Here are the syntax of color scheme definitions:
           underline: BOOLEAN
         ...
       ...
-
+|Definition|Description|
+|-------------|------------------------------|
 | SCHEME_NAME | the name of the color scheme |
 | EVENT_NAME  | success, failure, pending, omission, notification, error |
 | COLOR_NAME  | black, red, green, yellow, blue, magenta, cyan, white    |
