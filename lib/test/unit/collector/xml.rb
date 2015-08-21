@@ -64,16 +64,15 @@ module Test
 
             state = next_state(@state_stack.last, uri, local)
             @state_stack.push(state)
+            @values = {}
             case state
             when :test_suite, :test_case
-              @values = {}
+              # do nothing
             when :test
-              @values = {}
               @n_pass_assertions = 0 if _parent_tag == "start-test"
             when :backtrace
               @backtrace = []
               @values_backup = @values
-              @values = {}
             end
           end
 
