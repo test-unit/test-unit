@@ -1,5 +1,25 @@
 # News
 
+## 3.1.4 - 2015-09-26 {#version-3-1-4}
+
+It's a minor improvement release.
+
+### Improvements
+
+  * Updated sample code. [GitHub#109][Patch by takiy33]
+  * Updated .travis.yml. [GitHub#110][Patch by takiy33]
+  * document: Added table header in how to document.
+    [GitHub#111][Patch by takiy33]
+  * Removed duplicated code.
+    [GitHub#112][Patch by takiy33]
+  * Removed needless encoding conversion in fetching code snippet.
+    [GitHub#113][Patch by NARUSE, Yui]
+
+### Thanks
+
+  * takiy33
+  * NARUSE, Yui
+
 ## 3.1.3 - 2015-07-26 {#version-3-1-3}
 
 It's a bug fix release.
