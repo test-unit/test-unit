@@ -32,7 +32,7 @@ module Test
           encoding = detect_encoding(first_line)
           if encoding
             first_line.force_encoding(encoding)
-            file.set_encoding(encoding)
+            file.set_encoding(encoding, encoding)
           end
           lines << first_line
           lines.concat(file.readlines)
