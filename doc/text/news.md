@@ -1,5 +1,19 @@
 # News
 
+## 3.1.5 - 2015-10-09 {#version-3-1-5}
+
+It's a Rack integration improvement release.
+
+### Improvements
+
+  * Renamed experimental top-level `run` method to `run_test` method
+  because `run` is conflicted with Rack.
+  [GitHub#32][GitHub:basecamp/pow#303] [Reported by Yevhen Viktorov]
+
+### Thanks
+
+  * Yevhen Viktorov
+
 ## 3.1.4 - 2015-09-26 {#version-3-1-4}
 
 It's a minor improvement release.
