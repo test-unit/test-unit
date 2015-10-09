@@ -1,4 +1,4 @@
-# Copyright (C) 2012  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2012-2015  Kouhei Sutou <kou@clear-code.com>
 #
 # License: Ruby's or LGPLv2.1 or later
 #
@@ -24,9 +24,11 @@ module Test
   end
 end
 
-# experimental. It is for "ruby -rtest-unit -e run test/test_*.rb".
-# Is this API OK or dirty?
-def run
-  self.class.send(:undef_method, :run)
-  require "test/unit"
+unless respond_to?(:run_test, true)
+  # experimental. It is for "ruby -rtest-unit -e run_test test/test_*.rb".
+  # Is this API OK or dirty?
+  def run_test
+    self.class.send(:undef_method, :run_test)
+    require "test/unit"
+  end
 end
