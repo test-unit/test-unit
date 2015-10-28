@@ -16,7 +16,7 @@ module Test::Unit::Util
         %q{tc_thing.rb:3}]
       assert_equal(backtrace[1..2], filter_backtrace(backtrace, %q{C:\some\old\path\test\unit}), "Should filter out all TestUnit-specific lines")
 
-backtrace = [%q{tc_thing.rb:4:in 'a'},
+      backtrace = [%q{tc_thing.rb:4:in 'a'},
         %q{tc_thing.rb:4:in 'test_stuff'},
         %q{tc_thing.rb:3}]
       assert_equal(backtrace, filter_backtrace(backtrace, %q{C:\some\old\path\test\unit}), "Shouldn't filter too much")
