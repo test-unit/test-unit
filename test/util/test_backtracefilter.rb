@@ -37,5 +37,16 @@ backtrace = [%q{tc_thing.rb:4:in 'a'},
     def test_nil_backtrace
       assert_equal(["No backtrace"], filter_backtrace(nil))
     end
+
+    def test_power_assert_backtrace
+      omit('test for power_assert') unless defined?(PowerAssert)
+      blk = Proc.new {caller.find {|i| /power_assert.*in \`start\'/ =~ i}}
+      PowerAssert.start(blk) do |pa|
+        backtrace = [pa.yield,
+          %q{tc_thing.rb:4:in 'a'},
+          %q{tc_thing.rb:4:in 'test_stuff'}]
+        assert_equal(backtrace[1..2], filter_backtrace(backtrace))
+      end
+    end
   end
 end

@@ -1,3 +1,8 @@
+begin
+  require 'power_assert'
+rescue LoadError, SyntaxError
+end
+
 module Test
   module Unit
     module Util
@@ -6,21 +11,28 @@ module Test
         TESTUNIT_PREFIX = __FILE__.split(TESTUNIT_FILE_SEPARATORS)[0..-3]
         TESTUNIT_RB_FILE = /\.rb\Z/
 
+        POWERASSERT_PREFIX =
+          defined?(PowerAssert) ?
+            PowerAssert.method(:start).source_location[0].split(TESTUNIT_FILE_SEPARATORS)[0..-2] :
+            nil
+
         module_function
         def filter_backtrace(backtrace, prefix=nil)
           return ["No backtrace"] unless backtrace
           return backtrace if ENV["TEST_UNIT_ALL_BACKTRACE"]
 
           if prefix
-            split_prefix = prefix.split(TESTUNIT_FILE_SEPARATORS)
+            split_prefixes = [prefix.split(TESTUNIT_FILE_SEPARATORS)]
           else
-            split_prefix = TESTUNIT_PREFIX
+            split_prefixes = [TESTUNIT_PREFIX, POWERASSERT_PREFIX].compact
           end
           test_unit_internal_p = lambda do |entry|
             components = entry.split(TESTUNIT_FILE_SEPARATORS)
-            split_entry = components[0, split_prefix.size]
-            next false unless split_entry[0..-2] == split_prefix[0..-2]
-            split_entry[-1].sub(TESTUNIT_RB_FILE, '') == split_prefix[-1]
+            split_prefixes.any? do |split_prefix|
+              split_entry = components[0, split_prefix.size]
+              next false unless split_entry[0..-2] == split_prefix[0..-2]
+              split_entry[-1].sub(TESTUNIT_RB_FILE, '') == split_prefix[-1]
+            end
           end
 
           in_user_code = false
