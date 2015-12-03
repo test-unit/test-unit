@@ -120,7 +120,12 @@ module Test
           source_location = find_attribute(stringified_name, :source_location)
           if source_location
             path, line = source_location
+          elsif respond_to?(:caller_locations, true)
+            location = caller_locations(1, 1)[0]
+            path = location.absolute_path || location.path
+            line = location.lineno
           else
+            # TODO: Remove me when Ruby 1.9 support is dropped
             path, line, = caller[0].split(/:(\d+)/, 2)
             line = line.to_i if line
           end
