@@ -27,6 +27,8 @@ module Test
           @setup = HookPoint.new(:after => :append)
           @cleanup = HookPoint.new(:before => :prepend)
           @teardown = HookPoint.new(:before => :prepend)
+          @cached_before_callbacks = {}
+          @cached_after_callbacks = {}
         end
 
         def [](type)
@@ -41,6 +43,19 @@ module Test
         end
 
         def before_callbacks(type)
+          @cached_before_callbacks[type] ||= collect_before_callbacks(type)
+        end
+
+        def after_callbacks(type)
+          @cached_after_callbacks[type] ||= collect_after_callbacks(type)
+        end
+
+        private
+        def target_test_cases
+          @cached_target_test_cases ||= collect_target_test_cases
+        end
+
+        def collect_before_callbacks(type)
           prepend_callbacks = []
           append_callbacks = []
           target_test_cases.each do |ancestor|
@@ -51,7 +66,7 @@ module Test
           merge_callbacks(prepend_callbacks, append_callbacks)
         end
 
-        def after_callbacks(type)
+        def collect_after_callbacks(type)
           prepend_callbacks = []
           append_callbacks = []
           target_test_cases.each do |ancestor|
@@ -60,11 +75,6 @@ module Test
           end
 
           merge_callbacks(prepend_callbacks, append_callbacks)
-        end
-
-        private
-        def target_test_cases
-          @cached_target_test_cases ||= collect_target_test_cases
         end
 
         def collect_target_test_cases
