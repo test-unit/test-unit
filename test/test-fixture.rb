@@ -535,6 +535,60 @@ class TestUnitFixture < Test::Unit::TestCase
                    called)
     end
 
+    def test_setup_with_block
+      test_case = Class.new(Test::Unit::TestCase) do
+        def called_ids
+          @called_ids ||= []
+        end
+
+        def called(id)
+          called_ids << id
+        end
+
+        setup
+        def setup1
+          called(:setup1)
+          begin
+            yield
+            called(:setup1_after_yield)
+          ensure
+            called(:setup1_teardown)
+          end
+        end
+
+        setup
+        def setup2
+          called(:setup2)
+          begin
+            yield
+            called(:setup2_after_yield)
+          ensure
+            called(:setup2_teardown)
+          end
+        end
+
+        def teardown
+          called(:teardown)
+        end
+
+        def test_nothing
+          called(:test)
+          flunk
+          called(:test_after_failure)
+        end
+      end
+
+      assert_called_fixtures([
+                               :setup1,
+                               :setup2,
+                               :test,
+                               :setup2_teardown,
+                               :setup1_teardown,
+                               :teardown,
+                             ],
+                             test_case)
+    end
+
     private
     def assert_teardown_customizable(expected, parent, options)
       test_case = Class.new(parent || Test::Unit::TestCase) do

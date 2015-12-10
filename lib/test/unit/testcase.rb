@@ -458,14 +458,31 @@ module Test
           @internal_data.test_started
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)
+          processed_exception_in_setup = false
           begin
-            run_setup
-            run_test
-            run_cleanup
-            add_pass
+            catch do |tag|
+              run_setup do
+                begin
+                  run_test
+                  run_cleanup
+                  add_pass
+                rescue Exception
+                  @internal_data.interrupted
+                  unless handle_exception($!)
+                    processed_exception_in_setup = true
+                    raise
+                  end
+                  throw(tag)
+                end
+              end
+            end
           rescue Exception
-            @internal_data.interrupted
-            raise unless handle_exception($!)
+            if processed_exception_in_setup
+              raise
+            else
+              @internal_data.interrupted
+              raise unless handle_exception($!)
+            end
           ensure
             begin
               run_teardown

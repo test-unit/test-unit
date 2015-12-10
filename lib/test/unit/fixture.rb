@@ -218,17 +218,52 @@ module Test
       end
 
       private
-      def run_fixture(type, options={})
-        [
+      def run_fixture(type, options={}, &block)
+        fixtures = [
           self.class.fixture.before_callbacks(type),
           type,
           self.class.fixture.after_callbacks(type),
-        ].flatten.each do |method_name_or_callback|
-          run_fixture_callback(method_name_or_callback, options)
+        ].flatten
+        if block
+          runner = create_fixtures_runner(type, fixtures, options, &block)
+          runner.call
+        else
+          fixtures.each do |method_name_or_callback|
+            run_fixture_callback(method_name_or_callback, options)
+          end
         end
       end
 
-      def run_fixture_callback(method_name_or_callback, options)
+      def create_fixtures_runner(type, fixtures, options, &block)
+        if fixtures.empty?
+          block
+        else
+          last_fixture = fixtures.pop
+          create_fixtures_runner(type, fixtures, options) do
+            block_is_called = false
+            if last_fixture.respond_to?(:call)
+              # TODO: It should be removed when Proc#call accepts block
+              method_name = "#{type}_#{last_fixture.object_id}"
+              singleton_class.__send__(:define_method,
+                                       method_name,
+                                       &last_fixture)
+              run_fixture_callback(method_name, options) do
+                block_is_called = true
+                block.call
+              end
+              singleton_class.__send__(:undef_method, method_name)
+            else
+              run_fixture_callback(last_fixture, options) do
+                block_is_called = true
+                block.call
+              end
+            end
+            block.call unless block_is_called
+          end
+        end
+      end
+
+      def run_fixture_callback(method_name_or_callback, options, &block)
         if method_name_or_callback.respond_to?(:call)
           callback = lambda do
             instance_eval(&method_name_or_callback)
@@ -236,7 +271,7 @@ module Test
         else
           return unless respond_to?(method_name_or_callback, true)
           callback = lambda do
-            __send__(method_name_or_callback)
+            __send__(method_name_or_callback, &block)
           end
         end
 
@@ -248,8 +283,8 @@ module Test
         end
       end
 
-      def run_setup
-        run_fixture(:setup)
+      def run_setup(&block)
+        run_fixture(:setup, &block)
       end
 
       def run_cleanup
