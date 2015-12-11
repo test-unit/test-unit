@@ -24,9 +24,9 @@ module Test
         attr_reader :teardown
         def initialize(test_case)
           @test_case = test_case
-          @setup = HookPoint.new(:after => :append)
-          @cleanup = HookPoint.new(:before => :prepend)
-          @teardown = HookPoint.new(:before => :prepend)
+          @setup = HookPoint.new(@test_case, :setup, :after => :append)
+          @cleanup = HookPoint.new(@test_case, :cleanup, :before => :prepend)
+          @teardown = HookPoint.new(@test_case, :teardown, :before => :prepend)
           @cached_before_callbacks = {}
           @cached_after_callbacks = {}
         end
@@ -99,7 +99,9 @@ module Test
       end
 
       class HookPoint
-        def initialize(default_options)
+        def initialize(test_case, type, default_options)
+          @test_case = test_case
+          @type = type
           @default_options = default_options
           @before_prepend_callbacks = []
           @before_append_callbacks = []
@@ -122,11 +124,24 @@ module Test
           end
           before_how = options[:before]
           after_how = options[:after]
-          add_callback(method_name_or_callback, before_how, after_how)
+          if method_name_or_callback.respond_to?(:call)
+            callback = method_name_or_callback
+            method_name = callback_method_name(callback)
+            @test_case.__send__(:define_method, method_name, &callback)
+          else
+            method_name = method_name_or_callback
+          end
+          add_callback(method_name, before_how, after_how)
         end
 
         def unregister(method_name_or_callback)
-          @unregistered_callbacks << method_name_or_callback
+          if method_name_or_callback.respond_to?(:call)
+            callback = method_name_or_callback
+            method_name = callback_method_name(callback)
+          else
+            method_name = method_name_or_callback
+          end
+          @unregistered_callbacks << method_name
         end
 
         def before_prepend_callbacks
@@ -153,6 +168,10 @@ module Test
           key = options.keys.first
           [:before, :after].include?(key) and
             [:prepend, :append].include?(options[key])
+        end
+
+        def callback_method_name(callback)
+          "#{@type}_#{callback.object_id}"
         end
 
         def add_callback(method_name_or_callback, before_how, after_how)
@@ -225,58 +244,35 @@ module Test
           self.class.fixture.after_callbacks(type),
         ].flatten
         if block
-          runner = create_fixtures_runner(type, fixtures, options, &block)
+          runner = create_fixtures_runner(fixtures, options, &block)
           runner.call
         else
-          fixtures.each do |method_name_or_callback|
-            run_fixture_callback(method_name_or_callback, options)
+          fixtures.each do |method_name|
+            run_fixture_callback(method_name, options)
           end
         end
       end
 
-      def create_fixtures_runner(type, fixtures, options, &block)
+      def create_fixtures_runner(fixtures, options, &block)
         if fixtures.empty?
           block
         else
           last_fixture = fixtures.pop
-          create_fixtures_runner(type, fixtures, options) do
+          create_fixtures_runner(fixtures, options) do
             block_is_called = false
-            if last_fixture.respond_to?(:call)
-              # TODO: It should be removed when Proc#call accepts block
-              method_name = "#{type}_#{last_fixture.object_id}"
-              singleton_class.__send__(:define_method,
-                                       method_name,
-                                       &last_fixture)
-              run_fixture_callback(method_name, options) do
-                block_is_called = true
-                block.call
-              end
-              singleton_class.__send__(:undef_method, method_name)
-            else
-              run_fixture_callback(last_fixture, options) do
-                block_is_called = true
-                block.call
-              end
+            run_fixture_callback(last_fixture, options) do
+              block_is_called = true
+              block.call
             end
             block.call unless block_is_called
           end
         end
       end
 
-      def run_fixture_callback(method_name_or_callback, options, &block)
-        if method_name_or_callback.respond_to?(:call)
-          callback = lambda do
-            instance_eval(&method_name_or_callback)
-          end
-        else
-          return unless respond_to?(method_name_or_callback, true)
-          callback = lambda do
-            __send__(method_name_or_callback, &block)
-          end
-        end
-
+      def run_fixture_callback(method_name, options, &block)
+        return unless respond_to?(method_name, true)
         begin
-          callback.call
+          __send__(method_name, &block)
         rescue Exception
           raise unless options[:handle_exception]
           raise unless handle_exception($!)
