@@ -121,6 +121,7 @@ module Test
           end
 
           return nil if self == TestCase
+          return nil if name == :data
 
           @cached_parent_test_case ||= ancestors.find do |ancestor|
             ancestor != self and

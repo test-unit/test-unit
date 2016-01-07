@@ -75,6 +75,21 @@ class TestData < Test::Unit::TestCase
                      @calc.plus(data["augend"], data["addend"]))
       end
     end
+
+    class TestSuperclass < TestCalc
+      data("positive positive" => {:expected => 4, :augend => 3, :addend => 1},
+           "positive negative" => {:expected => -1, :augend => 1, :addend => -2})
+      def test_plus(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
+
+      class TestSuperPlus < self
+        def test_plus
+          assert_equal(2, @calc.plus(1, 1))
+        end
+      end
+    end
   end
 
   def setup
@@ -168,10 +183,17 @@ class TestData < Test::Unit::TestCase
   data("data set"         => TestCalc::TestDataSet,
        "n-data"           => TestCalc::TestNData,
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
-       "load-data-set"    => TestCalc::TestLoadDataSet)
+       "load-data-set"    => TestCalc::TestLoadDataSet,
+       "superclass"       => TestCalc::TestSuperclass)
   def test_run(test_case)
     result = _run_test(test_case)
     assert_equal("2 tests, 2 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "0 omissions, 0 notifications", result.to_s)
+  end
+
+  def test_run_super_plus
+    result = _run_test(TestCalc::TestSuperclass::TestSuperPlus)
+    assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
   end
 
