@@ -111,7 +111,10 @@ module Test
           attributes || StringifyKeyHash.new
         end
 
-        def find_attribute(method_name, name)
+        def find_attribute(method_name, name, options={})
+          recursive_p = options[:recursive]
+          recursive_p = true if recursive_p.nil?
+
           @attributes_table ||= StringifyKeyHash.new
           if @attributes_table.key?(method_name)
             attributes = @attributes_table[method_name]
@@ -120,8 +123,8 @@ module Test
             end
           end
 
+          return nil unless recursive_p
           return nil if self == TestCase
-          return nil if name == :data
 
           @cached_parent_test_case ||= ancestors.find do |ancestor|
             ancestor != self and
@@ -129,7 +132,7 @@ module Test
               ancestor < Test::Unit::Attribute
           end
 
-          @cached_parent_test_case.find_attribute(method_name, name)
+          @cached_parent_test_case.find_attribute(method_name, name, options)
         end
 
         @@attribute_observers = StringifyKeyHash.new

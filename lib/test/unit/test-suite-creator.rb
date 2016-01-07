@@ -15,7 +15,8 @@ module Test
       def create
         suite = TestSuite.new(@test_case.name, @test_case)
         collect_test_names.each do |test_name|
-          data_sets = @test_case.find_attribute(test_name, :data)
+          data_sets = @test_case.find_attribute(test_name, :data,
+                                                :recursive => false)
           if data_sets
             data_sets.each do |data_set|
               data_set = data_set.call if data_set.respond_to?(:call)
