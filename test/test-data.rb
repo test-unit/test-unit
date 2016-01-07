@@ -84,7 +84,7 @@ class TestData < Test::Unit::TestCase
                      @calc.plus(data[:augend], data[:addend]))
       end
 
-      class TestSubclass < self
+      class TestNormalTestInSubclass < self
         def test_plus
           assert_equal(2, @calc.plus(1, 1))
         end
@@ -191,8 +191,8 @@ class TestData < Test::Unit::TestCase
                  "0 omissions, 0 notifications", result.to_s)
   end
 
-  def test_run_subclass
-    result = _run_test(TestCalc::TestSuperclass::TestSubclass)
+  def test_run_normal_test_in_subclass
+    result = _run_test(TestCalc::TestSuperclass::TestNormalTestInSubclass)
     assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
   end
