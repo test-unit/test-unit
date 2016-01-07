@@ -84,7 +84,7 @@ class TestData < Test::Unit::TestCase
                      @calc.plus(data[:augend], data[:addend]))
       end
 
-      class TestSuperPlus < self
+      class TestSubclass < self
         def test_plus
           assert_equal(2, @calc.plus(1, 1))
         end
