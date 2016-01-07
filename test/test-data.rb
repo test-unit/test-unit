@@ -191,8 +191,8 @@ class TestData < Test::Unit::TestCase
                  "0 omissions, 0 notifications", result.to_s)
   end
 
-  def test_run_super_plus
-    result = _run_test(TestCalc::TestSuperclass::TestSuperPlus)
+  def test_run_subclass
+    result = _run_test(TestCalc::TestSuperclass::TestSubclass)
     assert_equal("1 tests, 1 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "0 omissions, 0 notifications", result.to_s)
   end
