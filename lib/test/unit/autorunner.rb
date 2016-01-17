@@ -3,6 +3,7 @@ require "English"
 require 'test/unit/color-scheme'
 require 'test/unit/priority'
 require 'test/unit/attribute-matcher'
+require 'test/unit/testcase'
 require 'optparse'
 
 module Test
