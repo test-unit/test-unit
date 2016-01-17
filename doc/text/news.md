@@ -7,8 +7,8 @@ It's a Rack integration improvement release.
 ### Improvements
 
   * Renamed experimental top-level `run` method to `run_test` method
-  because `run` is conflicted with Rack.
-  [GitHub#32][GitHub:basecamp/pow#303] [Reported by Yevhen Viktorov]
+    because `run` is conflicted with Rack.
+    [GitHub#32][GitHub:basecamp/pow#303] [Reported by Yevhen Viktorov]
 
 ### Thanks
 
