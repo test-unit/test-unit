@@ -8,6 +8,13 @@
 module Test
   module Unit
     class TestSuiteCreator # :nodoc:
+      class << self
+        def test_method?(test_case, method_name)
+          /\Atest./ =~ method_name.to_s or
+            test_case.find_attribute(method_name, :test)
+        end
+      end
+
       def initialize(test_case)
         @test_case = test_case
       end
@@ -48,8 +55,7 @@ module Test
         methods |= @test_case.public_instance_methods(false)
         method_names = methods.collect(&:to_s)
         test_names = method_names.find_all do |method_name|
-          /\Atest./ =~ method_name or
-            @test_case.find_attribute(method_name, :test)
+          self.class.test_method?(@test_case, method_name)
         end
         __send__("sort_test_names_in_#{@test_case.test_order}_order", test_names)
       end

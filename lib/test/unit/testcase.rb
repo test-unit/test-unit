@@ -20,6 +20,7 @@ require 'test/unit/data'
 require 'test/unit/testsuite'
 require 'test/unit/test-suite-creator'
 require 'test/unit/assertion-failed-error'
+require 'test/unit/auto-runner-loader'
 require 'test/unit/util/backtracefilter'
 require 'test/unit/util/output'
 require 'test/unit/util/method-owner-finder'
@@ -104,7 +105,6 @@ module Test
 
       class << self
         def inherited(sub_class) # :nodoc:
-          require "test/unit"
           DESCENDANTS << sub_class
           super
         end
@@ -135,6 +135,7 @@ module Test
             :line => line,
           }
           added_method_names[stringified_name] = true
+          AutoRunnerLoader.check(self, stringified_name)
         end
 
         def added_method_names # :nodoc:
@@ -286,6 +287,9 @@ module Test
           else
             targets = test_description_or_targets
             attribute(:test, true, {}, *targets)
+            targets.each do |target|
+              AutoRunnerLoader.check(self, target)
+            end
           end
         end
 
