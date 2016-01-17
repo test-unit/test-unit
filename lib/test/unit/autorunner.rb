@@ -94,6 +94,7 @@ module Test
           collector.excludes.replace(auto_runner.exclude)
         end
         collector.base = auto_runner.base
+        collector.default_test_paths = auto_runner.default_test_paths
         collector.filter = auto_runner.filters
         collector.collect(*auto_runner.to_run)
       end
@@ -131,7 +132,9 @@ module Test
       end
 
       attr_reader :suite, :runner_options
-      attr_accessor :filters, :to_run, :pattern, :exclude, :base, :workdir
+      attr_accessor :filters, :to_run
+      attr_accessor :default_test_paths
+      attr_accessor :pattern, :exclude, :base, :workdir
       attr_accessor :color_scheme, :listeners
       attr_writer :runner, :collector
 
@@ -141,6 +144,7 @@ module Test
         @collector = default_collector
         @filters = []
         @to_run = []
+        @default_test_paths = []
         @color_scheme = ColorScheme.default
         @runner_options = {}
         @default_arguments = []
@@ -197,6 +201,13 @@ module Test
 
             o.on('-w', '--workdir=DIR', "Working directory to run tests.") do |w|
               @workdir = w
+            end
+
+            o.on('--default-test-path=PATH',
+                 "Add PATH to the default test paths.",
+                 "The PATH is used when user doesn't specify any test path.",
+                 "You can specify this option multiple times.") do |path|
+              @default_test_paths << path
             end
 
             o.on('-a', '--add=TORUN', Array,

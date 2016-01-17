@@ -10,6 +10,7 @@ module Test
         include Collector
 
         attr_reader :patterns, :excludes, :base
+        attr_reader :default_test_paths
 
         def initialize
           super
@@ -18,6 +19,7 @@ module Test
           @patterns = [/\Atest[_\-].+\.rb\z/m, /[_\-]test\.rb\z/]
           @excludes = []
           @base = nil
+          @default_test_paths = []
           @require_failed_infos = []
         end
 
@@ -26,8 +28,15 @@ module Test
           @base = base
         end
 
+        def default_test_paths=(paths)
+          @default_test_paths = paths.collect do |path|
+            Pathname(path)
+          end
+        end
+
         def collect(*froms)
           add_load_path(@base) do
+            froms = @default_test_paths if froms.empty?
             froms = ["."] if froms.empty?
             test_suites = []
             already_gathered = find_test_cases
