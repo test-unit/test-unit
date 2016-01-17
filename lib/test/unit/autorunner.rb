@@ -1,3 +1,5 @@
+require "English"
+
 require 'test/unit/color-scheme'
 require 'test/unit/priority'
 require 'test/unit/attribute-matcher'
@@ -168,7 +170,7 @@ module Test
       def process_args(args=ARGV)
         begin
           args.unshift(*@default_arguments)
-          options.order!(args) {|arg| @to_run << arg}
+          options.order!(args) {|arg| add_test_path(arg)}
         rescue OptionParser::ParseError => e
           puts e
           puts options
@@ -212,8 +214,10 @@ module Test
 
             o.on('-a', '--add=TORUN', Array,
                  "Add TORUN to the list of things to run;",
-                 "can be a file or a directory.") do |a|
-              @to_run.concat(a)
+                 "can be a file or a directory.") do |paths|
+              paths.each do |path|
+                add_test_path(path)
+              end
             end
 
             @pattern = []
@@ -283,11 +287,7 @@ module Test
               path, line, = location.split(/:(\d+)/, 2)
               line = line.to_i unless line.nil?
             end
-            @filters << lambda do |test|
-              test.class.test_defined?(:path => path,
-                                       :line => line,
-                                       :method_name => test.method_name)
-            end
+            add_location_filter(path, line)
           end
 
           o.on('--attribute=EXPRESSION', String,
@@ -485,6 +485,23 @@ module Test
           return true if pattern === test_class.name
         end
         false
+      end
+
+      def add_test_path(path)
+        if /:(\d+)\z/ =~ path
+          line = $1.to_i
+          path = $PREMATCH
+          add_location_filter(path, line)
+        end
+        @to_run << path
+      end
+
+      def add_location_filter(path, line)
+        @filters << lambda do |test|
+          test.class.test_defined?(:path => path,
+                                   :line => line,
+                                   :method_name => test.method_name)
+        end
       end
     end
   end
