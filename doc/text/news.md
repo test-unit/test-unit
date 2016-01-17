@@ -1,5 +1,54 @@
 # News
 
+## 3.1.6 - 2016-01-17 {#version-3-1-6}
+
+It's a Ruby on Rails integration improvement release.
+
+### Improvements
+
+  * Filtered backtrace of power\_assert.
+    [GitHub#114]
+  * Improved performance to retrieve test defined location.
+  * Improved performance to run fixtures in a test.
+  * Supported running a test by `yield` in `setup`:
+
+    Before:
+
+        def setup
+          @file = File.open("x")
+        end
+
+        def teardown
+          @file.close
+        end
+
+    After:
+
+        def setup
+          File.open("x") do |file|
+            @file = file
+            yield
+          end
+        end
+
+  * Added `--default-test-path` option that specifies the default path
+    that has tests.
+  * Made auto runner registration more lazily. Auto runner isn't
+    registered automatically until user defines a test. In the
+    previous releases, auto runner is registered automatically when
+    user defines a test case.
+  * Supported specifying a test by location in command line. For
+    example, the following command line runs a test that is defined in
+    /tmp/test_a.rb at line 10:
+
+        % ruby -r test-unit -e run_test /tmp/test_a.rb:10
+
+### Fixes
+
+  * Fixed a bug that test isn't ran. The test has the same name as
+    data driven test that is defined in parent test case.
+    [GitHub#115]
+
 ## 3.1.5 - 2015-10-09 {#version-3-1-5}
 
 It's a Rack integration improvement release.
