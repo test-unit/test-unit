@@ -1,5 +1,11 @@
 # News
 
+## 3.1.7 - 2016-01-17 {#version-3-1-7}
+
+### Fixes
+
+ * Added a missing require.
+
 ## 3.1.6 - 2016-01-17 {#version-3-1-6}
 
 It's a Ruby on Rails integration improvement release.
