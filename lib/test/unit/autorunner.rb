@@ -1,10 +1,10 @@
 require "English"
 
-require 'test/unit/color-scheme'
-require 'test/unit/priority'
-require 'test/unit/attribute-matcher'
-require 'test/unit/testcase'
-require 'optparse'
+require "test/unit/color-scheme"
+require "test/unit/priority"
+require "test/unit/attribute-matcher"
+require "test/unit/testcase"
+require "optparse"
 
 module Test
   module Unit
@@ -81,14 +81,14 @@ module Test
       end
 
       register_collector(:descendant) do |auto_runner|
-        require 'test/unit/collector/descendant'
+        require "test/unit/collector/descendant"
         collector = Collector::Descendant.new
         collector.filter = auto_runner.filters
-        collector.collect($0.sub(/\.rb\Z/, ''))
+        collector.collect($0.sub(/\.rb\Z/, ""))
       end
 
       register_collector(:load) do |auto_runner|
-        require 'test/unit/collector/load'
+        require "test/unit/collector/load"
         collector = Collector::Load.new
         unless auto_runner.pattern.empty?
           collector.patterns.replace(auto_runner.pattern)
@@ -104,7 +104,7 @@ module Test
 
       # JUST TEST!
       # register_collector(:xml) do |auto_runner|
-      #   require 'test/unit/collector/xml'
+      #   require "test/unit/collector/xml"
       #   collector = Collector::XML.new
       #   collector.filter = auto_runner.filters
       #   collector.collect(auto_runner.to_run[0])
@@ -112,15 +112,15 @@ module Test
 
       # deprecated
       register_collector(:object_space) do |auto_runner|
-        require 'test/unit/collector/objectspace'
+        require "test/unit/collector/objectspace"
         c = Collector::ObjectSpace.new
         c.filter = auto_runner.filters
-        c.collect($0.sub(/\.rb\Z/, ''))
+        c.collect($0.sub(/\.rb\Z/, ""))
       end
 
       # deprecated
       register_collector(:dir) do |auto_runner|
-        require 'test/unit/collector/dir'
+        require "test/unit/collector/dir"
         c = Collector::Dir.new
         c.filter = auto_runner.filters
         unless auto_runner.pattern.empty?
@@ -131,7 +131,7 @@ module Test
         end
         c.base = auto_runner.base
         $:.push(auto_runner.base) if auto_runner.base
-        c.collect(*(auto_runner.to_run.empty? ? ['.'] : auto_runner.to_run))
+        c.collect(*(auto_runner.to_run.empty? ? ["."] : auto_runner.to_run))
       end
 
       attr_reader :suite, :runner_options
@@ -185,35 +185,35 @@ module Test
           o.banner = "Test::Unit automatic runner."
           o.banner << "\nUsage: #{$0} [options] [-- untouched arguments]"
 
-          o.on('-r', '--runner=RUNNER', RUNNERS,
+          o.on("-r", "--runner=RUNNER", RUNNERS,
                "Use the given RUNNER.",
                "(" + keyword_display(RUNNERS) + ")") do |r|
             @runner = r
           end
 
-          o.on('--collector=COLLECTOR', COLLECTORS,
+          o.on("--collector=COLLECTOR", COLLECTORS,
                "Use the given COLLECTOR.",
                "(" + keyword_display(COLLECTORS) + ")") do |collector|
             @collector = collector
           end
 
           if (@standalone)
-            o.on('-b', '--basedir=DIR', "Base directory of test suites.") do |b|
+            o.on("-b", "--basedir=DIR", "Base directory of test suites.") do |b|
               @base = b
             end
 
-            o.on('-w', '--workdir=DIR', "Working directory to run tests.") do |w|
+            o.on("-w", "--workdir=DIR", "Working directory to run tests.") do |w|
               @workdir = w
             end
 
-            o.on('--default-test-path=PATH',
+            o.on("--default-test-path=PATH",
                  "Add PATH to the default test paths.",
                  "The PATH is used when user doesn't specify any test path.",
                  "You can specify this option multiple times.") do |path|
               @default_test_paths << path
             end
 
-            o.on('-a', '--add=TORUN', Array,
+            o.on("-a", "--add=TORUN", Array,
                  "Add TORUN to the list of things to run;",
                  "can be a file or a directory.") do |paths|
               paths.each do |path|
@@ -222,19 +222,19 @@ module Test
             end
 
             @pattern = []
-            o.on('-p', '--pattern=PATTERN', Regexp,
+            o.on("-p", "--pattern=PATTERN", Regexp,
                  "Match files to collect against PATTERN.") do |e|
               @pattern << e
             end
 
             @exclude = []
-            o.on('-x', '--exclude=PATTERN', Regexp,
+            o.on("-x", "--exclude=PATTERN", Regexp,
                  "Ignore files to collect against PATTERN.") do |e|
               @exclude << e
             end
           end
 
-          o.on('-n', '--name=NAME', String,
+          o.on("-n", "--name=NAME", String,
                "Runs tests matching NAME.",
                "Use '/PATTERN/' for NAME to use regular expression.") do |name|
             name = (%r{\A/(.*)/\Z} =~ name ? Regexp.new($1) : name)
@@ -248,7 +248,7 @@ module Test
             end
           end
 
-          o.on('--ignore-name=NAME', String,
+          o.on("--ignore-name=NAME", String,
                "Ignores tests matching NAME.",
                "Use '/PATTERN/' for NAME to use regular expression.") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
@@ -260,7 +260,7 @@ module Test
             end
           end
 
-          o.on('-t', '--testcase=TESTCASE', String,
+          o.on("-t", "--testcase=TESTCASE", String,
                "Runs tests in TestCases matching TESTCASE.",
                "Use '/PATTERN/' for TESTCASE to use regular expression.") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
@@ -269,7 +269,7 @@ module Test
             end
           end
 
-          o.on('--ignore-testcase=TESTCASE', String,
+          o.on("--ignore-testcase=TESTCASE", String,
                "Ignores tests in TestCases matching TESTCASE.",
                "Use '/PATTERN/' for TESTCASE to use regular expression.") do |n|
             n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
@@ -278,7 +278,7 @@ module Test
             end
           end
 
-          o.on('--location=LOCATION', String,
+          o.on("--location=LOCATION", String,
                "Runs tests that defined in LOCATION.",
                "LOCATION is one of PATH:LINE, PATH or LINE") do |location|
             if /\A\d+\z/ =~ location
@@ -291,7 +291,7 @@ module Test
             add_location_filter(path, line)
           end
 
-          o.on('--attribute=EXPRESSION', String,
+          o.on("--attribute=EXPRESSION", String,
                "Runs tests that matches EXPRESSION.",
                "EXPRESSION is evaluated as Ruby's expression.",
                "Test attribute name can be used with no receiver in EXPRESSION.",
@@ -329,7 +329,7 @@ module Test
             Priority.default = priority
           end
 
-          o.on('-I', "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
+          o.on("-I", "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
                "Appends directory list to $LOAD_PATH.") do |dirs|
             $LOAD_PATH.concat(dirs.split(File::PATH_SEPARATOR))
           end
@@ -365,23 +365,23 @@ module Test
             option_builder.call(self, o)
           end
 
-          o.on('--',
+          o.on("--",
                "Stop processing options so that the",
                "remaining options will be passed to the",
                "test."){o.terminate}
 
-          o.on('-h', '--help', 'Display this help.'){puts o; exit}
+          o.on("-h", "--help", "Display this help."){puts o; exit}
 
           o.on_tail
-          o.on_tail('Deprecated options:')
+          o.on_tail("Deprecated options:")
 
-          o.on_tail('--console', 'Console runner (use --runner).') do
+          o.on_tail("--console", "Console runner (use --runner).") do
             warn("Deprecated option (--console).")
             @runner = self.class.runner(:console)
           end
 
           if RUNNERS[:fox]
-            o.on_tail('--fox', 'Fox runner (use --runner).') do
+            o.on_tail("--fox", "Fox runner (use --runner).") do
               warn("Deprecated option (--fox).")
               @runner = self.class.runner(:fox)
             end
@@ -425,7 +425,7 @@ module Test
       end
 
       def load_config(file)
-        require 'yaml'
+        require "yaml"
         config = YAML.load(File.read(file))
         runner_name = config["runner"]
         @runner = self.class.runner(runner_name) || @runner
@@ -508,6 +508,6 @@ module Test
   end
 end
 
-require 'test/unit/runner/console'
-require 'test/unit/runner/emacs'
-require 'test/unit/runner/xml'
+require "test/unit/runner/console"
+require "test/unit/runner/emacs"
+require "test/unit/runner/xml"
