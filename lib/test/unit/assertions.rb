@@ -635,7 +635,6 @@ EOT
               raise
             end
           end
-          nil
         end
       end
 
