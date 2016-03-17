@@ -68,7 +68,10 @@ module Test
                   "Incorrect expected message type in assert_nothing_failed")
           end
         else
-          if return_value_expected
+          case return_value_expected
+          when :dont_care
+            # do nothing
+          when true
             check(!return_value.nil?, "Should return a value")
           else
             check(return_value.nil?,
@@ -812,22 +815,22 @@ EOM
       end
 
       def test_assert_nothing_raised
-        check_nothing_fails {
+        check_nothing_fails(:dont_care) {
           assert_nothing_raised {
             1 + 1
           }
         }
-        check_nothing_fails {
+        check_nothing_fails(:dont_care) {
           assert_nothing_raised("successful assert_nothing_raised") {
             1 + 1
           }
         }
-        check_nothing_fails {
+        check_nothing_fails(:dont_care) {
           assert_nothing_raised("successful assert_nothing_raised") {
             1 + 1
           }
         }
-        check_nothing_fails {
+        check_nothing_fails(:dont_care) {
           begin
             assert_nothing_raised(RuntimeError, StandardError, Comparable, "successful assert_nothing_raised") {
               raise ZeroDivisionError.new("ArgumentError")
