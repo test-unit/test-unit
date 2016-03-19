@@ -4,7 +4,6 @@
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit'
 require 'test/unit/util/observable'
 require 'test/unit/testresult'
 
@@ -37,11 +36,14 @@ module Test
           Test::Unit.run_at_start_hooks
           start_time = Time.now
           begin
-            with_listener(result) do
-              notify_listeners(RESET, @suite.size)
-              notify_listeners(STARTED, result)
+            catch do |stop_tag|
+              result.stop_tag = stop_tag
+              with_listener(result) do
+                notify_listeners(RESET, @suite.size)
+                notify_listeners(STARTED, result)
 
-              run_suite(result)
+                run_suite(result)
+              end
             end
           ensure
             elapsed_time = Time.now - start_time

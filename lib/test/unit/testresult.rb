@@ -38,12 +38,15 @@ module Test
 
       attr_reader :run_count, :pass_count, :assertion_count, :faults
 
+      attr_accessor :stop_tag
+
       # Constructs a new, empty TestResult.
       def initialize
         @run_count, @pass_count, @assertion_count = 0, 0, 0
         @summary_generators = []
         @problem_checkers = []
         @faults = []
+        @stop_tag = nil
         initialize_containers
       end
 
@@ -90,6 +93,10 @@ module Test
         elsif failure_count > 0
           "failure"
         end
+      end
+
+      def stop
+        throw @stop_tag
       end
 
       def to_s
