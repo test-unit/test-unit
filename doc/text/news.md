@@ -1,5 +1,13 @@
 # News
 
+## 3.1.8 - 2016-03-19 {#version-3-1-8}
+
+### Improvements
+
+  * Added `--stop-on-failure` command line option. With this option,
+    running test suite is stopped immediately when one test is failed
+    or an error is raised in one test.
+
 ## 3.1.7 - 2016-01-17 {#version-3-1-7}
 
 ### Fixes
