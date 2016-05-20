@@ -1,5 +1,18 @@
 # News
 
+## 3.1.9 - 2016-05-20 {#version-3-1-9}
+
+### Fixes
+
+  * Fixed conflict with test-unit-power_assert.
+    [GitHub#120][Patch by Kazuki Tsujimoto]
+
+  * Fixed a bug that path in `$LOAD_PATH` may be removed.
+
+### Thanks
+
+  * Kazuki Tsujimoto
+
 ## 3.1.8 - 2016-03-19 {#version-3-1-8}
 
 ### Improvements
