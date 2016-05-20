@@ -131,6 +131,8 @@ module Test
           return yield if path.nil?
 
           path = path.to_s
+          return yield if $LOAD_PATH.index(path)
+
           begin
             $LOAD_PATH.unshift(path)
             yield
