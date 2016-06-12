@@ -491,6 +491,8 @@ module Test
             case ENV["TERM"]
             when /(?:term|screen)(?:-(?:256)?color)?\z/
               true
+            when /\Arxvt/
+              true
             else
               return true if ENV["EMACS"] == "t"
               false
