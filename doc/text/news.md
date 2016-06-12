@@ -1,5 +1,16 @@
 # News
 
+## 3.2.0 - 2016-06-12 {#version-3-2-0}
+
+### Improvements
+
+  * Supported rxvt family terminals as color available terminals.
+    [GitHub#121][Reported by Ippei Kishida]
+
+### Thanks
+
+  * Ippei Kishida
+
 ## 3.1.9 - 2016-05-20 {#version-3-1-9}
 
 ### Fixes
