@@ -61,4 +61,7 @@ version 2 (see the file GPL), or the conditions below:
 Exceptions
 ----------
 
-  * lib/test/unit/diff.rb: PSFL
+  * lib/test/unit/diff.rb: This license, PSF license and/or LGPLv2.1
+    or later
+
+  * lib/test-unit.rb: This license and/or LGPLv2.1 or later

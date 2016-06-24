@@ -3,9 +3,9 @@
 # Copyright (c) 2001-2008 Python Software Foundation; All Rights Reserved
 # Copyright (c) 2008-2011 Kouhei Sutou; All Rights Reserved
 #
-# It is free software, and is distributed under the Ruby
-# license and/or the PSF license. See the COPYING file and
-# PSFL file.
+# It is free software, and is distributed under the Ruby license, the
+# PSF license and/or LGPLv2.1 or later. See the COPYING file, the PSFL
+# file and the LGPL file.
 
 module Test
   module Unit

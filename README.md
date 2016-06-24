@@ -57,8 +57,8 @@ This software is distributed under the same terms as ruby.
 
 Exception:
 
-  * lib/test/unit/diff.rb is a double license of the Ruby license and
-    PSF license.
+  * lib/test/unit/diff.rb is a triple license of the Ruby license,
+    PSF license and LGPLv2.1 or later.
 
   * lib/test-unit.rb is a dual license of the Ruby license and LGPLv2.1
     or later.
