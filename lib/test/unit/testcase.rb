@@ -365,6 +365,11 @@ module Test
         # @option query [String] :method_name (nil)
         #   the method name for a test.
         def test_defined?(query)
+          locations = find_locations(query)
+          not locations.empty?
+        end
+
+        def find_locations(query)
           query_path = query[:path]
           query_line = query[:line]
           query_method_name = query[:method_name]
@@ -377,19 +382,19 @@ module Test
             available_location = available_locations.find do |location|
               query_line >= location[:line]
             end
-            return false if available_location.nil?
-            return false if available_location[:test_case] != self
+            return [] if available_location.nil?
+            return [] if available_location[:test_case] != self
             available_locations = [available_location]
           end
           if query_method_name
             available_location = available_locations.find do |location|
               query_method_name == location[:method_name]
             end
-            return false if available_location.nil?
+            return [] if available_location.nil?
             available_locations = [available_location]
           end
 
-          not available_locations.empty?
+          available_locations
         end
 
         private
@@ -441,9 +446,7 @@ module Test
       def valid? # :nodoc:
         return false unless respond_to?(@method_name)
         test_method = method(@method_name)
-        if @internal_data.have_test_data?
-          return false unless test_method.arity == 1
-        else
+        unless @internal_data.have_test_data?
           return false unless test_method.arity <= 0
         end
         owner = Util::MethodOwnerFinder.find(self, @method_name)
@@ -733,13 +736,24 @@ module Test
       end
 
       def run_test
+        signature = "#{self.class}\##{@method_name}"
         redefined_info = self[:redefined]
         if redefined_info
-          notify("#{self.class}\##{@method_name} was redefined",
+          notify("#{signature} was redefined",
                  :backtrace => redefined_info[:backtrace])
         end
         if @internal_data.have_test_data?
-          __send__(@method_name, @internal_data.test_data)
+          test_method = method(@method_name)
+          if test_method.arity == 1 or test_method.arity < 0
+            __send__(@method_name, @internal_data.test_data)
+          else
+            locations = self.class.find_locations(:method_name => @method_name)
+            backtrace = locations.collect do |location|
+              "#{location[:path]}:#{location[:line]}"
+            end
+            notify("#{signature} misses a parameter to take test data",
+                   :backtrace => backtrace)
+          end
         else
           __send__(@method_name)
         end

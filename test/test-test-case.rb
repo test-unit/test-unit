@@ -543,6 +543,23 @@ module Test
         assert_predicate(test, :valid?)
       end
 
+      def test_data_driven_test_without_parameter
+        test_case = Class.new(TestCase) do
+          data("label" => "value")
+          def test_without_parameter
+          end
+        end
+
+        suite = test_case.suite
+        assert_equal(["test_without_parameter"],
+                     suite.tests.collect {|test| test.method_name})
+        result = TestResult.new
+        suite.run(result) {}
+        assert_equal("1 tests, 0 assertions, 0 failures, " +
+                     "0 errors, 0 pendings, 0 omissions, 1 notifications",
+                     result.summary)
+      end
+
       private
       def check(message, passed)
         add_assertion
