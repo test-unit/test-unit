@@ -1,5 +1,23 @@
 # News
 
+## 3.2.1 - 2016-07-19 {#version-3-2-1}
+
+### Improvements
+
+  * Clarified lib/test/unit/diff.rb license. It's a triple license of
+    the Ruby license, PSF license and LGPLv2.1 or later.
+    [Reported by Luisa Pace]
+
+  * Reported norification when data driven test doesn't have
+    parameter.
+    [GitHub#122][Reported by Satoshi "Moris" Tagomori]
+
+### Thanks
+
+  * Luisa Pace
+
+  * Satoshi "Moris" Tagomori
+
 ## 3.2.0 - 2016-06-12 {#version-3-2-0}
 
 ### Improvements
