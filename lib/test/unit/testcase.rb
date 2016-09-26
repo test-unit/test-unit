@@ -37,49 +37,51 @@ module Test
     # You can run two hooks before/after a TestCase run.
     #
     # Example:
-    #   class TestMyClass < Test::Unit::TestCase
-    #     class << self
-    #       def startup
+    #
+    #     class TestMyClass < Test::Unit::TestCase
+    #       class << self
+    #         def startup
+    #           ...
+    #         end
+    #
+    #         def shutdown
+    #           ...
+    #         end
+    #       end
+    #
+    #       def setup
     #         ...
     #       end
     #
-    #       def shutdown
+    #       def cleanup
+    #         ...
+    #       end
+    #
+    #       def teardown
+    #         ...
+    #       end
+    #
+    #       def test_my_method1
+    #         ...
+    #       end
+    #
+    #       def test_my_method2
     #         ...
     #       end
     #     end
-    #
-    #     def setup
-    #       ...
-    #     end
-    #
-    #     def cleanup
-    #       ...
-    #     end
-    #
-    #     def teardown
-    #       ...
-    #     end
-    #
-    #     def test_my_method1
-    #       ...
-    #     end
-    #
-    #     def test_my_method2
-    #       ...
-    #     end
-    #   end
     #
     # Here is a call order:
-    # * startup
-    # * setup
-    # * test_my_method1
-    # * cleanup
-    # * teardown
-    # * setup
-    # * test_my_method2
-    # * cleanup
-    # * teardown
-    # * shutdown
+    #
+    # 1. startup
+    # 1. setup
+    # 1. test_my_method1
+    # 1. cleanup
+    # 1. teardown
+    # 1. setup
+    # 1. test_my_method2
+    # 1. cleanup
+    # 1. teardown
+    # 1. shutdown
     class TestCase
       include Attribute
       include Fixture
