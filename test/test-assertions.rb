@@ -513,8 +513,7 @@ EOM
         end
 
         message = <<-EOM
-Should expect a class of exception, Object.
-<false> is not true.
+<Object> must be a subclass of Exception, an object of Exception subclasses or a Module.
 EOM
         check_fail(message.chomp) do
           assert_nothing_raised(Object) do
@@ -637,6 +636,21 @@ EOM
             raise "Error"
           end
         end
+      end
+
+      def test_assert_raise_jruby
+        omit("For JRuby") unless Object.const_defined?(:Java)
+
+        exception = Java::JavaLang::StringIndexOutOfBoundsException
+
+        return_value = nil
+        check_nothing_fails(true) do
+          return_value = assert_raise(exception) do
+            Java::JavaLang::String.new("abc").char_at(4)
+          end
+        end
+        check(return_value.instance_of?(exception),
+              "Should have returned #{exception} but was #{return_value.class}")
       end
 
       def test_assert_instance_of
@@ -838,7 +852,10 @@ EOM
           rescue ZeroDivisionError
           end
         }
-        check_fail("Should expect a class of exception, Object.\n<false> is not true.") {
+        expected_message =
+          "<Object> must be a subclass of Exception, " +
+          "an object of Exception subclasses or a Module."
+        check_fail(expected_message) {
           assert_nothing_raised(Object) {
             1 + 1
           }

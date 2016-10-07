@@ -2169,17 +2169,43 @@ EOT
           expected_exceptions.each do |exception_type|
             if exception_type.instance_of?(Module)
               exception_modules << exception_type
-            elsif exception_type.is_a?(Exception)
+            elsif exception_object?(exception_type)
               exception_objects << exception_type
-            else
-              @test_case.__send__(:assert,
-                                  Exception >= exception_type,
-                                  "Should expect a class of exception, " +
-                                  "#{exception_type}")
+            elsif exception_class?(exception_type)
               exception_classes << exception_type
+            else
+              full_message =
+                @test_case.__send__(:build_message,
+                                    nil,
+                                    "<?> must be " +
+                                    "a subclass of Exception, " +
+                                    "an object of Exception subclasses " +
+                                    "or a Module",
+                                    exception_type)
+              @test_case.flunk(full_message)
             end
           end
           [exception_classes, exception_modules, exception_objects]
+        end
+
+        def exception_object?(exception_type)
+          return true if exception_type.is_a?(Exception)
+
+          if Object.const_defined?(:Java)
+            return true if exception_type.is_a?(Java::JavaLang::Throwable)
+          end
+
+          false
+        end
+
+        def exception_class?(exception_type)
+          return true if exception_type <= Exception
+
+          if Object.const_defined?(:Java)
+            return true if exception_type <= Java::JavaLang::Throwable
+          end
+
+          false
         end
 
         def expected_class?(actual_exception, equality)
