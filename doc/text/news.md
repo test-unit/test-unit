@@ -1,5 +1,44 @@
 # News
 
+## 3.2.3 - 2016-11-02 {#version-3-2-2}
+
+### Improvements
+
+  * Improved Travis CI configuration.
+    [GitHub#123][Patch by Ryunosuke SEATO]
+
+  * Supported Java native exception.
+    [GitHub#126][Reported by Bob Saveland]
+
+### Fixes
+
+  * doc: Fixed markup. [GitHub#127][Patch by Tomohiro Hashidate]
+
+  * Fixed a bug that `--location=LINE` may not detect a test when
+    fixtures are defined before any tests:
+
+        1 class MyTestCase < Test::Unit::TestCase
+        2   setup do
+        3   end
+        4
+        5   test "xxx" do
+        6   end
+        7 end
+
+    `--location=5` couldn't find the `xxx` test.
+
+    [Reported by Ryota Sasabe]
+
+### Thanks
+
+  * Ryunosuke Sato
+
+  * Tomohiro Hashidate
+
+  * Bob Saveland
+
+  * Ryota Sasabe
+
 ## 3.2.1 - 2016-07-19 {#version-3-2-1}
 
 ### Improvements
