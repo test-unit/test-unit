@@ -127,6 +127,9 @@ module Test
           if method_name_or_callback.respond_to?(:call)
             callback = method_name_or_callback
             method_name = callback_method_name(callback)
+            @test_case.attribute(:source_location,
+                                 callback.source_location,
+                                 method_name)
             @test_case.__send__(:define_method, method_name, &callback)
           else
             method_name = method_name_or_callback

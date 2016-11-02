@@ -752,6 +752,21 @@ module Test
                              child_test_case.test_defined?(:line => line_child),
                            ])
             end
+
+            def test_with_setup
+              line = nil
+              test_case = Class.new(TestCase) do
+                setup do
+                end
+
+                line = __LINE__; test "with setup" do
+                end
+              end
+              assert do
+                test_case.test_defined?(:line => line,
+                                        :method_name => "test: with setup")
+              end
+            end
           end
         end
 
