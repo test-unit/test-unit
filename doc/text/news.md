@@ -1,5 +1,16 @@
 # News
 
+## 3.2.3 - 2016-11-25 {#version-3-2-3}
+
+### Fixes
+
+  * Fixed a bug that `--order` isn't applied.
+    [GitHub#129][Reported by Vít Ondruch]
+
+### Thanks
+
+  * Vít Ondruch
+
 ## 3.2.2 - 2016-11-02 {#version-3-2-2}
 
 ### Improvements
