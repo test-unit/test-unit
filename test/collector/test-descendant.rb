@@ -31,6 +31,8 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
       super
 
       @test_case1 = Class.new(Test::Unit::TestCase) do
+        self.test_order = :alphabetic
+
         def self.name
           "test-case1"
         end
@@ -43,6 +45,8 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
       end
 
       @test_case2 = Class.new(Test::Unit::TestCase) do
+        self.test_order = :alphabetic
+
         def self.name
           "test-case2"
         end

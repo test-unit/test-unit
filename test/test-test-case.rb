@@ -465,9 +465,6 @@ module Test
           end
         end
 
-        assert_equal(["test_1", "test_a", "test_z"],
-                     test_case.suite.tests.collect {|test| test.method_name})
-
         test_case.test_order = :defined
         assert_equal(["test_z", "test_1", "test_a"],
                      test_case.suite.tests.collect {|test| test.method_name})
@@ -513,6 +510,8 @@ module Test
 
       def test_redefine_method
         test_case = Class.new(Test::Unit::TestCase) do
+          self.test_order = :alphabetic
+
           def test_name
           end
           alias_method :test_name2, :test_name
@@ -1011,6 +1010,8 @@ module Test
 
               @parent_test_case = Class.new(TestCase) do
                 extend CallLogger
+
+                self.test_order = :alphabetic
 
                 class << self
                   def startup

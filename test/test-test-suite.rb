@@ -67,6 +67,7 @@ module Test
 
       def test_run
         progress = []
+        @testcase1.test_order = :alphabetic
         suite = @testcase1.suite
         tests = suite.tests.dup
         result = TestResult.new

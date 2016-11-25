@@ -11,6 +11,7 @@ module Test
       class TC_ObjectSpace < TestCase
         def setup
           @tc1 = Class.new(TestCase) do
+            self.test_order = :alphabetic
             def self.name
               "tc_1"
             end
@@ -21,6 +22,7 @@ module Test
           end
 
           @tc2 = Class.new(TestCase) do
+            self.test_order = :alphabetic
             def self.name
               "tc_2"
             end

@@ -345,6 +345,7 @@ module Test
         def create_test(name)
           t = Class.new(TestCase)
           t.class_eval <<-EOC
+            self.test_order = :alphabetic
             def self.name
               "T\#{#{name}}"
             end

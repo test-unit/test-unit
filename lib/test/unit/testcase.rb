@@ -230,7 +230,11 @@ module Test
         # Returns the current test order. This returns
         # +:alphabetic+ by default.
         def test_order
-          @@test_orders[self] || AVAILABLE_ORDERS.first
+          ancestors.each do |ancestor|
+            order = @@test_orders[ancestor]
+            return order if order
+          end
+          AVAILABLE_ORDERS.first
         end
 
         # Sets the current test order.
