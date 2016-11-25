@@ -16,7 +16,7 @@
 ### Improvements
 
   * Improved Travis CI configuration.
-    [GitHub#123][Patch by Ryunosuke SEATO]
+    [GitHub#123][Patch by Ryunosuke SATO]
 
   * Supported Java native exception.
     [GitHub#126][Reported by Bob Saveland]
