@@ -344,6 +344,9 @@ module Test
         #   created by {sub_test_case} doesn't need to follow the rule.
         #   For example, you can use a space in name such as "child test".
         #
+        # Also, {sub_test_case} can be considered to be a group of actual
+        # test cases. So the method is aliased to {test_group}.
+        #
         # @param name [String] The name of newly created sub test case.
         # @yield
         #   The block is evaluated under the newly created sub test
@@ -360,6 +363,11 @@ module Test
           sub_test_case.class_eval(&block)
           sub_test_case
         end
+
+        # Implying that a test_group forms a group of tests.
+        #
+        # @since 3.2.4
+        alias_method :test_group, :sub_test_case
 
         # Checks whether a test that is matched the query is
         # defined.
