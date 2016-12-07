@@ -77,7 +77,7 @@ Exception:
 
 ### Images
 
-* Mayu & Co.: kinotan icons: http://cocooooooon.com/kinotan/
+* Mayu & Co.: kinotan icons
 
 ## Thanks
 
