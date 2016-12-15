@@ -551,9 +551,9 @@ EOT
       #   o = Object.new
       #   assert_same o, o
       def assert_same(expected, actual, message="")
-        full_message = build_message(message, <<EOT, expected, expected.__id__, actual, actual.__id__)
+        full_message = build_message(message, <<EOT, actual, actual.__id__, expected, expected.__id__)
 <?>
-with id <?> expected to be equal\\? to
+with id <?> was expected to be equal\\? to
 <?>
 with id <?>.
 EOT
