@@ -320,7 +320,7 @@ module Test
         # the same in meaning:
         #
         # Standard:
-        #   class TestParent < Test::UnitTestCase
+        #   class TestParent < Test::Unit::TestCase
         #     class TestChild < self
         #       def test_in_child
         #       end
@@ -328,7 +328,7 @@ module Test
         #   end
         #
         # Syntax sugar:
-        #   class TestParent < Test::UnitTestCase
+        #   class TestParent < Test::Unit::TestCase
         #     sub_test_case("TestChild") do
         #       def test_in_child
         #       end
