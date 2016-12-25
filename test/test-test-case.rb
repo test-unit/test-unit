@@ -1197,6 +1197,80 @@ module Test
             assert_equal([:startup, :shutdown],
                          test_case.called)
           end
+
+          class TestName < self
+            def test_no_data
+              test_case = Class.new(TestCase) do
+                class << self
+                  def name
+                    "TestCase"
+                  end
+                end
+
+                def test_nothing
+                end
+              end
+
+              test = test_case.new("test_nothing")
+              assert_equal("test_nothing(TestCase)",
+                           test.name)
+            end
+
+            def test_data
+              test_case = Class.new(TestCase) do
+                class << self
+                  def name
+                    "TestCase"
+                  end
+                end
+
+                def test_nothing
+                end
+              end
+
+              test = test_case.new("test_nothing")
+              test.assign_test_data("(nil)", nil)
+              assert_equal("test_nothing[(nil)](TestCase)",
+                           test.name)
+            end
+          end
+
+          class TestLocalName < self
+            def test_no_data
+              test_case = Class.new(TestCase) do
+                class << self
+                  def name
+                    "TestCase"
+                  end
+                end
+
+                def test_nothing
+                end
+              end
+
+              test = test_case.new("test_nothing")
+              assert_equal("test_nothing",
+                           test.local_name)
+            end
+
+            def test_data
+              test_case = Class.new(TestCase) do
+                class << self
+                  def name
+                    "TestCase"
+                  end
+                end
+
+                def test_nothing
+                end
+              end
+
+              test = test_case.new("test_nothing")
+              test.assign_test_data("(nil)", nil)
+              assert_equal("test_nothing[(nil)]",
+                           test.local_name)
+            end
+          end
         end
       end
     end

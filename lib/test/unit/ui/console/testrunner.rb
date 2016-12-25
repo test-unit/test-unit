@@ -342,7 +342,7 @@ module Test
           def test_started(test)
             return unless output?(VERBOSE)
 
-            name = test.name.sub(/\(.+?\)\z/, '')
+            name = test.local_name
             right_space = 8 * 2
             left_space = @progress_row_max - right_space
             left_space = left_space - indent.size - name.size

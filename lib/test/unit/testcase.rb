@@ -661,10 +661,19 @@ module Test
       # Returns a human-readable name for the specific test that
       # this instance of TestCase represents.
       def name
+        "#{local_name}(#{self.class.name})"
+      end
+
+      # Returns a human-readable name for the specific test that this
+      # instance of TestCase represents.
+      #
+      # `#local_name` doesn't include class name. `#name` includes
+      # class name.
+      def local_name
         if @internal_data.have_test_data?
-          "#{@method_name}[#{data_label}](#{self.class.name})"
+          "#{@method_name}[#{data_label}]"
         else
-          "#{@method_name}(#{self.class.name})"
+          @method_name.to_s
         end
       end
 
