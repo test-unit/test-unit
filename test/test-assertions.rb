@@ -820,10 +820,10 @@ EOM
           assert_same(thing, thing, "successful assert_same")
         }
         thing2 = "thing"
-        check_fail(%Q{<"thing">\nwith id <#{thing.__id__}> expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
+        check_fail(%Q{<"thing">\nwith id <#{thing2.__id__}> was expected to be equal? to\n<"thing">\nwith id <#{thing.__id__}>.}) {
           assert_same(thing, thing2)
         }
-        check_fail(%Q{failed assert_same.\n<"thing">\nwith id <#{thing.__id__}> expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
+        check_fail(%Q{failed assert_same.\n<"thing">\nwith id <#{thing2.__id__}> was expected to be equal? to\n<"thing">\nwith id <#{thing.__id__}>.}) {
           assert_same(thing, thing2, "failed assert_same")
         }
       end
