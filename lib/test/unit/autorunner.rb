@@ -246,7 +246,7 @@ module Test
             name = (%r{\A/(.*)/\Z} =~ name ? Regexp.new($1) : name)
             @filters << lambda do |test|
               return true if name === test.method_name
-              test_name_without_class_name = test.name.gsub(/\(.+?\)\z/, "")
+              test_name_without_class_name = test.name.gsub(/\([^\(]+\)\z/, "")
               if test_name_without_class_name != test.method_name
                 return true if name === test_name_without_class_name
               end
