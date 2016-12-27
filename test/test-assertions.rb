@@ -495,7 +495,7 @@ EOM
       end
 
       def test_assert_raise_fail
-        check_fail("<RuntimeError> exception expected but none was thrown.") do
+        check_fail("<RuntimeError> exception was expected but none was thrown.") do
           assert_raise(RuntimeError) do
             1 + 1
           end
@@ -556,7 +556,7 @@ EOM
         end
 
         check_fail("<[ArgumentError, TypeError, Math, Comparable]> exception " +
-                    "expected but none was thrown.") do
+                    "was expected but none was thrown.") do
           assert_raise(*rescues) do
             1 + 1
           end
@@ -663,20 +663,20 @@ EOM
         check_nothing_fails {
           assert_instance_of(String, "string", "successful assert_instance_of")
         }
-        check_fail(%Q{<"string"> expected to be instance_of?\n<Hash> but was\n<String>.}) {
+        check_fail(%Q{<"string"> was expected to be instance_of?\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string")
         }
-        check_fail(%Q{failed assert_instance_of.\n<"string"> expected to be instance_of?\n<Hash> but was\n<String>.}) {
+        check_fail(%Q{failed assert_instance_of.\n<"string"> was expected to be instance_of?\n<Hash> but was\n<String>.}) {
           assert_instance_of(Hash, "string", "failed assert_instance_of")
         }
 
         check_nothing_fails do
           assert_instance_of([Fixnum, NilClass], 100)
         end
-        check_fail(%Q{<"string"> expected to be instance_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+        check_fail(%Q{<"string"> was expected to be instance_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_instance_of([Fixnum, NilClass], "string")
         end
-        check_fail(%Q{<100> expected to be instance_of?\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
+        check_fail(%Q{<100> was expected to be instance_of?\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
           assert_instance_of([Numeric, NilClass], 100)
         end
       end
@@ -688,20 +688,20 @@ EOM
         check_nothing_fails {
           assert_not_instance_of(NilClass, "string", "successful assert_instance_of")
         }
-        check_fail(%Q{<"string"> expected to not be instance_of?\n<String> but was.}) {
+        check_fail(%Q{<"string"> was expected to not be instance_of?\n<String> but was.}) {
           assert_not_instance_of(String, "string")
         }
-        check_fail(%Q{failed assert.\n<"string"> expected to not be instance_of?\n<String> but was.}) {
+        check_fail(%Q{failed assert.\n<"string"> was expected to not be instance_of?\n<String> but was.}) {
           assert_not_instance_of(String, "string", "failed assert")
         }
 
         check_nothing_fails do
           assert_not_instance_of([Numeric, NilClass], 100)
         end
-        check_fail(%Q{<100> expected to not be instance_of?\n[<Fixnum>, <NilClass>] but was.}) do
+        check_fail(%Q{<100> was expected to not be instance_of?\n[<Fixnum>, <NilClass>] but was.}) do
           assert_not_instance_of([Fixnum, NilClass], 100)
         end
-        check_fail(%Q{<"str"> expected to not be instance_of?\n[<Numeric>, <String>] but was.}) do
+        check_fail(%Q{<"str"> was expected to not be instance_of?\n[<Numeric>, <String>] but was.}) do
           assert_not_instance_of([Numeric, String], 'str')
         end
       end
@@ -716,10 +716,10 @@ EOM
         check_nothing_fails {
           assert_nil(nil, "successful assert_nil")
         }
-        check_fail(%Q{<"string"> expected to be nil.}) {
+        check_fail(%Q{<"string"> was expected to be nil.}) {
           assert_nil("string")
         }
-        check_fail(%Q{failed assert_nil.\n<"string"> expected to be nil.}) {
+        check_fail(%Q{failed assert_nil.\n<"string"> was expected to be nil.}) {
           assert_nil("string", "failed assert_nil")
         }
       end
@@ -727,8 +727,8 @@ EOM
       def test_assert_not_nil
         check_nothing_fails{assert_not_nil(false)}
         check_nothing_fails{assert_not_nil(false, "message")}
-        check_fail("<nil> expected to not be nil."){assert_not_nil(nil)}
-        check_fail("message.\n<nil> expected to not be nil.") {assert_not_nil(nil, "message")}
+        check_fail("<nil> was expected to not be nil."){assert_not_nil(nil)}
+        check_fail("message.\n<nil> was expected to not be nil.") {assert_not_nil(nil, "message")}
       end
 
       def test_assert_kind_of
@@ -744,17 +744,17 @@ EOM
         check_nothing_fails {
           assert_kind_of(Comparable, 1)
         }
-        check_fail(%Q{<"string"> expected to be kind_of?\n<Class> but was\n<String>.}) {
+        check_fail(%Q{<"string"> was expected to be kind_of?\n<Class> but was\n<String>.}) {
           assert_kind_of(Class, "string")
         }
-        check_fail(%Q{failed assert_kind_of.\n<"string"> expected to be kind_of?\n<Class> but was\n<String>.}) {
+        check_fail(%Q{failed assert_kind_of.\n<"string"> was expected to be kind_of?\n<Class> but was\n<String>.}) {
           assert_kind_of(Class, "string", "failed assert_kind_of")
         }
 
         check_nothing_fails do
           assert_kind_of([Fixnum, NilClass], 100)
         end
-        check_fail(%Q{<"string"> expected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
+        check_fail(%Q{<"string"> was expected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
           assert_kind_of([Fixnum, NilClass], "string")
         end
       end
@@ -769,17 +769,17 @@ EOM
         check_nothing_fails {
           assert_not_kind_of(Integer, 1.1)
         }
-        check_fail(%Q{<1> expected to not be kind_of?\n<Integer> but was.}) {
+        check_fail(%Q{<1> was expected to not be kind_of?\n<Integer> but was.}) {
           assert_not_kind_of(Integer, 1)
         }
-        check_fail(%Q{failed assert_not_kind_of.\n<"string"> expected to not be kind_of?\n<String> but was.}) {
+        check_fail(%Q{failed assert_not_kind_of.\n<"string"> was expected to not be kind_of?\n<String> but was.}) {
           assert_not_kind_of(String, "string", "failed assert_not_kind_of")
         }
 
         check_nothing_fails do
           assert_not_kind_of([String, NilClass], 100)
         end
-        check_fail(%Q{<100> expected to not be kind_of?\n[<Fixnum>, <NilClass>] but was.}) do
+        check_fail(%Q{<100> was expected to not be kind_of?\n[<Fixnum>, <NilClass>] but was.}) do
           assert_not_kind_of([Fixnum, NilClass], 100)
         end
       end
@@ -797,13 +797,13 @@ EOM
         check_nothing_fails {
           assert_match(/strin./, "string", "successful assert_match")
         }
-        check_fail(%Q{</slin./> expected to be =~\n<"string">.}) {
+        check_fail(%Q{</slin./> was expected to be =~\n<"string">.}) {
           assert_match(/slin./, "string")
         }
-        check_fail(%Q{</strin\\./> expected to be =~\n<"string">.}) {
+        check_fail(%Q{</strin\\./> was expected to be =~\n<"string">.}) {
           assert_match("strin.", "string")
         }
-        check_fail(%Q{failed assert_match.\n</slin./> expected to be =~\n<"string">.}) {
+        check_fail(%Q{failed assert_match.\n</slin./> was expected to be =~\n<"string">.}) {
           assert_match(/slin./, "string", "failed assert_match")
         }
       end
@@ -820,10 +820,10 @@ EOM
           assert_same(thing, thing, "successful assert_same")
         }
         thing2 = "thing"
-        check_fail(%Q{<"thing">\nwith id <#{thing.__id__}> expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
+        check_fail(%Q{<"thing">\nwith id <#{thing.__id__}> was expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
           assert_same(thing, thing2)
         }
-        check_fail(%Q{failed assert_same.\n<"thing">\nwith id <#{thing.__id__}> expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
+        check_fail(%Q{failed assert_same.\n<"thing">\nwith id <#{thing.__id__}> was expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
           assert_same(thing, thing2, "failed assert_same")
         }
       end
@@ -913,10 +913,10 @@ EOM
         check_nothing_fails {
           assert_not_same(thing, thing2, "message")
         }
-        check_fail(%Q{<"thing">\nwith id <#{thing.__id__}> expected to not be equal? to\n<"thing">\nwith id <#{thing.__id__}>.}) {
+        check_fail(%Q{<"thing">\nwith id <#{thing.__id__}> was expected to not be equal? to\n<"thing">\nwith id <#{thing.__id__}>.}) {
           assert_not_same(thing, thing)
         }
-        check_fail(%Q{message.\n<"thing">\nwith id <#{thing.__id__}> expected to not be equal? to\n<"thing">\nwith id <#{thing.__id__}>.}) {
+        check_fail(%Q{message.\n<"thing">\nwith id <#{thing.__id__}> was expected to not be equal? to\n<"thing">\nwith id <#{thing.__id__}>.}) {
           assert_not_same(thing, thing, "message")
         }
       end
@@ -928,10 +928,10 @@ EOM
         check_nothing_fails {
           assert_not_equal("string1", "string2", "message")
         }
-        check_fail(%Q{<"string"> expected to be != to\n<"string">.}) {
+        check_fail(%Q{<"string"> was expected to be != to\n<"string">.}) {
           assert_not_equal("string", "string")
         }
-        check_fail(%Q{message.\n<"string"> expected to be != to\n<"string">.}) {
+        check_fail(%Q{message.\n<"string"> was expected to be != to\n<"string">.}) {
           assert_not_equal("string", "string", "message")
         }
       end
@@ -951,7 +951,7 @@ EOM
       def test_assert_not_match_fail_not_regexp
         check_fail("<REGEXP> in assert_not_match(<REGEXP>, ...) " +
                     "should be a Regexp.\n" +
-                    "<\"asdf\"> expected to be instance_of?\n" +
+                    "<\"asdf\"> was expected to be instance_of?\n" +
                     "<Regexp> but was\n" +
                     "<String>.") do
           assert_not_match("asdf", "asdf")
@@ -959,7 +959,7 @@ EOM
       end
 
       def test_assert_not_match_fail_match
-        check_fail("</string/> expected to not match\n" +
+        check_fail("</string/> was expected to not match\n" +
                     "<\"string\">.") do
           assert_not_match(/string/, "string")
         end
@@ -967,7 +967,7 @@ EOM
 
       def test_assert_not_match_fail_match_with_message
         check_fail("message.\n" +
-                    "</string/> expected to not match\n" +
+                    "</string/> was expected to not match\n" +
                     "<\"string\">.") do
           assert_not_match(/string/, "string", "message")
         end
@@ -976,13 +976,13 @@ EOM
       def test_assert_no_match
         check_nothing_fails{assert_no_match(/sling/, "string")}
         check_nothing_fails{assert_no_match(/sling/, "string", "message")}
-        check_fail(%Q{The first argument to assert_no_match should be a Regexp.\n<"asdf"> expected to be instance_of?\n<Regexp> but was\n<String>.}) do
+        check_fail(%Q{The first argument to assert_no_match should be a Regexp.\n<"asdf"> was expected to be instance_of?\n<Regexp> but was\n<String>.}) do
           assert_no_match("asdf", "asdf")
         end
-        check_fail(%Q{</string/> expected to not match\n<"string">.}) do
+        check_fail(%Q{</string/> was expected to not match\n<"string">.}) do
           assert_no_match(/string/, "string")
         end
-        check_fail(%Q{message.\n</string/> expected to not match\n<"string">.}) do
+        check_fail(%Q{message.\n</string/> was expected to not match\n<"string">.}) do
           assert_no_match(/string/, "string", "message")
         end
       end
@@ -996,7 +996,7 @@ EOM
 
         tag = :thing2
         check_fail("message.\n" +
-                    "<:thing> expected to be thrown but\n" +
+                    "<:thing> was expected to be thrown but\n" +
                     "<#{inspect_tag(tag)}> was thrown.") do
           assert_throw(:thing, "message") do
             throw :thing2
@@ -1034,7 +1034,7 @@ EOM
         check_fail(%Q{<0.15>\ngiven as the operator for #assert_operator must be a Symbol or #respond_to?(:to_str).}) do
           assert_operator("thing", 0.15, "thing")
         end
-        check_fail(%Q{message.\n<"thing1"> expected to be\n==\n<"thing2">.}) {
+        check_fail(%Q{message.\n<"thing1"> was expected to be\n==\n<"thing2">.}) {
           assert_operator("thing1", :==, "thing2", "message")
         }
       end
@@ -1046,7 +1046,7 @@ EOM
         check_fail(%Q{<42>\ngiven as the operator for #assert_not_operator must be a Symbol or #respond_to?(:to_str).}) do
           assert_not_operator("thing", 42, "message")
         end
-        check_fail(%Q{message.\n<0> expected to not be\n==\n<0.0>.}) {
+        check_fail(%Q{message.\n<0> was expected to not be\n==\n<0.0>.}) {
           assert_not_operator(0, :==, 0.0, "message")
         }
       end
@@ -1111,7 +1111,7 @@ EOM
         inspected_object = AssertionMessage.convert(object)
         expected_message = <<-EOM
 message.
-<#{inspected_object}> expected to respond to
+<#{inspected_object}> was expected to respond to
 <return_argument(*[false, "bogus"])> with a true value but was
 <false>.
 EOM
@@ -1210,7 +1210,7 @@ EOM
 
         expected_message = <<-EOM
 <15> < <10> should be true
-<15> expected less than
+<15> was expected to be less than
 <10>.
 EOM
         check_fail(expected_message.chomp) do
@@ -1219,7 +1219,7 @@ EOM
 
         expected_message = <<-EOM
 <15> <= <10> should be true
-<15> expected less than or equal to
+<15> was expected to be less than or equal to
 <10>.
 EOM
         check_fail(expected_message.chomp) do
@@ -1228,7 +1228,7 @@ EOM
 
         expected_message = <<-EOM
 <10> > <15> should be true
-<10> expected greater than
+<10> was expected to be greater than
 <15>.
 EOM
         check_fail(expected_message.chomp) do
@@ -1237,7 +1237,7 @@ EOM
 
         expected_message = <<-EOM
 <10> >= <15> should be true
-<10> expected greater than or equal to
+<10> was expected to be greater than or equal to
 <15>.
 EOM
         check_fail(expected_message.chomp) do
@@ -1288,7 +1288,7 @@ EOM
         end
 
         expected_message = <<-EOM
-<"Expected message"> exception message expected but none was thrown.
+<"Expected message"> exception message was expected but none was thrown.
 EOM
         check_fail(expected_message.chomp) do
           assert_raise_message("Expected message") do
@@ -1414,7 +1414,7 @@ EOM
         end
 
         nonexistent_file = __FILE__ + ".nonexistent"
-        check_fail("<#{nonexistent_file.inspect}> expected to exist") do
+        check_fail("<#{nonexistent_file.inspect}> was expected to exist") do
           assert_path_exist(nonexistent_file)
         end
       end
@@ -1425,7 +1425,7 @@ EOM
           assert_path_not_exist(nonexistent_file)
         end
 
-        check_fail("<#{__FILE__.inspect}> expected to not exist") do
+        check_fail("<#{__FILE__.inspect}> was expected to not exist") do
           assert_path_not_exist(__FILE__)
         end
       end
@@ -1635,7 +1635,7 @@ MESSAGE
 
       def test_fail_with_message
         check_fail("message.\n" +
-                    "<0.5> -/+ <0.05> expected to include\n" +
+                    "<0.5> -/+ <0.05> was expected to include\n" +
                     "<0.4>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1657,13 +1657,13 @@ MESSAGE
 
       def test_fail_because_negaitve_delta
         check_fail("The delta should not be negative.\n" +
-                    "<-0.1> expected to be\n>=\n<0.0>.") do
+                    "<-0.1> was expected to be\n>=\n<0.0>.") do
           assert_in_delta(0.5, 0.4, -0.1, "message")
         end
       end
 
       def test_fail_without_delta
-        check_fail("<1.402> -/+ <0.001> expected to include\n" +
+        check_fail("<1.402> -/+ <0.001> was expected to include\n" +
                     "<1.404>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1715,7 +1715,7 @@ MESSAGE
       end
 
       def test_fail
-        check_fail("<1.4> -/+ <0.11> expected to not include\n" +
+        check_fail("<1.4> -/+ <0.11> was expected to not include\n" +
                     "<1.5>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1729,7 +1729,7 @@ MESSAGE
       end
 
       def test_fail_without_delta
-        check_fail("<1.402> -/+ <0.001> expected to not include\n" +
+        check_fail("<1.402> -/+ <0.001> was expected to not include\n" +
                     "<1.4021>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1744,7 +1744,7 @@ MESSAGE
 
       def test_fail_with_message
         check_fail("message.\n" +
-                    "<0.5> -/+ <0.11> expected to not include\n" +
+                    "<0.5> -/+ <0.11> was expected to not include\n" +
                     "<0.4>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1770,7 +1770,7 @@ MESSAGE
 
       def test_fail_because_negaitve_delta
         check_fail("The delta should not be negative.\n" +
-                    "<-0.11> expected to be\n>=\n<0.0>.") do
+                    "<-0.11> was expected to be\n>=\n<0.0>.") do
           assert_not_in_delta(0.5, 0.4, -0.11, "message")
         end
       end
@@ -1828,7 +1828,7 @@ MESSAGE
       def test_fail_with_message
         check_fail("message.\n" +
                     "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
-                    "expected to include\n" +
+                    "was expected to include\n" +
                     "<8999>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1854,14 +1854,14 @@ MESSAGE
 
       def test_fail_because_negaitve_epsilon
         check_fail("The epsilon should not be negative.\n" +
-                    "<-0.1> expected to be\n>=\n<0.0>.") do
+                    "<-0.1> was expected to be\n>=\n<0.0>.") do
           assert_in_epsilon(10000, 9000, -0.1, "message")
         end
       end
 
       def test_fail_without_epsilon
         check_fail("<10000> -/+ (<10000> * <0.001>)[10.0] " +
-                    "expected to include\n" +
+                    "was expected to include\n" +
                     "<10011>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1914,7 +1914,7 @@ MESSAGE
 
       def test_fail
         check_fail("<10000> -/+ (<10000> * <0.1>)[1000.0] " +
-                    "expected to not include\n" +
+                    "was expected to not include\n" +
                     "<9000>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1929,7 +1929,7 @@ MESSAGE
 
       def test_fail_without_epsilon
         check_fail("<10000> -/+ (<10000> * <0.001>)[10.0] " +
-                    "expected to not include\n" +
+                    "was expected to not include\n" +
                     "<9990>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1945,7 +1945,7 @@ MESSAGE
       def test_fail_with_message
         check_fail("message.\n" +
                     "<10000> -/+ (<10000> * <0.1>)[1000.0] " +
-                    "expected to not include\n" +
+                    "was expected to not include\n" +
                     "<9000>.\n" +
                     "\n" +
                     "Relation:\n" +
@@ -1971,7 +1971,7 @@ MESSAGE
 
       def test_fail_because_negaitve_epsilon
         check_fail("The epsilon should not be negative.\n" +
-                    "<-0.1> expected to be\n>=\n<0.0>.") do
+                    "<-0.1> was expected to be\n>=\n<0.0>.") do
           assert_not_in_epsilon(10000, 9000, -0.1, "message")
         end
       end
@@ -1993,7 +1993,7 @@ MESSAGE
       end
 
       def test_fail
-        check_fail("<[1, 2, 3]> expected to include\n" +
+        check_fail("<[1, 2, 3]> was expected to include\n" +
                     "<4>.") do
           assert_include([1, 2, 3], 4)
         end
@@ -2001,7 +2001,7 @@ MESSAGE
 
       def test_fail_with_message
         check_fail("message.\n" +
-                    "<[1, 2, 3]> expected to include\n" +
+                    "<[1, 2, 3]> was expected to include\n" +
                     "<4>.") do
           assert_include([1, 2, 3], 4, "message")
         end
@@ -2034,7 +2034,7 @@ MESSAGE
       end
 
       def test_fail
-        check_fail("<[1, 2, 3]> expected to not include\n" +
+        check_fail("<[1, 2, 3]> was expected to not include\n" +
                     "<2>.") do
           assert_not_include([1, 2, 3], 2)
         end
@@ -2042,7 +2042,7 @@ MESSAGE
 
       def test_fail_with_message
         check_fail("message.\n" +
-                    "<[1, 2, 3]> expected to not include\n" +
+                    "<[1, 2, 3]> was expected to not include\n" +
                     "<2>.") do
           assert_not_include([1, 2, 3], 2, "message")
         end
@@ -2075,14 +2075,14 @@ MESSAGE
       end
 
       def test_fail
-        check_fail("<[1]> expected to be empty.") do
+        check_fail("<[1]> was expected to be empty.") do
           assert_empty([1])
         end
       end
 
       def test_fail_with_message
         check_fail("message.\n" +
-                    "<[1]> expected to be empty.") do
+                    "<[1]> was expected to be empty.") do
           assert_empty([1], "message")
         end
       end
@@ -2114,14 +2114,14 @@ MESSAGE
       end
 
       def test_fail
-        check_fail("<[]> expected to not be empty.") do
+        check_fail("<[]> was expected to not be empty.") do
           assert_not_empty([])
         end
       end
 
       def test_fail_with_message
         check_fail("message.\n" +
-                    "<[]> expected to not be empty.") do
+                    "<[]> was expected to not be empty.") do
           assert_not_empty([], "message")
         end
       end
@@ -2149,7 +2149,7 @@ MESSAGE
       def test_fail
         expected_message = <<-EOM
 message.
-<[1, 2]> expected to respond to
+<[1, 2]> was expected to respond to
 <member?(*[2])> with not a true value but was
 <true>.
 EOM
