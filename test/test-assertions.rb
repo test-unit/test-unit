@@ -301,8 +301,8 @@ EOM
 
           def test_multi_lines_result
             message = <<-EOM.chomp
-<#{"a\nb".inspect}> expected but was
-<#{"x".inspect}>.
+<#{AssertionMessage.convert("a\nb")}> expected but was
+<#{AssertionMessage.convert("x")}>.
 
 diff:
 + x
@@ -316,8 +316,8 @@ EOM
 
           def test_large_string
             message = <<-EOM.chomp
-<#{("a\n" + "x" * 997).inspect}> expected but was
-<#{"x".inspect}>.
+<#{AssertionMessage.convert("a\n" + "x" * 997)}> expected but was
+<#{AssertionMessage.convert("x")}>.
 
 diff:
 + x
@@ -335,8 +335,8 @@ EOM
             end
 
             message = <<-EOM.chomp
-<#{("a\n" + "x" * 998).inspect}> expected but was
-<#{"x".inspect}>.
+<#{AssertionMessage.convert("a\n" + "x" * 998)}> expected but was
+<#{AssertionMessage.convert("x")}>.
 EOM
             check_fail(message) do
               assert_equal("a\n" + "x" * 998, "x")
@@ -349,8 +349,8 @@ EOM
             ENV[key] = "100"
             begin
               message = <<-EOM.chomp
-<#{("a\n" + "x" * 97).inspect}> expected but was
-<#{"x".inspect}>.
+<#{AssertionMessage.convert("a\n" + "x" * 97)}> expected but was
+<#{AssertionMessage.convert("x")}>.
 
 diff:
 + x
@@ -368,8 +368,8 @@ EOM
               end
 
               message = <<-EOM.chomp
-<#{("a\n" + "x" * 98).inspect}> expected but was
-<#{"x".inspect}>.
+<#{AssertionMessage.convert("a\n" + "x" * 98)}> expected but was
+<#{AssertionMessage.convert("x")}>.
 EOM
               check_fail(message) do
                 assert_equal("a\n" + "x" * 98, "x")
