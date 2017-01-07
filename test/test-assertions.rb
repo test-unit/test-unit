@@ -671,13 +671,13 @@ EOM
         }
 
         check_nothing_fails do
-          assert_instance_of([Fixnum, NilClass], 100)
+          assert_instance_of([Class, NilClass], Array)
         end
-        check_fail(%Q{<"string"> was expected to be instance_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
-          assert_instance_of([Fixnum, NilClass], "string")
+        check_fail(%Q{<"string"> was expected to be instance_of?\n[<Class>, <NilClass>] but was\n<String>.}) do
+          assert_instance_of([Class, NilClass], "string")
         end
-        check_fail(%Q{<100> was expected to be instance_of?\n[<Numeric>, <NilClass>] but was\n<Fixnum>.}) do
-          assert_instance_of([Numeric, NilClass], 100)
+        check_fail(%Q{<Array> was expected to be instance_of?\n[<Module>, <NilClass>] but was\n<Class>.}) do
+          assert_instance_of([Module, NilClass], Array)
         end
       end
 
@@ -696,10 +696,10 @@ EOM
         }
 
         check_nothing_fails do
-          assert_not_instance_of([Numeric, NilClass], 100)
+          assert_not_instance_of([Module, NilClass], Array)
         end
-        check_fail(%Q{<100> was expected to not be instance_of?\n[<Fixnum>, <NilClass>] but was.}) do
-          assert_not_instance_of([Fixnum, NilClass], 100)
+        check_fail(%Q{<Array> was expected to not be instance_of?\n[<Class>, <NilClass>] but was.}) do
+          assert_not_instance_of([Class, NilClass], Array)
         end
         check_fail(%Q{<"str"> was expected to not be instance_of?\n[<Numeric>, <String>] but was.}) do
           assert_not_instance_of([Numeric, String], 'str')
@@ -752,10 +752,10 @@ EOM
         }
 
         check_nothing_fails do
-          assert_kind_of([Fixnum, NilClass], 100)
+          assert_kind_of([Class, NilClass], Array)
         end
-        check_fail(%Q{<"string"> was expected to be kind_of?\n[<Fixnum>, <NilClass>] but was\n<String>.}) do
-          assert_kind_of([Fixnum, NilClass], "string")
+        check_fail(%Q{<"string"> was expected to be kind_of?\n[<Class>, <NilClass>] but was\n<String>.}) do
+          assert_kind_of([Class, NilClass], "string")
         end
       end
 
@@ -779,8 +779,8 @@ EOM
         check_nothing_fails do
           assert_not_kind_of([String, NilClass], 100)
         end
-        check_fail(%Q{<100> was expected to not be kind_of?\n[<Fixnum>, <NilClass>] but was.}) do
-          assert_not_kind_of([Fixnum, NilClass], 100)
+        check_fail(%Q{<Array> was expected to not be kind_of?\n[<Class>, <NilClass>] but was.}) do
+          assert_not_kind_of([Class, NilClass], Array)
         end
       end
 
