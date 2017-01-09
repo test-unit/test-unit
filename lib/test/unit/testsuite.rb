@@ -121,6 +121,7 @@ module Test
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
+        return unless test.respond_to?(:run) # missing from some irrelevant things in ActiveSupport v2
         test.run(result) do |event_name, *args|
           case previous_event_name
           when Test::Unit::TestCase::STARTED
