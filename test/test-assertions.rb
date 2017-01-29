@@ -1521,15 +1521,18 @@ EOM
       class TestBlock < self
         def test_with_message
           if defined?(PowerAssert)
-            system_message = <<-MESSAGE
-              1 == 2
+            system_message = <<-MESSAGE.chomp
+              1.to_s == "2"
+                |    |
+                |    false
+                "1"
 MESSAGE
           else
             system_message = "<false> is not true."
           end
           check_fail("user message.\n#{system_message}") do
             assert("user message") do
-              1 == 2
+              1.to_s == "2"
             end
           end
         end
