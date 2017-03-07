@@ -573,7 +573,7 @@ It's a release for minitest compatibility and bug fix.
 
   * Allowed use of test for inheritance in ActionController::TestCase.
     [GitHub#42] [Patch by David Rasch]
-  * Ensured evaluating at_axit block in top level.
+  * Ensured evaluating at_exit block in top level.
     In IRB context, exit() specifies irb_exit().
     [test-unit-users-en:00089] [Reported by Daniel Berger]
   * Fixed a bug that decoration style description is ignored.
