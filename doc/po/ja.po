@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: test-unit 2.3.1\n"
-"PO-Revision-Date: 2014-08-05 22:04+0900\n"
+"PO-Revision-Date: 2017-03-31 17:05+0900\n"
 "Last-Translator: Kouhei Sutou <kou@cozmixng.org>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -185,17 +185,12 @@ msgstr ""
 "* 最初にgemの雛形を生成する`bundler`をインストールします。\n"
 "* 次に、`test-unit`をインストールします。"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~text\n"
 "gem install bundler\n"
 "gem install test-unit\n"
 "~~~"
 msgstr ""
-"~~~\n"
-"gem install bundler\n"
-"gem install test-unit\n"
-"~~~"
 
 msgid ""
 "The `gem list` command output installed packages.\n"
@@ -204,9 +199,8 @@ msgstr ""
 "`gem list`コマンドでインストールしたパッケージを確認します。\n"
 "インストールが成功すると、次のような行が出力されます。"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~text\n"
 "gem list\n"
 "...\n"
 "bundler (1.14.6)\n"
@@ -214,13 +208,6 @@ msgid ""
 "test-unit (3.2.3)\n"
 "~~~"
 msgstr ""
-"~~~\n"
-"gem list\n"
-"...\n"
-"bundler (1.14.6)\n"
-"...\n"
-"test-unit (3.2.3)\n"
-"~~~"
 
 msgid "## 3. Create gem template."
 msgstr "## 3. gemテンプレートの作成"
@@ -247,7 +234,7 @@ msgid "The `bundle gem -t minitest sample` command will generate the following f
 msgstr "`bundle gem -t minitest sample`を実行すると次のファイルを生成します。"
 
 msgid ""
-"~~~\n"
+"~~~text\n"
 ".\n"
 "|-- Gemfile\n"
 "|-- README.md\n"
@@ -265,7 +252,7 @@ msgid ""
 "    `-- test_helper.rb # <- Modify\n"
 "~~~"
 msgstr ""
-"~~~\n"
+"~~~text\n"
 ".\n"
 "|-- Gemfile\n"
 "|-- README.md\n"
@@ -299,29 +286,20 @@ msgstr ""
 msgid "Before"
 msgstr "修正前"
 
-#, fuzzy
 msgid ""
-"~~~\n"
-"  spec.add_development_dependency \"minitest\", \"~> 5.0\"\n"
+"~~~ruby\n"
+"  spec.add_development_dependency \"minitest\", \"~> 5.0\"\n"
 "~~~"
 msgstr ""
-"修正前\n"
-"~~~\n"
-"  spec.add_development_dependency \"minitest\", \"~> 5.0\"\n"
-"~~~"
 
 msgid "After"
 msgstr "修正後"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~ruby\n"
 "  spec.add_development_dependency \"test-unit\", \"~> 3.2.3\"\n"
 "~~~"
 msgstr ""
-"~~~\n"
-"  spec.add_development_dependency \"test-unit\", \"~> 3.2.3\"\n"
-"~~~"
 
 msgid "### 4.2. Edit `test/test_helper.rb`"
 msgstr "### 4.2 `test/test_helper.rb`の修正"
@@ -330,13 +308,10 @@ msgid "Next, edit the `test/test_helper.rb` file."
 msgstr "次に`test/test_helper`ファイルを修正します。"
 
 msgid ""
-"~~~\n"
+"~~~ruby\n"
 "$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)\n"
 "require 'sample'"
 msgstr ""
-"~~~\n"
-"$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)\n"
-"require 'sample'"
 
 msgid ""
 "require 'minitest/autorun' # <-- Modify this line.\n"
@@ -362,15 +337,11 @@ msgstr ""
 "このファイルは修正不要です。\n"
 "ファイルの中身は次のようになっています。"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~ruby\n"
 "require \"bundler/gem_tasks\"\n"
 "require \"rake/testtask\""
 msgstr ""
-"~~~\n"
-"require \"bundler/gem_tasks\"\n"
-"require \"rake/testtask\""
 
 msgid ""
 "Rake::TestTask.new(:test) do |t|\n"
@@ -385,13 +356,10 @@ msgstr ""
 "  t.test_files = FileList['test/**/*_test.rb']\n"
 "end"
 
-#, fuzzy
 msgid ""
 "task :default => :test\n"
 "~~~"
 msgstr ""
-"task :default => :test\n"
-"~~~"
 
 msgid "### 4.4 Edit `test/sample_test.rb`"
 msgstr "### 4.4 `test/sample_test.rb`の修正"
@@ -409,13 +377,10 @@ msgstr "`test-unit`用に修正します"
 msgid "before"
 msgstr "修正前"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~ruby\n"
 "require 'test_helper'"
 msgstr ""
-"~~~\n"
-"require 'test_helper'"
 
 msgid ""
 "class SampleTest < Minitest::Test # <- Modify here\n"
@@ -428,7 +393,6 @@ msgstr ""
 "    refute_nil ::Sample::VERSION\n"
 "  end"
 
-#, fuzzy
 msgid ""
 "  def test_it_does_something_useful\n"
 "    assert false\n"
@@ -436,11 +400,6 @@ msgid ""
 "end\n"
 "~~~"
 msgstr ""
-"  def test_it_does_something_useful\n"
-"    assert false\n"
-"  end\n"
-"end\n"
-"~~~"
 
 msgid ""
 "class SampleTest < Test::Unit::TestCase # <- After modification\n"
@@ -463,9 +422,8 @@ msgstr ""
 "`rake test`コマンドを実行すると`test`ディレクトリの下にあるテストを実行します。\n"
 "二つのテストを実行し、一つは成功、もう一つは失敗します。"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~text\n"
 "rake test\n"
 "Loaded suite\n"
 "/path/to/ruby/lib/ruby/gems/2.3.0/gems/rake-12.0.0/lib/rake/rake_test_loader\n"
@@ -501,15 +459,11 @@ msgid ""
 "Command failed with status (1)"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Tasks: TOP => test\n"
 "(See full trace by running task with --trace)\n"
 "~~~"
 msgstr ""
-"Tasks: TOP => test\n"
-"(See full trace by running task with --trace)\n"
-"~~~"
 
 msgid "## 6. Create original tests."
 msgstr "## 6. オリジナルのテストを作る"
@@ -529,9 +483,8 @@ msgstr ""
 msgid "Example directory layout."
 msgstr "ディレクトリレイアウトの例"
 
-#, fuzzy
 msgid ""
-"~~~\n"
+"~~~text\n"
 "test\n"
 "|-- sample_test.rb\n"
 "|-- sub\n"
@@ -539,13 +492,6 @@ msgid ""
 "`-- test_helper.rb\n"
 "~~~"
 msgstr ""
-"~~~\n"
-"test\n"
-"|-- sample_test.rb\n"
-"|-- sub\n"
-"|   `-- sample2_test.rb\n"
-"`-- test_helper.rb\n"
-"~~~"
 
 msgid "Example test file in the sub directory."
 msgstr "サブディレクトリ内のテスト例"
@@ -563,7 +509,6 @@ msgstr ""
 "      refute_nil ::Sample::VERSION\n"
 "    end"
 
-#, fuzzy
 msgid ""
 "    def test_it_does_something_useful\n"
 "      assert false\n"
@@ -572,12 +517,6 @@ msgid ""
 "end\n"
 "~~~"
 msgstr ""
-"    def test_it_does_something_useful\n"
-"      assert false\n"
-"    end\n"
-"  end\n"
-"end\n"
-"~~~"
 
 msgid "## 7. For more inforomation"
 msgstr "## 7. 詳細な情報"
@@ -852,7 +791,6 @@ msgstr ""
 msgid "## 3.1.6 - 2016-01-17 {#version-3-1-6}"
 msgstr ""
 
-#, fuzzy
 msgid "It's a Ruby on Rails integration improvement release."
 msgstr "Railsと一緒に使いやすくなったリリースです。"
 
@@ -915,9 +853,8 @@ msgstr ""
 msgid "## 3.1.5 - 2015-10-09 {#version-3-1-5}"
 msgstr ""
 
-#, fuzzy
 msgid "It's a Rack integration improvement release."
-msgstr "Railsと一緒に使いやすくなったリリースです。"
+msgstr "Rackと一緒に使いやすくなったリリースです。"
 
 msgid ""
 "  * Renamed experimental top-level `run` method to `run_test` method\n"
@@ -931,9 +868,8 @@ msgstr ""
 msgid "## 3.1.4 - 2015-09-26 {#version-3-1-4}"
 msgstr ""
 
-#, fuzzy
 msgid "It's a minor improvement release."
-msgstr "マイナーアップデートリリースです。"
+msgstr "微改良リリースです。"
 
 msgid ""
 "  * Updated sample code. [GitHub#109][Patch by takiy33]\n"
@@ -2077,18 +2013,25 @@ msgstr ""
 msgid "  * Birthday (as a gem)!"
 msgstr ""
 
-msgid "--"
+# Test
+msgid "port of Python's difflib."
 msgstr ""
 
 # Test
 msgid ""
-"Author:: Nathaniel Talbott.\n"
-"Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.\n"
-"License:: Ruby license."
+"Copyright (c) 2001-2008 Python Software Foundation; All Rights Reserved\n"
+"Copyright (c) 2008-2011 Kouhei Sutou; All Rights Reserved"
 msgstr ""
 
 # Test::Unit
 msgid "= Test::Unit - Ruby Unit Testing Framework"
+msgstr ""
+
+# Test
+msgid ""
+"It is free software, and is distributed under the Ruby license, the\n"
+"PSF license and/or LGPLv2.1 or later. See the COPYING file, the PSFL\n"
+"file and the LGPL file."
 msgstr ""
 
 # Test::Unit
@@ -2119,6 +2062,12 @@ msgstr ""
 
 # Test::Unit
 msgid "== Notes"
+msgstr ""
+
+# #run
+msgid ""
+"experimental. It is for \"ruby -rtest-unit -e run test/test_*.rb\".\n"
+"Is this API OK or dirty?"
 msgstr ""
 
 msgid "Test::Unit has grown out of and superceded Lapidary."
@@ -2617,10 +2566,6 @@ msgid ""
 "* TestMyClass2#test_my_class2"
 msgstr ""
 
-# @since
-msgid "2.5.2"
-msgstr ""
-
 # @example
 msgid ""
 "Test::Unit.at_start do\n"
@@ -2630,6 +2575,10 @@ msgstr ""
 
 # @yield
 msgid "A block that is run before running tests."
+msgstr ""
+
+# @since
+msgid "2.5.2"
 msgstr ""
 
 # Test::Unit.at_exit
@@ -2689,15 +2638,15 @@ msgid ""
 "* at_exit"
 msgstr ""
 
-# @yield
-msgid "A block that is run after running tests."
-msgstr ""
-
 # @example
 msgid ""
 "Test::Unit.at_exit do\n"
 "  puts \"Exit!\"\n"
 "end"
+msgstr ""
+
+# @yield
+msgid "A block that is run after running tests."
 msgstr ""
 
 msgid "Thrown by Test::Unit::Assertions when an assertion fails."
@@ -2708,6 +2657,10 @@ msgid "tag|param|value"
 msgstr ""
 
 # @param value
+msgid "the value to set the attribute expected to."
+msgstr ""
+
+# @param value
 msgid "the value to set the attribute actual to."
 msgstr ""
 
@@ -2715,55 +2668,51 @@ msgstr ""
 msgid "the value to set the attribute user_message to."
 msgstr ""
 
-# @param value
-msgid "the value to set the attribute expected to."
-msgstr ""
-
 msgid "Returns the value of attribute expected"
-msgstr ""
-
-# @param value
-msgid "the value to set the attribute inspected_actual to."
-msgstr ""
-
-# @param value
-msgid "the value to set the attribute inspected_expected to."
-msgstr ""
-
-# Test::Unit::AssertionFailedError#user_message=
-msgid "Sets the attribute user_message"
-msgstr ""
-
-msgid "Returns the value of attribute user_message"
-msgstr ""
-
-# Test::Unit::AssertionFailedError#actual=
-msgid "Sets the attribute actual"
-msgstr ""
-
-msgid "Returns the value of attribute actual"
 msgstr ""
 
 # Test::Unit::AssertionFailedError#expected=
 msgid "Sets the attribute expected"
 msgstr ""
 
+msgid "Returns the value of attribute actual"
+msgstr ""
+
+# Test::Unit::AssertionFailedError#actual=
+msgid "Sets the attribute actual"
+msgstr ""
+
+msgid "Returns the value of attribute user_message"
+msgstr ""
+
+# Test::Unit::AssertionFailedError#user_message=
+msgid "Sets the attribute user_message"
+msgstr ""
+
+# @param value
+msgid "the value to set the attribute inspected_expected to."
+msgstr ""
+
+# @param value
+msgid "the value to set the attribute inspected_actual to."
+msgstr ""
+
 msgid "Returns the value of attribute inspected_expected"
-msgstr ""
-
-# @return [AssertionFailedError]
-msgid "a new instance of AssertionFailedError"
-msgstr ""
-
-msgid "Returns the value of attribute inspected_actual"
 msgstr ""
 
 # Test::Unit::AssertionFailedError#inspected_expected=
 msgid "Sets the attribute inspected_expected"
 msgstr ""
 
+msgid "Returns the value of attribute inspected_actual"
+msgstr ""
+
 # Test::Unit::AssertionFailedError#inspected_actual=
 msgid "Sets the attribute inspected_actual"
+msgstr ""
+
+# @return [AssertionFailedError]
+msgid "a new instance of AssertionFailedError"
 msgstr ""
 
 # Test::Unit::Assertions
@@ -2818,6 +2767,35 @@ msgid ""
 "end"
 msgstr ""
 
+# @overload
+msgid "tag|overload|assert"
+msgstr ""
+
+# @example
+msgid "tag|example|Pass patterns"
+msgstr ""
+
+# @example Pass patterns
+msgid ""
+"assert(true)               # => pass\n"
+"assert([1, 2].include?(1)) # => pass"
+msgstr ""
+
+# @example
+msgid "tag|example|Failure patterns"
+msgstr ""
+
+# @example Failure patterns
+msgid ""
+"assert(nil)                # => failure\n"
+"assert(false)              # => failure\n"
+"assert([1, 2].include?(5)) # => failure"
+msgstr ""
+
+# @param [Object]
+msgid "tag|param|object"
+msgstr ""
+
 # @param [Object] object
 msgid "The check target."
 msgstr ""
@@ -2830,6 +2808,10 @@ msgstr ""
 msgid ""
 "The additional user message. It is\n"
 "showed when the assertion is failed."
+msgstr ""
+
+# @example
+msgid "tag|example|Power Assert"
 msgstr ""
 
 # @example Power Assert
@@ -2868,45 +2850,12 @@ msgstr ""
 msgid "The checked object."
 msgstr ""
 
-# @example
-msgid "tag|example|Power Assert"
-msgstr ""
-
-# @overload
-msgid "tag|overload|assert"
-msgstr ""
-
-# @example
-msgid "tag|example|Pass patterns"
-msgstr ""
-
-# @example Pass patterns
-msgid ""
-"assert(true)               # => pass\n"
-"assert([1, 2].include?(1)) # => pass"
-msgstr ""
-
-# @example
-msgid "tag|example|Failure patterns"
-msgstr ""
-
-# @example Failure patterns
-msgid ""
-"assert(nil)                # => failure\n"
-"assert(false)              # => failure\n"
-"assert([1, 2].include?(5)) # => failure"
-msgstr ""
-
-# @param [Object]
-msgid "tag|param|object"
+# Test::Unit::Assertions#assert
+msgid "Asserts that `object` is not false nor nil."
 msgstr ""
 
 # Test::Unit::Assertions#assert
 msgid "Asserts that the givens block returns not false nor nil."
-msgstr ""
-
-# Test::Unit::Assertions#assert
-msgid "Asserts that `object` is not false nor nil."
 msgstr ""
 
 # Test::Unit::Assertions#assert
@@ -2945,14 +2894,8 @@ msgstr ""
 msgid "Just for minitest compatibility. :<"
 msgstr "minitestとの互換製のためだけのリリースです。 :"
 
-# @since
-msgid "2.5.3"
-msgstr ""
-
-# @example Fialure patterns
-msgid ""
-"refute(true)     # => failure\n"
-"refute(\"string\") # => failure"
+# @param [Object] object
+msgid "The object to be asserted."
 msgstr ""
 
 # @example Pass patterns
@@ -2961,8 +2904,14 @@ msgid ""
 "refute(nil)      # => pass"
 msgstr ""
 
-# @param [Object] object
-msgid "The object to be asserted."
+# @example Fialure patterns
+msgid ""
+"refute(true)     # => failure\n"
+"refute(\"string\") # => failure"
+msgstr ""
+
+# @since
+msgid "2.5.3"
 msgstr ""
 
 # Test::Unit::Assertions#assert_equal
@@ -3003,13 +2952,12 @@ msgid ""
 "assert_raise(RuntimeError.new(\"ZZZ\")) {raise \"XXX\"} # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if the block raises one of the expected\n"
 "exceptions. When an expected exception is an Exception\n"
 "object, passes if expected_exception == actual_exception.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_raise_kind_of
 msgid ""
@@ -3046,10 +2994,6 @@ msgid ""
 "satisfies +object.instance_of?(class)."
 msgstr ""
 
-# @since
-msgid "3.0.0"
-msgstr ""
-
 # @example
 msgid ""
 "assert_not_instance_of(String, 100)                # -> pass\n"
@@ -3057,13 +3001,16 @@ msgid ""
 "assert_not_instance_of([Numeric, NilClass], 100)   # -> fail"
 msgstr ""
 
-#, fuzzy
+# @since
+msgid "3.0.0"
+msgstr ""
+
 msgid ""
 "Passes if +object+.instance_of?(+klass+) does not hold.\n"
 "When +klass+ is an array of classes, it passes if no class\n"
 "satisfies +object.instance_of?(class).\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_nil
 msgid "Passes if +object+ is nil."
@@ -3102,13 +3049,12 @@ msgid ""
 "assert_not_kind_of([Fixnum, NilClass], 100) # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if +object+.kind_of?(+klass+) does not hold.\n"
 "When +klass+ is an array of classes or modules, it passes only if all\n"
 "classes (and modules) do not satisfy +object.kind_of?(class_or_module).\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_respond_to
 msgid "Passes if +object+ .respond_to? +method+"
@@ -3129,11 +3075,10 @@ msgid ""
 "assert_not_respond_to('bugbear', :size)         # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if +object+ does not .respond_to? +method+.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_match
 msgid "Passes if +pattern+ =~ +string+."
@@ -3180,11 +3125,10 @@ msgid ""
 "assert_not_operator(5, :>, 4) # => fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if object1.__send__(operator, object2) is not true.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_nothing_raised
 msgid "Passes if block does not raise an exception."
@@ -3214,11 +3158,10 @@ msgstr ""
 msgid "assert_not_same Object.new, Object.new"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if ! +actual+ .equal? +expected+\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_not_equal
 # Test::Unit::Assertions#refute_equal
@@ -3229,11 +3172,10 @@ msgstr ""
 msgid "assert_not_equal 'some string', 5"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if +expected+ != +actual+\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_not_nil
 # Test::Unit::Assertions#refute_nil
@@ -3244,11 +3186,10 @@ msgstr ""
 msgid "assert_not_nil '1 two 3'.sub!(/two/, '2')"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if ! +object+ .nil?\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_no_match
 # Test::Unit::Assertions#assert_not_match
@@ -3262,11 +3203,10 @@ msgid ""
 "assert_not_match(/three/, 'one 2 three') # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if +regexp+ !~ +string+\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_no_match
 msgid "Deprecated. Use #assert_not_match instead."
@@ -3282,11 +3222,6 @@ msgstr ""
 msgid "a new instance of ThrowTagExtractor"
 msgstr ""
 
-# Test::Unit::Assertions#assert_throw
-# Test::Unit::Assertions#assert_throws
-msgid "Passes if the block throws +expected_object+"
-msgstr ""
-
 # @example
 msgid ""
 "assert_throw(:done) do\n"
@@ -3294,14 +3229,9 @@ msgid ""
 "end"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"Passes if the block throws +expected_object+\n"
-"Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
-
-# Test::Unit::Assertions#assert_nothing_thrown
-msgid "Passes if block does not throw anything."
+# Test::Unit::Assertions#assert_throw
+# Test::Unit::Assertions#assert_throws
+msgid "Passes if the block throws +expected_object+"
 msgstr ""
 
 # @example
@@ -3311,14 +3241,29 @@ msgid ""
 "end"
 msgstr ""
 
+# @example
+msgid "assert_in_delta 0.05, (50000.0 / 10**6), 0.00001"
+msgstr ""
+
+msgid ""
+"Passes if the block throws +expected_object+\n"
+"Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_nothing_thrown
+msgid "Passes if block does not throw anything."
+msgstr ""
+
+# @example
+msgid ""
+"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass\n"
+"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail"
+msgstr ""
+
 # Test::Unit::Assertions#assert_in_delta
 msgid ""
 "Passes if +expected_float+ and +actual_float+ are equal\n"
 "within +delta+ tolerance."
-msgstr ""
-
-# @example
-msgid "assert_in_delta 0.05, (50000.0 / 10**6), 0.00001"
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_in_delta
@@ -3328,29 +3273,28 @@ msgid ""
 "not equal within +delta+ tolerance."
 msgstr ""
 
-# @example
-msgid ""
-"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass\n"
-"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail"
-msgstr ""
-
-#, fuzzy
 msgid ""
 "Passes if +expected_float+ and +actual_float+ are\n"
 "not equal within +delta+ tolerance.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
-
-# Test::Unit::Assertions#assert_in_epsilon
-msgid ""
-"Passes if +expected_float+ and +actual_float+ are equal\n"
-"within +epsilon+ relative error of +expected_float+."
 msgstr ""
 
 # @example
 msgid ""
 "assert_in_epsilon(10000.0, 9900.0, 0.1) # -> pass\n"
 "assert_in_epsilon(10000.0, 9899.0, 0.1) # -> fail"
+msgstr ""
+
+# @example
+msgid ""
+"assert_not_in_epsilon(10000.0, 9900.0, 0.1) # -> fail\n"
+"assert_not_in_epsilon(10000.0, 9899.0, 0.1) # -> pass"
+msgstr ""
+
+# Test::Unit::Assertions#assert_in_epsilon
+msgid ""
+"Passes if +expected_float+ and +actual_float+ are equal\n"
+"within +epsilon+ relative error of +expected_float+."
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_in_epsilon
@@ -3361,19 +3305,18 @@ msgid ""
 "+expected_float+."
 msgstr ""
 
-# @example
-msgid ""
-"assert_not_in_epsilon(10000.0, 9900.0, 0.1) # -> fail\n"
-"assert_not_in_epsilon(10000.0, 9899.0, 0.1) # -> pass"
-msgstr ""
-
-#, fuzzy
 msgid ""
 "Passes if +expected_float+ and +actual_float+ are\n"
 "not equal within +epsilon+ relative error of\n"
 "+expected_float+.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
+
+# @example
+msgid ""
+"assert_send([[1, 2], :member?, 1]) # -> pass\n"
+"assert_send([[1, 2], :member?, 4]) # -> fail"
+msgstr ""
 
 # Test::Unit::Assertions#assert_send
 msgid "Passes if the method send returns a true value."
@@ -3389,21 +3332,11 @@ msgstr ""
 
 # @example
 msgid ""
-"assert_send([[1, 2], :member?, 1]) # -> pass\n"
-"assert_send([[1, 2], :member?, 4]) # -> fail"
-msgstr ""
-
-msgid "Passes if the method send doesn't return a true value."
-msgstr ""
-
-# @example
-msgid ""
 "assert_not_send([[1, 2], :member?, 1]) # -> fail\n"
 "assert_not_send([[1, 2], :member?, 4]) # -> pass"
 msgstr ""
 
-# Test::Unit::Assertions#assert_boolean
-msgid "Passes if +actual+ is a boolean value."
+msgid "Passes if the method send doesn't return a true value."
 msgstr ""
 
 # @example
@@ -3412,14 +3345,30 @@ msgid ""
 "assert_boolean(nil)  # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_true
-msgid "Passes if +actual+ is true."
-msgstr ""
-
 # @example
 msgid ""
 "assert_true(true)  # -> pass\n"
 "assert_true(:true) # -> fail"
+msgstr ""
+
+# @example
+msgid ""
+"assert_false(false)  # -> pass\n"
+"assert_false(nil)    # -> fail"
+msgstr ""
+
+# Test::Unit::Assertions#assert_boolean
+msgid "Passes if +actual+ is a boolean value."
+msgstr ""
+
+# @example
+msgid ""
+"assert_compare(1, \"<\", 10)  # -> pass\n"
+"assert_compare(1, \">=\", 10) # -> fail"
+msgstr ""
+
+# Test::Unit::Assertions#assert_true
+msgid "Passes if +actual+ is true."
 msgstr ""
 
 # Test::Unit::Assertions#assert_false
@@ -3428,8 +3377,8 @@ msgstr ""
 
 # @example
 msgid ""
-"assert_false(false)  # -> pass\n"
-"assert_false(nil)    # -> fail"
+"assert_fail_assertion {assert_equal(\"A\", \"B\")}  # -> pass\n"
+"assert_fail_assertion {assert_equal(\"A\", \"A\")}  # -> fail"
 msgstr ""
 
 # Test::Unit::Assertions#assert_compare
@@ -3440,17 +3389,13 @@ msgstr ""
 
 # @example
 msgid ""
-"assert_compare(1, \"<\", 10)  # -> pass\n"
-"assert_compare(1, \">=\", 10) # -> fail"
+"assert_raise_message(\"exception\") {raise \"exception\"}  # -> pass\n"
+"assert_raise_message(/exc/i) {raise \"exception\"}       # -> pass\n"
+"assert_raise_message(\"exception\") {raise \"EXCEPTION\"}  # -> fail\n"
+"assert_raise_message(\"exception\") {}                   # -> fail"
 msgstr ""
 
 msgid "Passes if assertion is failed in block."
-msgstr ""
-
-# @example
-msgid ""
-"assert_fail_assertion {assert_equal(\"A\", \"B\")}  # -> pass\n"
-"assert_fail_assertion {assert_equal(\"A\", \"A\")}  # -> fail"
 msgstr ""
 
 # Test::Unit::Assertions#assert_raise_message
@@ -3461,24 +3406,8 @@ msgstr ""
 
 # @example
 msgid ""
-"assert_raise_message(\"exception\") {raise \"exception\"}  # -> pass\n"
-"assert_raise_message(/exc/i) {raise \"exception\"}       # -> pass\n"
-"assert_raise_message(\"exception\") {raise \"EXCEPTION\"}  # -> fail\n"
-"assert_raise_message(\"exception\") {}                   # -> fail"
-msgstr ""
-
-# Test::Unit::Assertions#assert_const_defined
-msgid "Passes if +object+.const_defined?(+constant_name+)"
-msgstr ""
-
-# @example
-msgid ""
 "assert_const_defined(Test, :Unit)          # -> pass\n"
 "assert_const_defined(Object, :Nonexistent) # -> fail"
-msgstr ""
-
-# Test::Unit::Assertions#assert_not_const_defined
-msgid "Passes if !+object+.const_defined?(+constant_name+)"
 msgstr ""
 
 # @example
@@ -3487,18 +3416,18 @@ msgid ""
 "assert_not_const_defined(Test, :Unit)          # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_predicate
-msgid "Passes if +object+.+predicate+ is _true_."
-msgstr ""
-
 # @example
 msgid ""
 "assert_predicate([], :empty?)  # -> pass\n"
 "assert_predicate([1], :empty?) # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_not_predicate
-msgid "Passes if +object+.+predicate+ is not _true_."
+# Test::Unit::Assertions#assert_const_defined
+msgid "Passes if +object+.const_defined?(+constant_name+)"
+msgstr ""
+
+# Test::Unit::Assertions#assert_not_const_defined
+msgid "Passes if !+object+.const_defined?(+constant_name+)"
 msgstr ""
 
 # @example
@@ -3507,16 +3436,8 @@ msgid ""
 "assert_not_predicate([], :empty?)  # -> fail"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"Passes if +object+.+predicate+ is not _true_.\n"
-"Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
-
-# Test::Unit::Assertions#assert_alias_method
-msgid ""
-"Passes if +object+#+alias_name+ is an alias method of\n"
-"+object+#+original_name+."
+# Test::Unit::Assertions#assert_predicate
+msgid "Passes if +object+.+predicate+ is _true_."
 msgstr ""
 
 # @example
@@ -3526,8 +3447,19 @@ msgid ""
 "assert_alias_method([], :each, :size)    # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_path_exist
-msgid "Passes if +path+ exists."
+# Test::Unit::Assertions#assert_not_predicate
+msgid "Passes if +object+.+predicate+ is not _true_."
+msgstr ""
+
+msgid ""
+"Passes if +object+.+predicate+ is not _true_.\n"
+"Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_alias_method
+msgid ""
+"Passes if +object+#+alias_name+ is an alias method of\n"
+"+object+#+original_name+."
 msgstr ""
 
 # @example
@@ -3537,10 +3469,6 @@ msgid ""
 "assert_path_exist(\"/nonexistent\")  # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_path_not_exist
-msgid "Passes if +path+ doesn't exist."
-msgstr ""
-
 # @example
 msgid ""
 "assert_path_not_exist(\"/nonexistent\")  # -> pass\n"
@@ -3548,9 +3476,8 @@ msgid ""
 "assert_path_not_exist(\"/bin/sh\")       # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_include
-# Test::Unit::Assertions#assert_includes
-msgid "Passes if +collection+ includes +object+."
+# Test::Unit::Assertions#assert_path_exist
+msgid "Passes if +path+ exists."
 msgstr ""
 
 # @example
@@ -3561,14 +3488,8 @@ msgid ""
 "assert_include(1..10, 20)             # -> fail"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"Passes if +collection+ includes +object+.\n"
-"Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
-
-# Test::Unit::Assertions#assert_not_include
-msgid "Passes if +collection+ doesn't include +object+."
+# Test::Unit::Assertions#assert_path_not_exist
+msgid "Passes if +path+ doesn't exist."
 msgstr ""
 
 # @example
@@ -3579,14 +3500,14 @@ msgid ""
 "assert_not_include(1..10, 5)              # -> fail"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"Passes if +collection+ doesn't include +object+.\n"
-"Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+# Test::Unit::Assertions#assert_include
+# Test::Unit::Assertions#assert_includes
+msgid "Passes if +collection+ includes +object+."
+msgstr ""
 
-# Test::Unit::Assertions#assert_empty
-msgid "Passes if +object+ is empty."
+msgid ""
+"Passes if +collection+ includes +object+.\n"
+"Just for minitest compatibility. :<"
 msgstr ""
 
 # @example
@@ -3599,8 +3520,8 @@ msgid ""
 "assert_empty({1 => 2})                 # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_not_empty
-msgid "Passes if +object+ is not empty."
+# Test::Unit::Assertions#assert_not_include
+msgid "Passes if +collection+ doesn't include +object+."
 msgstr ""
 
 # @example
@@ -3613,11 +3534,23 @@ msgid ""
 "assert_not_empty({})                       # -> fail"
 msgstr ""
 
-#, fuzzy
+msgid ""
+"Passes if +collection+ doesn't include +object+.\n"
+"Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_empty
+msgid "Passes if +object+ is empty."
+msgstr ""
+
+# Test::Unit::Assertions#assert_not_empty
+msgid "Passes if +object+ is not empty."
+msgstr ""
+
 msgid ""
 "Passes if +object+ is not empty.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#build_message
 msgid ""
@@ -3711,50 +3644,19 @@ msgstr ""
 msgid "Returns the value of attribute suite"
 msgstr ""
 
-# @param value
-msgid "the value to set the attribute filters to."
+msgid "Returns the value of attribute runner_options"
 msgstr ""
 
-msgid "Returns the value of attribute runner_options"
+# @param value
+msgid "the value to set the attribute filters to."
 msgstr ""
 
 # @param value
 msgid "the value to set the attribute to_run to."
 msgstr ""
 
-# Test::Unit::AutoRunner#filters=
-msgid "Sets the attribute filters"
-msgstr ""
-
-msgid "Returns the value of attribute filters"
-msgstr ""
-
-# @param value
-msgid "the value to set the attribute default_test_paths to."
-msgstr ""
-
-msgid "Returns the value of attribute to_run"
-msgstr ""
-
-# Test::Unit::AutoRunner#to_run=
-msgid "Sets the attribute to_run"
-msgstr ""
-
 # @param value
 msgid "the value to set the attribute pattern to."
-msgstr ""
-
-# Test::Unit::AutoRunner#default_test_paths
-# Test::Unit::Collector::Load#default_test_paths
-msgid "Returns the value of attribute default_test_paths"
-msgstr ""
-
-# Test::Unit::AutoRunner#default_test_paths=
-msgid "Sets the attribute default_test_paths"
-msgstr ""
-
-# @param value
-msgid "the value to set the attribute workdir to."
 msgstr ""
 
 # @param value
@@ -3765,9 +3667,22 @@ msgstr ""
 msgid "the value to set the attribute base to."
 msgstr ""
 
-# Test::Unit::AutoRunner#base=
-# Test::Unit::Collector::Dir#base=
-msgid "Sets the attribute base"
+# @param value
+msgid "the value to set the attribute workdir to."
+msgstr ""
+
+msgid "Returns the value of attribute filters"
+msgstr ""
+
+# Test::Unit::AutoRunner#filters=
+msgid "Sets the attribute filters"
+msgstr ""
+
+msgid "Returns the value of attribute to_run"
+msgstr ""
+
+# Test::Unit::AutoRunner#to_run=
+msgid "Sets the attribute to_run"
 msgstr ""
 
 msgid "Returns the value of attribute pattern"
@@ -3787,6 +3702,11 @@ msgstr ""
 msgid "Returns the value of attribute base"
 msgstr ""
 
+# Test::Unit::AutoRunner#base=
+# Test::Unit::Collector::Dir#base=
+msgid "Sets the attribute base"
+msgstr ""
+
 msgid "Returns the value of attribute workdir"
 msgstr ""
 
@@ -3801,15 +3721,7 @@ msgstr ""
 msgid "the value to set the attribute listeners to."
 msgstr ""
 
-# @param value
-msgid "the value to set the attribute stop_on_failuere to."
-msgstr ""
-
 msgid "Returns the value of attribute color_scheme"
-msgstr ""
-
-# Test::Unit::AutoRunner#listeners=
-msgid "Sets the attribute listeners"
 msgstr ""
 
 msgid "Sets the attribute color_scheme"
@@ -3818,11 +3730,11 @@ msgstr ""
 msgid "Returns the value of attribute listeners"
 msgstr ""
 
-msgid "the value to set the attribute runner to."
+# Test::Unit::AutoRunner#listeners=
+msgid "Sets the attribute listeners"
 msgstr ""
 
-# Test::Unit::AutoRunner#stop_on_failuere=
-msgid "Sets the attribute stop_on_failuere"
+msgid "the value to set the attribute runner to."
 msgstr ""
 
 msgid "the value to set the attribute collector to."
@@ -3834,14 +3746,35 @@ msgstr ""
 msgid "Sets the attribute collector"
 msgstr ""
 
+msgid "a new instance of AutoRunner"
+msgstr ""
+
 # @yieldparam [Test::Unit::AutoRunner]
 msgid "tag|yieldparam|_self"
 msgstr ""
 
-msgid "a new instance of AutoRunner"
+msgid "the object that the method was called on"
 msgstr ""
 
-msgid "the object that the method was called on"
+# @param value
+msgid "the value to set the attribute default_test_paths to."
+msgstr ""
+
+# Test::Unit::AutoRunner#default_test_paths
+# Test::Unit::Collector::Load#default_test_paths
+msgid "Returns the value of attribute default_test_paths"
+msgstr ""
+
+# Test::Unit::AutoRunner#default_test_paths=
+msgid "Sets the attribute default_test_paths"
+msgstr ""
+
+# @param value
+msgid "the value to set the attribute stop_on_failuere to."
+msgstr ""
+
+# Test::Unit::AutoRunner#stop_on_failuere=
+msgid "Sets the attribute stop_on_failuere"
 msgstr ""
 
 # @return [CodeSnippetFetcher]
@@ -3864,10 +3797,10 @@ msgstr ""
 msgid "a new instance of ObjectSpace"
 msgstr ""
 
-msgid "a new instance of Listener"
+msgid "Returns the value of attribute test_suites"
 msgstr ""
 
-msgid "Returns the value of attribute test_suites"
+msgid "a new instance of Listener"
 msgstr ""
 
 # @return [ColorScheme]
@@ -3893,6 +3826,30 @@ msgstr "データ駆動テスト機能のドキュメントを追加しました
 
 # Test::Unit::Data::ClassMethods#data
 msgid "Define test data in the test code."
+msgstr ""
+
+# @overload
+msgid "tag|overload|data"
+msgstr ""
+
+# @param [String]
+msgid "tag|param|label"
+msgstr ""
+
+# @param [String] label
+msgid "specify test case name."
+msgstr ""
+
+# @param
+msgid "tag|param|data"
+msgstr ""
+
+# @param data
+msgid "specify test data."
+msgstr ""
+
+# @example
+msgid "tag|example|data(label, data)"
 msgstr ""
 
 # @example data(label, data)
@@ -3953,43 +3910,11 @@ msgid ""
 "end"
 msgstr ""
 
-# @overload
-msgid "tag|overload|data"
-msgstr ""
-
-# @param [String]
-msgid "tag|param|label"
-msgstr ""
-
-# @param [String] label
-msgid "specify test case name."
-msgstr ""
-
-# @param
-msgid "tag|param|data"
-msgstr ""
-
-# @param data
-msgid "specify test data."
-msgstr ""
-
-# @example
-msgid "tag|example|data(label, data)"
-msgstr ""
-
 # Test::Unit::Data::ClassMethods#load_data
 msgid ""
 "Load test data from the file. This is shorthand to load\n"
 "test data from file.  If you want to load complex file, you\n"
 "can use {#data} with block."
-msgstr ""
-
-# @example Load data from CSV file
-msgid ""
-"load_data(\"/path/to/test-data.csv\")\n"
-"def test_empty?(data)\n"
-"  assert_equal(data[\"expected\"], data[\"target\"].empty?)\n"
-"end"
 msgstr ""
 
 # @param [String]
@@ -4010,6 +3935,14 @@ msgstr ""
 
 msgid "tag|example|Load data from CSV file"
 msgstr "CSVファイルからデータを読み込みます。"
+
+# @example Load data from CSV file
+msgid ""
+"load_data(\"/path/to/test-data.csv\")\n"
+"def test_empty?(data)\n"
+"  assert_equal(data[\"expected\"], data[\"target\"].empty?)\n"
+"end"
+msgstr ""
 
 msgid "a new instance of Loader"
 msgstr ""
@@ -4185,6 +4118,10 @@ msgstr ""
 msgid "tag|overload|exception_handler"
 msgstr ""
 
+# @param [Symbol]
+msgid "tag|param|method_name"
+msgstr ""
+
 # @param [Symbol] method_name
 msgid "The method name that handles exception raised in tests."
 msgstr ""
@@ -4216,16 +4153,12 @@ msgid ""
 "test exception, _false_ otherwise."
 msgstr ""
 
-# @param [Symbol]
-msgid "tag|param|method_name"
+# Test::Unit::ExceptionHandler::ClassMethods#exception_handler
+msgid "Add an exception handler method."
 msgstr ""
 
 # Test::Unit::ExceptionHandler::ClassMethods#exception_handler
 msgid "Add an exception handler."
-msgstr ""
-
-# Test::Unit::ExceptionHandler::ClassMethods#exception_handler
-msgid "Add an exception handler method."
 msgstr ""
 
 # Test::Unit::Failure
@@ -4518,11 +4451,11 @@ msgstr ""
 msgid "a new instance of Checker"
 msgstr ""
 
-msgid ":nodoc:"
-msgstr ""
-
 # @return [TestSuiteCreator]
 msgid "a new instance of TestSuiteCreator"
+msgstr ""
+
+msgid ":nodoc:"
 msgstr ""
 
 # Test::Unit::TestCase
@@ -4824,18 +4757,8 @@ msgid ""
 "  end"
 msgstr ""
 
-# Test::Unit::TestCase.sub_test_case
-msgid "The difference of them are the following:"
-msgstr ""
-
-# Test::Unit::TestCase.sub_test_case
-msgid ""
-"* Test case created by {sub_test_case} is an anonymous class.\n"
-"  So you can't refer the test case by name.\n"
-"* The class name of class style must follow\n"
-"  constant naming rule in Ruby. But the name of test case\n"
-"  created by {sub_test_case} doesn't need to follow the rule.\n"
-"  For example, you can use a space in name such as \"child test\"."
+# @param [String]
+msgid "tag|param|name"
 msgstr ""
 
 msgid "The name of newly created sub test case."
@@ -4850,14 +4773,18 @@ msgstr ""
 msgid "Created sub test case class."
 msgstr ""
 
-# @param [String]
-msgid "tag|param|name"
+# Test::Unit::TestCase.sub_test_case
+msgid "The difference of them are the following:"
 msgstr ""
 
-# Test::Unit::TestCase.test_defined?
+# Test::Unit::TestCase.sub_test_case
 msgid ""
-"Checks whether a test that is matched the query is\n"
-"defined."
+"* Test case created by {sub_test_case} is an anonymous class.\n"
+"  So you can't refer the test case by name.\n"
+"* The class name of class style must follow\n"
+"  constant naming rule in Ruby. But the name of test case\n"
+"  created by {sub_test_case} doesn't need to follow the rule.\n"
+"  For example, you can use a space in name such as \"child test\"."
 msgstr ""
 
 # @option
@@ -4868,13 +4795,19 @@ msgstr ""
 msgid "tag|param|query"
 msgstr ""
 
+# Test::Unit::TestCase.test_defined?
+msgid ""
+"Checks whether a test that is matched the query is\n"
+"defined."
+msgstr ""
+
+msgid "a new instance of TestCase"
+msgstr ""
+
 # Test::Unit::TestCase#initialize
 msgid ""
 "Creates a new instance of the fixture for running the\n"
 "test represented by test_method_name."
-msgstr ""
-
-msgid "a new instance of TestCase"
 msgstr ""
 
 msgid "Assigns test data to the test. It is used in internal."
@@ -5130,6 +5063,24 @@ msgid ""
 "can be left behind if the test fails."
 msgstr ""
 
+msgid "Returns the value of attribute start_time"
+msgstr ""
+
+msgid "Returns the value of attribute elapsed_time"
+msgstr ""
+
+# Test::Unit::TestCase::InternalData#test_data_label
+msgid "Returns the value of attribute test_data_label"
+msgstr ""
+
+# Test::Unit::TestCase::InternalData#test_data
+msgid "Returns the value of attribute test_data"
+msgstr ""
+
+# @return [InternalData]
+msgid "a new instance of InternalData"
+msgstr ""
+
 # Test::Unit::TestCase#problem_occurred
 msgid ""
 "Notify that a problem is occurred in the test. It means that\n"
@@ -5144,24 +5095,6 @@ msgid ""
 "#run, it is not a good idea. Please contact test-unit\n"
 "developers. We will help you without your custom #run. For\n"
 "example, we may add a new hook in #run."
-msgstr ""
-
-msgid "Returns the value of attribute start_time"
-msgstr ""
-
-msgid "Returns the value of attribute elapsed_time"
-msgstr ""
-
-# Test::Unit::TestCase::InternalData#test_data
-msgid "Returns the value of attribute test_data"
-msgstr ""
-
-# Test::Unit::TestCase::InternalData#test_data_label
-msgid "Returns the value of attribute test_data_label"
-msgstr ""
-
-# @return [InternalData]
-msgid "a new instance of InternalData"
 msgstr ""
 
 # Test::Unit::TestResult
@@ -5188,6 +5121,10 @@ msgstr ""
 msgid "the value to set the attribute stop_tag to."
 msgstr ""
 
+# @return [TestResult]
+msgid "a new instance of TestResult"
+msgstr ""
+
 # Test::Unit::TestResult#stop_tag
 msgid "Returns the value of attribute stop_tag"
 msgstr ""
@@ -5197,10 +5134,6 @@ msgid "Sets the attribute stop_tag"
 msgstr ""
 
 msgid "Constructs a new, empty TestResult."
-msgstr ""
-
-# @return [TestResult]
-msgid "a new instance of TestResult"
 msgstr ""
 
 msgid "Records a test run."
@@ -5236,10 +5169,10 @@ msgid ""
 "meaningful TestSuite instance."
 msgstr ""
 
-msgid "Returns the value of attribute test_case"
+msgid "Returns the value of attribute tests"
 msgstr ""
 
-msgid "Returns the value of attribute tests"
+msgid "Returns the value of attribute test_case"
 msgstr ""
 
 # Test::Unit::TestSuite#priority
@@ -5249,11 +5182,11 @@ msgid ""
 "test suites that have lower priority."
 msgstr ""
 
-# @return [TestSuite]
-msgid "a new instance of TestSuite"
+msgid "Creates a new TestSuite with the given name."
 msgstr ""
 
-msgid "Creates a new TestSuite with the given name."
+# @return [TestSuite]
+msgid "a new instance of TestSuite"
 msgstr ""
 
 # Test::Unit::TestSuite#run
@@ -5350,6 +5283,9 @@ msgstr ""
 msgid ""
 "Provides some utilities common to most, if not all,\n"
 "TestRunners."
+msgstr ""
+
+msgid "--"
 msgstr ""
 
 # Test::Unit::UI::TestRunnerUtilities
