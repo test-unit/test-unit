@@ -9,7 +9,8 @@ This document creates an example gem package called `sample` with the `test-unit
 * First, install the `bundler` gem for generating gem template.
 * Second, install the `test-unit` itself.
 
-~~~text
+~~~
+!!!plain
 gem install bundler
 gem install test-unit
 ~~~
@@ -17,7 +18,8 @@ gem install test-unit
 The `gem list` command output installed packages.
 You will find the following lines.
 
-~~~text
+~~~
+!!!plain
 gem list
 ...
 bundler (1.14.6)
@@ -37,7 +39,8 @@ After that, replace some files for `test-unit`.
 
 The `bundle gem -t minitest sample` command will generate the following files.
 
-~~~text
+~~~
+!!!plain
 .
 |-- Gemfile
 |-- README.md
@@ -64,13 +67,15 @@ Replace `minitest` line to `test-unit`.
 
 Before
 
-~~~ruby
+~~~
+!!!ruby
   spec.add_development_dependency "minitest", "~> 5.0"
 ~~~
 
 After
 
-~~~ruby
+~~~
+!!!ruby
   spec.add_development_dependency "test-unit", "~> 3.2.3"
 ~~~
 
@@ -80,7 +85,8 @@ Next, edit the `test/test_helper.rb` file.
 
 Before
 
-~~~ruby
+~~~
+!!!ruby
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'sample'
 
@@ -89,7 +95,8 @@ require 'minitest/autorun' # <-- Modify this line.
 
 After
 
-~~~ruby
+~~~
+!!!ruby
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'sample'
 
@@ -101,7 +108,8 @@ require 'test/unit' # <-- After modification.
 This file doesn't need to modify.
 The output is the below.
 
-~~~ruby
+~~~
+!!!ruby
 require "bundler/gem_tasks"
 require "rake/testtask"
 
@@ -123,7 +131,8 @@ Let's modify this file for `test-unit`
 
 before
 
-~~~ruby
+~~~
+!!!ruby
 require 'test_helper'
 
 class SampleTest < Minitest::Test # <- Modify here
@@ -139,7 +148,8 @@ end
 
 After
 
-~~~ruby
+~~~
+!!!ruby
 require 'test_helper'
 
 class SampleTest < Test::Unit::TestCase # <- After modification
@@ -158,7 +168,8 @@ end
 The `rake test` command execute test scenarios in the `test` directory.
 Now it tries to two tests. One will success the other one fails.
 
-~~~text
+~~~
+!!!plain
 rake test
 Loaded suite
 /path/to/ruby/lib/ruby/gems/2.3.0/gems/rake-12.0.0/lib/rake/rake_test_loader
@@ -200,7 +211,8 @@ Let's create your original tests with the following rules.
 
 Example directory layout.
 
-~~~text
+~~~
+!!!plain
 test
 |-- sample_test.rb
 |-- sub
@@ -210,7 +222,8 @@ test
 
 Example test file in the sub directory.
 
-~~~ruby
+~~~
+!!!ruby
 require 'test_helper'
 
 module Sub
