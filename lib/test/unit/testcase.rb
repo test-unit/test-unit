@@ -82,6 +82,25 @@ module Test
     # 1. cleanup
     # 1. teardown
     # 1. shutdown
+    #
+    # You can set an attribute to each test.
+    #
+    # Example:
+    #
+    #     class TestMyClass < Test::Unit::TestCase
+    #       attribute :speed, :fast
+    #       def test_my_fast_method
+    #         # You can get the attribute via `self[]`
+    #         self[:speed] # => :fast
+    #         ...
+    #       end
+    #
+    #       attribute :speed, :slow
+    #       def test_my_slow_method
+    #         self[:speed] # => :slow
+    #         ...
+    #       end
+    #     end
     class TestCase
       include Attribute
       include Fixture
