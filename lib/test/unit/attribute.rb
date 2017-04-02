@@ -101,7 +101,8 @@ module Test
         #       self[:speed] # => :slow
         #     end
         #
-        #     attribute :speed, :slow, {keep: true}, :test_my_slow_method1
+        #     # There are no valid options for now.
+        #     attribute :speed, :slow, {}, :test_my_slow_method1
         #
         #     def test_my_slow_method2
         #       self[:speed] # => nil
