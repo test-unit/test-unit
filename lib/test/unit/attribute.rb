@@ -49,6 +49,69 @@ module Test
           @current_attributes = kept_attributes
         end
 
+        # Set an attribute to test methods.
+        #
+        # @overload attribute(name, value)
+        #   @example
+        #     attribute :speed, :slow
+        #     def test_my_slow_method
+        #       self[:speed] # => :slow
+        #     end
+        #
+        #   @param [Object] name the attribute name
+        #   @param [Object] value the attribute value
+        #   @return [void]
+        #
+        # @overload attribute(name, value, *method_names)
+        #   @example
+        #     def test_my_slow_method1
+        #       self[:speed] # => :slow
+        #     end
+        #
+        #     attribute :speed, :slow, :test_my_slow_method1, :test_my_slow_method2
+        #
+        #     def test_my_slow_method2
+        #       self[:speed] # => :slow
+        #     end
+        #
+        #   @param [Object] name the attribute name
+        #   @param [Object] value the attribute value
+        #   @param [Array<Symbol, String>] method_names the test method names set the attribute
+        #   @return [void]
+        #
+        # @overload attribute(name, value, options)
+        #   @example
+        #     attribute :speed, :slow, keep: true
+        #     def test_my_slow_method1
+        #       self[:speed] # => :slow
+        #     end
+        #
+        #     def test_my_slow_method2
+        #       self[:speed] # => :slow
+        #     end
+        #
+        #   @param [Object] name the attribute name
+        #   @param [Object] value the attribute value
+        #   @option options [Boolean] :keep whether or not to set attribute to following test methods
+        #   @return [void]
+        #
+        # @overload attribute(name, value, options, *method_names)
+        #   @example
+        #     def test_my_slow_method1
+        #       self[:speed] # => :slow
+        #     end
+        #
+        #     attribute :speed, :slow, {keep: true}, :test_my_slow_method1
+        #
+        #     def test_my_slow_method2
+        #       self[:speed] # => nil
+        #     end
+        #
+        #   @param [Object] name the attribute name
+        #   @param [Object] value the attribute value
+        #   @param [Hash] options ignored
+        #   @param [Array<Symbol, String>] method_names the test method names set the attribute
+        #   @return [void]
         def attribute(name, value, options={}, *method_names)
           unless options.is_a?(Hash)
             method_names << options
