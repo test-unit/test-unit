@@ -34,7 +34,7 @@ writing tests, checking results and automated testing in Ruby.
 
 ## How To
 
-* [How To](doc/text/how-to.md) (link for GitHub)
+* [How To](https://github.com/test-unit/test-unit/blob/master/doc/text/how-to.md) (link for GitHub)
 * {file:doc/text/how-to.md How To} (link for YARD)
 
 ## Install
