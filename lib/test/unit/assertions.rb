@@ -9,7 +9,7 @@ require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
 
 begin
-  require 'power_assert'
+  require 'power_assert' if RUBY_VERSION > '1.8.7'
 rescue LoadError, SyntaxError
 end
 
