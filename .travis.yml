@@ -18,9 +18,9 @@ before_install:
   - gem update bundler
 matrix:
   allow_failures:
-    - rvm: ruby-head
+    #- rvm: ruby-head
     - rvm: rbx-3
-    - rvm: jruby
+    #- rvm: jruby
   fast_finish: true
 notifications:
   email:
