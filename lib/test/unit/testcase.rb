@@ -413,7 +413,8 @@ module Test
           end
           if query_method_name
             available_location = available_locations.find do |location|
-              query_method_name == location[:method_name] && self == location[:test_case]
+              location[:test_case] == self and
+                query_method_name == location[:method_name]
             end
             return [] if available_location.nil?
             available_locations = [available_location]
