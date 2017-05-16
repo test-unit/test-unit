@@ -774,7 +774,7 @@ module Test
         signature = "#{self.class}\##{@method_name}"
         redefined_info = self[:redefined]
         if redefined_info
-          notify("#{signature} was redefined",
+          notify("<#{signature}> was redefined",
                  :backtrace => redefined_info[:backtrace])
         end
         if @internal_data.have_test_data?
@@ -786,7 +786,7 @@ module Test
             backtrace = locations.collect do |location|
               "#{location[:path]}:#{location[:line]}"
             end
-            notify("#{signature} misses a parameter to take test data",
+            notify("<#{signature}> misses a parameter to take test data",
                    :backtrace => backtrace)
           end
         else
