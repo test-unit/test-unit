@@ -147,7 +147,7 @@ module Test
             return if faults.nil?
             digit = max_digit(faults.size)
             nl
-            output_single(label, fault_class_color(fault_class))
+            output_single(label, fault_class_color_name(fault_class))
             output(":")
             faults.each_with_index do |fault, index|
               output_single("%#{digit}d) " % (index + 1))
@@ -416,7 +416,7 @@ module Test
 
           def output_single(something, color=nil, level=nil)
             return false unless output?(level)
-            if @use_color and color
+            if @use_color && color.respond_to?(:escape_sequence)
               something = "%s%s%s" % [color.escape_sequence,
                                       something,
                                       @reset_color.escape_sequence]
