@@ -1,5 +1,69 @@
 # News
 
+## 3.2.4 - 2017-05-23 {#version-3-2-4}
+
+### Improvements
+
+  * Updated tests for Ruby 2.4. [GitHUb#136][Patch by Kazuki Tsujimoto]
+
+  * Supported power\_assert 1.0.0. [GitHub#137][Patch by Kazuki Tsujimoto]
+
+  * Added the getting started document.
+    [GitHub#139][GitHub#141][Patch by Hiroyuki Sato]
+
+  * Added the document for `attribute`.
+    [GitHub#143][Patch by Fumiaki MATSUSHIMA]
+
+  * Improved a link for GitHub. [GitHub#144][Patch by rochefort]
+
+  * Updated `.travis.yml`. [GitHub#145][Patch by Jun Aruga]
+
+### Fixes
+
+  * Fixed a contributor name. [GitHub#131][Patch by Akira Matsuda]
+
+  * Fixed typos in document. [GitHub#132][Patch by Akira Matsuda]
+
+  * Fixed typos in document. [GitHub#134][Patch by Yuji Yaginuma]
+
+  * Fixed a bug that data label with "(" isn't supported.
+    [GitHub#135][Reported by Kazuki Tsujimoto]
+
+  * Fixed assertion message in English.
+    [GitHub#133][Reported by Khalil Fazal]
+
+  * Fixed a typo in typo fix. [GitHub#138][Patch by kami]
+
+  * Fixed a bug that target location finder may return wrong
+    location. [GitHub#146][Patch by Yuki Ito]
+
+  * Fixed a bug that `--no-show-detail-immediately` raises an error.
+    [GitHub#147][Reported by MSP-Greg]
+
+### Thanks
+
+  * Akira Matsuda
+
+  * Yuji Yaginuma
+
+  * Kazuki Tsujimoto
+
+  * Khalil Fazal
+
+  * kami
+
+  * Hiroyuki Sato
+
+  * Fumiaki MATSUSHIMA
+
+  * rochefort
+
+  * Jun Aruga
+
+  * Yuki Ito
+
+  * MSP-Greg
+
 ## 3.2.3 - 2016-11-25 {#version-3-2-3}
 
 ### Fixes
@@ -16,7 +80,7 @@
 ### Improvements
 
   * Improved Travis CI configuration.
-    [GitHub#123][Patch by Ryunosuke SATO]
+    [GitHub#123][Patch by Ryunosuke Sato]
 
   * Supported Java native exception.
     [GitHub#126][Reported by Bob Saveland]
