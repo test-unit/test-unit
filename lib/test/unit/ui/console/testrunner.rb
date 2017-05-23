@@ -492,6 +492,7 @@ module Test
           def guess_color_availability
             return false unless @output.tty?
             return true if windows? and ruby_2_0_or_later?
+            return true if ColorScheme::available_colors
             case ENV["TERM"]
             when /(?:term|screen)(?:-(?:256)?color)?\z/
               true
