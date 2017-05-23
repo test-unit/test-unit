@@ -473,8 +473,12 @@ module Test
             fault_class.name.split(/::/).last.downcase
           end
 
+          def fault_class_color(fault_class)
+            color(fault_class_color_name(fault_class))
+          end
+
           def fault_color(fault)
-            color(fault_class_color_name(fault.class))
+            fault_class_color(fault.class)
           end
 
           def fault_marker_color(fault)
