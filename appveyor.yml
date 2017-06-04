@@ -14,6 +14,10 @@ environment:
     - ruby_version: "200-x64"
     - ruby_version: "21"
     - ruby_version: "21-x64"
+    - ruby_version: "22"
+    - ruby_version: "22-x64"
+    - ruby_version: "23"
+    - ruby_version: "23-x64"
 
 install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
@@ -23,9 +27,6 @@ install:
   - bundler --version
   - bundle install
 
-# Disable build
-build_script:
-  - cd .
 build: off
 
 test_script:
