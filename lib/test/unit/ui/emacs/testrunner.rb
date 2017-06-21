@@ -29,18 +29,14 @@ module Test
             else
               location_display = "\n" + failure.location.join("\n")
             end
-            result = "#{failure.label}:\n"
-            result << "#{failure.test_name}#{location_display}:\n"
-            result << failure.message
-            result
+            "#{failure.label}:\n" \
+            "#{failure.test_name}#{location_display}:\n#{failure.message}"
           end
 
           def format_fault_error(error)
-            result = "#{error.label}:\n"
-            result << "#{error.test_name}:\n"
-            result << "#{error.message}\n"
-            result << error.backtrace.join("\n")
-            result
+            "#{error.label}:\n" \
+            "#{error.test_name}:\n" \
+            "#{error.message}\n#{error.backtrace.join("\n")}"
           end
         end
       end

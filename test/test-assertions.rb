@@ -819,7 +819,7 @@ EOM
         check_nothing_fails {
           assert_same(thing, thing, "successful assert_same")
         }
-        thing2 = "thing"
+        thing2 = "thing".dup
         check_fail(%Q{<"thing">\nwith id <#{thing.__id__}> was expected to be equal? to\n<"thing">\nwith id <#{thing2.__id__}>.}) {
           assert_same(thing, thing2)
         }
@@ -906,7 +906,7 @@ EOM
 
       def test_assert_not_same
         thing = "thing"
-        thing2 = "thing"
+        thing2 = "thing".dup
         check_nothing_fails {
           assert_not_same(thing, thing2)
         }
