@@ -450,7 +450,7 @@ module Test
 
         def tag(mark, contents)
           contents.each do |content|
-            @result << "#{mark}#{content}"
+            @result << "#{mark}#{content}".dup
           end
         end
 
@@ -569,8 +569,8 @@ module Test
         end
 
         def diff_line(from_line, to_line)
-          from_tags = ""
-          to_tags = ""
+          from_tags = "".dup
+          to_tags = "".dup
           from_line, to_line, _operations = line_operations(from_line, to_line)
           _operations.each do |tag, from_start, from_end, to_start, to_end|
             from_width = compute_width(from_line, from_start, from_end)

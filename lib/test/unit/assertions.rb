@@ -152,9 +152,9 @@ module Test
             when AssertionMessage
               assertion_message = message
             else
-              error_message = "assertion message must be String, Proc or "
-              error_message << "#{AssertionMessage}: "
-              error_message << "<#{message.inspect}>(<#{message.class}>)"
+              error_message = "assertion message must be String, Proc or " \
+                              "#{AssertionMessage}: " \
+                              "<#{message.inspect}>(<#{message.class}>)"
               raise ArgumentError, error_message, filter_backtrace(caller)
             end
             assertion_message ||= build_message(message,
@@ -191,9 +191,9 @@ module Test
           when AssertionMessage
             assertion_message = message
           else
-            error_message = "assertion message must be String, Proc or "
-            error_message << "#{AssertionMessage}: "
-            error_message << "<#{message.inspect}>(<#{message.class}>)"
+            error_message = "assertion message must be String, Proc or " \
+                            "#{AssertionMessage}: " \
+                            "<#{message.inspect}>(<#{message.class}>)"
             raise ArgumentError, error_message, filter_backtrace(caller)
           end
           assert_block("refute should not be called with a block.") do
@@ -326,7 +326,7 @@ EOT
           else
             klasses = [klass]
           end
-          assert_block("The first parameter to assert_instance_of should be " +
+          assert_block("The first parameter to assert_instance_of should be " \
                        "a Class or an Array of Class.") do
             klasses.all? {|k| k.is_a?(Class)}
           end
@@ -362,7 +362,7 @@ EOT
           else
             klasses = [klass]
           end
-          assert_block("The first parameter to assert_not_instance_of should be " <<
+          assert_block("The first parameter to assert_not_instance_of should be " +
                        "a Class or an Array of Class.") do
             klasses.all? {|k| k.is_a?(Class)}
           end
@@ -925,12 +925,12 @@ EOT
       def _assert_in_delta_message(expected_float, actual_float, delta,
                                    message, options={})
         if options[:negative_assertion]
-          format = <<-EOT
+          format = <<-EOT.dup
 <?> -/+ <?> was expected to not include
 <?>.
 EOT
         else
-          format = <<-EOT
+          format = <<-EOT.dup
 <?> -/+ <?> was expected to include
 <?>.
 EOT
@@ -1064,12 +1064,12 @@ EOT
         delta = normalized_expected * normalized_epsilon
 
         if options[:negative_assertion]
-          format = <<-EOT
+          format = <<-EOT.dup
 <?> -/+ (<?> * <?>)[?] was expected to not include
 <?>.
 EOT
         else
-          format = <<-EOT
+          format = <<-EOT.dup
 <?> -/+ (<?> * <?>)[?] was expected to include
 <?>.
 EOT
@@ -1768,14 +1768,14 @@ EOT
             delayed_literal do
               from, to = prepare_for_diff(from, to)
 
-              diff = "" if from.nil? or to.nil?
+              diff = "".dup if from.nil? or to.nil?
               diff ||= Diff.readable(from, to)
               if /^[-+]/ !~ diff
-                diff = ""
+                diff = "".dup
               elsif /^[ ?]/ =~ diff or /(?:.*\n){2,}/ =~ diff
-                diff = "\n\ndiff:\n#{diff}"
+                diff = "\n\ndiff:\n#{diff}".dup
               else
-                diff = ""
+                diff = "".dup
               end
 
               if Diff.need_fold?(diff)
@@ -1796,7 +1796,7 @@ EOT
               begin
                 require 'pp' unless defined?(PP)
                 begin
-                  return PP.pp(inspector, '').chomp
+                  return PP.pp(inspector, ''.dup).chomp
                 rescue NameError
                 end
               rescue LoadError
@@ -2042,7 +2042,7 @@ EOT
           def result(parameters)
             raise "The number of parameters does not match the number of substitutions." if(parameters.size != count)
             params = parameters.dup
-            expanded_template = ""
+            expanded_template = "".dup
             @parts.each do |part|
               if part == '?'
                 encoding_safe_concat(expanded_template, params.shift)
