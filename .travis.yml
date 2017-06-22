@@ -4,7 +4,6 @@ dist: trusty
 sudo: false
 cache:
   - bundler
-rvm:
 before_install:
   - gem update bundler
 matrix:
