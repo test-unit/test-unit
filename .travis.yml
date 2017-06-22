@@ -27,7 +27,7 @@ matrix:
     #- rvm: jruby
   fast_finish: true
 script:
-  - RUBYOPT=$TEST_RUBYOPT bundle exec rake
+  - RUBYOPT="$RUBYOPT $TEST_RUBYOPT" bundle exec rake
 notifications:
   email:
     - test-unit-commit@googlegroups.com
