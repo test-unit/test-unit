@@ -153,8 +153,8 @@ module Test
               assertion_message = message
             else
               error_message = "assertion message must be String, Proc or "
-              error_message << "#{AssertionMessage}: "
-              error_message << "<#{message.inspect}>(<#{message.class}>)"
+              error_message += "#{AssertionMessage}: "
+              error_message += "<#{message.inspect}>(<#{message.class}>)"
               raise ArgumentError, error_message, filter_backtrace(caller)
             end
             assertion_message ||= build_message(message,
@@ -192,8 +192,8 @@ module Test
             assertion_message = message
           else
             error_message = "assertion message must be String, Proc or "
-            error_message << "#{AssertionMessage}: "
-            error_message << "<#{message.inspect}>(<#{message.class}>)"
+            error_message += "#{AssertionMessage}: "
+            error_message += "<#{message.inspect}>(<#{message.class}>)"
             raise ArgumentError, error_message, filter_backtrace(caller)
           end
           assert_block("refute should not be called with a block.") do
@@ -362,7 +362,7 @@ EOT
           else
             klasses = [klass]
           end
-          assert_block("The first parameter to assert_not_instance_of should be " <<
+          assert_block("The first parameter to assert_not_instance_of should be " +
                        "a Class or an Array of Class.") do
             klasses.all? {|k| k.is_a?(Class)}
           end
@@ -965,7 +965,7 @@ EOT
         end
 
         if relation_format
-          format << <<-EOT
+          format += <<-EOT
 
 Relation:
 #{relation_format}
@@ -1103,7 +1103,7 @@ EOT
         end
 
         if relation_format
-          format << <<-EOT
+          format += <<-EOT
 
 Relation:
 #{relation_format}
@@ -1780,7 +1780,7 @@ EOT
 
               if Diff.need_fold?(diff)
                 folded_diff = Diff.folded_readable(from, to)
-                diff << "\n\nfolded diff:\n#{folded_diff}"
+                diff += "\n\nfolded diff:\n#{folded_diff}"
               end
 
               diff
@@ -1794,9 +1794,9 @@ EOT
             inspector = Inspector.new(object)
             if use_pp
               begin
-                require 'pp' unless defined?(PP)
+                require "pp" unless defined?(PP)
                 begin
-                  return PP.pp(inspector, '').chomp
+                  return PP.pp(inspector, String.new).chomp
                 rescue NameError
                 end
               rescue LoadError
@@ -2045,26 +2045,26 @@ EOT
             expanded_template = ""
             @parts.each do |part|
               if part == '?'
-                encoding_safe_concat(expanded_template, params.shift)
+                param = params.shift
+                if Object.const_defined?(:Encoding)
+                  expanded_template += concatenatable(param,
+                                                      expanded_template.encoding)
+                else
+                  expanded_template += param
+                end
               else
-                expanded_template << part.gsub(/\\\?/m, '?')
+                expanded_template += part.gsub(/\\\?/m, '?')
               end
             end
             expanded_template
           end
 
           private
-          if Object.const_defined?(:Encoding)
-            def encoding_safe_concat(buffer, parameter)
-              if Encoding.compatible?(buffer, parameter)
-                buffer << parameter
-              else
-                buffer << parameter.dup.force_encoding(buffer.encoding)
-              end
-            end
-          else
-            def encoding_safe_concat(buffer, parameter)
-              buffer << parameter
+          def concatenatable(text, encoding)
+            if Encoding.compatible?(text, encoding)
+              text
+            else
+              text.dup.force_encoding(encoding)
             end
           end
         end

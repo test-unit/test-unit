@@ -189,7 +189,7 @@ module Test
       def options
         @options ||= OptionParser.new do |o|
           o.banner = "Test::Unit automatic runner."
-          o.banner << "\nUsage: #{$0} [options] [-- untouched arguments]"
+          o.banner += "\nUsage: #{$0} [options] [-- untouched arguments]"
 
           o.on("-r", "--runner=RUNNER", RUNNERS,
                "Use the given RUNNER.",

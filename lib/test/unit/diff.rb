@@ -269,7 +269,7 @@ module Test
 
         private
         def tag(mark, contents)
-          contents.collect {|content| "#{mark}#{content}"}
+          contents.collect {|content| mark + content}
         end
       end
 
@@ -450,7 +450,7 @@ module Test
 
         def tag(mark, contents)
           contents.each do |content|
-            @result << "#{mark}#{content}"
+            @result << (mark + content)
           end
         end
 
@@ -577,15 +577,15 @@ module Test
             to_width = compute_width(to_line, to_start, to_end)
             case tag
             when :replace
-              from_tags << "^" * from_width
-              to_tags << "^" * to_width
+              from_tags += "^" * from_width
+              to_tags += "^" * to_width
             when :delete
-              from_tags << "-" * from_width
+              from_tags += "-" * from_width
             when :insert
-              to_tags << "+" * to_width
+              to_tags += "+" * to_width
             when :equal
-              from_tags << " " * from_width
-              to_tags << " " * to_width
+              from_tags += " " * from_width
+              to_tags += " " * to_width
             else
               raise "unknown tag: #{tag}"
             end
