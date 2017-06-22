@@ -16,10 +16,10 @@ matrix:
     - rvm: 2.3.4
     - rvm: 2.4.1
     - rvm: 2.4.1
-      env: RUBYOPTS=--enable-frozen-string-literal
+      env: RUBYOPT=--enable-frozen-string-literal
     - rvm: ruby-head
     - rvm: ruby-head
-      env: RUBYOPTS=--enable-frozen-string-literal
+      env: RUBYOPT=--enable-frozen-string-literal
     - rvm: rbx-3
     - rvm: jruby
   allow_failures:
