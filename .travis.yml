@@ -15,10 +15,10 @@ matrix:
     - rvm: 2.3.4
     - rvm: 2.4.1
     - rvm: 2.4.1
-      env: RUBYOPT=--enable-frozen-string-literal
+      env: TEST_RUBYOPT=--enable-frozen-string-literal
     - rvm: ruby-head
     - rvm: ruby-head
-      env: RUBYOPT=--enable-frozen-string-literal
+      env: TEST_RUBYOPT=--enable-frozen-string-literal
     - rvm: rbx-3
     - rvm: jruby
   allow_failures:
@@ -26,6 +26,8 @@ matrix:
     - rvm: rbx-3
     #- rvm: jruby
   fast_finish: true
+script:
+  - RUBYOPT=$TEST_RUBYOPT bundle exec rake
 notifications:
   email:
     - test-unit-commit@googlegroups.com
