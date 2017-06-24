@@ -1,5 +1,16 @@
 # News
 
+## 3.2.5 - 2017-06-24 {#version-3-2-5}
+
+### Improvements
+
+  * Supported `--enable-frozen-string-literal` `ruby` option.
+    [GitHub#149][Reported by Pat Allan]
+
+### Thanks
+
+  * Pat Allan
+
 ## 3.2.4 - 2017-05-23 {#version-3-2-4}
 
 ### Improvements
