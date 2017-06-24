@@ -4,7 +4,7 @@ clone_depth: 10
 notifications:
   - provider: Email
     to:
-      - test-unit-commit@googlegroups.com
+      - test-unit@ml.commit-email.info
     on_build_status_changed: true
 
 environment:
