@@ -24,7 +24,7 @@ matrix:
   allow_failures:
     #- rvm: ruby-head
     - rvm: rbx-3
-    #- rvm: jruby
+    - rvm: jruby
   fast_finish: true
 script:
   - RUBYOPT="$RUBYOPT $TEST_RUBYOPT" bundle exec rake
