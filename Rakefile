@@ -1,6 +1,6 @@
 # -*- ruby -*-
 #
-# Copyright (C) 2008-2013  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2008-2017  Kouhei Sutou <kou@clear-code.com>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -17,6 +17,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 Encoding.default_internal = "UTF-8" if defined?(Encoding.default_internal)
+
+# TODO: Remove me when we drop Ruby 1.9 support.
+unless "".respond_to?(:b)
+  class String
+    def b
+      dup.force_encoding("ASCII-8BIT")
+    end
+  end
+end
 
 require "erb"
 require "yaml"
