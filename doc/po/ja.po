@@ -71,7 +71,8 @@ msgid "## How To"
 msgstr "## 一歩進んだ使い方"
 
 msgid ""
-"* [How To](doc/text/how-to.md) (link for GitHub)\n"
+"* [How To](https://github.com/test-unit/test-unit/blob/master/doc/text/how-to."
+"md) (link for GitHub)\n"
 "* {file:doc/text/how-to.md How To} (link for YARD)"
 msgstr ""
 
@@ -669,19 +670,112 @@ msgstr ""
 msgid "# News"
 msgstr ""
 
-msgid "## 3.2.3 - 2016-11-25 {#version-3-2-3}"
+msgid "## 3.2.4 - 2017-05-23 {#version-3-2-4}"
+msgstr ""
+
+msgid "### Improvements"
+msgstr "### 改良"
+
+msgid "  * Updated tests for Ruby 2.4. [GitHUb#136][Patch by Kazuki Tsujimoto]"
+msgstr ""
+
+msgid "  * Supported power\\_assert 1.0.0. [GitHub#137][Patch by Kazuki Tsujimoto]"
+msgstr ""
+
+msgid ""
+"  * Added the getting started document.\n"
+"    [GitHub#139][GitHub#141][Patch by Hiroyuki Sato]"
+msgstr ""
+
+msgid ""
+"  * Added the document for `attribute`.\n"
+"    [GitHub#143][Patch by Fumiaki MATSUSHIMA]"
+msgstr ""
+
+msgid "  * Improved a link for GitHub. [GitHub#144][Patch by rochefort]"
+msgstr ""
+
+msgid "  * Updated `.travis.yml`. [GitHub#145][Patch by Jun Aruga]"
 msgstr ""
 
 msgid "### Fixes"
 msgstr "### 修正"
 
+msgid "  * Fixed a contributor name. [GitHub#131][Patch by Akira Matsuda]"
+msgstr ""
+
+msgid "  * Fixed typos in document. [GitHub#132][Patch by Akira Matsuda]"
+msgstr ""
+
+msgid "  * Fixed typos in document. [GitHub#134][Patch by Yuji Yaginuma]"
+msgstr ""
+
 msgid ""
-"  * Fixed a bug that `--order` isn't applied.\n"
-"    [GitHub#129][Reported by Vít Ondruch]"
+"  * Fixed a bug that data label with \"(\" isn't supported.\n"
+"    [GitHub#135][Reported by Kazuki Tsujimoto]"
+msgstr ""
+
+msgid ""
+"  * Fixed assertion message in English.\n"
+"    [GitHub#133][Reported by Khalil Fazal]"
+msgstr ""
+
+msgid "  * Fixed a typo in typo fix. [GitHub#138][Patch by kami]"
+msgstr ""
+
+msgid ""
+"  * Fixed a bug that target location finder may return wrong\n"
+"    location. [GitHub#146][Patch by Yuki Ito]"
+msgstr ""
+
+msgid ""
+"  * Fixed a bug that `--no-show-detail-immediately` raises an error.\n"
+"    [GitHub#147][Reported by MSP-Greg]"
 msgstr ""
 
 msgid "### Thanks"
 msgstr "### 感謝"
+
+msgid "  * Akira Matsuda"
+msgstr ""
+
+msgid "  * Yuji Yaginuma"
+msgstr ""
+
+msgid "  * Kazuki Tsujimoto"
+msgstr ""
+
+msgid "  * Khalil Fazal"
+msgstr ""
+
+msgid "  * kami"
+msgstr ""
+
+msgid "  * Hiroyuki Sato"
+msgstr ""
+
+msgid "  * Fumiaki MATSUSHIMA"
+msgstr ""
+
+msgid "  * rochefort"
+msgstr ""
+
+msgid "  * Jun Aruga"
+msgstr ""
+
+msgid "  * Yuki Ito"
+msgstr ""
+
+msgid "  * MSP-Greg"
+msgstr ""
+
+msgid "## 3.2.3 - 2016-11-25 {#version-3-2-3}"
+msgstr ""
+
+msgid ""
+"  * Fixed a bug that `--order` isn't applied.\n"
+"    [GitHub#129][Reported by Vít Ondruch]"
+msgstr ""
 
 msgid "  * Vít Ondruch"
 msgstr ""
@@ -689,12 +783,9 @@ msgstr ""
 msgid "## 3.2.2 - 2016-11-02 {#version-3-2-2}"
 msgstr ""
 
-msgid "### Improvements"
-msgstr "### 改良"
-
 msgid ""
 "  * Improved Travis CI configuration.\n"
-"    [GitHub#123][Patch by Ryunosuke SATO]"
+"    [GitHub#123][Patch by Ryunosuke Sato]"
 msgstr ""
 
 msgid ""
@@ -779,9 +870,6 @@ msgid ""
 msgstr ""
 
 msgid "  * Fixed a bug that path in `$LOAD_PATH` may be removed."
-msgstr ""
-
-msgid "  * Kazuki Tsujimoto"
 msgstr ""
 
 msgid "## 3.1.8 - 2016-03-19 {#version-3-1-8}"
@@ -3652,6 +3740,93 @@ msgstr ""
 msgid "a new instance of AttributeMatcher"
 msgstr ""
 
+# @overload
+msgid "tag|overload|attribute"
+msgstr ""
+
+# @example
+msgid ""
+"attribute :speed, :slow\n"
+"def test_my_slow_method\n"
+"  self[:speed] # => :slow\n"
+"end"
+msgstr ""
+
+# @param [String]
+msgid "tag|param|name"
+msgstr ""
+
+# @param [Object] name
+msgid "the attribute name"
+msgstr ""
+
+# @param [Object] value
+msgid "the attribute value"
+msgstr ""
+
+# @example
+msgid ""
+"def test_my_slow_method1\n"
+"  self[:speed] # => :slow\n"
+"end\n"
+"\n"
+"attribute :speed, :slow, :test_my_slow_method1, :test_my_slow_method2\n"
+"\n"
+"def test_my_slow_method2\n"
+"  self[:speed] # => :slow\n"
+"end"
+msgstr ""
+
+# @param [Array<Symbol, String>]
+msgid "tag|param|method_names"
+msgstr ""
+
+# @param [Array<Symbol, String>] method_names
+msgid "the test method names set the attribute"
+msgstr ""
+
+# @example
+msgid ""
+"attribute :speed, :slow, keep: true\n"
+"def test_my_slow_method1\n"
+"  self[:speed] # => :slow\n"
+"end\n"
+"\n"
+"def test_my_slow_method2\n"
+"  self[:speed] # => :slow\n"
+"end"
+msgstr ""
+
+# @option
+msgid "tag|option|options"
+msgstr ""
+
+# @example
+msgid ""
+"def test_my_slow_method1\n"
+"  self[:speed] # => :slow\n"
+"end\n"
+"\n"
+"# There are no valid options for now.\n"
+"attribute :speed, :slow, {}, :test_my_slow_method1\n"
+"\n"
+"def test_my_slow_method2\n"
+"  self[:speed] # => nil\n"
+"end"
+msgstr ""
+
+# @param [Hash]
+msgid "tag|param|options"
+msgstr ""
+
+# @param [Hash] options
+msgid "ignored"
+msgstr ""
+
+# Test::Unit::Attribute::ClassMethods#attribute
+msgid "Set an attribute to test methods."
+msgstr ""
+
 msgid "Returns the value of attribute suite"
 msgstr ""
 
@@ -4212,14 +4387,6 @@ msgstr ""
 msgid "The backtrace for the failure."
 msgstr ""
 
-# @option
-msgid "tag|option|options"
-msgstr ""
-
-# @param [Hash]
-msgid "tag|param|options"
-msgstr ""
-
 msgid "a customizable set of options"
 msgstr ""
 
@@ -4556,6 +4723,31 @@ msgid ""
 "1. shutdown"
 msgstr ""
 
+# Test::Unit::TestCase
+msgid "You can set an attribute to each test."
+msgstr ""
+
+# Test::Unit::TestCase
+msgid ""
+"    class TestMyClass < Test::Unit::TestCase\n"
+"      attribute :speed, :fast\n"
+"      def test_my_fast_method\n"
+"        # You can get the attribute via `self[]`\n"
+"        self[:speed] # => :fast\n"
+"        ...\n"
+"      end"
+msgstr ""
+
+# Test::Unit::TestCase
+msgid ""
+"      attribute :speed, :slow\n"
+"      def test_my_slow_method\n"
+"        self[:speed] # => :slow\n"
+"        ...\n"
+"      end\n"
+"    end"
+msgstr ""
+
 # Test::Unit::TestCase.suite
 msgid ""
 "Rolls up all of the test* methods in the fixture into\n"
@@ -4740,6 +4932,18 @@ msgstr ""
 msgid "Defines a sub test case."
 msgstr ""
 
+msgid "The name of newly created sub test case."
+msgstr ""
+
+# @yield
+msgid ""
+"The block is evaluated under the newly created sub test\n"
+"case class context."
+msgstr ""
+
+msgid "Created sub test case class."
+msgstr ""
+
 # Test::Unit::TestCase.sub_test_case
 msgid ""
 "This is a syntax sugar. The both of the following codes are\n"
@@ -4768,24 +4972,16 @@ msgid ""
 "  end"
 msgstr ""
 
-# @param [String]
-msgid "tag|param|name"
-msgstr ""
-
-msgid "The name of newly created sub test case."
-msgstr ""
-
-# @yield
-msgid ""
-"The block is evaluated under the newly created sub test\n"
-"case class context."
-msgstr ""
-
-msgid "Created sub test case class."
-msgstr ""
-
 # Test::Unit::TestCase.sub_test_case
 msgid "The difference of them are the following:"
+msgstr ""
+
+# @option
+msgid "tag|option|query"
+msgstr ""
+
+# @param [Hash]
+msgid "tag|param|query"
 msgstr ""
 
 # Test::Unit::TestCase.sub_test_case
@@ -4796,14 +4992,6 @@ msgid ""
 "  constant naming rule in Ruby. But the name of test case\n"
 "  created by {sub_test_case} doesn't need to follow the rule.\n"
 "  For example, you can use a space in name such as \"child test\"."
-msgstr ""
-
-# @option
-msgid "tag|option|query"
-msgstr ""
-
-# @param [Hash]
-msgid "tag|param|query"
 msgstr ""
 
 # Test::Unit::TestCase.test_defined?
@@ -5058,22 +5246,6 @@ msgstr ""
 msgid "It's handy to be able to compare TestCase instances."
 msgstr ""
 
-msgid "Returns a Time at the test was started."
-msgstr ""
-
-msgid "Returns elapsed time for the test was ran."
-msgstr ""
-
-msgid "Returns whether the test is interrupted."
-msgstr ""
-
-# Test::Unit::TestCase#passed?
-msgid ""
-"Returns whether this individual test passed or\n"
-"not. Primarily for use in teardown so that artifacts\n"
-"can be left behind if the test fails."
-msgstr ""
-
 msgid "Returns the value of attribute start_time"
 msgstr ""
 
@@ -5090,6 +5262,22 @@ msgstr ""
 
 # @return [InternalData]
 msgid "a new instance of InternalData"
+msgstr ""
+
+msgid "Returns a Time at the test was started."
+msgstr ""
+
+msgid "Returns elapsed time for the test was ran."
+msgstr ""
+
+msgid "Returns whether the test is interrupted."
+msgstr ""
+
+# Test::Unit::TestCase#passed?
+msgid ""
+"Returns whether this individual test passed or\n"
+"not. Primarily for use in teardown so that artifacts\n"
+"can be left behind if the test fails."
 msgstr ""
 
 # Test::Unit::TestCase#problem_occurred
