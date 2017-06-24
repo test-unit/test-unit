@@ -30,4 +30,4 @@ script:
   - RUBYOPT="$RUBYOPT $TEST_RUBYOPT" bundle exec rake
 notifications:
   email:
-    - test-unit-commit@googlegroups.com
+    - test-unit@ml.commit-email.info
