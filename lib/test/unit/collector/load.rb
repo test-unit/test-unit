@@ -181,7 +181,7 @@ module Test
               exception = info[:exception]
               define_method("test_require_#{normalized_path}") do
                 @require_failed_exception = exception
-                omit("failed to load: <#{path}>: <#{exception.message}>")
+                add_error exception
               end
             end
 
