@@ -170,7 +170,7 @@ module Test
           require_failed_errors.class_eval do
             class << self
               def name
-                "RequireFailederrors"
+                "RequireFailedErrors"
               end
             end
 
