@@ -166,11 +166,11 @@ module Test
           return if @require_failed_infos.empty?
 
           require_failed_infos = @require_failed_infos
-          require_failed_omissions = Class.new(Test::Unit::TestCase)
-          require_failed_omissions.class_eval do
+          require_failed_errors = Class.new(Test::Unit::TestCase)
+          require_failed_errors.class_eval do
             class << self
               def name
-                "RequireFailedOmissions"
+                "RequireFailedErrors"
               end
             end
 
@@ -181,7 +181,7 @@ module Test
               exception = info[:exception]
               define_method("test_require_#{normalized_path}") do
                 @require_failed_exception = exception
-                omit("failed to load: <#{path}>: <#{exception.message}>")
+                add_error(exception)
               end
             end
 
@@ -194,7 +194,7 @@ module Test
             end
           end
 
-          add_suite(test_suites, require_failed_omissions.suite)
+          add_suite(test_suites, require_failed_errors.suite)
         end
       end
     end
