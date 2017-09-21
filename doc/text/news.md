@@ -1,5 +1,16 @@
 # News
 
+## 3.2.6 - 2017-09-21 {#version-3-2-6}
+
+### Improvements
+
+  * Changed test file require failure to error from omission.
+    [GitHub#154][Patch by naofumi-fujii]
+
+### Thanks
+
+  * naofumi-fujii
+
 ## 3.2.5 - 2017-06-24 {#version-3-2-5}
 
 ### Improvements
