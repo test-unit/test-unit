@@ -180,17 +180,14 @@ module Test
               normalized_path = normalized_path.gsub(/\A_+/, '')
               exception = info[:exception]
               define_method("test_require_#{normalized_path}") do
-                @require_failed_exception = exception
-                add_error exception
+                raise(exception.class,
+                      "failed to load <#{path}>: #{exception.message}",
+                      exception.backtrace)
               end
             end
 
             def priority
               100
-            end
-
-            def filter_backtrace(location)
-              super(@require_failed_exception.backtrace)
             end
           end
 
