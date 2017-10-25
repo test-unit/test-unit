@@ -139,7 +139,7 @@ module Test
       attr_accessor :default_test_paths
       attr_accessor :pattern, :exclude, :base, :workdir
       attr_accessor :color_scheme, :listeners
-      attr_writer :stop_on_failuere
+      attr_writer :stop_on_failure
       attr_writer :runner, :collector
 
       def initialize(standalone)
