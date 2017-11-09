@@ -342,12 +342,24 @@ module Test
           def test_started(test)
             return unless output?(VERBOSE)
 
+            tab_width = 8
             name = test.local_name
-            right_space = 8 * 2
+            separator = ":"
+            left_used = indent.size + name.size + separator.size
+            right_space = tab_width * 2
             left_space = @progress_row_max - right_space
-            left_space = left_space - indent.size - name.size
-            tab_stop = "\t" * ([left_space - 1, 0].max / 8)
-            output_single("#{indent}#{name}:#{tab_stop}", nil, VERBOSE)
+            if (left_used % tab_width).zero?
+              left_space -= left_used
+              n_tabs = 0
+            else
+              left_space -= ((left_used / tab_width) + 1) * tab_width
+              n_tabs = 1
+            end
+            n_tabs += [left_space, 0].max / tab_width
+            tab_stop = "\t" * n_tabs
+            output_single("#{indent}#{name}#{separator}#{tab_stop}",
+                          nil,
+                          VERBOSE)
             @test_start = Time.now
           end
 
