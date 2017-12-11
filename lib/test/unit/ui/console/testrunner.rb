@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright::
 #   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#   * Copyright (c) 2008-2013 Kouhei Sutou <kou@clear-code.com>
+#   * Copyright (c) 2008-2017 Kouhei Sutou <kou@clear-code.com>
 # License:: Ruby license.
 
 begin
@@ -47,6 +47,8 @@ module Test
             @progress_row_max ||= guess_progress_row_max
             @show_detail_immediately = @options[:show_detail_immediately]
             @show_detail_immediately = true if @show_detail_immediately.nil?
+            @reverse_output = @options[:reverse_output]
+            @reverse_output = @output.tty? if @reverse_output.nil?
             @already_outputted = false
             @indent = 0
             @top_level = true
@@ -110,8 +112,10 @@ module Test
           end
 
           def finished(elapsed_time)
-            nl if output?(NORMAL) and !output?(VERBOSE)
-            output_faults unless @show_detail_immediately
+            unless @show_detail_immediately
+              nl if output?(NORMAL) and !output?(VERBOSE)
+              output_faults
+            end
             nl(PROGRESS_ONLY)
             change_output_level(IMPORTANT_FAULTS_ONLY) do
               output_statistics(elapsed_time)
@@ -178,22 +182,31 @@ module Test
 
           def output_fault_in_detail(fault)
             if fault.is_a?(Failure) and
-                fault.inspected_expected and fault.inspected_actual
-              output_single("#{fault.label}: ")
-              output(fault.test_name, fault_color(fault))
-              output_fault_backtrace(fault)
-              output_failure_message(fault)
+                fault.inspected_expected and
+                fault.inspected_actual
+              if @reverse_output
+                output_fault_backtrace(fault)
+                output_failure_message(fault)
+                output_single("#{fault.label}: ")
+                output(fault.test_name, fault_color(fault))
+              else
+                output_single("#{fault.label}: ")
+                output(fault.test_name, fault_color(fault))
+                output_fault_backtrace(fault)
+                output_failure_message(fault)
+              end
             else
-              if fault.is_a?(Error)
+              if @reverse_output
+                output_fault_backtrace(fault)
                 output_single("#{fault.label}: ")
                 output_single(fault.test_name, fault_color(fault))
                 output_fault_message(fault)
               else
-                output_single(fault.label, fault_color(fault))
+                output_single("#{fault.label}: ")
+                output_single(fault.test_name, fault_color(fault))
                 output_fault_message(fault)
-                output(fault.test_name)
+                output_fault_backtrace(fault)
               end
-              output_fault_backtrace(fault)
             end
           end
 
@@ -218,6 +231,7 @@ module Test
             # workaround for test-spec. :<
             # see also GitHub:#22
             backtrace ||= []
+            backtrace = backtrace.reverse if @reverse_output
             backtrace.each_with_index do |entry, i|
               output(entry)
               next if snippet_is_shown
@@ -303,9 +317,17 @@ module Test
           end
 
           def output_fault_in_short(fault)
-            output_single(fault.message, fault_color(fault))
-            output(" [#{fault.test_name}]")
-            output(fault.location.first)
+            if @reverse_output
+              output(fault.location.first)
+              output_single("#{fault.label}: ")
+              output_single(fault.message, fault_color(fault))
+              output(" [#{fault.test_name}]")
+            else
+              output_single("#{fault.label}: ")
+              output_single(fault.message, fault_color(fault))
+              output(" [#{fault.test_name}]")
+              output(fault.location.first)
+            end
           end
 
           def format_fault(fault)
@@ -330,13 +352,11 @@ module Test
           end
 
           def output_summary_marker
-            term_width = guess_term_width
-            if term_width.zero?
-              marker_width = 6
+            if @progress_row_max > 0
+              output("-" * @progress_row_max, summary_marker_color)
             else
-              marker_width = term_width
+              nl
             end
-            output("-" * marker_width, summary_marker_color)
           end
 
           def test_started(test)
