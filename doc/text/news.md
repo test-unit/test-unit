@@ -1,5 +1,34 @@
 # News
 
+## 3.2.7 - 2017-12-12 {#version-3-2-7}
+
+### Improvements
+
+  * Added source code link to gemspec.
+    [GitHub#157][Patch by Grey Baker]
+
+  * Changed to use SVG image for badges in README.
+    [GitHub#158][Patch by Olle Jonsson]
+
+  * [UI][console]: Added `--reverse-output` option to output fault
+    details in reverse like Ruby 2.5. It's enabled by default only for
+    tty output.
+
+### Fixes
+
+  * Fixed a typo.
+    [GitHub#156][Patch by masa kunikata]
+
+  * [UI][console]: Fixed a bug that broken align in verbose mode.
+
+### Thanks
+
+  * masa kunikata
+
+  * Grey Baker
+
+  * Olle Jonsson
+
 ## 3.2.6 - 2017-09-21 {#version-3-2-6}
 
 ### Improvements
