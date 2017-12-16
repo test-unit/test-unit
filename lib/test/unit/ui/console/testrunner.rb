@@ -225,27 +225,47 @@ module Test
           end
 
           def output_fault_backtrace(fault)
-            snippet_is_shown = false
             detector = FaultLocationDetector.new(fault, @code_snippet_fetcher)
             backtrace = fault.location
             # workaround for test-spec. :<
             # see also GitHub:#22
             backtrace ||= []
-            backtrace = backtrace.reverse if @reverse_output
+
+            code_snippet_backtrace_index = nil
+            code_snippet_lines = nil
             backtrace.each_with_index do |entry, i|
-              output(entry)
-              next if snippet_is_shown
               next unless detector.target?(entry)
               file, line_number, = detector.split_backtrace_entry(entry)
-              snippet_is_shown = output_code_snippet(file, line_number,
-                                                     fault_color(fault))
+              lines = fetch_code_snippet(file, line_number)
+              unless lines.empty?
+                code_snippet_backtrace_index = i
+                code_snippet_lines = lines
+                break
+              end
+            end
+
+            if @reverse_output
+              backtrace.each_with_index.reverse_each do |entry, i|
+                if i == code_snippet_backtrace_index
+                  output_code_snippet(code_snippet_lines, fault_color(fault))
+                end
+                output(entry)
+              end
+            else
+              backtrace.each_with_index do |entry, i|
+                output(entry)
+                if i == code_snippet_backtrace_index
+                  output_code_snippet(code_snippet_lines, fault_color(fault))
+                end
+              end
             end
           end
 
-          def output_code_snippet(file, line_number, target_line_color=nil)
-            lines = @code_snippet_fetcher.fetch(file, line_number)
-            return false if lines.empty?
+          def fetch_code_snippet(file, line_number)
+            @code_snippet_fetcher.fetch(file, line_number)
+          end
 
+          def output_code_snippet(lines, target_line_color=nil)
             max_n = lines.collect {|n, line, attributes| n}.max
             digits = (Math.log10(max_n) + 1).truncate
             lines.each do |n, line, attributes|
@@ -259,7 +279,6 @@ module Test
               output("  %2s %*d: %s" % [current_line_mark, digits, n, line],
                      line_color)
             end
-            true
           end
 
           def output_failure_message(failure)
