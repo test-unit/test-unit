@@ -31,10 +31,10 @@ module Test
 
         def ==(other)
           case(other)
-            when ProcWrapper
-              return @a_proc == other.to_proc
-            else
-              return super
+          when ProcWrapper
+            return @a_proc == other.to_proc
+          else
+            return super
           end
         end
         alias :eql? :==
