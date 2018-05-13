@@ -1,5 +1,12 @@
 # News
 
+## 3.2.8 - 2018-05-13 {#version-3-2-8}
+
+### Improvements
+
+  * [UI][console]: Changed to put code snippet before backtrace on
+    reverse mode.
+
 ## 3.2.7 - 2017-12-12 {#version-3-2-7}
 
 ### Improvements
