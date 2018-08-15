@@ -2,10 +2,8 @@ version: "{build}"
 clone_depth: 10
 
 notifications:
-  - provider: Email
-    to:
-      - test-unit@ml.commit-email.info
-    on_build_status_changed: true
+  - provider: Webhook
+    url: https://webhook.commit-email.info/
 
 environment:
   matrix:
