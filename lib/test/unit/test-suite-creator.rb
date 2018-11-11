@@ -24,6 +24,15 @@ module Test
         collect_test_names.each do |test_name|
           data_sets = @test_case.find_attribute(test_name, :data,
                                                 :recursive => false)
+          data_method_name = "data_#{test_name}"
+          test = @test_case.new(test_name)
+          if test.respond_to?(data_method_name)
+            data_method = test.method(data_method_name)
+            if data_method.arity <= 0
+              data_sets ||= []
+              data_sets << data_method
+            end
+          end
           if data_sets
             data_sets.each do |data_set|
               data_set = data_set.call if data_set.respond_to?(:call)
