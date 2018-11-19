@@ -46,7 +46,7 @@ class TestData < Test::Unit::TestCase
     end
 
     class TestDynamicDataSet < TestCalc
-      data do
+      DATA_PROC = lambda do
         data_set = {}
         data_set["positive positive"] = {
           :expected => 3,
@@ -60,7 +60,8 @@ class TestData < Test::Unit::TestCase
         }
         data_set
       end
-      DATA_PROC = current_attribute(:data)[:value].first
+
+      data(&DATA_PROC)
       def test_plus(data)
         assert_equal(data[:expected],
                      @calc.plus(data[:augend], data[:addend]))
@@ -104,6 +105,15 @@ class TestData < Test::Unit::TestCase
                      @calc.plus(data[:augend], data[:addend]))
       end
     end
+
+    class TestPatterns < TestCalc
+      data(:x, [-1, 1, 0])
+      data(:y, [-100, 100])
+      data(:none, [])
+      data(:z, ["a", "b", "c"])
+      def test_plus(data)
+      end
+    end
   end
 
   def setup
@@ -123,64 +133,83 @@ class TestData < Test::Unit::TestCase
   data("data set",
        {
          :test_case => TestCalc::TestDataSet,
-         :data_set => [{
-                         "positive positive" => {
-                           :expected => 4,
-                           :augend => 3,
-                           :addend => 1,
-                         },
-                         "positive negative" => {
-                           :expected => -1,
-                           :augend => 1,
-                           :addend => -2,
-                         },
-                       }],
+         :data_sets => [
+           {
+             "positive positive" => {
+               :expected => 4,
+               :augend => 3,
+               :addend => 1,
+             },
+             "positive negative" => {
+               :expected => -1,
+               :augend => 1,
+               :addend => -2,
+             },
+           },
+         ],
        })
   data("n-data",
        {
          :test_case => TestCalc::TestNData,
-         :data_set => [{
-                         "positive positive" => {
-                           :expected => 4,
-                           :augend => 3,
-                           :addend => 1,
-                         },
-                       },
-                       {
-                         "positive negative" => {
-                           :expected => -1,
-                           :augend => 1,
-                           :addend => -2,
-                         },
-                       }],
+         :data_sets => [
+           {
+             "positive positive" => {
+               :expected => 4,
+               :augend => 3,
+               :addend => 1,
+             },
+           },
+           {
+             "positive negative" => {
+               :expected => -1,
+               :augend => 1,
+               :addend => -2,
+             },
+           },
+         ],
        })
   data("dynamic-data-set",
        {
          :test_case => TestCalc::TestDynamicDataSet,
-         :data_set => [TestCalc::TestDynamicDataSet::DATA_PROC],
+         :data_sets => [TestCalc::TestDynamicDataSet::DATA_PROC],
        })
   data("load-data-set",
        {
          :test_case => TestCalc::TestLoadDataSet,
-         :data_set => [{
-                         "positive positive" => {
-                           "expected" => 4,
-                           "augend" => 3,
-                           "addend" => 1,
-                         },
-                       },
-                       {
-                         "positive negative" => {
-                           "expected" => -1,
-                           "augend" => 1,
-                           "addend" => -2,
-                         },
-                       }],
-         })
+         :data_sets => [
+           {
+             "positive positive" => {
+               "expected" => 4,
+               "augend" => 3,
+               "addend" => 1,
+             },
+           },
+           {
+             "positive negative" => {
+               "expected" => -1,
+               "augend" => 1,
+               "addend" => -2,
+             },
+           },
+         ],
+       })
   def test_data(data)
     test_plus = data[:test_case].new("test_plus")
-    assert_equal(data[:data_set], test_plus[:data])
-    assert_not_nil(data[:data_set])
+    data_sets = Test::Unit::DataSets.new
+    data[:data_sets].each do |data_set|
+      data_sets << data_set
+    end
+    assert_equal(data_sets, test_plus[:data])
+  end
+
+  def test_data_patterns
+    test_plus = TestCalc::TestPatterns.new("test_plus")
+    data_sets = Test::Unit::DataSets.new
+    data_sets << [:x, [-1, 1, 0]]
+    data_sets << [:y, [-100, 100]]
+    data_sets << [:none, []]
+    data_sets << [:z, ["a", "b", "c"]]
+    assert_equal(data_sets, test_plus[:data])
   end
 
   data("data set"         => TestCalc::TestDataSet,
@@ -191,6 +220,32 @@ class TestData < Test::Unit::TestCase
     suite = test_case.suite
     assert_equal(["test_plus[positive negative](#{test_case.name})",
                   "test_plus[positive positive](#{test_case.name})"],
+                 suite.tests.collect {|test| test.name}.sort)
+  end
+
+  def test_suite_patterns
+    test_case = TestCalc::TestPatterns
+    suite = test_case.suite
+    assert_equal([
+                   "test_plus[x: -1, y: -100, z: \"a\"](#{test_case.name})",
+                   "test_plus[x: -1, y: -100, z: \"b\"](#{test_case.name})",
+                   "test_plus[x: -1, y: -100, z: \"c\"](#{test_case.name})",
+                   "test_plus[x: -1, y: 100, z: \"a\"](#{test_case.name})",
+                   "test_plus[x: -1, y: 100, z: \"b\"](#{test_case.name})",
+                   "test_plus[x: -1, y: 100, z: \"c\"](#{test_case.name})",
+                   "test_plus[x: 0, y: -100, z: \"a\"](#{test_case.name})",
+                   "test_plus[x: 0, y: -100, z: \"b\"](#{test_case.name})",
+                   "test_plus[x: 0, y: -100, z: \"c\"](#{test_case.name})",
+                   "test_plus[x: 0, y: 100, z: \"a\"](#{test_case.name})",
+                   "test_plus[x: 0, y: 100, z: \"b\"](#{test_case.name})",
+                   "test_plus[x: 0, y: 100, z: \"c\"](#{test_case.name})",
+                   "test_plus[x: 1, y: -100, z: \"a\"](#{test_case.name})",
+                   "test_plus[x: 1, y: -100, z: \"b\"](#{test_case.name})",
+                   "test_plus[x: 1, y: -100, z: \"c\"](#{test_case.name})",
+                   "test_plus[x: 1, y: 100, z: \"a\"](#{test_case.name})",
+                   "test_plus[x: 1, y: 100, z: \"b\"](#{test_case.name})",
+                   "test_plus[x: 1, y: 100, z: \"c\"](#{test_case.name})",
+                 ],
                  suite.tests.collect {|test| test.name}.sort)
   end
 
@@ -264,20 +319,20 @@ class TestData < Test::Unit::TestCase
              "tsv" => "header.tsv")
         def test_normal(file_name)
           self.class.load_data(fixture_file_path(file_name))
-          assert_equal([
-                         {
-                           "empty string" => {
-                             "expected" => true,
-                             "target"   => ""
-                           }
-                         },
-                         {
-                           "plain string" => {
-                             "expected" => false,
-                             "target"   => "hello"
-                           }
-                         }
-                       ],
+          data_sets = Test::Unit::DataSets.new
+          data_sets << {
+            "empty string" => {
+              "expected" => true,
+              "target"   => ""
+            }
+          }
+          data_sets << {
+            "plain string" => {
+              "expected" => false,
+              "target"   => "hello"
+            }
+          }
+          assert_equal(data_sets,
                        self.class.current_attribute(:data)[:value])
         end
 
@@ -285,20 +340,20 @@ class TestData < Test::Unit::TestCase
              "tsv" => "header-label.tsv")
         def test_label(file_name)
           self.class.load_data(fixture_file_path(file_name))
-          assert_equal([
-                         {
-                           "upper case" => {
-                             "expected" => "HELLO",
-                             "label"    => "HELLO"
-                           }
-                         },
-                         {
-                           "lower case" => {
-                             "expected" => "Hello",
-                             "label"    => "hello"
-                           }
-                         }
-                       ],
+          data_sets = Test::Unit::DataSets.new
+          data_sets << {
+            "upper case" => {
+              "expected" => "HELLO",
+              "label"    => "HELLO"
+            }
+          }
+          data_sets << {
+            "lower case" => {
+              "expected" => "Hello",
+              "label"    => "hello"
+            }
+          }
+          assert_equal(data_sets,
                        self.class.current_attribute(:data)[:value])
         end
       end
@@ -307,10 +362,10 @@ class TestData < Test::Unit::TestCase
            "tsv" => "no-header.tsv")
       def test_without_header(file_name)
         self.class.load_data(fixture_file_path(file_name))
-        assert_equal([
-                       {"empty string" => [true, ""]},
-                       {"plain string" => [false, "hello"]}
-                     ],
+        data_sets = Test::Unit::DataSets.new
+        data_sets << {"empty string" => [true, ""]}
+        data_sets << {"plain string" => [false, "hello"]}
+        assert_equal(data_sets,
                      self.class.current_attribute(:data)[:value])
       end
     end

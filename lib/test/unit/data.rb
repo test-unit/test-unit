@@ -1,3 +1,5 @@
+require "test/unit/data-sets"
+
 module Test
   module Unit
     module Data
@@ -24,6 +26,28 @@ module Test
         #       assert_equal(expected, target.empty?)
         #     end
         #
+        # @overload data(variable, patterns)
+        #   @param [Symbol] variable specify test pattern variable name.
+        #   @param [Array] patterns specify test patterns for the variable.
+        #
+        #   @example data(variable, patterns)
+        #     data(:x, [1, 2, 3])
+        #     data(:y, ["a", "b"])
+        #     def test_patterns(data)
+        #       # 3 * 2 times executed
+        #       # 3: the number of patterns of :x
+        #       # 2: the number of patterns of :y
+        #       p data
+        #         # => {:x => 1, :y => "a"}
+        #         # => {:x => 1, :y => "b"}
+        #         # => {:x => 2, :y => "a"}
+        #         # => {:x => 2, :y => "b"}
+        #         # => {:x => 3, :y => "a"}
+        #         # => {:x => 3, :y => "b"}
+        #     end
+        #
+        #   Generates test matrix from variable and patterns pairs.
+        #
         # @overload data(data_set)
         #   @param [Hash] data_set specify test data as a Hash that
         #     key is test label and value is test data.
@@ -37,8 +61,8 @@ module Test
         #     end
         #
         # @overload data(&block)
-        #   @yieldreturn [Hash] return test data set as a Hash that
-        #     key is test label and value is test data.
+        #   @yieldreturn [Hash<String, Object>] return test data set
+        #     as a Hash that key is test label and value is test data.
         #
         #   @example data(&block)
         #     data do
@@ -52,6 +76,39 @@ module Test
         #       assert_equal(expected, target.empty?)
         #     end
         #
+        # @overload data(&block)
+        #   @yieldreturn [Array<Symbol, Array>] return test data set
+        #     as an Array of variable and patterns.
+        #
+        #   @example data(&block)
+        #     data do
+        #       patterns = 3.times.to_a
+        #       [:x, patterns]
+        #     end
+        #     data do
+        #       patterns = []
+        #       character = "a"
+        #       2.times.each do
+        #         patterns << character
+        #         character = character.succ
+        #       end
+        #       [:y, patterns]
+        #     end
+        #     def test_patterns(data)
+        #       # 3 * 2 times executed
+        #       # 3: the number of patterns of :x
+        #       # 2: the number of patterns of :y
+        #       p data
+        #         # => {:x => 0, :y => "a"}
+        #         # => {:x => 0, :y => "b"}
+        #         # => {:x => 1, :y => "a"}
+        #         # => {:x => 1, :y => "b"}
+        #         # => {:x => 2, :y => "a"}
+        #         # => {:x => 2, :y => "b"}
+        #     end
+        #
+        #   Generates test matrix from variable and patterns pairs.
+        #
         def data(*arguments, &block)
           n_arguments = arguments.size
           case n_arguments
@@ -61,13 +118,20 @@ module Test
           when 1
             data_set = arguments[0]
           when 2
-            data_set = {arguments[0] => arguments[1]}
+            if arguments[0].is_a?(String)
+              data_set = {arguments[0] => arguments[1]}
+            else
+              variable = arguments[0]
+              patterns = arguments[1]
+              data_set = [variable, patterns]
+            end
           else
             message = "wrong number arguments(#{n_arguments} for 1..2)"
             raise ArgumentError, message
           end
-          current_data = current_attribute(:data)[:value] || []
-          attribute(:data, current_data + [data_set])
+          data_sets = current_attribute(:data)[:value] || DataSets.new
+          data_sets << data_set
+          attribute(:data, data_sets)
         end
 
         # This method provides Data-Driven-Test functionality.

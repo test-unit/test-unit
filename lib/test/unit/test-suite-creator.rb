@@ -5,6 +5,8 @@
 #   * Copyright (c) 2011 Kouhei Sutou <tt><kou@clear-code.com></tt>
 # License:: Ruby license.
 
+require "test/unit/data-sets"
+
 module Test
   module Unit
     class TestSuiteCreator # :nodoc:
@@ -22,24 +24,22 @@ module Test
       def create
         suite = TestSuite.new(@test_case.name, @test_case)
         collect_test_names.each do |test_name|
-          data_sets = @test_case.find_attribute(test_name, :data,
+          data_sets = @test_case.find_attribute(test_name,
+                                                :data,
                                                 :recursive => false)
           data_method_name = "data_#{test_name}"
           test = @test_case.new(test_name)
           if test.respond_to?(data_method_name)
             data_method = test.method(data_method_name)
             if data_method.arity <= 0
-              data_sets ||= []
+              data_sets ||= DataSets.new
               data_sets << data_method
             end
           end
           if data_sets
-            data_sets.each do |data_set|
-              data_set = data_set.call if data_set.respond_to?(:call)
-              data_set.each do |label, data|
-                append_test(suite, test_name) do |test|
-                  test.assign_test_data(label, data)
-                end
+            data_sets.each do |label, data|
+              append_test(suite, test_name) do |test|
+                test.assign_test_data(label, data)
               end
             end
           else
