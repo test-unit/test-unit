@@ -58,7 +58,7 @@ module Test
       private
       def build_matrix(variables)
         build_raw_matrix(variables).collect do |cell|
-          label = ""
+          label = String.new
           data = cell[:data]
           cell[:variables].sort.each do |variable|
             unless label.empty?
