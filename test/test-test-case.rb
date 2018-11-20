@@ -546,6 +546,7 @@ module Test
         test_case = Class.new(TestCase) do
           data("label" => "value")
           def test_without_parameter
+            assert_equal("value", data)
           end
         end
 
@@ -554,8 +555,8 @@ module Test
                      suite.tests.collect {|test| test.method_name})
         result = TestResult.new
         suite.run(result) {}
-        assert_equal("1 tests, 0 assertions, 0 failures, " +
-                     "0 errors, 0 pendings, 0 omissions, 1 notifications",
+        assert_equal("1 tests, 1 assertions, 0 failures, " +
+                     "0 errors, 0 pendings, 0 omissions, 0 notifications",
                      result.summary)
       end
 

@@ -678,6 +678,12 @@ module Test
         @internal_data.test_data_label
       end
 
+      # Returns test data for the test. If the test isn't associated
+      # with any test data, it returns +nil+.
+      def data
+        @internal_data.test_data
+      end
+
       # Returns a human-readable name for the specific test that
       # this instance of TestCase represents.
       def name
@@ -779,15 +785,11 @@ module Test
         end
         if @internal_data.have_test_data?
           test_method = method(@method_name)
-          if test_method.arity == 1 or test_method.arity < 0
-            __send__(@method_name, @internal_data.test_data)
+          arity = test_method.arity
+          if arity.zero?
+            __send__(@method_name)
           else
-            locations = self.class.find_locations(:method_name => @method_name)
-            backtrace = locations.collect do |location|
-              "#{location[:path]}:#{location[:line]}"
-            end
-            notify("<#{signature}> misses a parameter to take test data",
-                   :backtrace => backtrace)
+            __send__(@method_name, @internal_data.test_data)
           end
         else
           __send__(@method_name)
