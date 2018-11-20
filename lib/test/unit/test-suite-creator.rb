@@ -24,18 +24,7 @@ module Test
       def create
         suite = TestSuite.new(@test_case.name, @test_case)
         collect_test_names.each do |test_name|
-          data_sets = @test_case.find_attribute(test_name,
-                                                :data,
-                                                :recursive => false)
-          data_method_name = "data_#{test_name}"
-          test = @test_case.new(test_name)
-          if test.respond_to?(data_method_name)
-            data_method = test.method(data_method_name)
-            if data_method.arity <= 0
-              data_sets ||= DataSets.new
-              data_sets << data_method
-            end
-          end
+          data_sets = extract_data_sets(test_name)
           if data_sets
             data_sets.each do |label, data|
               append_test(suite, test_name) do |test|
@@ -51,6 +40,22 @@ module Test
       end
 
       private
+      def extract_data_sets(test_name)
+        data_sets = @test_case.find_attribute(test_name,
+                                              :data,
+                                              :recursive => false)
+        data_method_name = "data_#{test_name}"
+        test = @test_case.new(test_name)
+        if test.respond_to?(data_method_name)
+          data_method = test.method(data_method_name)
+          if data_method.arity <= 0
+            data_sets ||= DataSets.new
+            data_sets << data_method
+          end
+        end
+        data_sets
+      end
+
       def append_test(suite, test_name)
         test = @test_case.new(test_name)
         yield(test) if block_given?
