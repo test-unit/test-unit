@@ -124,6 +124,15 @@ class TestData < Test::Unit::TestCase
       def test_use_data_keep(data)
       end
     end
+
+    class TestPatternsGroup < TestCalc
+      data(:a, [-1, 1, 0], group: 1)
+      data(:b, [:a, :b], group: 1)
+      data(:x, [2, 9], group: :z)
+      data(:y, ["a", "b", "c"], group: :z)
+      def test_use_data(data)
+      end
+    end
   end
 
   def setup
@@ -262,6 +271,26 @@ class TestData < Test::Unit::TestCase
                    "test_use_data[x: 1, y: 100, z: \"a\"](#{test_case.name})",
                    "test_use_data[x: 1, y: 100, z: \"b\"](#{test_case.name})",
                    "test_use_data[x: 1, y: 100, z: \"c\"](#{test_case.name})",
+                 ],
+                 suite.tests.collect {|test| test.name}.sort)
+  end
+
+  def test_suite_patterns_group
+    test_case = TestCalc::TestPatternsGroup
+    suite = test_case.suite
+    assert_equal([
+                   "test_use_data[group: 1, a: -1, b: :a](#{test_case.name})",
+                   "test_use_data[group: 1, a: -1, b: :b](#{test_case.name})",
+                   "test_use_data[group: 1, a: 0, b: :a](#{test_case.name})",
+                   "test_use_data[group: 1, a: 0, b: :b](#{test_case.name})",
+                   "test_use_data[group: 1, a: 1, b: :a](#{test_case.name})",
+                   "test_use_data[group: 1, a: 1, b: :b](#{test_case.name})",
+                   "test_use_data[group: :z, x: 2, y: \"a\"](#{test_case.name})",
+                   "test_use_data[group: :z, x: 2, y: \"b\"](#{test_case.name})",
+                   "test_use_data[group: :z, x: 2, y: \"c\"](#{test_case.name})",
+                   "test_use_data[group: :z, x: 9, y: \"a\"](#{test_case.name})",
+                   "test_use_data[group: :z, x: 9, y: \"b\"](#{test_case.name})",
+                   "test_use_data[group: :z, x: 9, y: \"c\"](#{test_case.name})",
                  ],
                  suite.tests.collect {|test| test.name}.sort)
   end

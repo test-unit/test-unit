@@ -59,7 +59,7 @@ module Test
           end
         end
 
-        build_matrix(variables).each do |label, data|
+        each_pattern(variables) do |label, data|
           yield(label, data)
         end
       end
@@ -79,23 +79,27 @@ module Test
       end
 
       private
-      def build_matrix(variables)
-        build_raw_matrix(variables).collect do |cell|
-          label = String.new
-          data = {}
-          cell.each do |variable, pattern|
-            unless label.empty?
-              label << ", "
+      def each_pattern(variables)
+        grouped_variables = variables.group_by do |_, options|
+          options[:group]
+        end
+        grouped_variables.each do |group, variables|
+          each_raw_pattern(variables) do |cell|
+            label = String.new
+            label << "group: #{group.inspect}" unless group.nil?
+            data = {}
+            cell.each do |variable, pattern|
+              label << ", " unless label.empty?
+              label << "#{variable}: #{pattern.inspect}"
+              data[variable] = pattern
             end
-            label << "#{variable}: #{pattern.inspect}"
-            data[variable] = pattern
+            yield(label, data)
           end
-          [label, data]
         end
       end
 
-      def build_raw_matrix(variables)
-        return [] if variables.empty?
+      def each_raw_pattern(variables, &block)
+        return if variables.empty?
 
         sorted_variables = variables.sort_by do |(variable, _), _|
           variable
@@ -105,7 +109,7 @@ module Test
             [variable, pattern]
           end
         end
-        all_patterns[0].product(*all_patterns[1..-1])
+        all_patterns[0].product(*all_patterns[1..-1], &block)
       end
     end
   end

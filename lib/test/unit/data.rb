@@ -14,9 +14,12 @@ module Test
         #
         # Define test data in the test code.
         #
-        # @overload data(label, data)
+        # @overload data(label, data, options={})
         #   @param [String] label specify test case name.
         #   @param data specify test data.
+        #   @param [Hash] options specify options.
+        #   @option options [Boolean] :keep whether or not to use
+        #     this data in the following test methods
         #
         #   @example data(label, data)
         #     data("empty string", [true, ""])
@@ -26,9 +29,14 @@ module Test
         #       assert_equal(expected, target.empty?)
         #     end
         #
-        # @overload data(variable, patterns)
+        # @overload data(variable, patterns, options={})
         #   @param [Symbol] variable specify test pattern variable name.
         #   @param [Array] patterns specify test patterns for the variable.
+        #   @param [Hash] options specify options.
+        #   @option options [Boolean] :keep whether or not to use
+        #     this data in the following test methods
+        #   @option options [Object] :group the test pattern group.
+        #     Test matrix is generated for each test pattern group separately.
         #
         #   @example data(variable, patterns)
         #     data(:x, [1, 2, 3])
@@ -48,9 +56,12 @@ module Test
         #
         #   Generates test matrix from variable and patterns pairs.
         #
-        # @overload data(data_set)
+        # @overload data(data_set, options={})
         #   @param [Hash] data_set specify test data as a Hash that
         #     key is test label and value is test data.
+        #   @param [Hash] options specify options.
+        #   @option options [Boolean] :keep whether or not to use
+        #     this data in the following test methods
         #
         #   @example data(data_set)
         #     data("empty string" => [true, ""],
@@ -60,7 +71,10 @@ module Test
         #       assert_equal(expected, target.empty?)
         #     end
         #
-        # @overload data(&block)
+        # @overload data(options={}, &block)
+        #   @param [Hash] options specify options.
+        #   @option options [Boolean] :keep whether or not to use
+        #     this data in the following test methods
         #   @yieldreturn [Hash<String, Object>] return test data set
         #     as a Hash that key is test label and value is test data.
         #
@@ -76,7 +90,10 @@ module Test
         #       assert_equal(expected, target.empty?)
         #     end
         #
-        # @overload data(&block)
+        # @overload data(options={}, &block)
+        #   @param [Hash] options specify options.
+        #   @option options [Boolean] :keep whether or not to use
+        #     this data in the following test methods
         #   @yieldreturn [Array<Symbol, Array>] return test data set
         #     as an Array of variable and patterns.
         #
