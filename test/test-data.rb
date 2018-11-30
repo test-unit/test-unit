@@ -114,6 +114,18 @@ class TestData < Test::Unit::TestCase
       def test_plus(data)
       end
     end
+
+    class TestPatternsKeep < TestCalc
+      data(:x, [-1, 1, 0], keep: true)
+      data(:y, [-100, 100])
+      data(:none, [])
+      data(:z, ["a", "b", "c"], keep: true)
+      def test_plus(data)
+      end
+
+      def test_plus_keep(data)
+      end
+    end
   end
 
   def setup
@@ -197,7 +209,7 @@ class TestData < Test::Unit::TestCase
     test_plus = data[:test_case].new("test_plus")
     data_sets = Test::Unit::DataSets.new
     data[:data_sets].each do |data_set|
-      data_sets << data_set
+      data_sets.add(data_set)
     end
     assert_equal(data_sets, test_plus[:data])
   end
@@ -209,6 +221,14 @@ class TestData < Test::Unit::TestCase
     data_sets << [:y, [-100, 100]]
     data_sets << [:none, []]
     data_sets << [:z, ["a", "b", "c"]]
+    assert_equal(data_sets, test_plus[:data])
+  end
+
+  def test_data_patterns_keep
+    test_plus = TestCalc::TestPatternsKeep.new("test_plus_keep")
+    data_sets = Test::Unit::DataSets.new
+    data_sets.add([:x, [-1, 1, 0]], {keep: true})
+    data_sets.add([:z, ["a", "b", "c"]], {keep: true})
     assert_equal(data_sets, test_plus[:data])
   end
 

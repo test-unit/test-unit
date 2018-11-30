@@ -110,28 +110,56 @@ module Test
         #   Generates test matrix from variable and patterns pairs.
         #
         def data(*arguments, &block)
+          options = nil
           n_arguments = arguments.size
           case n_arguments
           when 0
             raise ArgumentError, "no block is given" unless block_given?
             data_set = block
           when 1
-            data_set = arguments[0]
+            if block_given?
+              data_set = block
+              options = arguments[1]
+            else
+              data_set = arguments[0]
+            end
           when 2
-            if arguments[0].is_a?(String)
+            case arguments[0]
+            when String
               data_set = {arguments[0] => arguments[1]}
+            when Hash
+              data_set = arguments[0]
+              options = arguments[1]
             else
               variable = arguments[0]
               patterns = arguments[1]
               data_set = [variable, patterns]
             end
+          when 3
+            case arguments[0]
+            when String
+              data_set = {arguments[0] => arguments[1]}
+              options = arguments[2]
+            else
+              variable = arguments[0]
+              patterns = arguments[1]
+              data_set = [variable, patterns]
+              options = arguments[2]
+            end
           else
-            message = "wrong number arguments(#{n_arguments} for 1..2)"
+            message = "wrong number arguments(#{n_arguments} for 0..3)"
             raise ArgumentError, message
           end
+          options ||= {}
           data_sets = current_attribute(:data)[:value] || DataSets.new
-          data_sets << data_set
-          attribute(:data, data_sets)
+          data_sets.add(data_set, options)
+          if options[:keep]
+            keep_hook = lambda do |attr|
+              attr.merge(value: attr[:value].keep)
+            end
+            options = options.merge(keep_hook: keep_hook)
+          end
+          attribute(:data, data_sets, options)
         end
 
         # This method provides Data-Driven-Test functionality.

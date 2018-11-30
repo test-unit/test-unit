@@ -43,7 +43,11 @@ module Test
           kept_attributes = StringifyKeyHash.new
           @current_attributes.each do |attribute_name, attribute|
             attributes[attribute_name] = attribute[:value]
-            kept_attributes[attribute_name] = attribute if attribute[:keep]
+            if attribute[:keep]
+              keep_hook = attribute[:keep_hook]
+              attribute = keep_hook.call(attribute) if keep_hook
+              kept_attributes[attribute_name] = attribute
+            end
           end
           set_attributes(name, attributes)
           @current_attributes = kept_attributes

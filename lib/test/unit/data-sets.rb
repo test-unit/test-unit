@@ -7,30 +7,53 @@ module Test
         @value_sets = []
       end
 
-      def <<(data_set)
+      def add(data_set, options=nil)
+        options ||= {}
         if data_set.respond_to?(:call)
-          @procs << data_set
+          @procs << [data_set, options]
         elsif data_set.is_a?(Array)
-          @variables << data_set
+          @variables << [data_set, options]
         else
-          @value_sets << data_set
+          @value_sets << [data_set, options]
         end
+      end
+
+      def <<(data_set)
+        add(data_set)
+      end
+
+      def keep
+        new_data_sets = self.class.new
+        all_data_sets = Enumerator.new do |yielder|
+          block = lambda do |(data_set, options)|
+            yielder << [data_set, options]
+          end
+          @procs.each(&block)
+          @variables.each(&block)
+          @value_sets.each(&block)
+        end
+        all_data_sets.each do |data_set, options|
+          next if options.nil?
+          next unless options[:keep]
+          new_data_sets.add(data_set, options)
+        end
+        new_data_sets
       end
 
       def each
         variables = @variables
         value_sets = @value_sets
-        @procs.each do |proc|
+        @procs.each do |proc, options|
           data_set = proc.call
           case data_set
           when Array
-            variables += [data_set]
+            variables += [[data_set, options]]
           else
-            value_sets += [data_set]
+            value_sets += [[data_set, options]]
           end
         end
 
-        value_sets.each do |values|
+        value_sets.each do |values, _options|
           values.each do |label, data|
             yield(label, data)
           end
@@ -73,7 +96,8 @@ module Test
       def build_raw_matrix(variables)
         return [] if variables.empty?
 
-        (variable, patterns), *rest_variables = variables
+        current, *rest_variables = variables
+        (variable, patterns), _options = current
         sub_matrix = build_raw_matrix(rest_variables)
         return sub_matrix if patterns.empty?
 
