@@ -110,7 +110,7 @@ class TestData < Test::Unit::TestCase
       data(:x, [-1, 1, 0])
       data(:y, [-100, 100])
       data(:z, ["a", "b", "c"])
-      def test_plus(data)
+      def test_use_data(data)
       end
     end
 
@@ -118,10 +118,10 @@ class TestData < Test::Unit::TestCase
       data(:x, [-1, 1, 0], keep: true)
       data(:y, [-100, 100])
       data(:z, ["a", "b", "c"], keep: true)
-      def test_plus(data)
+      def test_use_data(data)
       end
 
-      def test_plus_keep(data)
+      def test_use_data_keep(data)
       end
     end
   end
@@ -213,7 +213,7 @@ class TestData < Test::Unit::TestCase
   end
 
   def test_data_patterns
-    test_plus = TestCalc::TestPatterns.new("test_plus")
+    test_plus = TestCalc::TestPatterns.new("test_use_data")
     data_sets = Test::Unit::DataSets.new
     data_sets << [:x, [-1, 1, 0]]
     data_sets << [:y, [-100, 100]]
@@ -222,7 +222,7 @@ class TestData < Test::Unit::TestCase
   end
 
   def test_data_patterns_keep
-    test_plus = TestCalc::TestPatternsKeep.new("test_plus_keep")
+    test_plus = TestCalc::TestPatternsKeep.new("test_use_data_keep")
     data_sets = Test::Unit::DataSets.new
     data_sets.add([:x, [-1, 1, 0]], {keep: true})
     data_sets.add([:z, ["a", "b", "c"]], {keep: true})
@@ -244,24 +244,24 @@ class TestData < Test::Unit::TestCase
     test_case = TestCalc::TestPatterns
     suite = test_case.suite
     assert_equal([
-                   "test_plus[x: -1, y: -100, z: \"a\"](#{test_case.name})",
-                   "test_plus[x: -1, y: -100, z: \"b\"](#{test_case.name})",
-                   "test_plus[x: -1, y: -100, z: \"c\"](#{test_case.name})",
-                   "test_plus[x: -1, y: 100, z: \"a\"](#{test_case.name})",
-                   "test_plus[x: -1, y: 100, z: \"b\"](#{test_case.name})",
-                   "test_plus[x: -1, y: 100, z: \"c\"](#{test_case.name})",
-                   "test_plus[x: 0, y: -100, z: \"a\"](#{test_case.name})",
-                   "test_plus[x: 0, y: -100, z: \"b\"](#{test_case.name})",
-                   "test_plus[x: 0, y: -100, z: \"c\"](#{test_case.name})",
-                   "test_plus[x: 0, y: 100, z: \"a\"](#{test_case.name})",
-                   "test_plus[x: 0, y: 100, z: \"b\"](#{test_case.name})",
-                   "test_plus[x: 0, y: 100, z: \"c\"](#{test_case.name})",
-                   "test_plus[x: 1, y: -100, z: \"a\"](#{test_case.name})",
-                   "test_plus[x: 1, y: -100, z: \"b\"](#{test_case.name})",
-                   "test_plus[x: 1, y: -100, z: \"c\"](#{test_case.name})",
-                   "test_plus[x: 1, y: 100, z: \"a\"](#{test_case.name})",
-                   "test_plus[x: 1, y: 100, z: \"b\"](#{test_case.name})",
-                   "test_plus[x: 1, y: 100, z: \"c\"](#{test_case.name})",
+                   "test_use_data[x: -1, y: -100, z: \"a\"](#{test_case.name})",
+                   "test_use_data[x: -1, y: -100, z: \"b\"](#{test_case.name})",
+                   "test_use_data[x: -1, y: -100, z: \"c\"](#{test_case.name})",
+                   "test_use_data[x: -1, y: 100, z: \"a\"](#{test_case.name})",
+                   "test_use_data[x: -1, y: 100, z: \"b\"](#{test_case.name})",
+                   "test_use_data[x: -1, y: 100, z: \"c\"](#{test_case.name})",
+                   "test_use_data[x: 0, y: -100, z: \"a\"](#{test_case.name})",
+                   "test_use_data[x: 0, y: -100, z: \"b\"](#{test_case.name})",
+                   "test_use_data[x: 0, y: -100, z: \"c\"](#{test_case.name})",
+                   "test_use_data[x: 0, y: 100, z: \"a\"](#{test_case.name})",
+                   "test_use_data[x: 0, y: 100, z: \"b\"](#{test_case.name})",
+                   "test_use_data[x: 0, y: 100, z: \"c\"](#{test_case.name})",
+                   "test_use_data[x: 1, y: -100, z: \"a\"](#{test_case.name})",
+                   "test_use_data[x: 1, y: -100, z: \"b\"](#{test_case.name})",
+                   "test_use_data[x: 1, y: -100, z: \"c\"](#{test_case.name})",
+                   "test_use_data[x: 1, y: 100, z: \"a\"](#{test_case.name})",
+                   "test_use_data[x: 1, y: 100, z: \"b\"](#{test_case.name})",
+                   "test_use_data[x: 1, y: 100, z: \"c\"](#{test_case.name})",
                  ],
                  suite.tests.collect {|test| test.name}.sort)
   end
