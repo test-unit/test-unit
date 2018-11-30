@@ -109,7 +109,6 @@ class TestData < Test::Unit::TestCase
     class TestPatterns < TestCalc
       data(:x, [-1, 1, 0])
       data(:y, [-100, 100])
-      data(:none, [])
       data(:z, ["a", "b", "c"])
       def test_plus(data)
       end
@@ -118,7 +117,6 @@ class TestData < Test::Unit::TestCase
     class TestPatternsKeep < TestCalc
       data(:x, [-1, 1, 0], keep: true)
       data(:y, [-100, 100])
-      data(:none, [])
       data(:z, ["a", "b", "c"], keep: true)
       def test_plus(data)
       end
@@ -219,7 +217,6 @@ class TestData < Test::Unit::TestCase
     data_sets = Test::Unit::DataSets.new
     data_sets << [:x, [-1, 1, 0]]
     data_sets << [:y, [-100, 100]]
-    data_sets << [:none, []]
     data_sets << [:z, ["a", "b", "c"]]
     assert_equal(data_sets, test_plus[:data])
   end

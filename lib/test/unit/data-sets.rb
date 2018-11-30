@@ -82,12 +82,13 @@ module Test
       def build_matrix(variables)
         build_raw_matrix(variables).collect do |cell|
           label = String.new
-          data = cell[:data]
-          cell[:variables].sort.each do |variable|
+          data = {}
+          cell.each do |variable, pattern|
             unless label.empty?
               label << ", "
             end
-            label << "#{variable}: #{data[variable].inspect}"
+            label << "#{variable}: #{pattern.inspect}"
+            data[variable] = pattern
           end
           [label, data]
         end
@@ -96,28 +97,15 @@ module Test
       def build_raw_matrix(variables)
         return [] if variables.empty?
 
-        current, *rest_variables = variables
-        (variable, patterns), _options = current
-        sub_matrix = build_raw_matrix(rest_variables)
-        return sub_matrix if patterns.empty?
-
-        matrix = []
-        patterns.each do |pattern|
-          if sub_matrix.empty?
-            matrix << {
-              :variables => [variable],
-              :data => {variable => pattern},
-            }
-          else
-            sub_matrix.each do |sub_cell|
-              matrix << {
-                :variables => [variable, *sub_cell[:variables]],
-                :data => sub_cell[:data].merge(variable => pattern),
-              }
-            end
+        sorted_variables = variables.sort_by do |(variable, _), _|
+          variable
+        end
+        all_patterns = sorted_variables.collect do |(variable, patterns), _|
+          patterns.collect do |pattern|
+            [variable, pattern]
           end
         end
-        matrix
+        all_patterns[0].product(*all_patterns[1..-1])
       end
     end
   end
