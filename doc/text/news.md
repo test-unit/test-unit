@@ -1,5 +1,76 @@
 # News
 
+## 3.2.9 - 2018-12-01 {#version-3-2-9}
+
+### Improvements
+
+  * Added support for data generation by method. `data_#{test_name}`
+    is called to generate data for `test_name` test.
+
+  * Added support for data matrix generation.
+
+    Example:
+
+    ```ruby
+    data(:a, [0, 1, 2])
+    data(:b, [:x, :y])
+    def test_data(data)
+    end
+    ```
+
+    This example generates the following data matrix:
+
+      * label: `"a: 0, b: :x"`, data: `{a: 0, b: :x}`
+      * label: `"a: 0, b: :y"`, data: `{a: 0, b: :y}`
+      * label: `"a: 1, b: :x"`, data: `{a: 1, b: :x}`
+      * label: `"a: 1, b: :y"`, data: `{a: 1, b: :y}`
+      * label: `"a: 2, b: :x"`, data: `{a: 2, b: :x}`
+      * label: `"a: 2, b: :y"`, data: `{a: 2, b: :y}`
+
+  * Added `Test::Unit::TestCase#data` that returns the current data.
+
+  * Added support for using test method that doesn't have no
+    parameters as data driven test.
+
+    Example:
+
+    ```ruby
+    data("label", :value)
+    def test_data # Available since this release
+      p data # :value
+    end
+    ```
+
+  * Added support for `:keep` option to `Test::Unit::TestCase.data`.
+
+  * Added support for `:group` option to
+    `Test::Unit::TestCase.data`. It's useful to generate multiple data
+    matrix groups.
+
+    ```ruby
+    # Group1
+    data(:a, [0, 1, 2], group: :g1)
+    data(:b, [:x, :y], group: :g1)
+    # Group2
+    data(:a, [:x, :y], group: :g2)
+    data(:c, [-1, -2], group: :g2)
+    def test_data(data)
+    end
+    ```
+
+    This example generates the following data matrix:
+
+      * label: `"group: :g1, a: 0, b: :x"`, data: `{a: 0, b: :x}`
+      * label: `"group: :g1, a: 0, b: :y"`, data: `{a: 0, b: :y}`
+      * label: `"group: :g1, a: 1, b: :x"`, data: `{a: 1, b: :x}`
+      * label: `"group: :g1, a: 1, b: :y"`, data: `{a: 1, b: :y}`
+      * label: `"group: :g1, a: 2, b: :x"`, data: `{a: 2, b: :x}`
+      * label: `"group: :g1, a: 2, b: :y"`, data: `{a: 2, b: :y}`
+      * label: `"group: :g2, a: :x, b: -1"`, data: `{a: :x, b: -1}`
+      * label: `"group: :g2, a: :x, b: -2"`, data: `{a: :x, b: -2}`
+      * label: `"group: :g2, a: :y, b: -1"`, data: `{a: :y, b: -1}`
+      * label: `"group: :g2, a: :y, b: -2"`, data: `{a: :y, b: -2}`
+
 ## 3.2.8 - 2018-05-13 {#version-3-2-8}
 
 ### Improvements
