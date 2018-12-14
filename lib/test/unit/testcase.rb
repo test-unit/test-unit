@@ -159,11 +159,12 @@ module Test
             path, line, = caller[0].split(/:(\d+)/, 2)
             line = line.to_i if line
           end
-          method_locations << {
+          location = {
             :method_name => stringified_name,
             :path => File.expand_path(path),
             :line => line,
           }
+          add_method_location(location)
           added_method_names[stringified_name] = true
           AutoRunnerLoader.check(self, stringified_name)
         end
@@ -436,30 +437,42 @@ module Test
         # @private
         @@method_locations = {}
         # @private
+        @@method_location_mutex = Mutex.new
+
+        # @private
         def method_locations
           @@method_locations[self] ||= []
         end
 
         # @private
-        def target_method_locations(path)
-          if path.nil?
-            self_location = method_locations.first
-            path = self_location[:path] if self_location
+        def add_method_location(location)
+          @@method_location_mutex.synchronize do
+            method_locations << location
           end
-          return [] if path.nil?
+        end
 
-          target_locations = []
-          @@method_locations.each do |test_case, locations|
-            locations.each do |location|
-              absolete_path = File.expand_path(path)
-              location_path = location[:path]
-              location_basename = File.basename(location_path)
-              if location_path == absolete_path or location_basename == path
-                target_locations << location.merge(:test_case => test_case)
+        # @private
+        def target_method_locations(path)
+          @@method_location_mutex.synchronize do
+            if path.nil?
+              self_location = method_locations.first
+              path = self_location[:path] if self_location
+            end
+            return [] if path.nil?
+
+            target_locations = []
+            @@method_locations.each do |test_case, locations|
+              locations.each do |location|
+                absolete_path = File.expand_path(path)
+                location_path = location[:path]
+                location_basename = File.basename(location_path)
+                if location_path == absolete_path or location_basename == path
+                  target_locations << location.merge(:test_case => test_case)
+                end
               end
             end
+            target_locations
           end
-          target_locations
         end
       end
 
