@@ -83,8 +83,8 @@ module Test
         grouped_variables = variables.group_by do |_, options|
           options[:group]
         end
-        grouped_variables.each do |group, variables|
-          each_raw_pattern(variables) do |cell|
+        grouped_variables.each do |group, group_variables|
+          each_raw_pattern(group_variables) do |cell|
             label = String.new
             label << "group: #{group.inspect}" unless group.nil?
             data = {}
