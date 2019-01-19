@@ -15,7 +15,8 @@ module Test
       PREPARE_HOOKS = []
 
       class << self
-        def register_runner(id, runner_builder=Proc.new)
+        def register_runner(id, runner_builder=nil, &block)
+          runner_builder ||= Proc.new(&block)
           RUNNERS[id] = runner_builder
           RUNNERS[id.to_s] = runner_builder
         end
@@ -33,7 +34,8 @@ module Test
           @@default_runner = id
         end
 
-        def register_collector(id, collector_builder=Proc.new)
+        def register_collector(id, collector_builder=nil, &block)
+          collector_builder ||= Proc.new(&block)
           COLLECTORS[id] = collector_builder
           COLLECTORS[id.to_s] = collector_builder
         end
@@ -46,11 +48,13 @@ module Test
           ColorScheme[id] = scheme
         end
 
-        def setup_option(option_builder=Proc.new)
+        def setup_option(option_builder=nil, &block)
+          option_builder ||= Proc.new(&block)
           ADDITIONAL_OPTIONS << option_builder
         end
 
-        def prepare(hook=Proc.new)
+        def prepare(hook=nil, &block)
+          hook ||= Proc.new(&block)
           PREPARE_HOOKS << hook
         end
 
