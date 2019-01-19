@@ -26,14 +26,12 @@ module Test
       def read_source(path)
         return nil unless File.exist?(path)
         lines = []
-        File.open(path) do |file|
+        File.open(path, "rb") do |file|
           first_line = file.gets
           break if first_line.nil?
-          encoding = detect_encoding(first_line)
-          if encoding
-            first_line.force_encoding(encoding)
-            file.set_encoding(encoding, encoding)
-          end
+          encoding = detect_encoding(first_line) || Encoding::UTF_8
+          first_line.force_encoding(encoding)
+          file.set_encoding(encoding, encoding)
           lines << first_line
           lines.concat(file.readlines)
         end

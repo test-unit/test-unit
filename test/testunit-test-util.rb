@@ -1,3 +1,5 @@
+require "tempfile"
+
 module TestUnitTestUtil
   private
   def jruby?
