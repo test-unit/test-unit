@@ -1,5 +1,35 @@
 # News
 
+## 3.3.0 - 2019-01-23 {#version-3-3-0}
+
+### Improvements
+
+  * Added support for auto test run when all tests are defined in
+    modules.
+
+  * Added support for defining methods to test case class in multiple
+    threads.
+    [GitHub#159][Reported by Charles Oliver Nutter]
+
+  * Suppressed warnings on Ruby 2.5.
+    [GitHub#160][Reported by Daniel Berger]
+
+  * Suppressed warnings on Ruby 2.7.
+
+### Fixes
+
+  * Fixed a code snippet fetch failure when source code isn't UTF-8
+    and the default external encoding is set to not UTF-8.
+    [GitHub#161][Reported by masa kunikata]
+
+### Thanks
+
+  * Charles Oliver Nutter
+
+  * Daniel Berger
+
+  * masa kunikata
+
 ## 3.2.9 - 2018-12-01 {#version-3-2-9}
 
 ### Improvements
