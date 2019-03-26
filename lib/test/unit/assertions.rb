@@ -32,9 +32,9 @@ module Test
     #
     # @example Example Custom Assertion
     #
-    #   def deny(boolean, message = nil)
-    #     message = build_message message, '<?> is not false or nil.', boolean
-    #     assert_block message do
+    #   def deny(boolean, message=nil)
+    #     message = build_message(message, '<?> is not false or nil.', boolean)
+    #     assert_block(message) do
     #       not boolean
     #     end
     #   end
