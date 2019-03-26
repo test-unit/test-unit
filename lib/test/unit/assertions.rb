@@ -319,7 +319,7 @@ EOT
       #   assert_instance_of(String, 'foo')            # -> pass
       #   assert_instance_of([Fixnum, NilClass], 100)  # -> pass
       #   assert_instance_of([Numeric, NilClass], 100) # -> fail
-      def assert_instance_of(klass, object, message="")
+      def assert_instance_of(klass, object, message=nil)
         _wrap_assertion do
           if klass.is_a?(Array)
             klasses = klass
@@ -355,7 +355,7 @@ EOT
       #   assert_not_instance_of([Numeric, NilClass], 100)   # -> fail
       #
       # @since 3.0.0
-      def assert_not_instance_of(klass, object, message="")
+      def assert_not_instance_of(klass, object, message=nil)
         _wrap_assertion do
           if klass.is_a?(Array)
             klasses = klass
@@ -390,7 +390,7 @@ EOT
       #
       # @example
       #   assert_nil [1, 2].uniq!
-      def assert_nil(object, message="")
+      def assert_nil(object, message=nil)
         full_message = build_message(message, <<EOT, object)
 <?> was expected to be nil.
 EOT
@@ -406,7 +406,7 @@ EOT
       #   assert_kind_of(Object, 'foo')                # -> pass
       #   assert_kind_of([Fixnum, NilClass], 100)      # -> pass
       #   assert_kind_of([Fixnum, NilClass], "string") # -> fail
-      def assert_kind_of(klass, object, message="")
+      def assert_kind_of(klass, object, message=nil)
         _wrap_assertion do
           if klass.is_a?(Array)
             klasses = klass
@@ -444,7 +444,7 @@ EOT
       #   assert_not_kind_of([Fixnum, NilClass], 100) # -> fail
       #
       # @since 3.0.0
-      def assert_not_kind_of(klass, object, message="")
+      def assert_not_kind_of(klass, object, message=nil)
         _wrap_assertion do
           if klass.is_a?(Array)
             klasses = klass
@@ -479,7 +479,7 @@ EOT
       #
       # @example
       #   assert_respond_to 'bugbear', :slice
-      def assert_respond_to(object, method, message="")
+      def assert_respond_to(object, method, message=nil)
         _wrap_assertion do
           full_message = build_message(message,
                                        "<?>.kind_of\\?(Symbol) or\n" +
@@ -502,7 +502,7 @@ EOT
       # @example
       #   assert_not_respond_to('bugbear', :nonexistence) # -> pass
       #   assert_not_respond_to('bugbear', :size)         # -> fail
-      def assert_not_respond_to(object, method, message="")
+      def assert_not_respond_to(object, method, message=nil)
         _wrap_assertion do
           full_message = build_message(message,
                                        "<?>.kind_of\\?(Symbol) or\n" +
@@ -529,7 +529,7 @@ EOT
       #
       # @example
       #   assert_match(/\d+/, 'five, 6, seven')
-      def assert_match(pattern, string, message="")
+      def assert_match(pattern, string, message=nil)
         _wrap_assertion do
           pattern = case(pattern)
             when String
@@ -551,7 +551,7 @@ EOT
       # @example
       #   o = Object.new
       #   assert_same o, o
-      def assert_same(expected, actual, message="")
+      def assert_same(expected, actual, message=nil)
         full_message = build_message(message, <<EOT, expected, expected.__id__, actual, actual.__id__)
 <?>
 with id <?> was expected to be equal\\? to
@@ -568,7 +568,7 @@ EOT
       #
       # @example
       #   assert_operator 5, :>=, 4
-      def assert_operator(object1, operator, object2, message="")
+      def assert_operator(object1, operator, object2, message=nil)
         _wrap_assertion do
           full_message = build_message(nil, "<?>\ngiven as the operator for #assert_operator must be a Symbol or #respond_to\\?(:to_str).", operator)
           assert_block(full_message){operator.kind_of?(Symbol) || operator.respond_to?(:to_str)}
@@ -591,7 +591,7 @@ EOT
       #   assert_not_operator(5, :>, 4) # => fail
       #
       # @since 3.0.0
-      def assert_not_operator(object1, operator, object2, message="")
+      def assert_not_operator(object1, operator, object2, message=nil)
         _wrap_assertion do
           full_message = build_message(nil, "<?>\ngiven as the operator for #assert_not_operator must be a Symbol or #respond_to\\?(:to_str).", operator)
           assert_block(full_message){operator.kind_of?(Symbol) || operator.respond_to?(:to_str)}
@@ -653,7 +653,7 @@ EOT
       #
       # @example
       #   assert_not_same Object.new, Object.new
-      def assert_not_same(expected, actual, message="")
+      def assert_not_same(expected, actual, message=nil)
         full_message = build_message(message, <<EOT, expected, expected.__id__, actual, actual.__id__)
 <?>
 with id <?> was expected to not be equal\\? to
@@ -673,7 +673,7 @@ EOT
       #
       # @example
       #   assert_not_equal 'some string', 5
-      def assert_not_equal(expected, actual, message="")
+      def assert_not_equal(expected, actual, message=nil)
         full_message = build_message(message,
                                      "<?> was expected to be != to\n<?>.",
                                      expected, actual)
@@ -690,7 +690,7 @@ EOT
       #
       # @example
       #   assert_not_nil '1 two 3'.sub!(/two/, '2')
-      def assert_not_nil(object, message="")
+      def assert_not_nil(object, message=nil)
         full_message = build_message(message,
                                      "<?> was expected to not be nil.",
                                      object)
@@ -708,7 +708,7 @@ EOT
       # @example
       #   assert_not_match(/two/, 'one 2 three')   # -> pass
       #   assert_not_match(/three/, 'one 2 three') # -> fail
-      def assert_not_match(regexp, string, message="")
+      def assert_not_match(regexp, string, message=nil)
         _wrap_assertion do
           assert_instance_of(Regexp, regexp,
                              "<REGEXP> in assert_not_match(<REGEXP>, ...) " +
@@ -792,7 +792,7 @@ EOT
       #   assert_throw(:done) do
       #     throw(:done)
       #   end
-      def assert_throw(expected_object, message="", &proc)
+      def assert_throw(expected_object, message=nil, &proc)
         _wrap_assertion do
           begin
             catch([]) {}
@@ -838,7 +838,7 @@ EOT
       #  assert_nothing_thrown do
       #    [1, 2].uniq
       #  end
-      def assert_nothing_thrown(message="", &proc)
+      def assert_nothing_thrown(message=nil, &proc)
         _wrap_assertion do
           assert(block_given?, "Should have passed a block to assert_nothing_thrown")
           begin
