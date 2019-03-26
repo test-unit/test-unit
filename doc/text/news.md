@@ -1,5 +1,18 @@
 # News
 
+## 3.3.1 - 2019-03-27 {#version-3-3-1}
+
+### Improvements
+
+  * Added support for `Test::Unit::AssertionFailedError#user_message`
+    for not only `assert_equal` and `assert_raise` but also all
+    assertions.
+    [GitHub#162][Reported by xgraffm]
+
+### Thanks
+
+  * xgraffm
+
 ## 3.3.0 - 2019-01-23 {#version-3-3-0}
 
 ### Improvements
