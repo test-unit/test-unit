@@ -32,6 +32,7 @@ module Test
           return_value = yield
           failed = false
         rescue AssertionFailedError => error
+          return_value = error
           actual_message = error.message
         end
         @catch_assertions = false
@@ -1168,9 +1169,10 @@ EOM
           assert_true(1)
         end
 
-        check_fail("message.\n<true> expected but was\n<nil>") do
+        exception = check_fail("message.\n<true> expected but was\n<nil>") do
           assert_true(nil, "message")
         end
+        assert_equal("message", exception.user_message)
       end
 
       def test_assert_false

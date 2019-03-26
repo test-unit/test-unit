@@ -52,7 +52,11 @@ module Test
       def assert_block(message="assert_block failed.")
         _wrap_assertion do
           if (! yield)
-            raise AssertionFailedError.new(message.to_s)
+            options = {}
+            if message.respond_to?(:user_message)
+              options[:user_message] = message.user_message
+            end
+            raise AssertionFailedError.new(message.to_s, options)
           end
         end
       end
@@ -239,7 +243,7 @@ EOT
         begin
           assert_block(full_message) { expected == actual }
         rescue AssertionFailedError => failure
-          _set_failed_information(failure, expected, actual, message)
+          _set_failed_information(failure, expected, actual)
           raise failure # For JRuby. :<
         end
       end
@@ -275,8 +279,7 @@ EOT
                 assert_exception_helper.expected?(actual_exception)
             end
           rescue AssertionFailedError => failure
-            _set_failed_information(failure, expected, actual_exception,
-                                    message)
+            _set_failed_information(failure, expected, actual_exception)
             raise failure # For JRuby. :<
           end
         end
@@ -1617,11 +1620,12 @@ EOT
       alias_method :refute_empty, :assert_not_empty
 
       ##
-      # Builds a failure message.  +head+ is added before the +template+ and
-      # +arguments+ replaces the '?'s positionally in the template.
-      def build_message(head, template=nil, *arguments)
+      # Builds a failure message.  +user_message+ is added before the
+      # +template+ and +arguments+ replaces the '?'s positionally in
+      # the template.
+      def build_message(user_message, template=nil, *arguments)
         template &&= template.chomp
-        return AssertionMessage.new(head, template, arguments)
+        return AssertionMessage.new(user_message, template, arguments)
       end
 
       private
@@ -1688,12 +1692,11 @@ EOT
         end
       end
 
-      def _set_failed_information(failure, expected, actual, user_message)
+      def _set_failed_information(failure, expected, actual)
         failure.expected = expected
         failure.actual = actual
         failure.inspected_expected = AssertionMessage.convert(expected)
         failure.inspected_actual = AssertionMessage.convert(actual)
-        failure.user_message = user_message
       end
 
       class AssertionMessage
@@ -2071,8 +2074,8 @@ EOT
 
         include Util::BacktraceFilter
 
-        def initialize(head, template_string, parameters)
-          @head = head
+        def initialize(user_message, template_string, parameters)
+          @user_message = user_message
           @template_string = template_string
           @parameters = parameters
         end
@@ -2085,23 +2088,27 @@ EOT
           @template ||= Template.create(@template_string)
         end
 
-        def add_period(string)
-          (string =~ /\.\Z/ ? string : string + '.')
+        def user_message
+          return nil unless @user_message
+          message = @user_message
+          message = message.call if message.respond_to?(:call)
+          message.to_s
         end
 
         def to_s
           message_parts = []
-          if (@head)
-            head = @head
-            head = head.call if head.respond_to?(:call)
-            head = head.to_s
-            unless(head.empty?)
-              message_parts << add_period(head)
-            end
+          head = user_message
+          if head and not head.empty?
+            message_parts << add_period(head)
           end
           tail = template.result(@parameters.collect{|e| convert(e)})
           message_parts << tail unless(tail.empty?)
           message_parts.join("\n")
+        end
+
+        private
+        def add_period(string)
+          (string =~ /\.\Z/ ? string : string + '.')
         end
       end
 
