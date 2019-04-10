@@ -1,5 +1,18 @@
 # News
 
+## 3.3.2 - 2019-04-11 {#version-3-3-2}
+
+### Fixes
+
+  * Fixed a bug that `Test::Unit::Collector::Load` doesn't load test
+    files under sub directories when these files have the same base
+    name as test files in upper directories.
+    [Reported by Kenta Murata]
+
+### Thanks
+
+  * Kenta Murata
+
 ## 3.3.1 - 2019-03-27 {#version-3-3-1}
 
 ### Improvements
