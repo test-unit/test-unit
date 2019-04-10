@@ -111,7 +111,7 @@ module Test
           return if @program_file == expanded_path.to_s
           add_load_path(expanded_path.dirname) do
             begin
-              require(path.basename.to_s)
+              require(expanded_path.to_s)
             rescue LoadError
               @require_failed_infos << {:path => expanded_path, :exception => $!}
             end
@@ -131,8 +131,6 @@ module Test
           return yield if path.nil?
 
           path = path.to_s
-          return yield if $LOAD_PATH.index(path)
-
           begin
             $LOAD_PATH.unshift(path)
             yield

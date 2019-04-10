@@ -20,7 +20,9 @@ class TestUnitCollectorLoad < Test::Unit::TestCase
 
   setup
   def setup_top_level_test_cases
-    @test_case1 = @test_dir + "test_case1.rb"
+    @test_case1_base_name = "test_case1.rb"
+
+    @test_case1 = @test_dir + @test_case1_base_name
     @test_case2 = @test_dir + "test_case2.rb"
     @no_load_test_case3 = @test_dir + "case3.rb"
 
@@ -66,9 +68,24 @@ EOT
     @sub_test_dir = @test_dir + "sub"
     @sub_test_dir.mkpath
 
+    @sub_test_case1 = @sub_test_dir + @test_case1_base_name
     @sub_test_case4 = @sub_test_dir + "test_case4.rb"
     @no_load_sub_test_case5 = @sub_test_dir + "case5.rb"
     @sub_test_case6 = @sub_test_dir + "test_case6.rb"
+
+    @sub_test_case1.open("w") do |test_case|
+      test_case.puts(<<-TEST_CASE)
+module #{@temporary_test_cases_module_name}
+  class SubTestCase1 < Test::Unit::TestCase
+    def test1_1
+    end
+
+    def test1_2
+    end
+  end
+end
+      TEST_CASE
+    end
 
     @sub_test_case4.open("w") do |test_case|
       test_case.puts(<<-EOT)
@@ -271,6 +288,9 @@ EOT
 
   def test_simple_collect
     assert_collect([:suite, {:name => @sub_test_dir.basename.to_s},
+                    [:suite, {:name => _test_case_name("SubTestCase1")},
+                     [:test, {:name => "test1_1"}],
+                     [:test, {:name => "test1_2"}]],
                     [:suite, {:name => _test_case_name("SubTestCase4")},
                      [:test, {:name => "test4_1"}],
                      [:test, {:name => "test4_2"}]],
@@ -302,6 +322,9 @@ EOT
                     [:suite, {:name => _test_case_name("TestCase2")},
                      [:test, {:name => "test2"}]],
                     [:suite, {:name => @sub_test_dir.basename.to_s},
+                     [:suite, {:name => _test_case_name("SubTestCase1")},
+                      [:test, {:name => "test1_1"}],
+                      [:test, {:name => "test1_2"}]],
                      [:suite, {:name => _test_case_name("SubTestCase4")},
                       [:test, {:name => "test4_1"}],
                       [:test, {:name => "test4_2"}]],
@@ -356,6 +379,9 @@ EOT
                     [:suite, {:name => _test_case_name("NoLoadSubTestCase5")},
                      [:test, {:name => "test5_1"}],
                      [:test, {:name => "test5_2"}]],
+                    [:suite, {:name => _test_case_name("SubTestCase1")},
+                     [:test, {:name => "test1_1"}],
+                     [:test, {:name => "test1_2"}]],
                     [:suite, {:name => _test_case_name("SubTestCase4")},
                      [:test, {:name => "test4_1"}],
                      [:test, {:name => "test4_2"}]],
@@ -370,7 +396,11 @@ EOT
     assert_collect([:suite, {:name => "."},
                     [:suite, {:name => _test_case_name("TestCase1")},
                      [:test, {:name => "test1_1"}],
-                     [:test, {:name => "test1_2"}]]]) do |collector|
+                     [:test, {:name => "test1_2"}]],
+                    [:suite, {:name => @sub_test_dir.basename.to_s},
+                     [:suite, {:name => _test_case_name("SubTestCase1")},
+                      [:test, {:name => "test1_1"}],
+                      [:test, {:name => "test1_2"}]]]]) do |collector|
       collector.filter = Proc.new do |test|
         !/\Atest1/.match(test.method_name).nil?
       end
@@ -381,6 +411,9 @@ EOT
     test_dirs = [@sub_test_dir.to_s, @sub2_test_dir.to_s]
     assert_collect([:suite, {:name => "[#{test_dirs.join(', ')}]"},
                     [:suite, {:name => @sub_test_dir.basename.to_s},
+                     [:suite, {:name => _test_case_name("SubTestCase1")},
+                      [:test, {:name => "test1_1"}],
+                      [:test, {:name => "test1_2"}]],
                      [:suite, {:name => _test_case_name("SubTestCase4")},
                       [:test, {:name => "test4_1"}],
                       [:test, {:name => "test4_2"}]],
