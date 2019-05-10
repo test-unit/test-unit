@@ -148,15 +148,19 @@ module Test
         end
 
         def escape_class_name(class_name)
-          class_name.gsub(/(?:[: \\\/])/, "_")
+          escape_name(class_name)
         end
 
         def escaped_method_name
-          @test.method_name.to_s.gsub(/(?:[: ]|[!?=]$)/) do |matched|
+          escape_name(@test.method_name.to_s)
+        end
+
+        def escape_name(name)
+          name.gsub(/(?:[: \/!?=])/) do |matched|
             case matched
             when ":"
               "_colon_"
-            when " "
+            when " ", "/"
               "_"
             when "!"
               ".destructive"

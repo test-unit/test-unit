@@ -104,7 +104,7 @@ class TestUnitPriority < Test::Unit::TestCase
 
   class TestClassName < self
     def test_colon
-      assert_escaped_name("Test__Priority", "Test::Priority")
+      assert_escaped_name("Test_colon__colon_Priority", "Test::Priority")
     end
 
     def test_space
@@ -117,6 +117,18 @@ class TestUnitPriority < Test::Unit::TestCase
 
     def test_back_slash
       assert_escaped_name("test_priority", "test\/priority")
+    end
+
+    def test_question
+      assert_escaped_name("#question.predicate", "#question?")
+    end
+
+    def test_exclamation
+      assert_escaped_name("#exclamation.destructive", "#exclamation!")
+    end
+
+    def test_equal
+      assert_escaped_name("#equal.equal", "#equal=")
     end
 
     def assert_escaped_name(expected, class_name)
@@ -148,19 +160,18 @@ class TestUnitPriority < Test::Unit::TestCase
     end
 
     def test_question
-      assert_escaped_name("test_question.predicate", "test_question?")
+      assert_escaped_name("test_colon__#question.predicate_case",
+                          "test: #question? case")
     end
 
     def test_exclamation
-      assert_escaped_name("test_exclamation.destructive", "test_exclamation!")
+      assert_escaped_name("test_colon__#exclamation.destructive_case",
+                          "test: #exclamation! case")
     end
 
     def test_equal
-      assert_escaped_name("test_equal.equal", "test_equal=")
-    end
-
-    def test_colon_and_space
-      assert_escaped_name("test_colon__have_space", "test: have space")
+      assert_escaped_name("test_colon__#equal.equal_case",
+                          "test: #equal= case")
     end
 
     def assert_escaped_name(expected, test_method_name)
