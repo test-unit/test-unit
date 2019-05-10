@@ -1,5 +1,12 @@
 # News
 
+## 3.3.3 - 2019-05-10 {#version-3-3-3}
+
+### Fixed
+
+  * Fixed a bug that priority mode with test case name that uses
+    special characters such as `?` can't be used on Windows.
+
 ## 3.3.2 - 2019-04-11 {#version-3-3-2}
 
 ### Fixes
