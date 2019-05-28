@@ -278,12 +278,17 @@ module Test # :nodoc:
   #      ...
   #    ...
   #
-  # SCHEME_NAME:: the name of the color scheme
-  # EVENT_NAME:: one of [success, failure, pending,
-  #              omission, notification, error]
-  # COLOR_NAME:: one of [black, red, green, yellow, blue,
-  #              magenta, cyan, white]
-  # BOOLEAN:: true or false
+  # SCHEME_NAME
+  # : the name of the color scheme
+  #
+  # EVENT_NAME
+  # : one of [success, failure, pending, omission, notification, error]
+  #
+  # COLOR_NAME
+  # : one of [black, red, green, yellow, blue, magenta, cyan, white]
+  #
+  # BOOLEAN
+  # : true or false
   #
   # You can use the above 'inverted' color scheme with the
   # following configuration:

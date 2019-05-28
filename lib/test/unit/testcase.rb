@@ -269,12 +269,15 @@ module Test
         # Sets the current test order.
         #
         # Here are the available _order_:
-        # [:alphabetic]
-        #   Default. Tests are sorted in alphabetic order.
-        # [:random]
-        #   Tests are sorted in random order.
-        # [:defined]
-        #   Tests are sorted in defined order.
+        #
+        # :alphabetic
+        # : Default. Tests are sorted in alphabetic order.
+        #
+        # :random
+        # : Tests are sorted in random order.
+        #
+        # :defined
+        # : Tests are sorted in defined order.
         def test_order=(order)
           @@test_orders[self] = order
         end
