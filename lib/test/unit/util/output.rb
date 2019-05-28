@@ -7,10 +7,11 @@ module Test
         # error as string.
         #
         # Example:
-        #   capture_output do
-        #     puts("stdout")
-        #     warn("stderr")
-        #   end # -> ["stdout\n", "stderr\n"]
+        #
+        #     capture_output do
+        #       puts("stdout")
+        #       warn("stderr")
+        #     end # -> ["stdout\n", "stderr\n"]
         def capture_output
           require 'stringio'
 

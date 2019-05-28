@@ -208,8 +208,8 @@ module Test # :nodoc:
   # runner simply set default test runner ID to
   # Test::Unit::AutoRunner:
   #
-  #    require 'test/unit'
-  #    Test::Unit::AutoRunner.default_runner = "gtk2"
+  #     require 'test/unit'
+  #     Test::Unit::AutoRunner.default_runner = "gtk2"
   #
   # ## Test Suite
   #
@@ -228,10 +228,10 @@ module Test # :nodoc:
   # 'test/unit'. What does this mean? It means you could
   # write the above test case like this instead:
   #
-  #  require 'test/unit'
-  #  require 'test_myfirsttests'
-  #  require 'test_moretestsbyme'
-  #  require 'test_anothersetoftests'
+  #     require 'test/unit'
+  #     require 'test_myfirsttests'
+  #     require 'test_moretestsbyme'
+  #     require 'test_anothersetoftests'
   #
   # Test::Unit is smart enough to find all the test cases existing in
   # the ObjectSpace and wrap them up into a suite for you. It then runs
@@ -254,29 +254,29 @@ module Test # :nodoc:
   #
   # Here are sample color scheme definitions:
   #
-  #   color_schemes:
-  #     inverted:
-  #       success:
-  #         name: red
-  #         bold: true
-  #       failure:
-  #         name: green
-  #         bold: true
-  #     other_scheme:
-  #       ...
+  #     color_schemes:
+  #       inverted:
+  #         success:
+  #           name: red
+  #           bold: true
+  #         failure:
+  #           name: green
+  #           bold: true
+  #       other_scheme:
+  #         ...
   #
   # Here are the syntax of color scheme definitions:
   #
-  #  color_schemes:
-  #    SCHEME_NAME:
-  #      EVENT_NAME:
-  #        name: COLOR_NAME
-  #        intensity: BOOLEAN
-  #        bold: BOOLEAN
-  #        italic: BOOLEAN
-  #        underline: BOOLEAN
-  #      ...
-  #    ...
+  #     color_schemes:
+  #       SCHEME_NAME:
+  #         EVENT_NAME:
+  #           name: COLOR_NAME
+  #           intensity: BOOLEAN
+  #           bold: BOOLEAN
+  #           italic: BOOLEAN
+  #           underline: BOOLEAN
+  #         ...
+  #       ...
   #
   # SCHEME_NAME
   # : the name of the color scheme
@@ -293,17 +293,17 @@ module Test # :nodoc:
   # You can use the above 'inverted' color scheme with the
   # following configuration:
   #
-  #   runner: console
-  #   console_options:
-  #     color_scheme: inverted
-  #   color_schemes:
-  #     inverted:
-  #       success:
-  #         name: red
-  #         bold: true
-  #       failure:
-  #         name: green
-  #         bold: true
+  #     runner: console
+  #     console_options:
+  #       color_scheme: inverted
+  #     color_schemes:
+  #       inverted:
+  #         success:
+  #           name: red
+  #           bold: true
+  #         failure:
+  #           name: green
+  #           bold: true
   #
   # ## Questions?
   #
@@ -336,51 +336,53 @@ module Test # :nodoc:
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:
-      #   Test::Unit.at_start do
-      #     # ...
-      #   end
       #
-      #   class TestMyClass1 < Test::Unit::TestCase
-      #     class << self
-      #       def startup
+      #     Test::Unit.at_start do
+      #       # ...
+      #     end
+      #
+      #     class TestMyClass1 < Test::Unit::TestCase
+      #       class << self
+      #         def startup
+      #           # ...
+      #         end
+      #       end
+      #
+      #       def setup
+      #         # ...
+      #       end
+      #
+      #       def test_my_class1
+      #         # ...
+      #       end
+      #
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
       #
-      #     def setup
-      #       # ...
-      #     end
+      #     class TestMyClass2 < Test::Unit::TestCase
+      #       class << self
+      #         def startup
+      #           # ...
+      #         end
+      #       end
       #
-      #     def test_my_class1
-      #       # ...
-      #     end
+      #       def setup
+      #         # ...
+      #       end
       #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
+      #       def test_my_class1
+      #         # ...
+      #       end
       #
-      #   class TestMyClass2 < Test::Unit::TestCase
-      #     class << self
-      #       def startup
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
-      #
-      #     def setup
-      #       # ...
-      #     end
-      #
-      #     def test_my_class1
-      #       # ...
-      #     end
-      #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * at_start
       # * TestMyClass1.startup
       # * TestMyClass1#setup
@@ -420,51 +422,53 @@ module Test # :nodoc:
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:
-      #   Test::Unit.at_exit do
-      #     # ...
-      #   end
       #
-      #   class TestMyClass1 < Test::Unit::TestCase
-      #     class << self
-      #       def shutdown
+      #     Test::Unit.at_exit do
+      #       # ...
+      #     end
+      #
+      #     class TestMyClass1 < Test::Unit::TestCase
+      #       class << self
+      #         def shutdown
+      #           # ...
+      #         end
+      #       end
+      #
+      #       def teardown
+      #         # ...
+      #       end
+      #
+      #       def test_my_class1
+      #         # ...
+      #       end
+      #
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
       #
-      #     def teardown
-      #       # ...
-      #     end
+      #     class TestMyClass2 < Test::Unit::TestCase
+      #       class << self
+      #         def shutdown
+      #           # ...
+      #         end
+      #       end
       #
-      #     def test_my_class1
-      #       # ...
-      #     end
+      #       def teardown
+      #         # ...
+      #       end
       #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
+      #       def test_my_class1
+      #         # ...
+      #       end
       #
-      #   class TestMyClass2 < Test::Unit::TestCase
-      #     class << self
-      #       def shutdown
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
-      #
-      #     def teardown
-      #       # ...
-      #     end
-      #
-      #     def test_my_class1
-      #       # ...
-      #     end
-      #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * TestMyClass1#test_my_class1
       # * TestMyClass1#teardown
       # * TestMyClass1#test_my_class2

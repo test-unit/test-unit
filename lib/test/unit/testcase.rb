@@ -186,27 +186,29 @@ module Test
         # scope.
         #
         # Here is an example test case:
-        #   class TestMyClass < Test::Unit::TestCase
-        #     class << self
-        #       def startup
+        #
+        #     class TestMyClass < Test::Unit::TestCase
+        #       class << self
+        #         def startup
+        #           ...
+        #         end
+        #       end
+        #
+        #       def setup
+        #         ...
+        #       end
+        #
+        #       def test_my_class1
+        #         ...
+        #       end
+        #
+        #       def test_my_class2
         #         ...
         #       end
         #     end
         #
-        #     def setup
-        #       ...
-        #     end
-        #
-        #     def test_my_class1
-        #       ...
-        #     end
-        #
-        #     def test_my_class2
-        #       ...
-        #     end
-        #   end
-        #
         # Here is a call order:
+        #
         # * startup
         # * setup
         # * test_my_class1 (or test_my_class2)
@@ -222,27 +224,29 @@ module Test
         # down fixture information used in test case scope.
         #
         # Here is an example test case:
-        #   class TestMyClass < Test::Unit::TestCase
-        #     class << self
-        #       def shutdown
+        #
+        #     class TestMyClass < Test::Unit::TestCase
+        #       class << self
+        #         def shutdown
+        #           ...
+        #         end
+        #       end
+        #
+        #       def teardown
+        #         ...
+        #       end
+        #
+        #       def test_my_class1
+        #         ...
+        #       end
+        #
+        #       def test_my_class2
         #         ...
         #       end
         #     end
         #
-        #     def teardown
-        #       ...
-        #     end
-        #
-        #     def test_my_class1
-        #       ...
-        #     end
-        #
-        #     def test_my_class2
-        #       ...
-        #     end
-        #   end
-        #
         # Here is a call order:
+        #
         # * test_my_class1 (or test_my_class2)
         # * teardown
         # * test_my_class2 (or test_my_class1)
@@ -288,22 +292,22 @@ module Test
         # In declarative syntax usage, the following two
         # test definitions are the almost same:
         #
-        #   description "register user"
-        #   def test_register_user
-        #     ...
-        #   end
+        #     description "register user"
+        #     def test_register_user
+        #       ...
+        #     end
         #
-        #   test "register user" do
-        #     ...
-        #   end
+        #     test "register user" do
+        #       ...
+        #     end
         #
         # In test method mark usage, the "my_test_method" is
         # treated as a test method:
         #
-        #   test
-        #   def my_test_method
-        #     assert_equal("call me", ...)
-        #   end
+        #     test
+        #     def my_test_method
+        #       assert_equal("call me", ...)
+        #     end
         def test(*test_description_or_targets, &block)
           if block_given?
             test_description = test_description_or_targets.first
@@ -337,10 +341,10 @@ module Test
         # normal user" description with "test_register"
         # test.
         #
-        #   description "register a normal user"
-        #   def test_register
-        #     ...
-        #   end
+        #     description "register a normal user"
+        #     def test_register
+        #       ...
+        #     end
         def description(value, target=nil)
           targets = [target].compact
           attribute(:description, value, {}, *targets)
@@ -352,20 +356,22 @@ module Test
         # the same in meaning:
         #
         # Standard:
-        #   class TestParent < Test::Unit::TestCase
-        #     class TestChild < self
-        #       def test_in_child
+        #
+        #     class TestParent < Test::Unit::TestCase
+        #       class TestChild < self
+        #         def test_in_child
+        #         end
         #       end
         #     end
-        #   end
         #
         # Syntax sugar:
-        #   class TestParent < Test::Unit::TestCase
-        #     sub_test_case("TestChild") do
-        #       def test_in_child
+        #
+        #     class TestParent < Test::Unit::TestCase
+        #       sub_test_case("TestChild") do
+        #         def test_in_child
+        #         end
         #       end
         #     end
-        #   end
         #
         # The difference of them are the following:
         #
@@ -562,35 +568,37 @@ module Test
       #
       # You can add additional setup tasks by the following
       # code:
-      #   class TestMyClass < Test::Unit::TestCase
-      #     def setup
-      #       ...
-      #     end
       #
-      #     setup
-      #     def my_setup1
-      #       ...
-      #     end
+      #     class TestMyClass < Test::Unit::TestCase
+      #       def setup
+      #         ...
+      #       end
       #
-      #     setup do
-      #       ... # setup callback1
-      #     end
+      #       setup
+      #       def my_setup1
+      #         ...
+      #       end
       #
-      #     setup
-      #     def my_setup2
-      #       ...
-      #     end
+      #       setup do
+      #         ... # setup callback1
+      #       end
       #
-      #     setup do
-      #       ... # setup callback2
-      #     end
+      #       setup
+      #       def my_setup2
+      #         ...
+      #       end
       #
-      #     def test_my_class
-      #       ...
+      #       setup do
+      #         ... # setup callback2
+      #       end
+      #
+      #       def test_my_class
+      #         ...
+      #       end
       #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * setup
       # * my_setup1
       # * setup callback1
@@ -607,35 +615,37 @@ module Test
       #
       # You can add additional cleanup tasks by the following
       # code:
-      #   class TestMyClass < Test::Unit::TestCase
-      #     def cleanup
-      #       ...
-      #     end
       #
-      #     cleanup
-      #     def my_cleanup1
-      #       ...
-      #     end
+      #     class TestMyClass < Test::Unit::TestCase
+      #       def cleanup
+      #         ...
+      #       end
       #
-      #     cleanup do
-      #       ... # cleanup callback1
-      #     end
+      #       cleanup
+      #       def my_cleanup1
+      #         ...
+      #       end
       #
-      #     cleanup
-      #     def my_cleanup2
-      #       ...
-      #     end
+      #       cleanup do
+      #         ... # cleanup callback1
+      #       end
       #
-      #     cleanup do
-      #       ... # cleanup callback2
-      #     end
+      #       cleanup
+      #       def my_cleanup2
+      #         ...
+      #       end
       #
-      #     def test_my_class
-      #       ...
+      #       cleanup do
+      #         ... # cleanup callback2
+      #       end
+      #
+      #       def test_my_class
+      #         ...
+      #       end
       #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * test_my_class
       # * cleanup callback2
       # * my_cleanup2
@@ -650,35 +660,37 @@ module Test
       #
       # You can add additional teardown tasks by the following
       # code:
-      #   class TestMyClass < Test::Unit::TestCase
-      #     def teardown
-      #       ...
-      #     end
       #
-      #     teardown
-      #     def my_teardown1
-      #       ...
-      #     end
+      #     class TestMyClass < Test::Unit::TestCase
+      #       def teardown
+      #         ...
+      #       end
       #
-      #     teardown do
-      #       ... # teardown callback1
-      #     end
+      #       teardown
+      #       def my_teardown1
+      #         ...
+      #       end
       #
-      #     teardown
-      #     def my_teardown2
-      #       ...
-      #     end
+      #       teardown do
+      #         ... # teardown callback1
+      #       end
       #
-      #     teardown do
-      #       ... # teardown callback2
-      #     end
+      #       teardown
+      #       def my_teardown2
+      #         ...
+      #       end
       #
-      #     def test_my_class
-      #       ...
+      #       teardown do
+      #         ... # teardown callback2
+      #       end
+      #
+      #       def test_my_class
+      #         ...
+      #       end
       #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * test_my_class
       # * teardown callback2
       # * my_teardown2

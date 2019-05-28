@@ -65,17 +65,18 @@ module Test
       # Omit the test or part of the test.
       #
       # Example:
-      #   def test_omission
-      #     omit
-      #     # Not reached here
-      #   end
       #
-      #   def test_omission_with_here
-      #     omit do
-      #       # Not ran here
+      #     def test_omission
+      #       omit
+      #       # Not reached here
       #     end
-      #     # Reached here
-      #   end
+      #
+      #     def test_omission_with_here
+      #       omit do
+      #         # Not ran here
+      #       end
+      #       # Reached here
+      #     end
       def omit(message=nil, &block)
         message ||= "omitted."
         if block_given?
@@ -91,20 +92,21 @@ module Test
       # true.
       #
       # Example:
-      #   def test_omission
-      #     omit_if("".empty?)
-      #     # Not reached here
-      #   end
       #
-      #   def test_omission_with_here
-      #     omit_if(true) do
-      #       # Not ran here
+      #     def test_omission
+      #       omit_if("".empty?)
+      #       # Not reached here
       #     end
-      #     omit_if(false) do
-      #       # Reached here
+      #
+      #     def test_omission_with_here
+      #       omit_if(true) do
+      #         # Not ran here
+      #       end
+      #       omit_if(false) do
+      #         # Reached here
+      #       end
+      #       # Reached here too
       #     end
-      #     # Reached here too
-      #   end
       def omit_if(condition, *args, &block)
         if condition
           omit(*args, &block)
@@ -117,20 +119,21 @@ module Test
       # not true.
       #
       # Example:
-      #   def test_omission
-      #     omit_unless("string".empty?)
-      #     # Not reached here
-      #   end
       #
-      #   def test_omission_with_here
-      #     omit_unless(true) do
-      #       # Reached here
+      #     def test_omission
+      #       omit_unless("string".empty?)
+      #       # Not reached here
       #     end
-      #     omit_unless(false) do
-      #       # Not ran here
+      #
+      #     def test_omission_with_here
+      #       omit_unless(true) do
+      #         # Reached here
+      #       end
+      #       omit_unless(false) do
+      #         # Not ran here
+      #       end
+      #       # Reached here too
       #     end
-      #     # Reached here too
-      #   end
       def omit_unless(condition, *args, &block)
         if condition
           block.call if block

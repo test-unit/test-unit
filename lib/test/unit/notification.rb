@@ -65,15 +65,17 @@ module Test
       # Notify some information.
       #
       # Example:
-      #   def test_notification
-      #     notify("I'm here!")
-      #     # Reached here
-      #     notify("Special!") if special_case?
-      #     # Reached here too
-      #   end
+      #
+      #     def test_notification
+      #       notify("I'm here!")
+      #       # Reached here
+      #       notify("Special!") if special_case?
+      #       # Reached here too
+      #     end
       #
       # options:
-      #   :backtrace override backtrace.
+      #
+      #     :backtrace override backtrace.
       def notify(message, options={}, &block)
         backtrace = filter_backtrace(options[:backtrace] || caller)
         notification = Notification.new(name, backtrace, message,
