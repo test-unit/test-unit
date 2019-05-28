@@ -257,7 +257,7 @@ module Test
         @@test_orders = {}
 
         # Returns the current test order. This returns
-        # +:alphabetic+ by default.
+        # `:alphabetic` by default.
         def test_order
           ancestors.each do |ancestor|
             order = @@test_orders[ancestor]
@@ -695,13 +695,13 @@ module Test
 
       # Returns a label of test data for the test. If the
       # test isn't associated with any test data, it returns
-      # +nil+.
+      # `nil`.
       def data_label
         @internal_data.test_data_label
       end
 
       # Returns test data for the test. If the test isn't associated
-      # with any test data, it returns +nil+.
+      # with any test data, it returns `nil`.
       def data
         @internal_data.test_data
       end

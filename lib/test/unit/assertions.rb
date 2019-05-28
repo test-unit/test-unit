@@ -171,7 +171,7 @@ module Test
         end
       end
 
-      # Asserts that +object+ is false or nil.
+      # Asserts that `object` is false or nil.
       #
       # @note Just for minitest compatibility. :<
       #
@@ -213,7 +213,7 @@ module Test
       end
 
       ##
-      # Passes if +expected+ == +actual+.
+      # Passes if `expected` == `actual`.
       #
       # Note that the ordering of arguments is important, since a helpful
       # error message is generated when this one fails that tells you the
@@ -314,7 +314,7 @@ EOT
 
 
       ##
-      # Passes if +object+.instance_of?(+klass+). When +klass+ is
+      # Passes if `object`.instance_of?(`klass`). When `klass` is
       # an array of classes, it passes if any class
       # satisfies +object.instance_of?(class).
       #
@@ -348,8 +348,8 @@ EOT
       end
 
       ##
-      # Passes if +object+.instance_of?(+klass+) does not hold.
-      # When +klass+ is an array of classes, it passes if no class
+      # Passes if `object`.instance_of?(`klass`) does not hold.
+      # When `klass` is an array of classes, it passes if no class
       # satisfies +object.instance_of?(class).
       #
       # @example
@@ -389,7 +389,7 @@ EOT
       alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
-      # Passes if +object+ is nil.
+      # Passes if `object` is nil.
       #
       # @example
       #   assert_nil [1, 2].uniq!
@@ -401,7 +401,7 @@ EOT
       end
 
       ##
-      # Passes if +object+.kind_of?(+klass+). When +klass+ is
+      # Passes if `object`.kind_of?(`klass`). When `klass` is
       # an array of classes or modules, it passes if any
       # class or module satisfies +object.kind_of?(class_or_module).
       #
@@ -437,8 +437,8 @@ EOT
       end
 
       ##
-      # Passes if +object+.kind_of?(+klass+) does not hold.
-      # When +klass+ is an array of classes or modules, it passes only if all
+      # Passes if `object`.kind_of?(`klass`) does not hold.
+      # When `klass` is an array of classes or modules, it passes only if all
       # classes (and modules) do not satisfy +object.kind_of?(class_or_module).
       #
       # @example
@@ -478,7 +478,7 @@ EOT
       alias_method :refute_kind_of, :assert_not_kind_of
 
       ##
-      # Passes if +object+ .respond_to? +method+
+      # Passes if `object` .respond_to? `method`
       #
       # @example
       #   assert_respond_to 'bugbear', :slice
@@ -500,7 +500,7 @@ EOT
       end
 
       ##
-      # Passes if +object+ does not .respond_to? +method+.
+      # Passes if `object` does not .respond_to? `method`.
       #
       # @example
       #   assert_not_respond_to('bugbear', :nonexistence) # -> pass
@@ -528,7 +528,7 @@ EOT
       alias_method :refute_respond_to, :assert_not_respond_to
 
       ##
-      # Passes if +pattern+ =~ +string+.
+      # Passes if `pattern` =~ `string`.
       #
       # @example
       #   assert_match(/\d+/, 'five, 6, seven')
@@ -548,7 +548,7 @@ EOT
       end
 
       ##
-      # Passes if +actual+ .equal? +expected+ (i.e. they are the same
+      # Passes if `actual` .equal? `expected` (i.e. they are the same
       # instance).
       #
       # @example
@@ -565,7 +565,7 @@ EOT
       end
 
       ##
-      # Compares the +object1+ with +object2+ using +operator+.
+      # Compares the `object1` with `object2` using `operator`.
       #
       # Passes if object1.__send__(operator, object2) is true.
       #
@@ -585,7 +585,7 @@ EOT
       end
 
       ##
-      # Compares the +object1+ with +object2+ using +operator+.
+      # Compares the `object1` with `object2` using `operator`.
       #
       # Passes if object1.__send__(operator, object2) is not true.
       #
@@ -652,7 +652,7 @@ EOT
       end
 
       ##
-      # Passes if ! +actual+ .equal? +expected+
+      # Passes if ! `actual` .equal? `expected`
       #
       # @example
       #   assert_not_same Object.new, Object.new
@@ -672,7 +672,7 @@ EOT
       alias_method :refute_same, :assert_not_same
 
       ##
-      # Passes if +expected+ != +actual+
+      # Passes if `expected` != `actual`
       #
       # @example
       #   assert_not_equal 'some string', 5
@@ -689,7 +689,7 @@ EOT
       alias_method :refute_equal, :assert_not_equal
 
       ##
-      # Passes if ! +object+ .nil?
+      # Passes if ! `object` .nil?
       #
       # @example
       #   assert_not_nil '1 two 3'.sub!(/two/, '2')
@@ -706,7 +706,7 @@ EOT
       alias_method :refute_nil, :assert_not_nil
 
       ##
-      # Passes if +regexp+ !~ +string+
+      # Passes if `regexp` !~ `string`
       #
       # @example
       #   assert_not_match(/two/, 'one 2 three')   # -> pass
@@ -731,7 +731,7 @@ EOT
       ##
       # Deprecated. Use #assert_not_match instead.
       #
-      # Passes if +regexp+ !~ +string+
+      # Passes if `regexp` !~ `string`
       #
       # @example
       #   assert_no_match(/two/, 'one 2 three')   # -> pass
@@ -789,7 +789,7 @@ EOT
       end
 
       ##
-      # Passes if the block throws +expected_object+
+      # Passes if the block throws `expected_object`
       #
       # @example
       #   assert_throw(:done) do
@@ -860,8 +860,8 @@ EOT
       end
 
       ##
-      # Passes if +expected_float+ and +actual_float+ are equal
-      # within +delta+ tolerance.
+      # Passes if `expected_float` and `actual_float` are equal
+      # within `delta` tolerance.
       #
       # @example
       #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
@@ -881,8 +881,8 @@ EOT
       end
 
       ##
-      # Passes if +expected_float+ and +actual_float+ are
-      # not equal within +delta+ tolerance.
+      # Passes if `expected_float` and `actual_float` are
+      # not equal within `delta` tolerance.
       #
       # @example
       #   assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass
@@ -981,8 +981,8 @@ EOT
 
       public
       ##
-      # Passes if +expected_float+ and +actual_float+ are equal
-      # within +epsilon+ relative error of +expected_float+.
+      # Passes if `expected_float` and `actual_float` are equal
+      # within `epsilon` relative error of `expected_float`.
       #
       # @example
       #   assert_in_epsilon(10000.0, 9900.0, 0.1) # -> pass
@@ -1011,9 +1011,9 @@ EOT
       end
 
       ##
-      # Passes if +expected_float+ and +actual_float+ are
-      # not equal within +epsilon+ relative error of
-      # +expected_float+.
+      # Passes if `expected_float` and `actual_float` are
+      # not equal within `epsilon` relative error of
+      # `expected_float`.
       #
       # @example
       #   assert_not_in_epsilon(10000.0, 9900.0, 0.1) # -> fail
@@ -1121,7 +1121,7 @@ EOT
       ##
       # Passes if the method send returns a true value.
       #
-      # +send_array+ is composed of:
+      # `send_array` is composed of:
       # * A receiver
       # * A method
       # * Arguments to the method
@@ -1161,7 +1161,7 @@ EOT
       ##
       # Passes if the method send doesn't return a true value.
       #
-      # +send_array+ is composed of:
+      # `send_array` is composed of:
       # * A receiver
       # * A method
       # * Arguments to the method
@@ -1199,7 +1199,7 @@ EOT
       end
 
       ##
-      # Passes if +actual+ is a boolean value.
+      # Passes if `actual` is a boolean value.
       #
       # @example
       #   assert_boolean(true) # -> pass
@@ -1215,7 +1215,7 @@ EOT
       end
 
       ##
-      # Passes if +actual+ is true.
+      # Passes if `actual` is true.
       #
       # @example
       #   assert_true(true)  # -> pass
@@ -1231,7 +1231,7 @@ EOT
       end
 
       ##
-      # Passes if +actual+ is false.
+      # Passes if `actual` is false.
       #
       # @example
       #   assert_false(false)  # -> pass
@@ -1247,8 +1247,8 @@ EOT
       end
 
       ##
-      # Passes if expression "+expected+ +operator+
-      # +actual+" is true.
+      # Passes if expression "`expected` `operator`
+      # `actual`" is true.
       #
       # @example
       #   assert_compare(1, "<", 10)  # -> pass
@@ -1303,7 +1303,7 @@ EOT
 
       ##
       # Passes if an exception is raised in block and its
-      # message is +expected+.
+      # message is `expected`.
       #
       # @example
       #   assert_raise_message("exception") {raise "exception"}  # -> pass
@@ -1343,7 +1343,7 @@ EOT
       end
 
       ##
-      # Passes if +object+.const_defined?(+constant_name+)
+      # Passes if `object`.const_defined?(`constant_name`)
       #
       # @example
       #   assert_const_defined(Test, :Unit)          # -> pass
@@ -1360,7 +1360,7 @@ EOT
       end
 
       ##
-      # Passes if !+object+.const_defined?(+constant_name+)
+      # Passes if !`object`.const_defined?(`constant_name`)
       #
       # @example
       #   assert_not_const_defined(Object, :Nonexistent) # -> pass
@@ -1377,7 +1377,7 @@ EOT
       end
 
       ##
-      # Passes if +object+.+predicate+ is _true_.
+      # Passes if `object`.`predicate` is _true_.
       #
       # @example
       #   assert_predicate([], :empty?)  # -> pass
@@ -1399,7 +1399,7 @@ EOT
       end
 
       ##
-      # Passes if +object+.+predicate+ is not _true_.
+      # Passes if `object`.`predicate` is not _true_.
       #
       # @example
       #   assert_not_predicate([1], :empty?) # -> pass
@@ -1426,8 +1426,8 @@ EOT
       alias_method :refute_predicate, :assert_not_predicate
 
       ##
-      # Passes if +object+#+alias_name+ is an alias method of
-      # +object+#+original_name+.
+      # Passes if `object`#`alias_name` is an alias method of
+      # `object`#`original_name`.
       #
       # @example
       #   assert_alias_method([], :length, :size)  # -> pass
@@ -1474,7 +1474,7 @@ EOT
       end
 
       ##
-      # Passes if +path+ exists.
+      # Passes if `path` exists.
       #
       # @example
       #   assert_path_exist("/tmp")          # -> pass
@@ -1492,7 +1492,7 @@ EOT
       end
 
       ##
-      # Passes if +path+ doesn't exist.
+      # Passes if `path` doesn't exist.
       #
       # @example
       #   assert_path_not_exist("/nonexistent")  # -> pass
@@ -1510,7 +1510,7 @@ EOT
       end
 
       ##
-      # Passes if +collection+ includes +object+.
+      # Passes if `collection` includes `object`.
       #
       # @example
       #   assert_include([1, 10], 1)            # -> pass
@@ -1537,7 +1537,7 @@ EOT
       alias_method :assert_includes, :assert_include
 
       ##
-      # Passes if +collection+ doesn't include +object+.
+      # Passes if `collection` doesn't include `object`.
       #
       # @example
       #   assert_not_include([1, 10], 5)            # -> pass
@@ -1569,7 +1569,7 @@ EOT
       alias_method :refute_includes, :assert_not_include
 
       ##
-      # Passes if +object+ is empty.
+      # Passes if `object` is empty.
       #
       # @example
       #   assert_empty("")                       # -> pass
@@ -1592,7 +1592,7 @@ EOT
       end
 
       ##
-      # Passes if +object+ is not empty.
+      # Passes if `object` is not empty.
       #
       # @example
       #   assert_not_empty(" ")                      # -> pass
@@ -1620,8 +1620,8 @@ EOT
       alias_method :refute_empty, :assert_not_empty
 
       ##
-      # Builds a failure message.  +user_message+ is added before the
-      # +template+ and +arguments+ replaces the '?'s positionally in
+      # Builds a failure message.  `user_message` is added before the
+      # `template` and `arguments` replaces the '?'s positionally in
       # the template.
       def build_message(user_message, template=nil, *arguments)
         template &&= template.chomp
