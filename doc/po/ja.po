@@ -18,9 +18,9 @@ msgid "# test-unit"
 msgstr ""
 
 msgid ""
-"[![](https://badge.fury.io/rb/test-unit.png)](http://badge.fury.io/rb/test-uni"
+"[![](https://badge.fury.io/rb/test-unit.svg)](http://badge.fury.io/rb/test-uni"
 "t)\n"
-"[![](https://travis-ci.org/test-unit/test-unit.png?branch=master)](https://tra"
+"[![](https://travis-ci.org/test-unit/test-unit.svg?branch=master)](https://tra"
 "vis-ci.org/test-unit/test-unit)"
 msgstr ""
 
@@ -670,11 +670,242 @@ msgstr ""
 msgid "# News"
 msgstr ""
 
-msgid "## 3.2.4 - 2017-05-23 {#version-3-2-4}"
+msgid "## 3.3.3 - 2019-05-10 {#version-3-3-3}"
+msgstr ""
+
+#, fuzzy
+msgid "### Fixed"
+msgstr "### 修正"
+
+msgid ""
+"  * Fixed a bug that priority mode with test case name that uses\n"
+"    special characters such as `?` can't be used on Windows."
+msgstr ""
+
+msgid "## 3.3.2 - 2019-04-11 {#version-3-3-2}"
+msgstr ""
+
+msgid "### Fixes"
+msgstr "### 修正"
+
+msgid ""
+"  * Fixed a bug that `Test::Unit::Collector::Load` doesn't load test\n"
+"    files under sub directories when these files have the same base\n"
+"    name as test files in upper directories.\n"
+"    [Reported by Kenta Murata]"
+msgstr ""
+
+msgid "### Thanks"
+msgstr "### 感謝"
+
+msgid "  * Kenta Murata"
+msgstr ""
+
+msgid "## 3.3.1 - 2019-03-27 {#version-3-3-1}"
 msgstr ""
 
 msgid "### Improvements"
 msgstr "### 改良"
+
+msgid ""
+"  * Added support for `Test::Unit::AssertionFailedError#user_message`\n"
+"    for not only `assert_equal` and `assert_raise` but also all\n"
+"    assertions.\n"
+"    [GitHub#162][Reported by xgraffm]"
+msgstr ""
+
+msgid "  * xgraffm"
+msgstr ""
+
+msgid "## 3.3.0 - 2019-01-23 {#version-3-3-0}"
+msgstr ""
+
+msgid ""
+"  * Added support for auto test run when all tests are defined in\n"
+"    modules."
+msgstr ""
+
+msgid ""
+"  * Added support for defining methods to test case class in multiple\n"
+"    threads.\n"
+"    [GitHub#159][Reported by Charles Oliver Nutter]"
+msgstr ""
+
+msgid ""
+"  * Suppressed warnings on Ruby 2.5.\n"
+"    [GitHub#160][Reported by Daniel Berger]"
+msgstr ""
+
+msgid "  * Suppressed warnings on Ruby 2.7."
+msgstr ""
+
+msgid ""
+"  * Fixed a code snippet fetch failure when source code isn't UTF-8\n"
+"    and the default external encoding is set to not UTF-8.\n"
+"    [GitHub#161][Reported by masa kunikata]"
+msgstr ""
+
+msgid "  * Charles Oliver Nutter"
+msgstr ""
+
+msgid "  * Daniel Berger"
+msgstr ""
+
+msgid "  * masa kunikata"
+msgstr ""
+
+msgid "## 3.2.9 - 2018-12-01 {#version-3-2-9}"
+msgstr ""
+
+msgid ""
+"  * Added support for data generation by method. `data_#{test_name}`\n"
+"    is called to generate data for `test_name` test."
+msgstr ""
+
+msgid "  * Added support for data matrix generation."
+msgstr ""
+
+msgid "    Example:"
+msgstr ""
+
+msgid ""
+"    ```ruby\n"
+"    data(:a, [0, 1, 2])\n"
+"    data(:b, [:x, :y])\n"
+"    def test_data(data)\n"
+"    end\n"
+"    ```"
+msgstr ""
+
+msgid "    This example generates the following data matrix:"
+msgstr ""
+
+msgid ""
+"      * label: `\"a: 0, b: :x\"`, data: `{a: 0, b: :x}`\n"
+"      * label: `\"a: 0, b: :y\"`, data: `{a: 0, b: :y}`\n"
+"      * label: `\"a: 1, b: :x\"`, data: `{a: 1, b: :x}`\n"
+"      * label: `\"a: 1, b: :y\"`, data: `{a: 1, b: :y}`\n"
+"      * label: `\"a: 2, b: :x\"`, data: `{a: 2, b: :x}`\n"
+"      * label: `\"a: 2, b: :y\"`, data: `{a: 2, b: :y}`"
+msgstr ""
+
+msgid "  * Added `Test::Unit::TestCase#data` that returns the current data."
+msgstr ""
+
+msgid ""
+"  * Added support for using test method that doesn't have no\n"
+"    parameters as data driven test."
+msgstr ""
+
+msgid ""
+"    ```ruby\n"
+"    data(\"label\", :value)\n"
+"    def test_data # Available since this release\n"
+"      p data # :value\n"
+"    end\n"
+"    ```"
+msgstr ""
+
+msgid "  * Added support for `:keep` option to `Test::Unit::TestCase.data`."
+msgstr ""
+
+msgid ""
+"  * Added support for `:group` option to\n"
+"    `Test::Unit::TestCase.data`. It's useful to generate multiple data\n"
+"    matrix groups."
+msgstr ""
+
+msgid ""
+"    ```ruby\n"
+"    # Group1\n"
+"    data(:a, [0, 1, 2], group: :g1)\n"
+"    data(:b, [:x, :y], group: :g1)\n"
+"    # Group2\n"
+"    data(:a, [:x, :y], group: :g2)\n"
+"    data(:c, [-1, -2], group: :g2)\n"
+"    def test_data(data)\n"
+"    end\n"
+"    ```"
+msgstr ""
+
+msgid ""
+"      * label: `\"group: :g1, a: 0, b: :x\"`, data: `{a: 0, b: :x}`\n"
+"      * label: `\"group: :g1, a: 0, b: :y\"`, data: `{a: 0, b: :y}`\n"
+"      * label: `\"group: :g1, a: 1, b: :x\"`, data: `{a: 1, b: :x}`\n"
+"      * label: `\"group: :g1, a: 1, b: :y\"`, data: `{a: 1, b: :y}`\n"
+"      * label: `\"group: :g1, a: 2, b: :x\"`, data: `{a: 2, b: :x}`\n"
+"      * label: `\"group: :g1, a: 2, b: :y\"`, data: `{a: 2, b: :y}`\n"
+"      * label: `\"group: :g2, a: :x, b: -1\"`, data: `{a: :x, b: -1}`\n"
+"      * label: `\"group: :g2, a: :x, b: -2\"`, data: `{a: :x, b: -2}`\n"
+"      * label: `\"group: :g2, a: :y, b: -1\"`, data: `{a: :y, b: -1}`\n"
+"      * label: `\"group: :g2, a: :y, b: -2\"`, data: `{a: :y, b: -2}`"
+msgstr ""
+
+msgid "## 3.2.8 - 2018-05-13 {#version-3-2-8}"
+msgstr ""
+
+msgid ""
+"  * [UI][console]: Changed to put code snippet before backtrace on\n"
+"    reverse mode."
+msgstr ""
+
+msgid "## 3.2.7 - 2017-12-12 {#version-3-2-7}"
+msgstr ""
+
+msgid ""
+"  * Added source code link to gemspec.\n"
+"    [GitHub#157][Patch by Grey Baker]"
+msgstr ""
+
+msgid ""
+"  * Changed to use SVG image for badges in README.\n"
+"    [GitHub#158][Patch by Olle Jonsson]"
+msgstr ""
+
+msgid ""
+"  * [UI][console]: Added `--reverse-output` option to output fault\n"
+"    details in reverse like Ruby 2.5. It's enabled by default only for\n"
+"    tty output."
+msgstr ""
+
+msgid ""
+"  * Fixed a typo.\n"
+"    [GitHub#156][Patch by masa kunikata]"
+msgstr ""
+
+msgid "  * [UI][console]: Fixed a bug that broken align in verbose mode."
+msgstr ""
+
+msgid "  * Grey Baker"
+msgstr ""
+
+msgid "  * Olle Jonsson"
+msgstr ""
+
+msgid "## 3.2.6 - 2017-09-21 {#version-3-2-6}"
+msgstr ""
+
+msgid ""
+"  * Changed test file require failure to error from omission.\n"
+"    [GitHub#154][Patch by naofumi-fujii]"
+msgstr ""
+
+msgid "  * naofumi-fujii"
+msgstr ""
+
+msgid "## 3.2.5 - 2017-06-24 {#version-3-2-5}"
+msgstr ""
+
+msgid ""
+"  * Supported `--enable-frozen-string-literal` `ruby` option.\n"
+"    [GitHub#149][Reported by Pat Allan]"
+msgstr ""
+
+msgid "  * Pat Allan"
+msgstr ""
+
+msgid "## 3.2.4 - 2017-05-23 {#version-3-2-4}"
+msgstr ""
 
 msgid "  * Updated tests for Ruby 2.4. [GitHUb#136][Patch by Kazuki Tsujimoto]"
 msgstr ""
@@ -697,9 +928,6 @@ msgstr ""
 
 msgid "  * Updated `.travis.yml`. [GitHub#145][Patch by Jun Aruga]"
 msgstr ""
-
-msgid "### Fixes"
-msgstr "### 修正"
 
 msgid "  * Fixed a contributor name. [GitHub#131][Patch by Akira Matsuda]"
 msgstr ""
@@ -732,9 +960,6 @@ msgid ""
 "  * Fixed a bug that `--no-show-detail-immediately` raises an error.\n"
 "    [GitHub#147][Reported by MSP-Greg]"
 msgstr ""
-
-msgid "### Thanks"
-msgstr "### 感謝"
 
 msgid "  * Akira Matsuda"
 msgstr ""
@@ -1181,9 +1406,6 @@ msgid ""
 "  * Stopped to remove JRuby and Rubinius internal backtrace entries from\n"
 "    backtrace on failure/error.\n"
 "    [GitHub#82][Patch by Charles Oliver Nutter]"
-msgstr ""
-
-msgid "  * Charles Oliver Nutter"
 msgstr ""
 
 msgid "## 3.0.3 - 2014-10-29 {#version-3-0-3}"
@@ -2112,29 +2334,15 @@ msgstr ""
 msgid "  * Birthday (as a gem)!"
 msgstr ""
 
-# Test
-msgid "port of Python's difflib."
-msgstr ""
-
-# Test
-msgid ""
-"Copyright (c) 2001-2008 Python Software Foundation; All Rights Reserved\n"
-"Copyright (c) 2008-2011 Kouhei Sutou; All Rights Reserved"
+msgid ":nodoc:"
 msgstr ""
 
 # Test::Unit
-msgid "= Test::Unit - Ruby Unit Testing Framework"
-msgstr ""
-
-# Test
-msgid ""
-"It is free software, and is distributed under the Ruby license, the\n"
-"PSF license and/or LGPLv2.1 or later. See the COPYING file, the PSFL\n"
-"file and the LGPL file."
+msgid "# Test::Unit - Ruby Unit Testing Framework"
 msgstr ""
 
 # Test::Unit
-msgid "== Introduction"
+msgid "## Introduction"
 msgstr ""
 
 # Test::Unit
@@ -2160,13 +2368,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Notes"
-msgstr ""
-
-# #run
-msgid ""
-"experimental. It is for \"ruby -rtest-unit -e run test/test_*.rb\".\n"
-"Is this API OK or dirty?"
+msgid "## Notes"
 msgstr ""
 
 msgid "Test::Unit has grown out of and superceded Lapidary."
@@ -2179,7 +2381,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Feedback"
+msgid "## Feedback"
 msgstr ""
 
 # Test::Unit
@@ -2197,7 +2399,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Contact Information"
+msgid "## Contact Information"
 msgstr ""
 
 # Test::Unit
@@ -2211,7 +2413,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Credits"
+msgid "## Credits"
 msgstr ""
 
 msgid "I'd like to thank..."
@@ -2263,10 +2465,6 @@ msgid "My Creator, for giving me life, and giving it more abundantly."
 msgstr ""
 
 # Test::Unit
-msgid "== License"
-msgstr ""
-
-# Test::Unit
 msgid ""
 "Test::Unit is copyright (c) 2000-2003 Nathaniel Talbott. It is free\n"
 "software, and is distributed under the Ruby license. See the COPYING\n"
@@ -2283,7 +2481,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Warranty"
+msgid "## Warranty"
 msgstr ""
 
 # Test::Unit
@@ -2295,7 +2493,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Author"
+msgid "## Author"
 msgstr ""
 
 # Test::Unit
@@ -2309,7 +2507,7 @@ msgid "----"
 msgstr ""
 
 # Test::Unit
-msgid "= Usage"
+msgid "# Usage"
 msgstr ""
 
 # Test::Unit
@@ -2325,7 +2523,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Assertions"
+msgid "## Assertions"
 msgstr ""
 
 # Test::Unit
@@ -2341,7 +2539,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Test Method & Test Fixture"
+msgid "## Test Method & Test Fixture"
 msgstr ""
 
 # Test::Unit
@@ -2424,7 +2622,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Test Runners"
+msgid "## Test Runners"
 msgstr ""
 
 # Test::Unit
@@ -2441,12 +2639,12 @@ msgstr ""
 
 # Test::Unit
 msgid ""
-"   require 'test/unit'\n"
-"   Test::Unit::AutoRunner.default_runner = \"gtk2\""
+"    require 'test/unit'\n"
+"    Test::Unit::AutoRunner.default_runner = \"gtk2\""
 msgstr ""
 
 # Test::Unit
-msgid "== Test Suite"
+msgid "## Test Suite"
 msgstr ""
 
 # Test::Unit
@@ -2472,10 +2670,10 @@ msgstr ""
 
 # Test::Unit
 msgid ""
-" require 'test/unit'\n"
-" require 'test_myfirsttests'\n"
-" require 'test_moretestsbyme'\n"
-" require 'test_anothersetoftests'"
+"    require 'test/unit'\n"
+"    require 'test_myfirsttests'\n"
+"    require 'test_moretestsbyme'\n"
+"    require 'test_anothersetoftests'"
 msgstr ""
 
 # Test::Unit
@@ -2486,7 +2684,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit
-msgid "== Configuration file"
+msgid "## Configuration file"
 msgstr ""
 
 msgid ""
@@ -2504,40 +2702,26 @@ msgstr "カラースキーム定義以外はコマンドラインオプション
 
 # Test::Unit
 msgid ""
-"  color_schemes:\n"
-"    inverted:\n"
-"      success:\n"
-"        name: red\n"
-"        bold: true\n"
-"      failure:\n"
-"        name: green\n"
-"        bold: true\n"
-"    other_scheme:\n"
-"      ..."
+"SCHEME_NAME\n"
+": the name of the color scheme"
 msgstr ""
 
 # Test::Unit
 msgid ""
-" color_schemes:\n"
-"   SCHEME_NAME:\n"
-"     EVENT_NAME:\n"
-"       name: COLOR_NAME\n"
-"       intensity: BOOLEAN\n"
-"       bold: BOOLEAN\n"
-"       italic: BOOLEAN\n"
-"       underline: BOOLEAN\n"
-"     ...\n"
-"   ..."
+"EVENT_NAME\n"
+": one of [success, failure, pending, omission, notification, error]"
 msgstr ""
 
 # Test::Unit
 msgid ""
-"SCHEME_NAME:: the name of the color scheme\n"
-"EVENT_NAME:: one of [success, failure, pending,\n"
-"             omission, notification, error]\n"
-"COLOR_NAME:: one of [black, red, green, yellow, blue,\n"
-"             magenta, cyan, white]\n"
-"BOOLEAN:: true or false"
+"COLOR_NAME\n"
+": one of [black, red, green, yellow, blue, magenta, cyan, white]"
+msgstr ""
+
+# Test::Unit
+msgid ""
+"BOOLEAN\n"
+": true or false"
 msgstr ""
 
 msgid ""
@@ -2546,22 +2730,7 @@ msgid ""
 msgstr "上で定義した'inverted'カラースキムを使う設定は以下の通りです。"
 
 # Test::Unit
-msgid ""
-"  runner: console\n"
-"  console_options:\n"
-"    color_scheme: inverted\n"
-"  color_schemes:\n"
-"    inverted:\n"
-"      success:\n"
-"        name: red\n"
-"        bold: true\n"
-"      failure:\n"
-"        name: green\n"
-"        bold: true"
-msgstr ""
-
-# Test::Unit
-msgid "== Questions?"
+msgid "## Questions?"
 msgstr ""
 
 # Test::Unit
@@ -2571,6 +2740,10 @@ msgid ""
 "missing points, etc., in this document (or any other)."
 msgstr ""
 
+# @deprecated
+msgid "Use Test::Unit::AutoRunner.need_auto_run= instead."
+msgstr ""
+
 # Test::Unit.run=
 msgid ""
 "Set true when Test::Unit has run.  If set to true Test::Unit\n"
@@ -2578,15 +2751,11 @@ msgid ""
 msgstr ""
 
 # @deprecated
-msgid "Use Test::Unit::AutoRunner.need_auto_run= instead."
+msgid "Use Test::Unit::AutoRunner.need_auto_run? instead."
 msgstr ""
 
 # Test::Unit.run?
 msgid "Already tests have run?"
-msgstr ""
-
-# @deprecated
-msgid "Use Test::Unit::AutoRunner.need_auto_run? instead."
 msgstr ""
 
 msgid "private"
@@ -2598,19 +2767,49 @@ msgid ""
 "To register multiple hooks, call this method multiple times."
 msgstr ""
 
+# Test::Unit.at_exit
 # Test::Unit.at_start
-msgid ""
-"Here is an example test case:\n"
-"  Test::Unit.at_start do\n"
-"    # ...\n"
-"  end"
+# Test::Unit::TestCase.shutdown
+# Test::Unit::TestCase.startup
+msgid "Here is an example test case:"
 msgstr ""
 
 # Test::Unit.at_start
 msgid ""
-"  class TestMyClass1 < Test::Unit::TestCase\n"
-"    class << self\n"
-"      def startup\n"
+"    Test::Unit.at_start do\n"
+"      # ...\n"
+"    end"
+msgstr ""
+
+# Test::Unit.at_start
+msgid ""
+"    class TestMyClass1 < Test::Unit::TestCase\n"
+"      class << self\n"
+"        def startup\n"
+"          # ...\n"
+"        end\n"
+"      end"
+msgstr ""
+
+# Test::Unit.at_start
+msgid ""
+"      def setup\n"
+"        # ...\n"
+"      end"
+msgstr ""
+
+# Test::Unit.at_exit
+# Test::Unit.at_start
+msgid ""
+"      def test_my_class1\n"
+"        # ...\n"
+"      end"
+msgstr ""
+
+# Test::Unit.at_exit
+# Test::Unit.at_start
+msgid ""
+"      def test_my_class2\n"
 "        # ...\n"
 "      end\n"
 "    end"
@@ -2618,41 +2817,20 @@ msgstr ""
 
 # Test::Unit.at_start
 msgid ""
-"    def setup\n"
-"      # ...\n"
-"    end"
+"    class TestMyClass2 < Test::Unit::TestCase\n"
+"      class << self\n"
+"        def startup\n"
+"          # ...\n"
+"        end\n"
+"      end"
 msgstr ""
 
-# Test::Unit.at_exit
-# Test::Unit.at_start
-msgid ""
-"    def test_my_class1\n"
-"      # ...\n"
-"    end"
-msgstr ""
-
-# Test::Unit.at_exit
-# Test::Unit.at_start
-msgid ""
-"    def test_my_class2\n"
-"      # ...\n"
-"    end\n"
-"  end"
+# Test::Unit::TestCase
+msgid "Here is a call order:"
 msgstr ""
 
 # Test::Unit.at_start
 msgid ""
-"  class TestMyClass2 < Test::Unit::TestCase\n"
-"    class << self\n"
-"      def startup\n"
-"        # ...\n"
-"      end\n"
-"    end"
-msgstr ""
-
-# Test::Unit.at_start
-msgid ""
-"Here is a call order:\n"
 "* at_start\n"
 "* TestMyClass1.startup\n"
 "* TestMyClass1#setup\n"
@@ -2672,12 +2850,12 @@ msgid ""
 "end"
 msgstr ""
 
-# @yield
-msgid "A block that is run before running tests."
-msgstr ""
-
 # @since
 msgid "2.5.2"
+msgstr ""
+
+# @yield
+msgid "A block that is run before running tests."
 msgstr ""
 
 # Test::Unit.at_exit
@@ -2688,42 +2866,40 @@ msgstr ""
 
 # Test::Unit.at_exit
 msgid ""
-"Here is an example test case:\n"
-"  Test::Unit.at_exit do\n"
-"    # ...\n"
-"  end"
-msgstr ""
-
-# Test::Unit.at_exit
-msgid ""
-"  class TestMyClass1 < Test::Unit::TestCase\n"
-"    class << self\n"
-"      def shutdown\n"
-"        # ...\n"
-"      end\n"
-"    end"
-msgstr ""
-
-# Test::Unit.at_exit
-msgid ""
-"    def teardown\n"
+"    Test::Unit.at_exit do\n"
 "      # ...\n"
 "    end"
 msgstr ""
 
 # Test::Unit.at_exit
 msgid ""
-"  class TestMyClass2 < Test::Unit::TestCase\n"
-"    class << self\n"
-"      def shutdown\n"
-"        # ...\n"
-"      end\n"
-"    end"
+"    class TestMyClass1 < Test::Unit::TestCase\n"
+"      class << self\n"
+"        def shutdown\n"
+"          # ...\n"
+"        end\n"
+"      end"
 msgstr ""
 
 # Test::Unit.at_exit
 msgid ""
-"Here is a call order:\n"
+"      def teardown\n"
+"        # ...\n"
+"      end"
+msgstr ""
+
+# Test::Unit.at_exit
+msgid ""
+"    class TestMyClass2 < Test::Unit::TestCase\n"
+"      class << self\n"
+"        def shutdown\n"
+"          # ...\n"
+"        end\n"
+"      end"
+msgstr ""
+
+# Test::Unit.at_exit
+msgid ""
 "* TestMyClass1#test_my_class1\n"
 "* TestMyClass1#teardown\n"
 "* TestMyClass1#test_my_class2\n"
@@ -2845,9 +3021,9 @@ msgstr ""
 # @example Example Custom Assertion
 msgid ""
 "\n"
-"def deny(boolean, message = nil)\n"
-"  message = build_message message, '<?> is not false or nil.', boolean\n"
-"  assert_block message do\n"
+"def deny(boolean, message=nil)\n"
+"  message = build_message(message, '<?> is not false or nil.', boolean)\n"
+"  assert_block(message) do\n"
 "    not boolean\n"
 "  end\n"
 "end"
@@ -2987,14 +3163,7 @@ msgid ""
 msgstr ""
 
 # Test::Unit::Assertions#refute
-msgid "Asserts that +object+ is false or nil."
-msgstr ""
-
-msgid "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
-
-# @param [Object] object
-msgid "The object to be asserted."
+msgid "Asserts that `object` is false or nil."
 msgstr ""
 
 # @example Pass patterns
@@ -3009,12 +3178,19 @@ msgid ""
 "refute(\"string\") # => failure"
 msgstr ""
 
+msgid "Just for minitest compatibility. :<"
+msgstr "minitestとの互換製のためだけのリリースです。 :"
+
+# @param [Object] object
+msgid "The object to be asserted."
+msgstr ""
+
 # @since
 msgid "2.5.3"
 msgstr ""
 
 # Test::Unit::Assertions#assert_equal
-msgid "Passes if +expected+ == +actual+."
+msgid "Passes if `expected` == `actual`."
 msgstr ""
 
 # Test::Unit::Assertions#assert_equal
@@ -3073,7 +3249,7 @@ msgstr ""
 
 # Test::Unit::Assertions#assert_instance_of
 msgid ""
-"Passes if +object+.instance_of?(+klass+). When +klass+ is\n"
+"Passes if `object`.instance_of?(`klass`). When `klass` is\n"
 "an array of classes, it passes if any class\n"
 "satisfies +object.instance_of?(class)."
 msgstr ""
@@ -3086,10 +3262,9 @@ msgid ""
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_instance_of
-# Test::Unit::Assertions#refute_instance_of
 msgid ""
-"Passes if +object+.instance_of?(+klass+) does not hold.\n"
-"When +klass+ is an array of classes, it passes if no class\n"
+"Passes if `object`.instance_of?(`klass`) does not hold.\n"
+"When `klass` is an array of classes, it passes if no class\n"
 "satisfies +object.instance_of?(class)."
 msgstr ""
 
@@ -3105,14 +3280,14 @@ msgid "3.0.0"
 msgstr ""
 
 msgid ""
-"Passes if +object+.instance_of?(+klass+) does not hold.\n"
-"When +klass+ is an array of classes, it passes if no class\n"
+"Passes if `object`.instance_of?(`klass`) does not hold.\n"
+"When `klass` is an array of classes, it passes if no class\n"
 "satisfies +object.instance_of?(class).\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
 # Test::Unit::Assertions#assert_nil
-msgid "Passes if +object+ is nil."
+msgid "Passes if `object` is nil."
 msgstr ""
 
 # @example
@@ -3121,7 +3296,7 @@ msgstr ""
 
 # Test::Unit::Assertions#assert_kind_of
 msgid ""
-"Passes if +object+.kind_of?(+klass+). When +klass+ is\n"
+"Passes if `object`.kind_of?(`klass`). When `klass` is\n"
 "an array of classes or modules, it passes if any\n"
 "class or module satisfies +object.kind_of?(class_or_module)."
 msgstr ""
@@ -3134,10 +3309,9 @@ msgid ""
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_kind_of
-# Test::Unit::Assertions#refute_kind_of
 msgid ""
-"Passes if +object+.kind_of?(+klass+) does not hold.\n"
-"When +klass+ is an array of classes or modules, it passes only if all\n"
+"Passes if `object`.kind_of?(`klass`) does not hold.\n"
+"When `klass` is an array of classes or modules, it passes only if all\n"
 "classes (and modules) do not satisfy +object.kind_of?(class_or_module)."
 msgstr ""
 
@@ -3149,14 +3323,14 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Passes if +object+.kind_of?(+klass+) does not hold.\n"
-"When +klass+ is an array of classes or modules, it passes only if all\n"
+"Passes if `object`.kind_of?(`klass`) does not hold.\n"
+"When `klass` is an array of classes or modules, it passes only if all\n"
 "classes (and modules) do not satisfy +object.kind_of?(class_or_module).\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
 # Test::Unit::Assertions#assert_respond_to
-msgid "Passes if +object+ .respond_to? +method+"
+msgid "Passes if `object` .respond_to? `method`"
 msgstr ""
 
 # @example
@@ -3164,8 +3338,7 @@ msgid "assert_respond_to 'bugbear', :slice"
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_respond_to
-# Test::Unit::Assertions#refute_respond_to
-msgid "Passes if +object+ does not .respond_to? +method+."
+msgid "Passes if `object` does not .respond_to? `method`."
 msgstr ""
 
 # @example
@@ -3175,12 +3348,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Passes if +object+ does not .respond_to? +method+.\n"
+"Passes if `object` does not .respond_to? `method`.\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
 # Test::Unit::Assertions#assert_match
-msgid "Passes if +pattern+ =~ +string+."
+msgid "Passes if `pattern` =~ `string`."
 msgstr ""
 
 # @example
@@ -3189,7 +3362,7 @@ msgstr ""
 
 # Test::Unit::Assertions#assert_same
 msgid ""
-"Passes if +actual+ .equal? +expected+ (i.e. they are the same\n"
+"Passes if `actual` .equal? `expected` (i.e. they are the same\n"
 "instance)."
 msgstr ""
 
@@ -3202,7 +3375,7 @@ msgstr ""
 # Test::Unit::Assertions#assert_not_operator
 # Test::Unit::Assertions#assert_operator
 # Test::Unit::Assertions#refute_operator
-msgid "Compares the +object1+ with +object2+ using +operator+."
+msgid "Compares the `object1` with `object2` using `operator`."
 msgstr ""
 
 # Test::Unit::Assertions#assert_operator
@@ -3249,8 +3422,7 @@ msgid "flunk 'Not done testing yet.'"
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_same
-# Test::Unit::Assertions#refute_same
-msgid "Passes if ! +actual+ .equal? +expected+"
+msgid "Passes if ! `actual` .equal? `expected`"
 msgstr ""
 
 # @example
@@ -3258,13 +3430,12 @@ msgid "assert_not_same Object.new, Object.new"
 msgstr ""
 
 msgid ""
-"Passes if ! +actual+ .equal? +expected+\n"
+"Passes if ! `actual` .equal? `expected`\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_equal
-# Test::Unit::Assertions#refute_equal
-msgid "Passes if +expected+ != +actual+"
+msgid "Passes if `expected` != `actual`"
 msgstr ""
 
 # @example
@@ -3272,13 +3443,12 @@ msgid "assert_not_equal 'some string', 5"
 msgstr ""
 
 msgid ""
-"Passes if +expected+ != +actual+\n"
+"Passes if `expected` != `actual`\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_nil
-# Test::Unit::Assertions#refute_nil
-msgid "Passes if ! +object+ .nil?"
+msgid "Passes if ! `object` .nil?"
 msgstr ""
 
 # @example
@@ -3286,14 +3456,13 @@ msgid "assert_not_nil '1 two 3'.sub!(/two/, '2')"
 msgstr ""
 
 msgid ""
-"Passes if ! +object+ .nil?\n"
+"Passes if ! `object` .nil?\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
 # Test::Unit::Assertions#assert_no_match
 # Test::Unit::Assertions#assert_not_match
-# Test::Unit::Assertions#refute_match
-msgid "Passes if +regexp+ !~ +string+"
+msgid "Passes if `regexp` !~ `string`"
 msgstr ""
 
 # @example
@@ -3303,7 +3472,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Passes if +regexp+ !~ +string+\n"
+"Passes if `regexp` !~ `string`\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
@@ -3321,6 +3490,10 @@ msgstr ""
 msgid "a new instance of ThrowTagExtractor"
 msgstr ""
 
+# Test::Unit::Assertions#assert_throw
+msgid "Passes if the block throws `expected_object`"
+msgstr ""
+
 # @example
 msgid ""
 "assert_throw(:done) do\n"
@@ -3328,24 +3501,8 @@ msgid ""
 "end"
 msgstr ""
 
-# Test::Unit::Assertions#assert_throw
-# Test::Unit::Assertions#assert_throws
-msgid "Passes if the block throws +expected_object+"
-msgstr ""
-
-# @example
 msgid ""
-"assert_nothing_thrown do\n"
-"  [1, 2].uniq\n"
-"end"
-msgstr ""
-
-# @example
-msgid "assert_in_delta 0.05, (50000.0 / 10**6), 0.00001"
-msgstr ""
-
-msgid ""
-"Passes if the block throws +expected_object+\n"
+"Passes if the block throws `expected_object`\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
@@ -3355,27 +3512,43 @@ msgstr ""
 
 # @example
 msgid ""
-"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass\n"
-"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail"
+"assert_nothing_thrown do\n"
+"  [1, 2].uniq\n"
+"end"
 msgstr ""
 
 # Test::Unit::Assertions#assert_in_delta
 msgid ""
-"Passes if +expected_float+ and +actual_float+ are equal\n"
-"within +delta+ tolerance."
+"Passes if `expected_float` and `actual_float` are equal\n"
+"within `delta` tolerance."
+msgstr ""
+
+# @example
+msgid "assert_in_delta 0.05, (50000.0 / 10**6), 0.00001"
 msgstr ""
 
 # Test::Unit::Assertions#assert_not_in_delta
-# Test::Unit::Assertions#refute_in_delta
 msgid ""
-"Passes if +expected_float+ and +actual_float+ are\n"
-"not equal within +delta+ tolerance."
+"Passes if `expected_float` and `actual_float` are\n"
+"not equal within `delta` tolerance."
+msgstr ""
+
+# @example
+msgid ""
+"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00002) # -> pass\n"
+"assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail"
 msgstr ""
 
 msgid ""
-"Passes if +expected_float+ and +actual_float+ are\n"
-"not equal within +delta+ tolerance.\n"
+"Passes if `expected_float` and `actual_float` are\n"
+"not equal within `delta` tolerance.\n"
 "Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_in_epsilon
+msgid ""
+"Passes if `expected_float` and `actual_float` are equal\n"
+"within `epsilon` relative error of `expected_float`."
 msgstr ""
 
 # @example
@@ -3384,31 +3557,37 @@ msgid ""
 "assert_in_epsilon(10000.0, 9899.0, 0.1) # -> fail"
 msgstr ""
 
+# Test::Unit::Assertions#assert_not_in_epsilon
+msgid ""
+"Passes if `expected_float` and `actual_float` are\n"
+"not equal within `epsilon` relative error of\n"
+"`expected_float`."
+msgstr ""
+
 # @example
 msgid ""
 "assert_not_in_epsilon(10000.0, 9900.0, 0.1) # -> fail\n"
 "assert_not_in_epsilon(10000.0, 9899.0, 0.1) # -> pass"
 msgstr ""
 
-# Test::Unit::Assertions#assert_in_epsilon
 msgid ""
-"Passes if +expected_float+ and +actual_float+ are equal\n"
-"within +epsilon+ relative error of +expected_float+."
-msgstr ""
-
-# Test::Unit::Assertions#assert_not_in_epsilon
-# Test::Unit::Assertions#refute_in_epsilon
-msgid ""
-"Passes if +expected_float+ and +actual_float+ are\n"
-"not equal within +epsilon+ relative error of\n"
-"+expected_float+."
-msgstr ""
-
-msgid ""
-"Passes if +expected_float+ and +actual_float+ are\n"
-"not equal within +epsilon+ relative error of\n"
-"+expected_float+.\n"
+"Passes if `expected_float` and `actual_float` are\n"
+"not equal within `epsilon` relative error of\n"
+"`expected_float`.\n"
 "Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_send
+msgid "Passes if the method send returns a true value."
+msgstr ""
+
+# Test::Unit::Assertions#assert_not_send
+# Test::Unit::Assertions#assert_send
+msgid ""
+"`send_array` is composed of:\n"
+"* A receiver\n"
+"* A method\n"
+"* Arguments to the method"
 msgstr ""
 
 # @example
@@ -3417,16 +3596,7 @@ msgid ""
 "assert_send([[1, 2], :member?, 4]) # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_send
-msgid "Passes if the method send returns a true value."
-msgstr ""
-
-# Test::Unit::Assertions#assert_not_send
-msgid ""
-"+send_array+ is composed of:\n"
-"* A receiver\n"
-"* A method\n"
-"* Arguments to the method"
+msgid "Passes if the method send doesn't return a true value."
 msgstr ""
 
 # @example
@@ -3435,7 +3605,8 @@ msgid ""
 "assert_not_send([[1, 2], :member?, 4]) # -> pass"
 msgstr ""
 
-msgid "Passes if the method send doesn't return a true value."
+# Test::Unit::Assertions#assert_boolean
+msgid "Passes if `actual` is a boolean value."
 msgstr ""
 
 # @example
@@ -3444,10 +3615,18 @@ msgid ""
 "assert_boolean(nil)  # -> fail"
 msgstr ""
 
+# Test::Unit::Assertions#assert_true
+msgid "Passes if `actual` is true."
+msgstr ""
+
 # @example
 msgid ""
 "assert_true(true)  # -> pass\n"
 "assert_true(:true) # -> fail"
+msgstr ""
+
+# Test::Unit::Assertions#assert_false
+msgid "Passes if `actual` is false."
 msgstr ""
 
 # @example
@@ -3456,8 +3635,10 @@ msgid ""
 "assert_false(nil)    # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_boolean
-msgid "Passes if +actual+ is a boolean value."
+# Test::Unit::Assertions#assert_compare
+msgid ""
+"Passes if expression \"`expected` `operator`\n"
+"`actual`\" is true."
 msgstr ""
 
 # @example
@@ -3466,12 +3647,7 @@ msgid ""
 "assert_compare(1, \">=\", 10) # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_true
-msgid "Passes if +actual+ is true."
-msgstr ""
-
-# Test::Unit::Assertions#assert_false
-msgid "Passes if +actual+ is false."
+msgid "Passes if assertion is failed in block."
 msgstr ""
 
 # @example
@@ -3480,10 +3656,10 @@ msgid ""
 "assert_fail_assertion {assert_equal(\"A\", \"A\")}  # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_compare
+# Test::Unit::Assertions#assert_raise_message
 msgid ""
-"Passes if expression \"+expected+ +operator+\n"
-"+actual+\" is true."
+"Passes if an exception is raised in block and its\n"
+"message is `expected`."
 msgstr ""
 
 # @example
@@ -3494,13 +3670,8 @@ msgid ""
 "assert_raise_message(\"exception\") {}                   # -> fail"
 msgstr ""
 
-msgid "Passes if assertion is failed in block."
-msgstr ""
-
-# Test::Unit::Assertions#assert_raise_message
-msgid ""
-"Passes if an exception is raised in block and its\n"
-"message is +expected+."
+# Test::Unit::Assertions#assert_const_defined
+msgid "Passes if `object`.const_defined?(`constant_name`)"
 msgstr ""
 
 # @example
@@ -3509,10 +3680,18 @@ msgid ""
 "assert_const_defined(Object, :Nonexistent) # -> fail"
 msgstr ""
 
+# Test::Unit::Assertions#assert_not_const_defined
+msgid "Passes if !`object`.const_defined?(`constant_name`)"
+msgstr ""
+
 # @example
 msgid ""
 "assert_not_const_defined(Object, :Nonexistent) # -> pass\n"
 "assert_not_const_defined(Test, :Unit)          # -> fail"
+msgstr ""
+
+# Test::Unit::Assertions#assert_predicate
+msgid "Passes if `object`.`predicate` is _true_."
 msgstr ""
 
 # @example
@@ -3521,12 +3700,8 @@ msgid ""
 "assert_predicate([1], :empty?) # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_const_defined
-msgid "Passes if +object+.const_defined?(+constant_name+)"
-msgstr ""
-
-# Test::Unit::Assertions#assert_not_const_defined
-msgid "Passes if !+object+.const_defined?(+constant_name+)"
+# Test::Unit::Assertions#assert_not_predicate
+msgid "Passes if `object`.`predicate` is not _true_."
 msgstr ""
 
 # @example
@@ -3535,8 +3710,15 @@ msgid ""
 "assert_not_predicate([], :empty?)  # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_predicate
-msgid "Passes if +object+.+predicate+ is _true_."
+msgid ""
+"Passes if `object`.`predicate` is not _true_.\n"
+"Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_alias_method
+msgid ""
+"Passes if `object`#`alias_name` is an alias method of\n"
+"`object`#`original_name`."
 msgstr ""
 
 # @example
@@ -3546,19 +3728,8 @@ msgid ""
 "assert_alias_method([], :each, :size)    # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_not_predicate
-msgid "Passes if +object+.+predicate+ is not _true_."
-msgstr ""
-
-msgid ""
-"Passes if +object+.+predicate+ is not _true_.\n"
-"Just for minitest compatibility. :<"
-msgstr ""
-
-# Test::Unit::Assertions#assert_alias_method
-msgid ""
-"Passes if +object+#+alias_name+ is an alias method of\n"
-"+object+#+original_name+."
+# Test::Unit::Assertions#assert_path_exist
+msgid "Passes if `path` exists."
 msgstr ""
 
 # @example
@@ -3568,6 +3739,10 @@ msgid ""
 "assert_path_exist(\"/nonexistent\")  # -> fail"
 msgstr ""
 
+# Test::Unit::Assertions#assert_path_not_exist
+msgid "Passes if `path` doesn't exist."
+msgstr ""
+
 # @example
 msgid ""
 "assert_path_not_exist(\"/nonexistent\")  # -> pass\n"
@@ -3575,8 +3750,8 @@ msgid ""
 "assert_path_not_exist(\"/bin/sh\")       # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_path_exist
-msgid "Passes if +path+ exists."
+# Test::Unit::Assertions#assert_include
+msgid "Passes if `collection` includes `object`."
 msgstr ""
 
 # @example
@@ -3587,8 +3762,13 @@ msgid ""
 "assert_include(1..10, 20)             # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_path_not_exist
-msgid "Passes if +path+ doesn't exist."
+msgid ""
+"Passes if `collection` includes `object`.\n"
+"Just for minitest compatibility. :<"
+msgstr ""
+
+# Test::Unit::Assertions#assert_not_include
+msgid "Passes if `collection` doesn't include `object`."
 msgstr ""
 
 # @example
@@ -3599,14 +3779,13 @@ msgid ""
 "assert_not_include(1..10, 5)              # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_include
-# Test::Unit::Assertions#assert_includes
-msgid "Passes if +collection+ includes +object+."
+msgid ""
+"Passes if `collection` doesn't include `object`.\n"
+"Just for minitest compatibility. :<"
 msgstr ""
 
-msgid ""
-"Passes if +collection+ includes +object+.\n"
-"Just for minitest compatibility. :<"
+# Test::Unit::Assertions#assert_empty
+msgid "Passes if `object` is empty."
 msgstr ""
 
 # @example
@@ -3619,8 +3798,8 @@ msgid ""
 "assert_empty({1 => 2})                 # -> fail"
 msgstr ""
 
-# Test::Unit::Assertions#assert_not_include
-msgid "Passes if +collection+ doesn't include +object+."
+# Test::Unit::Assertions#assert_not_empty
+msgid "Passes if `object` is not empty."
 msgstr ""
 
 # @example
@@ -3634,27 +3813,14 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Passes if +collection+ doesn't include +object+.\n"
+"Passes if `object` is not empty.\n"
 "Just for minitest compatibility. :<"
 msgstr ""
 
-# Test::Unit::Assertions#assert_empty
-msgid "Passes if +object+ is empty."
-msgstr ""
-
-# Test::Unit::Assertions#assert_not_empty
-msgid "Passes if +object+ is not empty."
-msgstr ""
-
 msgid ""
-"Passes if +object+ is not empty.\n"
-"Just for minitest compatibility. :<"
-msgstr ""
-
-# Test::Unit::Assertions#build_message
-msgid ""
-"Builds a failure message.  +head+ is added before the +template+ and\n"
-"+arguments+ replaces the '?'s positionally in the template."
+"Builds a failure message.  `user_message` is added before the\n"
+"`template` and `arguments` replaces the '?'s positionally in\n"
+"the template."
 msgstr ""
 
 # Test::Unit::Assertions#add_assertion
@@ -3740,6 +3906,10 @@ msgstr ""
 msgid "a new instance of AttributeMatcher"
 msgstr ""
 
+# Test::Unit::Attribute::ClassMethods#attribute
+msgid "Set an attribute to test methods."
+msgstr ""
+
 # @overload
 msgid "tag|overload|attribute"
 msgstr ""
@@ -3823,10 +3993,6 @@ msgstr ""
 msgid "ignored"
 msgstr ""
 
-# Test::Unit::Attribute::ClassMethods#attribute
-msgid "Set an attribute to test methods."
-msgstr ""
-
 msgid "Returns the value of attribute suite"
 msgstr ""
 
@@ -3839,6 +4005,33 @@ msgstr ""
 
 # @param value
 msgid "the value to set the attribute to_run to."
+msgstr ""
+
+msgid "Returns the value of attribute filters"
+msgstr ""
+
+# Test::Unit::AutoRunner#filters=
+msgid "Sets the attribute filters"
+msgstr ""
+
+msgid "Returns the value of attribute to_run"
+msgstr ""
+
+# Test::Unit::AutoRunner#to_run=
+msgid "Sets the attribute to_run"
+msgstr ""
+
+# @param value
+msgid "the value to set the attribute default_test_paths to."
+msgstr ""
+
+# Test::Unit::AutoRunner#default_test_paths
+# Test::Unit::Collector::Load#default_test_paths
+msgid "Returns the value of attribute default_test_paths"
+msgstr ""
+
+# Test::Unit::AutoRunner#default_test_paths=
+msgid "Sets the attribute default_test_paths"
 msgstr ""
 
 # @param value
@@ -3855,20 +4048,6 @@ msgstr ""
 
 # @param value
 msgid "the value to set the attribute workdir to."
-msgstr ""
-
-msgid "Returns the value of attribute filters"
-msgstr ""
-
-# Test::Unit::AutoRunner#filters=
-msgid "Sets the attribute filters"
-msgstr ""
-
-msgid "Returns the value of attribute to_run"
-msgstr ""
-
-# Test::Unit::AutoRunner#to_run=
-msgid "Sets the attribute to_run"
 msgstr ""
 
 msgid "Returns the value of attribute pattern"
@@ -3920,6 +4099,14 @@ msgstr ""
 msgid "Sets the attribute listeners"
 msgstr ""
 
+# @param value
+msgid "the value to set the attribute stop_on_failure to."
+msgstr ""
+
+# Test::Unit::AutoRunner#stop_on_failure=
+msgid "Sets the attribute stop_on_failure"
+msgstr ""
+
 msgid "the value to set the attribute runner to."
 msgstr ""
 
@@ -3940,27 +4127,6 @@ msgid "tag|yieldparam|_self"
 msgstr ""
 
 msgid "the object that the method was called on"
-msgstr ""
-
-# @param value
-msgid "the value to set the attribute default_test_paths to."
-msgstr ""
-
-# Test::Unit::AutoRunner#default_test_paths
-# Test::Unit::Collector::Load#default_test_paths
-msgid "Returns the value of attribute default_test_paths"
-msgstr ""
-
-# Test::Unit::AutoRunner#default_test_paths=
-msgid "Sets the attribute default_test_paths"
-msgstr ""
-
-# @param value
-msgid "the value to set the attribute stop_on_failuere to."
-msgstr ""
-
-# Test::Unit::AutoRunner#stop_on_failuere=
-msgid "Sets the attribute stop_on_failuere"
 msgstr ""
 
 # @return [CodeSnippetFetcher]
@@ -4007,6 +4173,10 @@ msgstr ""
 msgid "a new instance of MixColor"
 msgstr ""
 
+# @return [DataSets]
+msgid "a new instance of DataSets"
+msgstr ""
+
 msgid "This method provides Data-Driven-Test functionality."
 msgstr "データ駆動テスト機能のドキュメントを追加しました。"
 
@@ -4016,6 +4186,20 @@ msgstr ""
 
 # @overload
 msgid "tag|overload|data"
+msgstr ""
+
+# @example
+msgid "tag|example|data(label, data)"
+msgstr ""
+
+# @example data(label, data)
+msgid ""
+"data(\"empty string\", [true, \"\"])\n"
+"data(\"plain string\", [false, \"hello\"])\n"
+"def test_empty?(data)\n"
+"  expected, target = data\n"
+"  assert_equal(expected, target.empty?)\n"
+"end"
 msgstr ""
 
 # @param [String]
@@ -4034,28 +4218,46 @@ msgstr ""
 msgid "specify test data."
 msgstr ""
 
-# @example
-msgid "tag|example|data(label, data)"
+# @param [Hash] options
+msgid "specify options."
 msgstr ""
 
-# @example data(label, data)
+# @example
+msgid "tag|example|data(variable, patterns)"
+msgstr ""
+
+# @example data(variable, patterns)
 msgid ""
-"data(\"empty string\", [true, \"\"])\n"
-"data(\"plain string\", [false, \"hello\"])\n"
-"def test_empty?(data)\n"
-"  expected, target = data\n"
-"  assert_equal(expected, target.empty?)\n"
+"data(:x, [1, 2, 3])\n"
+"data(:y, [\"a\", \"b\"])\n"
+"def test_patterns(data)\n"
+"  # 3 * 2 times executed\n"
+"  # 3: the number of patterns of :x\n"
+"  # 2: the number of patterns of :y\n"
+"  p data\n"
+"    # => {:x => 1, :y => \"a\"}\n"
+"    # => {:x => 1, :y => \"b\"}\n"
+"    # => {:x => 2, :y => \"a\"}\n"
+"    # => {:x => 2, :y => \"b\"}\n"
+"    # => {:x => 3, :y => \"a\"}\n"
+"    # => {:x => 3, :y => \"b\"}\n"
 "end"
 msgstr ""
 
-# @param [Hash]
-msgid "tag|param|data_set"
+# @param [Symbol]
+msgid "tag|param|variable"
 msgstr ""
 
-# @param [Hash] data_set
-msgid ""
-"specify test data as a Hash that\n"
-"key is test label and value is test data."
+# @param [Symbol] variable
+msgid "specify test pattern variable name."
+msgstr ""
+
+# @param [Array]
+msgid "tag|param|patterns"
+msgstr ""
+
+# @param [Array] patterns
+msgid "specify test patterns for the variable."
 msgstr ""
 
 # @example
@@ -4072,9 +4274,13 @@ msgid ""
 "end"
 msgstr ""
 
-# @yieldreturn [Hash]
+# @param [Hash]
+msgid "tag|param|data_set"
+msgstr ""
+
+# @param [Hash] data_set
 msgid ""
-"return test data set as a Hash that\n"
+"specify test data as a Hash that\n"
 "key is test label and value is test data."
 msgstr ""
 
@@ -4096,27 +4302,56 @@ msgid ""
 "end"
 msgstr ""
 
+# @yieldreturn [Hash<String, Object>]
+msgid ""
+"return test data set\n"
+"as a Hash that key is test label and value is test data."
+msgstr ""
+
+# @example data(&block)
+msgid ""
+"data do\n"
+"  patterns = 3.times.to_a\n"
+"  [:x, patterns]\n"
+"end\n"
+"data do\n"
+"  patterns = []\n"
+"  character = \"a\"\n"
+"  2.times.each do\n"
+"    patterns << character\n"
+"    character = character.succ\n"
+"  end\n"
+"  [:y, patterns]\n"
+"end\n"
+"def test_patterns(data)\n"
+"  # 3 * 2 times executed\n"
+"  # 3: the number of patterns of :x\n"
+"  # 2: the number of patterns of :y\n"
+"  p data\n"
+"    # => {:x => 0, :y => \"a\"}\n"
+"    # => {:x => 0, :y => \"b\"}\n"
+"    # => {:x => 1, :y => \"a\"}\n"
+"    # => {:x => 1, :y => \"b\"}\n"
+"    # => {:x => 2, :y => \"a\"}\n"
+"    # => {:x => 2, :y => \"b\"}\n"
+"end"
+msgstr ""
+
+# @yieldreturn [Array<Symbol, Array>]
+msgid ""
+"return test data set\n"
+"as an Array of variable and patterns."
+msgstr ""
+
+# Test::Unit::Data::ClassMethods#data
+msgid "Generates test matrix from variable and patterns pairs."
+msgstr ""
+
 # Test::Unit::Data::ClassMethods#load_data
 msgid ""
 "Load test data from the file. This is shorthand to load\n"
 "test data from file.  If you want to load complex file, you\n"
 "can use {#data} with block."
-msgstr ""
-
-# @param [String]
-msgid "tag|param|file_name"
-msgstr ""
-
-msgid ""
-"full path to test data file.\n"
-"File format is automatically detected from filename extension."
-msgstr "データファイルのフルパスを指定します。ファイルフォーマットはファイルの拡張子から自動的に判別します。"
-
-msgid "if +file_name+ is not supported file format."
-msgstr "+file_name+ がサポートされていないファイルフォーマットのときに発生します。"
-
-# @see
-msgid "tag|see|Loader#load"
 msgstr ""
 
 msgid "tag|example|Load data from CSV file"
@@ -4128,6 +4363,22 @@ msgid ""
 "def test_empty?(data)\n"
 "  assert_equal(data[\"expected\"], data[\"target\"].empty?)\n"
 "end"
+msgstr ""
+
+# @param [String]
+msgid "tag|param|file_name"
+msgstr ""
+
+msgid ""
+"full path to test data file.\n"
+"File format is automatically detected from filename extension."
+msgstr "データファイルのフルパスを指定します。ファイルフォーマットはファイルの拡張子から自動的に判別します。"
+
+msgid "if `file_name` is not supported file format."
+msgstr "`file_name` がサポートされていないファイルフォーマットのときに発生します。"
+
+# @see
+msgid "tag|see|Loader#load"
 msgstr ""
 
 msgid "a new instance of Loader"
@@ -4442,21 +4693,26 @@ msgstr ""
 msgid "Notify some information."
 msgstr ""
 
-# Test::Unit::TestCaseNotificationSupport#notify
-msgid ""
-"Example:\n"
-"  def test_notification\n"
-"    notify(\"I'm here!\")\n"
-"    # Reached here\n"
-"    notify(\"Special!\") if special_case?\n"
-"    # Reached here too\n"
-"  end"
+# Test::Unit::TestCase
+msgid "Example:"
 msgstr ""
 
 # Test::Unit::TestCaseNotificationSupport#notify
 msgid ""
-"options:\n"
-"  :backtrace override backtrace."
+"    def test_notification\n"
+"      notify(\"I'm here!\")\n"
+"      # Reached here\n"
+"      notify(\"Special!\") if special_case?\n"
+"      # Reached here too\n"
+"    end"
+msgstr ""
+
+# Test::Unit::TestCaseNotificationSupport#notify
+msgid "options:"
+msgstr ""
+
+# Test::Unit::TestCaseNotificationSupport#notify
+msgid "    :backtrace override backtrace."
 msgstr ""
 
 msgid "Returns the value of attribute notifications"
@@ -4489,21 +4745,20 @@ msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit
 msgid ""
-"Example:\n"
-"  def test_omission\n"
-"    omit\n"
-"    # Not reached here\n"
-"  end"
+"    def test_omission\n"
+"      omit\n"
+"      # Not reached here\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit
 msgid ""
-"  def test_omission_with_here\n"
-"    omit do\n"
-"      # Not ran here\n"
-"    end\n"
-"    # Reached here\n"
-"  end"
+"    def test_omission_with_here\n"
+"      omit do\n"
+"        # Not ran here\n"
+"      end\n"
+"      # Reached here\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit_if
@@ -4514,24 +4769,23 @@ msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit_if
 msgid ""
-"Example:\n"
-"  def test_omission\n"
-"    omit_if(\"\".empty?)\n"
-"    # Not reached here\n"
-"  end"
+"    def test_omission\n"
+"      omit_if(\"\".empty?)\n"
+"      # Not reached here\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit_if
 msgid ""
-"  def test_omission_with_here\n"
-"    omit_if(true) do\n"
-"      # Not ran here\n"
-"    end\n"
-"    omit_if(false) do\n"
-"      # Reached here\n"
-"    end\n"
-"    # Reached here too\n"
-"  end"
+"    def test_omission_with_here\n"
+"      omit_if(true) do\n"
+"        # Not ran here\n"
+"      end\n"
+"      omit_if(false) do\n"
+"        # Reached here\n"
+"      end\n"
+"      # Reached here too\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit_unless
@@ -4542,24 +4796,23 @@ msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit_unless
 msgid ""
-"Example:\n"
-"  def test_omission\n"
-"    omit_unless(\"string\".empty?)\n"
-"    # Not reached here\n"
-"  end"
+"    def test_omission\n"
+"      omit_unless(\"string\".empty?)\n"
+"      # Not reached here\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCaseOmissionSupport#omit_unless
 msgid ""
-"  def test_omission_with_here\n"
-"    omit_unless(true) do\n"
-"      # Reached here\n"
-"    end\n"
-"    omit_unless(false) do\n"
-"      # Not ran here\n"
-"    end\n"
-"    # Reached here too\n"
-"  end"
+"    def test_omission_with_here\n"
+"      omit_unless(true) do\n"
+"        # Reached here\n"
+"      end\n"
+"      omit_unless(false) do\n"
+"        # Not ran here\n"
+"      end\n"
+"      # Reached here too\n"
+"    end"
 msgstr ""
 
 msgid "Returns the value of attribute omissions"
@@ -4591,23 +4844,22 @@ msgstr ""
 
 # Test::Unit::TestCasePendingSupport#pend
 msgid ""
-"Example:\n"
-"  def test_pending\n"
-"    pend\n"
-"    # Not reached here\n"
-"  end"
+"    def test_pending\n"
+"      pend\n"
+"      # Not reached here\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCasePendingSupport#pend
 msgid ""
-"  def test_pending_with_here\n"
-"    pend do\n"
-"      # Ran here\n"
-"      # Fails if the block doesn't raise any error.\n"
-"      # Because it means the block is passed unexpectedly.\n"
-"    end\n"
-"    # Reached here\n"
-"  end"
+"    def test_pending_with_here\n"
+"      pend do\n"
+"        # Ran here\n"
+"        # Fails if the block doesn't raise any error.\n"
+"        # Because it means the block is passed unexpectedly.\n"
+"      end\n"
+"      # Reached here\n"
+"    end"
 msgstr ""
 
 msgid "Returns the value of attribute pendings"
@@ -4633,9 +4885,6 @@ msgstr ""
 msgid "a new instance of TestSuiteCreator"
 msgstr ""
 
-msgid ":nodoc:"
-msgstr ""
-
 # Test::Unit::TestCase
 msgid ""
 "Ties everything together. If you subclass and add your own\n"
@@ -4646,10 +4895,6 @@ msgid ""
 msgstr ""
 
 msgid "You can run two hooks before/after a TestCase run."
-msgstr ""
-
-# Test::Unit::TestCase
-msgid "Example:"
 msgstr ""
 
 # Test::Unit::TestCase
@@ -4703,10 +4948,6 @@ msgid ""
 "        ...\n"
 "      end\n"
 "    end"
-msgstr ""
-
-# Test::Unit::TestCase
-msgid "Here is a call order:"
 msgstr ""
 
 # Test::Unit::TestCase
@@ -4764,43 +5005,33 @@ msgstr ""
 
 # Test::Unit::TestCase.startup
 msgid ""
-"Here is an example test case:\n"
-"  class TestMyClass < Test::Unit::TestCase\n"
-"    class << self\n"
-"      def startup\n"
+"    class TestMyClass < Test::Unit::TestCase\n"
+"      class << self\n"
+"        def startup\n"
+"          ...\n"
+"        end\n"
+"      end"
+msgstr ""
+
+# Test::Unit::TestCase.shutdown
+# Test::Unit::TestCase.startup
+msgid ""
+"      def test_my_class1\n"
+"        ...\n"
+"      end"
+msgstr ""
+
+# Test::Unit::TestCase.shutdown
+# Test::Unit::TestCase.startup
+msgid ""
+"      def test_my_class2\n"
 "        ...\n"
 "      end\n"
 "    end"
 msgstr ""
 
-# Test::Unit::TestCase
 # Test::Unit::TestCase.startup
 msgid ""
-"    def setup\n"
-"      ...\n"
-"    end"
-msgstr ""
-
-# Test::Unit::TestCase.shutdown
-# Test::Unit::TestCase.startup
-msgid ""
-"    def test_my_class1\n"
-"      ...\n"
-"    end"
-msgstr ""
-
-# Test::Unit::TestCase.shutdown
-# Test::Unit::TestCase.startup
-msgid ""
-"    def test_my_class2\n"
-"      ...\n"
-"    end\n"
-"  end"
-msgstr ""
-
-# Test::Unit::TestCase.startup
-msgid ""
-"Here is a call order:\n"
 "* startup\n"
 "* setup\n"
 "* test_my_class1 (or test_my_class2)\n"
@@ -4823,26 +5054,16 @@ msgstr ""
 
 # Test::Unit::TestCase.shutdown
 msgid ""
-"Here is an example test case:\n"
-"  class TestMyClass < Test::Unit::TestCase\n"
-"    class << self\n"
-"      def shutdown\n"
-"        ...\n"
-"      end\n"
-"    end"
-msgstr ""
-
-# Test::Unit::TestCase
-# Test::Unit::TestCase.shutdown
-msgid ""
-"    def teardown\n"
-"      ...\n"
-"    end"
+"    class TestMyClass < Test::Unit::TestCase\n"
+"      class << self\n"
+"        def shutdown\n"
+"          ...\n"
+"        end\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase.shutdown
 msgid ""
-"Here is a call order:\n"
 "* test_my_class1 (or test_my_class2)\n"
 "* teardown\n"
 "* test_my_class2 (or test_my_class1)\n"
@@ -4853,21 +5074,32 @@ msgstr ""
 # Test::Unit::TestCase.test_order
 msgid ""
 "Returns the current test order. This returns\n"
-"+:alphabetic+ by default."
+"`:alphabetic` by default."
 msgstr ""
 
 msgid "Sets the current test order."
 msgstr ""
 
 # Test::Unit::TestCase.test_order=
+msgid "Here are the available _order_:"
+msgstr ""
+
+# Test::Unit::TestCase.test_order=
 msgid ""
-"Here are the available _order_:\n"
-"[:alphabetic]\n"
-"  Default. Tests are sorted in alphabetic order.\n"
-"[:random]\n"
-"  Tests are sorted in random order.\n"
-"[:defined]\n"
-"  Tests are sorted in defined order."
+":alphabetic\n"
+": Default. Tests are sorted in alphabetic order."
+msgstr ""
+
+# Test::Unit::TestCase.test_order=
+msgid ""
+":random\n"
+": Tests are sorted in random order."
+msgstr ""
+
+# Test::Unit::TestCase.test_order=
+msgid ""
+":defined\n"
+": Tests are sorted in defined order."
 msgstr ""
 
 # Test::Unit::TestCase.test
@@ -4884,17 +5116,17 @@ msgstr ""
 
 # Test::Unit::TestCase.test
 msgid ""
-"  description \"register user\"\n"
-"  def test_register_user\n"
-"    ...\n"
-"  end"
+"    description \"register user\"\n"
+"    def test_register_user\n"
+"      ...\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCase.test
 msgid ""
-"  test \"register user\" do\n"
-"    ...\n"
-"  end"
+"    test \"register user\" do\n"
+"      ...\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCase.test
@@ -4905,10 +5137,10 @@ msgstr ""
 
 # Test::Unit::TestCase.test
 msgid ""
-"  test\n"
-"  def my_test_method\n"
-"    assert_equal(\"call me\", ...)\n"
-"  end"
+"    test\n"
+"    def my_test_method\n"
+"      assert_equal(\"call me\", ...)\n"
+"    end"
 msgstr ""
 
 msgid "Describes a test."
@@ -4923,25 +5155,13 @@ msgstr ""
 
 # Test::Unit::TestCase.description
 msgid ""
-"  description \"register a normal user\"\n"
-"  def test_register\n"
-"    ...\n"
-"  end"
+"    description \"register a normal user\"\n"
+"    def test_register\n"
+"      ...\n"
+"    end"
 msgstr ""
 
 msgid "Defines a sub test case."
-msgstr ""
-
-msgid "The name of newly created sub test case."
-msgstr ""
-
-# @yield
-msgid ""
-"The block is evaluated under the newly created sub test\n"
-"case class context."
-msgstr ""
-
-msgid "Created sub test case class."
 msgstr ""
 
 # Test::Unit::TestCase.sub_test_case
@@ -4951,37 +5171,35 @@ msgid ""
 msgstr ""
 
 # Test::Unit::TestCase.sub_test_case
-msgid ""
-"Standard:\n"
-"  class TestParent < Test::Unit::TestCase\n"
-"    class TestChild < self\n"
-"      def test_in_child\n"
-"      end\n"
-"    end\n"
-"  end"
+msgid "Standard:"
 msgstr ""
 
 # Test::Unit::TestCase.sub_test_case
 msgid ""
-"Syntax sugar:\n"
-"  class TestParent < Test::Unit::TestCase\n"
-"    sub_test_case(\"TestChild\") do\n"
-"      def test_in_child\n"
+"    class TestParent < Test::Unit::TestCase\n"
+"      class TestChild < self\n"
+"        def test_in_child\n"
+"        end\n"
 "      end\n"
-"    end\n"
-"  end"
+"    end"
+msgstr ""
+
+# Test::Unit::TestCase.sub_test_case
+msgid "Syntax sugar:"
+msgstr ""
+
+# Test::Unit::TestCase.sub_test_case
+msgid ""
+"    class TestParent < Test::Unit::TestCase\n"
+"      sub_test_case(\"TestChild\") do\n"
+"        def test_in_child\n"
+"        end\n"
+"      end\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCase.sub_test_case
 msgid "The difference of them are the following:"
-msgstr ""
-
-# @option
-msgid "tag|option|query"
-msgstr ""
-
-# @param [Hash]
-msgid "tag|param|query"
 msgstr ""
 
 # Test::Unit::TestCase.sub_test_case
@@ -4992,6 +5210,26 @@ msgid ""
 "  constant naming rule in Ruby. But the name of test case\n"
 "  created by {sub_test_case} doesn't need to follow the rule.\n"
 "  For example, you can use a space in name such as \"child test\"."
+msgstr ""
+
+msgid "The name of newly created sub test case."
+msgstr ""
+
+msgid "Created sub test case class."
+msgstr ""
+
+# @yield
+msgid ""
+"The block is evaluated under the newly created sub test\n"
+"case class context."
+msgstr ""
+
+# @option
+msgid "tag|option|query"
+msgstr ""
+
+# @param [Hash]
+msgid "tag|param|query"
 msgstr ""
 
 # Test::Unit::TestCase.test_defined?
@@ -5031,56 +5269,59 @@ msgstr ""
 # Test::Unit::TestCase#setup
 msgid ""
 "You can add additional setup tasks by the following\n"
-"code:\n"
-"  class TestMyClass < Test::Unit::TestCase\n"
-"    def setup\n"
-"      ...\n"
-"    end"
+"code:"
 msgstr ""
 
 # Test::Unit::TestCase#setup
 msgid ""
-"    setup\n"
-"    def my_setup1\n"
-"      ...\n"
-"    end"
+"    class TestMyClass < Test::Unit::TestCase\n"
+"      def setup\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#setup
 msgid ""
-"    setup do\n"
-"      ... # setup callback1\n"
-"    end"
+"      setup\n"
+"      def my_setup1\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#setup
 msgid ""
-"    setup\n"
-"    def my_setup2\n"
-"      ...\n"
-"    end"
+"      setup do\n"
+"        ... # setup callback1\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#setup
 msgid ""
-"    setup do\n"
-"      ... # setup callback2\n"
-"    end"
+"      setup\n"
+"      def my_setup2\n"
+"        ...\n"
+"      end"
+msgstr ""
+
+# Test::Unit::TestCase#setup
+msgid ""
+"      setup do\n"
+"        ... # setup callback2\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#cleanup
 # Test::Unit::TestCase#setup
 # Test::Unit::TestCase#teardown
 msgid ""
-"    def test_my_class\n"
-"      ...\n"
-"    end\n"
-"  end"
+"      def test_my_class\n"
+"        ...\n"
+"      end\n"
+"    end"
 msgstr ""
 
 # Test::Unit::TestCase#setup
 msgid ""
-"Here is a call order:\n"
 "* setup\n"
 "* my_setup1\n"
 "* setup callback1\n"
@@ -5100,46 +5341,49 @@ msgstr ""
 # Test::Unit::TestCase#cleanup
 msgid ""
 "You can add additional cleanup tasks by the following\n"
-"code:\n"
-"  class TestMyClass < Test::Unit::TestCase\n"
-"    def cleanup\n"
-"      ...\n"
-"    end"
+"code:"
 msgstr ""
 
 # Test::Unit::TestCase#cleanup
 msgid ""
-"    cleanup\n"
-"    def my_cleanup1\n"
-"      ...\n"
-"    end"
+"    class TestMyClass < Test::Unit::TestCase\n"
+"      def cleanup\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#cleanup
 msgid ""
-"    cleanup do\n"
-"      ... # cleanup callback1\n"
-"    end"
+"      cleanup\n"
+"      def my_cleanup1\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#cleanup
 msgid ""
-"    cleanup\n"
-"    def my_cleanup2\n"
-"      ...\n"
-"    end"
+"      cleanup do\n"
+"        ... # cleanup callback1\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#cleanup
 msgid ""
-"    cleanup do\n"
-"      ... # cleanup callback2\n"
-"    end"
+"      cleanup\n"
+"      def my_cleanup2\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#cleanup
 msgid ""
-"Here is a call order:\n"
+"      cleanup do\n"
+"        ... # cleanup callback2\n"
+"      end"
+msgstr ""
+
+# Test::Unit::TestCase#cleanup
+msgid ""
 "* test_my_class\n"
 "* cleanup callback2\n"
 "* my_cleanup2\n"
@@ -5157,46 +5401,49 @@ msgstr ""
 # Test::Unit::TestCase#teardown
 msgid ""
 "You can add additional teardown tasks by the following\n"
-"code:\n"
-"  class TestMyClass < Test::Unit::TestCase\n"
-"    def teardown\n"
-"      ...\n"
-"    end"
+"code:"
 msgstr ""
 
 # Test::Unit::TestCase#teardown
 msgid ""
-"    teardown\n"
-"    def my_teardown1\n"
-"      ...\n"
-"    end"
+"    class TestMyClass < Test::Unit::TestCase\n"
+"      def teardown\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#teardown
 msgid ""
-"    teardown do\n"
-"      ... # teardown callback1\n"
-"    end"
+"      teardown\n"
+"      def my_teardown1\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#teardown
 msgid ""
-"    teardown\n"
-"    def my_teardown2\n"
-"      ...\n"
-"    end"
+"      teardown do\n"
+"        ... # teardown callback1\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#teardown
 msgid ""
-"    teardown do\n"
-"      ... # teardown callback2\n"
-"    end"
+"      teardown\n"
+"      def my_teardown2\n"
+"        ...\n"
+"      end"
 msgstr ""
 
 # Test::Unit::TestCase#teardown
 msgid ""
-"Here is a call order:\n"
+"      teardown do\n"
+"        ... # teardown callback2\n"
+"      end"
+msgstr ""
+
+# Test::Unit::TestCase#teardown
+msgid ""
 "* test_my_class\n"
 "* teardown callback2\n"
 "* my_teardown2\n"
@@ -5209,7 +5456,13 @@ msgstr ""
 msgid ""
 "Returns a label of test data for the test. If the\n"
 "test isn't associated with any test data, it returns\n"
-"+nil+."
+"`nil`."
+msgstr ""
+
+# Test::Unit::TestCase#data
+msgid ""
+"Returns test data for the test. If the test isn't associated\n"
+"with any test data, it returns `nil`."
 msgstr ""
 
 # Test::Unit::TestCase#name
@@ -5246,24 +5499,6 @@ msgstr ""
 msgid "It's handy to be able to compare TestCase instances."
 msgstr ""
 
-msgid "Returns the value of attribute start_time"
-msgstr ""
-
-msgid "Returns the value of attribute elapsed_time"
-msgstr ""
-
-# Test::Unit::TestCase::InternalData#test_data_label
-msgid "Returns the value of attribute test_data_label"
-msgstr ""
-
-# Test::Unit::TestCase::InternalData#test_data
-msgid "Returns the value of attribute test_data"
-msgstr ""
-
-# @return [InternalData]
-msgid "a new instance of InternalData"
-msgstr ""
-
 msgid "Returns a Time at the test was started."
 msgstr ""
 
@@ -5296,6 +5531,24 @@ msgid ""
 "example, we may add a new hook in #run."
 msgstr ""
 
+msgid "Returns the value of attribute start_time"
+msgstr ""
+
+msgid "Returns the value of attribute elapsed_time"
+msgstr ""
+
+# Test::Unit::TestCase::InternalData#test_data_label
+msgid "Returns the value of attribute test_data_label"
+msgstr ""
+
+# Test::Unit::TestCase::InternalData#test_data
+msgid "Returns the value of attribute test_data"
+msgstr ""
+
+# @return [InternalData]
+msgid "a new instance of InternalData"
+msgstr ""
+
 # Test::Unit::TestResult
 msgid ""
 "Collects Test::Unit::Failure and Test::Unit::Error so that\n"
@@ -5320,10 +5573,6 @@ msgstr ""
 msgid "the value to set the attribute stop_tag to."
 msgstr ""
 
-# @return [TestResult]
-msgid "a new instance of TestResult"
-msgstr ""
-
 # Test::Unit::TestResult#stop_tag
 msgid "Returns the value of attribute stop_tag"
 msgstr ""
@@ -5333,6 +5582,10 @@ msgid "Sets the attribute stop_tag"
 msgstr ""
 
 msgid "Constructs a new, empty TestResult."
+msgstr ""
+
+# @return [TestResult]
+msgid "a new instance of TestResult"
 msgstr ""
 
 msgid "Records a test run."
@@ -5541,8 +5794,8 @@ msgstr ""
 
 # Test::Unit::Util::Observable#add_listener
 msgid ""
-" listener = add_listener(\"Channel\") { ... }\n"
-" remove_listener(\"Channel\", listener)"
+"    listener = add_listener(\"Channel\") { ... }\n"
+"    remove_listener(\"Channel\", listener)"
 msgstr ""
 
 # Test::Unit::Util::Observable#remove_listener
@@ -5576,11 +5829,10 @@ msgstr ""
 
 # Test::Unit::Util::Output#capture_output
 msgid ""
-"Example:\n"
-"  capture_output do\n"
-"    puts(\"stdout\")\n"
-"    warn(\"stderr\")\n"
-"  end # -> [\"stdout\n"
+"    capture_output do\n"
+"      puts(\"stdout\")\n"
+"      warn(\"stderr\")\n"
+"    end # -> [\"stdout\n"
 "\", \"stderr\n"
 "\"]"
 msgstr ""

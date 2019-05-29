@@ -26,8 +26,8 @@ module Test
         # returned, making it very easy to use the proc
         # itself as the listener_key:
         #
-        #  listener = add_listener("Channel") { ... }
-        #  remove_listener("Channel", listener)
+        #     listener = add_listener("Channel") { ... }
+        #     remove_listener("Channel", listener)
         def add_listener(channel_name, listener_key=NOTHING, &listener) # :yields: value
           unless(block_given?)
             raise ArgumentError.new("No callback was passed as a listener")

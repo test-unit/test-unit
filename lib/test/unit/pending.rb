@@ -65,19 +65,20 @@ module Test
       # Marks the test or part of the test is pending.
       #
       # Example:
-      #   def test_pending
-      #     pend
-      #     # Not reached here
-      #   end
       #
-      #   def test_pending_with_here
-      #     pend do
-      #       # Ran here
-      #       # Fails if the block doesn't raise any error.
-      #       # Because it means the block is passed unexpectedly.
+      #     def test_pending
+      #       pend
+      #       # Not reached here
       #     end
-      #     # Reached here
-      #   end
+      #
+      #     def test_pending_with_here
+      #       pend do
+      #         # Ran here
+      #         # Fails if the block doesn't raise any error.
+      #         # Because it means the block is passed unexpectedly.
+      #       end
+      #       # Reached here
+      #     end
       def pend(message=nil, &block)
         message ||= "pended."
         if block_given?

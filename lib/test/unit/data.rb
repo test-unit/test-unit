@@ -187,7 +187,7 @@ module Test
         #
         # @param [String] file_name full path to test data file.
         #   File format is automatically detected from filename extension.
-        # @raise [ArgumentError] if +file_name+ is not supported file format.
+        # @raise [ArgumentError] if `file_name` is not supported file format.
         # @see Loader#load
         #
         # @example Load data from CSV file
@@ -211,7 +211,7 @@ module Test
           #
           # @param [String] file_name full path to test data file.
           #   File format is automatically detected from filename extension.
-          # @raise [ArgumentError] if +file_name+ is not supported file format.
+          # @raise [ArgumentError] if `file_name` is not supported file format.
           # @see #load_csv
           # @see #load_tsv
           # @api private

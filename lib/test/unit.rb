@@ -3,9 +3,9 @@ require 'test/unit/autorunner'
 
 module Test # :nodoc:
   #
-  # = Test::Unit - Ruby Unit Testing Framework
+  # # Test::Unit - Ruby Unit Testing Framework
   # 
-  # == Introduction
+  # ## Introduction
   # 
   # Unit testing is making waves all over the place, largely due to the
   # fact that it is a core practice of XP. While XP is great, unit testing
@@ -24,12 +24,12 @@ module Test # :nodoc:
   # have tests for it.
   # 
   # 
-  # == Notes
+  # ## Notes
   # 
   # Test::Unit has grown out of and superceded Lapidary.
   # 
   # 
-  # == Feedback
+  # ## Feedback
   # 
   # I like (and do my best to practice) XP, so I value early releases,
   # user feedback, and clean, simple, expressive code. There is always
@@ -43,7 +43,7 @@ module Test # :nodoc:
   # info is below.
   # 
   # 
-  # == Contact Information
+  # ## Contact Information
   # 
   # A lot of discussion happens about Ruby in general on the ruby-talk
   # mailing list (http://www.ruby-lang.org/en/ml.html), and you can ask
@@ -53,7 +53,7 @@ module Test # :nodoc:
   # at mailto:testunit@talbott.ws, and I'll do my best to help you out.
   # 
   # 
-  # == Credits
+  # ## Credits
   # 
   # I'd like to thank...
   # 
@@ -86,7 +86,7 @@ module Test # :nodoc:
   # My Creator, for giving me life, and giving it more abundantly.
   # 
   # 
-  # == License
+  # ## License
   # 
   # Test::Unit is copyright (c) 2000-2003 Nathaniel Talbott. It is free
   # software, and is distributed under the Ruby license. See the COPYING
@@ -98,7 +98,7 @@ module Test # :nodoc:
   # under the Ruby license and/or the PSF license. See the
   # COPYING file and PSFL file.
   # 
-  # == Warranty
+  # ## Warranty
   # 
   # This software is provided "as is" and without any express or
   # implied warranties, including, without limitation, the implied
@@ -106,14 +106,14 @@ module Test # :nodoc:
   # purpose.
   # 
   # 
-  # == Author
+  # ## Author
   # 
   # Nathaniel Talbott.
   # Copyright (c) 2000-2003, Nathaniel Talbott
   #
   # ----
   #
-  # = Usage
+  # # Usage
   #
   # The general idea behind unit testing is that you write a _test_
   # _method_ that makes certain _assertions_ about your code, working
@@ -125,7 +125,7 @@ module Test # :nodoc:
   # pieces.
   #
   #
-  # == Assertions
+  # ## Assertions
   #
   # These are the heart of the framework. Think of an assertion as a
   # statement of expected outcome, i.e. "I assert that x should be equal
@@ -137,7 +137,7 @@ module Test # :nodoc:
   # of the current assertions, see Test::Unit::Assertions.
   #
   #
-  # == Test Method & Test Fixture
+  # ## Test Method & Test Fixture
   #
   # Obviously, these assertions have to be called within a context that
   # knows about them and can do something meaningful with their
@@ -197,7 +197,7 @@ module Test # :nodoc:
   #     end
   #
   #
-  # == Test Runners
+  # ## Test Runners
   #
   # So, now you have this great test class, but you still
   # need a way to run it and view any failures that occur
@@ -208,10 +208,10 @@ module Test # :nodoc:
   # runner simply set default test runner ID to
   # Test::Unit::AutoRunner:
   #
-  #    require 'test/unit'
-  #    Test::Unit::AutoRunner.default_runner = "gtk2"
+  #     require 'test/unit'
+  #     Test::Unit::AutoRunner.default_runner = "gtk2"
   #
-  # == Test Suite
+  # ## Test Suite
   #
   # As more and more unit tests accumulate for a given project, it
   # becomes a real drag running them one at a time, and it also
@@ -228,17 +228,17 @@ module Test # :nodoc:
   # 'test/unit'. What does this mean? It means you could
   # write the above test case like this instead:
   #
-  #  require 'test/unit'
-  #  require 'test_myfirsttests'
-  #  require 'test_moretestsbyme'
-  #  require 'test_anothersetoftests'
+  #     require 'test/unit'
+  #     require 'test_myfirsttests'
+  #     require 'test_moretestsbyme'
+  #     require 'test_anothersetoftests'
   #
   # Test::Unit is smart enough to find all the test cases existing in
   # the ObjectSpace and wrap them up into a suite for you. It then runs
   # the dynamic suite using the console TestRunner.
   #
   #
-  # == Configuration file
+  # ## Configuration file
   #
   # Test::Unit reads 'test-unit.yml' in the current working
   # directory as Test::Unit's configuration file. It can
@@ -254,53 +254,58 @@ module Test # :nodoc:
   #
   # Here are sample color scheme definitions:
   #
-  #   color_schemes:
-  #     inverted:
-  #       success:
-  #         name: red
-  #         bold: true
-  #       failure:
-  #         name: green
-  #         bold: true
-  #     other_scheme:
-  #       ...
+  #     color_schemes:
+  #       inverted:
+  #         success:
+  #           name: red
+  #           bold: true
+  #         failure:
+  #           name: green
+  #           bold: true
+  #       other_scheme:
+  #         ...
   #
   # Here are the syntax of color scheme definitions:
   #
-  #  color_schemes:
-  #    SCHEME_NAME:
-  #      EVENT_NAME:
-  #        name: COLOR_NAME
-  #        intensity: BOOLEAN
-  #        bold: BOOLEAN
-  #        italic: BOOLEAN
-  #        underline: BOOLEAN
-  #      ...
-  #    ...
+  #     color_schemes:
+  #       SCHEME_NAME:
+  #         EVENT_NAME:
+  #           name: COLOR_NAME
+  #           intensity: BOOLEAN
+  #           bold: BOOLEAN
+  #           italic: BOOLEAN
+  #           underline: BOOLEAN
+  #         ...
+  #       ...
   #
-  # SCHEME_NAME:: the name of the color scheme
-  # EVENT_NAME:: one of [success, failure, pending,
-  #              omission, notification, error]
-  # COLOR_NAME:: one of [black, red, green, yellow, blue,
-  #              magenta, cyan, white]
-  # BOOLEAN:: true or false
+  # SCHEME_NAME
+  # : the name of the color scheme
+  #
+  # EVENT_NAME
+  # : one of [success, failure, pending, omission, notification, error]
+  #
+  # COLOR_NAME
+  # : one of [black, red, green, yellow, blue, magenta, cyan, white]
+  #
+  # BOOLEAN
+  # : true or false
   #
   # You can use the above 'inverted' color scheme with the
   # following configuration:
   #
-  #   runner: console
-  #   console_options:
-  #     color_scheme: inverted
-  #   color_schemes:
-  #     inverted:
-  #       success:
-  #         name: red
-  #         bold: true
-  #       failure:
-  #         name: green
-  #         bold: true
+  #     runner: console
+  #     console_options:
+  #       color_scheme: inverted
+  #     color_schemes:
+  #       inverted:
+  #         success:
+  #           name: red
+  #           bold: true
+  #         failure:
+  #           name: green
+  #           bold: true
   #
-  # == Questions?
+  # ## Questions?
   #
   # I'd really like to get feedback from all levels of Ruby
   # practitioners about typos, grammatical errors, unclear statements,
@@ -331,51 +336,53 @@ module Test # :nodoc:
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:
-      #   Test::Unit.at_start do
-      #     # ...
-      #   end
       #
-      #   class TestMyClass1 < Test::Unit::TestCase
-      #     class << self
-      #       def startup
+      #     Test::Unit.at_start do
+      #       # ...
+      #     end
+      #
+      #     class TestMyClass1 < Test::Unit::TestCase
+      #       class << self
+      #         def startup
+      #           # ...
+      #         end
+      #       end
+      #
+      #       def setup
+      #         # ...
+      #       end
+      #
+      #       def test_my_class1
+      #         # ...
+      #       end
+      #
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
       #
-      #     def setup
-      #       # ...
-      #     end
+      #     class TestMyClass2 < Test::Unit::TestCase
+      #       class << self
+      #         def startup
+      #           # ...
+      #         end
+      #       end
       #
-      #     def test_my_class1
-      #       # ...
-      #     end
+      #       def setup
+      #         # ...
+      #       end
       #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
+      #       def test_my_class1
+      #         # ...
+      #       end
       #
-      #   class TestMyClass2 < Test::Unit::TestCase
-      #     class << self
-      #       def startup
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
-      #
-      #     def setup
-      #       # ...
-      #     end
-      #
-      #     def test_my_class1
-      #       # ...
-      #     end
-      #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * at_start
       # * TestMyClass1.startup
       # * TestMyClass1#setup
@@ -415,51 +422,53 @@ module Test # :nodoc:
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:
-      #   Test::Unit.at_exit do
-      #     # ...
-      #   end
       #
-      #   class TestMyClass1 < Test::Unit::TestCase
-      #     class << self
-      #       def shutdown
+      #     Test::Unit.at_exit do
+      #       # ...
+      #     end
+      #
+      #     class TestMyClass1 < Test::Unit::TestCase
+      #       class << self
+      #         def shutdown
+      #           # ...
+      #         end
+      #       end
+      #
+      #       def teardown
+      #         # ...
+      #       end
+      #
+      #       def test_my_class1
+      #         # ...
+      #       end
+      #
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
       #
-      #     def teardown
-      #       # ...
-      #     end
+      #     class TestMyClass2 < Test::Unit::TestCase
+      #       class << self
+      #         def shutdown
+      #           # ...
+      #         end
+      #       end
       #
-      #     def test_my_class1
-      #       # ...
-      #     end
+      #       def teardown
+      #         # ...
+      #       end
       #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
+      #       def test_my_class1
+      #         # ...
+      #       end
       #
-      #   class TestMyClass2 < Test::Unit::TestCase
-      #     class << self
-      #       def shutdown
+      #       def test_my_class2
       #         # ...
       #       end
       #     end
-      #
-      #     def teardown
-      #       # ...
-      #     end
-      #
-      #     def test_my_class1
-      #       # ...
-      #     end
-      #
-      #     def test_my_class2
-      #       # ...
-      #     end
-      #   end
       #
       # Here is a call order:
+      #
       # * TestMyClass1#test_my_class1
       # * TestMyClass1#teardown
       # * TestMyClass1#test_my_class2
