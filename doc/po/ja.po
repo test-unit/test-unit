@@ -844,11 +844,10 @@ msgstr ""
 msgid "## 3.2.8 - 2018-05-13 {#version-3-2-8}"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "  * [UI][console]: Changed to put code snippet before backtrace on\n"
 "    reverse mode."
-msgstr "修正前"
+msgstr ""
 
 msgid "## 3.2.7 - 2017-12-12 {#version-3-2-7}"
 msgstr ""
@@ -3280,13 +3279,12 @@ msgstr ""
 msgid "3.0.0"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `object`.instance_of?(`klass`) does not hold.\n"
 "When `klass` is an array of classes, it passes if no class\n"
 "satisfies +object.instance_of?(class).\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_nil
 msgid "Passes if `object` is nil."
@@ -3324,13 +3322,12 @@ msgid ""
 "assert_not_kind_of([Fixnum, NilClass], 100) # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `object`.kind_of?(`klass`) does not hold.\n"
 "When `klass` is an array of classes or modules, it passes only if all\n"
 "classes (and modules) do not satisfy +object.kind_of?(class_or_module).\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_respond_to
 msgid "Passes if `object` .respond_to? `method`"
@@ -3350,11 +3347,10 @@ msgid ""
 "assert_not_respond_to('bugbear', :size)         # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `object` does not .respond_to? `method`.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_match
 msgid "Passes if `pattern` =~ `string`."
@@ -3433,11 +3429,10 @@ msgstr ""
 msgid "assert_not_same Object.new, Object.new"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if ! `actual` .equal? `expected`\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_not_equal
 msgid "Passes if `expected` != `actual`"
@@ -3447,11 +3442,10 @@ msgstr ""
 msgid "assert_not_equal 'some string', 5"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `expected` != `actual`\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_not_nil
 msgid "Passes if ! `object` .nil?"
@@ -3461,11 +3455,10 @@ msgstr ""
 msgid "assert_not_nil '1 two 3'.sub!(/two/, '2')"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if ! `object` .nil?\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_no_match
 # Test::Unit::Assertions#assert_not_match
@@ -3478,11 +3471,10 @@ msgid ""
 "assert_not_match(/three/, 'one 2 three') # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `regexp` !~ `string`\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_no_match
 msgid "Deprecated. Use #assert_not_match instead."
@@ -3509,11 +3501,10 @@ msgid ""
 "end"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if the block throws `expected_object`\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_nothing_thrown
 msgid "Passes if block does not throw anything."
@@ -3548,12 +3539,11 @@ msgid ""
 "assert_not_in_delta(0.05, (50000.0 / 10**6), 0.00001) # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `expected_float` and `actual_float` are\n"
 "not equal within `delta` tolerance.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_in_epsilon
 msgid ""
@@ -3580,13 +3570,12 @@ msgid ""
 "assert_not_in_epsilon(10000.0, 9899.0, 0.1) # -> pass"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `expected_float` and `actual_float` are\n"
 "not equal within `epsilon` relative error of\n"
 "`expected_float`.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_send
 msgid "Passes if the method send returns a true value."
@@ -3721,11 +3710,10 @@ msgid ""
 "assert_not_predicate([], :empty?)  # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `object`.`predicate` is not _true_.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_alias_method
 msgid ""
@@ -3774,11 +3762,10 @@ msgid ""
 "assert_include(1..10, 20)             # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `collection` includes `object`.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_not_include
 msgid "Passes if `collection` doesn't include `object`."
@@ -3792,11 +3779,10 @@ msgid ""
 "assert_not_include(1..10, 5)              # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `collection` doesn't include `object`.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
 # Test::Unit::Assertions#assert_empty
 msgid "Passes if `object` is empty."
@@ -3826,18 +3812,16 @@ msgid ""
 "assert_not_empty({})                       # -> fail"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Passes if `object` is not empty.\n"
 "Just for minitest compatibility. :<"
-msgstr "minitestとの互換製のためだけのリリースです。 :"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "Builds a failure message.  `user_message` is added before the\n"
 "`template` and `arguments` replaces the '?'s positionally in\n"
 "the template."
-msgstr "修正前"
+msgstr ""
 
 # Test::Unit::Assertions#add_assertion
 msgid ""
@@ -4390,9 +4374,8 @@ msgid ""
 "File format is automatically detected from filename extension."
 msgstr "データファイルのフルパスを指定します。ファイルフォーマットはファイルの拡張子から自動的に判別します。"
 
-#, fuzzy
 msgid "if `file_name` is not supported file format."
-msgstr "+file_name+ がサポートされていないファイルフォーマットのときに発生します。"
+msgstr "`file_name` がサポートされていないファイルフォーマットのときに発生します。"
 
 # @see
 msgid "tag|see|Loader#load"
