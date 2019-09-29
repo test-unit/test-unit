@@ -1,7 +1,4 @@
 language: ruby
-# To use rbx environment.
-dist: trusty
-sudo: false
 cache:
   - bundler
 before_install:
@@ -17,25 +14,25 @@ matrix:
     - name: "2.2"
       rvm: 2.2
     - name: "2.3"
-      rvm: 2.3.4
+      rvm: 2.3
     - name: "2.4"
-      rvm: 2.4.2
+      rvm: 2.4
     - name: "2.4 + frozen string literal"
-      rvm: 2.4.2
+      rvm: 2.4
       env: TEST_RUBYOPT=--enable-frozen-string-literal
     - name: "2.5"
-      rvm: 2.5.3
+      rvm: 2.5
     - name: "2.5 + frozen string literal"
-      rvm: 2.5.3
+      rvm: 2.5
       env: TEST_RUBYOPT=--enable-frozen-string-literal
     - name: "2.6"
       rvm: 2.6
     - name: "2.6 + frozen string literal"
       rvm: 2.6
       env: TEST_RUBYOPT=--enable-frozen-string-literal
-    - name: "trunk"
+    - name: "master"
       rvm: ruby-head
-    - name: "trunk + frozen string literal"
+    - name: "master + frozen string literal"
       rvm: ruby-head
       env: TEST_RUBYOPT=--enable-frozen-string-literal
     - name: "JRuby"
