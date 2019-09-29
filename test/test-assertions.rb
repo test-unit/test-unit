@@ -289,14 +289,19 @@ EOM
           end
 
           def test_same_inspected_objects
-            now = Time.now
-            now_without_usec = Time.at(now.to_i)
+            same_inspected_class = Class.new do
+              def inspect
+                "inspected"
+              end
+            end
+            object1 = same_inspected_class.new
+            object2 = same_inspected_class.new
             message = <<-EOM.chomp
-<#{now.inspect}> expected but was
-<#{now.inspect}>.
+<inspected> expected but was
+<inspected>.
 EOM
             check_fail(message) do
-              assert_equal(now, now_without_usec)
+              assert_equal(object1, object2)
             end
           end
 
