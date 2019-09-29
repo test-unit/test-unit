@@ -1,5 +1,21 @@
 # News
 
+## 3.3.4 - 2019-09-30 {#version-3-3-4}
+
+### Improvements
+
+  * Converted markup format to Markdown from RDoc.
+    [GitHub#164][Patch by OGAWA KenIchi]
+
+  * test: Stopped to depend on `Time#inspect` format.
+    [GitHub#165][Reported by Benoit Daloze]
+
+### Thanks
+
+  * OGAWA KenIchi
+
+  * Benoit Daloze
+
 ## 3.3.3 - 2019-05-10 {#version-3-3-3}
 
 ### Fixed
