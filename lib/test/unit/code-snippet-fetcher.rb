@@ -31,9 +31,11 @@ module Test
           break if first_line.nil?
           encoding = detect_encoding(first_line) || Encoding::UTF_8
           first_line.force_encoding(encoding)
-          file.set_encoding(encoding)
           lines << first_line
-          lines.concat(file.readlines)
+          file.each_line do |line|
+            line.force_encoding(encoding)
+            lines << line
+          end
         end
         lines
       end
