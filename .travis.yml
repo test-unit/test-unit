@@ -30,6 +30,11 @@ matrix:
     - name: "2.6 + frozen string literal"
       rvm: 2.6
       env: TEST_RUBYOPT=--enable-frozen-string-literal
+    - name: "2.7"
+      rvm: 2.7
+    - name: "2.7 + frozen string literal"
+      rvm: 2.7
+      env: TEST_RUBYOPT=--enable-frozen-string-literal
     - name: "master"
       rvm: ruby-head
     - name: "master + frozen string literal"
