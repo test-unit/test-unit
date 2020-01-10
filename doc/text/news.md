@@ -1,5 +1,16 @@
 # News
 
+## 3.3.5 - 2020-01-10 {#version-3-3-5}
+
+### Improvements
+
+  * Improved code snippet showing with different default external encoding.
+    [GitHub#166][Patch by Yuta Iwama]
+
+### Thanks
+
+  * Yuta Iwama
+
 ## 3.3.4 - 2019-09-30 {#version-3-3-4}
 
 ### Improvements
