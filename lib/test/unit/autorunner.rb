@@ -249,8 +249,8 @@ module Test
                "Use '/PATTERN/' for NAME to use regular expression.") do |name|
             name = (%r{\A/(.*)/\Z} =~ name ? Regexp.new($1) : name)
             @filters << lambda do |test|
-              return true if name === test.method_name
-              return true if name === test.local_name
+              return true if (name === test.method_name) || (name === "#{test.class}##{test.method_name}")
+              return true if (name === test.local_name) || (name === "#{test.class}##{test.local_name}")
               false
             end
           end
