@@ -288,12 +288,16 @@ module Test
           o.on("--location=LOCATION", String,
                "Runs tests that defined in LOCATION.",
                "LOCATION is one of PATH:LINE, PATH or LINE") do |location|
-            if /\A\d+\z/ =~ location
+            case location
+            when /\A(\d+)\z/
               path = nil
-              line = location.to_i
+              line = $1.to_i
+            when /:(\d+)\z/
+              path = $PREMATCH
+              line = $1.to_i
             else
-              path, line, = location.split(/:(\d+)/, 2)
-              line = line.to_i unless line.nil?
+              path = location
+              line = nil
             end
             add_location_filter(path, line)
           end
