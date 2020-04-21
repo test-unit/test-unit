@@ -246,8 +246,10 @@ module Test
 
           o.on("-n", "--name=NAME", String,
                "Runs tests matching NAME.",
-               "Use '/PATTERN/' for NAME to use regular expression.") do |name|
-            name = (%r{\A/(.*)/\Z} =~ name ? Regexp.new($1) : name)
+               "Use '/PATTERN/' for NAME to use regular expression.",
+               "Regular expression accepts options.",
+               "Example: '/taRget/i' matches 'target' and 'TARGET'") do |name|
+            name = prepare_name(name)
             @filters << lambda do |test|
               return true if name === test.method_name
               return true if name === test.local_name
@@ -257,37 +259,43 @@ module Test
 
           o.on("--ignore-name=NAME", String,
                "Ignores tests matching NAME.",
-               "Use '/PATTERN/' for NAME to use regular expression.") do |n|
-            n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
-            case n
+               "Use '/PATTERN/' for NAME to use regular expression.",
+               "Regular expression accepts options.",
+               "Example: '/taRget/i' matches 'target' and 'TARGET'") do |name|
+            name = prepare_name(name)
+            case name
             when Regexp
-              @filters << proc {|t| n =~ t.method_name ? false : true}
+              @filters << proc {|t| name =~ t.method_name ? false : true}
             else
-              @filters << proc {|t| n != t.method_name}
+              @filters << proc {|t| name != t.method_name}
             end
           end
 
           o.on("-t", "--testcase=TESTCASE", String,
                "Runs tests in TestCases matching TESTCASE.",
-               "Use '/PATTERN/' for TESTCASE to use regular expression.") do |n|
-            n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
+               "Use '/PATTERN/' for TESTCASE to use regular expression.",
+               "Regular expression accepts options.",
+               "Example: '/taRget/i' matches 'target' and 'TARGET'") do |name|
+            name = prepare_name(name)
             @filters << lambda do |test|
-              match_test_case_name(test, n)
+              match_test_case_name(test, name)
             end
           end
 
           o.on("--ignore-testcase=TESTCASE", String,
                "Ignores tests in TestCases matching TESTCASE.",
-               "Use '/PATTERN/' for TESTCASE to use regular expression.") do |n|
-            n = (%r{\A/(.*)/\Z} =~ n ? Regexp.new($1) : n)
+               "Use '/PATTERN/' for TESTCASE to use regular expression.",
+               "Regular expression accepts options.",
+               "Example: '/taRget/i' matches 'target' and 'TARGET'") do |name|
+            name = prepare_name(name)
             @filters << lambda do |test|
-              not match_test_case_name(test, n)
+              not match_test_case_name(test, name)
             end
           end
 
           o.on("--location=LOCATION", String,
                "Runs tests that defined in LOCATION.",
-               "LOCATION is one of PATH:LINE, PATH or LINE") do |location|
+               "LOCATION is one of PATH:LINE, PATH or LINE.") do |location|
             case location
             when /\A(\d+)\z/
               path = nil
@@ -497,6 +505,21 @@ module Test
           Dir.chdir(@workdir, &block)
         else
           yield
+        end
+      end
+
+      def prepare_name(name)
+        case name
+        when /\A\/(.*)\/([imx]*)\z/
+          pattern = $1
+          options_raw = $2
+          options = 0
+          options |= Regexp::IGNORECASE if options_raw.include?("i")
+          options |= Regexp::MULTILINE if options_raw.include?("m")
+          options |= Regexp::EXTENDED if options_raw.include?("x")
+          Regexp.new(pattern, options)
+        else
+          name
         end
       end
 
