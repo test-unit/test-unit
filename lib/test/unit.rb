@@ -45,13 +45,17 @@ module Test # :nodoc:
   #
   # ## Contact Information
   #
-  # A lot of discussion happens about Ruby in general on the ruby-talk
-  # mailing list (https://www.ruby-lang.org/en/community/mailing-lists/),
-  # and you can ask any questions you might have there. I monitor the
-  # list, as do many other helpful Rubyists, and you're sure to get a
-  # quick answer. Of course, you're also welcome to email me (Nathaniel
-  # Talbott) directly at mailto:testunit@talbott.ws, and I'll do my best
-  # to help you out.
+  #   * [GitHub issues on
+  #     test-unit/test-unit](https://github.com/test-unit/test-unit/issues):
+  #     If you have any issues, please report them to here.
+  #
+  #   * [GitHub pull requests on
+  #     test-unit/test-unit](https://github.com/test-unit/test-unit/pulls):
+  #     If you have any patches, please report them to here.
+  #
+  #   * [ruby-talk mailing
+  #     list](https://www.ruby-lang.org/en/community/mailing-lists/):
+  #     If you have any questions, you can ask them here.
   #
   #
   # ## Credits
