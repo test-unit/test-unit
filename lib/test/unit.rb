@@ -46,11 +46,12 @@ module Test # :nodoc:
   # ## Contact Information
   # 
   # A lot of discussion happens about Ruby in general on the ruby-talk
-  # mailing list (http://www.ruby-lang.org/en/ml.html), and you can ask
-  # any questions you might have there. I monitor the list, as do many
-  # other helpful Rubyists, and you're sure to get a quick answer. Of
-  # course, you're also welcome to email me (Nathaniel Talbott) directly
-  # at mailto:testunit@talbott.ws, and I'll do my best to help you out.
+  # mailing list (https://www.ruby-lang.org/en/community/mailing-lists/),
+  # and you can ask any questions you might have there. I monitor the
+  # list, as do many other helpful Rubyists, and you're sure to get a
+  # quick answer. Of course, you're also welcome to email me (Nathaniel
+  # Talbott) directly at mailto:testunit@talbott.ws, and I'll do my best
+  # to help you out.
   # 
   # 
   # ## Credits
