@@ -1,5 +1,25 @@
 # News
 
+## 3.3.6 - 2020-06-10 {#version-3-3-6}
+
+### Improvements
+
+  * `name`, `--ignore-name`:
+
+     * Added support for regular expression options.
+
+     * Added support for matching with class name in exact match mode.
+       [Reported by Jun Aruga]
+
+  * Updated ruby-talk mailing list information
+    [GitHub#168][Patch by Chris Kampmeier]
+
+### Thanks
+
+  * Chris Kampmeier
+
+  * Jun Aruga
+
 ## 3.3.5 - 2020-01-10 {#version-3-3-5}
 
 ### Improvements
