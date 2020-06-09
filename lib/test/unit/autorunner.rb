@@ -251,9 +251,7 @@ module Test
                "Example: '/taRget/i' matches 'target' and 'TARGET'") do |name|
             name = prepare_name(name)
             @filters << lambda do |test|
-              return true if name === test.method_name
-              return true if name === test.local_name
-              false
+              match_test_name(test, name)
             end
           end
 
@@ -263,11 +261,8 @@ module Test
                "Regular expression accepts options.",
                "Example: '/taRget/i' matches 'target' and 'TARGET'") do |name|
             name = prepare_name(name)
-            case name
-            when Regexp
-              @filters << proc {|t| name =~ t.method_name ? false : true}
-            else
-              @filters << proc {|t| name != t.method_name}
+            @filters << lambda do |test|
+              not match_test_name(test, name)
             end
           end
 
@@ -521,6 +516,16 @@ module Test
         else
           name
         end
+      end
+
+      def match_test_name(test, pattern)
+        return true if pattern === test.method_name
+        return true if pattern === test.local_name
+        if pattern.is_a?(String)
+          return true if pattern === "#{test.class}##{test.method_name}"
+          return true if pattern === "#{test.class}##{test.local_name}"
+        end
+        false
       end
 
       def match_test_case_name(test, pattern)
