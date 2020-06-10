@@ -60,8 +60,8 @@ Exception:
   * lib/test/unit/diff.rb is a triple license of the Ruby license,
     PSF license and LGPLv2.1 or later.
 
-  * lib/test-unit.rb is a dual license of the Ruby license and LGPLv2.1
-    or later.
+  * Rakefile and lib/test-unit.rb are a dual license of the Ruby
+    license and LGPLv2.1 or later.
 
 ## Authors
 
