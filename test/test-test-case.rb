@@ -61,10 +61,15 @@ module Test
         entry.start_with?("kernel/")
       end
 
+      def internal_backtrace_entry?(entry)
+        entry.start_with?("<internal:")
+      end
+
       def normalize_location(location)
         filtered_location = location.reject do |entry|
           jruby_backtrace_entry?(entry) or
-            rubinius_backtrace_entry?(entry)
+            rubinius_backtrace_entry?(entry) or
+            internal_backtrace_entry?(entry)
         end
         filtered_location.collect do |entry|
           entry.sub(/:\d+:/, ":0:")
