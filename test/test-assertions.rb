@@ -645,7 +645,7 @@ EOM
       end
 
       def test_assert_raise_jruby
-        omit("For JRuby") unless Object.const_defined?(:Java)
+        jruby_only_test
 
         exception = Java::JavaLang::StringIndexOutOfBoundsException
 
