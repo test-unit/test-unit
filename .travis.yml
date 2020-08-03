@@ -42,9 +42,8 @@ matrix:
       env: TEST_RUBYOPT=--enable-frozen-string-literal
     - name: "JRuby"
       rvm: jruby
-  allow_failures:
-    - name: "JRuby"
-      rvm: jruby
+    - name: "TruffleRuby"
+      rvm: truffleruby
   fast_finish: true
 script:
   - RUBYOPT="$RUBYOPT $TEST_RUBYOPT" bundle exec rake
