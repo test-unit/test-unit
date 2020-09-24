@@ -51,9 +51,8 @@ If you want to use full test-unit features:
 
 ## License
 
-(The Ruby License)
-
-This software is distributed under the same terms as ruby.
+This software is distributed under either the terms of Ruby License or GPLv2.
+See the file [COPYING](COPYING).
 
 Exception:
 
