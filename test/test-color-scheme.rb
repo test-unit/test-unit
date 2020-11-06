@@ -45,12 +45,14 @@ class TestUnitColorScheme < Test::Unit::TestCase
     def setup
       @original_term, ENV["TERM"] = ENV["TERM"], nil
       @original_color_term, ENV["COLORTERM"] = ENV["COLORTERM"], nil
+      @original_vte_version, ENV["VTE_VERSION"] = ENV["VTE_VERSION"], nil
       ENV["TERM"] = "xterm"
     end
 
     def teardown
       ENV["TERM"] = @original_term
       ENV["COLORTERM"] = @original_color_term
+      ENV["VTE_VERSION"] = @original_vte_version
     end
 
     def test_default
@@ -78,5 +80,35 @@ class TestUnitColorScheme < Test::Unit::TestCase
       assert_equal(expected_schema_keys.sort,
                    Test::Unit::ColorScheme.default.to_hash.keys.sort)
     end
+
+    def test_available_colors
+      terms = {
+        "rxvt"                 => 8,
+        "xterm-color"          => 8,
+        "alacritty"            => 256,
+        "iTerm.app"            => 256,
+        "screen-256color"      => 256,
+        "screenxterm-256color" => 256,
+        "tmux-256color"        => 256,
+        "vte-256color"         => 256,
+        "vscode-direct"        => 2**24,
+        "vte-direct"           => 2**24,
+        "xterm-direct"         => 2**24,
+      }
+      terms.each do |term, expected_available|
+        ENV["TERM"] = term
+        assert_equal(expected_available,
+                     Test::Unit::ColorScheme.available_colors,
+                     "Incorrect available_colors for TERM=%s" % [term])
+      end
+    end
+
+    def test_default_for_direct_color
+      ENV["TERM"] = "xterm-direct"
+      assert_equal(2**24, Test::Unit::ColorScheme.available_colors)
+      assert_equal(Test::Unit::ColorScheme.default_for_256_colors,
+                   Test::Unit::ColorScheme.default)
+    end
+
   end
 end
