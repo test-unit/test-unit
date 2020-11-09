@@ -7,17 +7,19 @@ module Test
 
       TERM_256 = /
         [+-]256color|
-        ^(alacritty|
+        \A(
+          alacritty|
           iTerm\s?\d*\.app|
           kitty|
           mintty|
           ms-terminal|
-          nsterm|
           nsterm-build\d+|
+          nsterm|
           terminator|
           terminology(-[0-9.]+)?|
           termite|
-          vscode)$/x
+          vscode
+        )\z/x
 
       class << self
         def default

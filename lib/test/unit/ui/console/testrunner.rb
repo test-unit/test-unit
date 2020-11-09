@@ -547,7 +547,7 @@ module Test
             ^cygwin|
             ^linux|
             ^nsterm-bce|
-            ^nsterm-c-.*|
+            ^nsterm-c-|
             ^putty|
             ^rxvt|
             ^screen|
