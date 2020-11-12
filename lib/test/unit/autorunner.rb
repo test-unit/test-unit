@@ -356,7 +356,7 @@ module Test
           end
 
           o.on("--config=FILE",
-               "Use YAML fomat FILE content as configuration file.") do |file|
+               "Use YAML format FILE content as configuration file.") do |file|
             load_config(file)
           end
 
