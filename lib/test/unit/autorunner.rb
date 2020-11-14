@@ -463,7 +463,7 @@ module Test
           if key == :arguments
             @default_arguments.concat(value.split)
           else
-            runner_options[key.to_sym] = value
+            runner_options[key] = value
           end
         end
         @runner_options = @runner_options.merge(runner_options)
