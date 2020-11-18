@@ -98,7 +98,7 @@ module Test
 
       def check_fail_exception(expected_message, options={}, &proc)
         normalizer = lambda do |actual_message|
-          actual_message.gsub(/^[^:\n]+:\d+:.+\n/, "")
+          actual_message.gsub(/^(?<internal:core> )?[^:\n]+:\d+:.+\n/, "")
         end
         check_assertions(true,
                          options.merge(:expected_message => expected_message,
