@@ -103,7 +103,7 @@ class TestUnitColorScheme < Test::Unit::TestCase
     }.each do |term, colors|
       data("%20s => %8d" % [term, colors], {term: term, colors: colors})
     end
-    def test_available_colors(data)
+    def test_term_env(data)
       ENV["TERM"] = data[:term]
       assert_equal(data[:colors],
                    Test::Unit::ColorScheme.available_colors,
