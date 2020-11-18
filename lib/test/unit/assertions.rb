@@ -2121,7 +2121,14 @@ EOT
 
           def inspect
             if default_inspect?
-              "#{@exception.class.inspect}(<#{@exception.message}>)"
+              inspected = "#{@exception.class.inspect}(<#{@exception.message}>)"
+              unless (@exception.backtrace || []).empty?
+                inspected << "\n"
+                @exception.backtrace.each do |trace|
+                  inspected << "#{trace}\n"
+                end
+              end
+              inspected
             else
               @exception.inspect
             end

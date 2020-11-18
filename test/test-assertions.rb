@@ -98,7 +98,7 @@ module Test
 
       def check_fail_exception(expected_message, options={}, &proc)
         normalizer = lambda do |actual_message|
-          actual_message.gsub(/(^[^:\n]+:\d+:.+\n?)+\z/, "")
+          actual_message.gsub(/^[^:\n]+:\d+:.+\n/, "")
         end
         check_assertions(true,
                          options.merge(:expected_message => expected_message,
@@ -510,7 +510,8 @@ EOM
         message = <<-EOM.chomp
 failed assert_raise.
 <ArgumentError> exception expected but was
-<RuntimeError(<Error>)>.
+<RuntimeError(<Error>)
+>.
 EOM
         check_fail_exception(message) do
           assert_raise(ArgumentError, "failed assert_raise") do
@@ -571,7 +572,8 @@ EOM
         message = <<-EOM.chomp
 failed assert_raise.
 <[ArgumentError, TypeError]> exception expected but was
-<RuntimeError(<Error>)>.
+<RuntimeError(<Error>)
+>.
 EOM
         check_fail_exception(message) do
           assert_raise(ArgumentError, TypeError, "failed assert_raise") do
@@ -596,13 +598,8 @@ EOM
 
         message = <<-EOM.chomp
 <RuntimeError(<XXX>)> exception expected but was
-<RuntimeError(<Error>)>.
-
-diff:
-- RuntimeError(<XXX>)
-?               ^^^
-+ RuntimeError(<Error>)
-?               ^^^^^
+<RuntimeError(<Error>)
+>.
 EOM
         check_fail_exception(message) do
           return_value = assert_raise(RuntimeError.new("XXX")) do
@@ -613,7 +610,8 @@ EOM
         different_error_class = Class.new(StandardError)
         message = <<-EOM.chomp
 <#{different_error_class.inspect}(<Error>)> exception expected but was
-<RuntimeError(<Error>)>.
+<RuntimeError(<Error>)
+>.
 EOM
         check_fail_exception(message) do
           assert_raise(different_error_class.new("Error")) do
@@ -627,7 +625,8 @@ EOM
         end
         message = <<-EOM.chomp
 <DifferentError: "Error"> exception expected but was
-<RuntimeError(<Error>)>.
+<RuntimeError(<Error>)
+>.
 EOM
         check_fail_exception(message) do
           assert_raise(different_error) do
@@ -869,6 +868,7 @@ EOM
         expected_message = <<-EOM.chomp
 Exception raised:
 RuntimeError(<Error>)
+
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised {
@@ -879,6 +879,7 @@ EOM
 failed assert_nothing_raised.
 Exception raised:
 RuntimeError(<Error>)
+
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised("failed assert_nothing_raised") {
@@ -888,6 +889,7 @@ EOM
         expected_message = <<-EOM.chomp
 Exception raised:
 RuntimeError(<Error>)
+
 EOM
         check_fail_exception(expected_message) {
           assert_nothing_raised(StandardError, RuntimeError) {
@@ -1312,7 +1314,8 @@ EOM
 
         expected_message = <<-EOM.chomp
 <SystemCallError> family exception expected but was
-<RuntimeError(<XXX>)>.
+<RuntimeError(<XXX>)
+>.
 EOM
         check_fail_exception(expected_message) do
           assert_raise_kind_of(SystemCallError) do
