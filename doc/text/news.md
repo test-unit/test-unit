@@ -1,5 +1,36 @@
 # News
 
+## 3.3.7 - 2020-11-18 {#version-3-3-7}
+
+### Improvements
+
+  * Improved TruffleRuby support.
+    [GitHub#171][Reported by Benoit Daloze]
+
+  * Removed needless `to_sym`.
+    [GitHub#177][Patch by icm7216]
+
+  * `assert_raise`: Added backtrace for actual error.
+
+  * Improved terminal color availability detection.
+    [GitHub#175][Patch by nicholas a. evans]
+
+  * Changed license to the new Ruby's.
+    [GitHub#174]
+
+### Fixes
+
+  * Fixed a typo in `--help` output:
+    [GitHub#176][Patch by icm7216]
+
+### Thanks
+
+  * Benoit Daloze
+
+  * icm7216
+
+  * nicholas a. evans
+
 ## 3.3.6 - 2020-06-10 {#version-3-3-6}
 
 ### Improvements
