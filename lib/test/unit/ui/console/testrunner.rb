@@ -540,13 +540,28 @@ module Test
             color("#{@result.status}-marker")
           end
 
+          TERM_COLOR_SUPPORT = /
+            color|  # explicitly claims color support in the name
+            direct| # explicitly claims "direct color" (24 bit) support
+            #{ColorScheme::TERM_256}|
+            \Acygwin|
+            \Alinux|
+            \Ansterm-bce|
+            \Ansterm-c-|
+            \Aputty|
+            \Arxvt|
+            \Ascreen|
+            \Atmux|
+            \Axterm
+          /x
+
           def guess_color_availability
             return false unless @output.tty?
             return true if windows? and ruby_2_0_or_later?
             case ENV["TERM"]
             when /(?:term|screen)(?:-(?:256)?color)?\z/
               true
-            when /\Arxvt/
+            when TERM_COLOR_SUPPORT
               true
             else
               return true if ENV["EMACS"] == "t"

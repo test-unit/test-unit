@@ -5,9 +5,25 @@ module Test
     class ColorScheme
       include Enumerable
 
+      TERM_256 = /
+        [+-]256color|
+        \A(?:
+          alacritty|
+          iTerm\s?\d*\.app|
+          kitty|
+          mintty|
+          ms-terminal|
+          nsterm-build\d+|
+          nsterm|
+          terminator|
+          terminology(?:-[0-9.]+)?|
+          termite|
+          vscode
+        )\z/x
+
       class << self
         def default
-          if available_colors == 256
+          if available_colors >= 256
             default_for_256_colors
           else
             default_for_8_colors
@@ -140,7 +156,9 @@ module Test
 
         def guess_available_colors_from_term_env
           case ENV["TERM"]
-          when /-256color\z/
+          when /[+-]direct/
+            2**24
+          when TERM_256
             256
           else
             nil
