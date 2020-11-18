@@ -114,7 +114,7 @@ class TestUnitColorScheme < Test::Unit::TestCase
   class TestDefaultScheme < self
     include CleanEnvironment
 
-    def test_default_scheme_for_direct_color
+    def test_direct_color
       ENV["TERM"] = "xterm-direct"
       assert_equal(Test::Unit::ColorScheme.default_for_256_colors,
                    Test::Unit::ColorScheme.default)
