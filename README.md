@@ -51,16 +51,13 @@ If you want to use full test-unit features:
 
 ## License
 
-This software is distributed under either the terms of Ruby License or GPLv2.
-See the file [COPYING](COPYING).
+This software is distributed under either the terms of new Ruby
+License or BSDL. See the file [COPYING](COPYING).
 
 Exception:
 
-  * lib/test/unit/diff.rb is a triple license of the Ruby license,
-    PSF license and LGPLv2.1 or later.
-
-  * Rakefile and lib/test-unit.rb are a dual license of the Ruby
-    license and LGPLv2.1 or later.
+  * lib/test/unit/diff.rb is a triple license of (the new Ruby license
+    or BSDL) and PSF license.
 
 ## Authors
 
