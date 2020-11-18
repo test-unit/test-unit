@@ -84,7 +84,6 @@ class TestUnitColorScheme < Test::Unit::TestCase
       assert_equal(expected_schema_keys.sort,
                    Test::Unit::ColorScheme.default.to_hash.keys.sort)
     end
-
   end
 
   class TestGuessAvailableColors < self
@@ -121,5 +120,4 @@ class TestUnitColorScheme < Test::Unit::TestCase
                    Test::Unit::ColorScheme.default)
     end
   end
-
 end
