@@ -2123,7 +2123,7 @@ EOT
             if default_inspect?
               inspected = "#{@exception.class.inspect}(<#{@exception.message}>)"
               unless (@exception.backtrace || []).empty?
-                inspected << "\n"
+                inspected += "\n"
                 @exception.backtrace.each do |trace|
                   inspected << "#{trace}\n"
                 end
