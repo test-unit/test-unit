@@ -7,7 +7,7 @@ module Test
 
       TERM_256 = /
         [+-]256color|
-        \A(
+        \A(?:
           alacritty|
           iTerm\s?\d*\.app|
           kitty|
@@ -16,7 +16,7 @@ module Test
           nsterm-build\d+|
           nsterm|
           terminator|
-          terminology(-[0-9.]+)?|
+          terminology(?:-[0-9.]+)?|
           termite|
           vscode
         )\z/x
