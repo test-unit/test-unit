@@ -543,16 +543,17 @@ module Test
           TERM_COLOR_SUPPORT = /
             color|  # explicitly claims color support in the name
             direct| # explicitly claims "direct color" (24 bit) support
-            #{ColorScheme::TERM_256}
-            ^cygwin|
-            ^linux|
-            ^nsterm-bce|
-            ^nsterm-c-|
-            ^putty|
-            ^rxvt|
-            ^screen|
-            ^tmux|
-            ^xterm /x
+            #{ColorScheme::TERM_256}|
+            \Acygwin|
+            \Alinux|
+            \Ansterm-bce|
+            \Ansterm-c-|
+            \Aputty|
+            \Arxvt|
+            \Ascreen|
+            \Atmux|
+            \Axterm
+          /x
 
           def guess_color_availability
             return false unless @output.tty?
