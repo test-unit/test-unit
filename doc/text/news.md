@@ -1,5 +1,12 @@
 # News
 
+## 3.3.8 - 2020-12-25 {#version-3-3-8}
+
+### Improvements
+
+  * [UI][console]: Removed reverse mode because Ruby 3.0 reverts
+    reverse backtrace.
+
 ## 3.3.7 - 2020-11-18 {#version-3-3-7}
 
 ### Improvements
