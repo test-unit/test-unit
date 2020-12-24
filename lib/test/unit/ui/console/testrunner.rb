@@ -47,8 +47,6 @@ module Test
             @progress_row_max ||= guess_progress_row_max
             @show_detail_immediately = @options[:show_detail_immediately]
             @show_detail_immediately = true if @show_detail_immediately.nil?
-            @reverse_output = @options[:reverse_output]
-            @reverse_output = @output.tty? if @reverse_output.nil?
             @already_outputted = false
             @indent = 0
             @top_level = true
@@ -184,29 +182,15 @@ module Test
             if fault.is_a?(Failure) and
                 fault.inspected_expected and
                 fault.inspected_actual
-              if @reverse_output
-                output_fault_backtrace(fault)
-                output_failure_message(fault)
-                output_single("#{fault.label}: ")
-                output(fault.test_name, fault_color(fault))
-              else
-                output_single("#{fault.label}: ")
-                output(fault.test_name, fault_color(fault))
-                output_fault_backtrace(fault)
-                output_failure_message(fault)
-              end
+              output_single("#{fault.label}: ")
+              output(fault.test_name, fault_color(fault))
+              output_fault_backtrace(fault)
+              output_failure_message(fault)
             else
-              if @reverse_output
-                output_fault_backtrace(fault)
-                output_single("#{fault.label}: ")
-                output_single(fault.test_name, fault_color(fault))
-                output_fault_message(fault)
-              else
-                output_single("#{fault.label}: ")
-                output_single(fault.test_name, fault_color(fault))
-                output_fault_message(fault)
-                output_fault_backtrace(fault)
-              end
+              output_single("#{fault.label}: ")
+              output_single(fault.test_name, fault_color(fault))
+              output_fault_message(fault)
+              output_fault_backtrace(fault)
             end
           end
 
@@ -244,19 +228,10 @@ module Test
               end
             end
 
-            if @reverse_output
-              backtrace.each_with_index.reverse_each do |entry, i|
-                if i == code_snippet_backtrace_index
-                  output_code_snippet(code_snippet_lines, fault_color(fault))
-                end
-                output(entry)
-              end
-            else
-              backtrace.each_with_index do |entry, i|
-                output(entry)
-                if i == code_snippet_backtrace_index
-                  output_code_snippet(code_snippet_lines, fault_color(fault))
-                end
+            backtrace.each_with_index do |entry, i|
+              output(entry)
+              if i == code_snippet_backtrace_index
+                output_code_snippet(code_snippet_lines, fault_color(fault))
               end
             end
           end
@@ -336,17 +311,10 @@ module Test
           end
 
           def output_fault_in_short(fault)
-            if @reverse_output
-              output(fault.location.first)
-              output_single("#{fault.label}: ")
-              output_single(fault.message, fault_color(fault))
-              output(" [#{fault.test_name}]")
-            else
-              output_single("#{fault.label}: ")
-              output_single(fault.message, fault_color(fault))
-              output(" [#{fault.test_name}]")
-              output(fault.location.first)
-            end
+            output_single("#{fault.label}: ")
+            output_single(fault.message, fault_color(fault))
+            output(" [#{fault.test_name}]")
+            output(fault.location.first)
           end
 
           def format_fault(fault)
