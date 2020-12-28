@@ -956,17 +956,17 @@ EOM
         end
       end
 
-      def test_assert_not_match_pass_not_regexp
-        check_fail("</asdf/> was expected to not match\n" +
-                    "<\"asdf\">.") do
-          assert_not_match("asdf", "asdf")
-        end
-      end
-
       def test_assert_not_match_fail_match
         check_fail("</string/> was expected to not match\n" +
                     "<\"string\">.") do
           assert_not_match(/string/, "string")
+        end
+      end
+
+      def test_assert_not_match_fail_match_string
+        check_fail("</asdf/> was expected to not match\n" +
+                    "<\"asdf\">.") do
+          assert_not_match("asdf", "asdf")
         end
       end
 
