@@ -534,12 +534,7 @@ EOT
       #   assert_match(/\d+/, 'five, 6, seven')
       def assert_match(pattern, string, message=nil)
         _wrap_assertion do
-          pattern = case(pattern)
-            when String
-              Regexp.new(Regexp.escape(pattern))
-            else
-              pattern
-          end
+          pattern = Regexp.new(Regexp.escape(pattern)) if pattern.is_a?(String)
           full_message = build_message(message,
                                        "<?> was expected to be =~\n<?>.",
                                        pattern, string)
@@ -713,12 +708,7 @@ EOT
       #   assert_not_match(/three/, 'one 2 three') # -> fail
       def assert_not_match(pattern, string, message=nil)
         _wrap_assertion do
-          pattern = case(pattern)
-            when String
-              Regexp.new(Regexp.escape(pattern))
-            else
-              pattern
-          end
+          pattern = Regexp.new(Regexp.escape(pattern)) if pattern.is_a?(String)
           full_message = build_message(message,
                                        "<?> was expected to not match\n<?>.",
                                        pattern, string)
