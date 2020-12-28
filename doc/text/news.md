@@ -1,5 +1,16 @@
 # News
 
+## 3.3.9 - 2020-12-29 {#version-3-3-9}
+
+### Improvements
+
+  * `assert_not_match`: Add support for `String` as pattern.
+    [GitHub#178][Patch by David Rodríguez]
+
+### Thanks
+
+  * David Rodríguez
+
 ## 3.3.8 - 2020-12-25 {#version-3-3-8}
 
 ### Improvements
