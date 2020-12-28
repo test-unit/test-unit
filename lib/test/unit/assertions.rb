@@ -711,15 +711,18 @@ EOT
       # @example
       #   assert_not_match(/two/, 'one 2 three')   # -> pass
       #   assert_not_match(/three/, 'one 2 three') # -> fail
-      def assert_not_match(regexp, string, message=nil)
+      def assert_not_match(pattern, string, message=nil)
         _wrap_assertion do
-          assert_instance_of(Regexp, regexp,
-                             "<REGEXP> in assert_not_match(<REGEXP>, ...) " +
-                             "should be a Regexp.")
+          pattern = case(pattern)
+            when String
+              Regexp.new(Regexp.escape(pattern))
+            else
+              pattern
+          end
           full_message = build_message(message,
                                        "<?> was expected to not match\n<?>.",
-                                       regexp, string)
-          assert_block(full_message) { regexp !~ string }
+                                       pattern, string)
+          assert_block(full_message) { pattern !~ string }
         end
       end
 
