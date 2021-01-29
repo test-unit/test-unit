@@ -1,1 +1,3 @@
-Warning[:deprecated] = true if defined?(Warning)
+if defined?(Warning) and Warning.respond_to?(:[]=)
+  Warning[:deprecated] = true
+end
