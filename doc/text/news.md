@@ -1,5 +1,11 @@
 # News
 
+## 3.4.0 - 2021-01-30 {#version-3-4-0}
+
+### Improvements
+
+  * Enable deprecated warnings by default.
+
 ## 3.3.9 - 2020-12-29 {#version-3-3-9}
 
 ### Improvements
