@@ -1,5 +1,7 @@
 # Copyright (C) 2012-2015  Kouhei Sutou <kou@clear-code.com>
 
+require "test/unit/warning"
+
 module Test
   module Unit
     autoload :TestCase, "test/unit/testcase"

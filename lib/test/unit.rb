@@ -1,3 +1,5 @@
+require "test/unit/warning"
+
 require 'test/unit/testcase'
 require 'test/unit/autorunner'
 
