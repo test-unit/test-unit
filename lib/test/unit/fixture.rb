@@ -103,6 +103,7 @@ module Test
           @test_case = test_case
           @type = type
           @default_options = default_options
+          @callbacks = {}
           @before_prepend_callbacks = []
           @before_append_callbacks = []
           @after_prepend_callbacks = []
@@ -130,6 +131,11 @@ module Test
             @test_case.attribute(:source_location,
                                  callback.source_location,
                                  method_name)
+            # For Ruby 2.6 or earlier. callback may be GC-ed. If
+            # callback is GC-ed, callback_method_name may be
+            # duplicated because callback_method_name uses callback.object_id.
+            # See also: https://github.com/test-unit/test-unit/issues/179
+            @callbacks[callback] = true
             @test_case.__send__(:define_method, method_name, &callback)
           else
             method_name = method_name_or_callback
