@@ -1,5 +1,18 @@
 # News
 
+## 3.4.1 - 2021-04-19 {#version-3-4-1}
+
+### Fixes
+
+  * Fixed a bug that `setup`/`cleanup`/`teardown` with block may be
+    overwritten by another `setup`/`cleanup`/`teardown` with
+    block. It's caused only with Ruby 2.6 or earlier.
+    [GitHub#179][Reported by akira yamada]
+
+### Thanks
+
+  * akira yamada
+
 ## 3.4.0 - 2021-01-30 {#version-3-4-0}
 
 ### Improvements
