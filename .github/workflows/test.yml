@@ -1,0 +1,94 @@
+name: Test
+on:
+  - push
+  - pull_request
+jobs:
+  run:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: "2.1"
+            ruby-version: "2.1"
+            runs-on: "ubuntu-latest"
+          - name: "2.2"
+            ruby-version: "2.2"
+            runs-on: "ubuntu-latest"
+          - name: "2.3"
+            ruby-version: "2.3"
+            runs-on: "ubuntu-latest"
+          - name: "2.4"
+            ruby-version: "2.4"
+            runs-on: "ubuntu-latest"
+          - name: "2.4 + frozen string literal"
+            ruby-version: "2.4"
+            runs-on: "ubuntu-latest"
+            rubyopt: "--enable-frozen-string-literal"
+          - name: "2.5"
+            ruby-version: "2.5"
+            runs-on: "ubuntu-latest"
+          - name: "2.5 + frozen string literal"
+            ruby-version: "2.5"
+            runs-on: "ubuntu-latest"
+            rubyopt: "--enable-frozen-string-literal"
+          - name: "2.6"
+            ruby-version: "2.6"
+            runs-on: "ubuntu-latest"
+          - name: "2.6 + frozen string literal"
+            ruby-version: "2.6"
+            runs-on: "ubuntu-latest"
+            rubyopt: "--enable-frozen-string-literal"
+          - name: "2.7"
+            ruby-version: "2.7"
+            runs-on: "ubuntu-latest"
+          - name: "2.7 + frozen string literal"
+            ruby-version: "2.7"
+            runs-on: "ubuntu-latest"
+            rubyopt: "--enable-frozen-string-literal"
+          - name: "3.0"
+            ruby-version: "3.0"
+            runs-on: "ubuntu-latest"
+          - name: "3.0 + frozen string literal"
+            ruby-version: "3.0"
+            runs-on: "ubuntu-latest"
+            rubyopt: "--enable-frozen-string-literal"
+          - name: "3.0 on macOS"
+            ruby-version: "3.0"
+            runs-on: "macos-latest"
+          - name: "3.0 on Windows"
+            ruby-version: "3.0"
+            runs-on: "windows-latest"
+          - name: "head"
+            ruby-version: "head"
+            runs-on: "ubuntu-latest"
+          - name: "head + frozen string literal"
+            ruby-version: "head"
+            runs-on: "ubuntu-latest"
+            rubyopt: "--enable-frozen-string-literal"
+          - name: "JRuby"
+            ruby-version: "jruby"
+            runs-on: "ubuntu-latest"
+          - name: "JRuby - head"
+            ruby-version: "jruby-head"
+            runs-on: "ubuntu-latest"
+          - name: "TruffleRuby"
+            ruby-version: "truffleruby"
+            runs-on: "ubuntu-latest"
+          - name: "TruffleRuby - head"
+            ruby-version: "truffleruby-head"
+            runs-on: "ubuntu-latest"
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - uses: actions/checkout@master
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - name: Install dependencies
+        run: |
+          bundle install
+      - name: Test
+        run: |
+          bundle exec rake
+        env:
+          RUBYOPT: ${{ matrix.rubyopt }}
