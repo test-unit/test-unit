@@ -660,6 +660,7 @@ module Test
 
           def diff_line(from_line, to_line)
             to_operations = []
+            mark_operations = []
             from_line, to_line, _operations = line_operations(from_line, to_line)
 
             no_replace = true
@@ -689,11 +690,22 @@ module Test
                     output_single(" " * (from_width - to_width))
                   end
                 end
+                mark_operations << Proc.new do
+                  output_single("?" * from_width,
+                                color("diff-difference-tag"))
+                  if (to_width < from_width)
+                    output_single(" " * (from_width - to_width))
+                  end
+                end
               when :delete
                 output_single(from_line[from_start...from_end],
                               color("diff-deleted"))
                 unless no_replace
                   to_operations << Proc.new {output_single(" " * from_width)}
+                  mark_operations << Proc.new do
+                    output_single("-" * from_width,
+                                  color("diff-deleted"))
+                  end
                 end
               when :insert
                 if no_replace
@@ -705,11 +717,16 @@ module Test
                     output_single(to_line[to_start...to_end],
                                   color("diff-inserted"))
                   end
+                  mark_operations << Proc.new do
+                    output_single("+" * to_width,
+                                  color("diff-inserted"))
+                  end
                 end
               when :equal
                 output_single(from_line[from_start...from_end])
                 unless no_replace
                   to_operations << Proc.new {output_single(" " * to_width)}
+                  mark_operations << Proc.new {output_single(" " * to_width)}
                 end
               else
                 raise "unknown tag: #{tag}"
@@ -721,6 +738,15 @@ module Test
               output_single("?", color("diff-difference-tag"))
               output_single(" ")
               to_operations.each do |operation|
+                operation.call
+              end
+              output("")
+            end
+
+            unless mark_operations.empty?
+              output_single("?", color("diff-difference-tag"))
+              output_single(" ")
+              mark_operations.each do |operation|
                 operation.call
               end
               output("")
