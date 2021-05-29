@@ -1,5 +1,12 @@
 # News
 
+## 3.4.2 - 2021-05-30 {#version-3-4-2}
+
+### Improvements
+
+  * [UI][console]: Improved diff readability for no color
+    case. Character based diff marks are always showed.
+
 ## 3.4.1 - 2021-04-19 {#version-3-4-1}
 
 ### Fixes
