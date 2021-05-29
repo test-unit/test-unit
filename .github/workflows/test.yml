@@ -89,6 +89,6 @@ jobs:
           bundle install
       - name: Test
         run: |
-          bundle exec rake
+          ruby test/run-test.rb
         env:
           RUBYOPT: ${{ matrix.rubyopt }}
