@@ -27,10 +27,11 @@ jobs:
           - name: "2.5"
             ruby-version: "2.5"
             runs-on: "ubuntu-latest"
-          - name: "2.5 + frozen string literal"
-            ruby-version: "2.5"
-            runs-on: "ubuntu-latest"
-            rubyopt: "--enable-frozen-string-literal"
+          # Disabled because RubyGems doesn't support frozen string literal.
+          # - name: "2.5 + frozen string literal"
+          #   ruby-version: "2.5"
+          #   runs-on: "ubuntu-latest"
+          #   rubyopt: "--enable-frozen-string-literal"
           - name: "2.6"
             ruby-version: "2.6"
             runs-on: "ubuntu-latest"
@@ -89,6 +90,6 @@ jobs:
           bundle install
       - name: Test
         run: |
-          ruby test/run-test.rb
+          bundle exec rake
         env:
           RUBYOPT: ${{ matrix.rubyopt }}
