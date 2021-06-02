@@ -131,12 +131,13 @@ module Test
         end
 
         def include(*modules, &block) # :nodoc:
-          super
+          result = super
           modules.each do |mod|
             mod.public_instance_methods(false).each do |method_name|
               AutoRunnerLoader.check(self, method_name.to_s)
             end
           end
+          result
         end
 
         @@added_method_names = {}
