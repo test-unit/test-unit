@@ -2175,13 +2175,13 @@ EOM
 
       def test_pass
         check_nothing_fails do
-          assert_all?([1, 2], &:positive?)
+          assert_all?([1, 2]) {|item| item > 0}
         end
       end
 
       def test_pass_message
         check_nothing_fails do
-          assert_all?([1, 2], "positive", &:positive?)
+          assert_all?([1, 2], "positive") {|item item > 0}
         end
       end
 
