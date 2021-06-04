@@ -1677,7 +1677,7 @@ EOT
       # @since 3.0.0
       alias_method :refute_empty, :assert_not_empty
 
-      # @overload assert_all?(collection, message=nil, &block)
+      # @overload assert_all(collection, message=nil, &block)
       #
       #   Asserts that all `block.call(item)` where `item` is each
       #   item in `collection` are not false nor nil.
@@ -1700,8 +1700,8 @@ EOT
       #   @yieldreturn [Object] The checked object.
       #   @return [void]
       #
-      # @since 3.4.3
-      def assert_all?(collection, message=nil)
+      # @since 3.4.4
+      def assert_all(collection, message=nil)
         _wrap_assertion do
           failed = false
           result = {}
@@ -1723,6 +1723,11 @@ EOT
           end
         end
       end
+
+      # Just for Ruby's tool/lib/test/unit compatibility.
+      #
+      # @since 3.4.3
+      alias_method :assert_all?, :assert_all
 
       ##
       # Builds a failure message.  `user_message` is added before the

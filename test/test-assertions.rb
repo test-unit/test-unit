@@ -2235,19 +2235,19 @@ EOM
 
       def test_pass
         check_nothing_fails do
-          assert_all?([1, 2]) {|item| item > 0}
+          assert_all([1, 2]) {|item| item > 0}
         end
       end
 
       def test_pass_message
         check_nothing_fails do
-          assert_all?([1, 2], "positive") {|item| item > 0}
+          assert_all([1, 2], "positive") {|item| item > 0}
         end
       end
 
       def test_pass_empty
         check_nothing_fails do
-          assert_all?([]) {|item| false}
+          assert_all([]) {|item| false}
         end
       end
 
@@ -2258,7 +2258,7 @@ message.
 <{0=>true, 1=>false}>
 EOM
         check_fail(expected_message.chomp) do
-          assert_all?([0, 1], "message", &:zero?)
+          assert_all([0, 1], "message", &:zero?)
         end
       end
     end
