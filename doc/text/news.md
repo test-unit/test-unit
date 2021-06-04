@@ -1,5 +1,15 @@
 # News
 
+## 3.4.3 - 2021-06-04 {#version-3-4-3}
+
+### Improvements
+
+  * Stopped to change result value of `Test::Unit::TestCase#include`.
+
+  * Added `assert_all?`.
+
+  * Added support for `assert_raise_with_message`.
+
 ## 3.4.2 - 2021-05-30 {#version-3-4-2}
 
 ### Improvements
