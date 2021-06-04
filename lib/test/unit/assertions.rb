@@ -1625,7 +1625,7 @@ EOT
       #     assert_all?([1, 2, 3], &:positive?)      # => pass
       #     assert_all?([]) {|item| false}           # => pass
       #
-      #   @example Failure patterns
+      #   @example Failure pattern
       #     assert_all?([0, 1, 2], &:zero?) # => failure
       #
       #   @param [#each] collection The check target.
