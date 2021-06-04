@@ -2181,7 +2181,7 @@ EOM
 
       def test_pass_message
         check_nothing_fails do
-          assert_all?([1, 2], "positive") {|item item > 0}
+          assert_all?([1, 2], "positive") {|item| item > 0}
         end
       end
 
