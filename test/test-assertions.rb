@@ -2170,6 +2170,39 @@ EOM
       end
     end
 
+    class TestAssertAll < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_all?([1, 2], &:positive?)
+        end
+      end
+
+      def test_pass__message
+        check_nothing_fails do
+          assert_all?([1, 2], "positive", &:positive?)
+        end
+      end
+
+      def test_pass_empty
+        check_nothing_fails do
+          assert_all?([]) {|item| false}
+        end
+      end
+
+      def test_fail
+        expected_message = <<-EOM
+message.
+<[0, 1]> was expected to be all true values with the given block but was
+<{0=>true, 1=>false}>
+EOM
+        check_fail(expected_message.chomp) do
+          assert_all?([0, 1], "message", &:zero?)
+        end
+      end
+    end
+
     class TestTemplate < Test::Unit::TestCase
       def test_incompatible_encoding_by_diff
         need_encoding

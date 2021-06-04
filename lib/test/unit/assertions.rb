@@ -1612,6 +1612,53 @@ EOT
       # @since 3.0.0
       alias_method :refute_empty, :assert_not_empty
 
+      # @overload assert_all?(collection, message=nil, &block)
+      #
+      #   Asserts that all `block.call(item)` where `item` is each
+      #   item in `collection` are not false nor nil.
+      #
+      #   If `collection` is empty, this assertion is always passed
+      #   with any `block`.
+      #
+      #   @example Pass patterns
+      #     assert_all?([1, 2, 3]) {|item| item > 0} # => pass
+      #     assert_all?([1, 2, 3], &:positive?)      # => pass
+      #     assert_all?([]) {|item| false}           # => pass
+      #
+      #   @example Failure patterns
+      #     assert_all?([0, 1, 2], &:zero?) # => failure
+      #
+      #   @param [#each] collection The check target.
+      #   @param [String] message The additional user message. It is
+      #     showed when the assertion is failed.
+      #   @yield [Object] Give each item in `collection` to the block.
+      #   @yieldreturn [Object] The checked object.
+      #   @return [void]
+      #
+      # @since 3.4.3
+      def assert_all?(collection, message=nil)
+        _wrap_assertion do
+          failed = false
+          result = {}
+          collection.each do |item|
+            element_result = yield(item)
+            failed = true unless element_result
+            result[item] = element_result
+          end
+          format = <<-FORMAT
+<?> was expected to be all true values with the given block but was
+<?>
+          FORMAT
+          full_message = build_message(message,
+                                       format,
+                                       collection,
+                                       result)
+          assert_block(full_message) do
+            not failed
+          end
+        end
+      end
+
       ##
       # Builds a failure message.  `user_message` is added before the
       # `template` and `arguments` replaces the '?'s positionally in
