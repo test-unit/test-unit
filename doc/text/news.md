@@ -1,5 +1,12 @@
 # News
 
+## 3.4.4 - 2021-06-04 {#version-3-4-4}
+
+### Improvements
+
+  * Rename `assert_all?` to `assert_all`. `assert_all?` is deprecated
+    but is available.
+
 ## 3.4.3 - 2021-06-04 {#version-3-4-3}
 
 ### Improvements
