@@ -2179,7 +2179,7 @@ EOM
         end
       end
 
-      def test_pass__message
+      def test_pass_message
         check_nothing_fails do
           assert_all?([1, 2], "positive", &:positive?)
         end
