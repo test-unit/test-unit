@@ -289,6 +289,71 @@ EOT
       # Just for minitest compatibility. :<
       alias_method :assert_raises, :assert_raise
 
+      # Passes if the block raises `expected_exception` with
+      # `expected_message`. `expected_message` can be a `String` or
+      # `Regexp`.
+      #
+      # @example Pass pattern: String
+      #   assert_raise_with_message(RuntimeError, "Boom!!!") do
+      #     raise "Boom!!!"
+      #   end # -> pass
+      #
+      # @example Pass pattern: Regexp
+      #   assert_raise_with_message(RuntimeError, /!!!/) do
+      #     raise "Boom!!!"
+      #   end # -> pass
+      #
+      # @example Failure pattern: Exception class isn't matched
+      #   assert_raise_with_message(RuntimeError, "Boom!!!") do
+      #     raise ArgumentError, "Boom!!!"
+      #   end # -> failure
+      #
+      # @example Failure pattern: Exception message isn't matched
+      #   assert_raise_with_message(RuntimeError, "Boom!!!") do
+      #     raise "Hello"
+      #   end # -> failure
+      #
+      # @since 3.4.3
+      def assert_raise_with_message(expected_exception_class,
+                                    expected_message,
+                                    message=nil,
+                                    &block)
+        assert_expected_exception = Proc.new do |*_args|
+          _message, assert_exception_helper, actual_exception = _args
+          diff = AssertionMessage.delayed_diff([
+                                                 expected_exception_class,
+                                                 expected_message,
+                                               ],
+                                               [
+                                                 actual_exception.class,
+                                                 actual_exception.message,
+                                               ])
+          full_message = build_message(message,
+                                       "<?>(<?>) exception expected but was\n" +
+                                       "<?>(<?>).?",
+                                       expected_exception_class,
+                                       expected_message,
+                                       actual_exception.class,
+                                       actual_exception.message,
+                                       diff)
+          begin
+            assert_block(full_message) do
+              assert_exception_helper.expected?(actual_exception) and
+                expected_message === actual_exception.message
+            end
+          rescue AssertionFailedError => failure
+            _set_failed_information(failure,
+                                    expected_exception_class,
+                                    actual_exception)
+            raise failure # For JRuby. :<
+          end
+          actual_exception
+        end
+        args = [expected_exception_class]
+        args << message if message
+        _assert_raise(assert_expected_exception, *args, &block)
+      end
+
       ##
       # Passes if the block raises one of the given
       # exceptions or sub exceptions of the given exceptions.

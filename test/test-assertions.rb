@@ -1607,6 +1607,66 @@ MESSAGE
       end
     end
 
+    class TestAssertRaiseWithMessage < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass_string
+        check_nothing_fails(true) do
+          assert_raise_with_message(RuntimeError, "Boom!!!") do
+            raise "Boom!!!"
+          end
+        end
+      end
+
+      def test_pass_regexp
+        check_nothing_fails(true) do
+          assert_raise_with_message(RuntimeError, /!!!/) do
+            raise "Boom!!!"
+          end
+        end
+      end
+
+      def test_pass_message
+        check_nothing_fails(true) do
+          assert_raise_with_message(RuntimeError, "Boom!!!", "message") do
+            raise "Boom!!!"
+          end
+        end
+      end
+
+      def test_fail_unmatch_class
+        expected_message = <<-MESSAGE.chomp
+message.
+<LoadError>(<"Boom!!!">) exception expected but was
+<RuntimeError>(<"Boom!!!">).
+
+diff:
+- [LoadError, "Boom!!!"]
+?  ^^^^
++ [RuntimeError, "Boom!!!"]
+?  ^^^^^^^
+        MESSAGE
+        check_fail(expected_message) do
+          assert_raise_with_message(LoadError, "Boom!!!", "message") do
+            raise "Boom!!!"
+          end
+        end
+      end
+
+      def test_fail_unmatch_message
+        expected_message = <<-MESSAGE.chomp
+message.
+<RuntimeError>(</Hello/>) exception expected but was
+<RuntimeError>(<"Boom!!!">).
+        MESSAGE
+        check_fail(expected_message) do
+          assert_raise_with_message(RuntimeError, /Hello/, "message") do
+            raise "Boom!!!"
+          end
+        end
+      end
+    end
+
     class TestAssertInDelta < TestCase
       include AssertionCheckable
 
