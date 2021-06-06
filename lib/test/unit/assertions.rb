@@ -1267,7 +1267,7 @@ EOT
           assert_block(build_message(message,
                                      "<true> or <false> expected but was\n<?>",
                                      actual)) do
-            [true, false].include?(actual)
+            true == actual || false == actual
           end
         end
       end
@@ -1283,7 +1283,7 @@ EOT
           assert_block(build_message(message,
                                      "<true> expected but was\n<?>",
                                      actual)) do
-            actual == true
+            true == actual
           end
         end
       end
@@ -1299,7 +1299,7 @@ EOT
           assert_block(build_message(message,
                                      "<false> expected but was\n<?>",
                                      actual)) do
-            actual == false
+            false == actual
           end
         end
       end

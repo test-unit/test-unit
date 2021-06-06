@@ -1175,6 +1175,18 @@ EOM
         check_fail("message.\n<true> or <false> expected but was\n<\"XXX\">") do
           assert_boolean("XXX", "message")
         end
+
+        return_true_class = Class.new do
+          def ==(*args)
+            true
+          end
+        end
+
+        thing = return_true_class.new
+
+        check_fail(%Q{<true> or <false> expected but was\n<#{thing.inspect}>}) {
+          assert_boolean(thing)
+        }
       end
 
       def test_assert_true
@@ -1194,6 +1206,18 @@ EOM
           assert_true(nil, "message")
         end
         assert_equal("message", exception.user_message)
+
+        return_true_class = Class.new do
+          def ==(*args)
+            true
+          end
+        end
+
+        thing = return_true_class.new
+
+        check_fail(%Q{<true> expected but was\n<#{thing.inspect}>}) {
+          assert_true(thing)
+        }
       end
 
       def test_assert_false
@@ -1212,6 +1236,18 @@ EOM
         check_fail("message.\n<false> expected but was\n<:false>") do
           assert_false(:false, "message")
         end
+
+        return_true_class = Class.new do
+          def ==(*args)
+            true
+          end
+        end
+
+        thing = return_true_class.new
+
+        check_fail(%Q{<false> expected but was\n<#{thing.inspect}>}) {
+          assert_false(thing)
+        }
       end
 
       def test_assert_compare
