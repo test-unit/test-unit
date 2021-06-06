@@ -1090,15 +1090,7 @@ EOM
       def test_assert_not_respond_to_fail_number
         check_fail("<0.15>.kind_of?(Symbol) or\n" +
                     "<0.15>.respond_to?(:to_str) expected") do
-          assert_respond_to("thing", 0.15)
-        end
-      end
-
-      def tset_assert_not_respond_to_fail_existence
-        check_fail("message.\n" +
-                    "!<:symbol>.respond_to?(:to_s) expected\n" +
-                    "(Class: <Symbol>)") do
-          assert_respond_to(:symbol, :to_s, "message")
+          assert_not_respond_to("thing", 0.15)
         end
       end
 
