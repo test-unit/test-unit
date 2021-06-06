@@ -1090,7 +1090,7 @@ EOM
       def test_assert_not_respond_to_fail_number
         check_fail("<0.15>.kind_of?(Symbol) or\n" +
                     "<0.15>.respond_to?(:to_str) expected") do
-          assert_respond_to("thing", 0.15)
+          assert_not_respond_to("thing", 0.15)
         end
       end
 
