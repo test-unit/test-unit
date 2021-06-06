@@ -24,7 +24,6 @@ require "packnga"
 task :default => :test
 
 base_dir = File.dirname(__FILE__)
-html_base_dir = File.join(base_dir, "doc", "html")
 
 helper = Bundler::GemHelper.new(base_dir)
 def helper.version_tag
@@ -51,14 +50,6 @@ end
 
 def rake(*arguments)
   ruby($0, *arguments)
-end
-
-namespace :html do
-  desc "Publish HTML to Web site."
-  task :publish do
-    # FIXME Do nothing for now
-    #rsync_to_rubyforge(spec, "#{html_base_dir}/", "")
-  end
 end
 
 task :test do
