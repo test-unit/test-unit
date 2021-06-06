@@ -834,6 +834,22 @@ EOM
         }
       end
 
+      def test_assert_equal
+        return_true_class = Class.new do
+          def ==(*args)
+            true
+          end
+        end
+
+        thing = return_true_class.new
+
+        assert_equal(thing, true)
+
+        check_fail(%Q{<true> expected but was\n<#{thing.inspect}>.}) {
+          assert_equal(true, thing)
+        }
+      end
+
       def test_assert_nothing_raised
         check_nothing_fails(:dont_care) {
           assert_nothing_raised {
