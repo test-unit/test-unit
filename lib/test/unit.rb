@@ -339,7 +339,7 @@ module Test # :nodoc:
       # @api private
       @@at_start_hooks = []
 
-      # Regsiter a hook that is run before running tests.
+      # Register a hook that is run before running tests.
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:
@@ -425,7 +425,7 @@ module Test # :nodoc:
       # @api private
       @@at_exit_hooks = []
 
-      # Regsiter a hook that is run after running tests.
+      # Register a hook that is run after running tests.
       # To register multiple hooks, call this method multiple times.
       #
       # Here is an example test case:

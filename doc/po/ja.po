@@ -2763,7 +2763,7 @@ msgstr ""
 
 # Test::Unit.at_start
 msgid ""
-"Regsiter a hook that is run before running tests.\n"
+"Register a hook that is run before running tests.\n"
 "To register multiple hooks, call this method multiple times."
 msgstr ""
 
@@ -2860,7 +2860,7 @@ msgstr ""
 
 # Test::Unit.at_exit
 msgid ""
-"Regsiter a hook that is run after running tests.\n"
+"Register a hook that is run after running tests.\n"
 "To register multiple hooks, call this method multiple times."
 msgstr ""
 
