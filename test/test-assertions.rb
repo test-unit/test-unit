@@ -1094,7 +1094,7 @@ EOM
         end
       end
 
-      def tset_assert_not_respond_to_fail_existence
+      def test_assert_not_respond_to_fail_existence
         check_fail("message.\n" +
                     "!<:symbol>.respond_to?(:to_s) expected\n" +
                     "(Class: <Symbol>)") do
