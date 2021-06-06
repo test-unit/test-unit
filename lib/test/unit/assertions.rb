@@ -43,7 +43,7 @@ module Test
 
       ##
       # The assertion upon which all other assertions are based. Passes if the
-      # block yields true.
+      # block yields not false nor nil.
       #
       # @example
       #   assert_block "Couldn't do the thing" do
