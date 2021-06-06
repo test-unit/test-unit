@@ -1094,14 +1094,6 @@ EOM
         end
       end
 
-      def test_assert_not_respond_to_fail_existence
-        check_fail("message.\n" +
-                    "!<:symbol>.respond_to?(:to_s) expected\n" +
-                    "(Class: <Symbol>)") do
-          assert_respond_to(:symbol, :to_s, "message")
-        end
-      end
-
       def test_assert_send
         object = Object.new
         class << object
