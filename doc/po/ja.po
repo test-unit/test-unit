@@ -5652,7 +5652,7 @@ msgstr ""
 
 # Test::Unit::TestSuite#size
 msgid ""
-"Retuns the rolled up number of tests in this suite;\n"
+"Returns the rolled up number of tests in this suite;\n"
 "i.e. if the suite contains other suites, it counts the\n"
 "tests within those suites, not the suites themselves."
 msgstr ""
