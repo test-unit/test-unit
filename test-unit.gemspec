@@ -31,7 +31,9 @@ Gem::Specification.new do |spec|
   spec.test_files += Dir.glob("test/**/*")
 
   spec.metadata = {
-    "source_code_uri" => "https://github.com/test-unit/test-unit"
+    "source_code_uri" => "https://github.com/test-unit/test-unit",
+    "documentation_uri" => "https://rubydoc.info/github/test-unit/test-unit",
+    "bug_tracker_uri" => "https://github.com/test-unit/test-unit/issues"
   }
 
   spec.add_runtime_dependency("power_assert")
