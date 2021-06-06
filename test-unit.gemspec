@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata = {
     "source_code_uri" => "https://github.com/test-unit/test-unit",
-    "documentation_uri" => "https://rubydoc.info/github/test-unit/test-unit",
+    "documentation_uri" => "https://test-unit.github.io/test-unit/en/",
     "bug_tracker_uri" => "https://github.com/test-unit/test-unit/issues"
   }
 
