@@ -77,7 +77,7 @@ module Test
         @tests -= tests
       end
 
-      # Retuns the rolled up number of tests in this suite;
+      # Returns the rolled up number of tests in this suite;
       # i.e. if the suite contains other suites, it counts the
       # tests within those suites, not the suites themselves.
       def size
