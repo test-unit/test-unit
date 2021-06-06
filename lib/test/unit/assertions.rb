@@ -787,7 +787,7 @@ EOT
       alias_method :refute_match, :assert_not_match
 
       ##
-      # Deprecated. Use #assert_not_match instead.
+      # @deprecated Use {#assert_not_match} instead.
       #
       # Passes if `regexp` !~ `string`
       #
