@@ -462,7 +462,7 @@ EOT
         full_message = build_message(message, <<EOT, object)
 <?> was expected to be nil.
 EOT
-        assert_block(full_message) { object.nil? }
+        assert_block(full_message) { nil == object }
       end
 
       ##
@@ -749,7 +749,7 @@ EOT
       alias_method :refute_equal, :assert_not_equal
 
       ##
-      # Passes if ! `object` .nil?
+      # Passes if `object` is not nil
       #
       # @example
       #   assert_not_nil '1 two 3'.sub!(/two/, '2')
@@ -757,7 +757,7 @@ EOT
         full_message = build_message(message,
                                      "<?> was expected to not be nil.",
                                      object)
-        assert_block(full_message){!object.nil?}
+        assert_block(full_message){ nil != object }
       end
 
       # Just for minitest compatibility. :<

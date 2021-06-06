@@ -728,6 +728,17 @@ EOM
         check_fail(%Q{failed assert_nil.\n<"string"> was expected to be nil.}) {
           assert_nil("string", "failed assert_nil")
         }
+
+        nil_class = Class.new do
+          def nil?
+            true
+          end
+        end
+
+        thing = nil_class.new
+        check_fail(%Q{<#{thing.inspect}> was expected to be nil.}) {
+          assert_nil(thing)
+        }
       end
 
       def test_assert_not_nil
@@ -735,6 +746,15 @@ EOM
         check_nothing_fails{assert_not_nil(false, "message")}
         check_fail("<nil> was expected to not be nil."){assert_not_nil(nil)}
         check_fail("message.\n<nil> was expected to not be nil.") {assert_not_nil(nil, "message")}
+
+        nil_class = Class.new do
+          def nil?
+            true
+          end
+        end
+
+        thing = nil_class.new
+        assert_not_nil(thing)
       end
 
       def test_assert_kind_of
