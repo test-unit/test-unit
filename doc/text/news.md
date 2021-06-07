@@ -31,7 +31,7 @@
   * Fixed a bug that `setup`/`cleanup`/`teardown` with block may be
     overwritten by another `setup`/`cleanup`/`teardown` with
     block. It's caused only with Ruby 2.6 or earlier.
-    [GitHub#179][Reported by akira yamada]
+    [GitHub#179](https://github.com/test-unit/test-unit/pull/179)[Reported by akira yamada]
 
 ### Thanks
 
@@ -48,7 +48,7 @@
 ### Improvements
 
   * `assert_not_match`: Add support for `String` as pattern.
-    [GitHub#178][Patch by David Rodríguez]
+    [GitHub#178](https://github.com/test-unit/test-unit/pull/178)[Patch by David Rodríguez]
 
 ### Thanks
 
@@ -66,23 +66,23 @@
 ### Improvements
 
   * Improved TruffleRuby support.
-    [GitHub#171][Reported by Benoit Daloze]
+    [GitHub#171](https://github.com/test-unit/test-unit/pull/171)[Reported by Benoit Daloze]
 
   * Removed needless `to_sym`.
-    [GitHub#177][Patch by icm7216]
+    [GitHub#177](https://github.com/test-unit/test-unit/pull/177)[Patch by icm7216]
 
   * `assert_raise`: Added backtrace for actual error.
 
   * Improved terminal color availability detection.
-    [GitHub#175][Patch by nicholas a. evans]
+    [GitHub#175](https://github.com/test-unit/test-unit/pull/175)[Patch by nicholas a. evans]
 
   * Changed license to the new Ruby's.
-    [GitHub#174]
+    [GitHub#174](https://github.com/test-unit/test-unit/pull/174)
 
 ### Fixes
 
   * Fixed a typo in `--help` output:
-    [GitHub#176][Patch by icm7216]
+    [GitHub#176](https://github.com/test-unit/test-unit/pull/176)[Patch by icm7216]
 
 ### Thanks
 
@@ -104,7 +104,7 @@
        [Reported by Jun Aruga]
 
   * Updated ruby-talk mailing list information
-    [GitHub#168][Patch by Chris Kampmeier]
+    [GitHub#168](https://github.com/test-unit/test-unit/pull/168)[Patch by Chris Kampmeier]
 
 ### Thanks
 
@@ -117,7 +117,7 @@
 ### Improvements
 
   * Improved code snippet showing with different default external encoding.
-    [GitHub#166][Patch by Yuta Iwama]
+    [GitHub#166](https://github.com/test-unit/test-unit/pull/166)[Patch by Yuta Iwama]
 
 ### Thanks
 
@@ -128,10 +128,10 @@
 ### Improvements
 
   * Converted markup format to Markdown from RDoc.
-    [GitHub#164][Patch by OGAWA KenIchi]
+    [GitHub#164](https://github.com/test-unit/test-unit/pull/164)[Patch by OGAWA KenIchi]
 
   * test: Stopped to depend on `Time#inspect` format.
-    [GitHub#165][Reported by Benoit Daloze]
+    [GitHub#165](https://github.com/test-unit/test-unit/pull/165)[Reported by Benoit Daloze]
 
 ### Thanks
 
@@ -166,7 +166,7 @@
   * Added support for `Test::Unit::AssertionFailedError#user_message`
     for not only `assert_equal` and `assert_raise` but also all
     assertions.
-    [GitHub#162][Reported by xgraffm]
+    [GitHub#162](https://github.com/test-unit/test-unit/pull/162)[Reported by xgraffm]
 
 ### Thanks
 
@@ -181,10 +181,10 @@
 
   * Added support for defining methods to test case class in multiple
     threads.
-    [GitHub#159][Reported by Charles Oliver Nutter]
+    [GitHub#159](https://github.com/test-unit/test-unit/pull/159)[Reported by Charles Oliver Nutter]
 
   * Suppressed warnings on Ruby 2.5.
-    [GitHub#160][Reported by Daniel Berger]
+    [GitHub#160](https://github.com/test-unit/test-unit/pull/160)[Reported by Daniel Berger]
 
   * Suppressed warnings on Ruby 2.7.
 
@@ -192,7 +192,7 @@
 
   * Fixed a code snippet fetch failure when source code isn't UTF-8
     and the default external encoding is set to not UTF-8.
-    [GitHub#161][Reported by masa kunikata]
+    [GitHub#161](https://github.com/test-unit/test-unit/pull/161)[Reported by masa kunikata]
 
 ### Thanks
 
@@ -285,10 +285,10 @@
 ### Improvements
 
   * Added source code link to gemspec.
-    [GitHub#157][Patch by Grey Baker]
+    [GitHub#157](https://github.com/test-unit/test-unit/pull/157)[Patch by Grey Baker]
 
   * Changed to use SVG image for badges in README.
-    [GitHub#158][Patch by Olle Jonsson]
+    [GitHub#158](https://github.com/test-unit/test-unit/pull/158)[Patch by Olle Jonsson]
 
   * [UI][console]: Added `--reverse-output` option to output fault
     details in reverse like Ruby 2.5. It's enabled by default only for
@@ -297,7 +297,7 @@
 ### Fixes
 
   * Fixed a typo.
-    [GitHub#156][Patch by masa kunikata]
+    [GitHub#156](https://github.com/test-unit/test-unit/pull/156)[Patch by masa kunikata]
 
   * [UI][console]: Fixed a bug that broken align in verbose mode.
 
@@ -314,7 +314,7 @@
 ### Improvements
 
   * Changed test file require failure to error from omission.
-    [GitHub#154][Patch by naofumi-fujii]
+    [GitHub#154](https://github.com/test-unit/test-unit/pull/154)[Patch by naofumi-fujii]
 
 ### Thanks
 
@@ -325,7 +325,7 @@
 ### Improvements
 
   * Supported `--enable-frozen-string-literal` `ruby` option.
-    [GitHub#149][Reported by Pat Allan]
+    [GitHub#149](https://github.com/test-unit/test-unit/pull/149)[Reported by Pat Allan]
 
 ### Thanks
 
@@ -335,41 +335,41 @@
 
 ### Improvements
 
-  * Updated tests for Ruby 2.4. [GitHUb#136][Patch by Kazuki Tsujimoto]
+  * Updated tests for Ruby 2.4. [GitHub#136](https://github.com/test-unit/test-unit/pull/136)[Patch by Kazuki Tsujimoto]
 
-  * Supported power\_assert 1.0.0. [GitHub#137][Patch by Kazuki Tsujimoto]
+  * Supported power\_assert 1.0.0. [GitHub#137](https://github.com/test-unit/test-unit/pull/137)[Patch by Kazuki Tsujimoto]
 
   * Added the getting started document.
-    [GitHub#139][GitHub#141][Patch by Hiroyuki Sato]
+    [GitHub#139](https://github.com/test-unit/test-unit/pull/139)[GitHub#141](https://github.com/test-unit/test-unit/pull/141)[Patch by Hiroyuki Sato]
 
   * Added the document for `attribute`.
-    [GitHub#143][Patch by Fumiaki MATSUSHIMA]
+    [GitHub#143](https://github.com/test-unit/test-unit/pull/143)[Patch by Fumiaki MATSUSHIMA]
 
-  * Improved a link for GitHub. [GitHub#144][Patch by rochefort]
+  * Improved a link for GitHub. [GitHub#144](https://github.com/test-unit/test-unit/pull/144)[Patch by rochefort]
 
-  * Updated `.travis.yml`. [GitHub#145][Patch by Jun Aruga]
+  * Updated `.travis.yml`. [GitHub#145](https://github.com/test-unit/test-unit/pull/145)[Patch by Jun Aruga]
 
 ### Fixes
 
-  * Fixed a contributor name. [GitHub#131][Patch by Akira Matsuda]
+  * Fixed a contributor name. [GitHub#131](https://github.com/test-unit/test-unit/pull/131)[Patch by Akira Matsuda]
 
-  * Fixed typos in document. [GitHub#132][Patch by Akira Matsuda]
+  * Fixed typos in document. [GitHub#132](https://github.com/test-unit/test-unit/pull/132)[Patch by Akira Matsuda]
 
-  * Fixed typos in document. [GitHub#134][Patch by Yuji Yaginuma]
+  * Fixed typos in document. [GitHub#134](https://github.com/test-unit/test-unit/pull/134)[Patch by Yuji Yaginuma]
 
   * Fixed a bug that data label with "(" isn't supported.
-    [GitHub#135][Reported by Kazuki Tsujimoto]
+    [GitHub#135](https://github.com/test-unit/test-unit/pull/135)[Reported by Kazuki Tsujimoto]
 
   * Fixed assertion message in English.
-    [GitHub#133][Reported by Khalil Fazal]
+    [GitHub#133](https://github.com/test-unit/test-unit/pull/133)[Reported by Khalil Fazal]
 
-  * Fixed a typo in typo fix. [GitHub#138][Patch by kami]
+  * Fixed a typo in typo fix. [GitHub#138](https://github.com/test-unit/test-unit/pull/138)[Patch by kami]
 
   * Fixed a bug that target location finder may return wrong
-    location. [GitHub#146][Patch by Yuki Ito]
+    location. [GitHub#146](https://github.com/test-unit/test-unit/pull/146)[Patch by Yuki Ito]
 
   * Fixed a bug that `--no-show-detail-immediately` raises an error.
-    [GitHub#147][Reported by MSP-Greg]
+    [GitHub#147](https://github.com/test-unit/test-unit/pull/147)[Reported by MSP-Greg]
 
 ### Thanks
 
@@ -400,7 +400,7 @@
 ### Fixes
 
   * Fixed a bug that `--order` isn't applied.
-    [GitHub#129][Reported by Vít Ondruch]
+    [GitHub#129](https://github.com/test-unit/test-unit/pull/129)[Reported by Vít Ondruch]
 
 ### Thanks
 
@@ -411,14 +411,14 @@
 ### Improvements
 
   * Improved Travis CI configuration.
-    [GitHub#123][Patch by Ryunosuke Sato]
+    [GitHub#123](https://github.com/test-unit/test-unit/pull/123)[Patch by Ryunosuke Sato]
 
   * Supported Java native exception.
-    [GitHub#126][Reported by Bob Saveland]
+    [GitHub#126](https://github.com/test-unit/test-unit/pull/126)[Reported by Bob Saveland]
 
 ### Fixes
 
-  * doc: Fixed markup. [GitHub#127][Patch by Tomohiro Hashidate]
+  * doc: Fixed markup. [GitHub#127](https://github.com/test-unit/test-unit/pull/127)[Patch by Tomohiro Hashidate]
 
   * Fixed a bug that `--location=LINE` may not detect a test when
     fixtures are defined before any tests:
@@ -455,7 +455,7 @@
 
   * Reported norification when data driven test doesn't have
     parameter.
-    [GitHub#122][Reported by Satoshi "Moris" Tagomori]
+    [GitHub#122](https://github.com/test-unit/test-unit/pull/122)[Reported by Satoshi "Moris" Tagomori]
 
 ### Thanks
 
@@ -468,7 +468,7 @@
 ### Improvements
 
   * Supported rxvt family terminals as color available terminals.
-    [GitHub#121][Reported by Ippei Kishida]
+    [GitHub#121](https://github.com/test-unit/test-unit/pull/121)[Reported by Ippei Kishida]
 
 ### Thanks
 
@@ -479,7 +479,7 @@
 ### Fixes
 
   * Fixed conflict with test-unit-power_assert.
-    [GitHub#120][Patch by Kazuki Tsujimoto]
+    [GitHub#120](https://github.com/test-unit/test-unit/pull/120)[Patch by Kazuki Tsujimoto]
 
   * Fixed a bug that path in `$LOAD_PATH` may be removed.
 
@@ -508,7 +508,7 @@ It's a Ruby on Rails integration improvement release.
 ### Improvements
 
   * Filtered backtrace of power\_assert.
-    [GitHub#114]
+    [GitHub#114](https://github.com/test-unit/test-unit/pull/114)
   * Improved performance to retrieve test defined location.
   * Improved performance to run fixtures in a test.
   * Supported running a test by `yield` in `setup`:
@@ -548,7 +548,7 @@ It's a Ruby on Rails integration improvement release.
 
   * Fixed a bug that test isn't ran. The test has the same name as
     data driven test that is defined in parent test case.
-    [GitHub#115]
+    [GitHub#115](https://github.com/test-unit/test-unit/pull/115)
 
 ## 3.1.5 - 2015-10-09 {#version-3-1-5}
 
@@ -558,7 +558,7 @@ It's a Rack integration improvement release.
 
   * Renamed experimental top-level `run` method to `run_test` method
     because `run` is conflicted with Rack.
-    [GitHub#32][GitHub:basecamp/pow#303] [Reported by Yevhen Viktorov]
+    [GitHub#32](https://github.com/test-unit/test-unit/pull/32)[GitHub:basecamp/pow#303] [Reported by Yevhen Viktorov]
 
 ### Thanks
 
@@ -570,14 +570,14 @@ It's a minor improvement release.
 
 ### Improvements
 
-  * Updated sample code. [GitHub#109][Patch by takiy33]
-  * Updated .travis.yml. [GitHub#110][Patch by takiy33]
+  * Updated sample code. [GitHub#109](https://github.com/test-unit/test-unit/pull/109)[Patch by takiy33]
+  * Updated .travis.yml. [GitHub#110](https://github.com/test-unit/test-unit/pull/110)[Patch by takiy33]
   * document: Added table header in how to document.
-    [GitHub#111][Patch by takiy33]
+    [GitHub#111](https://github.com/test-unit/test-unit/pull/111)[Patch by takiy33]
   * Removed duplicated code.
-    [GitHub#112][Patch by takiy33]
+    [GitHub#112](https://github.com/test-unit/test-unit/pull/112)[Patch by takiy33]
   * Removed needless encoding conversion in fetching code snippet.
-    [GitHub#113][Patch by NARUSE, Yui]
+    [GitHub#113](https://github.com/test-unit/test-unit/pull/113)[Patch by NARUSE, Yui]
 
 ### Thanks
 
@@ -590,7 +590,7 @@ It's a bug fix release.
 
 ### Improvements
 
-  * Removed unused `TODO` file. [GitHub#108][Patch by takiy33]
+  * Removed unused `TODO` file. [GitHub#108](https://github.com/test-unit/test-unit/pull/108)[Patch by takiy33]
 
 ### Fixes
 
@@ -645,7 +645,7 @@ It's a bug fix release.
 
   * Fixed a bug that `--location` detects tests not only in sub test
     case but also parent test case.
-    [GitHub#105][Reported by wanabe]
+    [GitHub#105](https://github.com/test-unit/test-unit/pull/105)[Reported by wanabe]
 
 ### Thanks
 
@@ -662,18 +662,18 @@ It's a bug fix release.
 ### Fixes
 
   * Fixed a bug that priority mode can't be used on Windows.
-    [GitHub#95][Reported by Daniel Berger]
+    [GitHub#95](https://github.com/test-unit/test-unit/pull/95)[Reported by Daniel Berger]
   * Fixed a homepage URL RubyGems spec.
-    [GitHub#96][Patch by Masayoshi Takahashi]
-    supported.) [GitHub#89][Patch by Aaron Stone]
+    [GitHub#96](https://github.com/test-unit/test-unit/pull/96)[Patch by Masayoshi Takahashi]
+    supported.) [GitHub#89](https://github.com/test-unit/test-unit/pull/89)[Patch by Aaron Stone]
   * Fixed a bug that shutdown hook isn't called when pass throw
     exception such as `Interrupt` is raised.
-    [GitHub#98][Reported by jeremiahishere.]
+    [GitHub#98](https://github.com/test-unit/test-unit/pull/98)[Reported by jeremiahishere.]
   * Fixed typos in documents.
-    [GitHub#100][Reported by scivola]
-    [GitHub#102][GitHub#103][Patch by Masafumi Yokoyama]
+    [GitHub#100](https://github.com/test-unit/test-unit/pull/100)[Reported by scivola]
+    [GitHub#102](https://github.com/test-unit/test-unit/pull/102)[GitHub#103](https://github.com/test-unit/test-unit/pull/103)[Patch by Masafumi Yokoyama]
   * Fixed a bug that the same name test isn't executed in sub test case.
-    [GitHub#104][Reported by wanabe]
+    [GitHub#104](https://github.com/test-unit/test-unit/pull/104)[Reported by wanabe]
 
 ### Thanks
 
@@ -691,9 +691,9 @@ It's a release that improves colors.
 ### Improvements
 
   * Added a work around for Ruby 1.8. (Note: Ruby 1.8 isn't
-    supported.) [GitHub#89][Patch by Aaron Stone]
+    supported.) [GitHub#89](https://github.com/test-unit/test-unit/pull/89)[Patch by Aaron Stone]
   * Supported colorized output on Windows.
-    [GitHub#90][Patch by usa]
+    [GitHub#90](https://github.com/test-unit/test-unit/pull/90)[Patch by usa]
   * Improved colorized output.
     http://www.a-k-r.org/d/2014-12.html#a2014_12_27_1
     [Suggested by Tanaka Akira]
@@ -713,7 +713,7 @@ It's a release that supports Ruby 2.2.0 preview2.
   * Added a link for YARD in README.
     [GitHub:test-unit.github.io#2][Reported by sunnyone]
   * Added description about "/PATTERN/" style value in auto runner usage.
-    [GitHub#86][Suggested by sunnyone]
+    [GitHub#86](https://github.com/test-unit/test-unit/pull/86)[Suggested by sunnyone]
   * Supported Ruby 2.2.0 preview2 in `assert_throw` and
     `assert_nothing_thrown`.
 
@@ -721,7 +721,7 @@ It's a release that supports Ruby 2.2.0 preview2.
 
   * Fixed a bug that error report is failed when source encoding and
     locale encoding are different.
-    [GitHub#87][Reported by scivola]
+    [GitHub#87](https://github.com/test-unit/test-unit/pull/87)[Reported by scivola]
 
 ### Thanks
 
@@ -736,7 +736,7 @@ It's a minor update release.
 
   * Fixed a bug that teardown blocks aren't called with sub class to
     parent class order.
-    [GitHub#85][Reported by TOMITA Masahiro]
+    [GitHub#85](https://github.com/test-unit/test-unit/pull/85)[Reported by TOMITA Masahiro]
 
 ### Thanks
 
@@ -749,7 +749,7 @@ It's a minor update release.
 ### Improvements
 
   * Improved code snippet location.
-    [GitHub#84][Patch by Yuki Kurihara]
+    [GitHub#84](https://github.com/test-unit/test-unit/pull/84)[Patch by Yuki Kurihara]
 
 ### Thanks
 
@@ -763,7 +763,7 @@ It's a minor update release.
 
   * Fixed a bug that startup/shutdown of parent test case isn't called
     when the test case includes one or more modules.
-    [GitHub#83][Reported by Chadderton Odwazny]
+    [GitHub#83](https://github.com/test-unit/test-unit/pull/83)[Reported by Chadderton Odwazny]
 
 ### Thanks
 
@@ -777,7 +777,7 @@ It's a minor update release.
 
   * Stopped to remove JRuby and Rubinius internal backtrace entries from
     backtrace on failure/error.
-    [GitHub#82][Patch by Charles Oliver Nutter]
+    [GitHub#82](https://github.com/test-unit/test-unit/pull/82)[Patch by Charles Oliver Nutter]
 
 ### Thanks
 
@@ -797,7 +797,7 @@ It's a minor update release.
 ### Fixes
 
   * Fixed markup in document.
-    [GitHub#81][Patch by Masafumi Yokoyama]
+    [GitHub#81](https://github.com/test-unit/test-unit/pull/81)[Patch by Masafumi Yokoyama]
 
 ### Thanks
 
@@ -812,18 +812,18 @@ It's a minor update release.
 
   * Supported broken `==` implementation.
     `==` implementation should be fixed but it's not work of test-unit. :<
-    [GitHub#71][Reported by Emily]
+    [GitHub#71](https://github.com/test-unit/test-unit/pull/71)[Reported by Emily]
   * [UI][console]: Accepted no message failure.
-    [GitHub#66][Reported by Brian Tatnall]
+    [GitHub#66](https://github.com/test-unit/test-unit/pull/66)[Reported by Brian Tatnall]
   * Updated gem description.
-    [GitHub#74][Patch by Vít Ondruch]
+    [GitHub#74](https://github.com/test-unit/test-unit/pull/74)[Patch by Vít Ondruch]
   * Updated GPL text.
-    [GitHub#78][Patch by Vít Ondruch]
+    [GitHub#78](https://github.com/test-unit/test-unit/pull/78)[Patch by Vít Ondruch]
 
 ### Fixes
 
   * Removed needless executable bit from README file.
-    [GitHub#79][Patch by Vít Ondruch]
+    [GitHub#79](https://github.com/test-unit/test-unit/pull/79)[Patch by Vít Ondruch]
 
 ### Thanks
 
@@ -839,7 +839,7 @@ It's a minor update release.
 
   * Improved Ruby 1.8.7 support. Note that we don't support Ruby 1.8.7
     actively. We just support if its support is painless.
-    [GitHub#71][Patch by estolfo]
+    [GitHub#71](https://github.com/test-unit/test-unit/pull/71)[Patch by estolfo]
 
 ### Thanks
 
@@ -852,10 +852,10 @@ It's Power Assert supported release!
 ### Improvements
 
   * Improved Rubinius support. [Ryo Onodera]
-  * Updated RR repository link. [GitHub#56][Patch by Kenichi Kamiya]
+  * Updated RR repository link. [GitHub#56](https://github.com/test-unit/test-unit/pull/56)[Patch by Kenichi Kamiya]
   * Added some minitest compatible assertions. We don't recommend
     using these assertions. They are just for migrating from minitest.
-    [GitHub#57][Patch by Karol Bucek]
+    [GitHub#57](https://github.com/test-unit/test-unit/pull/57)[Patch by Karol Bucek]
     * {Test::Unit::Assertions#refute}
     * {Test::Unit::Assertions#refute_predicate}
     * {Test::Unit::Assertions#refute_empty}
@@ -869,13 +869,13 @@ It's Power Assert supported release!
     * {Test::Unit::Assertions#refute_operator}
   * Improved code readability. [Suggested by Kenichi Kamiya]
   * Made license field in RubyGems parseable.
-    [GitHub#60][Patch by Michael Grosser]
+    [GitHub#60](https://github.com/test-unit/test-unit/pull/60)[Patch by Michael Grosser]
   * Improved test case match feature by `--testcase` and `--ignore-testcase`
     options. They also checks parent class names.
   * Made inspected representation of Numeric objects especially
-    BigDecimal more readable. [GitHub#64][Reported by Byron Appelt]
+    BigDecimal more readable. [GitHub#64](https://github.com/test-unit/test-unit/pull/64)[Reported by Byron Appelt]
   * Added badges for Traivs CI and RubyGems.
-    [GitHub#65][Patch by Byron Appelt]
+    [GitHub#65](https://github.com/test-unit/test-unit/pull/65)[Patch by Byron Appelt]
   * Supported Power Assert. You can use Power Assert with
     {Test::Unit::Assertions#assert} with block. See method document
     for details. We recommend using Power Assert for predicate method
@@ -889,10 +889,10 @@ It's Power Assert supported release!
 ### Fixes
 
   * Fixed a bug that test case defined by block has wrong location.
-    [GitHub#58][Patch by Narihiro Nakamura]
+    [GitHub#58](https://github.com/test-unit/test-unit/pull/58)[Patch by Narihiro Nakamura]
   * Fixed a bug that test methods defined in included modules in
     super-class are also collected.
-    [GitHub#62][GitHub#63][Patch by Karol Bucek]
+    [GitHub#62](https://github.com/test-unit/test-unit/pull/62)[GitHub#63](https://github.com/test-unit/test-unit/pull/63)[Patch by Karol Bucek]
 
 ### Thanks
 
@@ -910,14 +910,14 @@ It's Ruby 2.0.0 supported release!
 
 ### Improvements
 
-  * Supported Ruby 2.0.0. [GitHub#54] [Reported by mtasaka]
+  * Supported Ruby 2.0.0. [GitHub#54](https://github.com/test-unit/test-unit/pull/54) [Reported by mtasaka]
   * Accepted screen-256color TERM as 256 colors available environment.
-    [GitHub#55] [Reported by Tom Miller]
+    [GitHub#55](https://github.com/test-unit/test-unit/pull/55) [Reported by Tom Miller]
 
 ### Fixes
 
   * Fixed a typo in document.
-    [GitHub#53] [Patch by Baptiste Fontaine]
+    [GitHub#53](https://github.com/test-unit/test-unit/pull/53) [Patch by Baptiste Fontaine]
   * Fixed a bug in {Test::Unit::Assertions#assert_in_epsilon}. It doesn't work
     as expected if expected value is negative value.
     [Ruby Bug #8317] [Reported by Nobuhiro IMAI]
@@ -942,7 +942,7 @@ It's a bug fix release.
 ### Fixes
 
   * Fixed a bug. It is too slow to filter tests when there are many
-    tests. [GitHub#46]
+    tests. [GitHub#46](https://github.com/test-unit/test-unit/pull/46)
   * Accept anonymous test suite.
     [GitHub:#49] [Reported by Matthew Rudy Jacobs]
 
@@ -960,21 +960,21 @@ It's a release for minitest compatibility and bug fix.
   * Added some assersion methods just for minitest compatibility.
     Added methods are assert_includes(), refute_*() and refute().
     If you are test-unit user, please don't use them.
-    [GitHub#40] [Suggested by Michael Grosser]
+    [GitHub#40](https://github.com/test-unit/test-unit/pull/40) [Suggested by Michael Grosser]
   * Added --attribute option to select target tests by attribute.
     [test-unit-users-en:00098] [Suggested by Piotr Nestorow]
 
 ### Fixes
 
   * Allowed use of test for inheritance in ActionController::TestCase.
-    [GitHub#42] [Patch by David Rasch]
+    [GitHub#42](https://github.com/test-unit/test-unit/pull/42) [Patch by David Rasch]
   * Ensured evaluating at_exit block in top level.
     In IRB context, exit() specifies irb_exit().
     [test-unit-users-en:00089] [Reported by Daniel Berger]
   * Fixed a bug that decoration style description is ignored.
     "decoration style description" are using description method
     above "def test_name" or with Symbol specifying test_name.
-    [GitHub#45] [Reported by Piotr Nestorow]
+    [GitHub#45](https://github.com/test-unit/test-unit/pull/45) [Reported by Piotr Nestorow]
 
 ### Thanks
 
@@ -992,10 +992,10 @@ feature to `context` in shoulda-context and RSpec.
 ### Improvements
 
   * Cleaned up tests.
-    [GitHub#34] [Patch by Michael Grosser]
+    [GitHub#34](https://github.com/test-unit/test-unit/pull/34) [Patch by Michael Grosser]
   * Added missing background color for 8 color environment.
   * Added workaround for NetBeans.
-    [GitHub#38] [Reported by Marc Cooper]
+    [GitHub#38](https://github.com/test-unit/test-unit/pull/38) [Reported by Marc Cooper]
   * Added `--location` command line option that selects target tests
     by test defined location.
   * Created sub test suite for each subclassed test case.
@@ -1005,7 +1005,7 @@ feature to `context` in shoulda-context and RSpec.
     [Good hook name is suggested by kdmsnr]
   * Improved code snippet target on failure. Test method is always used
     for code snippet target.
-    [GitHub#39] [Suggested by Michael Grosser]
+    [GitHub#39](https://github.com/test-unit/test-unit/pull/39) [Suggested by Michael Grosser]
   * Added {Test::Unit::TestCase.sub_test_case} that creates sub test case.
     The sub test case name isn't limited Ruby's constant name rule. You can
     specify the sub test case name in free form.
@@ -1023,16 +1023,16 @@ It's a bug fix release.
 ### Improvements
 
   * Supported installing from GitHub.
-    [GitHub#29] [Suggested by Michael Grosser]
+    [GitHub#29](https://github.com/test-unit/test-unit/pull/29) [Suggested by Michael Grosser]
   * Supported ActiveSupport::TestCase.
-    [GitHub#30] [Reported by Michael Grosser]
+    [GitHub#30](https://github.com/test-unit/test-unit/pull/30) [Reported by Michael Grosser]
   * [ui][console] Improved multiline falut message display.
 
 ### Fixes
 
   * [ui][console] Fixed a bug that expected and actual values are
     empty.
-    [GitHub#31][GitHub#33]
+    [GitHub#31](https://github.com/test-unit/test-unit/pull/31)[GitHub#33](https://github.com/test-unit/test-unit/pull/33)
     [Reported by Kendall Buchanan][Reported by Mathieu Martin]
     [Hinted by Michael Grosser]
   * Fixed a bug that .gemspec can't be loaded on LANG=C.
@@ -1053,7 +1053,7 @@ It's a bug fix release.
 
   * Fixed a backward incompatibility of `TestUnitMediator#run_suite`
     introduced in 2.4.9.
-    [GitHub#28] [Reported by Vladislav Rassokhin]
+    [GitHub#28](https://github.com/test-unit/test-unit/pull/28) [Reported by Vladislav Rassokhin]
 
 ### Thanks
 
@@ -1074,7 +1074,7 @@ It's a bug fix release.
   * Supported showing ASCII-8BIT diff in failure message.
   * [ui][console] Supported `ENV["TERM"] == "xterm-256color"` as color
     available terminal.
-    [GitHub#26] [Reported by Michael Grosser]
+    [GitHub#26](https://github.com/test-unit/test-unit/pull/26) [Reported by Michael Grosser]
   * [ui][console] Supported "-256color" suffix `ENV["TERM"]` terminal
     as 256 color supported terminal.
 
@@ -1085,7 +1085,7 @@ It's a bug fix release.
     says.
     [RubyForge#29554] [Reported by Bob Saveland]
   * Added missing `require "test/unit/diff"`.
-    [GitHub#25] [Reported by Stephan Kulow]
+    [GitHub#25](https://github.com/test-unit/test-unit/pull/25) [Reported by Stephan Kulow]
 
 ### Thanks
 
