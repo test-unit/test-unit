@@ -454,7 +454,7 @@ EOT
       alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
-      # Passes if `object` is nil.
+      # Passes if `object`.nil?.
       #
       # @example
       #   assert_nil [1, 2].uniq!
