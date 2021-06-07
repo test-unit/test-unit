@@ -627,7 +627,7 @@ EOT
       ##
       # Compares the `object1` with `object2` using `operator`.
       #
-      # Passes if object1.__send__(operator, object2) is true.
+      # Passes if object1.__send__(operator, object2) is not false nor nil.
       #
       # @example
       #   assert_operator 5, :>=, 4
@@ -647,7 +647,7 @@ EOT
       ##
       # Compares the `object1` with `object2` using `operator`.
       #
-      # Passes if object1.__send__(operator, object2) is not true.
+      # Passes if object1.__send__(operator, object2) is false or nil.
       #
       # @example
       #   assert_not_operator(5, :<, 4) # => pass
@@ -1177,7 +1177,7 @@ EOT
 
       public
       ##
-      # Passes if the method send returns a true value.
+      # Passes if the method send returns not false nor nil.
       #
       # `send_array` is composed of:
       # * A receiver
@@ -1217,7 +1217,7 @@ EOT
       end
 
       ##
-      # Passes if the method send doesn't return a true value.
+      # Passes if the method send returns false or nil.
       #
       # `send_array` is composed of:
       # * A receiver
@@ -1306,7 +1306,7 @@ EOT
 
       ##
       # Passes if expression "`expected` `operator`
-      # `actual`" is true.
+      # `actual`" is not false nor nil.
       #
       # @example
       #   assert_compare(1, "<", 10)  # -> pass
@@ -1435,7 +1435,7 @@ EOT
       end
 
       ##
-      # Passes if `object`.`predicate` is _true_.
+      # Passes if `object`.`predicate` is not false nor nil.
       #
       # @example
       #   assert_predicate([], :empty?)  # -> pass
@@ -1457,7 +1457,7 @@ EOT
       end
 
       ##
-      # Passes if `object`.`predicate` is not _true_.
+      # Passes if `object`.`predicate` is false or nil.
       #
       # @example
       #   assert_not_predicate([1], :empty?) # -> pass
