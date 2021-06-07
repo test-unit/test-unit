@@ -1,3 +1,5 @@
+# Getting Started
+
 ## 1. First step of the `test-unit`
 
 Let's getting start `test-unit`.
@@ -9,23 +11,21 @@ This document creates an example gem package called `sample` with the `test-unit
 * First, install the `bundler` gem for generating gem template.
 * Second, install the `test-unit` itself.
 
-~~~
-!!!plain
+```shell
 gem install bundler
 gem install test-unit
-~~~
+```
 
 The `gem list` command output installed packages.
 You will find the following lines.
 
-~~~
-!!!plain
-gem list
+```console
+$ gem list
 ...
 bundler (1.14.6)
 ...
 test-unit (3.2.3)
-~~~
+```
 
 ## 3. Create gem template.
 
@@ -39,8 +39,7 @@ After that, replace some files for `test-unit`.
 
 The `bundle gem -t minitest sample` command will generate the following files.
 
-~~~
-!!!plain
+```plaintext
 .
 |-- Gemfile
 |-- README.md
@@ -56,7 +55,7 @@ The `bundle gem -t minitest sample` command will generate the following files.
 `-- test
     |-- sample_test.rb # <- Modify
     `-- test_helper.rb # <- Modify
-~~~
+```
 
 ## 4. Edit files for `test-unit`
 
@@ -67,17 +66,15 @@ Replace `minitest` line to `test-unit`.
 
 Before
 
-~~~
-!!!ruby
+```ruby
   spec.add_development_dependency "minitest", "~> 5.0"
-~~~
+```
 
 After
 
-~~~
-!!!ruby
+```ruby
   spec.add_development_dependency "test-unit", "~> 3.2.3"
-~~~
+```
 
 ### 4.2. Edit `test/test_helper.rb`
 
@@ -85,31 +82,28 @@ Next, edit the `test/test_helper.rb` file.
 
 Before
 
-~~~
-!!!ruby
+```ruby
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'sample'
 
 require 'minitest/autorun' # <-- Modify this line.
-~~~
+```
 
 After
 
-~~~
-!!!ruby
+```ruby
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'sample'
 
 require 'test/unit' # <-- After modification.
-~~~
+```
 
 ### 4.3 Rakefile (No edit)
 
 This file doesn't need to modify.
 The output is the below.
 
-~~~
-!!!ruby
+```ruby
 require "bundler/gem_tasks"
 require "rake/testtask"
 
@@ -120,7 +114,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :default => :test
-~~~
+```
 
 ### 4.4 Edit `test/sample_test.rb`
 
@@ -131,8 +125,7 @@ Let's modify this file for `test-unit`
 
 before
 
-~~~
-!!!ruby
+```ruby
 require 'test_helper'
 
 class SampleTest < Minitest::Test # <- Modify here
@@ -144,12 +137,11 @@ class SampleTest < Minitest::Test # <- Modify here
     assert false
   end
 end
-~~~
+```
 
 After
 
-~~~
-!!!ruby
+```ruby
 require 'test_helper'
 
 class SampleTest < Test::Unit::TestCase # <- After modification
@@ -161,16 +153,15 @@ class SampleTest < Test::Unit::TestCase # <- After modification
     assert false
   end
 end
-~~~
+```
 
 ## 5. Execute test.
 
 The `rake test` command execute test scenarios in the `test` directory.
 Now it tries to two tests. One will success the other one fails.
 
-~~~
-!!!plain
-rake test
+```console
+$ rake test
 Loaded suite
 /path/to/ruby/lib/ruby/gems/2.3.0/gems/rake-12.0.0/lib/rake/rake_test_loader
 Started
@@ -199,7 +190,7 @@ Command failed with status (1)
 
 Tasks: TOP => test
 (See full trace by running task with --trace)
-~~~
+```
 
 ## 6. Create original tests.
 
@@ -211,19 +202,17 @@ Let's create your original tests with the following rules.
 
 Example directory layout.
 
-~~~
-!!!plain
+```plaintext
 test
 |-- sample_test.rb
 |-- sub
 |   `-- sample2_test.rb
 `-- test_helper.rb
-~~~
+```
 
 Example test file in the sub directory.
 
-~~~
-!!!ruby
+```ruby
 require 'test_helper'
 
 module Sub
@@ -237,7 +226,7 @@ module Sub
     end
   end
 end
-~~~
+```
 
 ## 7. For more inforomation
 
