@@ -25,7 +25,7 @@ writing tests, checking results and automated testing in Ruby.
   to radically change very soon).
 
 * test-unit will be improved actively and may break
-  compatiblity with test-unit 1.2.3. (We will not hope it
+  compatibility with test-unit 1.2.3. (We will not hope it
   if it isn't needed.)
 
 * Some features exist as separated gems like GUI test
