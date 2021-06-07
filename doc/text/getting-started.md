@@ -239,7 +239,7 @@ module Sub
 end
 ~~~
 
-## 7. For more inforomation
+## 7. For more information
 
 Let's read the official document.
 

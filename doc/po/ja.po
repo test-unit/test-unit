@@ -530,7 +530,7 @@ msgid ""
 "~~~"
 msgstr ""
 
-msgid "## 7. For more inforomation"
+msgid "## 7. For more information"
 msgstr "## 7. 詳細な情報"
 
 msgid "Let's read the official document."
