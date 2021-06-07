@@ -1177,7 +1177,7 @@ EOT
 
       public
       ##
-      # Passes if the method send returns not false nor nil.
+      # Passes if the method `__send__` returns not false nor nil.
       #
       # `send_array` is composed of:
       # * A receiver
@@ -1217,7 +1217,7 @@ EOT
       end
 
       ##
-      # Passes if the method send returns false or nil.
+      # Passes if the method `__send__` returns false or nil.
       #
       # `send_array` is composed of:
       # * A receiver
