@@ -1686,12 +1686,12 @@ EOT
       #   with any `block`.
       #
       #   @example Pass patterns
-      #     assert_all?([1, 2, 3]) {|item| item > 0} # => pass
-      #     assert_all?([1, 2, 3], &:positive?)      # => pass
-      #     assert_all?([]) {|item| false}           # => pass
+      #     assert_all([1, 2, 3]) {|item| item > 0} # => pass
+      #     assert_all([1, 2, 3], &:positive?)      # => pass
+      #     assert_all([]) {|item| false}           # => pass
       #
       #   @example Failure pattern
-      #     assert_all?([0, 1, 2], &:zero?) # => failure
+      #     assert_all([0, 1, 2], &:zero?) # => failure
       #
       #   @param [#each] collection The check target.
       #   @param [String] message The additional user message. It is
