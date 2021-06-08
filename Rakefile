@@ -17,9 +17,16 @@ require "erb"
 require "yaml"
 require "rubygems"
 require "rake/clean"
-require "yard"
 require "bundler/gem_helper"
 require "packnga"
+
+
+begin
+  require "yard"
+rescue LoadError
+  puts 'can not use yard in this environment'
+end
+
 
 task :default => :test
 
