@@ -447,7 +447,7 @@ module Test
         # @private
         @@method_locations = {}
         # @private
-        @@method_location_mutex = Mutex.new
+        @@method_location_mutex = Thread::Mutex.new
 
         # @private
         def method_locations
