@@ -1,13 +1,13 @@
 # News
 
-## 3.4.4 - 2021-06-04 {#version-3-4-4}
+## 3.4.4 - 2021-06-04
 
 ### Improvements
 
   * Rename `assert_all?` to `assert_all`. `assert_all?` is deprecated
     but is available.
 
-## 3.4.3 - 2021-06-04 {#version-3-4-3}
+## 3.4.3 - 2021-06-04
 
 ### Improvements
 
@@ -17,14 +17,14 @@
 
   * Added support for `assert_raise_with_message`.
 
-## 3.4.2 - 2021-05-30 {#version-3-4-2}
+## 3.4.2 - 2021-05-30
 
 ### Improvements
 
   * [UI][console]: Improved diff readability for no color
     case. Character based diff marks are always showed.
 
-## 3.4.1 - 2021-04-19 {#version-3-4-1}
+## 3.4.1 - 2021-04-19
 
 ### Fixes
 
@@ -37,13 +37,13 @@
 
   * akira yamada
 
-## 3.4.0 - 2021-01-30 {#version-3-4-0}
+## 3.4.0 - 2021-01-30
 
 ### Improvements
 
   * Enable deprecated warnings by default.
 
-## 3.3.9 - 2020-12-29 {#version-3-3-9}
+## 3.3.9 - 2020-12-29
 
 ### Improvements
 
@@ -54,14 +54,14 @@
 
   * David Rodríguez
 
-## 3.3.8 - 2020-12-25 {#version-3-3-8}
+## 3.3.8 - 2020-12-25
 
 ### Improvements
 
   * [UI][console]: Removed reverse mode because Ruby 3.0 reverts
     reverse backtrace.
 
-## 3.3.7 - 2020-11-18 {#version-3-3-7}
+## 3.3.7 - 2020-11-18
 
 ### Improvements
 
@@ -92,7 +92,7 @@
 
   * nicholas a. evans
 
-## 3.3.6 - 2020-06-10 {#version-3-3-6}
+## 3.3.6 - 2020-06-10
 
 ### Improvements
 
@@ -112,7 +112,7 @@
 
   * Jun Aruga
 
-## 3.3.5 - 2020-01-10 {#version-3-3-5}
+## 3.3.5 - 2020-01-10
 
 ### Improvements
 
@@ -123,7 +123,7 @@
 
   * Yuta Iwama
 
-## 3.3.4 - 2019-09-30 {#version-3-3-4}
+## 3.3.4 - 2019-09-30
 
 ### Improvements
 
@@ -139,14 +139,14 @@
 
   * Benoit Daloze
 
-## 3.3.3 - 2019-05-10 {#version-3-3-3}
+## 3.3.3 - 2019-05-10
 
 ### Fixed
 
   * Fixed a bug that priority mode with test case name that uses
     special characters such as `?` can't be used on Windows.
 
-## 3.3.2 - 2019-04-11 {#version-3-3-2}
+## 3.3.2 - 2019-04-11
 
 ### Fixes
 
@@ -159,7 +159,7 @@
 
   * Kenta Murata
 
-## 3.3.1 - 2019-03-27 {#version-3-3-1}
+## 3.3.1 - 2019-03-27
 
 ### Improvements
 
@@ -172,7 +172,7 @@
 
   * xgraffm
 
-## 3.3.0 - 2019-01-23 {#version-3-3-0}
+## 3.3.0 - 2019-01-23
 
 ### Improvements
 
@@ -202,7 +202,7 @@
 
   * masa kunikata
 
-## 3.2.9 - 2018-12-01 {#version-3-2-9}
+## 3.2.9 - 2018-12-01
 
 ### Improvements
 
@@ -273,14 +273,14 @@
       * label: `"group: :g2, a: :y, b: -1"`, data: `{a: :y, b: -1}`
       * label: `"group: :g2, a: :y, b: -2"`, data: `{a: :y, b: -2}`
 
-## 3.2.8 - 2018-05-13 {#version-3-2-8}
+## 3.2.8 - 2018-05-13
 
 ### Improvements
 
   * [UI][console]: Changed to put code snippet before backtrace on
     reverse mode.
 
-## 3.2.7 - 2017-12-12 {#version-3-2-7}
+## 3.2.7 - 2017-12-12
 
 ### Improvements
 
@@ -309,7 +309,7 @@
 
   * Olle Jonsson
 
-## 3.2.6 - 2017-09-21 {#version-3-2-6}
+## 3.2.6 - 2017-09-21
 
 ### Improvements
 
@@ -320,7 +320,7 @@
 
   * naofumi-fujii
 
-## 3.2.5 - 2017-06-24 {#version-3-2-5}
+## 3.2.5 - 2017-06-24
 
 ### Improvements
 
@@ -331,7 +331,7 @@
 
   * Pat Allan
 
-## 3.2.4 - 2017-05-23 {#version-3-2-4}
+## 3.2.4 - 2017-05-23
 
 ### Improvements
 
@@ -395,7 +395,7 @@
 
   * MSP-Greg
 
-## 3.2.3 - 2016-11-25 {#version-3-2-3}
+## 3.2.3 - 2016-11-25
 
 ### Fixes
 
@@ -406,7 +406,7 @@
 
   * Vít Ondruch
 
-## 3.2.2 - 2016-11-02 {#version-3-2-2}
+## 3.2.2 - 2016-11-02
 
 ### Improvements
 
@@ -445,7 +445,7 @@
 
   * Ryota Sasabe
 
-## 3.2.1 - 2016-07-19 {#version-3-2-1}
+## 3.2.1 - 2016-07-19
 
 ### Improvements
 
@@ -463,7 +463,7 @@
 
   * Satoshi "Moris" Tagomori
 
-## 3.2.0 - 2016-06-12 {#version-3-2-0}
+## 3.2.0 - 2016-06-12
 
 ### Improvements
 
@@ -474,7 +474,7 @@
 
   * Ippei Kishida
 
-## 3.1.9 - 2016-05-20 {#version-3-1-9}
+## 3.1.9 - 2016-05-20
 
 ### Fixes
 
@@ -487,7 +487,7 @@
 
   * Kazuki Tsujimoto
 
-## 3.1.8 - 2016-03-19 {#version-3-1-8}
+## 3.1.8 - 2016-03-19
 
 ### Improvements
 
@@ -495,13 +495,13 @@
     running test suite is stopped immediately when one test is failed
     or an error is raised in one test.
 
-## 3.1.7 - 2016-01-17 {#version-3-1-7}
+## 3.1.7 - 2016-01-17
 
 ### Fixes
 
  * Added a missing require.
 
-## 3.1.6 - 2016-01-17 {#version-3-1-6}
+## 3.1.6 - 2016-01-17
 
 It's a Ruby on Rails integration improvement release.
 
@@ -550,7 +550,7 @@ It's a Ruby on Rails integration improvement release.
     data driven test that is defined in parent test case.
     [GitHub#115]
 
-## 3.1.5 - 2015-10-09 {#version-3-1-5}
+## 3.1.5 - 2015-10-09
 
 It's a Rack integration improvement release.
 
@@ -564,7 +564,7 @@ It's a Rack integration improvement release.
 
   * Yevhen Viktorov
 
-## 3.1.4 - 2015-09-26 {#version-3-1-4}
+## 3.1.4 - 2015-09-26
 
 It's a minor improvement release.
 
@@ -584,7 +584,7 @@ It's a minor improvement release.
   * takiy33
   * NARUSE, Yui
 
-## 3.1.3 - 2015-07-26 {#version-3-1-3}
+## 3.1.3 - 2015-07-26
 
 It's a bug fix release.
 
@@ -610,7 +610,7 @@ It's a bug fix release.
   * takiy33
   * TOMITA Masahiro
 
-## 3.1.2 - 2015-06-09 {#version-3-1-2}
+## 3.1.2 - 2015-06-09
 
 It's command line option improvements fix release.
 
@@ -637,7 +637,7 @@ It's command line option improvements fix release.
 
   * kimura wataru
 
-## 3.1.1 - 2015-05-29 {#version-3-1-1}
+## 3.1.1 - 2015-05-29
 
 It's a bug fix release.
 
@@ -651,7 +651,7 @@ It's a bug fix release.
 
   * wanabe
 
-## 3.1.0 - 2015-05-28 {#version-3-1-0}
+## 3.1.0 - 2015-05-28
 
 It's a bug fix release.
 
@@ -684,7 +684,7 @@ It's a bug fix release.
   * Masafumi Yokoyama
   * wanabe
 
-## 3.0.9 - 2014-12-31 {#version-3-0-9}
+## 3.0.9 - 2014-12-31
 
 It's a release that improves colors.
 
@@ -704,7 +704,7 @@ It's a release that improves colors.
   * usa
   * Tanaka Akira
 
-## 3.0.8 - 2014-12-12 {#version-3-0-8}
+## 3.0.8 - 2014-12-12
 
 It's a release that supports Ruby 2.2.0 preview2.
 
@@ -728,7 +728,7 @@ It's a release that supports Ruby 2.2.0 preview2.
   * sunnyone
   * scivola
 
-## 3.0.7 - 2014-11-14 {#version-3-0-7}
+## 3.0.7 - 2014-11-14
 
 It's a minor update release.
 
@@ -742,7 +742,7 @@ It's a minor update release.
 
   * TOMITA Masahiro
 
-## 3.0.6 - 2014-11-09 {#version-3-0-6}
+## 3.0.6 - 2014-11-09
 
 It's a minor update release.
 
@@ -755,7 +755,7 @@ It's a minor update release.
 
   * Yuki Kurihara
 
-## 3.0.5 - 2014-11-08 {#version-3-0-5}
+## 3.0.5 - 2014-11-08
 
 It's a minor update release.
 
@@ -769,7 +769,7 @@ It's a minor update release.
 
   * Chadderton Odwazny
 
-## 3.0.4 - 2014-11-01 {#version-3-0-4}
+## 3.0.4 - 2014-11-01
 
 It's a minor update release.
 
@@ -783,7 +783,7 @@ It's a minor update release.
 
   * Charles Oliver Nutter
 
-## 3.0.3 - 2014-10-29 {#version-3-0-3}
+## 3.0.3 - 2014-10-29
 
 It's a minor update release.
 
@@ -804,7 +804,7 @@ It's a minor update release.
   * Masafumi Yokoyama
   * Nobuyoshi Nakada
 
-## 3.0.2 - 2014-10-15 {#version-3-0-2}
+## 3.0.2 - 2014-10-15
 
 It's a minor update release.
 
@@ -831,7 +831,7 @@ It's a minor update release.
   * Brian Tatnall
   * Vít Ondruch
 
-## 3.0.1 - 2014-08-05 {#version-3-0-1}
+## 3.0.1 - 2014-08-05
 
 It's a minor update release.
 
@@ -845,7 +845,7 @@ It's a minor update release.
 
   * estolfo
 
-## 3.0.0 - 2014-08-03 {#version-3-0-0}
+## 3.0.0 - 2014-08-03
 
 It's Power Assert supported release!
 
@@ -904,7 +904,7 @@ It's Power Assert supported release!
   * Byron Appelt
   * Kazuki Tsujimoto
 
-## 2.5.5 - 2013-05-18 {#version-2-5-5}
+## 2.5.5 - 2013-05-18
 
 It's Ruby 2.0.0 supported release!
 
@@ -929,7 +929,7 @@ It's Ruby 2.0.0 supported release!
   * Tom Miller
   * Nobuhiro IMAI
 
-## 2.5.4 - 2013-01-23 {#version-2-5-4}
+## 2.5.4 - 2013-01-23
 
 It's a bug fix release.
 
@@ -950,7 +950,7 @@ It's a bug fix release.
 
   * Matthew Rudy Jacobs
 
-## 2.5.3 - 2012-11-28 {#version-2-5-3}
+## 2.5.3 - 2012-11-28
 
 It's a release for minitest compatibility and bug fix.
 
@@ -983,7 +983,7 @@ It's a release for minitest compatibility and bug fix.
   * Daniel Berger
   * Piotr Nestorow
 
-## 2.5.2 - 2012-08-29 {#version-2-5-2}
+## 2.5.2 - 2012-08-29
 
 It's an improvement release for tmtms. `--location` is a similar
 feature to `--line_number` in RSpec. `sub_test_case` is a similar
@@ -1016,7 +1016,7 @@ feature to `context` in shoulda-context and RSpec.
   * Marc Cooper
   * kdmsnr
 
-## 2.5.1 - 2012-07-05 {#version-2-5-1}
+## 2.5.1 - 2012-07-05
 
 It's a bug fix release.
 
@@ -1045,7 +1045,7 @@ It's a bug fix release.
   * Mathieu Martin
   * Jean-Denis Koeck
 
-## 2.5.0 - 2012-06-06 {#version-2-5-0}
+## 2.5.0 - 2012-06-06
 
 It's a bug fix release.
 
@@ -1059,7 +1059,7 @@ It's a bug fix release.
 
   * Vladislav Rassokhin
 
-## 2.4.9 - 2012-06-03 {#version-2-4-9}
+## 2.4.9 - 2012-06-03
 
 It's a bug fix release.
 
@@ -1093,7 +1093,7 @@ It's a bug fix release.
   * Stephan Kulow
   * Michael Grosser
 
-## 2.4.8 - 2012-3-6 {#version-2-4-8}
+## 2.4.8 - 2012-3-6
 
 It's a bug fix release.
 
@@ -1116,7 +1116,7 @@ It's a bug fix release.
   * Junegunn Choi
   * Jason Lunn
 
-## 2.4.7 - 2012-2-10 {#version-2-4-7}
+## 2.4.7 - 2012-2-10
 
 It's a code snippet improvement release.
 
@@ -1124,7 +1124,7 @@ It's a code snippet improvement release.
 
   * Supported code snippet display on all faults.
 
-## 2.4.6 - 2012-2-9 {#version-2-4-6}
+## 2.4.6 - 2012-2-9
 
 It's a TAP runner separated release.
 
@@ -1133,7 +1133,7 @@ It's a TAP runner separated release.
   * Moved TAP runner to test-unit-runner-tap gem from test-unit gem.
   * Supported code snippet display on failure.
 
-## 2.4.5 - 2012-1-16 {#version-2-4-5}
+## 2.4.5 - 2012-1-16
 
 It's a failure message readability improvement release.
 
@@ -1143,7 +1143,7 @@ It's a failure message readability improvement release.
     text on failure. It's for easy to read.
   * Supported custom inspector.
 
-## 2.4.4 - 2012-1-2 {#version-2-4-4}
+## 2.4.4 - 2012-1-2
 
 It's a Rails integration improved release.
 
@@ -1163,7 +1163,7 @@ It's a Rails integration improved release.
   * Josh Kalderimis
   * Syver Enstad
 
-## 2.4.3 - 2011-12-11 {#version-2-4-3}
+## 2.4.3 - 2011-12-11
 
 ### Improvements
 
@@ -1176,7 +1176,7 @@ It's a Rails integration improved release.
 
   * Nikos Dimitrakopoulos
 
-## 2.4.2 - 2011-11-26 {#version-2-4-2}
+## 2.4.2 - 2011-11-26
 
 ### Improvements
 
@@ -1242,7 +1242,7 @@ A bug fix release.
 
   * James Mead
 
-## 2.3.1 - 2011-08-06 {#version-2-3-1}
+## 2.3.1 - 2011-08-06
 
 Output improvement release!
 
