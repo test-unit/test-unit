@@ -22,6 +22,7 @@ require 'test/unit/test-suite-creator'
 require 'test/unit/assertion-failed-error'
 require 'test/unit/auto-runner-loader'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/util/garbage-collection'
 require 'test/unit/util/output'
 require 'test/unit/util/method-owner-finder'
 
@@ -114,6 +115,7 @@ module Test
       include Data
       include Assertions
       include Util::BacktraceFilter
+      include Util::GarbageCollection
       include Util::Output
 
       STARTED = name + "::STARTED" # :nodoc:
