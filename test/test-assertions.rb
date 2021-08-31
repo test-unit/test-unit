@@ -2307,6 +2307,69 @@ EOM
       end
     end
 
+    class TestAssertNothingLeakedMemory < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          size_per_object = ObjectSpace.memsize_of("Hello")
+          assert_nothing_leaked_memory(size_per_object * 100_000) do
+            100_000.times do
+              "Hello".dup
+            end
+          end
+        end
+      end
+
+      def test_pass_message
+        check_nothing_fails do
+          size_per_object = ObjectSpace.memsize_of("Hello")
+          assert_nothing_leaked_memory(size_per_object * 100_000,
+                                       "string") do
+            100_000.times do
+              "Hello".dup
+            end
+          end
+        end
+      end
+
+      def test_pass_target
+        check_nothing_fails do
+          size_per_object = ObjectSpace.memsize_of("Hello")
+          assert_nothing_leaked_memory(size_per_object * 100_000,
+                                       target: :virtual) do
+            100_000.times do
+              "Hello".dup
+            end
+          end
+        end
+      end
+
+      def test_fail
+        actual_increased_size = 10000
+        size_per_object = ObjectSpace.memsize_of("Hello")
+        max_increasable_size = size_per_object * 10
+        expected_message = <<-MESSAGE
+message.
+<#{actual_increased_size}> was expected to be less than
+<#{max_increasable_size}>.
+        MESSAGE
+        actual_message_normalizer = lambda do |message|
+          message.gsub(/<\d+> was expected/,
+                       "<#{actual_increased_size}> was expected")
+        end
+        check_fail(expected_message.chomp,
+                   actual_message_normalizer: actual_message_normalizer) do
+          strings = []
+          assert_nothing_leaked_memory(max_increasable_size, "message") do
+            10_000.times do
+              strings << "Hello".dup
+            end
+          end
+        end
+      end
+    end
+
     class TestTemplate < Test::Unit::TestCase
       def test_incompatible_encoding_by_diff
         need_encoding

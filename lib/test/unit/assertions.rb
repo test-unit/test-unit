@@ -5,6 +5,7 @@
 
 require 'test/unit/assertion-failed-error'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/util/memory-usage'
 require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
 
@@ -1728,6 +1729,76 @@ EOT
       #
       # @since 3.4.3
       alias_method :assert_all?, :assert_all
+
+      # @overload assert_nothing_leaked_memory(max_increasable_size,
+      #                                        message=nil,
+      #                                        target: :rss,
+      #                                        &block)
+      #
+      #   Asserts that increased memory usage by `block.call` is less
+      #   than `max_increasable_size`. `GC.start` is called before and
+      #   after `block.call`.
+      #
+      #   @example Pass pattern
+      #     require "objspace"
+      #     size_per_object = ObjectSpace.memsize_of("Hello")
+      #     # If memory isn't leaked, physical memory of almost created objects
+      #     # (1000 - 10 objects) must be freed.
+      #     assert_nothing_leaked_memory(size_per_object * 10) do
+      #       1_000.times do
+      #         "Hello".dup
+      #       end
+      #     end # => pass
+      #
+      #   @example Failure pattern
+      #     require "objspace"
+      #     size_per_object = ObjectSpace.memsize_of("Hello")
+      #     strings = []
+      #     assert_nothing_leaked_memory(size_per_object * 10) do
+      #       10_000.times do
+      #         # Created objects aren't GC-ed because they are referred.
+      #         strings << "Hello".dup
+      #       end
+      #     end # => failure
+      #
+      #   @param target [:physical, :virtual] which memory usage is
+      #     used for comparing. `:physical` means physical memory usage
+      #     also known as Resident Set Size (RSS). `:virtual` means
+      #     virtual memory usage.
+      #   @yield [void] Do anything you want to measure memory usage
+      #     in the block.
+      #   @yieldreturn [void]
+      #   @return [void]
+      #
+      # @since 3.4.5
+      def assert_nothing_leaked_memory(max_increasable_size,
+                                       message=nil,
+                                       target: :physical)
+        _wrap_assertion do
+          GC.start
+          before = Util::MemoryUsage.new
+          unless before.collected?
+            omit("memory usage collection isn't supported on this platform")
+          end
+          yield
+          GC.start
+          after = Util::MemoryUsage.new
+          before_value = before.__send__(target)
+          after_value = after.__send__(target)
+          actual_increased_size = after_value - before_value
+          template = <<-TEMPLATE
+<?> was expected to be less than
+<?>.
+          TEMPLATE
+          full_message = build_message(message,
+                                       template,
+                                       actual_increased_size,
+                                       max_increasable_size)
+          assert_block(full_message) do
+            actual_increased_size < max_increasable_size
+          end
+        end
+      end
 
       ##
       # Builds a failure message.  `user_message` is added before the

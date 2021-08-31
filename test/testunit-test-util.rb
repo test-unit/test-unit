@@ -1,3 +1,4 @@
+require "objspace"
 require "tempfile"
 
 module TestUnitTestUtil
