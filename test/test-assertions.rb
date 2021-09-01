@@ -2312,7 +2312,11 @@ EOM
 
       def setup
         @data = "Hello!" * 100
-        @data_size = ObjectSpace.memsize_of(@data)
+        if ObjectSpace.respond_to?(:memsize_of)
+          @data_size = ObjectSpace.memsize_of(@data)
+        else
+          @data_size = 0
+        end
         if @data_size.zero?
           @data_size = @data.bytesize
         end
