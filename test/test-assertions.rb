@@ -2310,12 +2310,20 @@ EOM
     class TestAssertNothingLeakedMemory < Test::Unit::TestCase
       include AssertionCheckable
 
+      def setup
+        @data = "Hello!" * 100
+        @data_size = ObjectSpace.memsize_of(@data)
+        if @data_size.zero?
+          @data_size = @data.bytesize
+        end
+      end
+
       def test_pass
         check_nothing_fails do
-          size_per_object = ObjectSpace.memsize_of("Hello")
-          assert_nothing_leaked_memory(size_per_object * 100_000) do
-            100_000.times do
-              "Hello".dup
+          n_tries = 100_000
+          assert_nothing_leaked_memory(@data_size * n_tries) do
+            n_tries.times do
+              @data.dup
             end
           end
         end
@@ -2323,12 +2331,12 @@ EOM
 
       def test_pass_message
         check_nothing_fails do
-          size_per_object = ObjectSpace.memsize_of("Hello")
-          assert_nothing_leaked_memory(size_per_object * 100_000,
+          n_tries = 100_000
+          assert_nothing_leaked_memory(@data_size * 100_000,
                                        :physical,
                                        "string") do
-            100_000.times do
-              "Hello".dup
+            n_tries.times do
+              @data.dup
             end
           end
         end
@@ -2336,11 +2344,11 @@ EOM
 
       def test_pass_target
         check_nothing_fails do
-          size_per_object = ObjectSpace.memsize_of("Hello")
-          assert_nothing_leaked_memory(size_per_object * 100_000,
+          n_tries = 100_000
+          assert_nothing_leaked_memory(@data_size * 100_000,
                                        :virtual) do
-            100_000.times do
-              "Hello".dup
+            n_tries.times do
+              @data.dup
             end
           end
         end
@@ -2348,8 +2356,8 @@ EOM
 
       def test_fail
         actual_increased_size = 10000
-        size_per_object = ObjectSpace.memsize_of("Hello")
-        max_increasable_size = size_per_object * 10
+        n_tries = 100_000
+        max_increasable_size = @data_size
         expected_message = <<-MESSAGE
 message.
 <#{actual_increased_size}> was expected to be less than
@@ -2365,8 +2373,8 @@ message.
           assert_nothing_leaked_memory(max_increasable_size,
                                        :physical,
                                        "message") do
-            10_000.times do
-              strings << "Hello".dup
+            n_tries.times do
+              strings << @data.dup
             end
           end
         end
