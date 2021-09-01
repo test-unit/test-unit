@@ -1730,14 +1730,19 @@ EOT
       # @since 3.4.3
       alias_method :assert_all?, :assert_all
 
-      # @overload assert_nothing_leaked_memory(max_increasable_size,
-      #                                        message=nil,
-      #                                        target: :rss,
-      #                                        &block)
+      # @overload assert_nothing_leaked_memory(max_increasable_size, message=nil, options={}, &block)
       #
       #   Asserts that increased memory usage by `block.call` is less
       #   than `max_increasable_size`. `GC.start` is called before and
       #   after `block.call`.
+      #
+      #   This assertion may be fragile. Because memory usage is
+      #   depends on the current Ruby process's memory
+      #   usage. Launching a new Ruby process for this will produce
+      #   more stable result but we need to specify target code as
+      #   `String` instead of block for the approach. We choose easy
+      #   to write API approach rather than more stable result
+      #   approach for this case.
       #
       #   @example Pass pattern
       #     require "objspace"
@@ -1761,11 +1766,12 @@ EOT
       #       end
       #     end # => failure
       #
-      #   @param target [:physical, :virtual] which memory usage is
+      #   @param options [Hash] the options
+      #   @option options :target [:physical, :virtual] which memory usage is
       #     used for comparing. `:physical` means physical memory usage
       #     also known as Resident Set Size (RSS). `:virtual` means
       #     virtual memory usage.
-      #   @yield [void] Do anything you want to measure memory usage
+      #   @yield [] do anything you want to measure memory usage
       #     in the block.
       #   @yieldreturn [void]
       #   @return [void]
@@ -1773,8 +1779,9 @@ EOT
       # @since 3.4.5
       def assert_nothing_leaked_memory(max_increasable_size,
                                        message=nil,
-                                       target: :physical)
+                                       options={})
         _wrap_assertion do
+          target = options[:target] || :physical
           GC.start
           before = Util::MemoryUsage.new
           unless before.collected?
