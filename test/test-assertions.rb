@@ -2361,7 +2361,7 @@ EOM
       def test_fail
         actual_increased_size = 10000
         n_tries = 100_000
-        max_increasable_size = @data_size
+        max_increasable_size = -1
         expected_message = <<-MESSAGE
 message.
 <#{actual_increased_size}> was expected to be less than
