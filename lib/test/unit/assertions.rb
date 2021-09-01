@@ -1730,7 +1730,7 @@ EOT
       # @since 3.4.3
       alias_method :assert_all?, :assert_all
 
-      # @overload assert_nothing_leaked_memory(max_increasable_size, message=nil, options={}, &block)
+      # @overload assert_nothing_leaked_memory(max_increasable_size, target=:physical, message=nil, &block)
       #
       #   Asserts that increased memory usage by `block.call` is less
       #   than `max_increasable_size`. `GC.start` is called before and
@@ -1766,8 +1766,7 @@ EOT
       #       end
       #     end # => failure
       #
-      #   @param options [Hash] the options
-      #   @option options :target [:physical, :virtual] which memory usage is
+      #   @param target [:physical, :virtual] which memory usage is
       #     used for comparing. `:physical` means physical memory usage
       #     also known as Resident Set Size (RSS). `:virtual` means
       #     virtual memory usage.
@@ -1778,10 +1777,9 @@ EOT
       #
       # @since 3.4.5
       def assert_nothing_leaked_memory(max_increasable_size,
-                                       message=nil,
-                                       options={})
+                                       target=:physical,
+                                       message=nil)
         _wrap_assertion do
-          target = options[:target] || :physical
           GC.start
           before = Util::MemoryUsage.new
           unless before.collected?

@@ -2325,6 +2325,7 @@ EOM
         check_nothing_fails do
           size_per_object = ObjectSpace.memsize_of("Hello")
           assert_nothing_leaked_memory(size_per_object * 100_000,
+                                       :physical,
                                        "string") do
             100_000.times do
               "Hello".dup
@@ -2337,7 +2338,7 @@ EOM
         check_nothing_fails do
           size_per_object = ObjectSpace.memsize_of("Hello")
           assert_nothing_leaked_memory(size_per_object * 100_000,
-                                       target: :virtual) do
+                                       :virtual) do
             100_000.times do
               "Hello".dup
             end
@@ -2361,7 +2362,9 @@ message.
         check_fail(expected_message.chomp,
                    actual_message_normalizer: actual_message_normalizer) do
           strings = []
-          assert_nothing_leaked_memory(max_increasable_size, "message") do
+          assert_nothing_leaked_memory(max_increasable_size,
+                                       :physical,
+                                       "message") do
             10_000.times do
               strings << "Hello".dup
             end
