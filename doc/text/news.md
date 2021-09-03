@@ -1,10 +1,35 @@
 # News
 
+## 3.4.5 - 2021-09-04 {#version-3-4-5}
+
+### Improvements
+
+  * Added more metadata to gemspec.
+    [GitHub#183][Patch by Kenichi Kamiya]
+
+  * Removed needless files from gem.
+    [GitHub#184][Patch by Kenichi Kamiya]
+
+  * Updated documents.
+    [GitHub#191][GitHub#192][GitHub#193][GitHub#199][GitHub#200]
+    [GitHub#201][Patch by Kenichi Kamiya]
+
+  * Added `assert_nothing_leaked_memory`.
+
+### Fixes
+
+  * Fixed typos in documents.
+    [GitHub#189][GitHub#190][GitHub#195][GitHub#197][Patch by Kenichi Kamiya]
+
+### Thanks
+
+  * Kenichi Kamiya
+
 ## 3.4.4 - 2021-06-04 {#version-3-4-4}
 
 ### Improvements
 
-  * Rename `assert_all?` to `assert_all`. `assert_all?` is deprecated
+  * Renamed `assert_all?` to `assert_all`. `assert_all?` is deprecated
     but is available.
 
 ## 3.4.3 - 2021-06-04 {#version-3-4-3}
