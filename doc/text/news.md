@@ -1,5 +1,15 @@
 # News
 
+## 3.4.6 - 2021-09-11 {#version-3-4-6}
+
+### Improvements
+
+  * Added support for tests that use Ractor. Use
+    `Test::Unit::TestCase.ractor` to declare that these tests use
+    Ractor.
+
+  * Added `--debug-on-failure` option.
+
 ## 3.4.5 - 2021-09-04 {#version-3-4-5}
 
 ### Improvements
