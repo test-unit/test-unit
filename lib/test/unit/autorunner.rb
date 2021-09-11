@@ -1,10 +1,10 @@
 require "English"
+require "optparse"
 
 require "test/unit/color-scheme"
 require "test/unit/priority"
 require "test/unit/attribute-matcher"
 require "test/unit/testcase"
-require "optparse"
 
 module Test
   module Unit
@@ -144,6 +144,7 @@ module Test
       attr_accessor :pattern, :exclude, :base, :workdir
       attr_accessor :color_scheme, :listeners
       attr_writer :stop_on_failure
+      attr_writer :debug_on_failure
       attr_writer :runner, :collector
 
       def initialize(standalone)
@@ -159,6 +160,7 @@ module Test
         @workdir = nil
         @listeners = []
         @stop_on_failure = false
+        @debug_on_failure = false
         config_file = "test-unit.yml"
         if File.exist?(config_file)
           load_config(config_file)
@@ -170,6 +172,10 @@ module Test
 
       def stop_on_failure?
         @stop_on_failure
+      end
+
+      def debug_on_failure?
+        @debug_on_failure
       end
 
       def prepare
@@ -379,6 +385,12 @@ module Test
                "Stops immediately on the first non success test",
                "(#{@stop_on_failure})") do |boolean|
             @stop_on_failure = boolean
+          end
+
+          o.on("--[no-]debug-on-failure",
+               "Run debugger if available on failure",
+               "(#{AssertionFailedError.debug_on_failure?})") do |boolean|
+            AssertionFailedError.debug_on_failure = boolean
           end
 
           ADDITIONAL_OPTIONS.each do |option_builder|
