@@ -351,6 +351,36 @@ module Test
           attribute(:description, value, {}, *targets)
         end
 
+        # Declares that the following test uses Ractor.
+        #
+        # Tests that use Ractor are executed at the end. Because multi
+        # Ractor mode is enabled in the current process and it's not
+        # disabled even when only one Ractor is running after running
+        # a test that uses Ractor on Ruby 3.0. It will be solved in
+        # Ruby 3.1.
+        #
+        # This is implemented by setting the `:ractor` attribute of
+        # the test to `true`.
+        #
+        # @param options [Hash] See {Attribute::ClassMethods#attribute}
+        #   for details.
+        #
+        # @return [void]
+        #
+        # @example Declares that test_do_something_with_ractor uses Ractor
+        #
+        #   ractor
+        #   def test_do_something_with_ractor
+        #     Ractor.new do
+        #       # ...
+        #     end
+        #   end
+        #
+        # @since 3.4.6
+        def ractor(options={})
+          attribute(:ractor, true, options)
+        end
+
         # Defines a sub test case.
         #
         # This is a syntax sugar. The both of the following codes are

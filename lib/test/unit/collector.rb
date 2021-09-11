@@ -68,6 +68,37 @@ module Test
           suite << sub_suite
         end
       end
+
+      def adjust_ractor_tests(suite)
+        return if suite.nil?
+        ractor_suites = extract_ractor_tests(suite)
+        ractor_suites.each do |ractor_suite|
+          suite << ractor_suite
+        end
+      end
+
+      def extract_ractor_tests(suite)
+        ractor_suites = []
+        ractor_tests = []
+        suite.tests.each do |test|
+          case test
+          when TestSuite
+            ractor_suites.concat(extract_ractor_tests(test))
+          else
+            next unless test[:ractor]
+            ractor_tests << test
+          end
+        end
+        unless ractor_tests.empty?
+          suite.delete_tests(ractor_tests)
+          ractor_suite = TestSuite.new(suite.name, suite.test_case)
+          ractor_tests.each do |ractor_test|
+            ractor_suite << ractor_test
+          end
+          ractor_suites << ractor_suite
+        end
+        ractor_suites
+      end
     end
   end
 end

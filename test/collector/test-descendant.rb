@@ -142,6 +142,74 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
     end
   end
 
+  class TestCollectRactor < self
+    def setup
+      super
+
+      @test_case1 = Class.new(Test::Unit::TestCase) do
+        self.test_order = :alphabetic
+
+        def self.name
+          "test-case-one-ractor-test"
+        end
+
+        def test_no_ractor_1_1
+        end
+
+        ractor
+        def test_ractor_1_1
+        end
+
+        def test_no_ractor_1_2
+        end
+      end
+
+      @test_case2 = Class.new(Test::Unit::TestCase) do
+        self.test_order = :alphabetic
+
+        def self.name
+          "test-case-two-ractor-tests"
+        end
+
+        def test_no_ractor_2_1
+        end
+
+        ractor keep: true
+        def test_ractor_2_1
+        end
+
+        def test_ractor_2_2
+        end
+      end
+    end
+
+    def test_sort
+      assert_collect(full_suite("name"), "name")
+    end
+
+    private
+    def full_suite(name=nil)
+      sub_suite_no_ractor1 = Test::Unit::TestSuite.new(@test_case1.name)
+      sub_suite_no_ractor1 << @test_case1.new('test_no_ractor_1_1')
+      sub_suite_no_ractor1 << @test_case1.new('test_no_ractor_1_2')
+      sub_suite_ractor1 = Test::Unit::TestSuite.new(@test_case1.name)
+      sub_suite_ractor1 << @test_case1.new('test_ractor_1_1')
+
+      sub_suite_no_ractor2 = Test::Unit::TestSuite.new(@test_case2.name)
+      sub_suite_no_ractor2 << @test_case2.new('test_no_ractor_2_1')
+      sub_suite_ractor2 = Test::Unit::TestSuite.new(@test_case2.name)
+      sub_suite_ractor2 << @test_case2.new('test_ractor_2_1')
+      sub_suite_ractor2 << @test_case2.new('test_ractor_2_2')
+
+      suite = empty_suite(name)
+      suite << sub_suite_no_ractor1
+      suite << sub_suite_no_ractor2
+      suite << sub_suite_ractor1
+      suite << sub_suite_ractor2
+      suite
+    end
+  end
+
   class TestModule < self
     def test_included_in_child
       tests = Module.new do

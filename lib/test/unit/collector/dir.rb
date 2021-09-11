@@ -25,9 +25,9 @@ module Test
           basedir = @base
           $:.push(basedir) if basedir
           if(from.empty?)
-            recursive_collect('.', find_test_cases)
+            suite = recursive_collect('.', find_test_cases)
           elsif(from.size == 1)
-            recursive_collect(from.first, find_test_cases)
+            suite = recursive_collect(from.first, find_test_cases)
           else
             suites = []
             from.each do |f|
@@ -38,6 +38,8 @@ module Test
             sort(suites).each{|s| suite << s}
             suite
           end
+          adjust_ractor_tests(suite)
+          suite
         ensure
           $:.delete_at($:.rindex(basedir)) if basedir
         end
