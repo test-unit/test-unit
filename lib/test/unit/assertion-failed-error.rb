@@ -9,8 +9,8 @@ module Test
 
     # Thrown by Test::Unit::Assertions when an assertion fails.
     class AssertionFailedError < StandardError
+      @debug_on_failure = false
       class << self
-        @debug_on_failure = false
         def debug_on_failure=(boolean)
           @debug_on_failure = boolean
         end
