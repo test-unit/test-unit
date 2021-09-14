@@ -843,7 +843,9 @@ EOM
 
         thing = return_true_class.new
 
-        assert_equal(thing, true)
+        check_nothing_fails do
+          assert_equal(thing, true)
+        end
 
         check_fail(%Q{<true> expected but was\n<#{thing.inspect}>.}) {
           assert_equal(true, thing)
