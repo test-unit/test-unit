@@ -1,5 +1,16 @@
 # News
 
+## 3.4.7 - 2021-09-14 {#version-3-4-7}
+
+### Fixes
+
+  * Suppressed a warning on Ruby 2.
+    [GitHub#205][Patch by Kenichi Kamiya]
+
+### Thanks
+
+  * Kenichi Kamiya
+
 ## 3.4.6 - 2021-09-11 {#version-3-4-6}
 
 ### Improvements
