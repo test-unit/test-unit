@@ -1,5 +1,12 @@
 # News
 
+## 3.4.8 - 2021-10-11 {#version-3-4-8}
+
+### Improvements
+
+  * Added support for omitting Ractor tests on Ruby 2.7 or earlier
+    automatically.
+
 ## 3.4.7 - 2021-09-14 {#version-3-4-7}
 
 ### Fixes
