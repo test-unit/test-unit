@@ -851,6 +851,9 @@ module Test
           notify("<#{signature}> was redefined",
                  :backtrace => redefined_info[:backtrace])
         end
+        if self[:ractor] and not defined?(::Ractor)
+          omit("<#{signature}> requires Ractor")
+        end
         if @internal_data.have_test_data?
           test_method = method(@method_name)
           arity = test_method.arity
