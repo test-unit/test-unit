@@ -1,5 +1,12 @@
 # News
 
+## 3.5.0 - 2021-10-18 {#version-3-5-0}
+
+### Fixes
+
+  * Fixed a bug that `keep: true` is ignored when the last `data`
+    doesn't have `keep: true`.
+
 ## 3.4.9 - 2021-10-18 {#version-3-4-9}
 
 ### Improvements
