@@ -1,5 +1,11 @@
 # News
 
+## 3.4.9 - 2021-10-18 {#version-3-4-9}
+
+### Improvements
+
+  * Added support for labeling each variable values by using `Hash`.
+
 ## 3.4.8 - 2021-10-11 {#version-3-4-8}
 
 ### Improvements
