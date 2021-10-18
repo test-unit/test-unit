@@ -114,6 +114,21 @@ class TestData < Test::Unit::TestCase
       end
     end
 
+    class TestPatternsHash < TestCalc
+      data(:x, {
+             "negative" => -1,
+             "positive" => 1,
+             "zero" => 0,
+           })
+      data(:y, {
+             "negative" => -100,
+             "positive" => 100,
+           })
+      data(:z, ["a", "b", "c"])
+      def test_use_data(data)
+      end
+    end
+
     class TestPatternsKeep < TestCalc
       data(:x, [-1, 1, 0], keep: true)
       data(:y, [-100, 100])
@@ -272,6 +287,33 @@ class TestData < Test::Unit::TestCase
                    "test_use_data[x: 1, y: 100, z: \"b\"](#{test_case.name})",
                    "test_use_data[x: 1, y: 100, z: \"c\"](#{test_case.name})",
                  ],
+                 suite.tests.collect {|test| test.name}.sort)
+  end
+
+  def test_suite_patterns_hash
+    test_case = TestCalc::TestPatternsHash
+    suite = test_case.suite
+    names = [
+      "test_use_data[x: negative, y: negative, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: negative, y: negative, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: negative, y: negative, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: negative, y: positive, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: negative, y: positive, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: negative, y: positive, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: positive, y: negative, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: positive, y: negative, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: positive, y: negative, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: positive, y: positive, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: positive, y: positive, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: positive, y: positive, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: zero, y: negative, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: zero, y: negative, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: zero, y: negative, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: zero, y: positive, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: zero, y: positive, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: zero, y: positive, z: \"c\"](#{test_case.name})",
+    ]
+    assert_equal(names,
                  suite.tests.collect {|test| test.name}.sort)
   end
 

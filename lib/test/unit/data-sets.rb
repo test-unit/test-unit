@@ -88,9 +88,9 @@ module Test
             label = String.new
             label << "group: #{group.inspect}" unless group.nil?
             data = {}
-            cell.each do |variable, pattern|
+            cell.each do |variable, pattern, pattern_label|
               label << ", " unless label.empty?
-              label << "#{variable}: #{pattern.inspect}"
+              label << "#{variable}: #{pattern_label}"
               data[variable] = pattern
             end
             yield(label, data)
@@ -105,8 +105,14 @@ module Test
           variable
         end
         all_patterns = sorted_variables.collect do |(variable, patterns), _|
-          patterns.collect do |pattern|
-            [variable, pattern]
+          if patterns.is_a?(Hash)
+            patterns.collect do |pattern_label, pattern|
+              [variable, pattern, pattern_label]
+            end
+          else
+            patterns.collect do |pattern|
+              [variable, pattern, pattern.inspect]
+            end
           end
         end
         all_patterns[0].product(*all_patterns[1..-1], &block)
