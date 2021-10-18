@@ -22,17 +22,16 @@ module Test
         add(data_set)
       end
 
+      def have_keep?
+        each_data_set do |_, options|
+          return true if options[:keep]
+        end
+        false
+      end
+
       def keep
         new_data_sets = self.class.new
-        all_data_sets = Enumerator.new do |yielder|
-          block = lambda do |(data_set, options)|
-            yielder << [data_set, options]
-          end
-          @procs.each(&block)
-          @variables.each(&block)
-          @value_sets.each(&block)
-        end
-        all_data_sets.each do |data_set, options|
+        each_data_set do |data_set, options|
           next if options.nil?
           next unless options[:keep]
           new_data_sets.add(data_set, options)
@@ -79,6 +78,12 @@ module Test
       end
 
       private
+      def each_data_set(&block)
+        @procs.each(&block)
+        @variables.each(&block)
+        @value_sets.each(&block)
+      end
+
       def each_pattern(variables)
         grouped_variables = variables.group_by do |_, options|
           options[:group]

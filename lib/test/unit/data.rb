@@ -170,11 +170,11 @@ module Test
           options ||= {}
           data_sets = current_attribute(:data)[:value] || DataSets.new
           data_sets.add(data_set, options)
-          if options[:keep]
+          if options[:keep] or data_sets.have_keep?
             keep_hook = lambda do |attr|
               attr.merge(value: attr[:value].keep)
             end
-            options = options.merge(keep_hook: keep_hook)
+            options = options.merge(keep: true, keep_hook: keep_hook)
           end
           attribute(:data, data_sets, options)
         end

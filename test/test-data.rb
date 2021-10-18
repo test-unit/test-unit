@@ -131,8 +131,8 @@ class TestData < Test::Unit::TestCase
 
     class TestPatternsKeep < TestCalc
       data(:x, [-1, 1, 0], keep: true)
-      data(:y, [-100, 100])
-      data(:z, ["a", "b", "c"], keep: true)
+      data(:y, [-100, 100], keep: true)
+      data(:z, ["a", "b", "c"])
       def test_use_data(data)
       end
 
@@ -249,7 +249,7 @@ class TestData < Test::Unit::TestCase
     test = TestCalc::TestPatternsKeep.new("test_use_data_keep")
     data_sets = Test::Unit::DataSets.new
     data_sets.add([:x, [-1, 1, 0]], {keep: true})
-    data_sets.add([:z, ["a", "b", "c"]], {keep: true})
+    data_sets.add([:y, [-100, 100]], {keep: true})
     assert_equal(data_sets, test[:data])
   end
 
