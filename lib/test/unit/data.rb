@@ -136,7 +136,7 @@ module Test
           when 1
             if block_given?
               data_set = block
-              options = arguments[1]
+              options = arguments[0]
             else
               data_set = arguments[0]
             end

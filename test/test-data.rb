@@ -68,6 +68,34 @@ class TestData < Test::Unit::TestCase
       end
     end
 
+    class TestDynamicDataSetKeep < TestCalc
+      DATA_PROC = lambda do
+        data_set = {}
+        data_set["positive positive"] = {
+          :expected => 3,
+          :augend => 1,
+          :addend => 2
+        }
+        data_set["positive negative"] = {
+          :expected => -1,
+          :augend => 1,
+          :addend => -2
+        }
+        data_set
+      end
+
+      data(keep: true, &DATA_PROC)
+      def test_plus(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
+
+      def test_plus_keep(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
+    end
+
     class TestLoadDataSet < TestCalc
       extend TestUnitTestUtil
       load_data(fixture_file_path("plus.csv"))
@@ -234,6 +262,13 @@ class TestData < Test::Unit::TestCase
       data_sets.add(data_set)
     end
     assert_equal(data_sets, test_plus[:data])
+  end
+
+  def test_data_dynamic_data_set_keep
+    test = TestCalc::TestDynamicDataSetKeep.new("test_plus_keep")
+    data_sets = Test::Unit::DataSets.new
+    data_sets.add(TestCalc::TestDynamicDataSetKeep::DATA_PROC, {keep: true})
+    assert_equal(data_sets, test[:data])
   end
 
   def test_data_patterns
