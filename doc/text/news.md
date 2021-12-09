@@ -1,5 +1,16 @@
 # News
 
+## 3.5.2 - 2021-12-10 {#version-3-5-2}
+
+### Improvements
+
+  * Required `fileutils` lazy.
+    [GitHub#206][Patch by David Rodríguez]
+
+### Thanks
+
+  * David Rodríguez
+
 ## 3.5.1 - 2021-11-08 {#version-3-5-1}
 
 ### Fixes
