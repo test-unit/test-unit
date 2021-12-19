@@ -419,13 +419,7 @@ module Test
         #   case class context.
         # @return [Test::Unit::TestCase] Created sub test case class.
         def sub_test_case(name, &block)
-          parent_test_case = self
-          sub_test_case = Class.new(self) do
-            singleton_class = class << self; self; end
-            singleton_class.__send__(:define_method, :name) do
-              [parent_test_case.name, name].compact.join("::")
-            end
-          end
+          sub_test_case = sub_test_case_class(name)
           sub_test_case.class_eval(&block)
           sub_test_case
         end
@@ -512,6 +506,17 @@ module Test
               end
             end
             target_locations
+          end
+        end
+
+        # @private
+        def sub_test_case_class(name)
+          parent_test_case = self
+          Class.new(self) do
+            singleton_class = class << self; self; end
+            singleton_class.__send__(:define_method, :name) do
+              [parent_test_case.name, name].compact.join("::")
+            end
           end
         end
       end
