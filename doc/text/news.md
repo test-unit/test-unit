@@ -1,5 +1,16 @@
 # News
 
+## 3.5.3 - 2021-12-20 {#version-3-5-3}
+
+### Improvements
+
+  * Made how to sub test case generation customizable.
+    [GitHub#207][Patch by Akira Matsuda]
+
+### Thanks
+
+  * Akira Matsuda
+
 ## 3.5.2 - 2021-12-10 {#version-3-5-2}
 
 ### Improvements
