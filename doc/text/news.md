@@ -1550,7 +1550,7 @@ Output improvement release!
   * use ~/.test-unit.yml as global configuration file.
   * add TAP runner. (--runner tap)
   * support colorized diff:
-    http://test-unit.github.io/color-diff.png
+    https://test-unit.github.io/color-diff.png
   * add Test::Unit::AutoRunner.default_runner= to specify default test runner.
 
 * 4 minor enhancements
