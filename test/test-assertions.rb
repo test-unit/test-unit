@@ -394,7 +394,7 @@ EOM
             ascii_8bit_string = utf8_string.dup.force_encoding("ascii-8bit")
             message = <<-EOM.chomp
 <#{utf8_string.inspect}>("UTF-8") expected but was
-<#{ascii_8bit_string.inspect}>("ASCII-8BIT").
+<#{ascii_8bit_string.inspect}>("#{Encoding::ASCII_8BIT.name}").
 EOM
             check_fail(message) do
               assert_equal(utf8_string, ascii_8bit_string)
