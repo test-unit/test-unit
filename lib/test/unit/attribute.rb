@@ -199,6 +199,7 @@ module Test
               ancestor.is_a?(Class) and
               ancestor < Test::Unit::Attribute
           end
+          return nil if @cached_parent_test.nil?
 
           @cached_parent_test_case.find_attribute(method_name, name, options)
         end
