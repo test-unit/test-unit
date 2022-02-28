@@ -16,7 +16,7 @@ principles. These were originally designed by Kent Beck, creator of extreme
 programming software development methodology, for Smalltalk's SUnit. It allows
 writing tests, checking results and automated testing in Ruby.
 
-test-unit ships as part of Ruby's standard library. To check which version is included, see https://stdgems.org/test-unit/.
+test-unit ships as part of Ruby as a bundled gem. To check which version is included, see https://stdgems.org/test-unit/.
 It's only necessary to install the gem if you need a newer version.
 
 ## Features
