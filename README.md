@@ -2,7 +2,6 @@
 
 [![Gem Version](https://badge.fury.io/rb/test-unit.png)](http://badge.fury.io/rb/test-unit)
 [![Build Status for Ruby 2.1+](https://github.com/test-unit/test-unit/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/test-unit/test-unit/actions/workflows/test.yml?query=branch%3Amaster+)
-[![Build Status for Ruby 1.9 and 2.0](https://travis-ci.com/test-unit/test-unit.svg?branch=master)](https://travis-ci.com/test-unit/test-unit)
 
 * http://test-unit.github.io/
 * https://github.com/test-unit/test-unit
