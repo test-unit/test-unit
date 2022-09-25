@@ -1794,6 +1794,131 @@ message.
       end
     end
 
+    class TestAssertInDeltaBigDecimal < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_in_delta(BigDecimal("1.40000000000000000001"),
+                          BigDecimal("1.40000000000000000001"),
+                          0)
+        end
+      end
+
+      def test_pass_without_delta
+        check_nothing_fails do
+          assert_in_delta(BigDecimal("1.40000000000000000001"),
+                          BigDecimal("1.40000000000000000002"))
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_in_delta(BigDecimal("1.40000000000000000001"),
+                          BigDecimal("1.50000000000000000001"),
+                          BigDecimal("0.1"),
+                          "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            0.2
+          end
+          assert_in_delta(BigDecimal("0.1"),
+                          float_thing,
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_string_expected
+        check_nothing_fails do
+          assert_in_delta("0.5",
+                          BigDecimal("0.4"),
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_with_message
+        check_fail("message.\n" +
+                    "<0.50000000000000000001e0> -/+ <0.5e-1> was expected to include\n" +
+                    "<0.40000000000000000001e0>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.40000000000000000001e0> < " +
+                    "<0.50000000000000000001e0>-<0.5e-1>[0.45000000000000000001e0] <= " +
+                    "<0.50000000000000000001e0>+<0.5e-1>[0.55000000000000000001e0]" +
+                    ">") do
+          assert_in_delta(BigDecimal("0.50000000000000000001"),
+                          BigDecimal("0.40000000000000000001"),
+                          BigDecimal("0.05"),
+                          "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_in_delta(object,
+                          BigDecimal("0.4"),
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_with_float_like_object
+        object = Object.new
+        def object.to_f
+          0.4
+        end
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("<0.10000000000000000001e0> -/+ <0.1e0> was expected to include\n" +
+                    "<#{object}>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.10000000000000000001e0>-<0.1e0>[0.0] <= " +
+                    "<0.10000000000000000001e0>+<0.1e0>[0.2] < " +
+                    "<#{object}>" +
+                    ">") do
+          assert_in_delta(BigDecimal("0.10000000000000000001"),
+                          object,
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_because_negaitve_delta
+        check_fail("The delta should not be negative.\n" +
+                   "<-0.1e0> was expected to be\n>=\n<0.0>.") do
+          assert_in_delta(BigDecimal("0.5"),
+                          BigDecimal("0.4"),
+                          BigDecimal("-0.1"),
+                          "message")
+        end
+      end
+
+      def test_fail_without_delta
+        check_fail("<0.140200000000000000001e1> -/+ <0.001> was expected to include\n" +
+                    "<0.140400000000000000001e1>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.140200000000000000001e1>-<0.001>[0.140100000000000000001e1] <= " +
+                    "<0.140200000000000000001e1>+<0.001>[0.140300000000000000001e1] < " +
+                    "<0.140400000000000000001e1>" +
+                    ">") do
+          assert_in_delta(BigDecimal("1.40200000000000000001"),
+                          BigDecimal("1.40400000000000000001"))
+        end
+      end
+    end
+
     class TestAssertNotInDelta < Test::Unit::TestCase
       include AssertionCheckable
 
@@ -1889,6 +2014,153 @@ message.
         check_fail("The delta should not be negative.\n" +
                     "<-0.11> was expected to be\n>=\n<0.0>.") do
           assert_not_in_delta(0.5, 0.4, -0.11, "message")
+        end
+      end
+    end
+
+    class TestAssertNotInDeltaBigDecimal < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_not_in_delta(BigDecimal("1.42000000000000000001"),
+                              BigDecimal("1.42000000000000000002"),
+                              BigDecimal("0.000000000000000000005"))
+        end
+      end
+
+      def test_pass_without_delta
+        check_nothing_fails do
+          assert_not_in_delta(BigDecimal("1.40200000000000000001"),
+                              BigDecimal("1.40400000000000000001"))
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_not_in_delta(BigDecimal("0.50000000000000000001"),
+                              BigDecimal("0.50000000000000000002"),
+                              BigDecimal("0.000000000000000000009"),
+                              "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            0.2
+          end
+          assert_not_in_delta(BigDecimal("0.10000000000000000001"),
+                              float_thing,
+                              BigDecimal("0.09"))
+        end
+      end
+
+      def test_pass_string_epxected
+        check_nothing_fails do
+          assert_not_in_delta("0.5",
+                              BigDecimal("0.4"),
+                              BigDecimal("0.09"))
+        end
+      end
+
+      def test_fail
+        check_fail("<0.140000000000000000001e1> -/+ <0.5e-19> was expected to not include\n" +
+                    "<0.140000000000000000002e1>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.140000000000000000001e1>-<0.5e-19>[0.139999999999999999996e1] <= " +
+                    "<0.140000000000000000002e1> <= " +
+                    "<0.140000000000000000001e1>+<0.5e-19>[0.140000000000000000006e1]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("1.40000000000000000001"),
+                              BigDecimal("1.40000000000000000002"),
+                              BigDecimal("0.00000000000000000005"))
+        end
+      end
+
+      def test_fail_without_delta
+        check_fail("<0.140200000000000000001e1> -/+ <0.001> was expected to not include\n" +
+                    "<0.140210000000000000001e1>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.140200000000000000001e1>-<0.001>" +
+                    "[#{BigDecimal("1.40200000000000000001") - 0.001}] <= " +
+                    "<0.140210000000000000001e1> <= " +
+                    "<0.140200000000000000001e1>+<0.001>" +
+                    "[#{BigDecimal("1.40200000000000000001") + 0.001}]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("1.40200000000000000001"),
+                              BigDecimal("1.40210000000000000001"))
+        end
+      end
+
+      def test_fail_with_message
+        x = BigDecimal("0.1234567890123456789")
+        y = BigDecimal("0.1234567890123456788")
+        d = BigDecimal("0.0000000000000000005")
+        check_fail("message.\n" +
+                    "<0.50000000000000000001e0> -/+ <0.5e-19> was expected to not include\n" +
+                    "<0.50000000000000000002e0>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.50000000000000000001e0>-<0.5e-19>[0.49999999999999999996e0] <= " +
+                    "<0.50000000000000000002e0> <= " +
+                    "<0.50000000000000000001e0>+<0.5e-19>[0.50000000000000000006e0]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("0.50000000000000000001"),
+                              BigDecimal("0.50000000000000000002"),
+                              BigDecimal("0.00000000000000000005"),
+                              "message")
+        end
+      end
+
+      def test_fail_with_float_like_object
+        x = BigDecimal("0.1")
+        object = Object.new
+        def object.to_f
+          0.4
+        end
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("<0.1e0> -/+ <0.5e0> was expected to not include\n" +
+                    "<#{object}>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.1e0>-<0.5e0>[#{0.1 - 0.5}] <= " +
+                    "<#{object}> <= " +
+                    "<0.1e0>+<0.5e0>[#{0.1 + 0.5}]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("0.1"),
+                              object,
+                              BigDecimal("0.5"))
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_not_in_delta(object,
+                              BigDecimal("0.4"),
+                              BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_because_negaitve_delta
+        check_fail("The delta should not be negative.\n" +
+                   "<-5.0e-20> was expected to be\n>=\n<0.0>.") do
+          assert_not_in_delta(BigDecimal("+0.500000000000000000001"),
+                              BigDecimal("+0.500000000000000000002"),
+                              BigDecimal("-0.00000000000000000005"),
+                              "message")
         end
       end
     end

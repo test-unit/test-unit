@@ -926,15 +926,37 @@ EOT
       #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
       def assert_in_delta(expected_float, actual_float, delta=0.001, message="")
         _wrap_assertion do
-          _assert_in_delta_validate_arguments(expected_float,
-                                              actual_float,
-                                              delta)
-          full_message = _assert_in_delta_message(expected_float,
-                                                  actual_float,
-                                                  delta,
-                                                  message)
+          begin
+            pass = delta >= (expected_float - actual_float).abs
+            assert_operator(delta, :>=, 0.0, "The delta should not be negative")
+            full_message = _assert_in_delta_message(expected_float,
+                                                    expected_float,
+                                                    actual_float,
+                                                    actual_float,
+                                                    delta,
+                                                    delta,
+                                                    message)
+          rescue Test::Unit::AssertionFailedError
+            # for the above assert_operator
+            raise
+          rescue
+            _assert_in_delta_validate_arguments(expected_float,
+                                                actual_float,
+                                                delta)
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_delta = delta.to_f
+            pass = (normalized_expected - normalized_actual).abs <= normalized_delta
+            full_message = _assert_in_delta_message(expected_float,
+                                                    normalized_expected,
+                                                    actual_float,
+                                                    normalized_actual,
+                                                    delta,
+                                                    normalized_delta,
+                                                    message)
+          end
           assert_block(full_message) do
-            (expected_float.to_f - actual_float.to_f).abs <= delta.to_f
+            pass
           end
         end
       end
@@ -951,13 +973,32 @@ EOT
           _assert_in_delta_validate_arguments(expected_float,
                                               actual_float,
                                               delta)
-          full_message = _assert_in_delta_message(expected_float,
-                                                  actual_float,
-                                                  delta,
-                                                  message,
-                                                  :negative_assertion => true)
+          begin
+            pass = (expected_float - actual_float).abs > delta
+            full_message = _assert_in_delta_message(expected_float,
+                                                    expected_float,
+                                                    actual_float,
+                                                    actual_float,
+                                                    delta,
+                                                    delta,
+                                                    message,
+                                                    :negative_assertion => true)
+          rescue
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_delta = delta.to_f
+            pass = (normalized_expected - normalized_actual).abs > normalized_delta
+            full_message = _assert_in_delta_message(expected_float,
+                                                    normalized_expected,
+                                                    actual_float,
+                                                    normalized_actual,
+                                                    delta,
+                                                    normalized_delta,
+                                                    message,
+                                                    :negative_assertion => true)
+          end
           assert_block(full_message) do
-            (expected_float.to_f - actual_float.to_f).abs > delta.to_f
+            pass
           end
         end
       end
@@ -984,7 +1025,9 @@ EOT
         assert_operator(delta, :>=, 0.0, "The delta should not be negative")
       end
 
-      def _assert_in_delta_message(expected_float, actual_float, delta,
+      def _assert_in_delta_message(expected_float, normalized_expected,
+                                   actual_float, normalized_actual,
+                                   delta, normalized_delta,
                                    message, options={})
         if options[:negative_assertion]
           format = <<-EOT
@@ -998,9 +1041,6 @@ EOT
 EOT
         end
         arguments = [expected_float, delta, actual_float]
-        normalized_expected = expected_float.to_f
-        normalized_actual = actual_float.to_f
-        normalized_delta = delta.to_f
         relation_format = nil
         relation_arguments = nil
         if normalized_actual < normalized_expected - normalized_delta

@@ -1,5 +1,6 @@
 require "objspace"
 require "tempfile"
+require "bigdecimal"
 
 module TestUnitTestUtil
   private
