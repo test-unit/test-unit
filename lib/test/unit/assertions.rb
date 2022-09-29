@@ -1089,22 +1089,52 @@ EOT
       def assert_in_epsilon(expected_float, actual_float, epsilon=0.001,
                             message="")
         _wrap_assertion do
-          _assert_in_epsilon_validate_arguments(expected_float,
-                                                actual_float,
-                                                epsilon)
-          full_message = _assert_in_epsilon_message(expected_float,
-                                                    actual_float,
-                                                    epsilon,
-                                                    message)
-          assert_block(full_message) do
-            normalized_expected_float = expected_float.to_f
-            if normalized_expected_float.zero?
-              delta = epsilon.to_f ** 2
+          begin
+            zero_p = expected_float.zero? rescue expected_float == 0
+            if zero_p
+              delta = epsilon ** 2
             else
-              delta = normalized_expected_float * epsilon.to_f
+              delta = expected_float * epsilon
             end
             delta = delta.abs
-            (normalized_expected_float - actual_float.to_f).abs <= delta
+            pass = (expected_float - actual_float).abs <= delta
+            assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      expected_float,
+                                                      actual_float,
+                                                      actual_float,
+                                                      epsilon,
+                                                      epsilon,
+                                                      delta,
+                                                      message)
+          rescue Test::Unit::AssertionFailedError
+            # for the above assert_operator
+            raise
+          rescue
+            _assert_in_epsilon_validate_arguments(expected_float,
+                                                  actual_float,
+                                                  epsilon)
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_epsilon = epsilon.to_f
+            if normalized_expected.zero?
+              delta = normalized_epsilon ** 2
+            else
+              delta = normalized_expected * normalized_epsilon
+            end
+            delta = delta.abs
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      normalized_expected,
+                                                      actual_float,
+                                                      normalized_actual,
+                                                      epsilon,
+                                                      normalized_epsilon,
+                                                      delta,
+                                                      message)
+            pass = (normalized_expected - normalized_actual).abs <= delta
+          end
+          assert_block(full_message) do
+            pass
           end
         end
       end
@@ -1120,18 +1150,43 @@ EOT
       def assert_not_in_epsilon(expected_float, actual_float, epsilon=0.001,
                                 message="")
         _wrap_assertion do
-          _assert_in_epsilon_validate_arguments(expected_float,
-                                                actual_float,
-                                                epsilon)
-          full_message = _assert_in_epsilon_message(expected_float,
-                                                    actual_float,
-                                                    epsilon,
-                                                    message,
-                                                    :negative_assertion => true)
+          begin
+            delta = expected_float * epsilon
+            pass = (expected_float - actual_float).abs > delta
+            assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      expected_float,
+                                                      actual_float,
+                                                      actual_float,
+                                                      epsilon,
+                                                      epsilon,
+                                                      delta,
+                                                      message,
+                                                      :negative_assertion => true)
+          rescue Test::Unit::AssertionFailedError
+            # for the above assert_operator
+            raise
+          rescue
+            _assert_in_epsilon_validate_arguments(expected_float,
+                                                  actual_float,
+                                                  epsilon)
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_epsilon = epsilon.to_f
+            delta = normalized_expected * normalized_epsilon
+            pass = (normalized_expected - normalized_actual).abs > delta
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      normalized_expected,
+                                                      actual_float,
+                                                      normalized_actual,
+                                                      epsilon,
+                                                      normalized_epsilon,
+                                                      delta,
+                                                      message,
+                                                      :negative_assertion => true)
+          end
           assert_block(full_message) do
-            normalized_expected_float = expected_float.to_f
-            delta = normalized_expected_float * epsilon.to_f
-            (normalized_expected_float - actual_float.to_f).abs > delta
+            pass
           end
         end
       end
@@ -1158,13 +1213,10 @@ EOT
         assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
       end
 
-      def _assert_in_epsilon_message(expected_float, actual_float, epsilon,
-                                     message, options={})
-        normalized_expected = expected_float.to_f
-        normalized_actual = actual_float.to_f
-        normalized_epsilon = epsilon.to_f
-        delta = normalized_expected * normalized_epsilon
-
+      def _assert_in_epsilon_message(expected_float, normalized_expected,
+                                     actual_float, normalized_actual,
+                                     epsilon, normalized_epsilon,
+                                     delta, message, options={})
         if options[:negative_assertion]
           format = <<-EOT
 <?> -/+ (<?> * <?>)[?] was expected to not include
