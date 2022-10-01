@@ -2358,7 +2358,7 @@ message.
       end
 
       def test_fail_with_float_like_object
-        if RUBY_PLATFORM == "truffleruby"
+        if RUBY_ENGINE == "truffleruby"
           omit("This fails on TruffleRuby; " +
                "see https://github.com/test-unit/test-unit/pull/218 for details")
         end
