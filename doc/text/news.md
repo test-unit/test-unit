@@ -1,5 +1,16 @@
 # News
 
+## 3.5.5 - 2022-10-04 {#version-3-5-5}
+
+### Fixes
+
+  * Suppressed a warning.
+    [GitHub#219][Patch by Kenichi Kamiya]
+
+### Thanks
+
+  * Kenichi Kamiya
+
 ## 3.5.4 - 2022-10-04 {#version-3-5-4}
 
 ### Improvements
