@@ -60,7 +60,7 @@ namespace :doc do
   task :add_permalink do
     news_md = File.read("doc/text/news.md")
     applied_permalink = news_md.gsub(/(?<pre>\[GitHub#(?<ref>\d+)\])(?!\()/) do
-      "#{Regexp.last_match[:pre]}(#{"https://github.com/test-unit/test-unit/issues/"}#{Regexp.last_match[:ref]})"
+      "#{Regexp.last_match[:pre]}(https://github.com/test-unit/test-unit/issues/#{Regexp.last_match[:ref]})"
     end
 
     File.write("doc/text/news.md", applied_permalink)
