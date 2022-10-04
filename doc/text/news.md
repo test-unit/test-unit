@@ -1,5 +1,21 @@
 # News
 
+## 3.5.4 - 2022-10-04 {#version-3-5-4}
+
+### Improvements
+
+  * Don't raise an error on `Test::Unit::TestCase.clone`.
+    [GitHub#210][Reported by David Marchaland]
+
+  * Added support for `BigDeciaml` in `assert_in_delta` family.
+    [GitHub#218][Patch by Kenta Murata]
+
+### Thanks
+
+  * David Marchaland
+
+  * Kenta Murata
+
 ## 3.5.3 - 2021-12-20 {#version-3-5-3}
 
 ### Improvements
