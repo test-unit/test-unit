@@ -62,11 +62,9 @@ namespace :doc do
     base_url = "https://github.com/test-unit/test-unit/pull/"
 
     applied_typed_permalink = news_md.gsub(/(?<pre>\[GitHub#(?<ref>\d+)\])(?<post> ?\[(?<type>Report|Patch))/) do
-      if Regexp.last_match[:type] == "Report"
-        base_url = "https://github.com/test-unit/test-unit/issues/"
-      end
+      typed_base_url = Regexp.last_match[:type] == "Report" ? "https://github.com/test-unit/test-unit/issues/" : base_url
 
-      "#{Regexp.last_match[:pre]}(#{base_url}#{Regexp.last_match[:ref]})#{Regexp.last_match[:post]}"
+      "#{Regexp.last_match[:pre]}(#{typed_base_url}#{Regexp.last_match[:ref]})#{Regexp.last_match[:post]}"
     end
 
     applied_all_permalink = applied_typed_permalink.gsub(/(?<pre>\[GitHub#(?<ref>\d+)\])(?!\()/) do
