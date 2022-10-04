@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"* http://test-unit.github.io/\n"
+"* https://test-unit.github.io/\n"
 "* https://github.com/test-unit/test-unit"
 msgstr ""
 
@@ -530,14 +530,14 @@ msgid ""
 "~~~"
 msgstr ""
 
-msgid "## 7. For more inforomation"
+msgid "## 7. For more information"
 msgstr "## 7. 詳細な情報"
 
 msgid "Let's read the official document."
 msgstr "公式のドキュメントを参照してください。"
 
-msgid "* [test-unit](http://test-unit.github.io/index.html)"
-msgstr "* [test-unit](http://test-unit.github.io/index.html)"
+msgid "* [test-unit](https://test-unit.github.io/index.html)"
+msgstr "* [test-unit](https://test-unit.github.io/index.html)"
 
 msgid "# How To"
 msgstr "# 一歩進んだ使い方"
@@ -2169,7 +2169,7 @@ msgid ""
 "  * use ~/.test-unit.yml as global configuration file.\n"
 "  * add TAP runner. (--runner tap)\n"
 "  * support colorized diff:\n"
-"    http://test-unit.github.io/color-diff.png\n"
+"    https://test-unit.github.io/color-diff.png\n"
 "  * add Test::Unit::AutoRunner.default_runner= to specify default test runner."
 msgstr ""
 

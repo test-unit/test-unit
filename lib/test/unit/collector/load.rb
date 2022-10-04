@@ -60,6 +60,8 @@ module Test
               test_suite = test_suites.first
             end
 
+            adjust_ractor_tests(test_suite)
+
             test_suite
           end
         end

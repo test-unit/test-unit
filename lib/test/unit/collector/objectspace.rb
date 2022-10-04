@@ -26,6 +26,7 @@ module Test
             end
           end
           sort(sub_suites).each{|s| suite << s}
+          adjust_ractor_tests(suite)
           suite
         end
       end

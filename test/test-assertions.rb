@@ -394,7 +394,7 @@ EOM
             ascii_8bit_string = utf8_string.dup.force_encoding("ascii-8bit")
             message = <<-EOM.chomp
 <#{utf8_string.inspect}>("UTF-8") expected but was
-<#{ascii_8bit_string.inspect}>("ASCII-8BIT").
+<#{ascii_8bit_string.inspect}>("#{Encoding::ASCII_8BIT.name}").
 EOM
             check_fail(message) do
               assert_equal(utf8_string, ascii_8bit_string)
@@ -843,7 +843,9 @@ EOM
 
         thing = return_true_class.new
 
-        assert_equal(thing, true)
+        check_nothing_fails do
+          assert_equal(thing, true)
+        end
 
         check_fail(%Q{<true> expected but was\n<#{thing.inspect}>.}) {
           assert_equal(true, thing)
@@ -1792,6 +1794,131 @@ message.
       end
     end
 
+    class TestAssertInDeltaBigDecimal < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_in_delta(BigDecimal("1.40000000000000000001"),
+                          BigDecimal("1.40000000000000000001"),
+                          0)
+        end
+      end
+
+      def test_pass_without_delta
+        check_nothing_fails do
+          assert_in_delta(BigDecimal("1.40000000000000000001"),
+                          BigDecimal("1.40000000000000000002"))
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_in_delta(BigDecimal("1.40000000000000000001"),
+                          BigDecimal("1.50000000000000000001"),
+                          BigDecimal("0.1"),
+                          "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            0.2
+          end
+          assert_in_delta(BigDecimal("0.1"),
+                          float_thing,
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_string_expected
+        check_nothing_fails do
+          assert_in_delta("0.5",
+                          BigDecimal("0.4"),
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_with_message
+        check_fail("message.\n" +
+                    "<0.50000000000000000001e0> -/+ <0.5e-1> was expected to include\n" +
+                    "<0.40000000000000000001e0>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.40000000000000000001e0> < " +
+                    "<0.50000000000000000001e0>-<0.5e-1>[0.45000000000000000001e0] <= " +
+                    "<0.50000000000000000001e0>+<0.5e-1>[0.55000000000000000001e0]" +
+                    ">") do
+          assert_in_delta(BigDecimal("0.50000000000000000001"),
+                          BigDecimal("0.40000000000000000001"),
+                          BigDecimal("0.05"),
+                          "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_in_delta(object,
+                          BigDecimal("0.4"),
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_with_float_like_object
+        object = Object.new
+        def object.to_f
+          0.4
+        end
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("<0.10000000000000000001e0> -/+ <0.1e0> was expected to include\n" +
+                    "<#{object}>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.10000000000000000001e0>-<0.1e0>[0.0] <= " +
+                    "<0.10000000000000000001e0>+<0.1e0>[0.2] < " +
+                    "<#{object}>" +
+                    ">") do
+          assert_in_delta(BigDecimal("0.10000000000000000001"),
+                          object,
+                          BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_because_negaitve_delta
+        check_fail("The delta should not be negative.\n" +
+                   "<-0.1e0> was expected to be\n>=\n<0.0>.") do
+          assert_in_delta(BigDecimal("0.5"),
+                          BigDecimal("0.4"),
+                          BigDecimal("-0.1"),
+                          "message")
+        end
+      end
+
+      def test_fail_without_delta
+        check_fail("<0.140200000000000000001e1> -/+ <0.001> was expected to include\n" +
+                    "<0.140400000000000000001e1>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.140200000000000000001e1>-<0.001>[0.140100000000000000001e1] <= " +
+                    "<0.140200000000000000001e1>+<0.001>[0.140300000000000000001e1] < " +
+                    "<0.140400000000000000001e1>" +
+                    ">") do
+          assert_in_delta(BigDecimal("1.40200000000000000001"),
+                          BigDecimal("1.40400000000000000001"))
+        end
+      end
+    end
+
     class TestAssertNotInDelta < Test::Unit::TestCase
       include AssertionCheckable
 
@@ -1887,6 +2014,153 @@ message.
         check_fail("The delta should not be negative.\n" +
                     "<-0.11> was expected to be\n>=\n<0.0>.") do
           assert_not_in_delta(0.5, 0.4, -0.11, "message")
+        end
+      end
+    end
+
+    class TestAssertNotInDeltaBigDecimal < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_not_in_delta(BigDecimal("1.42000000000000000001"),
+                              BigDecimal("1.42000000000000000002"),
+                              BigDecimal("0.000000000000000000005"))
+        end
+      end
+
+      def test_pass_without_delta
+        check_nothing_fails do
+          assert_not_in_delta(BigDecimal("1.40200000000000000001"),
+                              BigDecimal("1.40400000000000000001"))
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_not_in_delta(BigDecimal("0.50000000000000000001"),
+                              BigDecimal("0.50000000000000000002"),
+                              BigDecimal("0.000000000000000000009"),
+                              "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            0.2
+          end
+          assert_not_in_delta(BigDecimal("0.10000000000000000001"),
+                              float_thing,
+                              BigDecimal("0.09"))
+        end
+      end
+
+      def test_pass_string_epxected
+        check_nothing_fails do
+          assert_not_in_delta("0.5",
+                              BigDecimal("0.4"),
+                              BigDecimal("0.09"))
+        end
+      end
+
+      def test_fail
+        check_fail("<0.140000000000000000001e1> -/+ <0.5e-19> was expected to not include\n" +
+                    "<0.140000000000000000002e1>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.140000000000000000001e1>-<0.5e-19>[0.139999999999999999996e1] <= " +
+                    "<0.140000000000000000002e1> <= " +
+                    "<0.140000000000000000001e1>+<0.5e-19>[0.140000000000000000006e1]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("1.40000000000000000001"),
+                              BigDecimal("1.40000000000000000002"),
+                              BigDecimal("0.00000000000000000005"))
+        end
+      end
+
+      def test_fail_without_delta
+        check_fail("<0.140200000000000000001e1> -/+ <0.001> was expected to not include\n" +
+                    "<0.140210000000000000001e1>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.140200000000000000001e1>-<0.001>" +
+                    "[#{BigDecimal("1.40200000000000000001") - 0.001}] <= " +
+                    "<0.140210000000000000001e1> <= " +
+                    "<0.140200000000000000001e1>+<0.001>" +
+                    "[#{BigDecimal("1.40200000000000000001") + 0.001}]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("1.40200000000000000001"),
+                              BigDecimal("1.40210000000000000001"))
+        end
+      end
+
+      def test_fail_with_message
+        x = BigDecimal("0.1234567890123456789")
+        y = BigDecimal("0.1234567890123456788")
+        d = BigDecimal("0.0000000000000000005")
+        check_fail("message.\n" +
+                    "<0.50000000000000000001e0> -/+ <0.5e-19> was expected to not include\n" +
+                    "<0.50000000000000000002e0>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.50000000000000000001e0>-<0.5e-19>[0.49999999999999999996e0] <= " +
+                    "<0.50000000000000000002e0> <= " +
+                    "<0.50000000000000000001e0>+<0.5e-19>[0.50000000000000000006e0]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("0.50000000000000000001"),
+                              BigDecimal("0.50000000000000000002"),
+                              BigDecimal("0.00000000000000000005"),
+                              "message")
+        end
+      end
+
+      def test_fail_with_float_like_object
+        x = BigDecimal("0.1")
+        object = Object.new
+        def object.to_f
+          0.4
+        end
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("<0.1e0> -/+ <0.5e0> was expected to not include\n" +
+                    "<#{object}>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.1e0>-<0.5e0>[#{0.1 - 0.5}] <= " +
+                    "<#{object}> <= " +
+                    "<0.1e0>+<0.5e0>[#{0.1 + 0.5}]" +
+                    ">") do
+          assert_not_in_delta(BigDecimal("0.1"),
+                              object,
+                              BigDecimal("0.5"))
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_not_in_delta(object,
+                              BigDecimal("0.4"),
+                              BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_because_negaitve_delta
+        check_fail("The delta should not be negative.\n" +
+                   "<-5.0e-20> was expected to be\n>=\n<0.0>.") do
+          assert_not_in_delta(BigDecimal("+0.500000000000000000001"),
+                              BigDecimal("+0.500000000000000000002"),
+                              BigDecimal("-0.00000000000000000005"),
+                              "message")
         end
       end
     end
@@ -1990,6 +2264,155 @@ message.
       end
     end
 
+    class TestAssertInEpsilonBigDecimal < TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_in_epsilon(BigDecimal("1.0e1000"),
+                            BigDecimal("0.9e1000"),
+                            BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_without_epsilon
+        check_nothing_fails do
+          assert_in_epsilon(BigDecimal("1.0e1000"),
+                            BigDecimal("0.9991e1000"))
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_in_epsilon(BigDecimal("1.0e1000"),
+                            BigDecimal("0.9e1000"),
+                            BigDecimal("0.1"),
+                            "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            9000.0
+          end
+          assert_in_epsilon(BigDecimal("10000"),
+                            float_thing,
+                            BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_string_expected
+        check_nothing_fails do
+          assert_in_epsilon("10000",
+                            BigDecimal("9000"),
+                            BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_zero_expected
+        check_nothing_fails do
+          assert_in_epsilon(BigDecimal("0"),
+                            BigDecimal("1e-1000"))
+        end
+      end
+
+      def test_pass_minus_expected
+        check_nothing_fails do
+          assert_in_epsilon(BigDecimal("-1"),
+                            BigDecimal("-1"))
+        end
+      end
+
+      def test_fail_with_message
+        check_fail("message.\n" +
+                    "<0.1e501> -/+ (<0.1e501> * <0.1e0>)[0.1e500] " +
+                    "was expected to include\n" +
+                    "<0.8999e500>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.8999e500> < " +
+                    "<0.1e501>-(<0.1e501>*<0.1e0>)[0.9e500] <= " +
+                    "<0.1e501>+(<0.1e501>*<0.1e0>)[0.11e501]" +
+                    ">") do
+          assert_in_epsilon(BigDecimal("1e500"),
+                            BigDecimal("0.8999e500"),
+                            BigDecimal("0.1"),
+                            "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_in_epsilon(object,
+                            BigDecimal("0.9e500"),
+                            BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_with_float_like_object
+        if RUBY_ENGINE == "truffleruby"
+          omit("This fails on TruffleRuby; " +
+               "see https://github.com/test-unit/test-unit/pull/218 for details")
+        end
+
+        object = Object.new
+        def object.to_f
+          0.4
+        end
+        check_fail("<0.10000000000000000001e0> -/+ (<0.10000000000000000001e0> * <0.1e0>)" +
+                   "[0.010000000000000002] was expected to include\n" +
+                   "<#{object}>.\n" +
+                   "\n" +
+                   "Relation:\n" +
+                   "<" +
+                   "<0.10000000000000000001e0>-(<0.10000000000000000001e0>*<0.1e0>)" +
+                   "[0.09] <= " +
+                   "<0.10000000000000000001e0>+(<0.10000000000000000001e0>*<0.1e0>)" +
+                   "[0.11000000000000001] < " +
+                   "<#{object}>" +
+                   ">"
+                  ) do
+          assert_in_epsilon(BigDecimal("0.10000000000000000001"),
+                            object,
+                            BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_because_negaitve_epsilon
+        check_fail("The epsilon should not be negative.\n" +
+                    "<-0.1e0> was expected to be\n>=\n<0.0>.") do
+          assert_in_epsilon(BigDecimal("1.0e500"),
+                            BigDecimal("0.9e500"),
+                            BigDecimal("-0.1"),
+                            "message")
+        end
+      end
+
+      def test_fail_without_epsilon
+        check_fail("<0.1e501> -/+ (<0.1e501> * <0.001>)[0.1e498] " +
+                    "was expected to include\n" +
+                    "<0.10011e501>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.1e501>-(<0.1e501>*<0.001>)[0.999e500] <= " +
+                    "<0.1e501>+(<0.1e501>*<0.001>)[0.1001e501] < " +
+                    "<0.10011e501>" +
+                    ">") do
+          assert_in_epsilon(BigDecimal("1.0000e500"),
+                            BigDecimal("1.0011e500"))
+        end
+      end
+    end
+
     class TestAssertNotInEpsilon < Test::Unit::TestCase
       include AssertionCheckable
 
@@ -2073,6 +2496,28 @@ message.
         end
       end
 
+      def test_fail_with_float_like_object
+        object = Object.new
+        def object.to_f
+          0.4
+        end
+        check_fail("<0.1e1001> -/+ (<0.1e1001> * <0.1e0>)" +
+                   "[Infinity] was expected to not include\n" +
+                   "<#{object}>.\n" +
+                   "\n" +
+                   "Relation:\n" +
+                   "<" +
+                   "<0.1e1001>-(<0.1e1001>*<0.1e0>)[NaN] <= " +
+                   "<#{object}> <= " +
+                   "<0.1e1001>+(<0.1e1001>*<0.1e0>)[Infinity]" +
+                   ">"
+                  ) do
+          assert_not_in_epsilon(BigDecimal("1e1000"),
+                                object,
+                                BigDecimal("0.1"))
+        end
+      end
+
       def test_fail_because_not_float_like_object
         object = Object.new
         inspected_object = AssertionMessage.convert(object)
@@ -2088,6 +2533,129 @@ message.
         check_fail("The epsilon should not be negative.\n" +
                     "<-0.1> was expected to be\n>=\n<0.0>.") do
           assert_not_in_epsilon(10000, 9000, -0.1, "message")
+        end
+      end
+    end
+
+    class TestAssertNotInEpsilonBigDecimal < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def test_pass
+        check_nothing_fails do
+          assert_not_in_epsilon(BigDecimal("1.0000e1000"),
+                                BigDecimal("0.8999e1000"),
+                                BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_without_epsilon
+        check_nothing_fails do
+          assert_not_in_epsilon(BigDecimal("1.0000e1000"),
+                                BigDecimal("0.9989e1000"))
+        end
+      end
+
+      def test_pass_with_message
+        check_nothing_fails do
+          assert_not_in_epsilon(BigDecimal("1.0000e1000"),
+                                BigDecimal("0.8999e1000"),
+                                BigDecimal("0.1"),
+                                "message")
+        end
+      end
+
+      def test_pass_float_like_object
+        check_nothing_fails do
+          float_thing = Object.new
+          def float_thing.to_f
+            8999.0
+          end
+          assert_not_in_epsilon(BigDecimal("10000"),
+                                float_thing,
+                                BigDecimal("0.1"))
+        end
+      end
+
+      def test_pass_string_epxected
+        check_nothing_fails do
+          assert_not_in_epsilon("10000",
+                                BigDecimal("8999"),
+                                BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail
+        check_fail("<0.1e1001> -/+ (<0.1e1001> * <0.1e0>)[0.1e1000] " +
+                    "was expected to not include\n" +
+                    "<0.9e1000>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.1e1001>-(<0.1e1001>*<0.1e0>)[0.9e1000] <= " +
+                    "<0.9e1000> <= " +
+                    "<0.1e1001>+(<0.1e1001>*<0.1e0>)[0.11e1001]" +
+                    ">") do
+          assert_not_in_epsilon(BigDecimal("1.0e1000"),
+                                BigDecimal("0.9e1000"),
+                                BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_without_epsilon
+        check_fail("<0.1e1001> -/+ (<0.1e1001> * <0.001>)[0.1e998] " +
+                    "was expected to not include\n" +
+                    "<0.999e1000>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.1e1001>-(<0.1e1001>*<0.001>)[0.999e1000] <= " +
+                    "<0.999e1000> <= " +
+                    "<0.1e1001>+(<0.1e1001>*<0.001>)[0.1001e1001]" +
+                    ">") do
+          assert_not_in_epsilon(BigDecimal("1.000e1000"),
+                                BigDecimal("0.999e1000"))
+        end
+      end
+
+      def test_fail_with_message
+        check_fail("message.\n" +
+                    "<0.1e1001> -/+ (<0.1e1001> * <0.1e0>)[0.1e1000] " +
+                    "was expected to not include\n" +
+                    "<0.9e1000>.\n" +
+                    "\n" +
+                    "Relation:\n" +
+                    "<" +
+                    "<0.1e1001>-(<0.1e1001>*<0.1e0>)[0.9e1000] <= " +
+                    "<0.9e1000> <= " +
+                    "<0.1e1001>+(<0.1e1001>*<0.1e0>)[0.11e1001]" +
+                    ">") do
+          assert_not_in_epsilon(BigDecimal("1.0e1000"),
+                                BigDecimal("0.9e1000"),
+                                BigDecimal("0.1"),
+                                "message")
+        end
+      end
+
+      def test_fail_because_not_float_like_object
+        object = Object.new
+        inspected_object = AssertionMessage.convert(object)
+        check_fail("The arguments must respond to to_f; " +
+                    "the first float did not.\n" +
+                    "<#{inspected_object}>.respond_to?(:to_f) expected\n" +
+                    "(Class: <Object>)") do
+          assert_not_in_epsilon(object,
+                                BigDecimal("0.9e1000"),
+                                BigDecimal("0.1"))
+        end
+      end
+
+      def test_fail_because_negaitve_epsilon
+        check_fail("The epsilon should not be negative.\n" +
+                    "<-0.1e0> was expected to be\n>=\n<0.0>.") do
+          assert_not_in_epsilon(BigDecimal("10000"),
+                                BigDecimal("9000"),
+                                BigDecimal("-0.1"),
+                                "message")
         end
       end
     end
@@ -2303,6 +2871,84 @@ message.
 EOM
         check_fail(expected_message.chomp) do
           assert_all([0, 1], "message", &:zero?)
+        end
+      end
+    end
+
+    class TestAssertNothingLeakedMemory < Test::Unit::TestCase
+      include AssertionCheckable
+
+      def setup
+        @data = "Hello!" * 100
+        if ObjectSpace.respond_to?(:memsize_of)
+          @data_size = ObjectSpace.memsize_of(@data)
+        else
+          @data_size = 0
+        end
+        if @data_size.zero?
+          @data_size = @data.bytesize
+        end
+      end
+
+      def test_pass
+        check_nothing_fails do
+          n_tries = 100_000
+          assert_nothing_leaked_memory(@data_size * n_tries) do
+            n_tries.times do
+              @data.dup
+            end
+          end
+        end
+      end
+
+      def test_pass_message
+        check_nothing_fails do
+          n_tries = 100_000
+          assert_nothing_leaked_memory(@data_size * 100_000,
+                                       :physical,
+                                       "string") do
+            n_tries.times do
+              @data.dup
+            end
+          end
+        end
+      end
+
+      def test_pass_target
+        check_nothing_fails do
+          n_tries = 100_000
+          assert_nothing_leaked_memory(@data_size * 100_000,
+                                       :virtual) do
+            n_tries.times do
+              @data.dup
+            end
+          end
+        end
+      end
+
+      def test_fail
+        actual_increased_size = 10000
+        n_tries = 100_000
+        max_increasable_size = -1
+        expected_message = <<-MESSAGE
+message.
+<#{actual_increased_size}> was expected to be less than
+<#{max_increasable_size}>.
+        MESSAGE
+        actual_message_normalizer = lambda do |message|
+          message.gsub(/<\d+> was expected/,
+                       "<#{actual_increased_size}> was expected")
+        end
+        check_fail(expected_message.chomp,
+                   actual_message_normalizer: actual_message_normalizer) do
+          strings = []
+          assert_nothing_leaked_memory(max_increasable_size,
+                                       :physical,
+                                       "message") do
+            n_tries.times do
+              strings << @data.dup
+            end
+          end
         end
       end
     end

@@ -5,6 +5,7 @@
 
 require 'test/unit/assertion-failed-error'
 require 'test/unit/util/backtracefilter'
+require 'test/unit/util/memory-usage'
 require 'test/unit/util/method-owner-finder'
 require 'test/unit/diff'
 
@@ -454,7 +455,7 @@ EOT
       alias_method :refute_instance_of, :assert_not_instance_of
 
       ##
-      # Passes if `object` is nil.
+      # Passes if `object`.nil?.
       #
       # @example
       #   assert_nil [1, 2].uniq!
@@ -627,7 +628,7 @@ EOT
       ##
       # Compares the `object1` with `object2` using `operator`.
       #
-      # Passes if object1.__send__(operator, object2) is true.
+      # Passes if object1.__send__(operator, object2) is not false nor nil.
       #
       # @example
       #   assert_operator 5, :>=, 4
@@ -647,7 +648,7 @@ EOT
       ##
       # Compares the `object1` with `object2` using `operator`.
       #
-      # Passes if object1.__send__(operator, object2) is not true.
+      # Passes if object1.__send__(operator, object2) is false or nil.
       #
       # @example
       #   assert_not_operator(5, :<, 4) # => pass
@@ -925,15 +926,37 @@ EOT
       #   assert_in_delta 0.05, (50000.0 / 10**6), 0.00001
       def assert_in_delta(expected_float, actual_float, delta=0.001, message="")
         _wrap_assertion do
-          _assert_in_delta_validate_arguments(expected_float,
-                                              actual_float,
-                                              delta)
-          full_message = _assert_in_delta_message(expected_float,
-                                                  actual_float,
-                                                  delta,
-                                                  message)
+          begin
+            pass = delta >= (expected_float - actual_float).abs
+            assert_operator(delta, :>=, 0.0, "The delta should not be negative")
+            full_message = _assert_in_delta_message(expected_float,
+                                                    expected_float,
+                                                    actual_float,
+                                                    actual_float,
+                                                    delta,
+                                                    delta,
+                                                    message)
+          rescue Test::Unit::AssertionFailedError
+            # for the above assert_operator
+            raise
+          rescue
+            _assert_in_delta_validate_arguments(expected_float,
+                                                actual_float,
+                                                delta)
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_delta = delta.to_f
+            pass = (normalized_expected - normalized_actual).abs <= normalized_delta
+            full_message = _assert_in_delta_message(expected_float,
+                                                    normalized_expected,
+                                                    actual_float,
+                                                    normalized_actual,
+                                                    delta,
+                                                    normalized_delta,
+                                                    message)
+          end
           assert_block(full_message) do
-            (expected_float.to_f - actual_float.to_f).abs <= delta.to_f
+            pass
           end
         end
       end
@@ -950,13 +973,32 @@ EOT
           _assert_in_delta_validate_arguments(expected_float,
                                               actual_float,
                                               delta)
-          full_message = _assert_in_delta_message(expected_float,
-                                                  actual_float,
-                                                  delta,
-                                                  message,
-                                                  :negative_assertion => true)
+          begin
+            pass = (expected_float - actual_float).abs > delta
+            full_message = _assert_in_delta_message(expected_float,
+                                                    expected_float,
+                                                    actual_float,
+                                                    actual_float,
+                                                    delta,
+                                                    delta,
+                                                    message,
+                                                    :negative_assertion => true)
+          rescue
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_delta = delta.to_f
+            pass = (normalized_expected - normalized_actual).abs > normalized_delta
+            full_message = _assert_in_delta_message(expected_float,
+                                                    normalized_expected,
+                                                    actual_float,
+                                                    normalized_actual,
+                                                    delta,
+                                                    normalized_delta,
+                                                    message,
+                                                    :negative_assertion => true)
+          end
           assert_block(full_message) do
-            (expected_float.to_f - actual_float.to_f).abs > delta.to_f
+            pass
           end
         end
       end
@@ -983,7 +1025,9 @@ EOT
         assert_operator(delta, :>=, 0.0, "The delta should not be negative")
       end
 
-      def _assert_in_delta_message(expected_float, actual_float, delta,
+      def _assert_in_delta_message(expected_float, normalized_expected,
+                                   actual_float, normalized_actual,
+                                   delta, normalized_delta,
                                    message, options={})
         if options[:negative_assertion]
           format = <<-EOT
@@ -997,9 +1041,6 @@ EOT
 EOT
         end
         arguments = [expected_float, delta, actual_float]
-        normalized_expected = expected_float.to_f
-        normalized_actual = actual_float.to_f
-        normalized_delta = delta.to_f
         relation_format = nil
         relation_arguments = nil
         if normalized_actual < normalized_expected - normalized_delta
@@ -1048,22 +1089,52 @@ EOT
       def assert_in_epsilon(expected_float, actual_float, epsilon=0.001,
                             message="")
         _wrap_assertion do
-          _assert_in_epsilon_validate_arguments(expected_float,
-                                                actual_float,
-                                                epsilon)
-          full_message = _assert_in_epsilon_message(expected_float,
-                                                    actual_float,
-                                                    epsilon,
-                                                    message)
-          assert_block(full_message) do
-            normalized_expected_float = expected_float.to_f
-            if normalized_expected_float.zero?
-              delta = epsilon.to_f ** 2
+          begin
+            zero_p = expected_float.zero? rescue expected_float == 0
+            if zero_p
+              delta = epsilon ** 2
             else
-              delta = normalized_expected_float * epsilon.to_f
+              delta = expected_float * epsilon
             end
             delta = delta.abs
-            (normalized_expected_float - actual_float.to_f).abs <= delta
+            pass = (expected_float - actual_float).abs <= delta
+            assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      expected_float,
+                                                      actual_float,
+                                                      actual_float,
+                                                      epsilon,
+                                                      epsilon,
+                                                      delta,
+                                                      message)
+          rescue Test::Unit::AssertionFailedError
+            # for the above assert_operator
+            raise
+          rescue
+            _assert_in_epsilon_validate_arguments(expected_float,
+                                                  actual_float,
+                                                  epsilon)
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_epsilon = epsilon.to_f
+            if normalized_expected.zero?
+              delta = normalized_epsilon ** 2
+            else
+              delta = normalized_expected * normalized_epsilon
+            end
+            delta = delta.abs
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      normalized_expected,
+                                                      actual_float,
+                                                      normalized_actual,
+                                                      epsilon,
+                                                      normalized_epsilon,
+                                                      delta,
+                                                      message)
+            pass = (normalized_expected - normalized_actual).abs <= delta
+          end
+          assert_block(full_message) do
+            pass
           end
         end
       end
@@ -1079,18 +1150,43 @@ EOT
       def assert_not_in_epsilon(expected_float, actual_float, epsilon=0.001,
                                 message="")
         _wrap_assertion do
-          _assert_in_epsilon_validate_arguments(expected_float,
-                                                actual_float,
-                                                epsilon)
-          full_message = _assert_in_epsilon_message(expected_float,
-                                                    actual_float,
-                                                    epsilon,
-                                                    message,
-                                                    :negative_assertion => true)
+          begin
+            delta = expected_float * epsilon
+            pass = (expected_float - actual_float).abs > delta
+            assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      expected_float,
+                                                      actual_float,
+                                                      actual_float,
+                                                      epsilon,
+                                                      epsilon,
+                                                      delta,
+                                                      message,
+                                                      :negative_assertion => true)
+          rescue Test::Unit::AssertionFailedError
+            # for the above assert_operator
+            raise
+          rescue
+            _assert_in_epsilon_validate_arguments(expected_float,
+                                                  actual_float,
+                                                  epsilon)
+            normalized_expected = expected_float.to_f
+            normalized_actual = actual_float.to_f
+            normalized_epsilon = epsilon.to_f
+            delta = normalized_expected * normalized_epsilon
+            pass = (normalized_expected - normalized_actual).abs > delta
+            full_message = _assert_in_epsilon_message(expected_float,
+                                                      normalized_expected,
+                                                      actual_float,
+                                                      normalized_actual,
+                                                      epsilon,
+                                                      normalized_epsilon,
+                                                      delta,
+                                                      message,
+                                                      :negative_assertion => true)
+          end
           assert_block(full_message) do
-            normalized_expected_float = expected_float.to_f
-            delta = normalized_expected_float * epsilon.to_f
-            (normalized_expected_float - actual_float.to_f).abs > delta
+            pass
           end
         end
       end
@@ -1117,13 +1213,10 @@ EOT
         assert_operator(epsilon, :>=, 0.0, "The epsilon should not be negative")
       end
 
-      def _assert_in_epsilon_message(expected_float, actual_float, epsilon,
-                                     message, options={})
-        normalized_expected = expected_float.to_f
-        normalized_actual = actual_float.to_f
-        normalized_epsilon = epsilon.to_f
-        delta = normalized_expected * normalized_epsilon
-
+      def _assert_in_epsilon_message(expected_float, normalized_expected,
+                                     actual_float, normalized_actual,
+                                     epsilon, normalized_epsilon,
+                                     delta, message, options={})
         if options[:negative_assertion]
           format = <<-EOT
 <?> -/+ (<?> * <?>)[?] was expected to not include
@@ -1177,7 +1270,7 @@ EOT
 
       public
       ##
-      # Passes if the method send returns a true value.
+      # Passes if the method `__send__` returns not false nor nil.
       #
       # `send_array` is composed of:
       # * A receiver
@@ -1217,7 +1310,7 @@ EOT
       end
 
       ##
-      # Passes if the method send doesn't return a true value.
+      # Passes if the method `__send__` returns false or nil.
       #
       # `send_array` is composed of:
       # * A receiver
@@ -1306,7 +1399,7 @@ EOT
 
       ##
       # Passes if expression "`expected` `operator`
-      # `actual`" is true.
+      # `actual`" is not false nor nil.
       #
       # @example
       #   assert_compare(1, "<", 10)  # -> pass
@@ -1435,7 +1528,7 @@ EOT
       end
 
       ##
-      # Passes if `object`.`predicate` is _true_.
+      # Passes if `object`.`predicate` is not false nor nil.
       #
       # @example
       #   assert_predicate([], :empty?)  # -> pass
@@ -1457,7 +1550,7 @@ EOT
       end
 
       ##
-      # Passes if `object`.`predicate` is not _true_.
+      # Passes if `object`.`predicate` is false or nil.
       #
       # @example
       #   assert_not_predicate([1], :empty?) # -> pass
@@ -1686,12 +1779,12 @@ EOT
       #   with any `block`.
       #
       #   @example Pass patterns
-      #     assert_all?([1, 2, 3]) {|item| item > 0} # => pass
-      #     assert_all?([1, 2, 3], &:positive?)      # => pass
-      #     assert_all?([]) {|item| false}           # => pass
+      #     assert_all([1, 2, 3]) {|item| item > 0} # => pass
+      #     assert_all([1, 2, 3], &:positive?)      # => pass
+      #     assert_all([]) {|item| false}           # => pass
       #
       #   @example Failure pattern
-      #     assert_all?([0, 1, 2], &:zero?) # => failure
+      #     assert_all([0, 1, 2], &:zero?) # => failure
       #
       #   @param [#each] collection The check target.
       #   @param [String] message The additional user message. It is
@@ -1728,6 +1821,81 @@ EOT
       #
       # @since 3.4.3
       alias_method :assert_all?, :assert_all
+
+      # @overload assert_nothing_leaked_memory(max_increasable_size, target=:physical, message=nil, &block)
+      #
+      #   Asserts that increased memory usage by `block.call` is less
+      #   than `max_increasable_size`. `GC.start` is called before and
+      #   after `block.call`.
+      #
+      #   This assertion may be fragile. Because memory usage is
+      #   depends on the current Ruby process's memory
+      #   usage. Launching a new Ruby process for this will produce
+      #   more stable result but we need to specify target code as
+      #   `String` instead of block for the approach. We choose easy
+      #   to write API approach rather than more stable result
+      #   approach for this case.
+      #
+      #   @example Pass pattern
+      #     require "objspace"
+      #     size_per_object = ObjectSpace.memsize_of("Hello")
+      #     # If memory isn't leaked, physical memory of almost created objects
+      #     # (1000 - 10 objects) must be freed.
+      #     assert_nothing_leaked_memory(size_per_object * 10) do
+      #       1_000.times do
+      #         "Hello".dup
+      #       end
+      #     end # => pass
+      #
+      #   @example Failure pattern
+      #     require "objspace"
+      #     size_per_object = ObjectSpace.memsize_of("Hello")
+      #     strings = []
+      #     assert_nothing_leaked_memory(size_per_object * 10) do
+      #       10_000.times do
+      #         # Created objects aren't GC-ed because they are referred.
+      #         strings << "Hello".dup
+      #       end
+      #     end # => failure
+      #
+      #   @param target [:physical, :virtual] which memory usage is
+      #     used for comparing. `:physical` means physical memory usage
+      #     also known as Resident Set Size (RSS). `:virtual` means
+      #     virtual memory usage.
+      #   @yield [] do anything you want to measure memory usage
+      #     in the block.
+      #   @yieldreturn [void]
+      #   @return [void]
+      #
+      # @since 3.4.5
+      def assert_nothing_leaked_memory(max_increasable_size,
+                                       target=:physical,
+                                       message=nil)
+        _wrap_assertion do
+          GC.start
+          before = Util::MemoryUsage.new
+          unless before.collected?
+            omit("memory usage collection isn't supported on this platform")
+          end
+          yield
+          GC.start
+          after = Util::MemoryUsage.new
+          before_value = before.__send__(target)
+          after_value = after.__send__(target)
+          actual_increased_size = after_value - before_value
+          template = <<-TEMPLATE
+<?> was expected to be less than
+<?>.
+          TEMPLATE
+          full_message = build_message(message,
+                                       template,
+                                       actual_increased_size,
+                                       max_increasable_size)
+          assert_block(full_message) do
+            actual_increased_size < max_increasable_size
+          end
+        end
+      end
 
       ##
       # Builds a failure message.  `user_message` is added before the

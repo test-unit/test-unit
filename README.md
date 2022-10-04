@@ -1,7 +1,7 @@
 # test-unit
 
-[![](https://badge.fury.io/rb/test-unit.svg)](http://badge.fury.io/rb/test-unit)
-[![](https://travis-ci.org/test-unit/test-unit.svg?branch=master)](https://travis-ci.org/test-unit/test-unit)
+[![Gem Version](https://badge.fury.io/rb/test-unit.png)](http://badge.fury.io/rb/test-unit)
+[![Build Status for Ruby 2.1+](https://github.com/test-unit/test-unit/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/test-unit/test-unit/actions/workflows/test.yml?query=branch%3Amaster+)
 
 * http://test-unit.github.io/
 * https://github.com/test-unit/test-unit
@@ -15,6 +15,17 @@ principles. These were originally designed by Kent Beck, creator of extreme
 programming software development methodology, for Smalltalk's SUnit. It allows
 writing tests, checking results and automated testing in Ruby.
 
+test-unit ships as part of Ruby as a bundled gem. To check which version is included, see https://stdgems.org/test-unit/.
+It's only necessary to install the gem if you need a newer version.
+
+test-unit is the original Ruby unit testing library, and is still active.
+It is one of two unit testing libraries bundled with Ruby, the other being [minitest](https://github.com/seattlerb/minitest).
+
+When deciding which to use, consider:
+
+* test-unit is strict about backwards compatibility. A backwards-incompatible change would be considered a bug.
+* test-unit aims to support old Ruby versions, even if EOL.
+
 ## Features
 
 * test-unit 1.2.3 is the original test-unit, taken
@@ -24,7 +35,7 @@ writing tests, checking results and automated testing in Ruby.
   to radically change very soon).
 
 * test-unit will be improved actively and may break
-  compatiblity with test-unit 1.2.3. (We will not hope it
+  compatibility with test-unit 1.2.3. (We will not hope it
   if it isn't needed.)
 
 * Some features exist as separated gems like GUI test

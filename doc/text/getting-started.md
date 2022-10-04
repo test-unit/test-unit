@@ -239,8 +239,8 @@ module Sub
 end
 ~~~
 
-## 7. For more inforomation
+## 7. For more information
 
 Let's read the official document.
 
-* [test-unit](http://test-unit.github.io/index.html)
+* [test-unit](https://test-unit.github.io/index.html)

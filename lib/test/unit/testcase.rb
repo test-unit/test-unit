@@ -351,6 +351,36 @@ module Test
           attribute(:description, value, {}, *targets)
         end
 
+        # Declares that the following test uses Ractor.
+        #
+        # Tests that use Ractor are executed at the end. Because multi
+        # Ractor mode is enabled in the current process and it's not
+        # disabled even when only one Ractor is running after running
+        # a test that uses Ractor on Ruby 3.0. It will be solved in
+        # Ruby 3.1.
+        #
+        # This is implemented by setting the `:ractor` attribute of
+        # the test to `true`.
+        #
+        # @param options [Hash] See {Attribute::ClassMethods#attribute}
+        #   for details.
+        #
+        # @return [void]
+        #
+        # @example Declares that test_do_something_with_ractor uses Ractor
+        #
+        #   ractor
+        #   def test_do_something_with_ractor
+        #     Ractor.new do
+        #       # ...
+        #     end
+        #   end
+        #
+        # @since 3.4.6
+        def ractor(options={})
+          attribute(:ractor, true, options)
+        end
+
         # Defines a sub test case.
         #
         # This is a syntax sugar. The both of the following codes are
@@ -389,13 +419,7 @@ module Test
         #   case class context.
         # @return [Test::Unit::TestCase] Created sub test case class.
         def sub_test_case(name, &block)
-          parent_test_case = self
-          sub_test_case = Class.new(self) do
-            singleton_class = class << self; self; end
-            singleton_class.__send__(:define_method, :name) do
-              [parent_test_case.name, name].compact.join("::")
-            end
-          end
+          sub_test_case = sub_test_case_class(name)
           sub_test_case.class_eval(&block)
           sub_test_case
         end
@@ -447,7 +471,7 @@ module Test
         # @private
         @@method_locations = {}
         # @private
-        @@method_location_mutex = Mutex.new
+        @@method_location_mutex = Thread::Mutex.new
 
         # @private
         def method_locations
@@ -482,6 +506,17 @@ module Test
               end
             end
             target_locations
+          end
+        end
+
+        # @private
+        def sub_test_case_class(name)
+          parent_test_case = self
+          Class.new(self) do
+            singleton_class = class << self; self; end
+            singleton_class.__send__(:define_method, :name) do
+              [parent_test_case.name, name].compact.join("::")
+            end
           end
         end
       end
@@ -820,6 +855,9 @@ module Test
         if redefined_info
           notify("<#{signature}> was redefined",
                  :backtrace => redefined_info[:backtrace])
+        end
+        if self[:ractor] and not defined?(::Ractor)
+          omit("<#{signature}> requires Ractor")
         end
         if @internal_data.have_test_data?
           test_method = method(@method_name)

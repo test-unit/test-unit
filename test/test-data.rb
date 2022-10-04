@@ -68,6 +68,34 @@ class TestData < Test::Unit::TestCase
       end
     end
 
+    class TestDynamicDataSetKeep < TestCalc
+      DATA_PROC = lambda do
+        data_set = {}
+        data_set["positive positive"] = {
+          :expected => 3,
+          :augend => 1,
+          :addend => 2
+        }
+        data_set["positive negative"] = {
+          :expected => -1,
+          :augend => 1,
+          :addend => -2
+        }
+        data_set
+      end
+
+      data(keep: true, &DATA_PROC)
+      def test_plus(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
+
+      def test_plus_keep(data)
+        assert_equal(data[:expected],
+                     @calc.plus(data[:augend], data[:addend]))
+      end
+    end
+
     class TestLoadDataSet < TestCalc
       extend TestUnitTestUtil
       load_data(fixture_file_path("plus.csv"))
@@ -114,10 +142,25 @@ class TestData < Test::Unit::TestCase
       end
     end
 
+    class TestPatternsHash < TestCalc
+      data(:x, {
+             "negative" => -1,
+             "positive" => 1,
+             "zero" => 0,
+           })
+      data(:y, {
+             "negative" => -100,
+             "positive" => 100,
+           })
+      data(:z, ["a", "b", "c"])
+      def test_use_data(data)
+      end
+    end
+
     class TestPatternsKeep < TestCalc
       data(:x, [-1, 1, 0], keep: true)
-      data(:y, [-100, 100])
-      data(:z, ["a", "b", "c"], keep: true)
+      data(:y, [-100, 100], keep: true)
+      data(:z, ["a", "b", "c"])
       def test_use_data(data)
       end
 
@@ -221,6 +264,13 @@ class TestData < Test::Unit::TestCase
     assert_equal(data_sets, test_plus[:data])
   end
 
+  def test_data_dynamic_data_set_keep
+    test = TestCalc::TestDynamicDataSetKeep.new("test_plus_keep")
+    data_sets = Test::Unit::DataSets.new
+    data_sets.add(TestCalc::TestDynamicDataSetKeep::DATA_PROC, {keep: true})
+    assert_equal(data_sets, test[:data])
+  end
+
   def test_data_patterns
     test = TestCalc::TestPatterns.new("test_use_data")
     data_sets = Test::Unit::DataSets.new
@@ -234,7 +284,7 @@ class TestData < Test::Unit::TestCase
     test = TestCalc::TestPatternsKeep.new("test_use_data_keep")
     data_sets = Test::Unit::DataSets.new
     data_sets.add([:x, [-1, 1, 0]], {keep: true})
-    data_sets.add([:z, ["a", "b", "c"]], {keep: true})
+    data_sets.add([:y, [-100, 100]], {keep: true})
     assert_equal(data_sets, test[:data])
   end
 
@@ -272,6 +322,33 @@ class TestData < Test::Unit::TestCase
                    "test_use_data[x: 1, y: 100, z: \"b\"](#{test_case.name})",
                    "test_use_data[x: 1, y: 100, z: \"c\"](#{test_case.name})",
                  ],
+                 suite.tests.collect {|test| test.name}.sort)
+  end
+
+  def test_suite_patterns_hash
+    test_case = TestCalc::TestPatternsHash
+    suite = test_case.suite
+    names = [
+      "test_use_data[x: negative, y: negative, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: negative, y: negative, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: negative, y: negative, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: negative, y: positive, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: negative, y: positive, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: negative, y: positive, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: positive, y: negative, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: positive, y: negative, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: positive, y: negative, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: positive, y: positive, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: positive, y: positive, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: positive, y: positive, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: zero, y: negative, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: zero, y: negative, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: zero, y: negative, z: \"c\"](#{test_case.name})",
+      "test_use_data[x: zero, y: positive, z: \"a\"](#{test_case.name})",
+      "test_use_data[x: zero, y: positive, z: \"b\"](#{test_case.name})",
+      "test_use_data[x: zero, y: positive, z: \"c\"](#{test_case.name})",
+    ]
+    assert_equal(names,
                  suite.tests.collect {|test| test.name}.sort)
   end
 
