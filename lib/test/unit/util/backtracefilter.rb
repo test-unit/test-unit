@@ -12,7 +12,7 @@ module Test
         TESTUNIT_RB_FILE = /\.rb\Z/
 
         POWERASSERT_PREFIX =
-          defined?(::PowerAssert) ?
+          (defined?(::PowerAssert) and ::PowerAssert.respond_to?(:start)) ?
             ::PowerAssert.method(:start).source_location[0].split(TESTUNIT_FILE_SEPARATORS)[0..-2] :
             nil
 
