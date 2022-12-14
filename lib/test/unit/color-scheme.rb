@@ -126,6 +126,7 @@ module Test
           guess_available_colors_from_vte_version_env ||
             guess_available_colors_from_colorterm_env ||
             guess_available_colors_from_term_env ||
+            guess_available_colors_from_github_actions_env ||
             8
         end
 
@@ -157,9 +158,17 @@ module Test
         def guess_available_colors_from_term_env
           case ENV["TERM"]
           when /[+-]direct/
-            2**24
+            2 ** 24
           when TERM_256
             256
+          else
+            nil
+          end
+        end
+
+        def guess_available_colors_from_github_actions_env
+          if ENV["GITHUB_ACTIONS"] == "true"
+            2 ** 24
           else
             nil
           end
