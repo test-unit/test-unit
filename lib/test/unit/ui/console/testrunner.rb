@@ -533,6 +533,7 @@ module Test
               true
             else
               return true if ENV["EMACS"] == "t"
+              return true if ENV["GITHUB_ACTIONS"] == "true"
               false
             end
           end
