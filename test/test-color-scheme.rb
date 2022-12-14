@@ -46,6 +46,7 @@ class TestUnitColorScheme < Test::Unit::TestCase
       @original_term, ENV["TERM"] = ENV["TERM"], nil
       @original_color_term, ENV["COLORTERM"] = ENV["COLORTERM"], nil
       @original_vte_version, ENV["VTE_VERSION"] = ENV["VTE_VERSION"], nil
+      @original_github_actions, ENV["GITHUB_ACTIONS"] = ENV["GITHUB_ACTIONS"], nil
       ENV["TERM"] = "xterm"
     end
 
@@ -53,6 +54,7 @@ class TestUnitColorScheme < Test::Unit::TestCase
       ENV["TERM"] = @original_term
       ENV["COLORTERM"] = @original_color_term
       ENV["VTE_VERSION"] = @original_vte_version
+      ENV["GITHUB_ACTIONS"] = @original_github_actions
     end
   end
 
@@ -88,6 +90,7 @@ class TestUnitColorScheme < Test::Unit::TestCase
 
   class TestGuessAvailableColors < self
     include CleanEnvironment
+
     {
       "rxvt"                 => 8,
       "xterm-color"          => 8,
