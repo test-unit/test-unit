@@ -1,5 +1,11 @@
 # News
 
+## 3.5.6 - 2022-12-15 {#version-3-5-6}
+
+### Improvements
+
+  * Enabled 256 colors output on GitHub Actions by default.
+
 ## 3.5.5 - 2022-10-04 {#version-3-5-5}
 
 ### Fixes
