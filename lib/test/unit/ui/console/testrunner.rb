@@ -524,6 +524,7 @@ module Test
           /x
 
           def guess_color_availability
+            return true if ENV["GITHUB_ACTIONS"] == "true"
             return false unless @output.tty?
             return true if windows? and ruby_2_0_or_later?
             case ENV["TERM"]
@@ -533,7 +534,6 @@ module Test
               true
             else
               return true if ENV["EMACS"] == "t"
-              return true if ENV["GITHUB_ACTIONS"] == "true"
               false
             end
           end
