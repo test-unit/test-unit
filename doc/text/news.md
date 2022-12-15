@@ -1,10 +1,17 @@
 # News
 
+## 3.5.7 - 2022-12-15 {#version-3-5-7}
+
+### Improvements
+
+  * [UI][console]: Changed to use color escape sequence for each line
+    instead of each output that may consist with multiple lines.
+
 ## 3.5.6 - 2022-12-15 {#version-3-5-6}
 
 ### Improvements
 
-  * Enabled 256 colors output on GitHub Actions by default.
+  * [UI][console]: Enabled 256 colors output on GitHub Actions by default.
 
 ## 3.5.5 - 2022-10-04 {#version-3-5-5}
 
