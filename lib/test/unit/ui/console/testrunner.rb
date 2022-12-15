@@ -435,12 +435,14 @@ module Test
 
           def output_single(something, color=nil, level=nil)
             return false unless output?(level)
-            if @use_color and color
-              something = "%s%s%s" % [color.escape_sequence,
-                                      something,
-                                      @reset_color.escape_sequence]
+            something.to_s.each_line do |line|
+              if @use_color and color
+                line = "%s%s%s" % [color.escape_sequence,
+                                   line,
+                                   @reset_color.escape_sequence]
+              end
+              @output.write(line)
             end
-            @output.write(something)
             @output.flush
             true
           end
