@@ -357,7 +357,7 @@ module Test
         # Ractor mode is enabled in the current process and it's not
         # disabled even when only one Ractor is running after running
         # a test that uses Ractor on Ruby 3.0. It will be solved in
-        # Ruby 3.1.
+        # the future.
         #
         # This is implemented by setting the `:ractor` attribute of
         # the test to `true`.
