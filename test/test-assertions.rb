@@ -1879,13 +1879,13 @@ message.
         end
         inspected_object = AssertionMessage.convert(object)
         check_fail("<0.10000000000000000001e0> -/+ <0.1e0> was expected to include\n" +
-                    "<#{object}>.\n" +
+                    "<#{inspected_object}>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
                     "<0.10000000000000000001e0>-<0.1e0>[0.0] <= " +
                     "<0.10000000000000000001e0>+<0.1e0>[0.2] < " +
-                    "<#{object}>" +
+                    "<#{inspected_object}>" +
                     ">") do
           assert_in_delta(BigDecimal("0.10000000000000000001"),
                           object,
@@ -2099,9 +2099,6 @@ message.
       end
 
       def test_fail_with_message
-        x = BigDecimal("0.1234567890123456789")
-        y = BigDecimal("0.1234567890123456788")
-        d = BigDecimal("0.0000000000000000005")
         check_fail("message.\n" +
                     "<0.50000000000000000001e0> -/+ <0.5e-19> was expected to not include\n" +
                     "<0.50000000000000000002e0>.\n" +
@@ -2120,19 +2117,18 @@ message.
       end
 
       def test_fail_with_float_like_object
-        x = BigDecimal("0.1")
         object = Object.new
         def object.to_f
           0.4
         end
         inspected_object = AssertionMessage.convert(object)
         check_fail("<0.1e0> -/+ <0.5e0> was expected to not include\n" +
-                    "<#{object}>.\n" +
+                    "<#{inspected_object}>.\n" +
                     "\n" +
                     "Relation:\n" +
                     "<" +
                     "<0.1e0>-<0.5e0>[#{0.1 - 0.5}] <= " +
-                    "<#{object}> <= " +
+                    "<#{inspected_object}> <= " +
                     "<0.1e0>+<0.5e0>[#{0.1 + 0.5}]" +
                     ">") do
           assert_not_in_delta(BigDecimal("0.1"),
