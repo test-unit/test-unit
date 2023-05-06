@@ -19,7 +19,7 @@ test-unit ships as part of Ruby as a bundled gem. To check which version is incl
 It's only necessary to install the gem if you need a newer version.
 
 test-unit is the original Ruby unit testing library, and is still active.
-It is one of two unit testing libraries bundled with Ruby, the other being [minitest](https://github.com/seattlerb/minitest).
+It is one of two unit testing libraries bundled with Ruby, the other being [minitest](https://github.com/minitest/minitest).
 
 When deciding which to use, consider:
 
