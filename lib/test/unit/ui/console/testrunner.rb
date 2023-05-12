@@ -123,9 +123,7 @@ module Test
             when :mark
               nl(PROGRESS_ONLY)
             end
-            change_output_level(IMPORTANT_FAULTS_ONLY) do
-              output_statistics(elapsed_time)
-            end
+            output_statistics(elapsed_time)
           end
 
           def output_faults
@@ -330,9 +328,13 @@ module Test
           end
 
           def output_statistics(elapsed_time)
-            output("Finished in #{elapsed_time} seconds.")
+            change_output_level(IMPORTANT_FAULTS_ONLY) do
+              output("Finished in #{elapsed_time} seconds.")
+            end
             output_summary_marker
-            output(@result)
+            change_output_level(IMPORTANT_FAULTS_ONLY) do
+              output(@result)
+            end
             output("%g%% passed" % @result.pass_percentage)
             unless elapsed_time.zero?
               output_summary_marker
