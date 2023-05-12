@@ -1,4 +1,4 @@
-# Copyright (C) 2008-2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2008-2023  Sutou Kouhei <kou@clear-code.com>
 
 module Test
   module Unit
@@ -49,6 +49,16 @@ module Test
               "Uses MAX as max terminal width for progress mark",
               "(default is auto)") do |max|
         auto_runner.runner_options[:progress_row_max] = max
+      end
+
+      progress_styles = [
+        :inplace,
+        :mark,
+      ]
+      opts.on("--progress-style=STYLE", progress_styles,
+              "Uses STYLE as progress style",
+              "(#{progress_styles.join(", ")})") do |style|
+        auto_runner.runner_options[:progress_style] = style
       end
 
       opts.on("--no-show-detail-immediately",

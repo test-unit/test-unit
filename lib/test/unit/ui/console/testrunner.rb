@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright::
 #   * Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
-#   * Copyright (c) 2008-2017 Kouhei Sutou <kou@clear-code.com>
+#   * Copyright (c) 2008-2023 Sutou Kouhei <kou@clear-code.com>
 # License:: Ruby license.
 
 begin
@@ -42,6 +42,9 @@ module Test
             @use_color = guess_color_availability if @use_color.nil?
             @color_scheme = @options[:color_scheme] || ColorScheme.default
             @reset_color = Color.new("reset")
+            @progress_style = @options[:progress_style] || :inplace
+            @progress_marks = ["|", "/", "-", "\\", "|", "/", "-", "\\"]
+            @progress_mark_index = 0
             @progress_row = 0
             @progress_row_max = @options[:progress_row_max]
             @progress_row_max ||= guess_progress_row_max
@@ -114,7 +117,11 @@ module Test
               nl if output?(NORMAL) and !output?(VERBOSE)
               output_faults
             end
-            nl(PROGRESS_ONLY)
+            if @progress_style == :inplace
+              output_single("\r", nil, PROGRESS_ONLY)
+            else
+              nl(PROGRESS_ONLY)
+            end
             change_output_level(IMPORTANT_FAULTS_ONLY) do
               output_statistics(elapsed_time)
             end
@@ -339,11 +346,8 @@ module Test
           end
 
           def output_summary_marker
-            if @progress_row_max > 0
-              output("-" * @progress_row_max, summary_marker_color)
-            else
-              nl
-            end
+            return if @progress_row_max <= 0
+            output("-" * @progress_row_max, summary_marker_color)
           end
 
           def test_started(test)
@@ -372,7 +376,14 @@ module Test
 
           def test_finished(test)
             unless @already_outputted
-              output_progress(".", color("pass-marker"))
+              if @progress_style == :inplace
+                mark = @progress_marks[@progress_mark_index]
+                @progress_mark_index =
+                  (@progress_mark_index + 1) % @progress_marks.size
+              else
+                mark = "."
+              end
+              output_progress(mark, color("pass-marker"))
             end
             @already_outputted = false
 
@@ -448,7 +459,11 @@ module Test
           end
 
           def output_progress(mark, color=nil)
-            if output_single(mark, color, PROGRESS_ONLY)
+            if @progress_style == :inplace
+              output_single("\r#{mark}", color, PROGRESS_ONLY)
+            else
+              return unless output?(PROGRESS_ONLY)
+              output_single(mark, color)
               return unless @progress_row_max > 0
               @progress_row += mark.size
               if @progress_row >= @progress_row_max
@@ -459,11 +474,8 @@ module Test
           end
 
           def output_progress_in_detail_marker(fault)
-            if @progress_row_max > 0
-              output("=" * @progress_row_max)
-            else
-              nl
-            end
+            return if @progress_row_max <= 0
+            output("=" * @progress_row_max)
           end
 
           def output_progress_in_detail(fault)
