@@ -42,7 +42,7 @@ module Test
             @use_color = guess_color_availability if @use_color.nil?
             @color_scheme = @options[:color_scheme] || ColorScheme.default
             @reset_color = Color.new("reset")
-            @progress_style = @options[:progress_style] || :inplace
+            @progress_style = @options[:progress_style] || guess_progress_style
             @progress_marks = ["|", "/", "-", "\\", "|", "/", "-", "\\"]
             @progress_mark_index = 0
             @progress_row = 0
@@ -549,6 +549,14 @@ module Test
             else
               return true if ENV["EMACS"] == "t"
               false
+            end
+          end
+
+          def guess_progress_style
+            if ENV["GITHUB_ACTIONS"] == "true"
+              :mark
+            else
+              :inplace
             end
           end
 
