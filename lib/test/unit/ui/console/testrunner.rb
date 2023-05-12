@@ -117,9 +117,10 @@ module Test
               nl if output?(NORMAL) and !output?(VERBOSE)
               output_faults
             end
-            if @progress_style == :inplace
+            case @progress_style
+            when :inplace
               output_single("\r", nil, PROGRESS_ONLY)
-            else
+            when :mark
               nl(PROGRESS_ONLY)
             end
             change_output_level(IMPORTANT_FAULTS_ONLY) do
@@ -481,15 +482,23 @@ module Test
 
           def output_progress_in_detail(fault)
             return if @output_level == SILENT
-            nl
-            output_progress_in_detail_marker(fault)
-            if categorize_fault(fault) == :need_detail_faults
-              output_fault_in_detail(fault)
+            need_detail_faults = (categorize_fault(fault) == :need_detail_faults)
+            if need_detail_faults
+              log_level = IMPORTANT_FAULTS_ONLY
             else
-              output_fault_in_short(fault)
+              log_level = @current_output_level
             end
-            output_progress_in_detail_marker(fault)
-            @progress_row = 0
+            change_output_level(log_level) do
+              nl(NORMAL)
+              output_progress_in_detail_marker(fault)
+              if need_detail_faults
+                output_fault_in_detail(fault)
+              else
+                output_fault_in_short(fault)
+              end
+              output_progress_in_detail_marker(fault)
+              @progress_row = 0
+            end
           end
 
           def output?(level)
