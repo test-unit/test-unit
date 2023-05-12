@@ -376,14 +376,15 @@ module Test
 
           def test_finished(test)
             unless @already_outputted
-              if @progress_style == :inplace
+              case @progress_style
+              when :inplace
                 mark = @progress_marks[@progress_mark_index]
                 @progress_mark_index =
                   (@progress_mark_index + 1) % @progress_marks.size
-              else
-                mark = "."
+                output_progress(mark, color("pass-marker"))
+              when :mark
+                output_progress(".", color("pass-marker"))
               end
-              output_progress(mark, color("pass-marker"))
             end
             @already_outputted = false
 
@@ -554,7 +555,7 @@ module Test
 
           def guess_progress_style
             if ENV["GITHUB_ACTIONS"] == "true"
-              :mark
+              :fault_only
             else
               :inplace
             end

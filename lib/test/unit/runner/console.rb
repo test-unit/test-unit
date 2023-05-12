@@ -52,12 +52,13 @@ module Test
       end
 
       progress_styles = [
-        :inplace,
-        :mark,
+        ["inplace", :inplace],
+        ["mark", :mark],
+        ["fault-only", :fault_only],
       ]
       opts.on("--progress-style=STYLE", progress_styles,
               "Uses STYLE as progress style",
-              "(#{progress_styles.join(", ")})") do |style|
+              "(#{auto_runner.keyword_display(progress_styles)}") do |style|
         auto_runner.runner_options[:progress_style] = style
       end
 
