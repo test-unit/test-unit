@@ -1,5 +1,30 @@
 # News
 
+## 3.5.8 - 2023-05-12 {#version-3-5-8}
+
+### Improvements
+
+  * doc: Improved document for multi Ractor mode.
+    [GH-226][https://github.com/test-unit/test-unit/issues/226]
+    [Patch by Luke Gruber]
+
+  * doc: Updated minitest's URL.
+    [GH-228][https://github.com/test-unit/test-unit/issues/228]
+    [Patch by Koichi ITO]
+
+  * UI: console: Added `--progress-style` option.
+
+  * UI: console: Compacted `--verbose=important-only` output..
+
+  * UI: console: Changed the default output level to `important-only`
+      on GitHub Actions.
+
+### Thanks
+
+  * Luke Gruber
+
+  * Koichi ITO
+
 ## 3.5.7 - 2022-12-15 {#version-3-5-7}
 
 ### Improvements
