@@ -14,7 +14,9 @@ jobs:
         run: |
           ruby \
             -e 'print("## test-unit "); \
-                puts(ARGF.read.split(/^## /)[1].gsub(/ {.+?}/, ""))' \
+                puts(ARGF.read.split(/^## /)[1]. \
+                       gsub(/ {.+?}/, ""). \
+                       gsub(/\[(.+?)\]\[.+?\]/) {$1})' \
             doc/text/news.md > release-note.md
       - name: Upload to release
         uses: softprops/action-gh-release@v1
