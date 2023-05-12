@@ -36,7 +36,7 @@ module Test
           # STDOUT.
           def initialize(suite, options={})
             super
-            @output_level = @options[:output_level] || NORMAL
+            @output_level = @options[:output_level] || guess_output_level
             @output = @options[:output] || STDOUT
             @use_color = @options[:use_color]
             @use_color = guess_color_availability if @use_color.nil?
@@ -530,6 +530,14 @@ module Test
 
           def summary_marker_color
             color("#{@result.status}-marker")
+          end
+
+          def guess_output_level
+            if ENV["GITHUB_ACTIONS"] == "true"
+              IMPORTANT_FAULTS_ONLY
+            else
+              NORMAL
+            end
           end
 
           TERM_COLOR_SUPPORT = /
