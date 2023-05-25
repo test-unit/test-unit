@@ -437,7 +437,7 @@ module Test
             n = 1
           end
           i += 1
-          keyword.sub(/^(.{#{n}})([A-Za-z]+)(?=\w*$)/, '\\1[\\2]')
+          keyword.sub(/^(.{#{n}})([A-Za-z-]+)(?=\w*$)/, '\\1[\\2]')
         end.join(", ")
       end
 
