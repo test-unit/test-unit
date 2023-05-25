@@ -573,10 +573,14 @@ module Test
           end
 
           def guess_progress_style
-            if ENV["GITHUB_ACTIONS"] == "true"
-              :fault_only
+            if @output_level >= VERBOSE
+              :mark
             else
-              :inplace
+              if ENV["GITHUB_ACTIONS"] == "true"
+                :fault_only
+              else
+                :inplace
+              end
             end
           end
 
