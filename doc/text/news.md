@@ -1,5 +1,12 @@
 # News
 
+## 3.5.9 - 2023-05-25 {#version-3-5-9}
+
+### Improvements
+
+  * UI: console: Use `--progress-style=mark` with `--verbose=verbose`
+    by default.
+
 ## 3.5.8 - 2023-05-12 {#version-3-5-8}
 
 ### Improvements
