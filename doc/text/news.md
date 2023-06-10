@@ -1,5 +1,12 @@
 # News
 
+## 3.6.0 - 2023-05-25 {#version-3-6-0}
+
+### Improvements
+
+  * UI: console: Use `--progress-style=fault-only` with non-tty output
+    by default.
+
 ## 3.5.9 - 2023-05-25 {#version-3-5-9}
 
 ### Improvements
