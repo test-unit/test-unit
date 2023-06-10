@@ -11,9 +11,10 @@ jobs:
           - name: "2.1"
             ruby-version: "2.1"
             runs-on: "ubuntu-latest"
-          - name: "2.2"
-            ruby-version: "2.2"
-            runs-on: "ubuntu-latest"
+          # Disabled because ruby/setup-ruby doesn't work.
+          # - name: "2.2"
+          #   ruby-version: "2.2"
+          #   runs-on: "ubuntu-latest"
           - name: "2.3"
             ruby-version: "2.3"
             runs-on: "ubuntu-latest"
