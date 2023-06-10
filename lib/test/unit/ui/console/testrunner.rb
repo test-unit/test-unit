@@ -576,11 +576,9 @@ module Test
             if @output_level >= VERBOSE
               :mark
             else
-              if ENV["GITHUB_ACTIONS"] == "true"
-                :fault_only
-              else
-                :inplace
-              end
+              return :fault_only if ENV["GITHUB_ACTIONS"] == "true"
+              return :fault_only unless @output.tty?
+              :inplace
             end
           end
 
