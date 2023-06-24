@@ -1,5 +1,18 @@
 # News
 
+## 3.6.1 - 2023-06-25 {#version-3-6-1}
+
+### Improvements
+
+  * collector: load: Improved performance when a large number of test
+    files exist.
+    [GH-232][https://github.com/test-unit/test-unit/issues/232]
+    [Patch by akira yamada]
+
+### Thanks
+
+  * akira yamada
+
 ## 3.6.0 - 2023-05-25 {#version-3-6-0}
 
 ### Improvements
