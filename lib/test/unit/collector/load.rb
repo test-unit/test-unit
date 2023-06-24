@@ -39,7 +39,8 @@ module Test
             froms = @default_test_paths if froms.empty?
             froms = ["."] if froms.empty?
             test_suites = []
-            already_gathered = find_test_cases
+            already_gathered = {}
+            find_test_cases(already_gathered)
             froms.each do |from|
               from = resolve_path(from)
               if from.directory?
@@ -66,12 +67,13 @@ module Test
           end
         end
 
-        def find_test_cases(ignore=[])
+        def find_test_cases(ignore={})
           test_cases = []
           TestCase::DESCENDANTS.each do |test_case|
-            test_cases << test_case unless ignore.include?(test_case)
+            next if ignore.key?(test_case)
+            test_cases << test_case
+            ignore[test_case] = true
           end
-          ignore.concat(test_cases)
           test_cases
         end
 
