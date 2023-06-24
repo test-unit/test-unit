@@ -67,12 +67,12 @@ module Test
           end
         end
 
-        def find_test_cases(ignore={})
+        def find_test_cases(already_gathered)
           test_cases = []
           TestCase::DESCENDANTS.each do |test_case|
-            next if ignore.key?(test_case)
+            next if already_gathered.key?(test_case)
             test_cases << test_case
-            ignore[test_case] = true
+            already_gathered[test_case] = true
           end
           test_cases
         end
