@@ -145,6 +145,7 @@ module Test
       attr_accessor :color_scheme, :listeners
       attr_writer :stop_on_failure
       attr_writer :debug_on_failure
+      attr_writer :gc_stress
       attr_writer :runner, :collector
 
       def initialize(standalone)
@@ -161,6 +162,7 @@ module Test
         @listeners = []
         @stop_on_failure = false
         @debug_on_failure = false
+        @gc_stress = false
         config_file = "test-unit.yml"
         if File.exist?(config_file)
           load_config(config_file)
@@ -393,6 +395,12 @@ module Test
             AssertionFailedError.debug_on_failure = boolean
           end
 
+          o.on("--[no-]gc-stress",
+               "Enable GC.stress only while each test is running",
+               "(#{@gc_stress})") do |boolean|
+            @gc_stress = boolean
+          end
+
           ADDITIONAL_OPTIONS.each do |option_builder|
             option_builder.call(self, o)
           end
@@ -453,6 +461,9 @@ module Test
         @runner_options[:listeners].concat(@listeners)
         if @stop_on_failure
           @runner_options[:listeners] << StopOnFailureListener.new
+        end
+        if @gc_stress
+          @runner_options[:listeners] << GCStressListener.new
         end
         change_work_directory do
           runner.run(suite, @runner_options).passed?
@@ -569,6 +580,20 @@ module Test
         def attach_to_mediator(mediator)
           mediator.add_listener(TestResult::FINISHED) do |result|
             result.stop unless result.passed?
+          end
+        end
+      end
+
+      class GCStressListener
+        def attach_to_mediator(mediator)
+          mediator.add_listener(TestCase::STARTED) do |test|
+            GC.start
+            GC.stress = true
+          end
+
+          mediator.add_listener(TestCase::FINISHED) do |test|
+            GC.start
+            GC.stress = false
           end
         end
       end
