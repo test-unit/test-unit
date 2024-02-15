@@ -65,7 +65,7 @@ module Test
         entry.start_with?("<internal:")
       end
 
-      def normalize_backtrace(location)
+      def normalize_location(location)
         filtered_location = location.reject do |entry|
           jruby_backtrace_entry?(entry) or
             rubinius_backtrace_entry?(entry) or
@@ -96,7 +96,7 @@ module Test
             :class     => fault.class,
             :message   => fault.message,
             :test_name => fault.test_name,
-            :location  => normalize_backtrace(fault.location),
+            :location  => normalize_location(fault.location),
           }
         end
         assert_equal([
@@ -142,7 +142,7 @@ module Test
             :class     => fault.class,
             :message   => fault.message,
             :test_name => fault.test_name,
-            :location  => normalize_backtrace(fault.location),
+            :location  => normalize_location(fault.location),
           }
         end
         assert_equal([
@@ -194,7 +194,7 @@ module Test
             :class     => fault.class,
             :message   => fault.message,
             :test_name => fault.test_name,
-            :location  => normalize_backtrace(fault.location),
+            :location  => normalize_location(fault.location),
           }
         end
         location = []
