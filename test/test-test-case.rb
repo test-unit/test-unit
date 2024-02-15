@@ -72,7 +72,7 @@ module Test
             internal_backtrace_entry?(entry)
         end
         filtered_location.collect do |entry|
-          entry.sub(/:\d+:/, ":0:").sub(/in [`'](?:[^']+?[#.])?/, "in '")
+          entry.sub(/:\d+:in [`'](?:[^']+?[#.])?/, ":0:in '")
         end
       end
 
