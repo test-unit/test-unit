@@ -1,5 +1,20 @@
 # News
 
+## 3.6.2 - 2024-02-16 {#version-3-6-2}
+
+### Improvements
+
+  * UI: console: Add `--gc-stress` option that enables `GC.stress`
+    only whie each test is running.
+
+  * Added support for Ruby 3.4 style backtrace.
+    [GH-237][https://github.com/test-unit/test-unit/issues/237]
+    [Patch by Yusuke Endoh]
+
+### Thanks
+
+  * Yusuke Endoh
+
 ## 3.6.1 - 2023-06-25 {#version-3-6-1}
 
 ### Improvements
