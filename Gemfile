@@ -6,4 +6,5 @@ gemspec
 
 group :test do
   gem "bigdecimal", platforms: [:mri]
+  gem "csv"
 end
