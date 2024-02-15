@@ -18,7 +18,7 @@ module Test
         return nil if match_data.nil?
         file, line_number, context = match_data.to_a[1..-1]
         line_number = line_number.to_i
-        if /\Ain `(.+?)'/ =~ context
+        if /\Ain [`'](.+?)'/ =~ context
           method_name = $1
           if /\Ablock (?:\(.+?\) )?in / =~ method_name
             method_name = $POSTMATCH

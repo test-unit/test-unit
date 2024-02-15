@@ -72,7 +72,7 @@ module Test
             internal_backtrace_entry?(entry)
         end
         filtered_location.collect do |entry|
-          entry.sub(/:\d+:/, ":0:")
+          entry.sub(/:\d+:in [`'](?:[^']+?[#.])?/, ":0:in '")
         end
       end
 
@@ -105,8 +105,8 @@ module Test
                          :message   => "failure",
                          :test_name => "test_failure(TC_FailureError)",
                          :location  => [
-                           "#{__FILE__}:0:in `test_failure'",
-                           "#{__FILE__}:0:in `#{__method__}'",
+                           "#{__FILE__}:0:in 'test_failure'",
+                           "#{__FILE__}:0:in '#{__method__}'",
                          ],
                        },
                      ],
@@ -151,9 +151,9 @@ module Test
                          :message   => "nested",
                          :test_name => "test_nested_failure(TC_FailureError)",
                          :location  => [
-                           "#{__FILE__}:0:in `nested'",
-                           "#{__FILE__}:0:in `test_nested_failure'",
-                           "#{__FILE__}:0:in `#{__method__}'",
+                           "#{__FILE__}:0:in 'nested'",
+                           "#{__FILE__}:0:in 'test_nested_failure'",
+                           "#{__FILE__}:0:in '#{__method__}'",
                          ],
                        },
                      ],
@@ -198,9 +198,9 @@ module Test
           }
         end
         location = []
-        location << "#{__FILE__}:0:in `/'" if cruby?
-        location << "#{__FILE__}:0:in `test_error'"
-        location << "#{__FILE__}:0:in `#{__method__}'"
+        location << "#{__FILE__}:0:in '/'" if cruby?
+        location << "#{__FILE__}:0:in 'test_error'"
+        location << "#{__FILE__}:0:in '#{__method__}'"
         assert_equal([
                        {
                          :class     => Error,
