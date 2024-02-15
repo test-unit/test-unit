@@ -65,14 +65,14 @@ module Test
         entry.start_with?("<internal:")
       end
 
-      def normalize_location(location)
+      def normalize_backtrace(location)
         filtered_location = location.reject do |entry|
           jruby_backtrace_entry?(entry) or
             rubinius_backtrace_entry?(entry) or
             internal_backtrace_entry?(entry)
         end
         filtered_location.collect do |entry|
-          entry.sub(/:\d+:/, ":0:")
+          entry.sub(/:\d+:/, ":0:").sub(/in [`'](?:[^']+?[#.])?/, "in '")
         end
       end
 
@@ -96,7 +96,7 @@ module Test
             :class     => fault.class,
             :message   => fault.message,
             :test_name => fault.test_name,
-            :location  => normalize_location(fault.location),
+            :location  => normalize_backtrace(fault.location),
           }
         end
         assert_equal([
@@ -105,8 +105,8 @@ module Test
                          :message   => "failure",
                          :test_name => "test_failure(TC_FailureError)",
                          :location  => [
-                           "#{__FILE__}:0:in `test_failure'",
-                           "#{__FILE__}:0:in `#{__method__}'",
+                           "#{__FILE__}:0:in 'test_failure'",
+                           "#{__FILE__}:0:in '#{__method__}'",
                          ],
                        },
                      ],
@@ -142,7 +142,7 @@ module Test
             :class     => fault.class,
             :message   => fault.message,
             :test_name => fault.test_name,
-            :location  => normalize_location(fault.location),
+            :location  => normalize_backtrace(fault.location),
           }
         end
         assert_equal([
@@ -151,9 +151,9 @@ module Test
                          :message   => "nested",
                          :test_name => "test_nested_failure(TC_FailureError)",
                          :location  => [
-                           "#{__FILE__}:0:in `nested'",
-                           "#{__FILE__}:0:in `test_nested_failure'",
-                           "#{__FILE__}:0:in `#{__method__}'",
+                           "#{__FILE__}:0:in 'nested'",
+                           "#{__FILE__}:0:in 'test_nested_failure'",
+                           "#{__FILE__}:0:in '#{__method__}'",
                          ],
                        },
                      ],
@@ -194,13 +194,13 @@ module Test
             :class     => fault.class,
             :message   => fault.message,
             :test_name => fault.test_name,
-            :location  => normalize_location(fault.location),
+            :location  => normalize_backtrace(fault.location),
           }
         end
         location = []
-        location << "#{__FILE__}:0:in `/'" if cruby?
-        location << "#{__FILE__}:0:in `test_error'"
-        location << "#{__FILE__}:0:in `#{__method__}'"
+        location << "#{__FILE__}:0:in '/'" if cruby?
+        location << "#{__FILE__}:0:in 'test_error'"
+        location << "#{__FILE__}:0:in '#{__method__}'"
         assert_equal([
                        {
                          :class     => Error,
