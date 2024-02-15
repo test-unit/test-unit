@@ -6,5 +6,5 @@ gemspec
 
 group :test do
   gem "bigdecimal", platforms: [:mri]
-  gem "csv"
+  gem "csv" if Gem::Version.new(RUBY_VERSION) >= "3.4.0"
 end
