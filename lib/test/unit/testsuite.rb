@@ -48,11 +48,7 @@ module Test
         yield(STARTED, name)
         yield(STARTED_OBJECT, self)
         run_startup(result)
-        while test = @tests.shift
-          @n_tests += test.size
-          run_test(test, result, &progress_block)
-          @passed = false unless test.passed?
-        end
+        run_tests(result, &progress_block)
       ensure
         begin
           run_shutdown(result)
@@ -114,6 +110,14 @@ module Test
           @test_case.startup
         rescue Exception
           raise unless handle_exception($!, result)
+        end
+      end
+
+      def run_tests(result, &progress_block)
+        while test = @tests.shift
+          @n_tests += test.size
+          run_test(test, result, &progress_block)
+          @passed = false unless test.passed?
         end
       end
 
