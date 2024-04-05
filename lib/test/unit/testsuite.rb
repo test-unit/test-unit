@@ -34,7 +34,6 @@ module Test
         @name = name
         @tests = []
         @test_case = test_case
-        @n_tests = 0
         @priority = 0
         @start_time = nil
         @elapsed_time = nil
@@ -77,7 +76,7 @@ module Test
       # i.e. if the suite contains other suites, it counts the
       # tests within those suites, not the suites themselves.
       def size
-        total_size = @n_tests
+        total_size = 0
         @tests.each { |test| total_size += test.size }
         total_size
       end
@@ -114,8 +113,7 @@ module Test
       end
 
       def run_tests(result, &progress_block)
-        while test = @tests.shift
-          @n_tests += test.size
+        @tests.each do |test|
           run_test(test, result, &progress_block)
           @passed = false unless test.passed?
         end
