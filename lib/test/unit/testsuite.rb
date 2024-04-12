@@ -37,7 +37,6 @@ module Test
         @priority = 0
         @start_time = nil
         @elapsed_time = nil
-        @passed = true
       end
 
       # Runs the tests and/or suites contained in this
@@ -99,7 +98,7 @@ module Test
       end
 
       def passed?
-        @passed
+        @tests.all?(&:passed?)
       end
 
       private
@@ -115,7 +114,6 @@ module Test
       def run_tests(result, &progress_block)
         @tests.each do |test|
           run_test(test, result, &progress_block)
-          @passed = false unless test.passed?
         end
       end
 
@@ -168,7 +166,6 @@ module Test
           false
         else
           result.add_error(Error.new(@test_case.name, exception))
-          @passed = false
           true
         end
       end
