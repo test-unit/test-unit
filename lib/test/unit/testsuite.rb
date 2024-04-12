@@ -76,9 +76,7 @@ module Test
       # i.e. if the suite contains other suites, it counts the
       # tests within those suites, not the suites themselves.
       def size
-        total_size = 0
-        @tests.each { |test| total_size += test.size }
-        total_size
+        @tests.sum(&:size)
       end
 
       def empty?
