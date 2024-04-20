@@ -14,7 +14,6 @@ module Test
       end
 
       def run(result, &progress_block)
-        @start_time = Time.now
         yield(TestSuite::STARTED, @test_suite.name)
         yield(TestSuite::STARTED_OBJECT, @test_suite)
         run_startup(result)
@@ -23,7 +22,6 @@ module Test
         begin
           run_shutdown(result)
         ensure
-          @elapsed_time = Time.now - @start_time
           yield(TestSuite::FINISHED, @test_suite.name)
           yield(TestSuite::FINISHED_OBJECT, @test_suite)
         end
