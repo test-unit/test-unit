@@ -44,7 +44,15 @@ module Test
       # TestSuite.
       def run(result, &progress_block)
         runner = TestSuiteRunner.new(self)
-        runner.run(result, &progress_block)
+        runner.run(result) do |event, *args|
+          case event
+          when STARTED
+            @start_time = Time.now
+          when FINISHED
+            @elapsed_time = Time.now - @start_time
+          end
+          yield(event, *args)
+        end
       end
 
       # Adds the test to the suite.
