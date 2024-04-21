@@ -6,6 +6,7 @@
 # License:: Ruby license.
 
 require 'test/unit/error'
+require_relative 'test-suite-runner'
 
 module Test
   module Unit
@@ -42,18 +43,15 @@ module Test
       # Runs the tests and/or suites contained in this
       # TestSuite.
       def run(result, &progress_block)
-        @start_time = Time.now
-        yield(STARTED, name)
-        yield(STARTED_OBJECT, self)
-        run_startup(result)
-        run_tests(result, &progress_block)
-      ensure
-        begin
-          run_shutdown(result)
-        ensure
-          @elapsed_time = Time.now - @start_time
-          yield(FINISHED, name)
-          yield(FINISHED_OBJECT, self)
+        runner = TestSuiteRunner.new(self)
+        runner.run(result) do |event, *args|
+          case event
+          when STARTED
+            @start_time = Time.now
+          when FINISHED
+            @elapsed_time = Time.now - @start_time
+          end
+          yield(event, *args)
         end
       end
 
@@ -99,75 +97,6 @@ module Test
 
       def passed?
         @tests.all?(&:passed?)
-      end
-
-      private
-      def run_startup(result)
-        return if @test_case.nil? or !@test_case.respond_to?(:startup)
-        begin
-          @test_case.startup
-        rescue Exception
-          raise unless handle_exception($!, result)
-        end
-      end
-
-      def run_tests(result, &progress_block)
-        @tests.each do |test|
-          run_test(test, result, &progress_block)
-        end
-      end
-
-      def run_test(test, result)
-        finished_is_yielded = false
-        finished_object_is_yielded = false
-        previous_event_name = nil
-        test.run(result) do |event_name, *args|
-          case previous_event_name
-          when Test::Unit::TestCase::STARTED
-            if event_name != Test::Unit::TestCase::STARTED_OBJECT
-              yield(Test::Unit::TestCase::STARTED_OBJECT, test)
-            end
-          when Test::Unit::TestCase::FINISHED
-            if event_name != Test::Unit::TestCase::FINISHED_OBJECT
-              yield(Test::Unit::TestCase::FINISHED_OBJECT, test)
-            end
-            finished_object_is_yielded = true
-          end
-
-          case event_name
-          when Test::Unit::TestCase::STARTED
-            finished_is_yielded = false
-            finished_object_is_yielded = false
-          when Test::Unit::TestCase::FINISHED
-            finished_is_yielded = true
-          end
-
-          previous_event_name = event_name
-          yield(event_name, *args)
-        end
-
-        if finished_is_yielded and not finished_object_is_yielded
-          yield(Test::Unit::TestCase::FINISHED_OBJECT, test)
-        end
-      end
-
-      def run_shutdown(result)
-        return if @test_case.nil? or !@test_case.respond_to?(:shutdown)
-        begin
-          @test_case.shutdown
-        rescue Exception
-          raise unless handle_exception($!, result)
-        end
-      end
-
-      def handle_exception(exception, result)
-        case exception
-        when *ErrorHandler::PASS_THROUGH_EXCEPTIONS
-          false
-        else
-          result.add_error(Error.new(@test_case.name, exception))
-          true
-        end
       end
     end
   end
