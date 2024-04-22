@@ -55,10 +55,7 @@ module Test
           if (listener_key.instance_of?(Proc))
             key = ProcWrapper.new(listener_key)
           end
-          if (channel.has_key?(key))
-            return channel.delete(key)
-          end
-          return nil
+          return channel.delete(key)
         end
 
         # Calls all the procs registered on the channel
@@ -74,9 +71,8 @@ module Test
         def notify_listeners(channel_name, *arguments)
           channel = channels[channel_name]
           return 0 unless (channel)
-          listeners = channel.values
-          listeners.each { |listener| listener.call(*arguments) }
-          return listeners.size
+          channel.each_value { |listener| listener.call(*arguments) }
+          return channel.size
         end
 
         private
