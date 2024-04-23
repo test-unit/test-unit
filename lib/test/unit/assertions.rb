@@ -2317,7 +2317,7 @@ EOT
 
           def initialize(parts)
             @parts = parts
-            @count = parts.find_all{|e| e == '?'}.size
+            @count = parts.count('?')
           end
 
           def result(parameters)
