@@ -43,8 +43,7 @@ module Test
       # Runs the tests and/or suites contained in this
       # TestSuite.
       def run(result, &progress_block)
-        runner = TestSuiteRunner.new(self)
-        runner.run(result) do |event, *args|
+        TestSuiteRunner.run(self, result) do |event, *args|
           case event
           when STARTED
             @start_time = Time.now

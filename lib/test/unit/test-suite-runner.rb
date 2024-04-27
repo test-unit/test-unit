@@ -9,6 +9,13 @@
 module Test
   module Unit
     class TestSuiteRunner
+      class << self
+        def run(test_suite, result, &progress_block)
+          runner = new(test_suite)
+          runner.run(result, &progress_block)
+        end
+      end
+
       def initialize(test_suite)
         @test_suite = test_suite
       end
