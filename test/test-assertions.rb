@@ -98,7 +98,17 @@ module Test
 
       def check_fail_exception(expected_message, options={}, &proc)
         normalizer = lambda do |actual_message|
-          actual_message.gsub(/^(?:[a-zA-Z]:|<internal:core> )?[^:\n]+:\d+:.+\n/,
+          # * X: is for Windows.
+          # * <internal:XXX> such as <internal:array> is for CRuby.
+          # * <internal:core> is for TruffleRuby.
+          actual_message.gsub(/^
+                               (?:
+                                 (?:[a-zA-Z]:)?[^:\n]+| # Normal path
+                                 <internal:.+?>| # CRuby's internal path
+                                 <internal:core>\s[^:\n]+ # TruffleRuby's internal path
+                               )?
+                               :\d+:.+\n # line and content
+                              /x,
                               "")
         end
         check_assertions(true,
