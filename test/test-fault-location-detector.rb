@@ -50,7 +50,7 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
   class TestSourceLocation < self
     setup
-    def setup_check_source_location
+    def setup_check_source_location(&_)
       unless lambda {}.respond_to?(:source_location)
         omit("Need Proc#source_location")
       end

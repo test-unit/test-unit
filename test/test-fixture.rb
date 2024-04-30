@@ -97,7 +97,7 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         setup(*(options[0] || [])) if options
-        def custom_setup_method0
+        def custom_setup_method0(&_)
           called(:custom_setup_method0)
         end
 
@@ -107,7 +107,7 @@ class TestUnitFixture < Test::Unit::TestCase
           end
         end
 
-        def custom_setup_method1
+        def custom_setup_method1(&_)
           called(:custom_setup_method1)
         end
         setup(*[:custom_setup_method1, *(options[1] || [])]) if options
@@ -119,7 +119,7 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         setup(*(options[2] || [])) if options
-        def custom_setup_method2
+        def custom_setup_method2(&_)
           called(:custom_setup_method2)
         end
         unregister_setup(:custom_setup_method2) if options
@@ -133,7 +133,7 @@ class TestUnitFixture < Test::Unit::TestCase
         end
 
         setup(*(options[3] || [])) if options
-        def custom_setup_method3
+        def custom_setup_method3(&_)
           called(:custom_setup_method3)
         end
 

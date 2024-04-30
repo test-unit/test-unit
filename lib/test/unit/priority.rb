@@ -180,7 +180,7 @@ module Test
         end
       end
 
-      def priority_setup
+      def priority_setup(&_)
         return unless Priority.enabled?
         Checker.new(self).setup
       end

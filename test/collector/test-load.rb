@@ -19,7 +19,7 @@ class TestUnitCollectorLoad < Test::Unit::TestCase
   end
 
   setup
-  def setup_top_level_test_cases
+  def setup_top_level_test_cases(&_)
     @test_case1_base_name = "test_case1.rb"
 
     @test_case1 = @test_dir + @test_case1_base_name
@@ -64,7 +64,7 @@ EOT
   end
 
   setup
-  def setup_sub_level_test_cases
+  def setup_sub_level_test_cases(&_)
     @sub_test_dir = @test_dir + "sub"
     @sub_test_dir.mkpath
 
@@ -128,7 +128,7 @@ EOT
   end
 
   setup
-  def setup_sub_level_test_cases2
+  def setup_sub_level_test_cases2(&_)
     @sub2_test_dir = @test_dir + "sub2"
     @sub2_test_dir.mkpath
 
@@ -177,7 +177,7 @@ EOT
   end
 
   setup
-  def setup_svn_test_cases
+  def setup_svn_test_cases(&_)
     @svn_test_dir = @test_dir + ".svn"
     @svn_test_dir.mkpath
 
@@ -196,7 +196,7 @@ EOT
   end
 
   setup
-  def setup_sub_cvs_test_cases
+  def setup_sub_cvs_test_cases(&_)
     @sub_cvs_test_dir = @sub_test_dir + "CVS"
     @sub_cvs_test_dir.mkpath
 
@@ -215,7 +215,7 @@ EOT
   end
 
   setup
-  def setup_sub_git_test_cases
+  def setup_sub_git_test_cases(&_)
     @sub_git_test_dir = @sub_test_dir + ".git"
     @sub_git_test_dir.mkpath
 
@@ -234,7 +234,7 @@ EOT
   end
 
   setup
-  def setup_extra_top_level_test_cases
+  def setup_extra_top_level_test_cases(&_)
     @test_cases12 = @extra_test_dir + "test_cases12.rb"
     @test_cases12.open("w") do |test_case|
       test_case.puts(<<-EOT)
@@ -260,7 +260,7 @@ EOT
   end
 
   setup
-  def setup_sub_level_extra_test_cases
+  def setup_sub_level_extra_test_cases(&_)
     @sub_extra_test_dir = @extra_test_dir + "sub"
     @sub_extra_test_dir.mkpath
 
