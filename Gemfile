@@ -8,3 +8,11 @@ group :test do
   gem "bigdecimal", platforms: [:mri]
   gem "csv" if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4.0")
 end
+
+group :development do
+  gem("bundler")
+  gem("rake")
+  gem("yard")
+  gem("kramdown")
+  gem("packnga")
+end
