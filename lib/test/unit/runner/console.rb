@@ -58,7 +58,7 @@ module Test
       ]
       opts.on("--progress-style=STYLE", progress_styles,
               "Uses STYLE as progress style",
-              "(#{auto_runner.keyword_display(progress_styles)}") do |style|
+              "(#{auto_runner.keyword_display(progress_styles)})") do |style|
         auto_runner.runner_options[:progress_style] = style
       end
 
