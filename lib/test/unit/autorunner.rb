@@ -401,6 +401,20 @@ module Test
             @gc_stress = boolean
           end
 
+          parallel_options = [
+            :thread,
+          ]
+          o.on("--[no-]parallel=[thread]", parallel_options,
+               "Runs tests in parallel",
+               "(default is thread)") do |parallel|
+            case parallel
+            when nil, :thread
+              TestSuiteRunner.default = TestSuiteThreadRunner
+            else
+              TestSuiteRunner.default = TestSuiteRunner
+            end
+          end
+
           ADDITIONAL_OPTIONS.each do |option_builder|
             option_builder.call(self, o)
           end
