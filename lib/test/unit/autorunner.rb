@@ -406,7 +406,7 @@ module Test
           ]
           o.on("--[no-]parallel=[thread]", parallel_options,
                "Runs tests in parallel",
-               "(default is thread)") do |parallel|
+               "(#{parallel_options.first})") do |parallel|
             case parallel
             when nil, :thread
               TestSuiteRunner.default = TestSuiteThreadRunner
