@@ -2933,6 +2933,10 @@ EOM
       end
 
       def test_fail
+        if RUBY_ENGINE == "truffleruby"
+          omit("This fails on TruffleRuby; String#dup may not copy data.")
+        end
+
         actual_increased_size = 10000
         n_tries = 100_000
         max_increasable_size = -1
