@@ -415,6 +415,12 @@ module Test
             end
           end
 
+          o.on("--n-workers=N", Integer,
+               "The number of parallelism",
+               "(#{TestSuiteRunner.n_workers})") do |n|
+            TestSuiteRunner.n_workers = n
+          end
+
           ADDITIONAL_OPTIONS.each do |option_builder|
             option_builder.call(self, o)
           end

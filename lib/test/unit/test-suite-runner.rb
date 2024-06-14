@@ -10,6 +10,7 @@ module Test
   module Unit
     class TestSuiteRunner
       @default = self
+      @n_workers = 5
       class << self
         def run(test_suite, result, &progress_block)
           runner = @default.new(test_suite)
@@ -18,6 +19,14 @@ module Test
 
         def default=(runner_class)
           @default = runner_class
+        end
+
+        def n_workers
+          @n_workers
+        end
+
+        def n_workers=(n)
+          @n_workers = n
         end
       end
 
