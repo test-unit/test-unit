@@ -128,9 +128,7 @@ class TestFaultLocationDetector < Test::Unit::TestCase
       fault = run_test_case(test_case)
       assert_detect(fault, test_case.target_line_number)
     end
-  end
 
-  class TestInBlock < self
     def test_in_block
       test_case = Class.new(Test::Unit::TestCase) do
         include AlwaysFailAssertion
