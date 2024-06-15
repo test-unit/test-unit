@@ -197,6 +197,20 @@ module Test
               output_single(fault.test_name, fault_color(fault))
               output_fault_message(fault)
               output_fault_backtrace(fault)
+              if fault.is_a?(Error) and fault.exception.respond_to?(:cause)
+                cause = fault.exception.cause
+                i = 0
+                while cause
+                  sub_fault = Error.new(fault.test_name,
+                                        cause,
+                                        method_name: fault.method_name)
+                  output_single("Cause#{i}", fault_color(sub_fault))
+                  output_fault_message(sub_fault)
+                  output_fault_backtrace(sub_fault)
+                  cause = cause.cause
+                  i += 1
+                end
+              end
             end
           end
 
