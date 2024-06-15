@@ -106,7 +106,7 @@ class TestFaultLocationDetector < Test::Unit::TestCase
   end
 
   class TestMethodName < self
-    def test_detected
+    def test_in_anonymous_test_case
       test_case = Class.new(Test::Unit::TestCase) do
         include AlwaysFailAssertion
 
@@ -127,6 +127,32 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
       fault = run_test_case(test_case)
       assert_detect(fault, test_case.target_line_number)
+    end
+
+    class NamedTestCase < Test::Unit::TestCase
+      include AlwaysFailAssertion
+
+      class << self
+        def target_line_number
+          @@target_line_number
+        end
+
+        def target_line_number=(line_number)
+          @@target_line_number = line_number
+        end
+      end
+    end
+
+    def test_in_named_test_case
+      # Define test method dynamically to avoid running this failed
+      # test in the main test suite.
+      NamedTestCase.class_eval do
+        def test_failed
+          self.class.target_line_number = __LINE__; assert_always_failed
+        end
+      end
+      fault = run_test_case(NamedTestCase)
+      assert_detect(fault, NamedTestCase.target_line_number)
     end
 
     def test_in_block

@@ -71,7 +71,11 @@ module Test
       end
 
       def target_method?(method_name)
-        @fault_method_name == method_name
+        return false if method_name.nil?
+        # method_name may be test_XXX or MyTest#test_XXX (Ruby >= 3.4).
+        return true if @fault_method_name == method_name
+        return true if method_name.end_with?("\##{@fault_method_name}")
+        false
       end
 
       def guess_indent_level(line)
