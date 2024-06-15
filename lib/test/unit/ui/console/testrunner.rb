@@ -235,7 +235,6 @@ module Test
                 break component
               end
               # file isn't under base_dir
-              pp [base_dir, file, relative_file, first_component]
               next if first_component.to_s == "..."
               parameters = [
                 "file=#{relative_file}",
