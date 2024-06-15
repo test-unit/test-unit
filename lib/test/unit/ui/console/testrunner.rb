@@ -10,6 +10,7 @@ begin
   require 'io/console'
 rescue LoadError
 end
+require "pathname"
 
 require 'test/unit/color-scheme'
 require 'test/unit/code-snippet-fetcher'
@@ -193,6 +194,7 @@ module Test
               output(fault.test_name, fault_color(fault))
               output_fault_backtrace(fault)
               output_failure_message(fault)
+              output_failure_on_github_actions(fault)
             else
               output_single("#{fault.label}: ")
               output_single(fault.test_name, fault_color(fault))
@@ -212,6 +214,39 @@ module Test
                   i += 1
                 end
               end
+            end
+          end
+
+          def output_failure_on_github_actions(fault)
+            return unless @on_github_actions
+
+            base_dir = ENV["GITHUB_WORKSPACE"]
+            return unless base_dir
+            base_dir = Pathname(base_dir).expand_path
+
+            detector = FaultLocationDetector.new(fault, @code_snippet_fetcher)
+            backtrace = fault.location || []
+            backtrace.each_with_index do |entry, i|
+              next unless detector.target?(entry)
+              file, line_number, = detector.split_backtrace_entry(entry)
+              file = Pathname(file).expand_path
+              relative_file = file.relative_path_from(base_dir)
+              first_component = relative_file.descend do |component|
+                break component
+              end
+              # file isn't under base_dir
+              pp [base_dir, file, relative_file, first_component]
+              next if first_component.to_s == "..."
+              parameters = [
+                "file=#{relative_file}",
+                "line=#{line_number}",
+                "title=#{fault.label}",
+              ].join(",")
+              # We need to use URL encode for new line:
+              # https://github.com/actions/toolkit/issues/193
+              message = fault.message.gsub("\n", "%0A")
+              output("::error #{parameters}::#{message}")
+              return
             end
           end
 
