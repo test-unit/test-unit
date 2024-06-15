@@ -36,6 +36,7 @@ module Test
           # STDOUT.
           def initialize(suite, options={})
             super
+            @on_github_actions = (ENV["GITHUB_ACTIONS"] == "true")
             @output_level = @options[:output_level] || guess_output_level
             @output = @options[:output] || STDOUT
             @use_color = @options[:use_color]
@@ -549,7 +550,7 @@ module Test
           end
 
           def guess_output_level
-            if ENV["GITHUB_ACTIONS"] == "true"
+            if @on_github_actions
               IMPORTANT_FAULTS_ONLY
             else
               NORMAL
@@ -572,7 +573,7 @@ module Test
           /x
 
           def guess_color_availability
-            return true if ENV["GITHUB_ACTIONS"] == "true"
+            return true if @on_github_actions
             return false unless @output.tty?
             return true if windows? and ruby_2_0_or_later?
             case ENV["TERM"]
@@ -590,7 +591,7 @@ module Test
             if @output_level >= VERBOSE
               :mark
             else
-              return :fault_only if ENV["GITHUB_ACTIONS"] == "true"
+              return :fault_only if @on_github_actions
               return :fault_only unless @output.tty?
               :inplace
             end
