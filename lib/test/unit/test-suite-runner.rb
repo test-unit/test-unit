@@ -12,7 +12,7 @@ module Test
   module Unit
     class TestSuiteRunner
       @default = self
-      @n_workers = Etc.nprocessors
+      @n_workers = Etc.respond_to?(:nprocessors) ? Etc.nprocessors : 1
       class << self
         def run(test_suite, result, &progress_block)
           runner = @default.new(test_suite)
