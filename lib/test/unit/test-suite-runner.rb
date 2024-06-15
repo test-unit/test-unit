@@ -10,7 +10,7 @@ module Test
   module Unit
     class TestSuiteRunner
       @default = self
-      @n_workers = 5
+      @n_workers = Etc.nprocessors
       class << self
         def run(test_suite, result, &progress_block)
           runner = @default.new(test_suite)
