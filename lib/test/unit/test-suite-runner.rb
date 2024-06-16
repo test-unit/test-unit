@@ -6,10 +6,13 @@
 # Copyright:: Copyright (c) 2024 Tsutomu Katsube. All rights reserved.
 # License:: Ruby license.
 
+require "etc"
+
 module Test
   module Unit
     class TestSuiteRunner
       @default = self
+      @n_workers = Etc.respond_to?(:nprocessors) ? Etc.nprocessors : 1
       class << self
         def run(test_suite, result, &progress_block)
           runner = @default.new(test_suite)
@@ -18,6 +21,14 @@ module Test
 
         def default=(runner_class)
           @default = runner_class
+        end
+
+        def n_workers
+          @n_workers
+        end
+
+        def n_workers=(n)
+          @n_workers = n
         end
       end
 
