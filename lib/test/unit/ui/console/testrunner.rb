@@ -29,6 +29,8 @@ module Test
         class TestRunner < UI::TestRunner
           include OutputLevel
 
+          N_REPORT_SLOW_TESTS = 5
+
           # Creates a new TestRunner for running the passed
           # suite. If quiet_mode is true, the output while
           # running is limited to progress dots, errors and
@@ -59,6 +61,8 @@ module Test
             @faults = []
             @code_snippet_fetcher = CodeSnippetFetcher.new
             @test_suites = []
+            @report_slow_tests = @options[:report_slow_tests]
+            @report_slow_tests = false if @report_slow_tests.nil?
           end
 
           private
