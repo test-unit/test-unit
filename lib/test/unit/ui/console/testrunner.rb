@@ -61,8 +61,6 @@ module Test
             @faults = []
             @code_snippet_fetcher = CodeSnippetFetcher.new
             @test_suites = []
-            @report_slow_tests = @options[:report_slow_tests]
-            @report_slow_tests = false if @report_slow_tests.nil?
           end
 
           private
