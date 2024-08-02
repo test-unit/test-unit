@@ -29,6 +29,8 @@ module Test
         class TestRunner < UI::TestRunner
           include OutputLevel
 
+          N_REPORT_SLOW_TESTS = 5
+
           # Creates a new TestRunner for running the passed
           # suite. If quiet_mode is true, the output while
           # running is limited to progress dots, errors and

@@ -9,6 +9,7 @@ module Test
 
     AutoRunner.setup_option do |auto_runner, opts|
       require 'test/unit/ui/console/outputlevel'
+      require 'test/unit/ui/console/testrunner'
 
       output_levels = [
         ["silent", UI::Console::OutputLevel::SILENT],
@@ -72,6 +73,13 @@ module Test
               "Shows fault details in reverse.",
               "(default is yes for tty output, no otherwise)") do |boolean|
         auto_runner.runner_options[:reverse_output] = boolean
+      end
+
+      n_report_slow_tests = UI::Console::TestRunner::N_REPORT_SLOW_TESTS
+      opts.on("--[no-]report-slow-tests",
+              "Shows the top #{n_report_slow_tests} slow tests in the summary output",
+              "(false)") do |boolean|
+        auto_runner.runner_options[:report_slow_tests] = boolean
       end
     end
   end
