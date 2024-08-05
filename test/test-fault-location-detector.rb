@@ -112,11 +112,11 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
         class << self
           def target_line_number
-            @@target_line_number
+            @target_line_number
           end
 
           def target_line_number=(line_number)
-            @@target_line_number = line_number
+            @target_line_number = line_number
           end
         end
 
@@ -134,11 +134,11 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
       class << self
         def target_line_number
-          @@target_line_number
+          @target_line_number
         end
 
         def target_line_number=(line_number)
-          @@target_line_number = line_number
+          @target_line_number = line_number
         end
       end
     end
@@ -161,11 +161,11 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
         class << self
           def target_line_number
-            @@target_line_number
+            @target_line_number
           end
 
           def target_line_number=(line_number)
-            @@target_line_number = line_number
+            @target_line_number = line_number
           end
         end
 
