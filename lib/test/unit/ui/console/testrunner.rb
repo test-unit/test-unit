@@ -61,6 +61,7 @@ module Test
             @faults = []
             @code_snippet_fetcher = CodeSnippetFetcher.new
             @test_suites = []
+            @slow_tests = []
           end
 
           private
@@ -394,6 +395,12 @@ module Test
             change_output_level(IMPORTANT_FAULTS_ONLY) do
               output("Finished in #{elapsed_time} seconds.")
             end
+            if @options[:report_slow_tests]
+              @slow_tests.sort_by { |slow_test| -slow_test[:elapsed_time] }
+                         .first(N_REPORT_SLOW_TESTS)
+                         .each do |slow_test|
+              end
+            end
             output_summary_marker
             change_output_level(IMPORTANT_FAULTS_ONLY) do
               output(@result)
@@ -417,7 +424,7 @@ module Test
           end
 
           def test_started(test)
-            return unless output?(VERBOSE)
+            return unless output?(VERBOSE) || @options[:report_slow_tests]
 
             tab_width = 8
             name = test.local_name
@@ -454,9 +461,15 @@ module Test
             end
             @already_outputted = false
 
-            return unless output?(VERBOSE)
+            return unless output?(VERBOSE) || @options[:report_slow_tests]
 
-            output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
+            elapsed_time = Time.now - @test_start
+            output(": (%f)" % (elapsed_time), nil, VERBOSE)
+            @slow_tests << {
+              name: test.name,
+              elapsed_time: elapsed_time,
+              location: test.method(test.method_name).source_location.join(":"),
+            }
           end
 
           def suite_name(prefix, suite)
