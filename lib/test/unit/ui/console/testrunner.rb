@@ -424,7 +424,7 @@ module Test
           end
 
           def test_started(test)
-            return unless output?(VERBOSE) || @options[:report_slow_tests]
+            return unless output?(VERBOSE)
 
             tab_width = 8
             name = test.local_name
@@ -461,15 +461,17 @@ module Test
             end
             @already_outputted = false
 
-            return unless output?(VERBOSE) || @options[:report_slow_tests]
+            if @options[:report_slow_tests]
+              @slow_tests << {
+                name: test.name,
+                elapsed_time: test.elapsed_time,
+                location: test.method(test.method_name).source_location.join(":"),
+              }
+            end
 
-            elapsed_time = Time.now - @test_start
-            output(": (%f)" % (elapsed_time), nil, VERBOSE)
-            @slow_tests << {
-              name: test.name,
-              elapsed_time: elapsed_time,
-              location: test.method(test.method_name).source_location.join(":"),
-            }
+            return unless output?(VERBOSE)
+
+            output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
           end
 
           def suite_name(prefix, suite)
