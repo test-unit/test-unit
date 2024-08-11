@@ -61,7 +61,7 @@ module Test
             @faults = []
             @code_snippet_fetcher = CodeSnippetFetcher.new
             @test_suites = []
-            @slow_tests = []
+            @test_statistics = []
           end
 
           private
@@ -396,9 +396,9 @@ module Test
               output("Finished in #{elapsed_time} seconds.")
             end
             if @options[:report_slow_tests]
-              @slow_tests.sort_by { |slow_test| -slow_test[:elapsed_time] }
-                         .first(N_REPORT_SLOW_TESTS)
-                         .each do |slow_test|
+              @test_statistics.sort_by { |slow_test| -slow_test[:elapsed_time] }
+                              .first(N_REPORT_SLOW_TESTS)
+                              .each do |slow_test|
               end
             end
             output_summary_marker
@@ -462,7 +462,7 @@ module Test
             @already_outputted = false
 
             if @options[:report_slow_tests]
-              @slow_tests << {
+              @test_statistics << {
                 name: test.name,
                 elapsed_time: test.elapsed_time,
                 location: test.method(test.method_name).source_location.join(":"),
