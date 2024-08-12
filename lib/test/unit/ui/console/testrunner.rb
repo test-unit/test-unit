@@ -396,9 +396,9 @@ module Test
               output("Finished in #{elapsed_time} seconds.")
             end
             if @options[:report_slow_tests]
-              @test_statistics.sort_by {|slow_test| -slow_test[:elapsed_time]}
+              @test_statistics.sort_by {|statistic| -statistic[:elapsed_time]}
                               .first(N_REPORT_SLOW_TESTS)
-                              .each do |slow_test|
+                              .each do |slow_statistic|
               end
             end
             output_summary_marker
