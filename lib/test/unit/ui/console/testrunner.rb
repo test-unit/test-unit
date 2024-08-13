@@ -444,7 +444,6 @@ module Test
             output_single("#{indent}#{name}#{separator}#{tab_stop}",
                           nil,
                           VERBOSE)
-            @test_start = Time.now
           end
 
           def test_finished(test)
@@ -471,7 +470,7 @@ module Test
 
             return unless output?(VERBOSE)
 
-            output(": (%f)" % (Time.now - @test_start), nil, VERBOSE)
+            output(": (%f)" % test.elapsed_time, nil, VERBOSE)
           end
 
           def suite_name(prefix, suite)
