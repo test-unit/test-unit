@@ -396,9 +396,14 @@ module Test
               output("Finished in #{elapsed_time} seconds.")
             end
             if @options[:report_slow_tests]
+              output_summary_marker
+              output("Top #{N_REPORT_SLOW_TESTS} slow tests")
               @test_statistics.sort_by {|statistic| -statistic[:elapsed_time]}
                               .first(N_REPORT_SLOW_TESTS)
                               .each do |slow_statistic|
+                left_side = "#{slow_statistic[:name]}: "
+                right_width = @progress_row_max - left_side.size
+                output("#{left_side}%#{right_width}<elapsed_time>f" % slow_statistic)
               end
             end
             output_summary_marker
