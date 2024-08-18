@@ -403,7 +403,11 @@ module Test
                               .each do |slow_statistic|
                 left_side = "#{slow_statistic[:name]}: "
                 right_width = @progress_row_max - left_side.size
-                output("#{left_side}%#{right_width}<elapsed_time>f" % slow_statistic)
+                output("%s%*f" % [
+                         left_side,
+                         right_width,
+                         slow_statistic[:elapsed_time],
+                       ])
               end
             end
             output_summary_marker
