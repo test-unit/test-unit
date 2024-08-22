@@ -408,7 +408,7 @@ module Test
                          right_width,
                          slow_statistic[:elapsed_time],
                        ])
-                output("--location %s" % slow_statistic[:location])
+                output("--location #{slow_statistic[:location]}")
               end
             end
             output_summary_marker
