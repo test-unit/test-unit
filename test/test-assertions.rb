@@ -316,6 +316,27 @@ EOM
             end
           end
 
+          def test_basic_object_inspection
+            basic_object_class = Class.new(BasicObject) do
+              [:respond_to?, :respond_to_missing?, :is_a?].each do |m|
+                define_method(m, ::Kernel.instance_method(m))
+              end
+
+              def inspect
+                "inspected"
+              end
+            end
+            object1 = basic_object_class.new
+            object2 = basic_object_class.new
+            message = <<-EOM.chomp
+<inspected> expected but was
+<inspected>.
+EOM
+            check_fail(message) do
+              assert_equal(object1, object2)
+            end
+          end
+
           def test_multi_lines_result
             message = <<-EOM.chomp
 <#{AssertionMessage.convert("a\nb")}> expected but was

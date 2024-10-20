@@ -2093,7 +2093,7 @@ EOT
 
           class << self
             def cached_new(object, inspected_objects)
-              inspected_objects[object.object_id] ||=
+              inspected_objects[object.__id__] ||=
                 new(object, inspected_objects)
             end
 
@@ -2115,7 +2115,7 @@ EOT
           def initialize(object, inspected_objects={})
             @inspected_objects = inspected_objects
             @object = object
-            @inspected_objects[@object.object_id] = self
+            @inspected_objects[@object.__id__] = self
             @inspect_target = inspect_target
           end
 
