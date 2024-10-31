@@ -22,8 +22,11 @@ module Test
 
         # Creates a new TestRunnerMediator initialized to run
         # the passed suite.
-        def initialize(suite)
+        def initialize(suite, options={})
           @suite = suite
+          @options = options
+          @test_suite_runner_class = @options[:test_suite_runner_class]
+          @test_suite_runner_class ||= TestSuiteRunner
         end
 
         # Runs the suite the TestRunnerMediator was created
@@ -36,13 +39,15 @@ module Test
           Test::Unit.run_at_start_hooks
           start_time = Time.now
           begin
-            catch do |stop_tag|
-              result.stop_tag = stop_tag
-              with_listener(result) do
-                notify_listeners(RESET, @suite.size)
-                notify_listeners(STARTED, result)
+            with_listener(result) do
+              @test_suite_runner_class.run_all_tests do
+                catch do |stop_tag|
+                  result.stop_tag = stop_tag
+                  notify_listeners(RESET, @suite.size)
+                  notify_listeners(STARTED, result)
 
-                run_suite(result)
+                  run_suite(result)
+                end
               end
             end
           ensure
@@ -64,7 +69,7 @@ module Test
           if result.nil?
             run
           else
-            @suite.run(result) do |channel, value|
+            @suite.run(result, runner: @test_suite_runner_class) do |channel, value|
               notify_listeners(channel, value)
             end
           end

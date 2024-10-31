@@ -11,16 +11,10 @@ require "etc"
 module Test
   module Unit
     class TestSuiteRunner
-      @default = self
       @n_workers = Etc.respond_to?(:nprocessors) ? Etc.nprocessors : 1
       class << self
-        def run(test_suite, result, &progress_block)
-          runner = @default.new(test_suite)
-          runner.run(result, &progress_block)
-        end
-
-        def default=(runner_class)
-          @default = runner_class
+        def run_all_tests
+          yield
         end
 
         def n_workers
@@ -71,7 +65,7 @@ module Test
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
-        test.run(result) do |event_name, *args|
+        test.run(result, runner: self.class) do |event_name, *args|
           case previous_event_name
           when Test::Unit::TestCase::STARTED
             if event_name != Test::Unit::TestCase::STARTED_OBJECT

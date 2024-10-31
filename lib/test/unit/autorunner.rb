@@ -163,6 +163,7 @@ module Test
         @stop_on_failure = false
         @debug_on_failure = false
         @gc_stress = false
+        @test_suite_runner_class = TestSuiteRunner
         config_file = "test-unit.yml"
         if File.exist?(config_file)
           load_config(config_file)
@@ -409,9 +410,9 @@ module Test
                "(#{parallel_options.first})") do |parallel|
             case parallel
             when nil, :thread
-              TestSuiteRunner.default = TestSuiteThreadRunner
+              @test_suite_runner_class = TestSuiteThreadRunner
             else
-              TestSuiteRunner.default = TestSuiteRunner
+              @test_suite_runner_class = TestSuiteRunner
             end
           end
 
@@ -485,6 +486,7 @@ module Test
         if @gc_stress
           @runner_options[:listeners] << GCStressListener.new
         end
+        @runner_options[:test_suite_runner_class] = @test_suite_runner_class
         change_work_directory do
           runner.run(suite, @runner_options).passed?
         end
