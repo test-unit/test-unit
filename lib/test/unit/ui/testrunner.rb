@@ -27,7 +27,7 @@ module Test
 
         private
         def setup_mediator
-          @mediator = TestRunnerMediator.new(@suite)
+          @mediator = TestRunnerMediator.new(@suite, @options)
         end
 
         def attach_listeners
