@@ -125,6 +125,27 @@ module Test
       AVAILABLE_ORDERS = [:alphabetic, :random, :defined] # :nodoc:
 
       class << self
+        # Indicates whether the test is parallel safe.
+        #
+        # Tests that this method returns `false` are executed sequentially
+        # before parallel safe tests run. This only works when the `--parallel`
+        # option is specified.
+        #
+        # @example Indicates that test_parallel_unsafe is parallel unsafe
+        #
+        #   class TestMyClass < Test::Unit::TestCase
+        #     class << self
+        #       def parallel_safe?
+        #         false
+        #       end
+        #     end
+        #
+        #     def test_parallel_unsafe
+        #       # ...
+        #     end
+        #   end
+        #
+        # @since 3.6.3
         def parallel_safe?
           true
         end
