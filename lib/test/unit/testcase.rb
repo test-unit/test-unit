@@ -125,6 +125,10 @@ module Test
       AVAILABLE_ORDERS = [:alphabetic, :random, :defined] # :nodoc:
 
       class << self
+        def parallel_safe?
+          true
+        end
+
         def inherited(sub_class) # :nodoc:
           DESCENDANTS << sub_class
           super

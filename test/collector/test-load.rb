@@ -5,6 +5,12 @@ require 'test/unit'
 require 'test/unit/collector/load'
 
 class TestUnitCollectorLoad < Test::Unit::TestCase
+  class << self
+    def parallel_safe?
+      false
+    end
+  end
+
   def setup
     @previous_descendants = Test::Unit::TestCase::DESCENDANTS.dup
     Test::Unit::TestCase::DESCENDANTS.clear

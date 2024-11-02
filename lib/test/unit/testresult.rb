@@ -51,9 +51,9 @@ module Test
       end
 
       # Records a test run.
-      def add_run
+      def add_run(result=self)
         @run_count += 1
-        notify_listeners(FINISHED, self)
+        notify_listeners(FINISHED, result)
         notify_changed
       end
 
