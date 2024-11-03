@@ -433,11 +433,23 @@ class TestData < Test::Unit::TestCase
     end
 
     class TestFileFormat < self
+      class << self
+        def parallel_safe?
+          false
+        end
+      end
+
       def setup
         self.class.current_attribute(:data).clear
       end
 
       class TestHeader < self
+        class << self
+          def parallel_safe?
+            false
+          end
+        end
+
         data("csv" => "header.csv",
              "tsv" => "header.tsv")
         def test_normal(file_name)

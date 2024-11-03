@@ -5,6 +5,7 @@ require "test/unit/color-scheme"
 require "test/unit/priority"
 require "test/unit/attribute-matcher"
 require "test/unit/testcase"
+require "test/unit/test-suite-thread-runner"
 
 module Test
   module Unit

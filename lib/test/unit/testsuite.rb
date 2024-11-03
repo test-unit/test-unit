@@ -40,6 +40,11 @@ module Test
         @elapsed_time = nil
       end
 
+      def parallel_safe?
+        return true if @test_case.nil?
+        @test_case.parallel_safe?
+      end
+
       # Runs the tests and/or suites contained in this
       # TestSuite.
       def run(result, runner: nil, &progress_block)

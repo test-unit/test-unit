@@ -1010,6 +1010,12 @@ module Test
           end
 
           class TestInheritance < self
+            class << self
+              def parallel_safe?
+                false
+              end
+            end
+
             def setup
               @original_descendants = TestCase::DESCENDANTS.dup
               TestCase::DESCENDANTS.clear
