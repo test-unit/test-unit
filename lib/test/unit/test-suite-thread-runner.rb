@@ -49,10 +49,6 @@ module Test
         end
       end
 
-      def initialize(test_suite)
-        super
-      end
-
       private
       def run_tests(result, &progress_block)
         @test_suite.tests.each do |test|
