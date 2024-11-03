@@ -4,8 +4,8 @@
 # Copyright:: Copyright (c) 2024 Tsutomu Katsube. All rights reserved.
 # License:: Ruby license.
 
-require_relative "test-suite-runner"
 require_relative "sub-test-result"
+require_relative "test-suite-runner"
 
 module Test
   module Unit
