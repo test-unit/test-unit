@@ -5,7 +5,7 @@
 # License:: Ruby license.
 
 require_relative "test-suite-runner"
-require_relative "test-thread-result"
+require_relative "sub-test-result"
 
 module Test
   module Unit
@@ -56,7 +56,7 @@ module Test
             run_test(test, result, &progress_block)
           else
             task = lambda do |stop_tag|
-              sub_result = TestThreadResult.new(result)
+              sub_result = SubTestResult.new(result)
               sub_result.stop_tag = stop_tag
               run_test(test, sub_result, &progress_block)
             end

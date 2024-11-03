@@ -6,7 +6,7 @@
 
 module Test
   module Unit
-    class TestThreadResult
+    class SubTestResult
       attr_accessor :stop_tag
 
       def initialize(parent_test_result)
