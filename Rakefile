@@ -53,7 +53,8 @@ def rake(*arguments)
 end
 
 task :test do
-  ruby("test/run-test.rb")
+  args_string = ENV["TESTOPTS"]
+  ruby("test/run-test.rb #{args_string}")
 end
 
 namespace :doc do
