@@ -10,6 +10,12 @@ test_dir = File.join(base_dir, "test")
 
 $LOAD_PATH.unshift(lib_dir)
 
+unless ENV["TESTOPTS"].nil?
+  require "shellwords"
+  args = Shellwords.shellsplit(ENV["TESTOPTS"])
+  ARGV.push(*args)
+end
+
 require 'test/unit'
 
 test_unit_notify_base_dir = File.join(base_dir, "..", "test-unit-notify")
