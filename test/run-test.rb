@@ -11,7 +11,8 @@ test_dir = File.join(base_dir, "test")
 $LOAD_PATH.unshift(lib_dir)
 
 unless ENV["TESTOPTS"].nil?
-  args = ENV["TESTOPTS"].split(" ")
+  require "shellwords"
+  args = Shellwords.shellsplit(ENV["TESTOPTS"])
   ARGV.push(*args)
 end
 
