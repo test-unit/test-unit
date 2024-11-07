@@ -2905,6 +2905,12 @@ EOM
     class TestAssertNothingLeakedMemory < Test::Unit::TestCase
       include AssertionCheckable
 
+      class << self
+        def parallel_safe?
+          false
+        end
+      end
+
       def setup
         @data = "Hello!" * 100
         if ObjectSpace.respond_to?(:memsize_of)
