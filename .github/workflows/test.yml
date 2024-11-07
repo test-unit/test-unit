@@ -83,6 +83,10 @@ jobs:
           - name: "3.3"
             ruby-version: "3.3"
             runs-on: "ubuntu-latest"
+          - name: "3.3 (Thread)"
+            ruby-version: "3.3"
+            runs-on: "ubuntu-latest"
+            testopts: "--parallel=thread"
           - name: "3.3 + frozen string literal"
             ruby-version: "3.3"
             runs-on: "ubuntu-latest"
@@ -90,9 +94,17 @@ jobs:
           - name: "3.3 on macOS"
             ruby-version: "3.3"
             runs-on: "macos-latest"
+          - name: "3.3 on macOS (Thread)"
+            ruby-version: "3.3"
+            runs-on: "macos-latest"
+            testopts: "--parallel=thread"
           - name: "3.3 on Windows"
             ruby-version: "3.3"
             runs-on: "windows-latest"
+          - name: "3.3 on Windows (Thread)"
+            ruby-version: "3.3"
+            runs-on: "windows-latest"
+            testopts: "--parallel=thread"
           - name: "head"
             ruby-version: "head"
             runs-on: "ubuntu-latest"
@@ -127,3 +139,4 @@ jobs:
           bundle exec rake
         env:
           RUBYOPT: ${{ matrix.rubyopt }}
+          TESTOPTS: ${{ matrix.testopts }}
