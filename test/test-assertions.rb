@@ -325,6 +325,10 @@ EOM
               def inspect
                 "inspected"
               end
+
+              def pretty_print(q)
+                q.text(inspect)
+              end
             end
             object1 = basic_object_class.new
             object2 = basic_object_class.new
