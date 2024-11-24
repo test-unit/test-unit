@@ -1,6 +1,6 @@
 # -*- ruby -*-
 #
-# Copyright (C) 2008-2017  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2008-2024  Sutou Kouhei <kou@clear-code.com>
 
 Encoding.default_internal = "UTF-8" if defined?(Encoding.default_internal)
 
@@ -46,10 +46,6 @@ Packnga::ReleaseTask.new(spec) do |task|
     File.directory?(dir)
   end
   task.index_html_dir = test_unit_github_io_dir
-end
-
-def rake(*arguments)
-  ruby($0, *arguments)
 end
 
 task :test do
