@@ -1,5 +1,35 @@
 # News
 
+## 3.6.3 - 2024-11-24 {#version-3-6-3}
+
+### Improvements
+
+  * Added support for thread based parallel test running. You can use
+    it by the `--parallel=thread` option. You can disable parallel
+    test running per test case by defining `parallel_safe?` class
+    method that returns `false`.
+    * GH-235
+    * Patch by Tsutomu Katsube
+
+  * Added the `--n-workers` option.
+
+  * Added the `--[no-]report-slow-tests` option. You can show the top
+    5 slow tests with this option.
+    * GH-253
+    * Patch by Tsutomu Katsube
+
+  * UI: console: Add support for outputting `Exception#cause`.
+
+  * Added support for inspecting `BasicObject`.
+    * GH-262.
+    * Patch by Yuta Saito
+
+### Thanks
+
+  * Tsutomu Katsube
+
+  * Yuta Saito
+
 ## 3.6.2 - 2024-02-16 {#version-3-6-2}
 
 ### Improvements
