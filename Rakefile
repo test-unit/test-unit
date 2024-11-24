@@ -66,3 +66,7 @@ namespace :doc do
     File.write("doc/text/news.md", applied_permalink)
   end
 end
+
+release_task = Rake.application["release"]
+# We use Trusted Publishing.
+release_task.prerequisites.delete("release:rubygem_push")
