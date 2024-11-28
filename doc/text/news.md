@@ -1,5 +1,11 @@
 # News
 
+## 3.6.4 - 2024-11-28 {#version-3-6-4}
+
+### Improvements
+
+  * Added support for Ruby 3.4.0.
+
 ## 3.6.3 - 2024-11-24 {#version-3-6-3}
 
 ### Improvements
