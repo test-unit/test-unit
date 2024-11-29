@@ -17,12 +17,12 @@ module Test
         end
 
         def run_all_tests
-          n_consumers = TestSuiteRunner.n_workers
+          n_workers = TestSuiteRunner.n_workers
 
-          consumers = []
+          workers = []
           sub_exceptions = []
-          n_consumers.times do |i|
-            consumers << Thread.new(i) do |worker_id|
+          n_workers.times do |i|
+            workers << Thread.new(i) do |worker_id|
               begin
                 loop do
                   task = @task_queue.pop
@@ -39,10 +39,10 @@ module Test
 
           yield
 
-          n_consumers.times do
+          n_workers.times do
             @task_queue << nil
           end
-          consumers.each(&:join)
+          workers.each(&:join)
           sub_exceptions.each do |exception|
             raise exception
           end
