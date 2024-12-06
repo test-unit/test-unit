@@ -79,6 +79,18 @@ module Test
         assert_equal([true, true], [called1, called2])
 
         called1, called2 = false, false
+        @my_result.add_pending(fault)
+        assert_equal([true, true], [called1, called2])
+
+        called1, called2 = false, false
+        @my_result.add_omission(fault)
+        assert_equal([true, true], [called1, called2])
+
+        called1, called2 = false, false
+        @my_result.add_notification(fault)
+        assert_equal([true, true], [called1, called2])
+
+        called1, called2 = false, false
         @my_result.add_run
         assert_equal([false, false], [called1, called2])
       end
