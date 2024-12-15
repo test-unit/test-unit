@@ -1,5 +1,20 @@
 # News
 
+## 3.6.5 - 2024-12-15 {#version-3-6-5}
+
+### Fixes
+
+  * parallel: thread: Fixed a bug that we can't use `pend` and `notify`.
+    * GH-271
+    * Reported by Takahiro Ueda
+    * Patch by Tsutomu Katsube
+
+### Thanks
+
+  * Takahiro Ueda
+
+  * Tsutomu Katsube
+
 ## 3.6.4 - 2024-11-28 {#version-3-6-4}
 
 ### Improvements
