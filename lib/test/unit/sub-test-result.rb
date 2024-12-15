@@ -35,8 +35,16 @@ module Test
         @parent_test_result.add_failure(failure)
       end
 
+      def add_pending(pending)
+        @parent_test_result.add_pending(pending)
+      end
+
       def add_omission(omission)
         @parent_test_result.add_omission(omission)
+      end
+
+      def add_notification(notification)
+        @parent_test_result.add_notification(notification)
       end
 
       def passed?
