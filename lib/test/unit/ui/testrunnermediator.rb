@@ -69,7 +69,7 @@ module Test
           if result.nil?
             run
           else
-            @suite.run(result, runner: @test_suite_runner_class) do |channel, value|
+            @suite.run(result, runner_class: @test_suite_runner_class) do |channel, value|
               notify_listeners(channel, value)
             end
           end

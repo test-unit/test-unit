@@ -65,7 +65,7 @@ module Test
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
-        test.run(result, runner: self.class) do |event_name, *args|
+        test.run(result, runner_class: self.class) do |event_name, *args|
           case previous_event_name
           when Test::Unit::TestCase::STARTED
             if event_name != Test::Unit::TestCase::STARTED_OBJECT

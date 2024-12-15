@@ -577,7 +577,7 @@ module Test
       # Runs the individual test method represented by this
       # instance of the fixture, collecting statistics, failures
       # and errors in result.
-      def run(result, runner: nil)
+      def run(result, runner_class: nil)
         begin
           @_result = result
           @internal_data.test_started
