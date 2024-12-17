@@ -65,11 +65,7 @@ module Test
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
-        options = {}
-        # For backward compatibility. There are scripts that overrides
-        # Test::Unit::TestCase#run without keyword arguments.
-        options[:runner_class] = self.class if test.method(:run).arity == -2
-        test.run(result, **options) do |event_name, *args|
+        event_listener = lambda do |event_name, *args|
           case previous_event_name
           when Test::Unit::TestCase::STARTED
             if event_name != Test::Unit::TestCase::STARTED_OBJECT
@@ -92,6 +88,14 @@ module Test
 
           previous_event_name = event_name
           yield(event_name, *args)
+        end
+
+        if test.method(:run).arity == -2
+          test.run(result, runner_class: self.class, &event_listener)
+        else
+          # For backward compatibility. There are scripts that overrides
+          # Test::Unit::TestCase#run without keyword arguments.
+          test.run(result, &event_listener)
         end
 
         if finished_is_yielded and not finished_object_is_yielded
