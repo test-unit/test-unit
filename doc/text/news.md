@@ -1,5 +1,19 @@
 # News
 
+## 3.6.6 - 2024-12-17 {#version-3-6-6}
+
+### Improvements
+
+  * Improved backward compatibility for the `Test::Unit::TestCase#run`
+    overriding case. In general, we don't recommend it but there are
+    old scripts that do it. (Mainly, I did it...)
+    * GH-276
+    * Reported by Mamoru TASAKA
+
+### Thanks
+
+  * Mamoru TASAKA
+
 ## 3.6.5 - 2024-12-15 {#version-3-6-5}
 
 ### Fixes
