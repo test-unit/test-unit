@@ -1,5 +1,11 @@
 # News
 
+## 3.6.7 - 2024-12-17 {#version-3-6-7}
+
+### Fixes
+
+  * Fixed a bug that test-unit doesn't work with Ruby < 2.5.
+
 ## 3.6.6 - 2024-12-17 {#version-3-6-6}
 
 ### Improvements
