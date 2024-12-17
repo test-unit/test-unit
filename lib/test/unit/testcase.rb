@@ -580,6 +580,7 @@ module Test
       def run(result, runner_class: nil)
         begin
           @_result = result
+          @internal_data.runner_class = runner_class
           @internal_data.test_started
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)
@@ -856,6 +857,11 @@ module Test
         @internal_data.problem_occurred
       end
 
+      # Returns test suite runner class for easy to test.
+      def runner_class
+        @internal_data.runner_class
+      end
+
       # Notify that the test is passed. Normally, it is not needed
       # because #run calls it automatically. If you want to override
       # #run, it is not a good idea. Please contact test-unit
@@ -916,6 +922,7 @@ module Test
       class InternalData
         attr_reader :start_time, :elapsed_time
         attr_reader :test_data_label, :test_data
+        attr_accessor :runner_class
         def initialize
           @start_time = nil
           @elapsed_time = nil
@@ -923,6 +930,7 @@ module Test
           @interrupted = false
           @test_data_label = nil
           @test_data = nil
+          @runner_class = nil
         end
 
         def passed?
