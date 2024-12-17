@@ -1284,6 +1284,18 @@ module Test
             end
           end
         end
+
+        class TestCompatibility < self
+          # There are scripts that overrides Test::Unit::TestCase#run
+          # without keyword arguments.
+          def run(result, &block)
+            super
+          end
+
+          def test_run
+            # This exists only for executing #run
+          end
+        end
       end
     end
   end
