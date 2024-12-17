@@ -1,5 +1,5 @@
 module Test
   module Unit
-    VERSION = "3.6.7"
+    VERSION = "3.6.8"
   end
 end
