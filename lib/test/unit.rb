@@ -28,7 +28,7 @@ module Test # :nodoc:
   #
   # ## Notes
   #
-  # Test::Unit has grown out of and superceded Lapidary.
+  # Test::Unit has grown out of and superseded Lapidary.
   #
   #
   # ## Feedback
@@ -69,7 +69,7 @@ module Test # :nodoc:
   # Masaki Suketa, for his work on RubyUnit, which filled a vital need in
   # the Ruby world for a very long time. I'm also grateful for his help in
   # polishing Test::Unit and getting the RubyUnit compatibility layer
-  # right. His graciousness in allowing Test::Unit to supercede RubyUnit
+  # right. His graciousness in allowing Test::Unit to supersede RubyUnit
   # continues to be a challenge to me to be more willing to defer my own
   # rights.
   #
