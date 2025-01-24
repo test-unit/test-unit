@@ -76,7 +76,7 @@ module Test
          *@summary_generators.collect {|generator| __send__(generator)}].join(", ")
       end
 
-      # Returnes a string that shows result status.
+      # Returns a string that shows result status.
       def status
         if passed?
           if pending_count > 0
