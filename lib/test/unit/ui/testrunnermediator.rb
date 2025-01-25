@@ -40,13 +40,13 @@ module Test
           start_time = Time.now
           begin
             with_listener(result) do
-              @test_suite_runner_class.run_all_tests do
+              @test_suite_runner_class.run_all_tests do |run_context|
                 catch do |stop_tag|
                   result.stop_tag = stop_tag
                   notify_listeners(RESET, @suite.size)
                   notify_listeners(STARTED, result)
 
-                  run_suite(result)
+                  run_suite(result, run_context)
                 end
               end
             end
@@ -65,11 +65,11 @@ module Test
         #
         # See GitHub#38
         #   https://github.com/test-unit/test-unit/issues/38
-        def run_suite(result=nil)
+        def run_suite(result=nil, run_context=nil)
           if result.nil?
             run
           else
-            @suite.run(result, runner_class: @test_suite_runner_class) do |channel, value|
+            @suite.run(result, run_context: run_context) do |channel, value|
               notify_listeners(channel, value)
             end
           end

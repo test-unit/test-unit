@@ -7,6 +7,7 @@
 # License:: Ruby license.
 
 require "etc"
+require_relative "test-run-context"
 
 module Test
   module Unit
@@ -14,7 +15,7 @@ module Test
       @n_workers = Etc.respond_to?(:nprocessors) ? Etc.nprocessors : 1
       class << self
         def run_all_tests
-          yield
+          yield(TestRunContext.new(self))
         end
 
         def n_workers
@@ -30,11 +31,11 @@ module Test
         @test_suite = test_suite
       end
 
-      def run(result, &progress_block)
+      def run(result, run_context: nil, &progress_block)
         yield(TestSuite::STARTED, @test_suite.name)
         yield(TestSuite::STARTED_OBJECT, @test_suite)
         run_startup(result)
-        run_tests(result, &progress_block)
+        run_tests(result, run_context: run_context, &progress_block)
       ensure
         begin
           run_shutdown(result)
@@ -55,13 +56,13 @@ module Test
         end
       end
 
-      def run_tests(result, &progress_block)
+      def run_tests(result, run_context: nil, &progress_block)
         @test_suite.tests.each do |test|
-          run_test(test, result, &progress_block)
+          run_test(test, result, run_context: run_context, &progress_block)
         end
       end
 
-      def run_test(test, result)
+      def run_test(test, result, run_context: nil)
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
@@ -91,7 +92,7 @@ module Test
         end
 
         if test.method(:run).arity == -2
-          test.run(result, runner_class: self.class, &event_listener)
+          test.run(result, run_context: run_context, &event_listener)
         else
           # For backward compatibility. There are scripts that overrides
           # Test::Unit::TestCase#run without keyword arguments.

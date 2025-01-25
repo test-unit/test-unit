@@ -24,7 +24,11 @@ module TestUnitTestUtil
     result = Test::Unit::TestResult.new
     test = test_case.new(name)
     yield(test) if block_given?
-    test.run(result) {}
+    suite = test_case.suite
+    suite << test
+    runner_class.run_all_tests do |run_context|
+      suite.run(result, run_context: run_context) {}
+    end
     result
   end
 
