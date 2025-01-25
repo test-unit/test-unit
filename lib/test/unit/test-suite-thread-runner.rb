@@ -34,14 +34,32 @@ module Test
             end
           end
 
-          yield(TestThreadRunContext.new(self, queue))
+          shutdowns = []
+          yield(TestThreadRunContext.new(self, queue, shutdowns))
 
           n_workers.times do
             queue << nil
           end
           workers.each(&:join)
+          shutdowns.each(&:call)
           sub_exceptions.each do |exception|
             raise exception
+          end
+        end
+      end
+
+      def run(result, run_context: nil, &progress_block)
+        yield(TestSuite::STARTED, @test_suite.name)
+        yield(TestSuite::STARTED_OBJECT, @test_suite)
+        run_startup(result)
+        run_tests(result, run_context: run_context, &progress_block)
+      ensure
+        run_context.shutdowns << lambda do
+          begin
+            run_shutdown(result)
+          ensure
+            yield(TestSuite::FINISHED, @test_suite.name)
+            yield(TestSuite::FINISHED_OBJECT, @test_suite)
           end
         end
       end
