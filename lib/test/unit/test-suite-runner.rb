@@ -7,6 +7,7 @@
 # License:: Ruby license.
 
 require "etc"
+
 require_relative "test-run-context"
 
 module Test
