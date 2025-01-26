@@ -9,10 +9,11 @@ require_relative "test-run-context"
 module Test
   module Unit
     class TestThreadRunContext < TestRunContext
-      attr_reader :queue
-      def initialize(runner_class, queue)
+      attr_reader :queue, :shutdowns
+      def initialize(runner_class, queue, shutdowns)
         super(runner_class)
         @queue = queue
+        @shutdowns = shutdowns
       end
     end
   end
