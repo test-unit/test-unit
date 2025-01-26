@@ -577,10 +577,10 @@ module Test
       # Runs the individual test method represented by this
       # instance of the fixture, collecting statistics, failures
       # and errors in result.
-      def run(result, runner_class: nil)
+      def run(result, run_context: nil)
         begin
           @_result = result
-          @internal_data.runner_class = runner_class
+          @internal_data.run_context = run_context
           @internal_data.test_started
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)
@@ -859,7 +859,7 @@ module Test
 
       # Returns test suite runner class for easy to test.
       def runner_class
-        @internal_data.runner_class
+        @internal_data.run_context.runner_class
       end
 
       # Notify that the test is passed. Normally, it is not needed
@@ -922,7 +922,7 @@ module Test
       class InternalData
         attr_reader :start_time, :elapsed_time
         attr_reader :test_data_label, :test_data
-        attr_accessor :runner_class
+        attr_accessor :run_context
         def initialize
           @start_time = nil
           @elapsed_time = nil
@@ -930,7 +930,7 @@ module Test
           @interrupted = false
           @test_data_label = nil
           @test_data = nil
-          @runner_class = nil
+          @run_context = nil
         end
 
         def passed?

@@ -6,26 +6,23 @@
 
 require_relative "sub-test-result"
 require_relative "test-suite-runner"
+require_relative "test-thread-run-context"
 
 module Test
   module Unit
     class TestSuiteThreadRunner < TestSuiteRunner
-      @task_queue = Thread::Queue.new
       class << self
-        def task_queue
-          @task_queue
-        end
-
         def run_all_tests
           n_workers = TestSuiteRunner.n_workers
 
+          queue = Thread::Queue.new
           workers = []
           sub_exceptions = []
           n_workers.times do |i|
             workers << Thread.new(i) do |worker_id|
               begin
                 loop do
-                  task = @task_queue.pop
+                  task = queue.pop
                   break if task.nil?
                   catch do |stop_tag|
                     task.call(stop_tag)
@@ -37,10 +34,10 @@ module Test
             end
           end
 
-          yield
+          yield(TestThreadRunContext.new(self, queue))
 
           n_workers.times do
-            @task_queue << nil
+            queue << nil
           end
           workers.each(&:join)
           sub_exceptions.each do |exception|
@@ -50,17 +47,17 @@ module Test
       end
 
       private
-      def run_tests(result, &progress_block)
+      def run_tests(result, run_context: nil, &progress_block)
         @test_suite.tests.each do |test|
           if test.is_a?(TestSuite) or not @test_suite.parallel_safe?
-            run_test(test, result, &progress_block)
+            run_test(test, result, run_context: run_context, &progress_block)
           else
             task = lambda do |stop_tag|
               sub_result = SubTestResult.new(result)
               sub_result.stop_tag = stop_tag
-              run_test(test, sub_result, &progress_block)
+              run_test(test, sub_result, run_context: run_context, &progress_block)
             end
-            self.class.task_queue << task
+            run_context.queue << task
           end
         end
       end
