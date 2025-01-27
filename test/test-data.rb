@@ -178,12 +178,14 @@ class TestData < Test::Unit::TestCase
     end
   end
 
-  def setup
-    TestCalc.testing = true
-  end
+  class << self
+    def startup
+      TestCalc.testing = true
+    end
 
-  def teardown
-    TestCalc.testing = false
+    def shutdown
+      TestCalc.testing = false
+    end
   end
 
   def test_data_no_arguments_without_block
