@@ -9,6 +9,12 @@ module Test
   module Unit
     module Collector
       class TC_ObjectSpace < TestCase
+        class << self
+          def parallel_safe?
+            false
+          end
+        end
+
         def setup
           @tc1 = Class.new(TestCase) do
             self.test_order = :alphabetic

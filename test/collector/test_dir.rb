@@ -6,6 +6,12 @@ module Test
   module Unit
     module Collector
       class TestDir < TestCase
+        class << self
+          def parallel_safe?
+            false
+          end
+        end
+
         class FileSystem
           class Directory
             def initialize(name, fs, parent=self, &block)
