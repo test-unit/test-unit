@@ -21,7 +21,7 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
   def assert_collect(expected, *collect_args)
     collector = Test::Unit::Collector::Descendant.new
     yield(collector) if block_given?
-    assert_equal(expected, collector.send(:collect, *collect_args))
+    assert_equal(expected, collector.collect(*collect_args))
   end
 
   def default_name
