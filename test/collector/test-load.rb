@@ -440,7 +440,7 @@ EOT
       Dir.chdir(@test_dir.to_s) do
         collector = Test::Unit::Collector::Load.new
         yield(collector) if block_given?
-        actual = inspect_test_object(collector.send(:collect, *collect_args))
+        actual = inspect_test_object(collector.collect(*collect_args))
         assert_equal(expected, actual)
       end
     end
