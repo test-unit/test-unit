@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "bundler/gem_tasks"
+require "test-unit"
 
-ruby("-r test-unit -e run_test test")
+exit(Test::Unit::AutoRunner.run(true, "test"))
