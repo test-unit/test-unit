@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.files += Dir.glob("{lib,sample}/**/*.rb")
   spec.files += Dir.glob("doc/text/**/*.*")
   spec.bindir = "bin"
-  spec.executables = Dir.glob("*", base: "bin")
+  spec.executables = Dir.glob("bin/*").collect {|file| File.basename(file)}
 
   spec.metadata = {
     "source_code_uri" => "https://github.com/test-unit/test-unit",
