@@ -28,9 +28,8 @@ Gem::Specification.new do |spec|
   spec.files += ["COPYING", "BSDL", "PSFL"]
   spec.files += Dir.glob("{lib,sample}/**/*.rb")
   spec.files += Dir.glob("doc/text/**/*.*")
-  spec.files += Dir.glob("bin/*")
   spec.bindir = "bin"
-  spec.executables = spec.files.grep(%r{\Abin/}) {|f| File.basename(f)}
+  spec.executables = Dir.glob("*", base: "bin")
 
   spec.metadata = {
     "source_code_uri" => "https://github.com/test-unit/test-unit",
