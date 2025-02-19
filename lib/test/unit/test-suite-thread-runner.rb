@@ -16,6 +16,12 @@ module Test
           n_workers = TestSuiteRunner.n_workers
 
           queue = Thread::Queue.new
+          shutdowns = []
+          yield(TestThreadRunContext.new(self, queue, shutdowns))
+          n_workers.times do
+            queue << nil
+          end
+
           workers = []
           sub_exceptions = []
           n_workers.times do |i|
@@ -33,14 +39,8 @@ module Test
               end
             end
           end
-
-          shutdowns = []
-          yield(TestThreadRunContext.new(self, queue, shutdowns))
-
-          n_workers.times do
-            queue << nil
-          end
           workers.each(&:join)
+
           shutdowns.each(&:call)
           sub_exceptions.each do |exception|
             raise exception
