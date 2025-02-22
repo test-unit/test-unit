@@ -2,4 +2,4 @@
 
 require "test/unit"
 
-exit(Test::Unit::AutoRunner.run(true, "test"))
+exit(Test::Unit::AutoRunner.run(true))
