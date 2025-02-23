@@ -49,7 +49,7 @@ Packnga::ReleaseTask.new(spec) do |task|
 end
 
 task :test do
-  ruby("test/run-test.rb")
+  ruby("test/run.rb")
 end
 
 namespace :doc do
