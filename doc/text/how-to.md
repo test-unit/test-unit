@@ -2,7 +2,7 @@
 
 ## Run all tests
 
-To make it easy to run all your tests, you can add a `run_test.rb` script
+To make it easy to run all your tests, you can add a `run.rb` script
 to your `test` directory. A simple example might look like:
 
     base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
@@ -17,14 +17,14 @@ to your `test` directory. A simple example might look like:
 
 Then it's easy to run tests via the command line with,
 
-    $ ruby test/run_test.rb
+    $ ruby test/run.rb
 
 ## Change test runner via the command line
 
 The output format can be changed via the command line with
 the `--runner` option. Simply tack it to the end:
 
-    ruby test/run_test.rb --runner tap
+    ruby test/run.rb --runner tap
 
 
 ## Configure test-unit per-project

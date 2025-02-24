@@ -546,9 +546,9 @@ msgid "## Run all tests"
 msgstr "## すべてのテストを実行する"
 
 msgid ""
-"To make it easy to run all your tests, you can add a `run_test.rb` script\n"
+"To make it easy to run all your tests, you can add a `run.rb` script\n"
 "to your `test` directory. A simple example might look like:"
-msgstr "すべてのテストを簡単に実行するために、 `run_test.rb` スクリプトを `test` ディレクトリにおきます。スクリプトは以下のようにします。"
+msgstr "すべてのテストを簡単に実行するために、 `run.rb` スクリプトを `test` ディレクトリにおきます。スクリプトは以下のようにします。"
 
 msgid ""
 "    base_dir = File.expand_path(File.join(File.dirname(__FILE__), \"..\"))\n"
@@ -569,7 +569,7 @@ msgstr ""
 msgid "Then it's easy to run tests via the command line with,"
 msgstr "これで以下のコマンドで簡単にテストを実行できます。"
 
-msgid "    $ ruby test/run_test.rb"
+msgid "    $ ruby test/run.rb"
 msgstr ""
 
 msgid "## Change test runner via the command line"
@@ -580,7 +580,7 @@ msgid ""
 "the `--runner` option. Simply tack it to the end:"
 msgstr "テスト結果の出力フォーマットはコマンドラインで `--runner` オプションを指定すると変更できます。単純にこのオプションを最後に追加してください。"
 
-msgid "    ruby test/run_test.rb --runner tap"
+msgid "    ruby test/run.rb --runner tap"
 msgstr ""
 
 msgid "## Configure test-unit per-project"
