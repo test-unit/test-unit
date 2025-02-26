@@ -580,7 +580,7 @@ msgid ""
 "the `--runner` option. Simply tack it to the end:"
 msgstr "テスト結果の出力フォーマットはコマンドラインで `--runner` オプションを指定すると変更できます。単純にこのオプションを最後に追加してください。"
 
-msgid "    ruby test/run.rb --runner tap"
+msgid "    ruby test/run.rb --runner emacs"
 msgstr ""
 
 msgid "## Configure test-unit per-project"
