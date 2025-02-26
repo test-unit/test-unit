@@ -24,7 +24,7 @@ Then it's easy to run tests via the command line with,
 The output format can be changed via the command line with
 the `--runner` option. Simply tack it to the end:
 
-    ruby test/run.rb --runner tap
+    ruby test/run.rb --runner emacs
 
 
 ## Configure test-unit per-project
