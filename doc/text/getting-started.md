@@ -31,139 +31,10 @@ test-unit (3.2.3)
 
 Next, create a gem template using `bundler` command.
 This command generates package skeleton with a testing framework.
-However, this command can't generate test templates for `test-unit`.
 
-So, First create gem template with the `minitest` testing framework.
-(It's similar to `unit-test`).
-After that, replace some files for `test-unit`.
+The `bundle gem -t test-unit sample` command will generate a gem template with the `test-unit` testing framework.
 
-The `bundle gem -t minitest sample` command will generate the following files.
-
-~~~
-!!!plain
-.
-|-- Gemfile
-|-- README.md
-|-- Rakefile
-|-- bin
-|   |-- console
-|   `-- setup
-|-- lib
-|   |-- sample
-|   |   `-- version.rb
-|   `-- sample.rb
-|-- sample.gemspec  # <- Modify
-`-- test
-    |-- sample_test.rb # <- Modify
-    `-- test_helper.rb # <- Modify
-~~~
-
-## 4. Edit files for `test-unit`
-
-### 4.1. Edit gemspec
-
-Edit `sample.gemspec` like the below.
-Replace `minitest` line to `test-unit`.
-
-Before
-
-~~~
-!!!ruby
-  spec.add_development_dependency "minitest", "~> 5.0"
-~~~
-
-After
-
-~~~
-!!!ruby
-  spec.add_development_dependency "test-unit", "~> 3.2.3"
-~~~
-
-### 4.2. Edit `test/test_helper.rb`
-
-Next, edit the `test/test_helper.rb` file.
-
-Before
-
-~~~
-!!!ruby
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'sample'
-
-require 'minitest/autorun' # <-- Modify this line.
-~~~
-
-After
-
-~~~
-!!!ruby
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'sample'
-
-require 'test/unit' # <-- After modification.
-~~~
-
-### 4.3 Rakefile (No edit)
-
-This file doesn't need to modify.
-The output is the below.
-
-~~~
-!!!ruby
-require "bundler/gem_tasks"
-require "rake/testtask"
-
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.libs << "lib"
-  t.test_files = FileList['test/**/*_test.rb']
-end
-
-task :default => :test
-~~~
-
-### 4.4 Edit `test/sample_test.rb`
-
-The bundler generate the file `test/sample_test.rb`.
-This file originally templates for `minitest`.
-
-Let's modify this file for `test-unit`
-
-before
-
-~~~
-!!!ruby
-require 'test_helper'
-
-class SampleTest < Minitest::Test # <- Modify here
-  def test_that_it_has_a_version_number
-    refute_nil ::Sample::VERSION
-  end
-
-  def test_it_does_something_useful
-    assert false
-  end
-end
-~~~
-
-After
-
-~~~
-!!!ruby
-require 'test_helper'
-
-class SampleTest < Test::Unit::TestCase # <- After modification
-  def test_that_it_has_a_version_number
-    refute_nil ::Sample::VERSION
-  end
-
-  def test_it_does_something_useful
-    assert false
-  end
-end
-~~~
-
-## 5. Execute test.
+## 4. Execute test.
 
 The `rake test` command execute test scenarios in the `test` directory.
 Now it tries to two tests. One will success the other one fails.
@@ -201,7 +72,7 @@ Tasks: TOP => test
 (See full trace by running task with --trace)
 ~~~
 
-## 6. Create original tests.
+## 5. Create original tests.
 
 Let's create your original tests with the following rules.
 
@@ -239,7 +110,7 @@ module Sub
 end
 ~~~
 
-## 7. For more information
+## 6. For more information
 
 Let's read the official document.
 
