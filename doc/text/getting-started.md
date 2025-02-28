@@ -22,9 +22,9 @@ You will find the following lines.
 !!!plain
 gem list
 ...
-bundler (1.14.6)
+bundler (2.6.3, default: 2.6.2)
 ...
-test-unit (3.2.3)
+test-unit (3.6.8, 3.6.7)
 ~~~
 
 ## 3. Create gem template.
