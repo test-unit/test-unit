@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/test-unit.png)](http://badge.fury.io/rb/test-unit)
 [![Build Status for Ruby 2.1+](https://github.com/test-unit/test-unit/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/test-unit/test-unit/actions/workflows/test.yml?query=branch%3Amaster+)
 
-* http://test-unit.github.io/
+* https://test-unit.github.io/
 * https://github.com/test-unit/test-unit
 
 ## Description
