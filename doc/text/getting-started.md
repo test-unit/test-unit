@@ -41,30 +41,33 @@ Now it tries to two tests. One will success the other one fails.
 
 ~~~
 !!!plain
-rake test
-Loaded suite
-/path/to/ruby/lib/ruby/gems/2.3.0/gems/rake-12.0.0/lib/rake/rake_test_loader
+$ rake test
+Loaded suite /path/to/ruby/lib/ruby/gems/3.4.0/gems/rake-13.2.1/lib/rake/rake_test_loader
 Started
 F
 ================================================================================
-Failure: <false> is not true.
-test_it_does_something_useful(SampleTest)
-/path/to/sample/test/sample_test.rb:9:in `test_it_does_something_useful'
-      6:   end
-      7:
-      8:   def test_it_does_something_useful
-  =>  9:     assert false
+Failure: test: something useful(SampleTest)
+/path/to/sample/test/sample_test.rb:13:in 'block in <class:SampleTest>'
      10:   end
-     11: end
-================================================================================
-.
+     11:
+     12:   test "something useful" do
+  => 13:     assert_equal("expected", "actual")
+     14:   end
+     15: end
+<"expected"> expected but was
+<"actual">
 
-Finished in 0.011521 seconds.
+diff:
+? expected
+? a     ual
+? ????     ??
+================================================================================
+Finished in 0.013737 seconds.
 --------------------------------------------------------------------------------
 2 tests, 2 assertions, 1 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
 50% passed
 --------------------------------------------------------------------------------
-173.60 tests/s, 173.60 assertions/s
+145.59 tests/s, 145.59 assertions/s
 rake aborted!
 Command failed with status (1)
 
