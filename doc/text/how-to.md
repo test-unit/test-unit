@@ -29,7 +29,7 @@ the `--runner` option. Simply tack it to the end:
 
 ## Configure test-unit per-project
 
-Test::Unit reads `test-unit.yml` or `.test-unit.yml` in the current working
+Test::Unit reads `~/.test-unit.yml` or `test-unit.yml` in the current working
 directory as Test::Unit's configuration file. It can contain the following
 settings:
 

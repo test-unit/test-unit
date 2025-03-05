@@ -396,11 +396,11 @@ msgid "## Configure test-unit per-project"
 msgstr "## プロジェクトごとにtest-unitを設定する"
 
 msgid ""
-"Test::Unit reads `test-unit.yml` or `.test-unit.yml` in the current working\n"
+"Test::Unit reads `~/.test-unit.yml` or `test-unit.yml` in the current working\n"
 "directory as Test::Unit's configuration file. It can contain the following\n"
 "settings:"
 msgstr ""
-"Test::Unitは `test-unit.yml` または現在のワーキングディレクトリにある `.test-unit.yml` をTest::Unitの"
+"Test::Unitは `~/.test-unit.yml` または現在のワーキングディレクトリにある `test-unit.yml` をTest::Unitの"
 "設定ファイルとして読み込みます。このファイルには以下のような設定をすることができます。"
 
 # Test::Unit
