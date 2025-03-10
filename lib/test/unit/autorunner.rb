@@ -171,9 +171,9 @@ module Test
         else
           load_global_config
         end
-        plaintext_config_file = ".test-unit"
-        if File.exist?(plaintext_config_file)
-          load_plaintext_config(plaintext_config_file)
+        plain_text_config_file = ".test-unit"
+        if File.exist?(plain_text_config_file)
+          load_plain_text_config(plain_text_config_file)
         end
         yield(self) if block_given?
       end
@@ -519,7 +519,7 @@ module Test
         @runner_options = @runner_options.merge(runner_options)
       end
 
-      def load_plaintext_config(file)
+      def load_plain_text_config(file)
         require "shellwords"
         File.readlines(file, chomp: true).each do |option|
           next if option.empty?
