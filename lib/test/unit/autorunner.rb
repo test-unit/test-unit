@@ -521,9 +521,9 @@ module Test
 
       def load_plain_text_config(file)
         require "shellwords"
-        File.readlines(file, chomp: true).each do |option|
-          next if option.empty?
-          args = Shellwords.shellsplit(option)
+        File.readlines(file, chomp: true).each do |line|
+          next if line.empty?
+          args = Shellwords.shellsplit(line)
           @default_arguments.concat(args)
         end
       end
