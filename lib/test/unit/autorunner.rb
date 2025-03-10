@@ -171,6 +171,10 @@ module Test
         else
           load_global_config
         end
+        plain_text_config_file = ".test-unit"
+        if File.exist?(plain_text_config_file)
+          load_plain_text_config(plain_text_config_file)
+        end
         yield(self) if block_given?
       end
 
@@ -513,6 +517,15 @@ module Test
           end
         end
         @runner_options = @runner_options.merge(runner_options)
+      end
+
+      def load_plain_text_config(file)
+        require "shellwords"
+        File.readlines(file, chomp: true).each do |line|
+          next if line.empty?
+          args = Shellwords.shellsplit(line)
+          @default_arguments.concat(args)
+        end
       end
 
       private
