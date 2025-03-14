@@ -580,6 +580,7 @@ module Test
       def run(result, run_context: nil)
         begin
           @_result = result
+          instance_variables_before = instance_variables
           @internal_data.run_context = run_context
           @internal_data.test_started
           yield(STARTED, name)
@@ -622,6 +623,9 @@ module Test
           yield(FINISHED_OBJECT, self)
         ensure
           # @_result = nil # For test-spec's after_all :<
+          (instance_variables - instance_variables_before).each do |name|
+            remove_instance_variable(name)
+          end
         end
       end
 
