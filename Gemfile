@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 group :test do
-  gem("bigdecimal", platforms: [:mri])
+  gem("bigdecimal")
   gem("csv") if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3.0")
 end
 
