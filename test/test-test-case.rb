@@ -565,6 +565,18 @@ module Test
                      result.summary)
       end
 
+      def test_gc
+        test_case = Class.new(TestCase) do
+          def test_set_instance_variable
+            @variable = "anything"
+          end
+        end
+
+        test = test_case.new("test_set_instance_variable")
+        test.run(TestResult.new) {}
+        assert_nil(test.instance_variable_get(:@variable))
+      end
+
       private
       def check(message, passed)
         add_assertion
