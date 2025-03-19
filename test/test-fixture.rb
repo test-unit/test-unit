@@ -84,8 +84,10 @@ class TestUnitFixture < Test::Unit::TestCase
       test_case = Class.new(parent || Test::Unit::TestCase) do
         yield(self, :before) if block_given?
 
-        def called_ids
-          @called_ids ||= []
+        attr_reader :called_ids
+        def initialize(test_method_name)
+          @called_ids = []
+          super
         end
 
         def called(id)
@@ -252,8 +254,10 @@ class TestUnitFixture < Test::Unit::TestCase
 
     def test_with_exception
       test_case = Class.new(Test::Unit::TestCase) do
-        def called_ids
-          @called_ids ||= []
+        attr_reader :called_ids
+        def initialize(test_method_name)
+          @called_ids = []
+          super
         end
 
         def called(id)
@@ -300,8 +304,10 @@ class TestUnitFixture < Test::Unit::TestCase
       test_case = Class.new(parent || Test::Unit::TestCase) do
         yield(self, :before) if block_given?
 
-        def called_ids
-          @called_ids ||= []
+        attr_reader :called_ids
+        def initialize(test_method_name)
+          @called_ids = []
+          super
         end
 
         def called(id)
@@ -466,8 +472,10 @@ class TestUnitFixture < Test::Unit::TestCase
 
     def test_with_exception
       test_case = Class.new(Test::Unit::TestCase) do
-        def called_ids
-          @called_ids ||= []
+        attr_reader :called_ids
+        def initialize(test_method_name)
+          @called_ids = []
+          super
         end
 
         def called(id)
@@ -537,8 +545,10 @@ class TestUnitFixture < Test::Unit::TestCase
 
     def test_setup_with_block
       test_case = Class.new(Test::Unit::TestCase) do
-        def called_ids
-          @called_ids ||= []
+        attr_reader :called_ids
+        def initialize(test_method_name)
+          @called_ids = []
+          super
         end
 
         def called(id)
@@ -594,8 +604,10 @@ class TestUnitFixture < Test::Unit::TestCase
       test_case = Class.new(parent || Test::Unit::TestCase) do
         yield(self, :before) if block_given?
 
-        def called_ids
-          @called_ids ||= []
+        attr_reader :called_ids
+        def initialize(test_method_name)
+          @called_ids = []
+          super
         end
 
         def called(id)
