@@ -1,5 +1,47 @@
 # News
 
+## 3.6.8 - 2025-04-05 {#version-3-6-8}
+
+### Improvements
+
+  * `test-unit`: Added. You can use this instead of creating a custom
+    test run script.
+    * GH-288
+    * GH-289
+    * GH-291
+    * Suggested by gemmaro
+
+  * Updated the "how to" document.
+    * GH-292
+    * GH-293
+    * GH-294
+
+  * Updated the "getting started" document.
+    * GH-295
+    * GH-296
+
+  * Added support for `.test-unit` configuration file. It's useful for
+    specifying default options, and is handier than using `.test-unit.yml`.
+    * GH-300
+    * GH-302
+
+### Fixes
+
+  * parallel: thread: Fixed shutdown execution order.
+    * GH-282
+
+  * testcase: Fixed a bug that instance variables added during the test
+    runs are not garbage collected after each test run.
+    * GH-235
+    * GH-303
+    * Reported by akira yamada
+
+### Thanks
+
+  * gemmaro
+
+  * akira yamada
+
 ## 3.6.7 - 2024-12-17 {#version-3-6-7}
 
 ### Fixes
