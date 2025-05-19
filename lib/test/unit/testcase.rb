@@ -401,6 +401,13 @@ module Test
         #     end
         #   end
         #
+        #   # Or in one line (same meaning as above):
+        #   ractor def test_do_something_with_ractor
+        #     Ractor.new do
+        #       # ...
+        #     end
+        #   end
+        #
         # @since 3.4.6
         def ractor(options={})
           attribute(:ractor, true, options)
