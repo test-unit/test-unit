@@ -187,6 +187,23 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
         def test_ractor_2_2
         end
       end
+
+      @test_case3 = Class.new(Test::Unit::TestCase) do
+        self.test_order = :alphabetic
+
+        def self.name
+          "test-case-using-one-line-one-ractor-test"
+        end
+
+        def test_no_ractor_3_1
+        end
+
+        ractor def test_ractor_3_1
+        end
+
+        def test_no_ractor_3_2
+        end
+      end
     end
 
     def test_sort
@@ -207,11 +224,19 @@ class TestUnitCollectorDescendant < Test::Unit::TestCase
       sub_suite_ractor2 << @test_case2.new('test_ractor_2_1')
       sub_suite_ractor2 << @test_case2.new('test_ractor_2_2')
 
+      sub_suite_no_ractor3 = Test::Unit::TestSuite.new(@test_case3.name)
+      sub_suite_no_ractor3 << @test_case3.new('test_no_ractor_3_1')
+      sub_suite_no_ractor3 << @test_case3.new('test_no_ractor_3_2')
+      sub_suite_ractor3 = Test::Unit::TestSuite.new(@test_case3.name)
+      sub_suite_ractor3 << @test_case3.new('test_ractor_3_1')
+
       suite = empty_suite(name)
       suite << sub_suite_no_ractor1
       suite << sub_suite_no_ractor2
+      suite << sub_suite_no_ractor3
       suite << sub_suite_ractor1
       suite << sub_suite_ractor2
+      suite << sub_suite_ractor3
       suite
     end
   end
