@@ -401,7 +401,8 @@ module Test
         #     end
         #   end
         #
-        #   # Or in one line (same meaning as above):
+        # @example Or in one line (same meaning as above)
+        #
         #   ractor def test_do_something_with_ractor
         #     Ractor.new do
         #       # ...
