@@ -401,7 +401,7 @@ module Test
         #     end
         #   end
         #
-        # @example Or in one line (same meaning as above)
+        # @example Declares that test_do_something_with_ractor uses Ractor in one line
         #
         #   ractor def test_do_something_with_ractor
         #     Ractor.new do
