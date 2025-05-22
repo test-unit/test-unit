@@ -401,6 +401,14 @@ module Test
         #     end
         #   end
         #
+        # @example Declares that test_do_something_with_ractor uses Ractor in one line
+        #
+        #   ractor def test_do_something_with_ractor
+        #     Ractor.new do
+        #       # ...
+        #     end
+        #   end
+        #
         # @since 3.4.6
         def ractor(options={})
           attribute(:ractor, true, options)
