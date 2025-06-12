@@ -1,11 +1,11 @@
 require "English"
 require "optparse"
 
-require "test/unit/color-scheme"
-require "test/unit/priority"
-require "test/unit/attribute-matcher"
-require "test/unit/testcase"
-require "test/unit/test-suite-thread-runner"
+require_relative "color-scheme"
+require_relative "priority"
+require_relative "attribute-matcher"
+require_relative "testcase"
+require_relative "test-suite-thread-runner"
 
 module Test
   module Unit
@@ -86,14 +86,14 @@ module Test
       end
 
       register_collector(:descendant) do |auto_runner|
-        require "test/unit/collector/descendant"
+        require_relative "collector/descendant"
         collector = Collector::Descendant.new
         collector.filter = auto_runner.filters
         collector.collect($0.sub(/\.rb\Z/, ""))
       end
 
       register_collector(:load) do |auto_runner|
-        require "test/unit/collector/load"
+        require_relative "collector/load"
         collector = Collector::Load.new
         unless auto_runner.pattern.empty?
           collector.patterns.replace(auto_runner.pattern)
@@ -109,7 +109,7 @@ module Test
 
       # JUST TEST!
       # register_collector(:xml) do |auto_runner|
-      #   require "test/unit/collector/xml"
+      #   require_relative "collector/xml"
       #   collector = Collector::XML.new
       #   collector.filter = auto_runner.filters
       #   collector.collect(auto_runner.to_run[0])
@@ -117,7 +117,7 @@ module Test
 
       # deprecated
       register_collector(:object_space) do |auto_runner|
-        require "test/unit/collector/objectspace"
+        require_relative "collector/objectspace"
         c = Collector::ObjectSpace.new
         c.filter = auto_runner.filters
         c.collect($0.sub(/\.rb\Z/, ""))
@@ -125,7 +125,7 @@ module Test
 
       # deprecated
       register_collector(:dir) do |auto_runner|
-        require "test/unit/collector/dir"
+        require_relative "collector/dir"
         c = Collector::Dir.new
         c.filter = auto_runner.filters
         unless auto_runner.pattern.empty?
@@ -637,6 +637,6 @@ module Test
   end
 end
 
-require "test/unit/runner/console"
-require "test/unit/runner/emacs"
-require "test/unit/runner/xml"
+require_relative "runner/console"
+require_relative "runner/emacs"
+require_relative "runner/xml"

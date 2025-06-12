@@ -7,7 +7,7 @@
 
 # just test!!! don't use it yet!!!
 
-require 'test/unit/collector'
+require_relative '../collector'
 
 require 'rexml/document'
 require 'rexml/streamlistener'

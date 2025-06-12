@@ -3,11 +3,11 @@
 #             Copyright (c) 2009-2013 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/assertion-failed-error'
-require 'test/unit/util/backtracefilter'
-require 'test/unit/util/memory-usage'
-require 'test/unit/util/method-owner-finder'
-require 'test/unit/diff'
+require_relative 'assertion-failed-error'
+require_relative 'util/backtracefilter'
+require_relative 'util/memory-usage'
+require_relative 'util/method-owner-finder'
+require_relative 'diff'
 
 begin
   require 'power_assert'

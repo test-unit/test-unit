@@ -4,8 +4,8 @@
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/util/observable'
-require 'test/unit/testresult'
+require_relative '../util/observable'
+require_relative '../testresult'
 
 module Test
   module Unit

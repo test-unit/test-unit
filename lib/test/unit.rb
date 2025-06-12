@@ -1,7 +1,7 @@
-require "test/unit/warning"
+require_relative "unit/warning"
 
-require 'test/unit/testcase'
-require 'test/unit/autorunner'
+require_relative 'unit/testcase'
+require_relative 'unit/autorunner'
 
 module Test # :nodoc:
   #

@@ -5,7 +5,7 @@
 #   * Copyright (c) 2011 Kouhei Sutou <tt><kou@clear-code.com></tt>
 # License:: Ruby license.
 
-require "test/unit/data-sets"
+require_relative "data-sets"
 
 module Test
   module Unit

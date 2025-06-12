@@ -1,4 +1,4 @@
-require 'test/unit/ui/testrunnerutilities'
+require_relative 'testrunnerutilities'
 
 module Test
   module Unit

@@ -1,4 +1,4 @@
-require 'test/unit/ui/console/testrunner'
+require_relative '../console/testrunner'
 
 module Test
   module Unit

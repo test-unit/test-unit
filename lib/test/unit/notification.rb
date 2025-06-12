@@ -1,4 +1,4 @@
-require 'test/unit/util/backtracefilter'
+require_relative 'util/backtracefilter'
 
 module Test
   module Unit

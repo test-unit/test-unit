@@ -1,4 +1,4 @@
-require "test/unit/data-sets"
+require_relative "data-sets"
 
 module Test
   module Unit

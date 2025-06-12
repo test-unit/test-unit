@@ -1,7 +1,7 @@
 module Test
   module Unit
     AutoRunner.register_runner(:xml) do |auto_runner|
-      require 'test/unit/ui/xml/testrunner'
+      require_relative '../ui/xml/testrunner'
       Test::Unit::UI::XML::TestRunner
     end
 
