@@ -4,8 +4,21 @@ require_relative "test/unit/warning"
 
 module Test
   module Unit
-    autoload :TestCase, "test/unit/testcase"
-    autoload :AutoRunner, "test/unit/autorunner"
+    LAZY_LOADER_MAPPING = {
+      :TestCase => "test/unit/testcase",
+      :AutoRunner => "test/unit/autorunner",
+    }
+
+    class << self
+      def const_missing(name)
+        if LAZY_LOADER_MAPPING.key?(name)
+          require_relative LAZY_LOADER_MAPPING[name]
+          const_get(name)
+        else
+          super
+        end
+      end
+    end
   end
 end
 
