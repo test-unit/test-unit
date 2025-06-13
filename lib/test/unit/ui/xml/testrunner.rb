@@ -7,8 +7,9 @@
 
 require 'erb'
 require 'time'
-require 'test/unit/ui/testrunner'
-require 'test/unit/ui/testrunnermediator'
+
+require_relative '../testrunner'
+require_relative '../testrunnermediator'
 
 module Test
   module Unit

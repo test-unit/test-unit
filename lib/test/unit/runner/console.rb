@@ -3,13 +3,13 @@
 module Test
   module Unit
     AutoRunner.register_runner(:console) do |auto_runner|
-      require 'test/unit/ui/console/testrunner'
+      require_relative '../ui/console/testrunner'
       Test::Unit::UI::Console::TestRunner
     end
 
     AutoRunner.setup_option do |auto_runner, opts|
-      require 'test/unit/ui/console/outputlevel'
-      require 'test/unit/ui/console/testrunner'
+      require_relative '../ui/console/outputlevel'
+      require_relative '../ui/console/testrunner'
 
       output_levels = [
         ["silent", UI::Console::OutputLevel::SILENT],

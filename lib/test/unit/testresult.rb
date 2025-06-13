@@ -3,12 +3,12 @@
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/util/observable'
-require 'test/unit/failure'
-require 'test/unit/error'
-require 'test/unit/omission'
-require 'test/unit/pending'
-require 'test/unit/notification'
+require_relative 'util/observable'
+require_relative 'failure'
+require_relative 'error'
+require_relative 'omission'
+require_relative 'pending'
+require_relative 'notification'
 
 module Test
   module Unit

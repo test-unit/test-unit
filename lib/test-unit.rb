@@ -1,6 +1,6 @@
 # Copyright (C) 2012-2015  Kouhei Sutou <kou@clear-code.com>
 
-require "test/unit/warning"
+require_relative "test/unit/warning"
 
 module Test
   module Unit
@@ -14,6 +14,6 @@ unless respond_to?(:run_test, true)
   # Is this API OK or dirty?
   def run_test
     self.class.send(:undef_method, :run_test)
-    require "test/unit"
+    require_relative "test/unit"
   end
 end

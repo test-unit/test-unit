@@ -1,4 +1,4 @@
-require 'test/unit/collector'
+require_relative '../collector'
 
 module Test
   module Unit

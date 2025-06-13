@@ -1,4 +1,4 @@
-require 'test/unit/color'
+require_relative 'color'
 
 module Test
   module Unit

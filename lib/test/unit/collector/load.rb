@@ -1,7 +1,7 @@
 require 'pathname'
 
-require 'test/unit/testsuite'
-require 'test/unit/collector'
+require_relative '../testsuite'
+require_relative '../collector'
 
 module Test
   module Unit

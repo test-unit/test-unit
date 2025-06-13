@@ -12,13 +12,13 @@ rescue LoadError
 end
 require "pathname"
 
-require 'test/unit/color-scheme'
-require 'test/unit/code-snippet-fetcher'
-require 'test/unit/fault-location-detector'
-require 'test/unit/diff'
-require 'test/unit/ui/testrunner'
-require 'test/unit/ui/testrunnermediator'
-require 'test/unit/ui/console/outputlevel'
+require_relative '../../color-scheme'
+require_relative '../../code-snippet-fetcher'
+require_relative '../../fault-location-detector'
+require_relative '../../diff'
+require_relative '../testrunner'
+require_relative '../testrunnermediator'
+require_relative 'outputlevel'
 
 module Test
   module Unit

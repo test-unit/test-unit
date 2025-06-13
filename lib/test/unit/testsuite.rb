@@ -5,7 +5,7 @@
 # Copyright:: Copyright (c) 2008-2011 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/error'
+require_relative 'error'
 require_relative 'test-suite-runner'
 
 module Test

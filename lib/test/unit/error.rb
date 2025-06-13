@@ -4,7 +4,7 @@
 # Copyright:: Copyright (c) 2000-2002 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/util/backtracefilter'
+require_relative 'util/backtracefilter'
 
 module Test
   module Unit

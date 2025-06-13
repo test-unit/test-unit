@@ -1,4 +1,4 @@
-require "test/unit/test-suite-creator"
+require_relative "test-suite-creator"
 
 module Test
   module Unit
@@ -8,7 +8,7 @@ module Test
         def check(test_case, method_name)
           return if @loaded
           return unless TestSuiteCreator.test_method?(test_case, method_name)
-          require "test/unit"
+          require_relative "../unit"
           @loaded = true
         end
       end

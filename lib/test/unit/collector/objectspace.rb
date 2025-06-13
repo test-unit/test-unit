@@ -2,7 +2,7 @@
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
 # License:: Ruby license.
 
-require 'test/unit/collector'
+require_relative '../collector'
 
 module Test
   module Unit
