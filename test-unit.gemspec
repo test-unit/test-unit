@@ -6,8 +6,6 @@ clean_white_space = lambda do |entry|
   entry.gsub(/(\A\n+|\n+\z)/, '') + "\n"
 end
 
-base_dir = File.dirname(__FILE__)
-$LOAD_PATH.unshift(File.join(base_dir, "lib"))
 require_relative "lib/test/unit/version"
 
 version = Test::Unit::VERSION.dup
