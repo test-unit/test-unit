@@ -4,8 +4,19 @@ require_relative "test/unit/warning"
 
 module Test
   module Unit
-    autoload :TestCase, "test/unit/testcase"
-    autoload :AutoRunner, "test/unit/autorunner"
+    class << self
+      def const_missing(name)
+        case name
+        when :AutoRunner, :TestCase
+          require_relative "test/unit/autorunner"
+          require_relative "test/unit/testcase"
+          singleton_class.remove_method(:const_missing)
+          const_get(name)
+        else
+          super
+        end
+      end
+    end
   end
 end
 
