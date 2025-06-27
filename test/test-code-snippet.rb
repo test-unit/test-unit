@@ -1,7 +1,7 @@
 # coding: utf-8
 
 require "test-unit"
-require "testunit-test-util"
+require_relative "testunit-test-util"
 
 class TestCodeSnippet < Test::Unit::TestCase
   include TestUnitTestUtil

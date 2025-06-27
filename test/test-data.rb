@@ -1,4 +1,4 @@
-require "testunit-test-util"
+require_relative "testunit-test-util"
 
 class TestData < Test::Unit::TestCase
   class Calc

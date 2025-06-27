@@ -6,7 +6,7 @@
 # License:: Ruby license.
 
 require 'test/unit'
-require "testunit-test-util"
+require_relative "testunit-test-util"
 
 module Test
   module Unit
