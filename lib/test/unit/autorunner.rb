@@ -6,6 +6,7 @@ require_relative "priority"
 require_relative "attribute-matcher"
 require_relative "testcase"
 require_relative "test-suite-thread-runner"
+require_relative "version"
 
 module Test
   module Unit
@@ -206,6 +207,8 @@ module Test
 
       def options
         @options ||= OptionParser.new do |o|
+          o.version = VERSION
+
           o.banner = "Test::Unit automatic runner."
           o.banner += "\nUsage: #{$0} [options] [-- untouched arguments]"
 
