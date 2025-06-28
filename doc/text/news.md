@@ -1,5 +1,28 @@
 # News
 
+## 3.6.9 - 2025-06-29 {#version-3-6-9}
+
+### Improvements
+
+  * doc: test: Added one-line style to declare `Ractor` test.
+    * GH-261
+    * GH-309
+
+  * Used `require_relative` instead of `require` for internal library
+    files.
+    * GH-311
+    * GH-312
+    * GH-313
+    * GH-315
+
+  * Added the `--version` option.
+    * GH-314
+    * Patch by MSP-Greg
+
+### Thanks
+
+  * MSP-Greg
+
 ## 3.6.8 - 2025-04-05 {#version-3-6-8}
 
 ### Improvements
