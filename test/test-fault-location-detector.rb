@@ -4,7 +4,7 @@
 
 require "test-unit"
 require "test/unit/fault-location-detector"
-require "testunit-test-util"
+require_relative "testunit-test-util"
 
 class TestFaultLocationDetector < Test::Unit::TestCase
   include TestUnitTestUtil
