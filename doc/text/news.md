@@ -1,5 +1,20 @@
 # News
 
+## 3.7.0 - 2025-07-06 {#version-3-7-0}
+
+### Fixes
+
+  * Fixed a bug that `Test::Unit::TestCase` and `Test::Unit::AutoRunner`
+    aren't loaded when they are redefined by open class before referring
+    to these constants.
+    * GH-320
+    * GH-321
+    * Reported by Mamoru TASAKA
+
+### Thanks
+
+  * Mamoru TASAKA
+
 ## 3.6.9 - 2025-06-29 {#version-3-6-9}
 
 ### Improvements
