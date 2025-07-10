@@ -4,8 +4,8 @@ require_relative "test/unit/warning"
 
 module Test
   module Unit
-    autoload :TestCase, "test/unit/testcase"
-    autoload :AutoRunner, "test/unit/autorunner"
+    autoload :TestCase, "#{__dir__}/test/unit/testcase"
+    autoload :AutoRunner, "#{__dir__}/test/unit/autorunner"
   end
 end
 
