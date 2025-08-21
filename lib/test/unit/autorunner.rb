@@ -166,6 +166,7 @@ module Test
         @debug_on_failure = false
         @gc_stress = false
         @test_suite_runner_class = TestSuiteRunner
+        @load_paths = []
         config_file = "test-unit.yml"
         if File.exist?(config_file)
           load_config(config_file)
@@ -362,7 +363,9 @@ module Test
 
           o.on("-I", "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
                "Appends directory list to $LOAD_PATH.") do |dirs|
-            $LOAD_PATH.concat(dirs.split(File::PATH_SEPARATOR))
+            load_paths = dirs.split(File::PATH_SEPARATOR)
+            $LOAD_PATH.concat(load_paths)
+            @load_paths.concat(load_paths)
           end
 
           color_schemes = ColorScheme.all
@@ -495,6 +498,9 @@ module Test
           @runner_options[:listeners] << GCStressListener.new
         end
         @runner_options[:test_suite_runner_class] = @test_suite_runner_class
+        @runner_options[:load_paths] = @load_paths
+        @runner_options[:base_directory] = @base
+        @runner_options[:test_paths] = @to_run
         change_work_directory do
           runner.run(suite, @runner_options).passed?
         end
