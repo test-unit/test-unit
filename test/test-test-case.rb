@@ -1063,6 +1063,7 @@ module Test
                   self.class.called << :test2_parent
                 end
               end
+              @parent_test_case.called.clear
 
               @child_test_case = Class.new(@parent_test_case) do
                 class << self
@@ -1091,6 +1092,7 @@ module Test
                   self.class.called << :test2_child
                 end
               end
+              @child_test_case.called.clear
             end
 
             def teardown
