@@ -1,5 +1,24 @@
 # News
 
+## 3.7.1 - 2025-11-03 {#version-3-7-1}
+
+### Improvements
+
+  * Used absolute path instead of relative path for autoload.
+    * GH-311
+    * GH-325
+    * Suggested by nicholas a. evans
+
+  * Improved compatibility with power_assert 3.0 on older rubies.
+    * GH-329
+    * GH-330
+    * Patch by Jean Boussier
+
+### Thanks
+
+  * nicholas a. evans
+  * Jean Boussier
+
 ## 3.7.0 - 2025-07-06 {#version-3-7-0}
 
 ### Fixes
