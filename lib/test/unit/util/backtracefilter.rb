@@ -1,6 +1,9 @@
 begin
   require 'power_assert'
 rescue LoadError, SyntaxError
+  if defined?(::PowerAssert)
+    ::Object.send(:remove_const, :PowerAssert)
+  end
 end
 
 module Test
