@@ -1,5 +1,17 @@
 # News
 
+## 3.7.2 - 2025-11-25 {#version-3-7-2}
+
+### Improvements
+
+  * Suppressed warnings from power_assert.
+    * GH-335
+    * Patch by Nobuyoshi Nakada
+
+### Thanks
+
+  * Nobuyoshi Nakada
+
 ## 3.7.1 - 2025-11-03 {#version-3-7-1}
 
 ### Improvements
