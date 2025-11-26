@@ -1,5 +1,17 @@
 # News
 
+## 3.7.3 - 2025-11-26 {#version-3-7-3}
+
+### Improvements
+
+  * Removed duplicated power_assert require code.
+    * GH-337
+    * Patch by Nobuyoshi Nakada
+
+### Thanks
+
+  * Nobuyoshi Nakada
+
 ## 3.7.2 - 2025-11-25 {#version-3-7-2}
 
 ### Improvements
