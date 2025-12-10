@@ -15,7 +15,7 @@ module Test
     class TestSuiteRunner
       @n_workers = Etc.respond_to?(:nprocessors) ? Etc.nprocessors : 1
       class << self
-        def run_all_tests
+        def run_all_tests(result, options)
           yield(TestRunContext.new(self))
         end
 
