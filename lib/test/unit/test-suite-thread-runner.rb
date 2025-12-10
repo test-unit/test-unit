@@ -12,7 +12,7 @@ module Test
   module Unit
     class TestSuiteThreadRunner < TestSuiteRunner
       class << self
-        def run_all_tests
+        def run_all_tests(result, options)
           n_workers = TestSuiteRunner.n_workers
 
           queue = Thread::Queue.new
