@@ -71,7 +71,8 @@ module Test
         suite = @testcase1.suite
         tests = suite.tests.dup
         result = TestResult.new
-        suite.run(result) { |*values| progress << values }
+        worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) { |*values| progress << values }
 
         assert_equal(2, result.run_count, "Should have had four test runs")
         assert_equal(1, result.failure_count, "Should have had one test failure")
@@ -95,7 +96,8 @@ module Test
         suite << @testcase2.suite
         result = TestResult.new
         progress = []
-        suite.run(result) { |*values| progress << values }
+        worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) { |*values| progress << values }
 
         assert_equal(4, result.run_count, "Should have had four test runs")
         assert_equal(1, result.failure_count, "Should have had one test failure")

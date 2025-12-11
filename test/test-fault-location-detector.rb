@@ -17,7 +17,8 @@ class TestFaultLocationDetector < Test::Unit::TestCase
   def run_test_case(test_case)
     suite = test_case.suite
     result = Test::Unit::TestResult.new
-    suite.run(result) {}
+    worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
+    suite.run(worker_context) {}
     result.faults[0]
   end
 

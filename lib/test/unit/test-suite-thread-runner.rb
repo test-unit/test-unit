@@ -1,7 +1,7 @@
 #--
 #
 # Author:: Tsutomu Katsube.
-# Copyright:: Copyright (c) 2024 Tsutomu Katsube. All rights reserved.
+# Copyright:: Copyright (c) 2024-2025 Tsutomu Katsube. All rights reserved.
 # License:: Ruby license.
 
 require_relative "sub-test-result"
@@ -48,15 +48,15 @@ module Test
         end
       end
 
-      def run(result, run_context: nil, &progress_block)
+      def run(worker_context, &progress_block)
         yield(TestSuite::STARTED, @test_suite.name)
         yield(TestSuite::STARTED_OBJECT, @test_suite)
-        run_startup(result)
-        run_tests(result, run_context: run_context, &progress_block)
+        run_startup(worker_context)
+        run_tests(worker_context, &progress_block)
       ensure
-        run_context.shutdowns << lambda do
+        worker_context.run_context.shutdowns << lambda do
           begin
-            run_shutdown(result)
+            run_shutdown(worker_context)
           ensure
             yield(TestSuite::FINISHED, @test_suite.name)
             yield(TestSuite::FINISHED_OBJECT, @test_suite)
@@ -65,15 +65,17 @@ module Test
       end
 
       private
-      def run_tests(result, run_context: nil, &progress_block)
+      def run_tests(worker_context, &progress_block)
+        run_context = worker_context.run_context
         @test_suite.tests.each do |test|
           if test.is_a?(TestSuite) or not @test_suite.parallel_safe?
-            run_test(test, result, run_context: run_context, &progress_block)
+            run_test(test, worker_context, &progress_block)
           else
             task = lambda do |stop_tag|
-              sub_result = SubTestResult.new(result)
+              sub_result = SubTestResult.new(worker_context.result)
               sub_result.stop_tag = stop_tag
-              run_test(test, sub_result, run_context: run_context, &progress_block)
+              sub_worker_context = WorkerContext.new(nil, run_context, sub_result)
+              run_test(test, sub_worker_context, &progress_block)
             end
             run_context.queue << task
           end

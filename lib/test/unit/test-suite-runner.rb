@@ -3,7 +3,7 @@
 # Author:: Nathaniel Talbott.
 # Copyright:: Copyright (c) 2000-2003 Nathaniel Talbott. All rights reserved.
 # Copyright:: Copyright (c) 2008-2011 Kouhei Sutou. All rights reserved.
-# Copyright:: Copyright (c) 2024 Tsutomu Katsube. All rights reserved.
+# Copyright:: Copyright (c) 2024-2025 Tsutomu Katsube. All rights reserved.
 # License:: Ruby license.
 
 require "etc"
@@ -32,14 +32,14 @@ module Test
         @test_suite = test_suite
       end
 
-      def run(result, run_context: nil, &progress_block)
+      def run(worker_context, &progress_block)
         yield(TestSuite::STARTED, @test_suite.name)
         yield(TestSuite::STARTED_OBJECT, @test_suite)
-        run_startup(result)
-        run_tests(result, run_context: run_context, &progress_block)
+        run_startup(worker_context)
+        run_tests(worker_context, &progress_block)
       ensure
         begin
-          run_shutdown(result)
+          run_shutdown(worker_context)
         ensure
           yield(TestSuite::FINISHED, @test_suite.name)
           yield(TestSuite::FINISHED_OBJECT, @test_suite)
@@ -47,23 +47,23 @@ module Test
       end
 
       private
-      def run_startup(result)
+      def run_startup(worker_context)
         test_case = @test_suite.test_case
         return if test_case.nil? or !test_case.respond_to?(:startup)
         begin
           test_case.startup
         rescue Exception
-          raise unless handle_exception($!, result)
+          raise unless handle_exception($!, worker_context.result)
         end
       end
 
-      def run_tests(result, run_context: nil, &progress_block)
+      def run_tests(worker_context, &progress_block)
         @test_suite.tests.each do |test|
-          run_test(test, result, run_context: run_context, &progress_block)
+          run_test(test, worker_context, &progress_block)
         end
       end
 
-      def run_test(test, result, run_context: nil)
+      def run_test(test, worker_context)
         finished_is_yielded = false
         finished_object_is_yielded = false
         previous_event_name = nil
@@ -92,12 +92,12 @@ module Test
           yield(event_name, *args)
         end
 
-        if test.method(:run).arity == -2
-          test.run(result, run_context: run_context, &event_listener)
+        if test.method(:run).parameters[0] == [:req, :worker_context]
+          test.run(worker_context, &event_listener)
         else
           # For backward compatibility. There are scripts that overrides
           # Test::Unit::TestCase#run without keyword arguments.
-          test.run(result, &event_listener)
+          test.run(worker_context.result, &event_listener)
         end
 
         if finished_is_yielded and not finished_object_is_yielded
@@ -105,13 +105,13 @@ module Test
         end
       end
 
-      def run_shutdown(result)
+      def run_shutdown(worker_context)
         test_case = @test_suite.test_case
         return if test_case.nil? or !test_case.respond_to?(:shutdown)
         begin
           test_case.shutdown
         rescue Exception
-          raise unless handle_exception($!, result)
+          raise unless handle_exception($!, worker_context.result)
         end
       end
 
