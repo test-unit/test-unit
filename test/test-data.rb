@@ -420,7 +420,8 @@ class TestData < Test::Unit::TestCase
     result = Test::Unit::TestResult.new
     test = test_case.suite
     yield(test) if block_given?
-    test.run(result) {}
+    worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
+    test.run(worker_context) {}
     result
   end
 

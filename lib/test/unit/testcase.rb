@@ -585,11 +585,16 @@ module Test
       # Runs the individual test method represented by this
       # instance of the fixture, collecting statistics, failures
       # and errors in result.
-      def run(result, run_context: nil)
+      def run(worker_context)
         begin
+          unless worker_context.is_a?(WorkerContext)
+            result = worker_context
+            worker_context = WorkerContext.new(nil, nil, result)
+          end
+          result = worker_context.result
           @_result = result
           instance_variables_before = instance_variables
-          @internal_data.run_context = run_context
+          @internal_data.run_context = worker_context.run_context
           @internal_data.test_started
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)

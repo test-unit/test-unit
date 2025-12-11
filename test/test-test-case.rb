@@ -223,7 +223,8 @@ module Test
         check("Should have the default test", suite.tests.first.name == "default_test(Test::Unit::TestCase)")
 
         result = TestResult.new
-        suite.run(result) {}
+        worker_context = WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) {}
         check("Should have had one test run", result.run_count == 1)
         check("Should have had one test failure", result.failure_count == 1)
         check("Should have had no errors", result.error_count == 0)
@@ -256,7 +257,8 @@ module Test
         check("Should have three tests", suite.size == 3)
 
         result = TestResult.new
-        suite.run(result) {}
+        worker_context = WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) {}
         check("Should have had three test runs", result.run_count == 3)
         check("Should have had one test failure", result.failure_count == 1)
         check("Should have had one test error", result.error_count == 1)
@@ -318,7 +320,8 @@ module Test
         suite = tc.suite
         check("Should have one test", suite.size == 1)
         result = TestResult.new
-        suite.run(result) {}
+        worker_context = WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) {}
         check("Should have had one test run", result.run_count == 1)
         check("Should have had one assertion failure", result.failure_count == 1)
         check("Should not have any assertion errors but had #{result.error_count}", result.error_count == 0)
@@ -385,8 +388,9 @@ module Test
 
         test_suite = test_case.suite
         result = TestResult.new
+        worker_context = WorkerContext.new(nil, nil, result)
         begin
-          test_suite.run(result) {}
+          test_suite.run(worker_context) {}
           check("Timeout::Error should be handled as error",
                 result.error_count == 1)
         rescue Exception
@@ -529,7 +533,8 @@ module Test
         assert_equal(["test_name", "test_name2"],
                      suite.tests.collect {|test| test.method_name})
         result = TestResult.new
-        suite.run(result) {}
+        worker_context = WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) {}
         assert_equal("2 tests, 0 assertions, 0 failures, " +
                      "0 errors, 0 pendings, 0 omissions, 1 notifications",
                      result.summary)
@@ -559,7 +564,8 @@ module Test
         assert_equal(["test_without_parameter"],
                      suite.tests.collect {|test| test.method_name})
         result = TestResult.new
-        suite.run(result) {}
+        worker_context = WorkerContext.new(nil, nil, result)
+        suite.run(worker_context) {}
         assert_equal("1 tests, 1 assertions, 0 failures, " +
                      "0 errors, 0 pendings, 0 omissions, 0 notifications",
                      result.summary)
@@ -975,7 +981,9 @@ module Test
           def call_order(test_case)
             test_case.called.clear
             test_suite = test_case.suite
-            test_suite.run(TestResult.new) {}
+            result = TestResult.new
+            worker_context = WorkerContext.new(nil, nil, result)
+            test_suite.run(worker_context) {}
             test_case.called
           end
 
@@ -1102,7 +1110,9 @@ module Test
             def test_call_order
               collector = Collector::Descendant.new
               test_suite = collector.collect
-              test_suite.run(TestResult.new) {}
+              result = TestResult.new
+              worker_context = WorkerContext.new(nil, nil, result)
+              test_suite.run(worker_context) {}
               called = @parent_test_case.called
               assert_equal([
                              :startup_parent,
@@ -1123,7 +1133,8 @@ module Test
           def run_test_case(test_case)
             test_suite = test_case.suite
             result = TestResult.new
-            test_suite.run(result) {}
+            worker_context = WorkerContext.new(nil, nil, result)
+            test_suite.run(worker_context) {}
             result
           end
 

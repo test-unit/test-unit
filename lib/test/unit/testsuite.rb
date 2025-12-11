@@ -47,13 +47,14 @@ module Test
 
       # Runs the tests and/or suites contained in this
       # TestSuite.
-      def run(result, run_context: nil, &progress_block)
+      def run(worker_context, &progress_block)
+        run_context = worker_context.run_context
         if run_context
           runner_class = run_context.runner_class
         else
           runner_class = TestSuiteRunner
         end
-        runner_class.new(self).run(result, run_context: run_context) do |event, *args|
+        runner_class.new(self).run(worker_context) do |event, *args|
           case event
           when STARTED
             @start_time = Time.now

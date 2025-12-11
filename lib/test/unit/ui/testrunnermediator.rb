@@ -6,6 +6,7 @@
 
 require_relative '../util/observable'
 require_relative '../testresult'
+require_relative '../worker-context'
 
 module Test
   module Unit
@@ -51,7 +52,7 @@ module Test
                   notify_listeners(RESET, @suite.size)
                   notify_listeners(STARTED, result)
 
-                  run_suite(result, run_context)
+                  run_suite(result, run_context: run_context)
                 end
               end
             end
@@ -70,11 +71,12 @@ module Test
         #
         # See GitHub#38
         #   https://github.com/test-unit/test-unit/issues/38
-        def run_suite(result=nil, run_context=nil)
+        def run_suite(result=nil, run_context: nil)
           if result.nil?
             run
           else
-            @suite.run(result, run_context: run_context, &@options[:event_listener])
+            worker_context = WorkerContext.new(nil, run_context, result)
+            @suite.run(worker_context, &@options[:event_listener])
           end
         end
 
