@@ -897,6 +897,16 @@ module Test
         current_result.add_pass
       end
 
+      def marshal_dump
+        {method_name: @method_name,
+         internal_data: @internal_data}
+      end
+
+      def marshal_load(data)
+        @method_name = data[:method_name]
+        @internal_data = data[:internal_data]
+      end
+
       private
       def current_result
         @_result
@@ -986,6 +996,22 @@ module Test
 
         def interrupted
           @interrupted = true
+        end
+
+        def marshal_dump
+          {start_time: @start_time,
+           elapsed_time: @elapsed_time,
+           passed: @passed,
+           interrupted: @interrupted,
+           test_data_label: @test_data_label}
+        end
+
+        def marshal_load(data)
+          @start_time = data[:start_time]
+          @elapsed_time = data[:elapsed_time]
+          @passed = data[:passed]
+          @interrupted = data[:interrupted]
+          @test_data_label = data[:test_data_label]
         end
       end
     end
