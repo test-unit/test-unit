@@ -439,8 +439,9 @@ module Test
         #
         # The difference of them are the following:
         #
-        # * Test case created by {sub_test_case} is an anonymous class.
-        #   So you can't refer the test case by name.
+        # * Test case created by {sub_test_case} is backed by an anonymous class,
+        #   but it is assigned to an auto generated constant. So it can be referred
+        #   to by name (e.g. for `Marshal.dump` and across process use).
         # * The class name of class style must follow
         #   constant naming rule in Ruby. But the name of test case
         #   created by {sub_test_case} doesn't need to follow the rule.
@@ -545,12 +546,16 @@ module Test
         # @private
         def sub_test_case_class(name)
           parent_test_case = self
-          Class.new(self) do
+          sub_test_case = Class.new(self) do
             singleton_class = class << self; self; end
             singleton_class.__send__(:define_method, :name) do
               [parent_test_case.name, name].compact.join("::")
             end
           end
+          # Give the anonymous class a unique, Base64 encoded constant name.
+          # So it becomes a named class that `Marshal` can safely dump even across processes.
+          const_set(:"TEST_#{[sub_test_case.name].pack("m").delete("\n=")}", sub_test_case)
+          sub_test_case
         end
       end
 
