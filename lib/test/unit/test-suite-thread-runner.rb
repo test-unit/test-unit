@@ -16,8 +16,7 @@ module Test
           n_workers = TestSuiteRunner.n_workers
 
           queue = Thread::Queue.new
-          shutdowns = []
-          yield(TestThreadRunContext.new(self, queue, shutdowns))
+          yield(TestThreadRunContext.new(self, queue))
           n_workers.times do
             queue << nil
           end
@@ -41,7 +40,6 @@ module Test
           end
           workers.each(&:join)
 
-          shutdowns.each(&:call)
           sub_exceptions.each do |exception|
             raise exception
           end
@@ -49,35 +47,36 @@ module Test
       end
 
       def run(worker_context, &progress_block)
-        yield(TestSuite::STARTED, @test_suite.name)
-        yield(TestSuite::STARTED_OBJECT, @test_suite)
-        run_startup(worker_context)
-        run_tests(worker_context, &progress_block)
-      ensure
-        worker_context.run_context.shutdowns << lambda do
-          begin
-            run_shutdown(worker_context)
-          ensure
-            yield(TestSuite::FINISHED, @test_suite.name)
-            yield(TestSuite::FINISHED_OBJECT, @test_suite)
-          end
-        end
+        run_tests_recursive(@test_suite, worker_context, &progress_block)
       end
 
       private
-      def run_tests(worker_context, &progress_block)
+      def run_tests_recursive(test_suite, worker_context, &progress_block)
         run_context = worker_context.run_context
-        @test_suite.tests.each do |test|
-          if test.is_a?(TestSuite) or not @test_suite.parallel_safe?
-            run_test(test, worker_context, &progress_block)
-          else
-            task = lambda do |stop_tag|
-              sub_result = SubTestResult.new(worker_context.result)
-              sub_result.stop_tag = stop_tag
-              sub_worker_context = WorkerContext.new(nil, run_context, sub_result)
-              run_test(test, sub_worker_context, &progress_block)
+        if test_suite.have_fixture?
+          task = lambda do |stop_tag|
+            sub_result = SubTestResult.new(worker_context.result)
+            sub_result.stop_tag = stop_tag
+            sub_runner = TestSuiteRunner.new(test_suite)
+            sub_worker_context = WorkerContext.new(nil, run_context, sub_result)
+            sub_runner.run(sub_worker_context, &progress_block)
+          end
+          run_context.queue << task
+        else
+          test_suite.tests.each do |test|
+            if test.is_a?(TestSuite)
+              run_tests_recursive(test, worker_context, &progress_block)
+            elsif test_suite.parallel_safe?
+              task = lambda do |stop_tag|
+                sub_result = SubTestResult.new(worker_context.result)
+                sub_result.stop_tag = stop_tag
+                sub_worker_context = WorkerContext.new(nil, run_context, sub_result)
+                run_test(test, sub_worker_context, &progress_block)
+              end
+              run_context.queue << task
+            else
+              run_test(test, worker_context, &progress_block)
             end
-            run_context.queue << task
           end
         end
       end

@@ -45,6 +45,13 @@ module Test
         @test_case.parallel_safe?
       end
 
+      def have_fixture?
+        return false if @test_case.nil?
+        return true if @test_case.method(:startup).owner != Test::Unit::TestCase.singleton_class
+        return true if @test_case.method(:shutdown).owner != Test::Unit::TestCase.singleton_class
+        false
+      end
+
       # Runs the tests and/or suites contained in this
       # TestSuite.
       def run(worker_context, &progress_block)
