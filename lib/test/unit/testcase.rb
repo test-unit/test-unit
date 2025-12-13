@@ -898,8 +898,10 @@ module Test
       end
 
       def marshal_dump
-        {method_name: @method_name,
-         internal_data: @internal_data}
+        {
+          method_name: @method_name,
+          internal_data: @internal_data,
+        }
       end
 
       def marshal_load(data)
@@ -999,11 +1001,13 @@ module Test
         end
 
         def marshal_dump
-          {start_time: @start_time,
-           elapsed_time: @elapsed_time,
-           passed: @passed,
-           interrupted: @interrupted,
-           test_data_label: @test_data_label}
+          {
+            start_time: @start_time,
+            elapsed_time: @elapsed_time,
+            passed: @passed,
+            interrupted: @interrupted,
+            test_data_label: @test_data_label,
+          }
         end
 
         def marshal_load(data)
