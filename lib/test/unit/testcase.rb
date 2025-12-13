@@ -501,6 +501,24 @@ module Test
           available_locations
         end
 
+        # Returns a current worker id for the test case. This return depends on
+        # how tests are run:
+        #
+        #   * Sequential: always returns `0`
+        #
+        #   * Parallel: returns a one-based to the number of workers.
+        #
+        # @return [Integer]
+        #
+        # @since 3.7.4
+        def worker_id
+          @worker_id || 0
+        end
+
+        def worker_id=(worker_id) # :nodoc:
+          @worker_id = worker_id
+        end
+
         private
         # @private
         @@method_locations = {}
@@ -600,6 +618,7 @@ module Test
           @_result = result
           instance_variables_before = instance_variables
           @internal_data.run_context = worker_context.run_context
+          @internal_data.worker_id = worker_context.id
           @internal_data.test_started
           yield(STARTED, name)
           yield(STARTED_OBJECT, self)
@@ -792,6 +811,16 @@ module Test
         1
       end
 
+      # Returns a current worker id for the test. See {TestCase.worker_id}
+      # for details.
+      #
+      # @return [Integer]
+      #
+      # @since 3.7.4
+      def worker_id
+        @internal_data.worker_id || 0
+      end
+
       # Returns a label of test data for the test. If the
       # test isn't associated with any test data, it returns
       # `nil`.
@@ -957,6 +986,7 @@ module Test
         attr_reader :start_time, :elapsed_time
         attr_reader :test_data_label, :test_data
         attr_accessor :run_context
+        attr_accessor :worker_id
         def initialize
           @start_time = nil
           @elapsed_time = nil
@@ -965,6 +995,7 @@ module Test
           @test_data_label = nil
           @test_data = nil
           @run_context = nil
+          @worker_id = nil
         end
 
         def passed?
