@@ -47,8 +47,8 @@ module Test
 
       def have_fixture?
         return false if @test_case.nil?
-        return true if @test_case.method(:startup).owner != Test::Unit::TestCase.singleton_class
-        return true if @test_case.method(:shutdown).owner != Test::Unit::TestCase.singleton_class
+        return true if @test_case.method(:startup).owner != TestCase.singleton_class
+        return true if @test_case.method(:shutdown).owner != TestCase.singleton_class
         false
       end
 
