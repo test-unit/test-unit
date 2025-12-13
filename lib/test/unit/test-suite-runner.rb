@@ -50,6 +50,7 @@ module Test
       def run_startup(worker_context)
         test_case = @test_suite.test_case
         return if test_case.nil? or !test_case.respond_to?(:startup)
+        test_case.worker_id = worker_context.id
         begin
           test_case.startup
         rescue Exception
@@ -108,6 +109,7 @@ module Test
       def run_shutdown(worker_context)
         test_case = @test_suite.test_case
         return if test_case.nil? or !test_case.respond_to?(:shutdown)
+        test_case.worker_id = worker_context.id
         begin
           test_case.shutdown
         rescue Exception
