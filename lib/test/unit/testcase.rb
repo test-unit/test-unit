@@ -501,7 +501,7 @@ module Test
           available_locations
         end
 
-        # Returns a current worker id for the test case. This return depends on
+        # Returns a current worker ID for the test case. This return depends on
         # how tests are run:
         #
         #   * Sequential: always returns `0`
@@ -811,7 +811,7 @@ module Test
         1
       end
 
-      # Returns a current worker id for the test. See {TestCase.worker_id}
+      # Returns a current worker ID for the test. See {TestCase.worker_id}
       # for details.
       #
       # @return [Integer]
