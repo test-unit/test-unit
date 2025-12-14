@@ -29,10 +29,8 @@ collector = Test::Unit::Collector::Load.new
 collector.base = base_directory
 suite = collector.collect(*test_paths)
 
-MAIN_TO_WORKER_INPUT_FILENO = 3
-WORKER_TO_MAIN_OUTPUT_FILENO = 4
-IO.open(MAIN_TO_WORKER_INPUT_FILENO) do |data_input|
-  IO.open(WORKER_TO_MAIN_OUTPUT_FILENO) do |data_output|
+IO.open(Test::Unit::TestSuiteProcessRunner::MAIN_TO_WORKER_INPUT_FILENO) do |data_input|
+  IO.open(Test::Unit::TestSuiteProcessRunner::WORKER_TO_MAIN_OUTPUT_FILENO) do |data_output|
     loop do
       Marshal.dump({status: :ready}, data_output)
       data_output.flush

@@ -12,6 +12,9 @@ require_relative "test-suite-runner"
 module Test
   module Unit
     class TestSuiteProcessRunner < TestSuiteRunner
+      MAIN_TO_WORKER_INPUT_FILENO = 3
+      WORKER_TO_MAIN_OUTPUT_FILENO = 4
+
       class << self
         class Worker
           attr_reader :main_to_worker_output, :worker_to_main_input
@@ -64,7 +67,8 @@ module Test
               command_line.concat(test_paths)
               main_to_worker_input, main_to_worker_output = IO.pipe
               worker_to_main_input, worker_to_main_output = IO.pipe
-              pid = spawn(*command_line, {3 => main_to_worker_input, 4 => worker_to_main_output})
+              pid = spawn(*command_line, {MAIN_TO_WORKER_INPUT_FILENO => main_to_worker_input,
+                                          WORKER_TO_MAIN_OUTPUT_FILENO => worker_to_main_output})
               main_to_worker_input.close
               worker_to_main_output.close
               workers << Worker.new(pid, main_to_worker_output, worker_to_main_input)
