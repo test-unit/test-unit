@@ -31,36 +31,34 @@ suite = collector.collect(*test_paths)
 
 MAIN_TO_WORKER_INPUT_FILENO = 3
 WORKER_TO_MAIN_OUTPUT_FILENO = 4
-data_input = IO.new(MAIN_TO_WORKER_INPUT_FILENO)
-data_output = IO.new(WORKER_TO_MAIN_OUTPUT_FILENO)
+IO.open(MAIN_TO_WORKER_INPUT_FILENO) do |data_input|
+  IO.open(WORKER_TO_MAIN_OUTPUT_FILENO) do |data_output|
+    loop do
+      Marshal.dump({status: :ready}, data_output)
+      data_output.flush
+      test_name = Marshal.load(data_input)
+      break if test_name.nil?
+      test = suite.find(test_name)
+      result = Test::Unit::ProcessTestResult.new(data_output)
+      run_context = Test::Unit::TestRunContext.new(Test::Unit::TestSuiteRunner)
 
-loop do
-  Marshal.dump({status: :ready}, data_output)
-  data_output.flush
-  test_name = Marshal.load(data_input)
-  break if test_name.nil?
-  test = suite.find(test_name)
-  result = Test::Unit::ProcessTestResult.new(data_output)
-  run_context = Test::Unit::TestRunContext.new(Test::Unit::TestSuiteRunner)
-
-  event_listener = lambda do |event_name, *args|
-    Marshal.dump({status: :event, event_name: event_name, args: args}, data_output)
+      event_listener = lambda do |event_name, *args|
+        Marshal.dump({status: :event, event_name: event_name, args: args}, data_output)
+        data_output.flush
+      end
+      if test.is_a?(Test::Unit::TestSuite)
+        test_suite = test
+      else
+        test_suite = Test::Unit::TestSuite.new(test.class.name, test.class)
+        test_suite << test
+      end
+      runner = Test::Unit::TestSuiteRunner.new(test_suite)
+      worker_context = Test::Unit::WorkerContext.new(worker_id, run_context, result)
+      runner.run(worker_context, &event_listener)
+    end
+    Marshal.dump({status: :done}, data_output)
     data_output.flush
   end
-  if test.is_a?(Test::Unit::TestSuite)
-    test_suite = test
-  else
-    test_suite = Test::Unit::TestSuite.new(test.class.name, test.class)
-    test_suite << test
-  end
-  runner = Test::Unit::TestSuiteRunner.new(test_suite)
-  worker_context = Test::Unit::WorkerContext.new(worker_id, run_context, result)
-  runner.run(worker_context, &event_listener)
+
+  Marshal.load(data_input)
 end
-Marshal.dump({status: :done}, data_output)
-data_output.flush
-
-Marshal.load(data_input)
-
-data_input.close
-data_output.close
