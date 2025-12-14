@@ -81,11 +81,7 @@ module Test
 
             worker_inputs = workers.collect(&:worker_to_main_input)
             until run_context.test_names.empty? do
-              readables, = IO.select(worker_inputs)
-              readables.each do |worker_to_main_input|
-                worker_index = worker_inputs.index(worker_to_main_input)
-                worker = workers[worker_index]
-                data = worker.receive
+              select_each_worker(worker_inputs, workers) do |_, worker, data|
                 case data[:status]
                 when :ready
                   test_name = run_context.test_names.shift
@@ -106,12 +102,7 @@ module Test
               worker.send(nil)
             end
             until worker_inputs.empty? do
-              readables, = IO.select(worker_inputs)
-              readables.each do |worker_to_main_input|
-                worker = workers.find do |w|
-                  w.worker_to_main_input == worker_to_main_input
-                end
-                data = worker.receive
+              select_each_worker(worker_inputs, workers) do |worker_to_main_input, worker, data|
                 case data[:status]
                 when :result
                   action = data[:action]
@@ -135,6 +126,18 @@ module Test
 
           run_context.progress_block.call(TestSuite::FINISHED, test_suite.name)
           run_context.progress_block.call(TestSuite::FINISHED_OBJECT, test_suite)
+        end
+
+        private
+        def select_each_worker(worker_inputs, workers)
+          readables, = IO.select(worker_inputs)
+          readables.each do |worker_to_main_input|
+            worker = workers.find do |w|
+              w.worker_to_main_input == worker_to_main_input
+            end
+            data = worker.receive
+            yield(worker_to_main_input, worker, data)
+          end
         end
       end
 
