@@ -18,8 +18,8 @@ class TestUnitCollectorLoad < Test::Unit::TestCase
     @temporary_test_cases_module_name = "TempTestCases"
     ::Object.const_set(@temporary_test_cases_module_name, Module.new)
 
-    @test_dir = Pathname(Dir.tmpdir) + "test-unit"
-    @extra_test_dir = Pathname(Dir.tmpdir) + "test-unit-extra"
+    @test_dir = Pathname(Dir.tmpdir) + "test-unit-#{worker_id}"
+    @extra_test_dir = Pathname(Dir.tmpdir) + "test-unit-extra-#{worker_id}"
     ensure_clean_directory(@test_dir)
     ensure_clean_directory(@extra_test_dir)
   end

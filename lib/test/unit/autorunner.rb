@@ -6,6 +6,7 @@ require_relative "priority"
 require_relative "attribute-matcher"
 require_relative "testcase"
 require_relative "test-suite-thread-runner"
+require_relative "test-suite-process-runner"
 require_relative "version"
 
 module Test
