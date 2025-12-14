@@ -44,13 +44,6 @@ module Test
         send_result(__method__, notification)
       end
 
-      def marshal_dump
-        nil
-      end
-
-      def marshal_load(data)
-      end
-
       private
 
       def send_result(action, *args)
