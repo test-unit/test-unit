@@ -88,13 +88,9 @@ module Test
                   break if test_name.nil?
                   worker.send(test_name)
                 when :result
-                  action = data[:action]
-                  args = data[:args]
-                  result.__send__(action, *args)
+                  add_result(result, data)
                 when :event
-                  event_name = data[:event_name]
-                  args = data[:args]
-                  options[:event_listener].call(event_name, *args)
+                  emit_event(options[:event_listener], data)
                 end
               end
             end
@@ -105,13 +101,9 @@ module Test
               select_each_worker(worker_inputs, workers) do |worker_to_main_input, worker, data|
                 case data[:status]
                 when :result
-                  action = data[:action]
-                  args = data[:args]
-                  result.__send__(action, *args)
+                  add_result(result, data)
                 when :event
-                  event_name = data[:event_name]
-                  args = data[:args]
-                  options[:event_listener].call(event_name, *args)
+                  emit_event(options[:event_listener], data)
                 when :done
                   worker_inputs.delete(worker_to_main_input)
                   worker.send(nil)
@@ -138,6 +130,18 @@ module Test
             data = worker.receive
             yield(worker_to_main_input, worker, data)
           end
+        end
+
+        def add_result(result, data)
+          action = data[:action]
+          args = data[:args]
+          result.__send__(action, *args)
+        end
+
+        def emit_event(event_listener, data)
+          event_name = data[:event_name]
+          args = data[:args]
+          event_listener.call(event_name, *args)
         end
       end
 
