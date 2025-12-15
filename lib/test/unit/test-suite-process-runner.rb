@@ -4,6 +4,8 @@
 # Copyright:: Copyright (c) 2025 Tsutomu Katsube. All rights reserved.
 # License:: Ruby license.
 
+require "socket"
+
 require_relative "process-test-result"
 require_relative "sub-test-result"
 require_relative "test-process-run-context"
@@ -64,14 +66,27 @@ module Test
                 command_line << "--base-directory" << base_directory
               end
               command_line << "--worker-id" << (i + 1).to_s
+              if Gem.win_platform?
+                local_address = tcp_server.local_address
+                command_line << "--ip-address" << local_address.ip_address
+                command_line << "--ip-port" << local_address.ip_port.to_s
+              end
               command_line.concat(test_paths)
-              main_to_worker_input, main_to_worker_output = IO.pipe
-              worker_to_main_input, worker_to_main_output = IO.pipe
-              pid = spawn(*command_line, {MAIN_TO_WORKER_INPUT_FILENO => main_to_worker_input,
-                                          WORKER_TO_MAIN_OUTPUT_FILENO => worker_to_main_output})
-              main_to_worker_input.close
-              worker_to_main_output.close
-              workers << Worker.new(pid, main_to_worker_output, worker_to_main_input)
+              if Gem.win_platform?
+                # On Windows, file descriptors 3 and above cannot be passed to
+                # child processes.
+                pid = spawn(*command_line)
+                data_socket = tcp_server.accept
+                workers << Worker.new(pid, data_socket, data_socket)
+              else
+                main_to_worker_input, main_to_worker_output = IO.pipe
+                worker_to_main_input, worker_to_main_output = IO.pipe
+                pid = spawn(*command_line, {MAIN_TO_WORKER_INPUT_FILENO => main_to_worker_input,
+                                            WORKER_TO_MAIN_OUTPUT_FILENO => worker_to_main_output})
+                main_to_worker_input.close
+                worker_to_main_output.close
+                workers << Worker.new(pid, main_to_worker_output, worker_to_main_input)
+              end
             end
 
             run_context = TestProcessRunContext.new(self)
@@ -121,6 +136,10 @@ module Test
         end
 
         private
+        def tcp_server
+          @tcp_server ||= TCPServer.new("127.0.0.1", 0)
+        end
+
         def select_each_worker(worker_inputs, workers)
           readables, = IO.select(worker_inputs)
           readables.each do |worker_to_main_input|
