@@ -26,10 +26,8 @@ module TestUnitTestUtil
     yield(test) if block_given?
     suite = Test::Unit::TestSuite.new(test_case.name, test_case)
     suite << test
-    runner_class.run_all_tests(result, {}) do |run_context|
-      worker_context = Test::Unit::WorkerContext.new(nil, run_context, result)
-      suite.run(worker_context) {}
-    end
+    worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
+    suite.run(worker_context) {}
     result
   end
 
