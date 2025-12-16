@@ -52,92 +52,101 @@ module Test
           n_workers = TestSuiteRunner.n_workers
           test_suite = options[:test_suite]
 
-          workers = []
-          begin
-            n_workers.times do |i|
-              load_paths = options[:load_paths]
-              base_directory = options[:base_directory]
-              test_paths = options[:test_paths]
-              command_line = [Gem.ruby, File.join(__dir__, "process-worker.rb")]
-              load_paths.each do |load_path|
-                command_line << "--load-path" << load_path
+          start_tcp_server do |tcp_server|
+            workers = []
+            begin
+              n_workers.times do |i|
+                load_paths = options[:load_paths]
+                base_directory = options[:base_directory]
+                test_paths = options[:test_paths]
+                command_line = [Gem.ruby, File.join(__dir__, "process-worker.rb")]
+                load_paths.each do |load_path|
+                  command_line << "--load-path" << load_path
+                end
+                unless base_directory.nil?
+                  command_line << "--base-directory" << base_directory
+                end
+                command_line << "--worker-id" << (i + 1).to_s
+                if Gem.win_platform?
+                  local_address = tcp_server.local_address
+                  command_line << "--ip-address" << local_address.ip_address
+                  command_line << "--ip-port" << local_address.ip_port.to_s
+                end
+                command_line.concat(test_paths)
+                if Gem.win_platform?
+                  # On Windows, file descriptors 3 and above cannot be passed to
+                  # child processes.
+                  pid = spawn(*command_line)
+                  data_socket = tcp_server.accept
+                  workers << Worker.new(pid, data_socket, data_socket)
+                else
+                  main_to_worker_input, main_to_worker_output = IO.pipe
+                  worker_to_main_input, worker_to_main_output = IO.pipe
+                  pid = spawn(*command_line, {MAIN_TO_WORKER_INPUT_FILENO => main_to_worker_input,
+                                              WORKER_TO_MAIN_OUTPUT_FILENO => worker_to_main_output})
+                  main_to_worker_input.close
+                  worker_to_main_output.close
+                  workers << Worker.new(pid, main_to_worker_output, worker_to_main_input)
+                end
               end
-              unless base_directory.nil?
-                command_line << "--base-directory" << base_directory
+
+              run_context = TestProcessRunContext.new(self)
+              yield(run_context)
+              run_context.progress_block.call(TestSuite::STARTED, test_suite.name)
+              run_context.progress_block.call(TestSuite::STARTED_OBJECT, test_suite)
+
+              worker_inputs = workers.collect(&:worker_to_main_input)
+              until run_context.test_names.empty? do
+                select_each_worker(worker_inputs, workers) do |_, worker, data|
+                  case data[:status]
+                  when :ready
+                    test_name = run_context.test_names.shift
+                    break if test_name.nil?
+                    worker.send(test_name)
+                  when :result
+                    add_result(result, data)
+                  when :event
+                    emit_event(options[:event_listener], data)
+                  end
+                end
               end
-              command_line << "--worker-id" << (i + 1).to_s
-              if Gem.win_platform?
-                local_address = tcp_server.local_address
-                command_line << "--ip-address" << local_address.ip_address
-                command_line << "--ip-port" << local_address.ip_port.to_s
+              workers.each do |worker|
+                worker.send(nil)
               end
-              command_line.concat(test_paths)
-              if Gem.win_platform?
-                # On Windows, file descriptors 3 and above cannot be passed to
-                # child processes.
-                pid = spawn(*command_line)
-                data_socket = tcp_server.accept
-                workers << Worker.new(pid, data_socket, data_socket)
-              else
-                main_to_worker_input, main_to_worker_output = IO.pipe
-                worker_to_main_input, worker_to_main_output = IO.pipe
-                pid = spawn(*command_line, {MAIN_TO_WORKER_INPUT_FILENO => main_to_worker_input,
-                                            WORKER_TO_MAIN_OUTPUT_FILENO => worker_to_main_output})
-                main_to_worker_input.close
-                worker_to_main_output.close
-                workers << Worker.new(pid, main_to_worker_output, worker_to_main_input)
+              until worker_inputs.empty? do
+                select_each_worker(worker_inputs, workers) do |worker_to_main_input, worker, data|
+                  case data[:status]
+                  when :result
+                    add_result(result, data)
+                  when :event
+                    emit_event(options[:event_listener], data)
+                  when :done
+                    worker_inputs.delete(worker_to_main_input)
+                    worker.send(nil)
+                  end
+                end
+              end
+            ensure
+              workers.each do |worker|
+                worker.wait
               end
             end
 
-            run_context = TestProcessRunContext.new(self)
-            yield(run_context)
-            run_context.progress_block.call(TestSuite::STARTED, test_suite.name)
-            run_context.progress_block.call(TestSuite::STARTED_OBJECT, test_suite)
-
-            worker_inputs = workers.collect(&:worker_to_main_input)
-            until run_context.test_names.empty? do
-              select_each_worker(worker_inputs, workers) do |_, worker, data|
-                case data[:status]
-                when :ready
-                  test_name = run_context.test_names.shift
-                  break if test_name.nil?
-                  worker.send(test_name)
-                when :result
-                  add_result(result, data)
-                when :event
-                  emit_event(options[:event_listener], data)
-                end
-              end
-            end
-            workers.each do |worker|
-              worker.send(nil)
-            end
-            until worker_inputs.empty? do
-              select_each_worker(worker_inputs, workers) do |worker_to_main_input, worker, data|
-                case data[:status]
-                when :result
-                  add_result(result, data)
-                when :event
-                  emit_event(options[:event_listener], data)
-                when :done
-                  worker_inputs.delete(worker_to_main_input)
-                  worker.send(nil)
-                end
-              end
-            end
-          ensure
-            workers.each do |worker|
-              worker.wait
-            end
+            run_context.progress_block.call(TestSuite::FINISHED, test_suite.name)
+            run_context.progress_block.call(TestSuite::FINISHED_OBJECT, test_suite)
           end
-
-          run_context.progress_block.call(TestSuite::FINISHED, test_suite.name)
-          run_context.progress_block.call(TestSuite::FINISHED_OBJECT, test_suite)
         end
 
         private
-        def tcp_server
-          @tcp_server ||= TCPServer.new("127.0.0.1", 0)
+        def start_tcp_server
+          unless Gem.win_platform?
+            yield
+            return
+          end
+
+          TCPServer.open("127.0.0.1", 0) do |tcp_server|
+            yield(tcp_server)
+          end
         end
 
         def select_each_worker(worker_inputs, workers)
