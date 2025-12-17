@@ -139,13 +139,12 @@ module Test
 
         private
         def start_tcp_server
-          unless Gem.win_platform?
+          if Gem.win_platform?
+            TCPServer.open("127.0.0.1", 0) do |tcp_server|
+              yield(tcp_server)
+            end
+          else
             yield
-            return
-          end
-
-          TCPServer.open("127.0.0.1", 0) do |tcp_server|
-            yield(tcp_server)
           end
         end
 
