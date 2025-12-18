@@ -19,10 +19,8 @@ module Test
           queue = Thread::Queue.new
           run_context = TestThreadRunContext.new(self, queue)
           yield(run_context)
-          unless test_suite.nil?
-            run_context.progress_block.call(TestSuite::STARTED, test_suite.name)
-            run_context.progress_block.call(TestSuite::STARTED_OBJECT, test_suite)
-          end
+          run_context.progress_block.call(TestSuite::STARTED, test_suite.name)
+          run_context.progress_block.call(TestSuite::STARTED_OBJECT, test_suite)
           n_workers.times do
             queue << nil
           end
@@ -46,10 +44,8 @@ module Test
           end
           workers.each(&:join)
 
-          unless test_suite.nil?
-            run_context.progress_block.call(TestSuite::FINISHED, test_suite.name)
-            run_context.progress_block.call(TestSuite::FINISHED_OBJECT, test_suite)
-          end
+          run_context.progress_block.call(TestSuite::FINISHED, test_suite.name)
+          run_context.progress_block.call(TestSuite::FINISHED_OBJECT, test_suite)
 
           sub_exceptions.each do |exception|
             raise exception
