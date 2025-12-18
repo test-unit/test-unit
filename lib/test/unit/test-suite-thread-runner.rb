@@ -21,6 +21,7 @@ module Test
           yield(run_context)
           run_context.progress_block.call(TestSuite::STARTED, test_suite.name)
           run_context.progress_block.call(TestSuite::STARTED_OBJECT, test_suite)
+          run_context.parallel_unsafe_tests.each(&:call)
           n_workers.times do
             queue << nil
           end
@@ -83,7 +84,9 @@ module Test
               end
               run_context.queue << task
             else
-              run_test(test, worker_context, &progress_block)
+              run_context.parallel_unsafe_tests << lambda do
+                run_test(test, worker_context, &progress_block)
+              end
             end
           end
         end
