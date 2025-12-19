@@ -19,8 +19,8 @@
     * Co authored by Naoto Ono
 
   * Added support for `worker_id` for the parallel runner. You can
-    use it in your test case, setup/teardown and startup/shutdown
-    (test case level setup/teardown).
+    use it in your test, setup/teardown and startup/shutdown (test case
+    level setup/teardown).
     * GH-235
     * GH-345
     * Co authored by Naoto Ono
