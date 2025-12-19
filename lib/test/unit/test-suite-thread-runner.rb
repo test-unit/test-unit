@@ -14,9 +14,14 @@ module Test
       class << self
         def run_all_tests(result, options)
           n_workers = TestSuiteRunner.n_workers
+          test_suite = options[:test_suite]
 
           queue = Thread::Queue.new
-          yield(TestThreadRunContext.new(self, queue))
+          run_context = TestThreadRunContext.new(self, queue)
+          yield(run_context)
+          run_context.progress_block.call(TestSuite::STARTED, test_suite.name)
+          run_context.progress_block.call(TestSuite::STARTED_OBJECT, test_suite)
+          run_context.parallel_unsafe_tests.each(&:call)
           n_workers.times do
             queue << nil
           end
@@ -40,6 +45,9 @@ module Test
           end
           workers.each(&:join)
 
+          run_context.progress_block.call(TestSuite::FINISHED, test_suite.name)
+          run_context.progress_block.call(TestSuite::FINISHED_OBJECT, test_suite)
+
           sub_exceptions.each do |exception|
             raise exception
           end
@@ -47,6 +55,7 @@ module Test
       end
 
       def run(worker_context, &progress_block)
+        worker_context.run_context.progress_block = progress_block
         run_tests_recursive(@test_suite, worker_context, &progress_block)
       end
 
@@ -75,7 +84,9 @@ module Test
               end
               run_context.queue << task
             else
-              run_test(test, worker_context, &progress_block)
+              run_context.parallel_unsafe_tests << lambda do
+                run_test(test, worker_context, &progress_block)
+              end
             end
           end
         end

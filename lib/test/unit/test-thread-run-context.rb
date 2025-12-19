@@ -10,9 +10,13 @@ module Test
   module Unit
     class TestThreadRunContext < TestRunContext
       attr_reader :queue
+      attr_accessor :progress_block
+      attr_accessor :parallel_unsafe_tests
       def initialize(runner_class, queue)
         super(runner_class)
         @queue = queue
+        @progress_block = nil
+        @parallel_unsafe_tests = []
       end
     end
   end
