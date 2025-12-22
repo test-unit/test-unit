@@ -1,5 +1,48 @@
 # News
 
+## 3.7.4 - 2025-12-23 {#version-3-7-4}
+
+### Improvements
+
+  * Added support for process based parallel test running. You can use
+    it by the `--parallel=process` option. You need to specify load
+    path options (e.g. `-Ilib`). Tests that startup/shutdown (test case
+    level setup/teardown) are defined run in the same process.
+    * GH-235
+    * GH-339
+    * GH-340
+    * GH-341
+    * GH-342
+    * GH-344
+    * GH-346
+    * GH-348
+    * Co authored by Naoto Ono
+
+  * Added support for `worker_id` for the parallel runner. You can
+    use it in your test, setup/teardown and startup/shutdown (test case
+    level setup/teardown).
+    * GH-235
+    * GH-345
+    * Co authored by Naoto Ono
+
+  * parallel: thread: Improved shutdown (test case level teardown)
+    timing. As a result, tests that startup (test case level setup) or
+    teardown are defined now run in the same thread.
+    * GH-235
+    * GH-343
+    * Co authored by Naoto Ono
+
+### Fixes
+
+  * parallel: thread: Fixed a bug that running tests failed with the
+    `--verbose` option.
+    * GH-350
+    * GH-351
+
+### Thanks
+
+  * Naoto Ono
+
 ## 3.7.3 - 2025-11-26 {#version-3-7-3}
 
 ### Improvements
