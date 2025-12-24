@@ -972,8 +972,8 @@ module Test
         def test_base64_special_character
           test_case = Class.new(TestCase) do
           end
-          # ["array?"].pack("m") == "YXJyYXk/\n"
-          sub_test_case = test_case.sub_test_case("array?") do
+          # ["array>array?"].pack("m") == "YXJyYXk+YXJyYXk/\n"
+          sub_test_case = test_case.sub_test_case("array>array?") do
             def test_nothing
             end
           end
