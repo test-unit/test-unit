@@ -574,8 +574,8 @@ module Test
           # name. So it becomes a named class that `Marshal` can
           # safely dump even across processes.
           #
-          # We can't use "\n", "=" and "/" in base64 as class name.
-          encoded_name = [sub_test_case.name].pack("m").delete("\n=/")
+          # We can't use "\n", "=", "+" and "/" in base64 as class name.
+          encoded_name = [sub_test_case.name].pack("m").delete("\n=+/")
           const_set(:"TEST_#{encoded_name}", sub_test_case)
           sub_test_case
         end
