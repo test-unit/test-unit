@@ -1,5 +1,13 @@
 # News
 
+## 3.7.6 - 2025-12-25 {#version-3-7-6}
+
+### Fixes
+
+  * Fixed a bug that `sub_test_case` may cause a runtime error. This 
+    also covers a minor case.
+    * GH-359
+
 ## 3.7.5 - 2025-12-24 {#version-3-7-5}
 
 ### Fixes
