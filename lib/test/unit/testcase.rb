@@ -570,9 +570,13 @@ module Test
               [parent_test_case.name, name].compact.join("::")
             end
           end
-          # Give the anonymous class a unique, Base64 encoded constant name.
-          # So it becomes a named class that `Marshal` can safely dump even across processes.
-          const_set(:"TEST_#{[sub_test_case.name].pack("m").delete("\n=")}", sub_test_case)
+          # Give the anonymous class a unique, Base64 encoded constant
+          # name. So it becomes a named class that `Marshal` can
+          # safely dump even across processes.
+          #
+          # We can't use "\n", "=" and "/" in base64 as class name.
+          encoded_name = [sub_test_case.name].pack("m").delete("\n=/")
+          const_set(:"TEST_#{encoded_name}", sub_test_case)
           sub_test_case
         end
       end
