@@ -36,17 +36,22 @@ module Test
           AutoRunner.need_auto_run = false
 
           result = create_result
+          options = @options.dup
+          # We should not keep @suite in @options because @options may
+          # be live longer than this instance. For example,
+          # AutoRunner's @runner_options is @options in this instance
+          # and AutoRunner is live longer than this instance. We can
+          # dup @options to avoid @suite's life time longer.
+          options[:test_suite] = @suite
+          options[:event_listener] = lambda do |channel, value|
+            notify_listeners(channel, value)
+          end
 
           Test::Unit.run_at_start_hooks
           start_time = Time.now
           begin
             with_listener(result) do
-              event_listener = lambda do |channel, value|
-                notify_listeners(channel, value)
-              end
-              @options[:event_listener] = event_listener
-              @options[:test_suite] = @suite
-              @test_suite_runner_class.run_all_tests(result, @options) do |run_context|
+              @test_suite_runner_class.run_all_tests(result, options) do |run_context|
                 catch do |stop_tag|
                   result.stop_tag = stop_tag
                   notify_listeners(RESET, @suite.size)
@@ -76,7 +81,9 @@ module Test
             run
           else
             worker_context = WorkerContext.new(nil, run_context, result)
-            @suite.run(worker_context, &@options[:event_listener])
+            @suite.run(worker_context) do |channel, value|
+              notify_listeners(channel, value)
+            end
           end
         end
 
