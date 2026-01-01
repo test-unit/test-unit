@@ -7,6 +7,11 @@
   * Fixed a bug that `NoMemoryError` occurred with RBS tests + MSVC Ruby.
     * GH-358
     * GH-363
+    * Reported by Nobuyoshi Nakada
+
+### Thanks
+
+  * Nobuyoshi Nakada
 
 ## 3.7.6 - 2025-12-25 {#version-3-7-6}
 
