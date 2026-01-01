@@ -4,7 +4,7 @@
 
 ### Fixes
 
-* Fixed a bug that `NoMemoryError` occurred with RBS tests + MSVC Ruby.
+  * Fixed a bug that `NoMemoryError` occurred with RBS tests + MSVC Ruby.
     * GH-358
     * GH-363
 
