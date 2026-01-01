@@ -1,5 +1,13 @@
 # News
 
+## 3.7.7 - 2025-12-31 {#version-3-7-7}
+
+### Fixes
+
+* Fixed a bug that `NoMemoryError` occurred with RBS tests + MSVC Ruby.
+    * GH-358
+    * GH-363
+
 ## 3.7.6 - 2025-12-25 {#version-3-7-6}
 
 ### Fixes
