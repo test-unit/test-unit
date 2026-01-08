@@ -76,9 +76,7 @@ module Test
                 if Gem.win_platform?
                   # On Windows, file descriptors 3 and above cannot be passed to
                   # child processes.
-                  pid = spawn(*command_line)
-                  data_socket = tcp_server.accept
-                  workers << Worker.new(pid, data_socket, data_socket)
+                  spawn(*command_line)
                 else
                   main_to_worker_input, main_to_worker_output = IO.pipe
                   worker_to_main_input, worker_to_main_output = IO.pipe
@@ -87,6 +85,13 @@ module Test
                   main_to_worker_input.close
                   worker_to_main_output.close
                   workers << Worker.new(pid, main_to_worker_output, worker_to_main_input)
+                end
+              end
+              if Gem.win_platform?
+                n_workers.times do
+                  data_socket = tcp_server.accept
+                  pid = Marshal.load(data_socket)
+                  workers << Worker.new(pid, data_socket, data_socket)
                 end
               end
 
