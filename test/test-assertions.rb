@@ -1591,8 +1591,8 @@ EOM
                     "<true>(<TrueClass>)") do
           begin
             assert(true, true)
-          rescue ArgumentError
-            raise AssertionFailedError, $!.message
+          rescue ArgumentError => e
+            raise AssertionFailedError, e.message
           end
         end
       end
@@ -1601,8 +1601,8 @@ EOM
         check_fail("wrong number of arguments (0 for 1..2)") do
           begin
             assert
-          rescue ArgumentError
-            raise AssertionFailedError, $!.message
+          rescue ArgumentError => e
+            raise AssertionFailedError, e.message
           end
         end
       end
@@ -1680,8 +1680,8 @@ MESSAGE
                 "<false>(<FalseClass>)") do
             begin
               refute(true, false)
-            rescue ArgumentError
-              raise AssertionFailedError, $!.message
+            rescue ArgumentError => e
+              raise AssertionFailedError, e.message
             end
           end
         end

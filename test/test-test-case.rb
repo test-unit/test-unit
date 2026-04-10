@@ -373,8 +373,8 @@ module Test
         begin
           test.run(TestResult.new) {}
           check("Should not be reached", false)
-        rescue Exception
-          check("Interrupt exception should be re-raised", $!.class == Interrupt)
+        rescue Exception => e
+          check("Interrupt exception should be re-raised", e.class == Interrupt)
         end
       end
 
