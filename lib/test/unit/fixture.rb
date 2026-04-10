@@ -282,9 +282,9 @@ module Test
         return unless respond_to?(method_name, true)
         begin
           __send__(method_name, &block)
-        rescue Exception
+        rescue Exception => e
           raise unless options[:handle_exception]
-          raise unless handle_exception($!)
+          raise unless handle_exception(e)
         end
       end
 

@@ -53,8 +53,8 @@ module Test
         test_case.worker_id = worker_context.id
         begin
           test_case.startup
-        rescue Exception
-          raise unless handle_exception($!, worker_context.result)
+        rescue Exception => e
+          raise unless handle_exception(e, worker_context.result)
         end
       end
 
@@ -112,8 +112,8 @@ module Test
         test_case.worker_id = worker_context.id
         begin
           test_case.shutdown
-        rescue Exception
-          raise unless handle_exception($!, worker_context.result)
+        rescue Exception => e
+          raise unless handle_exception(e, worker_context.result)
         end
       end
 

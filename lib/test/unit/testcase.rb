@@ -634,9 +634,9 @@ module Test
                   run_test
                   run_cleanup
                   add_pass
-                rescue Exception
+                rescue Exception => e
                   @internal_data.interrupted
-                  unless handle_exception($!)
+                  unless handle_exception(e)
                     processed_exception_in_setup = true
                     raise
                   end
@@ -644,18 +644,18 @@ module Test
                 end
               end
             end
-          rescue Exception
+          rescue Exception => e
             if processed_exception_in_setup
               raise
             else
               @internal_data.interrupted
-              raise unless handle_exception($!)
+              raise unless handle_exception(e)
             end
           ensure
             begin
               run_teardown
-            rescue Exception
-              raise unless handle_exception($!)
+            rescue Exception => e
+              raise unless handle_exception(e)
             end
           end
           @internal_data.test_finished
