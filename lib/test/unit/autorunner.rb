@@ -418,8 +418,8 @@ module Test
             :thread,
             :process,
           ]
-          o.on("--[no-]parallel=[thread]", parallel_options,
-               "Runs tests in parallel",
+          o.on("--[no-]parallel=[PARALLEL]", parallel_options,
+               "Runs tests in parallel: #{parallel_options.join(", ")}",
                "(#{parallel_options.first})") do |parallel|
             case parallel
             when nil, :thread
