@@ -365,8 +365,8 @@ module Test
           o.on("-I", "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
                "Appends directory list to $LOAD_PATH.") do |dirs|
             load_paths = dirs.split(File::PATH_SEPARATOR)
-            $LOAD_PATH.concat(load_paths)
-            @load_paths.concat(load_paths)
+            $LOAD_PATH.unshift(*load_paths)
+            @load_paths.unshift(*load_paths)
           end
 
           color_schemes = ColorScheme.all

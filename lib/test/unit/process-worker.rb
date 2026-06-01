@@ -9,7 +9,7 @@ require "socket"
 
 parser = OptionParser.new
 parser.on("--load-path=PATH") do |path|
-  $LOAD_PATH << path
+  $LOAD_PATH.unshift(path)
 end
 base_directory = nil
 parser.on("--base-directory=PATH") do |path|
