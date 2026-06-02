@@ -199,6 +199,7 @@ module Test
         begin
           args.unshift(*@default_arguments)
           options.order!(args) {|arg| add_test_path(arg)}
+          $LOAD_PATH.unshift(*@load_paths)
         rescue OptionParser::ParseError => e
           puts e
           puts options
@@ -364,9 +365,7 @@ module Test
 
           o.on("-I", "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
                "Prepends directory list to $LOAD_PATH.") do |dirs|
-            load_paths = dirs.split(File::PATH_SEPARATOR)
-            $LOAD_PATH.unshift(*load_paths)
-            @load_paths.unshift(*load_paths)
+            @load_paths.concat(dirs.split(File::PATH_SEPARATOR))
           end
 
           color_schemes = ColorScheme.all
