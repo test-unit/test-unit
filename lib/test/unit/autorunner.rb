@@ -363,7 +363,7 @@ module Test
           end
 
           o.on("-I", "--load-path=DIR[#{File::PATH_SEPARATOR}DIR...]",
-               "Appends directory list to $LOAD_PATH.") do |dirs|
+               "Prepends directory list to $LOAD_PATH.") do |dirs|
             load_paths = dirs.split(File::PATH_SEPARATOR)
             $LOAD_PATH.unshift(*load_paths)
             @load_paths.unshift(*load_paths)
