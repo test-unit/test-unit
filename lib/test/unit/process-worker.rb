@@ -8,8 +8,9 @@ require "optparse"
 require "socket"
 
 parser = OptionParser.new
+load_paths = []
 parser.on("--load-path=PATH") do |path|
-  $LOAD_PATH << path
+  load_paths << path
 end
 base_directory = nil
 parser.on("--base-directory=PATH") do |path|
@@ -28,6 +29,7 @@ parser.on("--ip-port=PORT", Integer) do |port|
   remote_ip_port = port
 end
 test_paths = parser.parse!
+$LOAD_PATH.unshift(*load_paths)
 
 require_relative "../unit"
 require_relative "collector/load"
