@@ -1,5 +1,28 @@
 # News
 
+## 3.7.8 - 2026-06-05 {#version-3-7-8}
+
+### Improvements
+
+  * parallel: process: Improved performance on Windows.
+    * GH-368
+
+  * Improved compatibility with Ruby::Box on `$!`.
+    * GH-370
+    * Patch by MATSUMOTO Katsuyoshi
+
+  * doc: Added a process option in parallel options.
+    * GH-373
+
+  * Improved the `-I` option. You can prepend load paths to prioritize
+    your development library over the system library.
+    * ruby/rubygems#9572
+    * GH-375
+
+### Thanks
+
+  * MATSUMOTO Katsuyoshi
+
 ## 3.7.7 - 2026-01-01 {#version-3-7-7}
 
 ### Fixes
