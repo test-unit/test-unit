@@ -174,6 +174,11 @@ class TestUnitPriority < Test::Unit::TestCase
                           "test: #equal= case")
     end
 
+    def test_have_space
+      assert_escaped_name("test_colon__#have_space_case",
+                          "test: #have space case")
+    end
+
     def assert_escaped_name(expected, test_method_name)
       checker = Checker.new(SpecialNameTestCase.new(test_method_name))
       passed_file = checker.send(:passed_file)
