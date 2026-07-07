@@ -240,6 +240,113 @@ EOT
   end
 
   setup
+  def setup_box_test_cases(&_)
+    @box_test_dir = Pathname(Dir.tmpdir) + "test-unit-box-#{worker_id}"
+    ensure_clean_directory(@box_test_dir)
+
+    @box_test_case1 = @box_test_dir + "test_case_box1.b.rb"
+    @box_suffix_test_case = @box_test_dir + "suffix_test.b.rb"
+    @box_dir_plain_test_case = @box_test_dir + "test_case_plain.rb"
+
+    @box_test_case1.open("w") do |test_case|
+      test_case.puts(<<-EOT)
+require "test/unit"
+
+module #{@temporary_test_cases_module_name}
+  class BoxTestCase1 < Test::Unit::TestCase
+    def test_box1_1
+    end
+
+    def test_box1_2
+    end
+  end
+end
+EOT
+    end
+
+    @box_suffix_test_case.open("w") do |test_case|
+      test_case.puts(<<-EOT)
+require "test/unit"
+
+module #{@temporary_test_cases_module_name}
+  class BoxSuffixTestCase < Test::Unit::TestCase
+    def test_suffix
+    end
+  end
+end
+EOT
+    end
+
+    @box_dir_plain_test_case.open("w") do |test_case|
+      test_case.puts(<<-EOT)
+module #{@temporary_test_cases_module_name}
+  class BoxDirPlainTestCase < Test::Unit::TestCase
+    def test_plain
+    end
+  end
+end
+EOT
+    end
+  end
+
+  setup
+  def setup_box_same_name_test_cases(&_)
+    @box_same_test_dir = Pathname(Dir.tmpdir) + "test-unit-box-same-#{worker_id}"
+    ensure_clean_directory(@box_same_test_dir)
+
+    same_name_test_case_source = <<-EOT
+require "test/unit"
+
+module #{@temporary_test_cases_module_name}
+  class BoxSameNameTestCase < Test::Unit::TestCase
+    def test_same
+    end
+  end
+end
+EOT
+    @box_same_name_test_case1 = @box_same_test_dir + "test_case_same1.b.rb"
+    @box_same_name_test_case2 = @box_same_test_dir + "test_case_same2.b.rb"
+    [@box_same_name_test_case1, @box_same_name_test_case2].each do |path|
+      path.open("w") do |test_case|
+        test_case.puts(same_name_test_case_source)
+      end
+    end
+  end
+
+  setup
+  def setup_box_run_test_cases(&_)
+    @box_run_test_dir = Pathname(Dir.tmpdir) + "test-unit-box-run-#{worker_id}"
+    ensure_clean_directory(@box_run_test_dir)
+
+    @box_run_test_case = @box_run_test_dir + "test_case_box_run.b.rb"
+    @box_run_test_case.open("w") do |test_case|
+      test_case.puts(<<-EOT)
+require "test/unit"
+
+BOX_LOCAL_CONSTANT = true
+
+class String
+  def box_shout
+    upcase + "!"
+  end
+end
+
+module #{@temporary_test_cases_module_name}
+  class BoxRunTestCase < Test::Unit::TestCase
+    def test_monkey_patch_in_box
+      assert_equal("HI!", "hi".box_shout)
+    end
+
+    def test_intentional_failure
+      assert_equal(1, 2, "intentional failure in box")
+    end
+  end
+end
+EOT
+    end
+  end
+
+  setup
   def setup_extra_top_level_test_cases(&_)
     @test_cases12 = @extra_test_dir + "test_cases12.rb"
     @test_cases12.open("w") do |test_case|
@@ -288,6 +395,9 @@ EOT
 
   def teardown
     @test_dir.rmtree if @test_dir.exist?
+    @box_test_dir.rmtree if @box_test_dir.exist?
+    @box_same_test_dir.rmtree if @box_same_test_dir.exist?
+    @box_run_test_dir.rmtree if @box_run_test_dir.exist?
     ::Object.send(:remove_const, @temporary_test_cases_module_name)
     Test::Unit::TestCase::DESCENDANTS.replace(@previous_descendants)
   end
@@ -434,7 +544,101 @@ EOT
                    *test_dirs)
   end
 
+  def test_collect_box_file
+    omit_unless_box_available
+    assert_collect([:suite, {:name => _test_case_name("BoxTestCase1")},
+                    [:test, {:name => "test_box1_1"}],
+                    [:test, {:name => "test_box1_2"}]],
+                   @box_test_case1.to_s)
+  end
+
+  def test_collect_box_directory
+    omit_unless_box_available
+    assert_collect([:suite, {:name => @box_test_dir.basename.to_s},
+                    [:suite, {:name => _test_case_name("BoxDirPlainTestCase")},
+                     [:test, {:name => "test_plain"}]],
+                    [:suite, {:name => _test_case_name("BoxSuffixTestCase")},
+                     [:test, {:name => "test_suffix"}]],
+                    [:suite, {:name => _test_case_name("BoxTestCase1")},
+                     [:test, {:name => "test_box1_1"}],
+                     [:test, {:name => "test_box1_2"}]]],
+                   @box_test_dir.to_s)
+  end
+
+  def test_collect_box_per_file
+    omit_unless_box_available
+    assert_collect([:suite, {:name => @box_same_test_dir.basename.to_s},
+                    [:suite, {:name => _test_case_name("BoxSameNameTestCase")},
+                     [:test, {:name => "test_same"}]],
+                    [:suite, {:name => _test_case_name("BoxSameNameTestCase")},
+                     [:test, {:name => "test_same"}]]],
+                   @box_same_test_dir.to_s)
+  end
+
+  def test_box_filtering
+    omit_unless_box_available
+    assert_collect([:suite, {:name => @box_test_dir.basename.to_s},
+                    [:suite, {:name => _test_case_name("BoxTestCase1")},
+                     [:test, {:name => "test_box1_1"}]]],
+                   @box_test_dir.to_s) do |collector|
+      collector.filter = Proc.new do |test|
+        test.method_name == "test_box1_1"
+      end
+    end
+  end
+
+  def test_collect_box_file_without_box
+    collector = Test::Unit::Collector::Load.new
+    def collector.box_available?
+      false
+    end
+    assert_raise(Test::Unit::Collector::Load::BoxUnavailableError) do
+      collector.collect(@box_test_case1.to_s)
+    end
+  end
+
+  def test_run_box_tests
+    omit_unless_box_available
+
+    suite = nil
+    keep_required_files do
+      collector = Test::Unit::Collector::Load.new
+      suite = collector.collect(@box_run_test_case.to_s)
+    end
+
+    result = Test::Unit::TestResult.new
+    Test::Unit::TestSuiteRunner.run_all_tests(result, {}) do |run_context|
+      worker_context = Test::Unit::WorkerContext.new(nil, run_context, result)
+      suite.run(worker_context) {}
+    end
+
+    # The tests defined in the .b.rb file are really run and their
+    # results are collected into the current box's TestResult. The
+    # monkey patch test passes only when String#box_shout defined in
+    # the .b.rb file is effective in the box.
+    assert_equal([2, 2, 1],
+                 [result.run_count,
+                  result.assertion_count,
+                  result.failure_count])
+    assert_equal(["test_intentional_failure" +
+                  "(#{_test_case_name('BoxRunTestCase')})"],
+                 result.faults.collect {|fault| fault.test_name})
+    assert_match(/intentional failure in box/,
+                 result.faults.first.message)
+
+    # The monkey patch and the constant defined in the .b.rb file
+    # must not leak into the current box.
+    assert_not_respond_to("hi", :box_shout)
+    assert_false(::Object.const_defined?(:BOX_LOCAL_CONSTANT))
+  end
+
   private
+  def omit_unless_box_available
+    unless Test::Unit::Collector::Load.new.__send__(:box_available?)
+      omit("Ruby::Box is required")
+    end
+  end
+
   def assert_collect(expected, *collect_args)
     keep_required_files do
       Dir.chdir(@test_dir.to_s) do
@@ -464,15 +668,17 @@ EOT
 
   def inspect_test_object(test_object)
     return nil if test_object.nil?
-    case test_object
-    when Test::Unit::TestSuite
+    # Use duck typing instead of case/when with TestSuite/TestCase
+    # because test_object may be defined in another Ruby::Box, which
+    # is a different class object.
+    if test_object.respond_to?(:tests)
       sub_tests = test_object.tests.collect do |test|
         inspect_test_object(test)
       end.sort_by do |type, attributes, *children|
         attributes[:name]
       end
       [:suite, {:name => test_object.name}, *sub_tests]
-    when Test::Unit::TestCase
+    elsif test_object.respond_to?(:method_name)
       [:test, {:name => test_object.method_name}]
     else
       raise "unexpected test object: #{test_object.inspect}"

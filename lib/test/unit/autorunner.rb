@@ -106,7 +106,9 @@ module Test
         collector.base = auto_runner.base
         collector.default_test_paths = auto_runner.default_test_paths
         collector.filter = auto_runner.filters
-        collector.collect(*auto_runner.to_run)
+        suite = collector.collect(*auto_runner.to_run)
+        auto_runner.box_loaded_paths = collector.box_loaded_paths
+        suite
       end
 
       # JUST TEST!
@@ -150,6 +152,7 @@ module Test
       attr_writer :debug_on_failure
       attr_writer :gc_stress
       attr_writer :runner, :collector
+      attr_accessor :box_loaded_paths
 
       def initialize(standalone)
         @standalone = standalone
@@ -168,6 +171,7 @@ module Test
         @gc_stress = false
         @test_suite_runner_class = TestSuiteRunner
         @load_paths = []
+        @box_loaded_paths = []
         config_file = "test-unit.yml"
         if File.exist?(config_file)
           load_config(config_file)
@@ -491,6 +495,10 @@ module Test
         return true if suite.empty?
         runner = @runner[self]
         return false if runner.nil?
+        unless @box_loaded_paths.empty?
+          warn("Notice: #{@box_loaded_paths.size} test file(s) are " +
+               "loaded with Ruby::Box, which is experimental.")
+        end
         @runner_options[:color_scheme] ||= @color_scheme
         @runner_options[:listeners] ||= []
         @runner_options[:listeners].concat(@listeners)
