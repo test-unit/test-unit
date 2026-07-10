@@ -16,7 +16,7 @@ module Test
 
       def add_suite(destination, suite)
         to_delete = suite.tests.find_all do |test|
-          test.is_a?(TestCase) and !include?(test)
+          !include?(test)
         end
         suite.delete_tests(to_delete)
         destination << suite unless suite.empty?
