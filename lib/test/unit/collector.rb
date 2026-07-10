@@ -16,7 +16,7 @@ module Test
 
       def add_suite(destination, suite)
         to_delete = suite.tests.find_all do |test|
-          test.is_a?(TestCase) and !include?(test)
+          !test.class.test_suite? and !include?(test)
         end
         suite.delete_tests(to_delete)
         destination << suite unless suite.empty?
@@ -81,8 +81,7 @@ module Test
         ractor_suites = []
         ractor_tests = []
         suite.tests.each do |test|
-          case test
-          when TestSuite
+          if test.class.test_suite?
             ractor_suites.concat(extract_ractor_tests(test))
           else
             next unless test[:ractor]

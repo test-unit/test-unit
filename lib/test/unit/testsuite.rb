@@ -19,6 +19,12 @@ module Test
     # has a suite method as simply providing a way to get a
     # meaningful TestSuite instance.
     class TestSuite
+      class << self
+        def test_suite?
+          true
+        end
+      end
+
       attr_reader :name, :tests, :test_case, :start_time, :elapsed_time
 
       # Test suite that has higher priority is ran prior to
