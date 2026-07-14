@@ -495,10 +495,6 @@ module Test
         return true if suite.empty?
         runner = @runner[self]
         return false if runner.nil?
-        unless @box_loaded_paths.empty?
-          warn("Notice: #{@box_loaded_paths.size} test file(s) are " +
-               "loaded with Ruby::Box, which is experimental.")
-        end
         @runner_options[:color_scheme] ||= @color_scheme
         @runner_options[:listeners] ||= []
         @runner_options[:listeners].concat(@listeners)
