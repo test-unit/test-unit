@@ -589,12 +589,20 @@ EOT
 
   def test_collect_box_file_without_box
     collector = Test::Unit::Collector::Load.new
-    def collector.box_available?
-      false
+    suite = Test::Unit.disable_box_forcibly { collector.collect(@box_test_case1.to_s) }
+
+    result = Test::Unit::TestResult.new
+    Test::Unit::TestSuiteRunner.run_all_tests(result, {}) do |run_context|
+      worker_context = Test::Unit::WorkerContext.new(nil, run_context, result)
+      suite.run(worker_context) {}
     end
-    assert_raise(Test::Unit::Collector::Load::BoxUnavailableError) do
-      collector.collect(@box_test_case1.to_s)
-    end
+
+    assert_equal([1, 0, 0],
+                 [result.run_count,
+                  result.assertion_count,
+                  result.failure_count])
+    assert_match(/Ruby::Box is unavailable while/,
+                 result.faults.first.message)
   end
 
   def test_run_box_tests

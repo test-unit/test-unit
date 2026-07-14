@@ -9,16 +9,6 @@ module Test
       class Load
         include Collector
 
-        class BoxUnavailableError < StandardError
-          attr_reader :path
-          def initialize(path)
-            @path = path
-            super("Ruby::Box is not available but it is required " +
-                  "to load a .b.rb test file: <#{path}>: " +
-                  "Ruby 4.0 or later with RUBY_BOX=1 is required")
-          end
-        end
-
         attr_reader :patterns, :excludes, :base
         attr_reader :default_test_paths
         attr_reader :box_loaded_paths
@@ -145,7 +135,11 @@ module Test
 
         def collect_box_file(expanded_path, test_suites, already_gathered)
           unless Test::Unit.box_available?
-            raise BoxUnavailableError.new(expanded_path)
+            errmsg = "Ruby::Box is unavailable while loading <#{expanded_path}>" +
+                     " Use Ruby 4.0 or later with RUBY_BOX=1"
+            error = StandardError.new(errmsg)
+            @require_failed_infos << {:path => expanded_path, :exception => error}
+            return
           end
           box = Ruby::Box.new
           # The box must resolve require("test/unit") to the same

@@ -510,8 +510,24 @@ module Test # :nodoc:
       end
 
       # @api private
+      @@box_available_flag = nil
+
+      # @api private
+      def disable_box_forcibly
+        v =  @@box_available_flag
+        @@box_available_flag = false
+        yield
+      ensure
+        @@box_available_flag = v
+      end
+
+      # @api private
       def box_available?
-        defined?(Ruby::Box) && Ruby::Box.respond_to?(:enabled?) && Ruby::Box.enabled?
+        return @@box_available_flag unless @@box_available_flag.nil?
+        @@box_available_flag = defined?(Ruby::Box) &&
+                               Ruby::Box.respond_to?(:enabled?) &&
+                               Ruby::Box.enabled?
+        @@box_available_flag
       end
     end
   end
