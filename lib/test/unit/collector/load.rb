@@ -157,10 +157,10 @@ module Test
             @require_failed_infos << {:path => expanded_path, :exception => $!}
             return
           end
-          return unless box.eval("defined?(Test::Unit::TestCase)")
-          box.eval("Test::Unit::AutoRunner.need_auto_run = false")
+          return unless defined?(box::Test::Unit::TestCase)
+          box::Test::Unit::AutoRunner.need_auto_run = false
           test_cases = []
-          box.eval("Test::Unit::TestCase::DESCENDANTS").each do |test_case|
+          box::Test::Unit::TestCase::DESCENDANTS.each do |test_case|
             next if already_gathered.key?(test_case)
             test_cases << test_case
             already_gathered[test_case] = true
