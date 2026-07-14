@@ -144,7 +144,8 @@ module Test
           box = Ruby::Box.new
           # The box must resolve require("test/unit") to the same
           # test-unit as the current box's one.
-          box.load_path.unshift(expanded_path.dirname.to_s, *$LOAD_PATH)
+          test_unit_lib_path = File.expand_path("../../../", __dir__)
+          box.load_path.unshift(expanded_path.dirname.to_s, test_unit_lib_path)
           begin
             box.require(expanded_path.to_s)
           rescue LoadError
