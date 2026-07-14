@@ -143,14 +143,8 @@ module Test
           path.to_s.end_with?(".b.rb")
         end
 
-        def box_available?
-          defined?(Ruby::Box) and
-            Ruby::Box.respond_to?(:enabled?) and
-            Ruby::Box.enabled?
-        end
-
         def collect_box_file(expanded_path, test_suites, already_gathered)
-          unless box_available?
+          unless Test::Unit.box_available?
             raise BoxUnavailableError.new(expanded_path)
           end
           box = Ruby::Box.new

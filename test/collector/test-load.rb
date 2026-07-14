@@ -634,7 +634,7 @@ EOT
 
   private
   def omit_unless_box_available
-    unless Test::Unit::Collector::Load.new.__send__(:box_available?)
+    unless Test::Unit.box_available?
       omit("Ruby::Box is required")
     end
   end

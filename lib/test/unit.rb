@@ -508,6 +508,11 @@ module Test # :nodoc:
           hook.call
         end
       end
+
+      # @api private
+      def box_available?
+        defined?(Ruby::Box) && Ruby::Box.respond_to?(:enabled?) && Ruby::Box.enabled?
+      end
     end
   end
 end
