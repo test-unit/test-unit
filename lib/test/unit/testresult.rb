@@ -50,6 +50,10 @@ module Test
         initialize_containers
       end
 
+      def test_result?
+        true
+      end
+
       # Records a test run.
       def add_run(result=self)
         @run_count += 1
