@@ -150,6 +150,10 @@ module Test
           true
         end
 
+        def test_suite?
+          false
+        end
+
         def inherited(sub_class) # :nodoc:
           DESCENDANTS << sub_class
           super
