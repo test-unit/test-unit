@@ -181,10 +181,17 @@ module Test
               normalized_path = path.to_s.gsub(/[^a-z0-9\_]+/i, '_')
               normalized_path = normalized_path.gsub(/\A_+/, '')
               exception = info[:exception]
-              define_method("test_require_#{normalized_path}") do
-                raise(exception.class,
-                      "failed to load <#{path}>: #{exception.message}",
-                      exception.backtrace)
+              message = info[:message]
+              if exception
+                define_method("test_require_#{normalized_path}") do
+                  raise(exception.class,
+                        "failed to load <#{path}>: #{exception.message}",
+                        exception.backtrace)
+                end
+              else
+                define_method("test_require_#{normalized_path}") do
+                  raise("failed to load <#{path}>: #{message}")
+                end
               end
             end
 
