@@ -19,12 +19,6 @@ module Test
     # has a suite method as simply providing a way to get a
     # meaningful TestSuite instance.
     class TestSuite
-      class << self
-        def test_suite?
-          true
-        end
-      end
-
       attr_reader :name, :tests, :test_case, :start_time, :elapsed_time
 
       # Test suite that has higher priority is ran prior to
@@ -49,7 +43,7 @@ module Test
       def find(name)
         return self if @name == name
         @tests.each do |test|
-          if test.is_a?(self.class)
+          if test.suite?
             t = test.find(name)
             return t if t
           else
@@ -69,6 +63,10 @@ module Test
         return true if @test_case.method(:startup).owner != TestCase.singleton_class
         return true if @test_case.method(:shutdown).owner != TestCase.singleton_class
         false
+      end
+
+      def suite?
+        true
       end
 
       # Runs the tests and/or suites contained in this

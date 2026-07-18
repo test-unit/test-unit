@@ -150,10 +150,6 @@ module Test
           true
         end
 
-        def test_suite?
-          false
-        end
-
         def inherited(sub_class) # :nodoc:
           DESCENDANTS << sub_class
           super
@@ -597,6 +593,10 @@ module Test
       # Assigns test data to the test. It is used in internal.
       def assign_test_data(label, data) # :nodoc:
         @internal_data.assign_test_data(label, data)
+      end
+
+      def suite?
+        false
       end
 
       # Returns the test is valid test. It is used in internal.
