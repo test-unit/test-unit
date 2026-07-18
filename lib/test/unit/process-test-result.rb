@@ -11,6 +11,10 @@ module Test
         @output = output
       end
 
+      def test_result?
+        true
+      end
+
       def add_run
         send_result(__method__)
       end

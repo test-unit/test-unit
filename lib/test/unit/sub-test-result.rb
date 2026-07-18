@@ -14,6 +14,10 @@ module Test
         @stop_tag = nil
       end
 
+      def test_result?
+        true
+      end
+
       def add_run(result=self)
         @parent_test_result.add_run(result)
       end
