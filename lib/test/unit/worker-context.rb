@@ -15,6 +15,10 @@ module Test
         @run_context = run_context
         @result = result
       end
+
+      def test_result?
+        false
+      end
     end
   end
 end
