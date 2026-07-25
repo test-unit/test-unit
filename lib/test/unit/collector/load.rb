@@ -11,7 +11,6 @@ module Test
 
         attr_reader :patterns, :excludes, :base
         attr_reader :default_test_paths
-        attr_reader :box_loaded_paths
 
         def initialize
           super
@@ -22,7 +21,6 @@ module Test
           @base = nil
           @default_test_paths = []
           @require_failed_infos = []
-          @box_loaded_paths = []
         end
 
         def base=(base)
@@ -160,7 +158,6 @@ module Test
             test_cases << test_case
             already_gathered[test_case] = true
           end
-          @box_loaded_paths << expanded_path
           add_test_cases(test_suites, test_cases)
         end
 
