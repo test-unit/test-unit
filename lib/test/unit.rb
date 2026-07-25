@@ -524,9 +524,7 @@ module Test # :nodoc:
       # @api private
       def box_available?
         return @@box_available_flag unless @@box_available_flag.nil?
-        @@box_available_flag = defined?(Ruby::Box) &&
-                               Ruby::Box.respond_to?(:enabled?) &&
-                               Ruby::Box.enabled?
+        @@box_available_flag = defined?(Ruby::Box) && Ruby::Box.enabled?
         @@box_available_flag
       end
     end
