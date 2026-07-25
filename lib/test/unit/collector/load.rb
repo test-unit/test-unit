@@ -16,7 +16,13 @@ module Test
           super
           @system_excludes = [/~\z/, /\A\.\#/]
           @system_directory_excludes = [/\A(?:CVS|\.svn|\.git)\z/]
-          @patterns = [/\Atest[_\-].+\.rb\z/m, /[_\-]test\.rb\z/, /[_\-]test\.b\.rb\z/]
+          @patterns = [
+            /\Atest[_\-].+\.rb\z/m,
+            # The test prefix pattern (test*.b.rb) is covered by the pattern above
+            # /\Atest[_\-].+\.b\.rb\z/m,
+            /[_\-]test\.rb\z/,
+            /[_\-]test\.b\.rb\z/
+          ]
           @excludes = []
           @base = nil
           @default_test_paths = []
