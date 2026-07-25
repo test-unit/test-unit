@@ -16,6 +16,7 @@ module Test
         @result = result
       end
 
+      # Returns false to not re-wrap this by WorkerContext
       def test_result?
         false
       end

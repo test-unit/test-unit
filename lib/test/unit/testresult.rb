@@ -50,6 +50,7 @@ module Test
         initialize_containers
       end
 
+      # Returns true if it should be wrapped by WorkerContext
       def test_result?
         true
       end
