@@ -141,8 +141,7 @@ module Test
           unless Test::Unit.box_available?
             errmsg = "Ruby::Box is unavailable while loading <#{expanded_path}>" +
                      " Use Ruby 4.0 or later with RUBY_BOX=1"
-            error = StandardError.new(errmsg)
-            @require_failed_infos << {:path => expanded_path, :exception => error}
+            @require_failed_infos << {:path => expanded_path, :message => errmsg}
             return
           end
           box = Ruby::Box.new
