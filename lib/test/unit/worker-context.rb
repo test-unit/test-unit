@@ -16,9 +16,11 @@ module Test
         @result = result
       end
 
-      # Returns false to not re-wrap this by WorkerContext
-      def test_result?
-        false
+      class << self
+        # Returns false to not re-wrap this by WorkerContext
+        def test_result?
+          false
+        end
       end
     end
   end

@@ -619,7 +619,7 @@ module Test
       # and errors in result.
       def run(worker_context)
         begin
-          if worker_context.test_result?
+          if worker_context.class.test_result?
             result = worker_context
             worker_context = WorkerContext.new(nil, nil, result)
           end

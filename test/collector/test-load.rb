@@ -676,17 +676,14 @@ EOT
 
   def inspect_test_object(test_object)
     return nil if test_object.nil?
-    # Use duck typing instead of case/when with TestSuite/TestCase
-    # because test_object may be defined in another Ruby::Box, which
-    # is a different class object.
-    if test_object.respond_to?(:tests)
+    if test_object.class.test_suite?
       sub_tests = test_object.tests.collect do |test|
         inspect_test_object(test)
       end.sort_by do |type, attributes, *children|
         attributes[:name]
       end
       [:suite, {:name => test_object.name}, *sub_tests]
-    elsif test_object.respond_to?(:method_name)
+    elsif test_object.class.test_case?
       [:test, {:name => test_object.method_name}]
     else
       raise "unexpected test object: #{test_object.inspect}"

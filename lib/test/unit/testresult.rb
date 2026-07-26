@@ -31,6 +31,13 @@ module Test
       include TestResultOmissionSupport
       include TestResultNotificationSupport
 
+      class << self
+        # Returns true if it should be wrapped by WorkerContext
+        def test_result?
+          true
+        end
+      end
+
       FINISHED = name + "::FINISHED"
       CHANGED = name + "::CHANGED"
       PASS_ASSERTION = name + "::PASS_ASSERTION"
@@ -48,11 +55,6 @@ module Test
         @faults = []
         @stop_tag = nil
         initialize_containers
-      end
-
-      # Returns true if it should be wrapped by WorkerContext
-      def test_result?
-        true
       end
 
       # Records a test run.
