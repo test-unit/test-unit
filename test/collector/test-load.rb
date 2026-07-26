@@ -589,7 +589,7 @@ EOT
 
   def test_collect_box_file_without_box
     collector = Test::Unit::Collector::Load.new
-    suite = Test::Unit.disable_box_forcibly { collector.collect(@box_test_case1.to_s) }
+    suite = Test::Unit.disable_box_forcibly {collector.collect(@box_test_case1.to_s)}
 
     result = Test::Unit::TestResult.new
     Test::Unit::TestSuiteRunner.run_all_tests(result, {}) do |run_context|
