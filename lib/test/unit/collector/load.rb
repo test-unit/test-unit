@@ -155,10 +155,19 @@ module Test
             @require_failed_infos << {:path => expanded_path, :exception => $!}
             return
           end
-          return unless defined?(box::Test::Unit::TestCase)
-          box::Test::Unit::AutoRunner.need_auto_run = false
+          # The 3 lines below are using box.eval("...") to get the correct constants in the box.
+          # After Ruby 4.0.6, we can refer those values as box::Test::Unit::TestCase.
+          # But before 4.0.5:
+          # * box::Test::Unit returns the Test::Unit class definition in the root box
+          #   (referrable from the main box)
+          # * Then box::Test::Unit::TestCase::DESCENDANTS value is a value in the root (or main)
+          #   box, instead of `box`
+          # This is the reason why those are using box.eval("...") currently.
+          # TODO: update to use box::Test style reference after the release of Ruby 4.0.7
+          return unless box.eval("defined?(Test::Unit::TestCase)")
+          box.eval("Test::Unit::AutoRunner.need_auto_run = false")
           test_cases = []
-          box::Test::Unit::TestCase::DESCENDANTS.each do |test_case|
+          box.eval("Test::Unit::TestCase::DESCENDANTS").each do |test_case|
             next if already_gathered.key?(test_case)
             test_cases << test_case
             already_gathered[test_case] = true
