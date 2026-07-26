@@ -23,6 +23,10 @@ module Test
         def test_suite?
           true
         end
+
+        def test_case?
+          false
+        end
       end
 
       attr_reader :name, :tests, :test_case, :start_time, :elapsed_time
