@@ -683,10 +683,8 @@ EOT
         attributes[:name]
       end
       [:suite, {:name => test_object.name}, *sub_tests]
-    elsif test_object.class.test_case?
-      [:test, {:name => test_object.method_name}]
     else
-      raise "unexpected test object: #{test_object.inspect}"
+      [:test, {:name => test_object.method_name}]
     end
   end
 end
