@@ -18,10 +18,10 @@ module Test
           @system_directory_excludes = [/\A(?:CVS|\.svn|\.git)\z/]
           @patterns = [
             /\Atest[_\-].+\.rb\z/m,
-            # The test prefix pattern (test*.b.rb) is covered by the pattern above
+            # The test prefix pattern (test*.box.rb) is covered by the pattern above
             # /\Atest[_\-].+\.b\.rb\z/m,
             /[_\-]test\.rb\z/,
-            /[_\-]test\.b\.rb\z/
+            /[_\-]test\.box\.rb\z/
           ]
           @excludes = []
           @base = nil
@@ -134,7 +134,7 @@ module Test
         end
 
         def box_file?(path)
-          path.to_s.end_with?(".b.rb")
+          path.to_s.end_with?(".box.rb")
         end
 
         def collect_box_file(expanded_path, test_suites, already_gathered)

@@ -244,8 +244,8 @@ EOT
     @box_test_dir = Pathname(Dir.tmpdir) + "test-unit-box-#{worker_id}"
     ensure_clean_directory(@box_test_dir)
 
-    @box_test_case1 = @box_test_dir + "test_case_box1.b.rb"
-    @box_suffix_test_case = @box_test_dir + "suffix_test.b.rb"
+    @box_test_case1 = @box_test_dir + "test_case_box1.box.rb"
+    @box_suffix_test_case = @box_test_dir + "suffix_test.box.rb"
     @box_dir_plain_test_case = @box_test_dir + "test_case_plain.rb"
 
     @box_test_case1.open("w") do |test_case|
@@ -304,8 +304,8 @@ module #{@temporary_test_cases_module_name}
   end
 end
 EOT
-    @box_same_name_test_case1 = @box_same_test_dir + "test_case_same1.b.rb"
-    @box_same_name_test_case2 = @box_same_test_dir + "test_case_same2.b.rb"
+    @box_same_name_test_case1 = @box_same_test_dir + "test_case_same1.box.rb"
+    @box_same_name_test_case2 = @box_same_test_dir + "test_case_same2.box.rb"
     [@box_same_name_test_case1, @box_same_name_test_case2].each do |path|
       path.open("w") do |test_case|
         test_case.puts(same_name_test_case_source)
@@ -318,7 +318,7 @@ EOT
     @box_run_test_dir = Pathname(Dir.tmpdir) + "test-unit-box-run-#{worker_id}"
     ensure_clean_directory(@box_run_test_dir)
 
-    @box_run_test_case = @box_run_test_dir + "test_case_box_run.b.rb"
+    @box_run_test_case = @box_run_test_dir + "test_case_box_run.box.rb"
     @box_run_test_case.open("w") do |test_case|
       test_case.puts(<<-EOT)
 require "test/unit"
@@ -620,10 +620,10 @@ EOT
       suite.run(worker_context) {}
     end
 
-    # The tests defined in the .b.rb file are really run and their
+    # The tests defined in the .box.rb file are really run and their
     # results are collected into the current box's TestResult. The
     # monkey patch test passes only when String#box_shout defined in
-    # the .b.rb file is effective in the box.
+    # the .box.rb file is effective in the box.
     assert_equal([2, 2, 1],
                  [result.run_count,
                   result.assertion_count,
@@ -634,7 +634,7 @@ EOT
     assert_match(/intentional failure in box/,
                  result.faults.first.message)
 
-    # The monkey patch and the constant defined in the .b.rb file
+    # The monkey patch and the constant defined in the .box.rb file
     # must not leak into the current box.
     assert_not_respond_to("hi", :box_shout)
     assert_false(::Object.const_defined?(:BOX_LOCAL_CONSTANT))
