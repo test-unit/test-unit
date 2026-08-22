@@ -73,7 +73,7 @@ module Test
           run_context.queue << task
         else
           test_suite.tests.each do |test|
-            if test.is_a?(TestSuite)
+            if test.class.test_suite?
               run_tests_recursive(test, worker_context, &progress_block)
             elsif test_suite.parallel_safe?
               task = lambda do |stop_tag, worker_id|

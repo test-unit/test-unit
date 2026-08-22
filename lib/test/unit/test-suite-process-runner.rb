@@ -192,7 +192,7 @@ module Test
           run_context.test_names << test_suite.name
         else
           test_suite.tests.each do |test|
-            if test.is_a?(TestSuite)
+            if test.class.test_suite?
               run_tests_recursive(test, worker_context, &progress_block)
             else
               run_context.test_names << test.name
