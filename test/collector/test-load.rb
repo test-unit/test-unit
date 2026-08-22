@@ -545,7 +545,7 @@ EOT
   end
 
   def test_collect_box_file
-    omit_unless_box_available
+    require_box
     assert_collect([:suite, {:name => _test_case_name("BoxTestCase1")},
                     [:test, {:name => "test_box1_1"}],
                     [:test, {:name => "test_box1_2"}]],
@@ -553,7 +553,7 @@ EOT
   end
 
   def test_collect_box_directory
-    omit_unless_box_available
+    require_box
     assert_collect([:suite, {:name => @box_test_dir.basename.to_s},
                     [:suite, {:name => _test_case_name("BoxDirPlainTestCase")},
                      [:test, {:name => "test_plain"}]],
@@ -566,7 +566,7 @@ EOT
   end
 
   def test_collect_box_per_file
-    omit_unless_box_available
+    require_box
     assert_collect([:suite, {:name => @box_same_test_dir.basename.to_s},
                     [:suite, {:name => _test_case_name("BoxSameNameTestCase")},
                      [:test, {:name => "test_same"}]],
@@ -576,7 +576,7 @@ EOT
   end
 
   def test_box_filtering
-    omit_unless_box_available
+    require_box
     assert_collect([:suite, {:name => @box_test_dir.basename.to_s},
                     [:suite, {:name => _test_case_name("BoxTestCase1")},
                      [:test, {:name => "test_box1_1"}]]],
@@ -606,7 +606,7 @@ EOT
   end
 
   def test_run_box_tests
-    omit_unless_box_available
+    require_box
 
     suite = nil
     keep_required_files do
@@ -641,7 +641,7 @@ EOT
   end
 
   private
-  def omit_unless_box_available
+  def require_box
     unless Test::Unit.box_available?
       omit("Ruby::Box is required")
     end
