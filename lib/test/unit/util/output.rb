@@ -17,7 +17,7 @@ module Test
 
           output = StringIO.new
           error = StringIO.new
-          if defined?(Ruby::Box) && Ruby::Box.enabled?
+          if Test::Unit.box_available?
             # This is required because puts()/warn() uses the ractor local variable $stdout/$stderr.
             # Those can be assigned only in the root box (at least, in Ruby 4.0.6).
             stdout_save = Ruby::Box.root.eval("$stdout")

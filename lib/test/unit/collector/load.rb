@@ -140,7 +140,7 @@ module Test
         def collect_box_file(expanded_path, test_suites, already_gathered)
           unless Test::Unit.box_available?
             errmsg = "Ruby::Box is unavailable while loading <#{expanded_path}>" +
-                     " Use Ruby 4.0 or later with RUBY_BOX=1"
+                     " Use Ruby 4.1 or later with RUBY_BOX=1"
             @require_failed_infos << {:path => expanded_path, :message => errmsg}
             return
           end
@@ -155,19 +155,10 @@ module Test
             @require_failed_infos << {:path => expanded_path, :exception => $!}
             return
           end
-          # The 3 lines below are using box.eval("...") to get the correct constants in the box.
-          # After Ruby 4.0.6, we can refer those values as box::Test::Unit::TestCase.
-          # But before 4.0.5:
-          # * box::Test::Unit returns the Test::Unit class definition in the root box
-          #   (referrable from the main box)
-          # * Then box::Test::Unit::TestCase::DESCENDANTS value is a value in the root (or main)
-          #   box, instead of `box`
-          # This is the reason why those are using box.eval("...") currently.
-          # TODO: update to use box::Test style reference after the release of Ruby 4.0.7
-          return unless box.eval("defined?(Test::Unit::TestCase)")
-          box.eval("Test::Unit::AutoRunner.need_auto_run = false")
+          return unless defined?(box::Test::Unit::TestCase)
+          box::Test::Unit::AutoRunner.need_auto_run = false
           test_cases = []
-          box.eval("Test::Unit::TestCase::DESCENDANTS").each do |test_case|
+          box::Test::Unit::TestCase::DESCENDANTS.each do |test_case|
             next if already_gathered.key?(test_case)
             test_cases << test_case
             already_gathered[test_case] = true

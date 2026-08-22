@@ -525,6 +525,12 @@ module Test # :nodoc:
       def box_available?
         return @@box_available_flag unless @@box_available_flag.nil?
         @@box_available_flag = defined?(Ruby::Box) && Ruby::Box.enabled?
+        if @@box_available_flag
+          major, minor, _ = Ruby::VERSION.split('.')
+          if major.to_i < 4 || major.to_i == 4 && minor.to_i < 1
+            @@box_available_flag = false
+          end
+        end
         @@box_available_flag
       end
     end
