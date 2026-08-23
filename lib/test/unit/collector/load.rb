@@ -19,7 +19,7 @@ module Test
           @patterns = [
             /\Atest[_\-].+\.rb\z/m,
             # The test prefix pattern (test*.box.rb) is covered by the pattern above
-            # /\Atest[_\-].+\.b\.rb\z/m,
+            # /\Atest[_\-].+\.box\.rb\z/m,
             /[_\-]test\.rb\z/,
             /[_\-]test\.box\.rb\z/
           ]
