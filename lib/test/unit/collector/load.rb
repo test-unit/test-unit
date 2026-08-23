@@ -73,9 +73,9 @@ module Test
           end
         end
 
-        def find_test_cases(already_gathered)
+        def find_test_cases(already_gathered, descendants=TestCase::DESCENDANTS)
           test_cases = []
-          TestCase::DESCENDANTS.each do |test_case|
+          descendants.each do |test_case|
             next if already_gathered.key?(test_case)
             test_cases << test_case
             already_gathered[test_case] = true
@@ -157,12 +157,8 @@ module Test
           end
           return unless defined?(box::Test::Unit::TestCase)
           box::Test::Unit::AutoRunner.need_auto_run = false
-          test_cases = []
-          box::Test::Unit::TestCase::DESCENDANTS.each do |test_case|
-            next if already_gathered.key?(test_case)
-            test_cases << test_case
-            already_gathered[test_case] = true
-          end
+          test_cases = find_test_cases(already_gathered,
+                                       box::Test::Unit::TestCase::DESCENDANTS)
           add_test_cases(test_suites, test_cases)
         end
 
