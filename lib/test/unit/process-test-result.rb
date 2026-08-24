@@ -7,12 +7,14 @@
 module Test
   module Unit
     class ProcessTestResult
-      def initialize(output)
-        @output = output
+      class << self
+        def test_result?
+          true
+        end
       end
 
-      def test_result?
-        true
+      def initialize(output)
+        @output = output
       end
 
       def add_run

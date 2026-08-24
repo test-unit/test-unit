@@ -53,7 +53,7 @@ module Test
       def find(name)
         return self if @name == name
         @tests.each do |test|
-          if test.is_a?(self.class)
+          if test.class.test_suite?
             t = test.find(name)
             return t if t
           else

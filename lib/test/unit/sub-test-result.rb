@@ -7,15 +7,17 @@
 module Test
   module Unit
     class SubTestResult
+      class << self
+        def test_result?
+          true
+        end
+      end
+
       attr_accessor :stop_tag
 
       def initialize(parent_test_result)
         @parent_test_result = parent_test_result
         @stop_tag = nil
-      end
-
-      def test_result?
-        true
       end
 
       def add_run(result=self)

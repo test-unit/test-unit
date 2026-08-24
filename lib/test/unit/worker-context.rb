@@ -7,6 +7,13 @@
 module Test
   module Unit
     class WorkerContext
+      class << self
+        # Returns false to not re-wrap this by WorkerContext
+        def test_result?
+          false
+        end
+      end
+
       attr_reader :id
       attr_reader :run_context
       attr_reader :result
@@ -14,10 +21,6 @@ module Test
         @id = id
         @run_context = run_context
         @result = result
-      end
-
-      def test_result?
-        false
       end
     end
   end

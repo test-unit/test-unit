@@ -70,7 +70,7 @@ io_open.call do |data_input, data_output|
       Marshal.dump({status: :event, event_name: event_name, args: args}, data_output)
       data_output.flush
     end
-    if test.is_a?(Test::Unit::TestSuite)
+    if test.class.test_suite?
       test_suite = test
     else
       test_suite = Test::Unit::TestSuite.new(test.class.name, test.class)

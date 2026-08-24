@@ -16,7 +16,13 @@ module Test
           super
           @system_excludes = [/~\z/, /\A\.\#/]
           @system_directory_excludes = [/\A(?:CVS|\.svn|\.git)\z/]
-          @patterns = [/\Atest[_\-].+\.rb\z/m, /[_\-]test\.rb\z/]
+          @patterns = [
+            /\Atest[_\-].+\.rb\z/m,
+            # The test prefix pattern (test*.box.rb) is covered by the pattern above
+            # /\Atest[_\-].+\.box\.rb\z/m,
+            /[_\-]test\.rb\z/,
+            /[_\-]test\.box\.rb\z/
+          ]
           @excludes = []
           @base = nil
           @default_test_paths = []
@@ -67,9 +73,9 @@ module Test
           end
         end
 
-        def find_test_cases(already_gathered)
+        def find_test_cases(already_gathered, descendants=TestCase::DESCENDANTS)
           test_cases = []
-          TestCase::DESCENDANTS.each do |test_case|
+          descendants.each do |test_case|
             next if already_gathered.key?(test_case)
             test_cases << test_case
             already_gathered[test_case] = true
@@ -113,6 +119,10 @@ module Test
           @program_file ||= File.expand_path($0)
           expanded_path = path.expand_path
           return if @program_file == expanded_path.to_s
+          if box_file?(expanded_path)
+            collect_box_file(expanded_path, test_suites, already_gathered)
+            return
+          end
           add_load_path(expanded_path.dirname) do
             begin
               require(expanded_path.to_s)
@@ -121,6 +131,35 @@ module Test
             end
             add_test_cases(test_suites, find_test_cases(already_gathered))
           end
+        end
+
+        def box_file?(path)
+          path.to_s.end_with?(".box.rb")
+        end
+
+        def collect_box_file(expanded_path, test_suites, already_gathered)
+          unless Test::Unit.box_available?
+            errmsg = "Ruby::Box is unavailable while loading <#{expanded_path}>" +
+                     " Use Ruby 4.1 or later with RUBY_BOX=1"
+            @require_failed_infos << {:path => expanded_path, :message => errmsg}
+            return
+          end
+          box = Ruby::Box.new
+          # The box must resolve require("test/unit") to the same
+          # test-unit as the current box's one.
+          test_unit_lib_path = File.expand_path("../../../", __dir__)
+          box.load_path.unshift(expanded_path.dirname.to_s, test_unit_lib_path)
+          begin
+            box.require(expanded_path.to_s)
+          rescue LoadError
+            @require_failed_infos << {:path => expanded_path, :exception => $!}
+            return
+          end
+          return unless defined?(box::Test::Unit::TestCase)
+          box::Test::Unit::AutoRunner.need_auto_run = false
+          test_cases = find_test_cases(already_gathered,
+                                       box::Test::Unit::TestCase::DESCENDANTS)
+          add_test_cases(test_suites, test_cases)
         end
 
         def resolve_path(path)

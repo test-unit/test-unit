@@ -21,6 +21,7 @@ require_relative 'testsuite'
 require_relative 'test-suite-creator'
 require_relative 'assertion-failed-error'
 require_relative 'auto-runner-loader'
+require_relative 'worker-context'
 require_relative 'util/backtracefilter'
 require_relative 'util/output'
 require_relative 'util/method-owner-finder'
@@ -622,7 +623,7 @@ module Test
       # and errors in result.
       def run(worker_context)
         begin
-          if worker_context.test_result?
+          if worker_context.class.test_result?
             result = worker_context
             worker_context = WorkerContext.new(nil, nil, result)
           end

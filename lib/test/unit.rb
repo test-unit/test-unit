@@ -508,6 +508,31 @@ module Test # :nodoc:
           hook.call
         end
       end
+
+      # @api private
+      @@box_available_flag = nil
+
+      # @api private
+      def disable_box_forcibly
+        v =  @@box_available_flag
+        @@box_available_flag = false
+        yield
+      ensure
+        @@box_available_flag = v
+      end
+
+      # @api private
+      def box_available?
+        return @@box_available_flag unless @@box_available_flag.nil?
+        @@box_available_flag = defined?(Ruby::Box) && Ruby::Box.enabled?
+        if @@box_available_flag
+          major, minor, _ = Ruby::VERSION.split('.')
+          if major.to_i < 4 || major.to_i == 4 && minor.to_i < 1
+            @@box_available_flag = false
+          end
+        end
+        @@box_available_flag
+      end
     end
   end
 end
