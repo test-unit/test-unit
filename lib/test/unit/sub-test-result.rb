@@ -7,13 +7,13 @@
 module Test
   module Unit
     class SubTestResult
-      attr_accessor :stop_tag
-
       class << self
         def test_result?
           true
         end
       end
+
+      attr_accessor :stop_tag
 
       def initialize(parent_test_result)
         @parent_test_result = parent_test_result
