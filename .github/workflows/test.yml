@@ -8,16 +8,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # ruby/setup-ruby doesn't provide Ruby 2.3 or older for
+          # ubuntu-26.04.
           - name: "2.1"
             ruby-version: "2.1"
-            runs-on: "ubuntu-latest"
+            runs-on: "ubuntu-24.04"
           # Disabled because ruby/setup-ruby doesn't work.
           # - name: "2.2"
           #   ruby-version: "2.2"
           #   runs-on: "ubuntu-latest"
           - name: "2.3"
             ruby-version: "2.3"
-            runs-on: "ubuntu-latest"
+            runs-on: "ubuntu-24.04"
           - name: "2.4"
             ruby-version: "2.4"
             runs-on: "ubuntu-latest"
