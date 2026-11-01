@@ -910,6 +910,29 @@ module Test
         @internal_data.passed?
       end
 
+      # Returns the number of assertions in this test. This is for
+      # Minitest compatibility.
+      #
+      # @return [Integer]
+      def assertions
+        @internal_data.n_assertions
+      end
+
+      # Sets the number of assertions in this test. Increased
+      # assertions are also added to the current result. Decreasing
+      # is ignored. This is for Minitest compatibility.
+      #
+      # @example Add an assertion without an assertion method
+      #   self.assertions += 1
+      #
+      # @param n_assertions [Integer]
+      # @return [void]
+      def assertions=(n_assertions)
+        (n_assertions - assertions).times do
+          add_assertion
+        end
+      end
+
       # Notify that a problem is occurred in the test. It means that
       # the test is a failed test. If any failed tests exist in test
       # suites, the test process exits with failure exit status.
@@ -992,6 +1015,7 @@ module Test
       end
 
       def add_assertion
+        @internal_data.n_assertions += 1
         current_result.add_assertion
       end
 
@@ -1000,6 +1024,7 @@ module Test
         attr_reader :test_data_label, :test_data
         attr_accessor :run_context
         attr_accessor :worker_id
+        attr_accessor :n_assertions
         def initialize
           @start_time = nil
           @elapsed_time = nil
@@ -1009,6 +1034,7 @@ module Test
           @test_data = nil
           @run_context = nil
           @worker_id = nil
+          @n_assertions = 0
         end
 
         def passed?
@@ -1051,6 +1077,7 @@ module Test
             passed: @passed,
             interrupted: @interrupted,
             test_data_label: @test_data_label,
+            n_assertions: @n_assertions,
           }
         end
 
@@ -1060,6 +1087,7 @@ module Test
           @passed = data[:passed]
           @interrupted = data[:interrupted]
           @test_data_label = data[:test_data_label]
+          @n_assertions = data[:n_assertions]
         end
       end
     end

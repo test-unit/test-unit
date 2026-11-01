@@ -589,6 +589,54 @@ module Test
         raise AssertionFailedError.new(message) unless passed
       end
 
+      class TestAssertions < self
+        def test_count
+          test_case = Class.new(TestCase) do
+            def test_two_assertions
+              assert_true(true)
+              assert_equal(1, 1)
+            end
+          end
+          test = test_case.new("test_two_assertions")
+          test.run(TestResult.new) {}
+          assert_equal(2, test.assertions)
+        end
+
+        def test_increase
+          test_case = Class.new(TestCase) do
+            def test_increase
+              self.assertions += 1
+            end
+          end
+          test = test_case.new("test_increase")
+          result = TestResult.new
+          test.run(result) {}
+          assert_equal([1, 1],
+                       [test.assertions, result.assertion_count])
+        end
+
+        def test_decrease
+          test_case = Class.new(TestCase) do
+            def test_decrease
+              assert_true(true)
+              self.assertions = 0
+            end
+          end
+          test = test_case.new("test_decrease")
+          result = TestResult.new
+          test.run(result) {}
+          assert_equal([1, 1],
+                       [test.assertions, result.assertion_count])
+        end
+
+        def test_marshal
+          internal_data = TestCase::InternalData.new
+          internal_data.n_assertions = 2
+          assert_equal(2,
+                       Marshal.load(Marshal.dump(internal_data)).n_assertions)
+        end
+      end
+
       class TestTestDefined < self
         class TestNoQuery < self
           def test_no_test
