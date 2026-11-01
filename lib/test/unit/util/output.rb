@@ -37,6 +37,10 @@ module Test
           end
         end
 
+        # Same as #capture_output. This is for Minitest
+        # compatibility.
+        alias_method :capture_io, :capture_output
+
         private
         # Monitor, not Mutex, to allow nested #capture_output. A
         # monitor per Ractor because $stdout/$stderr are Ractor

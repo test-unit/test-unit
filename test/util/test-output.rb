@@ -16,6 +16,14 @@ class TestUnitOutput < Test::Unit::TestCase
                  end)
   end
 
+  def test_capture_io
+    assert_equal(["stdout\n", "stderr\n"],
+                 capture_io do
+                   puts("stdout")
+                   warn("stderr")
+                 end)
+  end
+
   def test_capture_output_nested
     inner_result = nil
     outer_result = capture_output do
