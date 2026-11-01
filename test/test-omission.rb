@@ -12,9 +12,8 @@ class TestUnitOmission < Test::Unit::TestCase
     end
 
     def test_omit
-      omit("1st omit")
-      omit("2nd omit. Should not be reached here.")
-      assert(true, "Should not be reached here too.")
+      omit("Omit")
+      flunk("Should not be reached here.")
     end
 
     def test_omit_with_condition
@@ -40,6 +39,19 @@ class TestUnitOmission < Test::Unit::TestCase
       end
       assert(true, "Should be reached here too.")
     end
+
+    def test_skip
+      skip("Skip")
+      flunk("Should not be reached here.")
+    end
+
+    def test_skip_without_message
+      skip
+    end
+
+    def test_skip_with_ignored_argument
+      skip("Ignore the 2nd argument", caller)
+    end
   end
 
   def test_omit
@@ -47,7 +59,7 @@ class TestUnitOmission < Test::Unit::TestCase
     assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
                  "1 omissions, 0 notifications",
                  result.to_s)
-    assert_fault_messages(["1st omit"], result.omissions)
+    assert_fault_messages(["Omit"], result.omissions)
   end
 
   def test_omit_with_condition
@@ -72,6 +84,24 @@ class TestUnitOmission < Test::Unit::TestCase
                  "1 omissions, 0 notifications",
                  result.to_s)
     assert_fault_messages(["Should omit."], result.omissions)
+  end
+
+  def test_skip
+    result = _run_test("test_skip")
+    assert_equal("1 tests, 0 assertions, 0 failures, 0 errors, 0 pendings, " \
+                 "1 omissions, 0 notifications",
+                 result.to_s)
+    assert_fault_messages(["Skip"], result.omissions)
+  end
+
+  def test_skip_without_message
+    result = _run_test("test_skip_without_message")
+    assert_fault_messages(["skipped."], result.omissions)
+  end
+
+  def test_skip_with_ignored_argument
+    result = _run_test("test_skip_with_ignored_argument")
+    assert_fault_messages(["Ignore the 2nd argument"], result.omissions)
   end
 
   private

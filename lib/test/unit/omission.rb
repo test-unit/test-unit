@@ -142,6 +142,19 @@ module Test
         end
       end
 
+      # Omit the rest of the test. This is for Minitest
+      # compatibility. Use #omit in new tests.
+      #
+      # Example:
+      #
+      #     def test_skip
+      #       skip("Not supported yet")
+      #       # Not reached here
+      #     end
+      def skip(message=nil, _ignored=nil)
+        omit(message || "skipped.")
+      end
+
       private
       def add_omission(omission)
         current_result.add_omission(omission)
