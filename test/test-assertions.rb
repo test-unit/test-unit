@@ -2906,6 +2906,76 @@ EOM
       end
     end
 
+    class TestAssertOutput < Test::Unit::TestCase
+      include AssertionCheckable
+
+      class << self
+        # assert_output replaces process global $stdout/$stderr.
+        def parallel_safe?
+          false
+        end
+      end
+
+      def test_pass_string
+        check_nothing_fails do
+          assert_output("stdout\n", "stderr\n") do
+            puts("stdout")
+            warn("stderr")
+          end
+        end
+      end
+
+      def test_pass_regexp
+        check_nothing_fails do
+          assert_output(/out/, /err/) do
+            puts("stdout")
+            warn("stderr")
+          end
+        end
+      end
+
+      def test_pass_nil
+        check_nothing_fails do
+          assert_output(nil, nil) do
+            puts("stdout")
+            warn("stderr")
+          end
+        end
+      end
+
+      def test_fail_string
+        expected_message = <<-EOM
+In stdout.
+<"out"> expected but was
+<"stdout\\n">.
+        EOM
+        check_fail(expected_message.chomp) do
+          assert_output("out") do
+            puts("stdout")
+          end
+        end
+      end
+
+      def test_fail_regexp
+        expected_message = <<-EOM
+In stderr.
+</nonexistent/> was expected to be =~
+<"stderr\\n">.
+        EOM
+        check_fail(expected_message.chomp) do
+          assert_output(nil, /nonexistent/) do
+            warn("stderr")
+          end
+        end
+      end
+
+      def test_fail_without_block
+        check_fail("assert_output requires a block to capture output.") do
+          assert_output
+        end
+      end
+    end
+
     class TestAssertNothingLeakedMemory < Test::Unit::TestCase
       include AssertionCheckable
 

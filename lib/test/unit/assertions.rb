@@ -1892,6 +1892,47 @@ EOT
         end
       end
 
+      # Asserts that the block writes the expected output to
+      # `$stdout` and `$stderr`. This is for Minitest compatibility.
+      #
+      # Each expected output is checked by its type:
+      #
+      # * `nil`: It's not checked.
+      # * `Regexp`: It must match the output.
+      # * Others: It must be equal to the output. Use `""` to assert
+      #   no output.
+      #
+      # @example Pass patterns
+      #   assert_output("Hello\n") {puts("Hello")}         # => pass
+      #   assert_output(/ell/) {puts("Hello")}             # => pass
+      #   assert_output(nil, "Error\n") {warn("Error")}    # => pass
+      #   assert_output("", "") {}                         # => pass
+      #
+      # @example Failure patterns
+      #   assert_output("Hell") {puts("Hello")}            # => failure
+      #   assert_output(nil, "") {warn("Error")}           # => failure
+      #
+      # @param [String, Regexp, nil] stdout The expected output to
+      #   `$stdout`.
+      # @param [String, Regexp, nil] stderr The expected output to
+      #   `$stderr`.
+      # @yield [] The block that writes output.
+      # @return [void]
+      #
+      # @since 3.8.0
+      def assert_output(stdout=nil, stderr=nil)
+        unless block_given?
+          flunk("assert_output requires a block to capture output.")
+        end
+        _wrap_assertion do
+          actual_stdout, actual_stderr = capture_output do
+            yield
+          end
+          _assert_captured_output(stderr, actual_stderr, "In stderr")
+          _assert_captured_output(stdout, actual_stdout, "In stdout")
+        end
+      end
+
       ##
       # Builds a failure message.  `user_message` is added before the
       # `template` and `arguments` replaces the '?'s positionally in
@@ -1914,6 +1955,16 @@ EOT
           ensure
             @_assertion_wrapped = false
           end
+        end
+      end
+
+      def _assert_captured_output(expected, actual, message)
+        case expected
+        when nil
+        when Regexp
+          assert_match(expected, actual, message)
+        else
+          assert_equal(expected, actual, message)
         end
       end
 
