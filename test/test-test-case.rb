@@ -637,6 +637,42 @@ module Test
         end
       end
 
+      class TestSkipped < self
+        def test_omit
+          test_case = Class.new(TestCase) do
+            def test_omit
+              omit
+            end
+          end
+          test = test_case.new("test_omit")
+          test.run(TestResult.new) {}
+          assert do
+            test.skipped?
+          end
+        end
+
+        def test_pend
+          test_case = Class.new(TestCase) do
+            def test_pend
+              pend
+            end
+          end
+          test = test_case.new("test_pend")
+          test.run(TestResult.new) {}
+          assert do
+            not test.skipped?
+          end
+        end
+
+        def test_marshal
+          internal_data = TestCase::InternalData.new
+          internal_data.omitted
+          assert do
+            Marshal.load(Marshal.dump(internal_data)).omitted?
+          end
+        end
+      end
+
       class TestTestDefined < self
         class TestNoQuery < self
           def test_no_test
