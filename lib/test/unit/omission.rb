@@ -155,8 +155,17 @@ module Test
         omit(message || "skipped.")
       end
 
+      # Returns whether the test is omitted. This is for Minitest
+      # compatibility.
+      #
+      # @return [Boolean]
+      def skipped?
+        @internal_data.omitted?
+      end
+
       private
       def add_omission(omission)
+        @internal_data.omitted
         current_result.add_omission(omission)
       end
     end
