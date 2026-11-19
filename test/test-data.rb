@@ -11,16 +11,8 @@ class TestData < Test::Unit::TestCase
   end
 
   class TestCalc < Test::Unit::TestCase
-    @@testing = false
-
-    class << self
-      def testing=(testing)
-        @@testing = testing
-      end
-    end
-
     def valid?
-      @@testing
+      false
     end
 
     def setup
@@ -178,16 +170,6 @@ class TestData < Test::Unit::TestCase
     end
   end
 
-  class << self
-    def startup
-      TestCalc.testing = true
-    end
-
-    def shutdown
-      TestCalc.testing = false
-    end
-  end
-
   def test_data_no_arguments_without_block
     assert_raise(ArgumentError) do
       self.class.data
@@ -295,7 +277,7 @@ class TestData < Test::Unit::TestCase
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
        "load-data-set"    => TestCalc::TestLoadDataSet)
   def test_suite(test_case)
-    suite = test_case.suite
+    suite = create_suite(test_case)
     assert_equal(["test_plus[positive negative](#{test_case.name})",
                   "test_plus[positive positive](#{test_case.name})"],
                  suite.tests.collect {|test| test.name}.sort)
@@ -303,7 +285,7 @@ class TestData < Test::Unit::TestCase
 
   def test_suite_patterns
     test_case = TestCalc::TestPatterns
-    suite = test_case.suite
+    suite = create_suite(test_case)
     assert_equal([
                    "test_use_data[x: -1, y: -100, z: \"a\"](#{test_case.name})",
                    "test_use_data[x: -1, y: -100, z: \"b\"](#{test_case.name})",
@@ -329,7 +311,7 @@ class TestData < Test::Unit::TestCase
 
   def test_suite_patterns_hash
     test_case = TestCalc::TestPatternsHash
-    suite = test_case.suite
+    suite = create_suite(test_case)
     names = [
       "test_use_data[x: negative, y: negative, z: \"a\"](#{test_case.name})",
       "test_use_data[x: negative, y: negative, z: \"b\"](#{test_case.name})",
@@ -356,7 +338,7 @@ class TestData < Test::Unit::TestCase
 
   def test_suite_patterns_group
     test_case = TestCalc::TestPatternsGroup
-    suite = test_case.suite
+    suite = create_suite(test_case)
     assert_equal([
                    "test_use_data[group: 1, a: -1, b: :a](#{test_case.name})",
                    "test_use_data[group: 1, a: -1, b: :b](#{test_case.name})",
@@ -397,7 +379,7 @@ class TestData < Test::Unit::TestCase
        "dynamic-data-set" => TestCalc::TestDynamicDataSet,
        "load-data-set"    => TestCalc::TestLoadDataSet)
   def test_equal(test_case)
-    suite = test_case.suite
+    suite = create_suite(test_case)
     positive_positive_test = suite.tests.find do |test|
       test.data_label == "positive positive"
     end
@@ -418,11 +400,16 @@ class TestData < Test::Unit::TestCase
 
   def _run_test(test_case)
     result = Test::Unit::TestResult.new
-    test = test_case.suite
+    test = create_suite(test_case)
     yield(test) if block_given?
     worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
     test.run(worker_context) {}
     result
+  end
+
+  def create_suite(test_case)
+    suite_creator = Test::Unit::TestSuiteCreator.new(test_case, skip_valid_check: true)
+    suite_creator.create
   end
 
   class TestLoadData < Test::Unit::TestCase
