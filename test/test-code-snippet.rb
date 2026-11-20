@@ -38,6 +38,12 @@ class TestCodeSnippet < Test::Unit::TestCase
   end
 
   class TestDefaultExternal < self
+    class << self
+      def parallel_safe?
+        false
+      end
+    end
+
     def suppress_warning
       verbose = $VERBOSE
       begin
