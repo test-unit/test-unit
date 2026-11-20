@@ -17,8 +17,9 @@ module Test
         end
       end
 
-      def initialize(test_case)
+      def initialize(test_case, skip_valid_check: false)
         @test_case = test_case
+        @skip_valid_check = skip_valid_check
       end
 
       def create
@@ -59,7 +60,7 @@ module Test
       def append_test(suite, test_name)
         test = @test_case.new(test_name)
         yield(test) if block_given?
-        suite << test if test.valid?
+        suite << test if @skip_valid_check or test.valid?
       end
 
       def collect_test_names
