@@ -85,6 +85,15 @@ module Test
         SystemExit,
       ]
       PASS_THROUGH_EXCEPTION_NAMES = []
+
+      # Returns whether an error occurred in the test. This is for
+      # Minitest compatibility.
+      #
+      # @return [Boolean]
+      def error?
+        @internal_data.errored?
+      end
+
       private
       def handle_all_exception(exception)
         return false if pass_through_exception?(exception)
@@ -117,6 +126,7 @@ module Test
       end
 
       def add_error(exception)
+        @internal_data.errored
         error = Error.new(name, exception, :method_name => @method_name)
         current_result.add_error(error)
       end

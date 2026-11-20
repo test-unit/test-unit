@@ -673,6 +673,42 @@ module Test
         end
       end
 
+      class TestError < self
+        def test_error
+          test_case = Class.new(TestCase) do
+            def test_error
+              raise "error"
+            end
+          end
+          test = test_case.new("test_error")
+          test.run(TestResult.new) {}
+          assert do
+            test.error?
+          end
+        end
+
+        def test_failure
+          test_case = Class.new(TestCase) do
+            def test_failure
+              flunk
+            end
+          end
+          test = test_case.new("test_failure")
+          test.run(TestResult.new) {}
+          assert do
+            not test.error?
+          end
+        end
+
+        def test_marshal
+          internal_data = TestCase::InternalData.new
+          internal_data.errored
+          assert do
+            Marshal.load(Marshal.dump(internal_data)).errored?
+          end
+        end
+      end
+
       class TestTestDefined < self
         class TestNoQuery < self
           def test_no_test
