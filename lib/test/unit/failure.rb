@@ -16,7 +16,7 @@ module Test
       attr_reader :inspected_expected, :inspected_actual
 
       SINGLE_CHARACTER = 'F'
-      LABEL = "Failure"
+      LABEL = "Failure".freeze
 
       # Creates a new Failure with the given location and
       # message.

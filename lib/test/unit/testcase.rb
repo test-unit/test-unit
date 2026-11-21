@@ -117,13 +117,13 @@ module Test
       include Util::BacktraceFilter
       include Util::Output
 
-      STARTED = name + "::STARTED" # :nodoc:
-      FINISHED = name + "::FINISHED" # :nodoc:
-      STARTED_OBJECT = name + "::STARTED::OBJECT" # :nodoc:
-      FINISHED_OBJECT = name + "::FINISHED::OBJECT" # :nodoc:
+      STARTED = (name + "::STARTED").freeze # :nodoc:
+      FINISHED = (name + "::FINISHED").freeze # :nodoc:
+      STARTED_OBJECT = (name + "::STARTED::OBJECT").freeze # :nodoc:
+      FINISHED_OBJECT = (name + "::FINISHED::OBJECT").freeze # :nodoc:
 
       DESCENDANTS = [] # :nodoc:
-      AVAILABLE_ORDERS = [:alphabetic, :random, :defined] # :nodoc:
+      AVAILABLE_ORDERS = [:alphabetic, :random, :defined].freeze # :nodoc:
 
       class << self
         # Indicates whether the test is parallel safe.
