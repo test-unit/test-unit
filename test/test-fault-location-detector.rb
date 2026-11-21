@@ -16,6 +16,16 @@ class TestFaultLocationDetector < Test::Unit::TestCase
   private
   def run_test_case(test_case)
     suite = test_case.suite
+    run_test_suite(suite)
+  end
+
+  def run_test_object(test)
+    suite = Test::Unit::TestSuite.new(test.class.name, test.class)
+    suite << test
+    run_test_suite(suite)
+  end
+
+  def run_test_suite(suite)
     result = Test::Unit::TestResult.new
     worker_context = Test::Unit::WorkerContext.new(nil, nil, result)
     suite.run(worker_context) {}
@@ -142,17 +152,18 @@ class TestFaultLocationDetector < Test::Unit::TestCase
           @target_line_number = line_number
         end
       end
+
+      def valid?
+        false
+      end
+
+      def test_failed
+        self.class.target_line_number = __LINE__; assert_always_failed
+      end
     end
 
     def test_in_named_test_case
-      # Define test method dynamically to avoid running this failed
-      # test in the main test suite.
-      NamedTestCase.class_eval do
-        def test_failed
-          self.class.target_line_number = __LINE__; assert_always_failed
-        end
-      end
-      fault = run_test_case(NamedTestCase)
+      fault = run_test_object(NamedTestCase.new("test_failed"))
       assert_detect(fault, NamedTestCase.target_line_number)
     end
 
