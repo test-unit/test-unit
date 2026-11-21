@@ -1031,6 +1031,7 @@ module Test
           @passed = true
           @interrupted = false
           @omitted = false
+          @errored = false
           @test_data_label = nil
           @test_data = nil
           @run_context = nil
@@ -1048,6 +1049,10 @@ module Test
 
         def omitted?
           @omitted
+        end
+
+        def errored?
+          @errored
         end
 
         def assign_test_data(label, data)
@@ -1079,6 +1084,10 @@ module Test
           @omitted = true
         end
 
+        def errored
+          @errored = true
+        end
+
         def marshal_dump
           {
             start_time: @start_time,
@@ -1086,6 +1095,7 @@ module Test
             passed: @passed,
             interrupted: @interrupted,
             omitted: @omitted,
+            errored: @errored,
             test_data_label: @test_data_label,
             n_assertions: @n_assertions,
           }
@@ -1097,6 +1107,7 @@ module Test
           @passed = data[:passed]
           @interrupted = data[:interrupted]
           @omitted = data[:omitted]
+          @errored = data[:errored]
           @test_data_label = data[:test_data_label]
           @n_assertions = data[:n_assertions]
         end
