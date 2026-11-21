@@ -667,6 +667,7 @@ module Test
               raise unless handle_exception(e)
             end
           end
+          notify_no_assertions
           @internal_data.test_finished
           result.add_run
           yield(FINISHED, name)
@@ -1000,6 +1001,15 @@ module Test
         else
           __send__(@method_name)
         end
+      end
+
+      def notify_no_assertions
+        return unless passed?
+        return if skipped?
+        return unless assertions.zero?
+        path, line = self.class.instance_method(@method_name).source_location
+        notify("<#{self.class}\##{@method_name}> has no assertions",
+               :backtrace => ["#{path}:#{line}"])
       end
 
       def handle_exception(exception)

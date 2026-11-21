@@ -522,10 +522,12 @@ module Test
           self.test_order = :alphabetic
 
           def test_name
+            assert(true)
           end
           alias_method :test_name2, :test_name
 
           def test_name
+            assert(true)
           end
         end
 
@@ -535,7 +537,7 @@ module Test
         result = TestResult.new
         worker_context = WorkerContext.new(nil, nil, result)
         suite.run(worker_context) {}
-        assert_equal("2 tests, 0 assertions, 0 failures, " +
+        assert_equal("2 tests, 2 assertions, 0 failures, " +
                      "0 errors, 0 pendings, 0 omissions, 1 notifications",
                      result.summary)
       end
@@ -706,6 +708,50 @@ module Test
           assert do
             Marshal.load(Marshal.dump(internal_data)).errored?
           end
+        end
+      end
+
+      class TestNoAssertions < self
+        def notifications(test_case)
+          test = test_case.new("test_it")
+          result = TestResult.new
+          test.run(result) {}
+          result.notifications.collect do |notification|
+            [notification.message, notification.location]
+          end
+        end
+
+        def test_no_assertions
+          line = __LINE__ + 2
+          test_case = Class.new(TestCase) do
+            def test_it
+            end
+          end
+          assert_equal([
+                         [
+                           "<#{test_case}#test_it> has no assertions",
+                           ["#{__FILE__}:#{line}"],
+                         ],
+                       ],
+                       notifications(test_case))
+        end
+
+        def test_assertion
+          test_case = Class.new(TestCase) do
+            def test_it
+              assert(true)
+            end
+          end
+          assert_equal([], notifications(test_case))
+        end
+
+        def test_omit
+          test_case = Class.new(TestCase) do
+            def test_it
+              omit
+            end
+          end
+          assert_equal([], notifications(test_case))
         end
       end
 
@@ -1456,6 +1502,7 @@ module Test
 
           def test_run
             # This exists only for executing #run
+            assert(true)
           end
         end
       end
