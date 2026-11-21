@@ -1933,6 +1933,22 @@ EOT
         end
       end
 
+      # Asserts that the block writes nothing to `$stdout` and
+      # `$stderr`. This is the same as `assert_output("", "")`. This
+      # is for Minitest compatibility.
+      #
+      # @example
+      #   assert_silent {}                                 # => pass
+      #   assert_silent {puts("Hello")}                    # => failure
+      #
+      # @yield [] The block that should write nothing.
+      # @return [void]
+      #
+      # @since 3.8.0
+      def assert_silent(&block)
+        assert_output("", "", &block)
+      end
+
       ##
       # Builds a failure message.  `user_message` is added before the
       # `template` and `arguments` replaces the '?'s positionally in

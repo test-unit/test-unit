@@ -2976,6 +2976,37 @@ In stderr.
       end
     end
 
+    class TestAssertSilent < Test::Unit::TestCase
+      include AssertionCheckable
+
+      class << self
+        # assert_silent replaces process global $stdout/$stderr.
+        def parallel_safe?
+          false
+        end
+      end
+
+      def test_pass
+        check_nothing_fails do
+          assert_silent do
+          end
+        end
+      end
+
+      def test_fail
+        expected_message = <<-EOM
+In stdout.
+<""> expected but was
+<"stdout\\n">.
+        EOM
+        check_fail(expected_message.chomp) do
+          assert_silent do
+            puts("stdout")
+          end
+        end
+      end
+    end
+
     class TestAssertNothingLeakedMemory < Test::Unit::TestCase
       include AssertionCheckable
 
