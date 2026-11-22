@@ -416,6 +416,7 @@ module Test
           parallel_options = [
             :thread,
             :process,
+            :ractor,
           ]
           o.on("--[no-]parallel=[PARALLEL]", parallel_options,
                "Runs tests in parallel: #{parallel_options.join(", ")}",
@@ -425,6 +426,8 @@ module Test
               @test_suite_runner_class = TestSuiteThreadRunner
             when :process
               @test_suite_runner_class = TestSuiteProcessRunner
+            when :ractor
+              @test_suite_runner_class = TestSuiteRactorRunner
             else
               @test_suite_runner_class = TestSuiteRunner
             end
