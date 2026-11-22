@@ -38,10 +38,10 @@ module Test
         end
       end
 
-      FINISHED = name + "::FINISHED"
-      CHANGED = name + "::CHANGED"
-      PASS_ASSERTION = name + "::PASS_ASSERTION"
-      FAULT = name + "::FAULT"
+      FINISHED = (name + "::FINISHED").freeze
+      CHANGED = (name + "::CHANGED").freeze
+      PASS_ASSERTION = (name + "::PASS_ASSERTION").freeze
+      FAULT = (name + "::FAULT").freeze
 
       attr_reader :run_count, :pass_count, :assertion_count, :faults
 

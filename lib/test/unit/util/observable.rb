@@ -15,7 +15,7 @@ module Test
       # events.
       module Observable
         # We use this for defaults since nil might mean something
-        NOTHING = "NOTHING/#{__id__}"
+        NOTHING = "NOTHING/#{__id__}".freeze
 
         # Adds the passed proc as a listener on the
         # channel indicated by channel_name. listener_key

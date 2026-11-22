@@ -15,9 +15,9 @@ module Test
       # Provides an interface to write any given UI against,
       # hopefully making it easy to write new UIs.
       class TestRunnerMediator
-        RESET = name + "::RESET"
-        STARTED = name + "::STARTED"
-        FINISHED = name + "::FINISHED"
+        RESET = (name + "::RESET").freeze
+        STARTED = (name + "::STARTED").freeze
+        FINISHED = (name + "::FINISHED").freeze
 
         include Util::Observable
 

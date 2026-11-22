@@ -58,7 +58,7 @@ module Test
       end
 
       # @private
-      NOT_SPECIFIED = Object.new
+      NOT_SPECIFIED = Object.new.freeze
 
       # @overload assert(object, message=nil)
       #

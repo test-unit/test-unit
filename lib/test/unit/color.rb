@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Test
   module Unit
     class Color
@@ -22,7 +24,7 @@ module Test
       end
 
       NAMES = ["black", "red", "green", "yellow",
-               "blue", "magenta", "cyan", "white"]
+               "blue", "magenta", "cyan", "white"].freeze
 
       attr_reader :name
       def initialize(name, options={})
