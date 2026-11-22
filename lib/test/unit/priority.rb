@@ -119,13 +119,14 @@ module Test
           File.exist?(passed_file)
         end
 
+        BASE_DIR = File.dirname($0).freeze
         def result_dir
           components = [
             ".test-result",
             escape_class_name(@test.class.name || "AnonymousTestCase"),
             escaped_method_name,
           ]
-          parent_directories = [File.dirname($0), Dir.pwd]
+          parent_directories = [BASE_DIR, Dir.pwd]
           if Process.respond_to?(:uid)
             parent_directories << File.join(Dir.tmpdir, Process.uid.to_s)
           end
