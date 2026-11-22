@@ -670,13 +670,13 @@ module Test
           @internal_data.test_finished
           result.add_run
           yield(FINISHED, name)
-          yield(FINISHED_OBJECT, self)
         ensure
           # @_result = nil # For test-spec's after_all :<
           (instance_variables - instance_variables_before).each do |name|
             remove_instance_variable(name)
           end
         end
+        yield(FINISHED_OBJECT, self)
       end
 
       # Called before every test method runs. Can be used
