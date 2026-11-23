@@ -8,9 +8,9 @@ module Test
 
         NAME = 'collected from the subclasses of TestCase'
 
-        def collect(name=NAME)
+        def collect(name=NAME, descendants=TestCase::DESCENDANTS)
           suite = TestSuite.new(name)
-          add_test_cases(suite, TestCase::DESCENDANTS)
+          add_test_cases(suite, descendants)
           adjust_ractor_tests(suite)
           suite
         end
