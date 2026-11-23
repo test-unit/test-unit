@@ -6,6 +6,7 @@
 #   * Copyright (c) 2008-2012 Kouhei Sutou <tt><kou@clear-code.com></tt>
 # License:: Ruby license.
 
+require_relative 'ractor-helper'
 require_relative 'attribute'
 require_relative 'fixture'
 require_relative 'exception-handler'
