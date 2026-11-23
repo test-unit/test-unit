@@ -1,5 +1,93 @@
 # News
 
+## 3.7.9 - 2026-11-24 {#version-3-7-9}
+
+### Improvements
+
+  * Added support for running test files in Ruby::Box. test-unit
+    loads each test file with suffix `.box.rb` (e.g.
+    `test_xxx.box.rb`) in its own Ruby::Box. So monkey patches in the
+    file don't affect other test files. You need Ruby 4.1 or later
+    with `RUBY_BOX=1`. The `--parallel` option isn't supported for
+    these files yet.
+    * GH-382
+    * GH-384
+    * GH-385
+    * GH-386
+    * GH-388
+    * GH-389
+    * Patch by Satoshi Tagomori
+
+  * Added Minitest compatible methods. You can use them when you
+    migrate your tests from Minitest. They also make test-unit easier
+    to use with Active Support.
+    * `skip`: Omits the rest of the test like `omit`.
+    * `assertions` and `assertions=`: Reads and writes the number of
+      assertions in the test.
+    * `capture_io`: Same as `capture_output`.
+    * `assert_output`: Asserts the output to `$stdout` and `$stderr`
+      in the block.
+    * `skipped?`: Returns whether the test is omitted.
+    * `error?`: Returns whether an error occurred in the test.
+    * `assert_silent`: Asserts no output to `$stdout` and `$stderr`
+      in the block.
+    * GH-390
+    * GH-392
+    * GH-394
+    * GH-395
+    * GH-396
+    * GH-397
+    * GH-399
+    * GH-400
+    * Suggested by Akira Matsuda
+
+  * `capture_output`: Improved thread safety. Calls from multiple
+    threads now run one by one.
+    * GH-390
+    * GH-391
+
+  * testcase: `Test::Unit::TestCase::FINISHED_OBJECT` listeners can't
+    read instance variables added during the test run now. This is a
+    preparation for the Ractor based runner.
+    * GH-235
+    * GH-405
+    * Co authored by Naoto Ono
+
+  * priority: The priority mode now reads `$0` when
+    `test/unit/priority.rb` is loaded. It doesn't use a new value
+    assigned to `$0` after that. This is a preparation for the Ractor
+    based runner.
+    * GH-235
+    * GH-406
+    * Co authored by Naoto Ono
+
+  * color-scheme: `Test::Unit::ColorScheme.default` now returns a new
+    object every time. If you change the returned object, the next
+    call doesn't return your change. This is a preparation for the
+    Ractor based runner.
+    * GH-235
+    * GH-408
+    * Co authored by Naoto Ono
+
+  * Added the `--notify-no-assertions` option. It notifies you of
+    passed tests without assertions. Such tests may verify nothing.
+    This is disabled by default. You can also enable it per test case
+    by `self.notify_no_assertions = true`.
+    * GH-390
+    * GH-403
+
+  * parallel: Added `ractor` to the `--parallel` option. This is a
+    preparation. The Ractor based runner isn't available yet.
+    * GH-235
+    * GH-410
+    * Co authored by Naoto Ono
+
+### Thanks
+
+  * Satoshi Tagomori
+  * Akira Matsuda
+  * Naoto Ono
+
 ## 3.7.8 - 2026-06-05 {#version-3-7-8}
 
 ### Improvements
