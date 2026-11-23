@@ -160,7 +160,7 @@ module Test
         end
 
         def inherited(sub_class) # :nodoc:
-          DESCENDANTS << sub_class
+          DESCENDANTS << sub_class unless Unit.non_main_ractor?
           super
         end
 
