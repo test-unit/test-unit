@@ -67,6 +67,9 @@ module Test
                   command_line << "--base-directory" << base_directory
                 end
                 command_line << "--worker-id" << (i + 1).to_s
+                if TestCase.notify_no_assertions?
+                  command_line << "--notify-no-assertions"
+                end
                 if Gem.win_platform?
                   local_address = tcp_server.local_address
                   command_line << "--ip-address" << local_address.ip_address

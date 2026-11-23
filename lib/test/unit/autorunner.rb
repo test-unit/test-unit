@@ -407,6 +407,12 @@ module Test
             AssertionFailedError.debug_on_failure = boolean
           end
 
+          o.on("--[no-]notify-no-assertions",
+               "Notify tests without assertions",
+               "(#{TestCase.notify_no_assertions?})") do |boolean|
+            TestCase.notify_no_assertions = boolean
+          end
+
           o.on("--[no-]gc-stress",
                "Enable GC.stress only while each test is running",
                "(#{@gc_stress})") do |boolean|

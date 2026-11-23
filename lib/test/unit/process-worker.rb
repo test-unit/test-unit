@@ -28,10 +28,15 @@ remote_ip_port = nil
 parser.on("--ip-port=PORT", Integer) do |port|
   remote_ip_port = port
 end
+notify_no_assertions = false
+parser.on("--notify-no-assertions") do
+  notify_no_assertions = true
+end
 test_paths = parser.parse!
 $LOAD_PATH.unshift(*load_paths)
 
 require_relative "../unit"
+Test::Unit::TestCase.notify_no_assertions = true if notify_no_assertions
 require_relative "collector/load"
 require_relative "process-test-result"
 require_relative "worker-context"

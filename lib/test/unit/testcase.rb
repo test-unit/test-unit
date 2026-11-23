@@ -151,6 +151,40 @@ module Test
           true
         end
 
+        # Indicates whether tests without assertions are notified.
+        # This returns `false` by default. Use
+        # {.notify_no_assertions=} to change it. The default can also
+        # be changed by `--notify-no-assertions`.
+        #
+        # @return [Boolean]
+        #
+        # @since 3.8.0
+        def notify_no_assertions?
+          false
+        end
+
+        # Sets whether tests without assertions are notified. Sub
+        # test cases inherit it.
+        #
+        # @example Notify tests without assertions
+        #   class TestMyClass < Test::Unit::TestCase
+        #     self.notify_no_assertions = true
+        #
+        #     def test_no_assertions
+        #       # This is notified.
+        #     end
+        #   end
+        #
+        # @param boolean [Boolean]
+        # @return [void]
+        #
+        # @since 3.8.0
+        def notify_no_assertions=(boolean)
+          define_singleton_method(:notify_no_assertions?) do
+            boolean
+          end
+        end
+
         def test_suite?
           false
         end
@@ -667,6 +701,7 @@ module Test
               raise unless handle_exception(e)
             end
           end
+          notify_no_assertions
           @internal_data.test_finished
           result.add_run
           yield(FINISHED, name)
@@ -1000,6 +1035,16 @@ module Test
         else
           __send__(@method_name)
         end
+      end
+
+      def notify_no_assertions
+        return unless self.class.notify_no_assertions?
+        return unless passed?
+        return if skipped?
+        return unless assertions.zero?
+        path, line = self.class.instance_method(@method_name).source_location
+        notify("<#{self.class}\##{@method_name}> has no assertions",
+               :backtrace => ["#{path}:#{line}"])
       end
 
       def handle_exception(exception)

@@ -5,6 +5,8 @@ class TestUnitNotification < Test::Unit::TestCase
   include TestUnitTestUtil
 
   class TestCase < Test::Unit::TestCase
+    self.notify_no_assertions = false
+
     class << self
       def suite
         Test::Unit::TestSuite.new(name)

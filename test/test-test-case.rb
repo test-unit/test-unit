@@ -520,6 +520,7 @@ module Test
       def test_redefine_method
         test_case = Class.new(Test::Unit::TestCase) do
           self.test_order = :alphabetic
+          self.notify_no_assertions = false
 
           def test_name
           end
@@ -706,6 +707,66 @@ module Test
           assert do
             Marshal.load(Marshal.dump(internal_data)).errored?
           end
+        end
+      end
+
+      class TestNoAssertions < self
+        def notifications(test_case)
+          test = test_case.new("test_it")
+          result = TestResult.new
+          test.run(result) {}
+          result.notifications.collect do |notification|
+            [notification.message, notification.location]
+          end
+        end
+
+        def notify_test_case
+          Class.new(TestCase) do
+            self.notify_no_assertions = true
+          end
+        end
+
+        def test_disabled
+          test_case = Class.new(TestCase) do
+            self.notify_no_assertions = false
+
+            def test_it
+            end
+          end
+          assert_equal([], notifications(test_case))
+        end
+
+        def test_no_assertions
+          line = __LINE__ + 2
+          test_case = Class.new(notify_test_case) do
+            def test_it
+            end
+          end
+          assert_equal([
+                         [
+                           "<#{test_case}#test_it> has no assertions",
+                           ["#{__FILE__}:#{line}"],
+                         ],
+                       ],
+                       notifications(test_case))
+        end
+
+        def test_assertion
+          test_case = Class.new(notify_test_case) do
+            def test_it
+              assert(true)
+            end
+          end
+          assert_equal([], notifications(test_case))
+        end
+
+        def test_omit
+          test_case = Class.new(notify_test_case) do
+            def test_it
+              omit
+            end
+          end
+          assert_equal([], notifications(test_case))
         end
       end
 
