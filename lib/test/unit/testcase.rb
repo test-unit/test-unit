@@ -158,7 +158,7 @@ module Test
         #
         # @return [Boolean]
         #
-        # @since 3.8.0
+        # @since 3.7.9
         def notify_no_assertions?
           false
         end
@@ -178,7 +178,7 @@ module Test
         # @param boolean [Boolean]
         # @return [void]
         #
-        # @since 3.8.0
+        # @since 3.7.9
         def notify_no_assertions=(boolean)
           define_singleton_method(:notify_no_assertions?) do
             boolean

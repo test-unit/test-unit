@@ -1919,7 +1919,7 @@ EOT
       # @yield [] The block that writes output.
       # @return [void]
       #
-      # @since 3.8.0
+      # @since 3.7.9
       def assert_output(stdout=nil, stderr=nil)
         unless block_given?
           flunk("assert_output requires a block to capture output.")
@@ -1944,7 +1944,7 @@ EOT
       # @yield [] The block that should write nothing.
       # @return [void]
       #
-      # @since 3.8.0
+      # @since 3.7.9
       def assert_silent(&block)
         assert_output("", "", &block)
       end
