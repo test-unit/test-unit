@@ -212,6 +212,7 @@ module Test
         @@added_method_names = {}
         def method_added(name) # :nodoc:
           super
+          return if Unit.non_main_ractor?
           added_method_names = (@@added_method_names[self] ||= {})
           stringified_name = name.to_s
           if added_method_names.key?(stringified_name)
