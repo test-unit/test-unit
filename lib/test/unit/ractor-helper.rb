@@ -19,6 +19,15 @@ module Test
       def non_main_ractor?
         ractor_available? and not Ractor.main?
       end
+
+      # @api private
+      def shareable_lambda(&block)
+        if ractor_available?
+          Ractor.shareable_lambda(&block)
+        else
+          block
+        end
+      end
     end
   end
 end
