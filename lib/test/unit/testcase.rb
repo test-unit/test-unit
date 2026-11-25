@@ -557,11 +557,19 @@ module Test
         #
         # @since 3.7.4
         def worker_id
-          @worker_id || 0
+          if Unit.non_main_ractor?
+            Ractor[:test_unit_worker_id] || 0
+          else
+            @worker_id || 0
+          end
         end
 
         def worker_id=(worker_id) # :nodoc:
-          @worker_id = worker_id
+          if Unit.non_main_ractor?
+            Ractor[:test_unit_worker_id] = worker_id
+          else
+            @worker_id = worker_id
+          end
         end
 
         private
