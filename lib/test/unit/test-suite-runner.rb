@@ -55,6 +55,8 @@ module Test
           test_case.startup
         rescue Exception => e
           raise unless handle_exception(e, worker_context.result)
+        ensure
+          test_case.worker_id = nil
         end
       end
 
@@ -114,6 +116,8 @@ module Test
           test_case.shutdown
         rescue Exception => e
           raise unless handle_exception(e, worker_context.result)
+        ensure
+          test_case.worker_id = nil
         end
       end
 
