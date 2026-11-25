@@ -611,9 +611,11 @@ module Test
           parent_test_case = self
           sub_test_case = Class.new(self) do
             singleton_class = class << self; self; end
-            singleton_class.__send__(:define_method, :name) do
-              [parent_test_case.name, name].compact.join("::")
+            full_name = [parent_test_case.name, name].compact.join("::").freeze
+            name_method = Unit.shareable_lambda do
+              full_name
             end
+            singleton_class.__send__(:define_method, :name, &name_method)
           end
           # Give the anonymous class a unique, Base64 encoded constant
           # name. So it becomes a named class that `Marshal` can
