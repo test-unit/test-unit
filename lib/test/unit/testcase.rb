@@ -329,15 +329,9 @@ module Test
         def shutdown
         end
 
-        @@test_orders = {}
-
         # Returns the current test order. This returns
         # `:alphabetic` by default.
         def test_order
-          ancestors.each do |ancestor|
-            order = @@test_orders[ancestor]
-            return order if order
-          end
           AVAILABLE_ORDERS.first
         end
 
@@ -354,7 +348,7 @@ module Test
         # :defined
         # : Tests are sorted in defined order.
         def test_order=(order)
-          @@test_orders[self] = order
+          define_singleton_method(:test_order, Unit.shareable_lambda {order})
         end
 
         # Defines a test in declarative syntax or marks
