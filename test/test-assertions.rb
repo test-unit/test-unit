@@ -1609,7 +1609,7 @@ EOM
 
       class TestBlock < self
         def test_with_message
-          if defined?(PowerAssert)
+          if defined?(PowerAssert) and not Unit.non_main_ractor?
             system_message = <<-MESSAGE.chomp
               1.to_s == "2"
                 |    |
