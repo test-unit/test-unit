@@ -181,9 +181,8 @@ module Test
         #
         # @since 3.7.9
         def notify_no_assertions=(boolean)
-          define_singleton_method(:notify_no_assertions?) do
-            boolean
-          end
+          define_singleton_method(:notify_no_assertions?,
+                                  Unit.shareable_lambda {boolean})
         end
 
         def test_suite?
