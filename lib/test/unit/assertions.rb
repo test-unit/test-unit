@@ -3,6 +3,7 @@
 #             Copyright (c) 2009-2013 Kouhei Sutou. All rights reserved.
 # License:: Ruby license.
 
+require_relative 'ractor-helper'
 require_relative 'assertion-failed-error'
 require_relative 'util/backtracefilter'
 require_relative 'util/memory-usage'
@@ -131,7 +132,7 @@ module Test
           have_object = !NOT_SPECIFIED.equal?(object)
           if block
             message = object if have_object
-            if defined?(PowerAssert)
+            if defined?(PowerAssert) and not Unit.non_main_ractor?
               PowerAssert.start(block, :assertion_method => __callee__) do |pa|
                 pa_message = AssertionMessage.delayed_literal(&pa.message_proc)
                 assertion_message = build_message(message, "?", pa_message)
