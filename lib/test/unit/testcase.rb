@@ -389,6 +389,7 @@ module Test
             if block.respond_to?(:source_location)
               attribute(:source_location, block.source_location, {}, method_name)
             end
+            block = Unit.shareable_lambda_if_possible(&block)
             define_method(method_name, &block)
           else
             targets = test_description_or_targets
