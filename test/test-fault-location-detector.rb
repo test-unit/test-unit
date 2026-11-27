@@ -145,11 +145,19 @@ class TestFaultLocationDetector < Test::Unit::TestCase
 
       class << self
         def target_line_number
-          @target_line_number
+          if Test::Unit.non_main_ractor?
+            Ractor["#{name}_target_line_number"]
+          else
+            @target_line_number
+          end
         end
 
         def target_line_number=(line_number)
-          @target_line_number = line_number
+          if Test::Unit.non_main_ractor?
+            Ractor["#{name}_target_line_number"] = line_number
+          else
+            @target_line_number = line_number
+          end
         end
       end
 
