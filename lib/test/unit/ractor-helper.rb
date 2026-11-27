@@ -28,6 +28,19 @@ module Test
           block
         end
       end
+
+      # @api private
+      def shareable_lambda_if_possible(&block)
+        if ractor_available?
+          begin
+            Ractor.shareable_lambda(&block)
+          rescue Ractor::IsolationError
+            block
+          end
+        else
+          block
+        end
+      end
     end
   end
 end
